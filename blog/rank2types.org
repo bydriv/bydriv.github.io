@@ -1,0 +1,63 @@
+#+SETUPFILE: ../setup.org
+#+TITLE: Rank2Types の推論，または Intersection Types について
+
+Rank2Types について調べたことをまとめておく．
+まず， Rank2Types とはなんぞやということについて簡単に確認しておくと，
+ある関数型 ~T -> S~ の ~T~ の部分に， 全称量化子 ~∀~
+を含む型が現れることを許す型システムである．
+くわしくは ~->~ の左側をたどった回数が n 回のとき， Rank n+1 Types という．
+人工的だが有名な例として， ~id :: forall a. a -> a~ を受けとる関数が知られている：
+
+#+BEGIN_SRC sh :exports results :results html
+pygmentize -l haskell -f html Example1.hs
+#+END_SRC
+
+しかし， この例は推論できない． 言いかえるなら型注釈をすればコンパイルできるが，
+型注釈をしなければコンパイルできない．
+なぜならば ~example1~ 関数は，
+まったく同じ実装で別の型を持つからである．
+
+#+BEGIN_SRC sh :exports results :results html
+pygmentize -l haskell -f html Example2.hs
+#+END_SRC
+
+~example1~ と ~example2~ は *同じ実装で* なおかつ *異なる型を持ち*
+そのうえ *一方を具体化しても他方を導出できない* ことに注意せよ．
+~example2~ は一見奇妙にな型に思えるかもしれないが，
+~example2 (const 1) = (1, 1)~ のように ~const~ 関数を渡すことができる．
+
+では， Rank2Types の推論はできないのだろうか．
+ここでできないと結論するのはやや早計である．
+型システム入門には， Rank2Types の推論の複雑さは ML の型推論と同じ，
+と記述されている．これはどういうことだろうか．
+
+じつは Rank2Types のままで推論することはできないが，
+より一般的な型を導入することで ~example1~ および ~example2~ の型を推論することができる．
+それが *交差型* (/intersection types/)
+である． 次のコードはもし Haskell に交差型を導入するとしたらこのようになる，
+という疑似コードである．
+
+#+BEGIN_SRC sh :exports results :results html
+pygmentize -l haskell -f html Example3.hs
+#+END_SRC
+
+~T /\ S~ は，簡単にいえば ~T~ でもあり ~S~ でもある型を表す型である．
+たとえば， ~a = Int~ かつ ~b = Bool~ と代入することで ~((Int -> Int) /\ (Bool -> Bool)) -> (Int, Bool)~
+となり， ~id :: forall a. a -> a~ は ~(Int -> Int) /\ (Bool -> Bool)~ を満たす．
+また ~U~ を固定して ~a = U~ かつ ~b = U~ とすることで ~((Int -> U) /\ (Bool -> U)) -> (U, U)~ となり，
+~u :: U~ とすると， ~const u :: forall a. a -> U~ は ~(Int -> U) /\ (Bool -> U)~ を満たす．
+~example3~ の型は ~example1~ の型および ~example2~ の型のどちらについても，
+より一般的な型になっていることが確認できる．
+
+ところで，いままで単に交差型と呼んでいたが，
+じつは交差型にもランク 1, ランク 2 などの区別があり， これまで触れてきたのは ランク 2 交差型，
+~Rank2IntersectionTypes~ とでもいうべきものである．
+区別の仕方は全称型のときと同じで， ~->~ の左側をたどった回数が n 回のとき，
+ランク n+1 交差型という．
+事実として， ランク 2 交差型と Rank2Types は *まったく同じ項を型つけできる* ことが知られている．
+結局，型システムを交差型で拡張すれば Rank2Types と同じ項が暗に型つけできる，つまり推論できるのである．
+
+* References
+
+- Jim, Trevor, Rank 2 type systems and recursive definitions. 1995.
+- Pierce, C. Benjamin. 『型システム入門』 2013.

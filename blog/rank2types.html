@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Rank2Types の推論，または Intersection Types について</title>
+<!-- 2018-01-13 Sat 18:52 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<link rel="stylesheet" type="text/css" href="/css/prelude.css" />
+<link rel="stylesheet" type="text/css" href="/css/highlight.css" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">Rank2Types の推論，または Intersection Types について</h1>
+<p>
+Rank2Types について調べたことをまとめておく．
+まず， Rank2Types とはなんぞやということについて簡単に確認しておくと，
+ある関数型 <code>T -&gt; S</code> の <code>T</code> の部分に， 全称量化子 <code>∀</code>
+を含む型が現れることを許す型システムである．
+くわしくは <code>-&gt;</code> の左側をたどった回数が n 回のとき， Rank n+1 Types という．
+人工的だが有名な例として， <code>id :: forall a. a -&gt; a</code> を受けとる関数が知られている：
+</p>
+
+<div class="highlight"><pre><span class="cm">{-# LANGUAGE Rank2Types #-}</span>
+
+<span class="nf">example1</span> <span class="ow">::</span> <span class="p">(</span><span class="n">forall</span> <span class="n">a</span><span class="o">.</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="kt">Int</span><span class="p">,</span> <span class="kt">Bool</span><span class="p">)</span>
+<span class="nf">example1</span> <span class="n">f</span> <span class="ow">=</span> <span class="p">(</span><span class="n">f</span> <span class="mi">0</span><span class="p">,</span> <span class="n">f</span> <span class="kt">False</span><span class="p">)</span>
+</pre></div>
+
+<p>
+しかし， この例は推論できない． 言いかえるなら型注釈をすればコンパイルできるが，
+型注釈をしなければコンパイルできない．
+なぜならば <code>example1</code> 関数は，
+まったく同じ実装で別の型を持つからである．
+</p>
+
+<div class="highlight"><pre><span class="cm">{-# LANGUAGE Rank2Types #-}</span>
+
+<span class="nf">example2</span> <span class="ow">::</span> <span class="n">forall</span> <span class="n">b</span><span class="o">.</span> <span class="p">(</span><span class="n">forall</span> <span class="n">a</span><span class="o">.</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">b</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="nf">example2</span> <span class="n">f</span> <span class="ow">=</span> <span class="p">(</span><span class="n">f</span> <span class="mi">0</span><span class="p">,</span> <span class="n">f</span> <span class="kt">False</span><span class="p">)</span>
+</pre></div>
+
+<p>
+<code>example1</code> と <code>example2</code> は <b>同じ実装で</b> なおかつ <b>異なる型を持ち</b>
+そのうえ <b>一方を具体化しても他方を導出できない</b> ことに注意せよ．
+<code>example2</code> は一見奇妙にな型に思えるかもしれないが，
+<code>example2 (const 1) = (1, 1)</code> のように <code>const</code> 関数を渡すことができる．
+</p>
+
+<p>
+では， Rank2Types の推論はできないのだろうか．
+ここでできないと結論するのはやや早計である．
+型システム入門には， Rank2Types の推論の複雑さは ML の型推論と同じ，
+と記述されている．これはどういうことだろうか．
+</p>
+
+<p>
+じつは Rank2Types のままで推論することはできないが，
+より一般的な型を導入することで <code>example1</code> および <code>example2</code> の型を推論することができる．
+それが <b>交差型</b> (<i>intersection types</i>)
+である． 次のコードはもし Haskell に交差型を導入するとしたらこのようになる，
+という疑似コードである．
+</p>
+
+<div class="highlight"><pre><span class="c1">-- 実際にはこのような言語拡張はない</span>
+<span class="cm">{-# LANGUAGE IntersectionTypes #-}</span>
+
+<span class="nf">example3</span> <span class="ow">::</span> <span class="p">((</span><span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="n">a</span><span class="p">)</span> <span class="o">/\</span> <span class="p">(</span><span class="kt">Bool</span> <span class="ow">-&gt;</span> <span class="n">b</span><span class="p">))</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="nf">example3</span> <span class="n">f</span> <span class="ow">=</span> <span class="p">(</span><span class="n">f</span> <span class="mi">0</span><span class="p">,</span> <span class="n">f</span> <span class="kt">False</span><span class="p">)</span>
+</pre></div>
+
+<p>
+<code>T /\ S</code> は，簡単にいえば <code>T</code> でもあり <code>S</code> でもある型を表す型である．
+たとえば， <code>a = Int</code> かつ <code>b = Bool</code> と代入することで <code>((Int -&gt; Int) /\ (Bool -&gt; Bool)) -&gt; (Int, Bool)</code>
+となり， <code>id :: forall a. a -&gt; a</code> は <code>(Int -&gt; Int) /\ (Bool -&gt; Bool)</code> を満たす．
+また <code>U</code> を固定して <code>a = U</code> かつ <code>b = U</code> とすることで <code>((Int -&gt; U) /\ (Bool -&gt; U)) -&gt; (U, U)</code> となり，
+<code>u :: U</code> とすると， <code>const u :: forall a. a -&gt; U</code> は <code>(Int -&gt; U) /\ (Bool -&gt; U)</code> を満たす．
+<code>example3</code> の型は <code>example1</code> の型および <code>example2</code> の型のどちらについても，
+より一般的な型になっていることが確認できる．
+</p>
+
+<p>
+ところで，いままで単に交差型と呼んでいたが，
+じつは交差型にもランク 1, ランク 2 などの区別があり， これまで触れてきたのは ランク 2 交差型，
+<code>Rank2IntersectionTypes</code> とでもいうべきものである．
+区別の仕方は全称型のときと同じで， <code>-&gt;</code> の左側をたどった回数が n 回のとき，
+ランク n+1 交差型という．
+事実として， ランク 2 交差型と Rank2Types は <b>まったく同じ項を型つけできる</b> ことが知られている．
+結局，型システムを交差型で拡張すれば Rank2Types と同じ項が暗に型つけできる，つまり推論できるのである．
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">References</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>Jim, Trevor, Rank 2 type systems and recursive definitions. 1995.
+</li>
+<li>Pierce, C. Benjamin. 『型システム入門』 2013.
+</li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>

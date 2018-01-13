@@ -1,0 +1,9 @@
+#+OPTIONS: html-style:nil
+#+OPTIONS: html-scripts:nil
+#+OPTIONS: author:nil
+#+OPTIONS: date:nil
+#+OPTIONS: toc:nil
+#+OPTIONS: num:nil
+#+HTML_DOCTYPE: html5
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="/css/prelude.css" />
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="/css/highlight.css" />

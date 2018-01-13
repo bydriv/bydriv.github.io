@@ -1,0 +1,62 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body > div#content {
+    margin: 0;
+    padding: 0;
+}
+
+body > div#content > h1.title {
+    margin: 32px 0;
+    padding: 0 16px;
+    text-align: center;
+    font-family: "Georgia", "Yu Gothic", "YuGothic";
+    font-size: 32px;
+    color: #404040;
+}
+
+body > div#content > p {
+    margin: 16px;
+    padding: 0;
+    text-align: justify;
+    text-align-last: left;
+    text-indent: 1em;
+    font-family: "Georgia", "Yu Gothic", "YuGothic";
+    color: #404040;
+}
+
+body > div#content > div.outline-2 > h2 {
+    margin: 24px 0;
+    padding: 8px 16px;
+    border-bottom: solid 1px #404040;
+    text-align: left;
+    font-family: "Georgia", "Yu Gothic", "YuGothic";
+    font-size: 24px;
+    color: #404040;
+}
+
+body > div#content > div.outline-2 > ul {
+    margin: 0;
+    padding: 0;
+    text-align: justify;
+    text-align-last: left;
+    text-indent: 1em;
+    font-family: "Georgia", "Yu Gothic", "YuGothic";
+    color: #404040;
+}
+
+body > div#content > div.highlight {
+    margin: 16px 48px;
+    padding: 0;
+}
+
+a[href] {
+    color: #0080FF;
+    text-decoration: none;
+}
+
+a[href]:hover {
+    text-decoration: underline;
+}
