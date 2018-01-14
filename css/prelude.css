@@ -37,12 +37,7 @@ body > div#content > div.outline-2 > h2 {
     color: #404040;
 }
 
-body > div#content > div.outline-2 > ul {
-    margin: 0;
-    padding: 0;
-    text-align: justify;
-    text-align-last: left;
-    text-indent: 1em;
+body > div#content > div.outline-2 > div.outline-text-2 > ul {
     font-family: "Georgia", "Yu Gothic", "YuGothic";
     color: #404040;
 }
@@ -59,4 +54,8 @@ a[href] {
 
 a[href]:hover {
     text-decoration: underline;
+}
+
+span.overline {
+    text-decoration: overline;
 }
