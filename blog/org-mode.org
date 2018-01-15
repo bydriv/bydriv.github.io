@@ -1,0 +1,90 @@
+#+SETUPFILE: ../setup.org
+#+TITLE: Org mode 周辺のあれこれ
+
+Emacs には標準で org mode という便利なものがついてくる．
+このブログも org mode で書いている．
+それで最近は org mode ばかり使っているのだけど，
+使い方をすぐ忘れそうなのでここに記録しておく．
+ここに書いたほかにもまあいろいろあるけど時間がかかる．
+気が向いたら追記してゆくかもしれない．
+
+* Org Babel
+
+~.org~ ファイルに記述したソースコードを実行し，
+その出力を ~.html~ や ~.tex~ に含めてくれる便利な機能がある．
+たとえば， ~example.html~ をその場に展開したいとしよう．
+そのためには， ~.org~ ファイルに次のように書けばよい．
+
+#+BEGIN_HTML
+<pre>
+#+BEGIN_SRC sh :exports results :results html
+cat example.html
+#+END_SRC
+</pre>
+#+END_HTML
+
+ただし， ~$HOME/.emacs.d/init.el~ などに次のような設定が書かれていることが前提である．
+
+#+BEGIN_SRC elisp
+(org-babel-do-load-languages 'org-babel-load-languages '((sh . t)))
+#+END_SRC
+
+わたしはコマンドを呼びだすためだけに使っているが，
+ほかにもいろいろな言語を実行できるようである．
+
+* Emacs Batch Mode
+
+Org mode で ~.html~ を出力するのにいちいち Emacs を起動するのは面倒である．
+なのでわたしは， Emacs を batch mode で呼びだして ~.html~ を出力している．
+
+#+BEGIN_SRC sh
+yes yes | emacs -batch -u $(whoami) example.org -f org-html-export-to-html
+#+END_SRC
+
+Org Babel がプログラムを実行するときにいちいち確認を求めるので，
+~yes~ コマンドですべて実行させている
+(~yes~ コマンドを実用できるときもちがよい)．
+~-batch~ オプションをつけると ~$HOME/.emacs.d/init.el~ が読まれないので，
+~-u $(whoami)~ で読むようにしている (これは用途によっては使わないほうがよいかもしれない)．
+~-f org-html-export-to-html~ で Emacs の関数を呼びだし，
+~.html~ へ変換している．
+
+じつはコマンドラインから ~.org~ を ~.html~ へ変換するために
+Pandoc を使おうと思ったこともあるのだが，
+いろいろ機能が足りないようなので諦めた．
+
+* Plain HTML
+
+Org mode は標準でいろいろ CSS などを設定してくれるのだが，
+ブログ用途などでは含めないでほしいこともある．
+これはけっこうたいへんである．
+まず， ~$HOME/.emacs.d/init.el~ に次のように書く．
+
+#+BEGIN_SRC elisp
+(setq org-html-preamble nil)
+(setq org-html-postamble nil)
+#+END_SRC
+
+それから， ~.org~ ファイルにもいろいろ書く．
+
+#+BEGIN_HTML
+<pre>
+#+OPTIONS: html-style:nil
+#+OPTIONS: html-scripts:nil
+#+OPTIONS: author:nil
+#+OPTIONS: date:nil
+#+OPTIONS: toc:nil
+#+OPTIONS: num:nil
+#+HTML_DOCTYPE: html5
+</pre>
+#+END_HTML
+
+これらの設定を共通化したいなら， ~#+SETUPFILE:~ という命令が使える．
+~setup.org~ などに上記のように書いておいて，
+それぞれの ~.org~ ファイルから次のように読む．
+
+#+BEGIN_HTML
+<pre>
+#+SETUPFILE: setup.org
+</pre>
+#+END_HTML

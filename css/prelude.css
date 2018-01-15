@@ -17,7 +17,8 @@ body > div#content > h1.title {
     color: #404040;
 }
 
-body > div#content > p {
+body > div#content > p,
+body > div#content > div.outline-2 > div.outline-text-2 > p {
     margin: 16px;
     padding: 0;
     text-align: justify;
@@ -42,6 +43,8 @@ body > div#content > div.outline-2 > div.outline-text-2 > ul {
     color: #404040;
 }
 
+body > div#content > div.outline-2 > div.outline-text-2 > div.org-src-container,
+body > div#content > div.outline-2 > div.outline-text-2 > pre,
 body > div#content > div.highlight {
     margin: 16px 48px;
     padding: 0;
