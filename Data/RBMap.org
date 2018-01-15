@@ -1,0 +1,10 @@
+#+SETUPFILE: ../setup.org
+#+TITLE: Data.RBMap.hs
+
+データ構造の勉強のために赤黒木を実装してみた．
+すでに大勢の人々が同様のことをしているので公開する意味はあまりないかもしれないが，
+勉強メモは残しておくとなにかと便利なことが多いので， いちおう GPLv3 で配布しておく．
+
+#+BEGIN_SRC sh :exports results :results html
+pygmentize -l haskell -f html RBMap.hs
+#+END_SRC
