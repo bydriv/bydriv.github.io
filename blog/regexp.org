@@ -1,6 +1,18 @@
 #+SETUPFILE: ../setup.org
 #+TITLE: 正規言語， NFA, DFA, および正規表現の否定について
 
+#+BEGIN_LOCATION
+@@html:https://<a href="/">bydriv.github.io</a>/<a href="/blog">blog</a>/<strong>regexp.html</strong>@@
+#+END_LOCATION
+
+#+BEGIN_CREATED_AT
+created at @@html:<time datetime="2018-01-14">2018-01-14</time>@@
+#+END_CREATED_AT
+
+#+BEGIN_UPDATED_AT
+updated at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
+#+END_UPDATED_AT
+
 *正規表現* (/regular expression/)について勉強したことをまとめておく．
 この記事は解説というより備忘録のようなものなので，
 あまりこの記事だけで理解することは期待しないでほしいが，

@@ -1,6 +1,18 @@
 #+SETUPFILE: setup.org
 #+TITLE: bydriv.ghithub.io
 
+#+BEGIN_LOCATION
+@@html:https://<strong>bydriv.github.io</strong>/@@
+#+END_LOCATION
+
+#+BEGIN_CREATED_AT
+created at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
+#+END_CREATED_AT
+
+#+BEGIN_UPDATED_AT
+updated at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
+#+END_UPDATED_AT
+
 * bydriv.ghithub.io/blog
 
 - [[./blog/rank2types.org][Rank2Types の推論，または Intersection Types について]]

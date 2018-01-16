@@ -1,6 +1,18 @@
 #+SETUPFILE: ../setup.org
 #+TITLE: Data.RBSet.hs
 
+#+BEGIN_LOCATION
+@@html:https://<a href="/">bydriv.github.io</a>/<a href="/Data">Data</a>/<strong>RBSet.html</strong>@@
+#+END_LOCATION
+
+#+BEGIN_CREATED_AT
+created at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
+#+END_CREATED_AT
+
+#+BEGIN_UPDATED_AT
+updated at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
+#+END_UPDATED_AT
+
 #+BEGIN_SRC sh :exports results :results html
 pygmentize -l haskell -f html RBSet.hs
 #+END_SRC

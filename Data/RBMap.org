@@ -1,6 +1,18 @@
 #+SETUPFILE: ../setup.org
 #+TITLE: Data.RBMap.hs
 
+#+BEGIN_LOCATION
+@@html:https://<a href="/">bydriv.github.io</a>/<a href="/Data">Data</a>/<strong>RBMap.html</strong>@@
+#+END_LOCATION
+
+#+BEGIN_CREATED_AT
+created at @@html:<time datetime="2018-01-15">2018-01-15</time>@@
+#+END_CREATED_AT
+
+#+BEGIN_UPDATED_AT
+updated at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
+#+END_UPDATED_AT
+
 データ構造の勉強のために赤黒木を実装してみた．
 すでに大勢の人々が同様のことをしているので公開する意味はあまりないかもしれないが，
 勉強メモは残しておくとなにかと便利なことが多いので， いちおう GPLv3 で配布しておく．

@@ -1,6 +1,18 @@
 #+SETUPFILE: ../setup.org
 #+TITLE: Rank2Types の推論，または Intersection Types について
 
+#+BEGIN_LOCATION
+@@html:https://<a href="/">bydriv.github.io</a>/<a href="/blog">blog</a>/<strong>rank2types.html</strong>@@
+#+END_LOCATION
+
+#+BEGIN_CREATED_AT
+created at @@html:<time datetime="2018-01-13">2018-01-13</time>@@
+#+END_CREATED_AT
+
+#+BEGIN_UPDATED_AT
+updated at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
+#+END_UPDATED_AT
+
 Rank2Types について調べたことをまとめておく．
 まず， Rank2Types とはなんぞやということについて簡単に確認しておくと，
 ある関数型 ~T -> S~ の ~T~ の部分に， 全称量化子 ~∀~

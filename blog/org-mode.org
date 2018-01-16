@@ -1,6 +1,18 @@
 #+SETUPFILE: ../setup.org
 #+TITLE: Org mode 周辺のあれこれ
 
+#+BEGIN_LOCATION
+@@html:https://<a href="/">bydriv.github.io</a>/<a href="/blog">blog</a>/<strong>org-mode.html</strong>@@
+#+END_LOCATION
+
+#+BEGIN_CREATED_AT
+created at @@html:<time datetime="2018-01-15">2018-01-15</time>@@
+#+END_CREATED_AT
+
+#+BEGIN_UPDATED_AT
+updated at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
+#+END_UPDATED_AT
+
 Emacs には標準で org mode という便利なものがついてくる．
 このブログも org mode で書いている．
 それで最近は org mode ばかり使っているのだけど，
