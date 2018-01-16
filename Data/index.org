@@ -1,0 +1,24 @@
+#+SETUPFILE: ../setup.org
+#+TITLE: bydriv.ghithub.io/blog
+
+#+BEGIN_LOCATION
+@@html:https://<a href="/">bydriv.github.io</a>/<strong>Data</strong>@@
+#+END_LOCATION
+
+#+BEGIN_CREATED_AT
+created at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
+#+END_CREATED_AT
+
+#+BEGIN_UPDATED_AT
+updated at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
+#+END_UPDATED_AT
+
+* Index
+
+- [[./RBMap.html][Data.RBMap]] - 赤黒木の Haskell 実装 (写像モジュール)．
+- [[./RBSet.html][Data.RBSet]] - 赤黒木の Haskell 実装 (集合モジュール).
+- [[./Regexp.html][Data.Regexp]] - DFA 型正規表現エンジンの Haskell 実装．
+
+* License
+
+GPLv3.

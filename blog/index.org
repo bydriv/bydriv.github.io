@@ -1,0 +1,24 @@
+#+SETUPFILE: ../setup.org
+#+TITLE: bydriv.ghithub.io/blog
+
+#+BEGIN_LOCATION
+@@html:https://<a href="/">bydriv.github.io</a>/<strong>blog</strong>@@
+#+END_LOCATION
+
+#+BEGIN_CREATED_AT
+created at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
+#+END_CREATED_AT
+
+#+BEGIN_UPDATED_AT
+updated at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
+#+END_UPDATED_AT
+
+* Index
+
+- [[./rank2types.org][Rank2Types の推論，または Intersection Types について]]
+- [[./regexp.org][正規言語， NFA, DFA, および正規表現の否定について]]
+- [[./org-mode.org][Org mode 周辺のあれこれ]]
+
+* License
+
+GPLv3.
