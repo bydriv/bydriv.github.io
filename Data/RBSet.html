@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Data.RBSet.hs</title>
+<!-- 2018-01-16 Tue 15:37 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<link rel="stylesheet" type="text/css" href="/css/prelude.css" />
+<link rel="stylesheet" type="text/css" href="/css/highlight.css" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">Data.RBSet.hs</h1>
+<div class="highlight"><pre><span class="c1">-- MHC: Minimal Haskell Compiler © 2017 Kaoru Kawamukai &lt;bydriv@gmail.com&gt;</span>
+<span class="c1">--</span>
+<span class="c1">-- MHC is free software: you can redistribute it and/or modify</span>
+<span class="c1">-- it under the terms of the GNU General Public License as published by</span>
+<span class="c1">-- the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1">-- (at your option) any later version.</span>
+<span class="c1">--</span>
+<span class="c1">-- MHC is distributed in the hope that it will be useful,</span>
+<span class="c1">-- but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1">-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1">-- GNU General Public License for more details.</span>
+<span class="c1">--</span>
+<span class="c1">-- You should have received a copy of the GNU General Public License</span>
+<span class="c1">-- along with MHC.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="kr">module</span> <span class="nn">Data.RBSet</span>
+  <span class="p">(</span> <span class="kt">RBSet</span>
+  <span class="p">,</span> <span class="nf">empty</span>
+  <span class="p">,</span> <span class="nf">singleton</span>
+  <span class="p">,</span> <span class="nf">foldr</span>
+  <span class="p">,</span> <span class="nf">foldl</span>
+  <span class="p">,</span> <span class="nf">foldTree</span>
+  <span class="p">,</span> <span class="nf">map</span>
+  <span class="p">,</span> <span class="nf">concatMap</span>
+  <span class="p">,</span> <span class="nf">all</span>
+  <span class="p">,</span> <span class="nf">any</span>
+  <span class="p">,</span> <span class="nf">null</span>
+  <span class="p">,</span> <span class="nf">member</span>
+  <span class="p">,</span> <span class="nf">subset</span>
+  <span class="p">,</span> <span class="nf">insert</span>
+  <span class="p">,</span> <span class="nf">delete</span>
+  <span class="p">,</span> <span class="nf">union</span>
+  <span class="p">,</span> <span class="nf">unions</span>
+  <span class="p">,</span> <span class="nf">inter</span>
+  <span class="p">,</span> <span class="nf">diff</span>
+  <span class="p">,</span> <span class="nf">maximum</span>
+  <span class="p">,</span> <span class="nf">minimum</span>
+  <span class="p">,</span> <span class="nf">toList</span>
+  <span class="p">,</span> <span class="nf">fromList</span> <span class="p">)</span> <span class="kr">where</span>
+
+<span class="kr">import</span>           <span class="nn">Prelude</span>
+  <span class="k">hiding</span>
+    <span class="p">(</span> <span class="nf">all</span>
+    <span class="p">,</span> <span class="nf">any</span>
+    <span class="p">,</span> <span class="nf">concatMap</span>
+    <span class="p">,</span> <span class="nf">foldl</span>
+    <span class="p">,</span> <span class="nf">foldr</span>
+    <span class="p">,</span> <span class="nf">map</span>
+    <span class="p">,</span> <span class="nf">maximum</span>
+    <span class="p">,</span> <span class="nf">minimum</span>
+    <span class="p">,</span> <span class="nf">null</span> <span class="p">)</span>
+<span class="kr">import</span> <span class="k">qualified</span> <span class="nn">Prelude</span>
+<span class="kr">import</span> <span class="k">qualified</span> <span class="nn">Data.List</span>  <span class="k">as</span> <span class="n">List</span>
+<span class="kr">import</span> <span class="k">qualified</span> <span class="nn">Data.RBMap</span> <span class="k">as</span> <span class="n">RBMap</span>
+
+<span class="kr">newtype</span> <span class="kt">RBSet</span> <span class="n">a</span> <span class="ow">=</span> <span class="kt">RBSet</span> <span class="p">(</span><span class="kt">RBMap</span><span class="o">.</span><span class="kt">RBMap</span> <span class="n">a</span> <span class="nb">()</span><span class="p">)</span>
+  <span class="kr">deriving</span> <span class="p">(</span><span class="kt">Eq</span><span class="p">,</span> <span class="kt">Ord</span><span class="p">)</span>
+
+<span class="kr">instance</span> <span class="p">(</span><span class="kt">Ord</span> <span class="n">a</span><span class="p">,</span> <span class="kt">Read</span> <span class="n">a</span><span class="p">)</span> <span class="ow">=&gt;</span> <span class="kt">Read</span> <span class="p">(</span><span class="kt">RBSet</span> <span class="n">a</span><span class="p">)</span> <span class="kr">where</span>
+  <span class="n">readsPrec</span> <span class="kr">_</span> <span class="n">s</span> <span class="ow">=</span>
+    <span class="kr">if</span> <span class="kt">List</span><span class="o">.</span><span class="n">isPrefixOf</span> <span class="s">&quot;fromList&quot;</span> <span class="n">s</span> <span class="kr">then</span>
+      <span class="kt">Prelude</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="nf">\</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">s&#39;</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">fromList</span> <span class="n">xs</span><span class="p">,</span> <span class="n">s&#39;</span><span class="p">))</span> <span class="o">$</span> <span class="n">reads</span> <span class="o">$</span> <span class="kt">List</span><span class="o">.</span><span class="n">drop</span> <span class="mi">8</span> <span class="n">s</span>
+    <span class="kr">else</span>
+      <span class="kt">[]</span>
+
+<span class="kr">instance</span> <span class="kt">Show</span> <span class="n">a</span> <span class="ow">=&gt;</span> <span class="kt">Show</span> <span class="p">(</span><span class="kt">RBSet</span> <span class="n">a</span><span class="p">)</span> <span class="kr">where</span>
+  <span class="n">show</span> <span class="ow">=</span> <span class="p">(</span><span class="s">&quot;fromList&quot;</span> <span class="o">++</span><span class="p">)</span> <span class="o">.</span> <span class="n">show</span> <span class="o">.</span> <span class="n">toList</span>
+
+<span class="nf">unRBSet</span> <span class="ow">::</span> <span class="kt">RBSet</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">RBMap</span><span class="o">.</span><span class="kt">RBMap</span> <span class="n">a</span> <span class="nb">()</span>
+<span class="nf">unRBSet</span> <span class="p">(</span><span class="kt">RBSet</span> <span class="n">rbMap</span><span class="p">)</span> <span class="ow">=</span> <span class="n">rbMap</span>
+
+<span class="nf">empty</span> <span class="ow">::</span> <span class="kt">RBSet</span> <span class="n">a</span>
+<span class="nf">empty</span> <span class="ow">=</span> <span class="kt">RBSet</span> <span class="kt">RBMap</span><span class="o">.</span><span class="n">empty</span>
+
+<span class="nf">singleton</span> <span class="ow">::</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span>
+<span class="nf">singleton</span> <span class="ow">=</span> <span class="kt">RBSet</span> <span class="o">.</span> <span class="n">flip</span> <span class="kt">RBMap</span><span class="o">.</span><span class="n">singleton</span> <span class="nb">()</span>
+
+<span class="nf">foldr</span> <span class="ow">::</span> <span class="p">(</span><span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">b</span> <span class="ow">-&gt;</span> <span class="n">b</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="n">b</span> <span class="ow">-&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">b</span>
+<span class="nf">foldr</span> <span class="n">f</span> <span class="n">z</span> <span class="ow">=</span> <span class="kt">RBMap</span><span class="o">.</span><span class="n">foldri</span> <span class="p">(</span><span class="n">const</span> <span class="o">.</span> <span class="n">f</span><span class="p">)</span> <span class="n">z</span> <span class="o">.</span> <span class="n">unRBSet</span>
+
+<span class="nf">foldl</span> <span class="ow">::</span> <span class="p">(</span><span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">b</span> <span class="ow">-&gt;</span> <span class="n">b</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="n">b</span> <span class="ow">-&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">b</span>
+<span class="nf">foldl</span> <span class="n">f</span> <span class="n">z</span> <span class="ow">=</span> <span class="kt">RBMap</span><span class="o">.</span><span class="n">foldli</span> <span class="p">(</span><span class="n">const</span> <span class="o">.</span> <span class="n">f</span><span class="p">)</span> <span class="n">z</span> <span class="o">.</span> <span class="n">unRBSet</span>
+
+<span class="nf">foldTree</span> <span class="ow">::</span> <span class="p">(</span><span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">b</span> <span class="ow">-&gt;</span> <span class="n">b</span> <span class="ow">-&gt;</span> <span class="n">b</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="n">b</span> <span class="ow">-&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">b</span>
+<span class="nf">foldTree</span> <span class="n">f</span> <span class="n">z</span> <span class="ow">=</span> <span class="kt">RBMap</span><span class="o">.</span><span class="n">foldiTree</span> <span class="p">(</span><span class="n">const</span> <span class="o">.</span> <span class="n">f</span><span class="p">)</span> <span class="n">z</span> <span class="o">.</span> <span class="n">unRBSet</span>
+
+<span class="nf">map</span> <span class="ow">::</span> <span class="p">(</span><span class="kt">Ord</span> <span class="n">a</span><span class="p">,</span> <span class="kt">Ord</span> <span class="n">b</span><span class="p">)</span> <span class="ow">=&gt;</span> <span class="p">(</span><span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">b</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">RBSet</span> <span class="n">b</span>
+<span class="nf">map</span> <span class="n">f</span> <span class="ow">=</span> <span class="n">foldr</span> <span class="p">(</span><span class="n">insert</span> <span class="o">.</span> <span class="n">f</span><span class="p">)</span> <span class="n">empty</span>
+
+<span class="nf">concatMap</span> <span class="ow">::</span> <span class="p">(</span><span class="kt">Ord</span> <span class="n">a</span><span class="p">,</span> <span class="kt">Ord</span> <span class="n">b</span><span class="p">)</span> <span class="ow">=&gt;</span> <span class="p">(</span><span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">RBSet</span> <span class="n">b</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">RBSet</span> <span class="n">b</span>
+<span class="nf">concatMap</span> <span class="n">f</span> <span class="ow">=</span> <span class="n">foldr</span> <span class="p">(</span><span class="n">union</span> <span class="o">.</span> <span class="n">f</span><span class="p">)</span> <span class="n">empty</span>
+
+<span class="nf">all</span> <span class="ow">::</span> <span class="p">(</span><span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">Bool</span>
+<span class="nf">all</span> <span class="n">f</span> <span class="ow">=</span> <span class="n">foldr</span> <span class="p">((</span><span class="o">&amp;&amp;</span><span class="p">)</span> <span class="o">.</span> <span class="n">f</span><span class="p">)</span> <span class="kt">True</span>
+
+<span class="nf">any</span> <span class="ow">::</span> <span class="p">(</span><span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">Bool</span>
+<span class="nf">any</span> <span class="n">f</span> <span class="ow">=</span> <span class="n">foldr</span> <span class="p">((</span><span class="o">||</span><span class="p">)</span> <span class="o">.</span> <span class="n">f</span><span class="p">)</span> <span class="kt">False</span>
+
+<span class="nf">null</span> <span class="ow">::</span> <span class="kt">RBSet</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">Bool</span>
+<span class="nf">null</span> <span class="ow">=</span> <span class="kt">RBMap</span><span class="o">.</span><span class="n">null</span> <span class="o">.</span> <span class="n">unRBSet</span>
+
+<span class="nf">member</span> <span class="ow">::</span> <span class="kt">Ord</span> <span class="n">a</span> <span class="ow">=&gt;</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">Bool</span>
+<span class="nf">member</span> <span class="n">x</span> <span class="ow">=</span> <span class="kt">RBMap</span><span class="o">.</span><span class="n">member</span> <span class="n">x</span> <span class="o">.</span> <span class="n">unRBSet</span>
+
+<span class="nf">subset</span> <span class="ow">::</span> <span class="kt">Ord</span> <span class="n">a</span> <span class="ow">=&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">Bool</span>
+<span class="nf">subset</span> <span class="ow">=</span> <span class="n">flip</span> <span class="o">$</span> <span class="n">all</span> <span class="o">.</span> <span class="n">flip</span> <span class="n">member</span>
+
+<span class="nf">insert</span> <span class="ow">::</span> <span class="kt">Ord</span> <span class="n">a</span> <span class="ow">=&gt;</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span>
+<span class="nf">insert</span> <span class="n">x</span> <span class="ow">=</span> <span class="kt">RBSet</span> <span class="o">.</span> <span class="kt">RBMap</span><span class="o">.</span><span class="n">insert</span> <span class="n">x</span> <span class="nb">()</span> <span class="o">.</span> <span class="n">unRBSet</span>
+
+<span class="nf">delete</span> <span class="ow">::</span> <span class="kt">Ord</span> <span class="n">a</span> <span class="ow">=&gt;</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span>
+<span class="nf">delete</span> <span class="n">x</span> <span class="ow">=</span> <span class="kt">RBSet</span> <span class="o">.</span> <span class="kt">RBMap</span><span class="o">.</span><span class="n">delete</span> <span class="n">x</span> <span class="o">.</span> <span class="n">unRBSet</span>
+
+<span class="nf">union</span> <span class="ow">::</span> <span class="kt">Ord</span> <span class="n">a</span> <span class="ow">=&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span>
+<span class="nf">union</span> <span class="n">rbSet</span> <span class="ow">=</span> <span class="kt">RBSet</span> <span class="o">.</span> <span class="kt">RBMap</span><span class="o">.</span><span class="n">unionr</span> <span class="p">(</span><span class="n">unRBSet</span> <span class="n">rbSet</span><span class="p">)</span> <span class="o">.</span> <span class="n">unRBSet</span>
+
+<span class="nf">unions</span> <span class="ow">::</span> <span class="kt">Ord</span> <span class="n">a</span> <span class="ow">=&gt;</span> <span class="p">[</span><span class="kt">RBSet</span> <span class="n">a</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span>
+<span class="nf">unions</span> <span class="ow">=</span> <span class="kt">Prelude</span><span class="o">.</span><span class="n">foldr</span> <span class="n">union</span> <span class="n">empty</span>
+
+<span class="nf">inter</span> <span class="ow">::</span> <span class="kt">Ord</span> <span class="n">a</span> <span class="ow">=&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span>
+<span class="nf">inter</span> <span class="n">rbSet</span> <span class="ow">=</span> <span class="kt">RBSet</span> <span class="o">.</span> <span class="kt">RBMap</span><span class="o">.</span><span class="n">interr</span> <span class="p">(</span><span class="n">unRBSet</span> <span class="n">rbSet</span><span class="p">)</span> <span class="o">.</span> <span class="n">unRBSet</span>
+
+<span class="nf">diff</span> <span class="ow">::</span> <span class="kt">Ord</span> <span class="n">a</span> <span class="ow">=&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span>
+<span class="nf">diff</span> <span class="n">rbSet</span> <span class="ow">=</span> <span class="kt">RBSet</span> <span class="o">.</span> <span class="kt">RBMap</span><span class="o">.</span><span class="n">diff</span> <span class="p">(</span><span class="n">unRBSet</span> <span class="n">rbSet</span><span class="p">)</span> <span class="o">.</span> <span class="n">unRBSet</span>
+
+<span class="nf">maximum</span> <span class="ow">::</span> <span class="kt">Ord</span> <span class="n">a</span> <span class="ow">=&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">Maybe</span> <span class="n">a</span>
+<span class="nf">maximum</span> <span class="ow">=</span> <span class="kt">RBMap</span><span class="o">.</span><span class="n">maximumKey</span> <span class="o">.</span> <span class="n">unRBSet</span>
+
+<span class="nf">minimum</span> <span class="ow">::</span> <span class="kt">Ord</span> <span class="n">a</span> <span class="ow">=&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">Maybe</span> <span class="n">a</span>
+<span class="nf">minimum</span> <span class="ow">=</span> <span class="kt">RBMap</span><span class="o">.</span><span class="n">minimumKey</span> <span class="o">.</span> <span class="n">unRBSet</span>
+
+<span class="nf">toList</span> <span class="ow">::</span> <span class="kt">RBSet</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span>
+<span class="nf">toList</span> <span class="ow">=</span> <span class="n">foldr</span> <span class="p">(</span><span class="kt">:</span><span class="p">)</span> <span class="kt">[]</span>
+
+<span class="nf">fromList</span> <span class="ow">::</span> <span class="kt">Ord</span> <span class="n">a</span> <span class="ow">=&gt;</span> <span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="kt">RBSet</span> <span class="n">a</span>
+<span class="nf">fromList</span> <span class="ow">=</span> <span class="kt">Prelude</span><span class="o">.</span><span class="n">foldr</span> <span class="n">insert</span> <span class="n">empty</span>
+</pre></div>
+</div>
+</body>
+</html>

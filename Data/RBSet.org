@@ -1,0 +1,6 @@
+#+SETUPFILE: ../setup.org
+#+TITLE: Data.RBSet.hs
+
+#+BEGIN_SRC sh :exports results :results html
+pygmentize -l haskell -f html RBSet.hs
+#+END_SRC
