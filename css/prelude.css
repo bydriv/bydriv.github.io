@@ -12,6 +12,7 @@ body > div#content > h1.title {
     margin: 32px 0;
     padding: 0 16px;
     text-align: center;
+    word-wrap: break-word;
     font-family: "Georgia", "Yu Gothic", "YuGothic";
     font-size: 32px;
     color: #404040;
@@ -21,6 +22,7 @@ body > div#content > div.location {
     margin: -24px 0 0;
     padding: 0;
     text-align: center;
+    word-wrap: break-word;
 }
 
 body > div#content > div.created_at,
@@ -28,6 +30,7 @@ body > div#content > div.updated_at {
     margin: -16px 32px 0;
     padding: 0;
     text-align: right;
+    word-wrap: break-word;
 }
 
 body > div#content > p,
@@ -37,6 +40,7 @@ body > div#content > div.outline-2 > div.outline-text-2 > p {
     text-align: justify;
     text-align-last: left;
     text-indent: 1em;
+    word-wrap: break-word;
     font-family: "Georgia", "Yu Gothic", "YuGothic";
     font-size: 16px;
     color: #404040;
@@ -47,6 +51,7 @@ body > div#content > div.outline-2 > h2 {
     padding: 8px 16px;
     border-bottom: solid 1px #404040;
     text-align: left;
+    word-wrap: break-word;
     font-family: "Georgia", "Yu Gothic", "YuGothic";
     font-size: 24px;
     color: #404040;
