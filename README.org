@@ -1,0 +1,7 @@
+* About
+
+My personal site.
+
+* License
+
+GPLv3.
