@@ -2,7 +2,7 @@
 #+TITLE: bydriv.ghithub.io/blog
 
 #+BEGIN_LOCATION
-@@html:https://<a href="/">bydriv.github.io</a>/<strong>Data</strong>@@
+@@html:https://<a href="/">bydriv.github.io</a>/<strong>Data</strong>/@@
 #+END_LOCATION
 
 #+BEGIN_CREATED_AT
