@@ -64,11 +64,14 @@ body > div#content > div.outline-2 > div.outline-text-2 > pre,
 body > div#content > div.highlight {
     margin: 16px 48px;
     padding: 0;
-    white-space: pre-wrap;
 }
 
 code, pre {
     font-family: "Consolas", "Courier New";
+}
+
+pre {
+    white-space: pre-wrap;
 }
 
 a[href] {
