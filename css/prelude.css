@@ -43,6 +43,7 @@ body > div#content > div.outline-2 > div.outline-text-2 > ul {
     color: #404040;
 }
 
+body > div#content > pre,
 body > div#content > div.outline-2 > div.outline-text-2 > div.org-src-container,
 body > div#content > div.outline-2 > div.outline-text-2 > pre,
 body > div#content > div.highlight {
