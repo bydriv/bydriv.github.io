@@ -38,6 +38,7 @@ body > div#content > div.outline-2 > div.outline-text-2 > p {
     text-align-last: left;
     text-indent: 1em;
     font-family: "Georgia", "Yu Gothic", "YuGothic";
+    font-size: 16px;
     color: #404040;
 }
 
