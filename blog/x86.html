@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>x86 勉強メモ</title>
+<!-- 2018-01-17 Wed 15:58 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/css/prelude.css" />
+<link rel="stylesheet" type="text/css" href="/css/highlight.css" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">x86 勉強メモ</h1>
+<div class="location">
+<p>
+https://<a href="/">bydriv.github.io</a>/<a href="/blog">blog</a>/<strong>x86.html</strong>
+</p>
+
+</div>
+
+<div class="created_at">
+<p>
+created at <time datetime="2018-01-17">2018-01-17</time>
+</p>
+
+</div>
+
+<div class="updated_at">
+<p>
+updated at <time datetime="2018-01-17">2018-01-17</time>
+</p>
+
+</div>
+
+<p>
+ひとまず， 勉強メモ的なものを残しておく．
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">基本的なこと</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+x86 というと， 通常は 32-bit のアーキテクチャを指す．
+x86 を 64-bit に拡張したものがあり，
+これは x86 64 とか， x64 などと呼ばれる．
+しかし日常的には x86 と x64 をまとめて x86 と呼ぶこともある．
+</p>
+
+<p>
+x86 の <b>命令セット</b> (<i>instruction set</i>) は，いわゆる機械語であって，
+<code>mov</code> のようなものは <b>アセンブラ</b> (<i>assembler</i>)の実装にすぎない．
+なので x86 という <b>アセンブリ言語</b> (<i>assembly language</i>) が存在するわけではない．
+しかし， 日常的には GAS や NASM が処理するアセンブリ言語のことを x86 と呼ぶこともある．
+</p>
+
+<p>
+x86 の命令セットに含まれるそれぞれの命令は <i>opcode</i> と呼ばれる．
+<code>mov</code> のような人間可読なものは <b>ニーモニック</b> (<i>mnemonic</i>) と呼ばれる．
+ニーモニックの列を <i>opcode</i> の列に変換することがアセンブラの仕事である．
+</p>
+
+<p>
+ただ，実行形式は単なる <i>opcode</i> の列ではなく，
+通常， OS が必要とする情報も含んでいる． たとえば ELF や EXE のヘッダがそうである．
+また同じ <i>opcode</i> でも，システムコールなどはふるまいが OS に依存する．
+これらが同じ CPU でも異なる OS では実行できない理由である．
+しかし ELF にせよ EXE にせよ， (CPU が同じなら) 大部分は同じ <i>opcode</i> の列である．
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">レジスタ</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+レジスタは x86 と x64 で数が異なる．
+x86 では 8 つ， x64 では 16 つである．
+</p>
+
+<p>
+x64 の RAX レジスタを例にとると，
+rax, eax, ax, al, ah は次に示す共用体のような関係にある．
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c">typedef union {
+  struct {
+    uint8_t al;
+    uint8_t ah;
+  };
+  uint16_t ax;
+  uint32_t eax;
+  uint64_t rax; /* x64 のみ */
+} rax_t;
+</pre>
+</div>
+
+<p>
+つまりたとえば eax に 42 をいれると rax も 42 になる．
+領域は同じで，アクセスする幅が異なる感じになっている．
+しかしこの説明ではまだじゅうぶんではなくて，
+たとえば eax に値をいれると rax の上位 32 bit は 0 で埋められるが，
+ax ではそのまま残るなどの違いがある．
+このへんの仕様は互換性を保つための歴史的経緯による産物らしい．
+</p>
+
+<p>
+レジスタの一覧は次のとおり．
+ただし 64-bit レジスタは x64 のみ．
+</p>
+
+<ul class="org-ul">
+<li>rax, eax, ax, al, ah
+</li>
+<li>rbx, ebx, bx, bl, bh
+</li>
+<li>rcx, ecx, cx, cl, ch
+</li>
+<li>rdx, edx, dx, dl, dh
+</li>
+<li>rsi, esi, si, sil (sih はない)
+</li>
+<li>rdi, edi, di, dil (dih はない)
+</li>
+<li>rbp, ebp, bp, bpl (bph はない)
+</li>
+<li>rsp, esp, sp, spl (sph はない)
+</li>
+</ul>
+
+<p>
+次のレジスタは x64 のみ．
+</p>
+
+<ul class="org-ul">
+<li>r8, r8d, r8w, r8b
+</li>
+<li>r9, r9d, r9w, r9b
+</li>
+<li>r10, r10d, r10w, r10b
+</li>
+<li>r11, r11d, r11w, r11b
+</li>
+<li>r12, r12d, r12w, r12b
+</li>
+<li>r13, r13d, r13w, r13b
+</li>
+<li>r14, r14d, r14w, r14b
+</li>
+<li>r15, r15d, r15w, r15b
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">XMM レジスタ</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+このへんは正直まだよくわかっていないのだが，
+浮動小数点数をいれると高速化できるらしい．
+このレジスタに入っている浮動小数点数専用の命令がいろいろある．
+あと， Windows だと浮動小数数はこのレジスタにいれて渡すことになっている．
+(機械語には型がないと言ったな． あれは嘘だ)
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">命令など</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+命令はいろいろある．
+列挙するのも面倒なくらいたくさんある．
+これは正直覚えるしかない．
+まあ <code>mov</code> だけでチューリング完全らしいので最悪 <code>mov</code> だけ覚えておくとよい．
+あと <code>lea</code> は便利．
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">処理系など</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+x86 の処理系は当然 CPU だが，
+アセンブラという意味では GAS と NASM が双璧という感じらしい．
+GAS は gcc に付属してるはずなのでおそらくどの環境にもある．
+しかし，玄人は NASM を使うというウワサもある．
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

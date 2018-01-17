@@ -10,7 +10,7 @@ created at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
+updated at @@html:<time datetime="2018-01-16">2018-01-17</time>@@
 #+END_UPDATED_AT
 
 * Index
@@ -18,6 +18,7 @@ updated at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
 - [[./rank2types.org][Rank2Types の推論，または Intersection Types について]]
 - [[./regexp.org][正規言語， NFA, DFA, および正規表現の否定について]]
 - [[./org-mode.org][Org mode 周辺のあれこれ]]
+- [[./x86.org][x86 勉強メモ]]
 
 * License
 
