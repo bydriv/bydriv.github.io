@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Strictly Positive, または Coq がいかにして停止性を保証しているか</title>
+<!-- 2018-01-17 Wed 19:44 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/css/prelude.css" />
+<link rel="stylesheet" type="text/css" href="/css/highlight.css" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">Strictly Positive, または Coq がいかにして停止性を保証しているか</h1>
+<div class="location">
+<p>
+https://<a href="/">bydriv.github.io</a>/<a href="/blog">blog</a>/<strong>positive.html</strong>
+</p>
+
+</div>
+
+<div class="created_at">
+<p>
+created at <time datetime="2018-01-17">2018-01-17</time>
+</p>
+
+</div>
+
+<div class="updated_at">
+<p>
+updated at <time datetime="2018-01-17">2018-01-17</time>
+</p>
+
+</div>
+
+<p>
+以前 Coq みたいに停止性が保証された言語処理系を開発したいと思っていて，
+いろいろ調べていたことがあった． そのときの知見をまとめておく．
+</p>
+
+<p>
+まずよく知られているように， Coq の再帰には強い制限がある．
+つまり， 再帰で渡せる値は構文的に小さいものにかぎられる．
+はじめ， わたしはこれだけで停止性を保証できるのかと思っていたのだけど，
+そうではなかった． じつは帰納的データ型の定義時にけっこういろいろ検査しなければならないらしい．
+</p>
+
+<p>
+Haskell などのデータ型は， それ自身を含む型を定義できる．
+これを <b>再帰型</b> (<i>recursive types</i>) という．
+TaPL にも再帰型が載っているが， ある意味あれが structural な再帰型だとすると，
+Haskell のようなデータ型は nominal な再帰型である．
+OCaml ではバリアントというが，
+厳密にはバリアントはそれ自身を含む型を定義できない (実際， Coq ではそうなっている)
+ので バリアント + nominal な再帰型というのが正確なところであろう．
+このようなデータ型は再帰型を含む以上， 再帰型にまつわるやっかいな問題もいっしょについてくる．
+</p>
+
+<div class="highlight"><pre><span class="kr">data</span> <span class="kt">Rec</span> <span class="n">a</span> <span class="ow">=</span> <span class="kt">Rec</span> <span class="p">{</span> <span class="n">unfold</span> <span class="ow">::</span> <span class="kt">Rec</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span> <span class="p">}</span>
+
+<span class="nf">y</span> <span class="ow">::</span> <span class="p">(</span><span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="n">a</span>
+<span class="nf">y</span> <span class="n">f</span> <span class="ow">=</span> <span class="n">unfold</span> <span class="p">(</span><span class="kt">Rec</span> <span class="p">(</span><span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="n">f</span> <span class="p">(</span><span class="n">unfold</span> <span class="n">x</span> <span class="n">x</span><span class="p">)))</span> <span class="p">(</span><span class="kt">Rec</span> <span class="p">(</span><span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="n">f</span> <span class="p">(</span><span class="n">unfold</span> <span class="n">x</span> <span class="n">x</span><span class="p">)))</span>
+</pre></div>
+
+<p>
+このようにして， なんと関数が再帰せずともデータ型の再帰のみで
+Y コンビネータを定義できてしまうのである．
+</p>
+
+<p>
+しかしじつは Coq でこのようなデータ型を定義しようとしても
+<b>定義時に</b> 弾かれる． <code>y :: (a -&gt; a) -&gt; a</code> を定義せずとも，
+<code>Rec</code> 型を定義しようとするだけで弾かれてしまう．
+では， それはいかにして実現されているのだろうか．
+じつは Coq の帰納的データ型には， Strictly Positive という条件が課されているのである．
+Strictly Positive は， 簡単にいえばデータ型を定義するときに，
+<code>-&gt;</code> の左側で再帰することを許さない条件である．
+じつは Agda でも採用されているらしい．
+くわしくは参考文献を参照されたし．
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">References</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>4.5.2. Well-formed inductive definitions - <a href="https://coq.inria.fr/distrib/current/refman/cic.html#sec190">https://coq.inria.fr/distrib/current/refman/cic.html#sec190</a>
+</li>
+<li>Positivity Checking - <a href="http://agda.readthedocs.io/en/v2.5.3/language/positivity-checking.html">http://agda.readthedocs.io/en/v2.5.3/language/positivity-checking.html</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>
