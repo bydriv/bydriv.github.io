@@ -22,7 +22,8 @@ div.highlight > pre > span.mi {
     color: #800080;
 }
 
-div.highlight > pre > span.n {
+div.highlight > pre > span.n,
+div.highlight > pre > span.nv {
     font-style: italic;
     color: #404040;
 }

@@ -10,7 +10,7 @@ created at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-01-16">2018-01-17</time>@@
+updated at @@html:<time datetime="2018-01-16">2018-01-18</time>@@
 #+END_UPDATED_AT
 
 * Index
@@ -20,6 +20,7 @@ updated at @@html:<time datetime="2018-01-16">2018-01-17</time>@@
 - [[./org-mode.org][Org mode 周辺のあれこれ]]
 - [[./x86.org][x86 勉強メモ]]
 - [[./positive.org][Strictly Positive, または Coq がいかにして停止性を保証しているか]]
+- [[./exist.org][存在型， および Rank2Types によるそれと等価な表現について]]
 
 * License
 

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>存在型， および Rank2Types によるそれと等価な表現について</title>
+<!-- 2018-01-18 Thu 22:35 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/css/prelude.css" />
+<link rel="stylesheet" type="text/css" href="/css/highlight.css" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">存在型， および Rank2Types によるそれと等価な表現について</h1>
+<div class="location">
+<p>
+https://<a href="/">bydriv.github.io</a>/<a href="/blog">blog</a>/<strong>exist.html</strong>
+</p>
+
+</div>
+
+<div class="created_at">
+<p>
+created at <time datetime="2018-01-18">2018-01-18</time>
+</p>
+
+</div>
+
+<div class="updated_at">
+<p>
+updated at <time datetime="2018-01-18">2018-01-18</time>
+</p>
+
+</div>
+
+<p>
+存在型について軽く記しておく． まず存在型とはなんぞやという話をしておくと，
+<code>∃x.T</code> のように 存在量化子 <code>∃</code> で表現された型である．
+Haskell には <code>ExistentialQuantification</code> という言語拡張があるが，
+理論的には <code>Rank2Types</code> があれば同等の表現が可能である．
+<code>∃x.T</code> は， <code>∀y.(∀x.T→y)→y</code> と等しい．
+この事実は TaPL 24 章にも書かれているし，
+記号論理の入門書にも書かれていたりする．
+</p>
+
+<div class="highlight"><pre><span class="cm">{-# LANGUAGE ExistentialQuantification #-}</span>
+<span class="cm">{-# LANGUAGE Rank2Types #-}</span>
+
+<span class="c1">-- ExistentialQuantification による存在型</span>
+<span class="kr">data</span> <span class="kt">MonoidA</span> <span class="ow">=</span> <span class="n">forall</span> <span class="n">m</span><span class="o">.</span> <span class="kt">MonoidA</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">m</span> <span class="ow">-&gt;</span> <span class="n">m</span> <span class="ow">-&gt;</span> <span class="n">m</span><span class="p">)</span>
+
+<span class="nf">addMonoidA</span> <span class="ow">::</span> <span class="kt">MonoidA</span>
+<span class="nf">addMonoidA</span> <span class="ow">=</span> <span class="kt">MonoidA</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="o">+</span><span class="p">))</span>
+
+<span class="nf">mulMonoidA</span> <span class="ow">::</span> <span class="kt">MonoidA</span>
+<span class="nf">mulMonoidA</span> <span class="ow">=</span> <span class="kt">MonoidA</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="o">*</span><span class="p">))</span>
+
+<span class="nf">strMonoidA</span> <span class="ow">::</span> <span class="kt">MonoidA</span>
+<span class="nf">strMonoidA</span> <span class="ow">=</span> <span class="kt">MonoidA</span> <span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="o">++</span><span class="p">))</span>
+
+<span class="c1">-- Rank2Types で次のようにも表現できる</span>
+<span class="kr">type</span> <span class="kt">MonoidB</span> <span class="n">a</span> <span class="ow">=</span> <span class="p">(</span><span class="n">forall</span> <span class="n">m</span><span class="o">.</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">m</span> <span class="ow">-&gt;</span> <span class="n">m</span> <span class="ow">-&gt;</span> <span class="n">m</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="n">a</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="n">a</span>
+
+<span class="nf">addMonoidB</span> <span class="ow">::</span> <span class="kt">MonoidB</span> <span class="n">a</span>
+<span class="nf">addMonoidB</span> <span class="n">k</span> <span class="ow">=</span> <span class="n">k</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="o">+</span><span class="p">))</span>
+
+<span class="nf">mulMonoidB</span> <span class="ow">::</span> <span class="kt">MonoidB</span> <span class="n">a</span>
+<span class="nf">mulMonoidB</span> <span class="n">k</span> <span class="ow">=</span> <span class="n">k</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="o">*</span><span class="p">))</span>
+
+<span class="nf">strMonoidB</span> <span class="ow">::</span> <span class="kt">MonoidB</span> <span class="n">a</span>
+<span class="nf">strMonoidB</span> <span class="n">k</span> <span class="ow">=</span> <span class="n">k</span> <span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="o">++</span><span class="p">))</span>
+</pre></div>
+
+<p>
+と， これだけでは味気ないので， 存在型が理論的基礎となっているものについても触れておく．
+たとえば SML の <code>signature</code> である． そこで， 上記のコードを SML に翻訳してみるとしよう．
+</p>
+
+<div class="highlight"><pre><span class="kr">signature</span> <span class="nn">MONOID</span> <span class="p">=</span> <span class="kr">sig</span>
+  <span class="kr">type</span> <span class="kt">m</span>
+  <span class="kr">val</span> <span class="nv">empty</span> <span class="p">:</span> <span class="n">m</span>
+  <span class="kr">val</span> <span class="nv">append</span> <span class="p">:</span> <span class="n">m</span> <span class="n">*</span> <span class="n">m</span> <span class="p">-&gt;</span> <span class="n">m</span>
+<span class="kr">end</span>
+
+<span class="kr">structure</span> <span class="nn">AddMonoid</span> <span class="p">:&gt;</span> <span class="n">MONOID</span> <span class="p">=</span> <span class="kr">struct</span>
+  <span class="kr">type</span> <span class="kt">m</span> <span class="p">=</span> <span class="n">int</span>
+  <span class="kr">val</span> <span class="nv">empty</span> <span class="p">=</span> <span class="mi">0</span>
+  <span class="kr">val</span> <span class="nv">append</span> <span class="p">=</span> <span class="kr">op</span> <span class="n">+</span>
+<span class="kr">end</span>
+
+<span class="kr">structure</span> <span class="nn">MulMonoid</span> <span class="p">:&gt;</span> <span class="n">MONOID</span> <span class="p">=</span> <span class="kr">struct</span>
+  <span class="kr">type</span> <span class="kt">m</span> <span class="p">=</span> <span class="n">int</span>
+  <span class="kr">val</span> <span class="nv">empty</span> <span class="p">=</span> <span class="mi">1</span>
+  <span class="kr">val</span> <span class="nv">append</span> <span class="p">=</span> <span class="kr">op</span> <span class="n">*</span>
+<span class="kr">end</span>
+
+<span class="kr">structure</span> <span class="nn">StrMonoid</span> <span class="p">:&gt;</span> <span class="n">MONOID</span> <span class="p">=</span> <span class="kr">struct</span>
+  <span class="kr">type</span> <span class="kt">m</span> <span class="p">=</span> <span class="n">string</span>
+  <span class="kr">val</span> <span class="nv">empty</span> <span class="p">=</span> <span class="s2">&quot;&quot;</span>
+  <span class="kr">val</span> <span class="nv">append</span> <span class="p">=</span> <span class="kr">op</span> <span class="n">^</span>
+<span class="kr">end</span>
+</pre></div>
+
+<p>
+OCaml では <code>module type</code> と呼ばれる．
+また， 存在型は簡易的な <b>抽象データ型</b> (<i>abstract data types</i>)を表現できる．
+これは Stroustrup のいうところのオブジェクト指向ができる，
+ということでもある．
+</p>
+</div>
+</body>
+</html>
