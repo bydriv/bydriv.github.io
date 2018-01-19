@@ -14,13 +14,13 @@ strMonoidA :: MonoidA
 strMonoidA = MonoidA ("", (++))
 
 -- Rank2Types で次のようにも表現できる
-type MonoidB a = (forall m. (m, m -> m -> m) -> a) -> a
+type MonoidB = forall a. (forall m. (m, m -> m -> m) -> a) -> a
 
-addMonoidB :: MonoidB a
+addMonoidB :: MonoidB
 addMonoidB k = k (0, (+))
 
-mulMonoidB :: MonoidB a
+mulMonoidB :: MonoidB
 mulMonoidB k = k (1, (*))
 
-strMonoidB :: MonoidB a
+strMonoidB :: MonoidB
 strMonoidB k = k ("", (++))

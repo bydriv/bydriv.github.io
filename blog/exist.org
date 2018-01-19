@@ -10,7 +10,7 @@ created at @@html:<time datetime="2018-01-18">2018-01-18</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-01-18">2018-01-18</time>@@
+updated at @@html:<time datetime="2018-01-19">2018-01-19</time>@@
 #+END_UPDATED_AT
 
 存在型について軽く記しておく． まず存在型とはなんぞやという話をしておくと，

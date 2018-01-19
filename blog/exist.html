@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>存在型， および Rank2Types によるそれと等価な表現について</title>
-<!-- 2018-01-18 Thu 22:35 -->
+<!-- 2018-01-19 Fri 13:08 -->
 <meta  charset="utf-8">
 <meta  name="generator" content="Org-mode">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,7 +28,7 @@ created at <time datetime="2018-01-18">2018-01-18</time>
 
 <div class="updated_at">
 <p>
-updated at <time datetime="2018-01-18">2018-01-18</time>
+updated at <time datetime="2018-01-19">2018-01-19</time>
 </p>
 
 </div>
@@ -59,15 +59,15 @@ Haskell には <code>ExistentialQuantification</code> という言語拡張が�
 <span class="nf">strMonoidA</span> <span class="ow">=</span> <span class="kt">MonoidA</span> <span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="o">++</span><span class="p">))</span>
 
 <span class="c1">-- Rank2Types で次のようにも表現できる</span>
-<span class="kr">type</span> <span class="kt">MonoidB</span> <span class="n">a</span> <span class="ow">=</span> <span class="p">(</span><span class="n">forall</span> <span class="n">m</span><span class="o">.</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">m</span> <span class="ow">-&gt;</span> <span class="n">m</span> <span class="ow">-&gt;</span> <span class="n">m</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="n">a</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="n">a</span>
+<span class="kr">type</span> <span class="kt">MonoidB</span> <span class="ow">=</span> <span class="n">forall</span> <span class="n">a</span><span class="o">.</span> <span class="p">(</span><span class="n">forall</span> <span class="n">m</span><span class="o">.</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">m</span> <span class="ow">-&gt;</span> <span class="n">m</span> <span class="ow">-&gt;</span> <span class="n">m</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="n">a</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="n">a</span>
 
-<span class="nf">addMonoidB</span> <span class="ow">::</span> <span class="kt">MonoidB</span> <span class="n">a</span>
+<span class="nf">addMonoidB</span> <span class="ow">::</span> <span class="kt">MonoidB</span>
 <span class="nf">addMonoidB</span> <span class="n">k</span> <span class="ow">=</span> <span class="n">k</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="o">+</span><span class="p">))</span>
 
-<span class="nf">mulMonoidB</span> <span class="ow">::</span> <span class="kt">MonoidB</span> <span class="n">a</span>
+<span class="nf">mulMonoidB</span> <span class="ow">::</span> <span class="kt">MonoidB</span>
 <span class="nf">mulMonoidB</span> <span class="n">k</span> <span class="ow">=</span> <span class="n">k</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="o">*</span><span class="p">))</span>
 
-<span class="nf">strMonoidB</span> <span class="ow">::</span> <span class="kt">MonoidB</span> <span class="n">a</span>
+<span class="nf">strMonoidB</span> <span class="ow">::</span> <span class="kt">MonoidB</span>
 <span class="nf">strMonoidB</span> <span class="n">k</span> <span class="ow">=</span> <span class="n">k</span> <span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="o">++</span><span class="p">))</span>
 </pre></div>
 
