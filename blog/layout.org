@@ -1,0 +1,63 @@
+#+SETUPFILE: ../setup.org
+#+TITLE: Layout ルール， Haskell のオフサイドルールについて
+
+#+BEGIN_LOCATION
+@@html:https://<a href="/">bydriv.github.io</a>/<a href="/blog">blog</a>/<strong>layout.html</strong>@@
+#+END_LOCATION
+
+#+BEGIN_CREATED_AT
+created at @@html:<time datetime="2018-01-19">2018-01-19</time>@@
+#+END_CREATED_AT
+
+#+BEGIN_UPDATED_AT
+updated at @@html:<time datetime="2018-01-19">2018-01-19</time>@@
+#+END_UPDATED_AT
+
+周知のとおり， Haskell はいわゆるインデントでブロックを表す，
+オフサイドルールを採用した言語である．
+しかしながら， どこでどの程度インデントすればよいのかについては，
+みんななんとなく雰囲気で書いているようである．
+じつはこれについては Haskell 2010 で厳格に定義されており， Layout と呼ばれている．
+Layout は， 簡単にいえば特定の箇所に ~{~, ~}~, ~;~ などを自動的に挿入する仕組みで，
+字句解析のあと，　構文解析のまえに処理される．
+[[https://www.haskell.org/onlinereport/haskell2010/haskellch2.html#x7-210002.7][2.7 Layout]] から引用すると，
+
+#+BEGIN_SRC sh :exports results :results html
+pygmentize -l haskell -f html Fig21.hs
+#+END_SRC
+
+というプログラムは， 字句解析されたあと，
+Layout ルールによって次のような字句列に変更される．
+
+#+BEGIN_SRC sh :exports results :results html
+pygmentize -l haskell -f html Fig22.hs
+#+END_SRC
+
+構文解析器はこの字句列を構文解析する．
+したがって， 構文解析の段階ではもはや，
+処理系がオフサイドルールを気にする必要はない．
+
+[[https://www.haskell.org/onlinereport/haskell2010/haskellch10.html#x17-17800010.3][10.3 Layout]] では， Layout ルールの詳細が述べられている．
+厳密には参考文献を参照してほしいが，
+あえて概説するなら，
+~let~, ~where~, ~do~, ~of~ キーワードの *直後のトークン*
+または *ファイル先頭のトークン* が ~{~ *でない* 場合，
+*そのトークンの高さ* を基準に ~{~, ~}~, ~;~ を適宜挿入する．
+たとえば， ~let x = ...~ というようなコードを見た場合，
+処理系は ~x~ を基準として，
+
+- ~x~ の直前に ~{~ を挿入する
+- ~x~ と同じ高さのトークンが現れた場合，その直前に ~;~ を挿入する
+- ~x~ より浅い高さのトークンが現れた場合，その直前に ~}~ を挿入する
+
+というふるまいをする． この基本を理解していれば，
+インデントの深さが原因で起こる不可解な構文エラーに悩むことはなくなるはずである．
+
+なお， Haskell をあまり書かないひとにはよく勘違いされているようだが，
+Haskell は ~{~, ~}~, ~;~ を明示して書くこともできる．
+F# の冗語構文と軽量構文みたいな感じである．
+
+* References
+
+- 2.7 Layout https://www.haskell.org/onlinereport/haskell2010/haskellch2.html#x7-210002.7
+- 10.3. Layout https://www.haskell.org/onlinereport/haskell2010/haskellch10.html#x17-17800010.3
