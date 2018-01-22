@@ -14,4 +14,4 @@ instance Foreign.Storable Point where
 
   poke p (Point x y) = do
     Foreign.poke (Foreign.castPtr p) x
-    Foreign.poke (Foreign.castPtr (Foreign.plusPtr p 4)) x
+    Foreign.poke (Foreign.castPtr (Foreign.plusPtr p 4)) y

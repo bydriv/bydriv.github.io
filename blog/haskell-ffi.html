@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Haskell 2010 の FFI 周りについて</title>
-<!-- 2018-01-22 Mon 16:18 -->
+<!-- 2018-01-22 Mon 16:26 -->
 <meta  charset="utf-8">
 <meta  name="generator" content="Org-mode">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -195,7 +195,7 @@ FFI で指定できる型は C の型との共通部分にかぎられる．
 
   <span class="n">poke</span> <span class="n">p</span> <span class="p">(</span><span class="kt">Point</span> <span class="n">x</span> <span class="n">y</span><span class="p">)</span> <span class="ow">=</span> <span class="kr">do</span>
     <span class="kt">Foreign</span><span class="o">.</span><span class="n">poke</span> <span class="p">(</span><span class="kt">Foreign</span><span class="o">.</span><span class="n">castPtr</span> <span class="n">p</span><span class="p">)</span> <span class="n">x</span>
-    <span class="kt">Foreign</span><span class="o">.</span><span class="n">poke</span> <span class="p">(</span><span class="kt">Foreign</span><span class="o">.</span><span class="n">castPtr</span> <span class="p">(</span><span class="kt">Foreign</span><span class="o">.</span><span class="n">plusPtr</span> <span class="n">p</span> <span class="mi">4</span><span class="p">))</span> <span class="n">x</span>
+    <span class="kt">Foreign</span><span class="o">.</span><span class="n">poke</span> <span class="p">(</span><span class="kt">Foreign</span><span class="o">.</span><span class="n">castPtr</span> <span class="p">(</span><span class="kt">Foreign</span><span class="o">.</span><span class="n">plusPtr</span> <span class="n">p</span> <span class="mi">4</span><span class="p">))</span> <span class="n">y</span>
 </pre></div>
 
 <p>
