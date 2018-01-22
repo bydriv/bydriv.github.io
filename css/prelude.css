@@ -66,6 +66,7 @@ body > div#content > div.outline-2 > div.outline-text-2 > ul {
 body > div#content > pre,
 body > div#content > div.outline-2 > div.outline-text-2 > div.org-src-container,
 body > div#content > div.outline-2 > div.outline-text-2 > pre,
+body > div#content > div.outline-2 > div.outline-text-2 > div.highlight,
 body > div#content > div.highlight {
     margin: 16px 48px;
     padding: 0;

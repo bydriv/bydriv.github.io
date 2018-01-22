@@ -10,7 +10,7 @@ created at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-01-19">2018-01-19</time>@@
+updated at @@html:<time datetime="2018-01-22">2018-01-22</time>@@
 #+END_UPDATED_AT
 
 * bydriv.ghithub.io/blog
@@ -22,6 +22,7 @@ updated at @@html:<time datetime="2018-01-19">2018-01-19</time>@@
 - [[./blog/positive.org][Strictly Positive, または Coq がいかにして停止性を保証しているか]]
 - [[./blog/exist.org][存在型， および Rank2Types によるそれと等価な表現について]]
 - [[./blog/layout.org][Layout ルール， Haskell のオフサイドルールについて]]
+- [[./blog/haskell-ffi.org][Haskell 2010 の FFI 周りについて]]
 
 * bydriv.ghithub.io/Data
 
