@@ -76,7 +76,7 @@ pygmentize -l haskell -f html FFI.hs
 
 ~Foreign.Marshal.Alloc~ モジュールはメモリ確保などの関数を提供する．
 
-~mallocBytes :: Int -> O (Ptr a)~ は，
+~mallocBytes :: Int -> IO (Ptr a)~ は，
 バイト単位でメモリを確保するための関数である．
 
 ~malloc :: Storable a => IO (Ptr a)~ は ~mallocBytes (sizeOf undefined)~ と等しい

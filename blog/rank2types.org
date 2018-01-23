@@ -72,4 +72,4 @@ pygmentize -l haskell -f html Example3.hs
 * References
 
 - Jim, Trevor. Rank 2 type systems and recursive definitions. 1995.
-- Pierce, C. Benjamin. 『型システム入門』 2013.
+- Pierce, Benjamin C. 『型システム入門』 2013.

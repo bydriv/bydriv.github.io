@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Haskell 2010 の FFI 周りについて</title>
-<!-- 2018-01-22 Mon 16:26 -->
+<!-- 2018-01-23 Tue 09:04 -->
 <meta  charset="utf-8">
 <meta  name="generator" content="Org-mode">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -127,7 +127,7 @@ FFI で指定できる型は C の型との共通部分にかぎられる．
 </p>
 
 <p>
-<code>mallocBytes :: Int -&gt; O (Ptr a)</code> は，
+<code>mallocBytes :: Int -&gt; IO (Ptr a)</code> は，
 バイト単位でメモリを確保するための関数である．
 </p>
 
