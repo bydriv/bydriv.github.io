@@ -34,7 +34,8 @@ body > div#content > div.updated_at {
 }
 
 body > div#content > p,
-body > div#content > div.outline-2 > div.outline-text-2 > p {
+body > div#content > div.outline-2 > div.outline-text-2 > p,
+body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > p {
     margin: 16px;
     padding: 0;
     text-align: justify;
@@ -104,4 +105,8 @@ a[href]:hover {
 
 span.overline {
     text-decoration: overline;
+}
+
+div.center {
+    text-align: center;
 }

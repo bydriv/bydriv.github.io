@@ -10,7 +10,7 @@ created at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-01-29">2018-01-29</time>@@
+updated at @@html:<time datetime="2018-01-30">2018-01-30</time>@@
 #+END_UPDATED_AT
 
 * Index
@@ -24,6 +24,7 @@ updated at @@html:<time datetime="2018-01-29">2018-01-29</time>@@
 - [[./layout.org][Layout ルール， Haskell のオフサイドルールについて]]
 - [[./haskell-ffi.org][Haskell 2010 の FFI 周りについて]]
 - [[./hsyacc.org][HsYACC/HsLex の使い方]]
+- [[./2018-01.org][2018-01 の進捗まとめ]]
 
 * License
 
