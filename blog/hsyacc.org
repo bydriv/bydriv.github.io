@@ -1,0 +1,333 @@
+#+SETUPFILE: ../setup.org
+#+TITLE: HsYACC/HsLex の使い方
+
+#+BEGIN_LOCATION
+@@html:https://<a href="/">bydriv.github.io</a>/<a href="/blog">blog</a>/<strong>hsyacc.html</strong>@@
+#+END_LOCATION
+
+#+BEGIN_CREATED_AT
+created at @@html:<time datetime="2018-01-29">2018-01-29</time>@@
+#+END_CREATED_AT
+
+#+BEGIN_UPDATED_AT
+updated at @@html:<time datetime="2018-01-29">2018-01-29</time>@@
+#+END_UPDATED_AT
+
+最近 Haskell で HsYACC と HsLex というものをつくった．
+HsYACC は LALR(1) 構文解析器生成系で，
+HsLex は DFA 型の正規表現エンジンをもちいた字句解析器生成系である．
+開発の動機は happy, alex が GHC を前提としたコードを出力するので
+Haskell 2010 処理系でポータブルなコードを出力するものがほしいから，
+単純に勉強したことを実装に落としこみたかったから， などである．
+まだ安定しているわけでもなければ， 需要があるとも思えないが，
+いちおうわたし自身のためにもその使い方を記しておく．
+
+まずインストールについてだが，
+いまのところ Hackage などには置いていないので，
+自前でビルドするしかない．
+とはいえ Stack を使用しているのでここで苦しむことはないはずである．
+
+#+BEGIN_EXAMPLE
+$ git clone git://github.com/bydriv/mhc.git
+$ cd mhc
+$ stack build
+#+END_EXAMPLE
+
+こうすると ~.stack-work~ 以下に ~hsyacc~ コマンドと
+~hslex~ コマンドができあがるはずである．
+
+コマンドのインターフェースはまだ調整中だが，
+現状では次のように使う．
+
+#+BEGIN_EXAMPLE
+$ hsyacc < Parsing.hsy > Parsing.hs
+$ hslex < Lexing.hsl > Lexing.hs
+#+END_EXAMPLE
+
+次は ~Parsing.hsy~ と ~Lexing.hsl~ について軽く述べる．
+
+* HsYACC
+
+~hsyacc~ コマンドに与えるファイルの基本文法は次のとおり．
+
+#+BEGIN_EXAMPLE
+%module Parsing %where
+%start nonterm
+%{
+header
+%}
+%%
+rules
+%%
+footer
+#+END_EXAMPLE
+
+~%module~ はモジュール名を指定し，
+~%start~ は開始規則を指定する．
+~header~ と ~footer~ の部分には好きな Haskell のコードが書ける．
+~rules~ については形式的に述べるより例でもって説明したほうがわかりやすいと思うので後述する．
+
+* HsLEX
+
+~hslex~ コマンドに与えるファイルの基本文法は次のとおり．
+
+#+BEGIN_EXAMPLE
+%module Parsing %where
+%{
+header
+%}
+%%
+rules
+%%
+footer
+#+END_EXAMPLE
+
+~%module~ はモジュール名を指定し，
+~header~ と ~footer~ の部分には好きな Haskell のコードが書ける． ~rules~ については，
+HsYACC と同様に形式的に述べるより例でもって説明したほうがわかりやすいと思うので後述する．
+
+* 例
+
+なにはともあれ例を示す．
+次に示すコードは，
+テストも兼ねて実装した JSON のパーサである．
+
+** Data/JSON/Parsing.hsy
+
+#+BEGIN_EXAMPLE
+%module Data.JSON.Parsing %where
+
+%{
+import qualified Data.RBMap as RBMap
+
+type FALSE = ()
+type NULL = ()
+type TRUE = ()
+type LBRACE = ()
+type RBRACE = ()
+type COMMA = ()
+type COLON = ()
+type LBRACKET = ()
+type RBRACKET = ()
+type NUMBER = Double
+type STRING = String
+
+data JSON =
+    JSONFalse
+  | JSONNull
+  | JSONTrue
+  | JSONObject (RBMap.RBMap STRING JSON)
+  | JSONArray [JSON]
+  | JSONNumber NUMBER
+  | JSONString STRING
+  deriving (Eq, Ord, Read, Show)
+
+type Value = JSON
+type False = JSON
+type Null = JSON
+type True = JSON
+type Object = JSON
+type Members = RBMap.RBMap STRING JSON
+type Members_opt = Maybe Members
+type Member = (STRING, JSON)
+type Array = JSON
+type Values = [JSON]
+type Values_opt = Maybe Values
+type Number = JSON
+type String' = JSON
+%}
+
+%%
+
+def rule value :=
+  false
+| null
+| true
+| object
+| array
+| number
+| string'
+
+def rule false :=
+  FALSE
+
+def rule null :=
+  NULL
+
+def rule true :=
+  TRUE
+
+def rule object :=
+  LBRACE members RBRACE
+
+def rule members :=
+| member members_opt
+
+def rule members_opt :=
+| COMMA members
+
+def rule member :=
+  STRING COLON value
+
+def rule array :=
+  LBRACKET values RBRACKET
+
+def rule values :=
+| value values_opt
+
+def rule values_opt :=
+| COMMA values
+
+def rule number :=
+  NUMBER
+
+def rule string' :=
+  STRING
+
+%%
+
+semanticActions :: Monad m => SemanticActions m
+semanticActions = SemanticActions
+  { value_implies_false = return
+  , value_implies_null = return
+  , value_implies_true = return
+  , value_implies_object = return
+  , value_implies_array = return
+  , value_implies_number = return
+  , value_implies_string' = return
+  , false_implies_FALSE = const $ return JSONFalse
+  , null_implies_NULL = const $ return JSONNull
+  , true_implies_TRUE = const $ return JSONTrue
+  , object_implies_LBRACE_members_RBRACE = \() members () ->
+      return $ JSONObject members
+  , members_implies = return RBMap.empty
+  , members_implies_member_members_opt = \(prop, value) members_opt ->
+      return $ maybe (RBMap.singleton prop value) (RBMap.insert prop value) members_opt
+  , members_opt_implies = return Nothing
+  , members_opt_implies_COMMA_members = const (return . Just)
+  , member_implies_STRING_COLON_value = \prop () value ->
+      return (prop, value)
+  , array_implies_LBRACKET_values_RBRACKET = \() values () ->
+    return $ JSONArray values
+  , values_implies = return []
+  , values_implies_value_values_opt = \value values_opt ->
+      return $ maybe [value] (value:) values_opt
+  , values_opt_implies = return Nothing
+  , values_opt_implies_COMMA_values = const (return . Just)
+  , number_implies_NUMBER = return . JSONNumber
+  , string'_implies_STRING = return . JSONString }
+#+END_EXAMPLE
+
+** Data/JSON/Lexing.hsl
+
+#+BEGIN_EXAMPLE
+%module Data.JSON.Lexing %where
+
+%{
+import qualified Data.Char         as Char
+import qualified Data.JSON.Parsing as Parsing
+%}
+
+%%
+
+case (Initial, [' ' '\t' '\n' '\f' '\r']) => saWS
+case (Initial, "false") => saFalse
+case (Initial, "null") => saNull
+case (Initial, "true") => saTrue
+case (Initial, '{') => saLBrace
+case (Initial, '}') => saRBrace
+case (Initial, ',') => saComma
+case (Initial, ':') => saColon
+case (Initial, '[') => saLBracket
+case (Initial, ']') => saRBracket
+case (Initial, '-'?('0'|['1'-'9']['0'-'9']*)('.'['0'-'9']+)?(['e' 'E']['-' '+']?['0'-'9']+)?) =>
+  saNumber
+case (Initial, '"'([^'"' '\\'] | '\\' (['"' '\\' '/' 'b' 'f' 'n' 'r' 't'] | 'u' ['0'-'9'|'A'-'F'|'a'-'f'] ['0'-'9'|'A'-'F'|'a'-'f'] ['0'-'9'|'A'-'F'|'a'-'f'] ['0'-'9'|'A'-'F'|'a'-'f']))*'"') =>
+  saString
+
+%%
+
+semanticActions :: Monad m => SemanticActions m (Maybe Parsing.Token)
+semanticActions = SemanticActions
+  { saWS = const $ return Nothing
+  , saFalse = const $ return $ Just $ Parsing.FALSE ()
+  , saNull = const $ return $ Just $ Parsing.NULL ()
+  , saTrue = const $ return $ Just $ Parsing.TRUE ()
+  , saLBrace = const $ return $ Just $ Parsing.LBRACE ()
+  , saRBrace = const $ return $ Just $ Parsing.RBRACE ()
+  , saComma = const $ return $ Just $ Parsing.COMMA ()
+  , saColon = const $ return $ Just $ Parsing.COLON ()
+  , saLBracket = const $ return $ Just $ Parsing.LBRACKET ()
+  , saRBracket = const $ return $ Just $ Parsing.RBRACKET ()
+  , saNumber = return . Just . Parsing.NUMBER . read
+  , saString = return . Just . Parsing.STRING . unescape . init . tail }
+  where
+    unescape [] = []
+    unescape ('\\' : '"' : s) =
+      '"' : unescape s
+    unescape ('\\' : '\\' : s) =
+      '\\' : unescape s
+    unescape ('\\' : '/' : s) =
+      '/' : unescape s
+    unescape ('\\' : 'b' : s) =
+      '\b' : unescape s
+    unescape ('\\' : 'f' : s) =
+      '\f' : unescape s
+    unescape ('\\' : 'n' : s) =
+      '\n' : unescape s
+    unescape ('\\' : 'r' : s) =
+      '\r' : unescape s
+    unescape ('\\' : 't' : s) =
+      '\t' : unescape s
+    unescape ('\\' : 'u' : x1 : x2 : x3 : x4 : s) =
+      Char.chr (read ['0', 'x', x1, x2, x3, x4]) : unescape s
+    unescape (c : s) =
+      c : unescape s
+#+END_EXAMPLE
+
+** Data/JSON.hs
+
+#+BEGIN_EXAMPLE
+module Data.JSON where
+
+import qualified Control.Monad.Identity as Identity
+import qualified Data.JSON.Lexing       as Lexing
+import qualified Data.JSON.Parsing      as Parsing
+import qualified Data.Maybe             as Maybe
+
+type JSON = Parsing.JSON
+
+parse :: String -> Maybe JSON
+parse s =
+  let (tokens0, s') = Identity.runIdentity $ Lexing.runLexing $ Lexing.lex Lexing.semanticActions s in
+    case s' of
+      [] ->
+        let tokens = Maybe.catMaybes tokens0 in
+          case Identity.runIdentity $ Parsing.parse Parsing.semanticActions tokens of
+            Nothing ->
+              Nothing
+            Just (result, tokens') -> do
+              case tokens' of
+                [] ->
+                  Just result
+                _ ->
+                  Nothing
+      _ ->
+        Nothing
+#+END_EXAMPLE
+
+* Appendix
+
+HsLex, HsYACC 自体の字句解析，
+構文解析も HsLex, HsYACC でおこなっている．
+ゆえに完全な文法は次のリンクから参照することができる．
+
+- https://github.com/bydriv/mhc/blob/master/Language/HsYacc/Parsing.hsy
+- https://github.com/bydriv/mhc/blob/master/Language/HsYacc/Lexing.hsl
+- https://github.com/bydriv/mhc/blob/master/Language/HsLex/Parsing.hsy
+- https://github.com/bydriv/mhc/blob/master/Language/HsLex/Lexing.hsl
+
+* References
+
+- Appel, Andrew W. 『最新コンパイラ構成技法』 2009.
+- 新屋良磨, 鈴木勇介, 高田謙. 『正規表現技術入門』 2015.

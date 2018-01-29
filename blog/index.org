@@ -10,7 +10,7 @@ created at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-01-22">2018-01-22</time>@@
+updated at @@html:<time datetime="2018-01-29">2018-01-29</time>@@
 #+END_UPDATED_AT
 
 * Index
@@ -23,6 +23,7 @@ updated at @@html:<time datetime="2018-01-22">2018-01-22</time>@@
 - [[./exist.org][存在型， および Rank2Types によるそれと等価な表現について]]
 - [[./layout.org][Layout ルール， Haskell のオフサイドルールについて]]
 - [[./haskell-ffi.org][Haskell 2010 の FFI 周りについて]]
+- [[./hsyacc.org][HsYACC/HsLex の使い方]]
 
 * License
 
