@@ -1,0 +1,96 @@
+#+SETUPFILE: ../setup.org
+#+TITLE: 再帰型に Positive という制限を加えて強正規化性を保存する話
+
+#+BEGIN_LOCATION
+@@html:https://<a href="/">bydriv.github.io</a>/<a href="/blog">blog</a>/<strong>rectypes-and-positive.html</strong>@@
+#+END_LOCATION
+
+#+BEGIN_CREATED_AT
+created at @@html:<time datetime="2018-03-28">2018-03-28</time>@@
+#+END_CREATED_AT
+
+#+BEGIN_UPDATED_AT
+updated at @@html:<time datetime="2018-03-28">2018-03-28</time>@@
+#+END_UPDATED_AT
+
+ちょっと興味深い論文を読んだのでブログにしておく．
+
+多くのプログラム言語には再帰型というものがあり，
+これをもちいるとリストのような再帰的な構造を定義できる．
+非常に便利なのだが， 理論的にはやっかいな存在でもある．
+たとえば， 再帰型をもちいることで停止しないプログラムが書ける．
+にもかかわらず多くの言語に採用されているのは，
+一般的な言語はチューリング完全なのでもともと無限ループも書けるからである．
+これが問題になるのは， 定理証明系のような言語を設計しようと思ったときである．
+
+詳細はともかく結論から述べると，
+
+- System F では， Covariant の位置でのみ型の再帰を許す． (positive)
+- 依存型のある言語では， → の右側でのみ型の再帰を許す． (strictly positive)
+
+という制限を再帰型に加えることで， 強正規化性を保つことができる．
+
+ここからはすこし詳しく．
+
+まず念のため確認しておくと covariant というのは大雑把にいえば
+→ の右側に出現する型変数で， contravariant というのは
+→ の左側に出現する型変数のこと．
+~a -> b~ なら ~a~ が contravariant で ~b~ が covariant．
+→ の左側をたどるごとに covariant と contravariant がひっくり返る．
+~(a -> b) -> c~ だと ~a~ が covariant で ~b~ が contravariant．
+
+それから positive という用語についてだがこれは論理由来の言葉らしい．
+論理では covariant のことを positive,
+contravariant のことを negative というのだそうだ．
+OCaml や Scala で型変数に + や - をつけるのも，
+positive や negative という言葉だと覚えやすかろう．
+covariant の位置でのみ出現することを許すから positive と呼ぶということ．
+
+では contravariant の位置で再帰するとなにが問題なのか， ということについて．
+[[./positive.org][Strictly Positive, または Coq がいかにして停止性を保証しているか]]
+などの記事に書いた例を見てみると
+
+#+BEGIN_SRC sh :exports results :results html
+pygmentize -l haskell -f html Y.hs
+#+END_SRC
+
+のようになっていてたしかに contravariant の位置で再帰していることがわかる．
+注意してほしいのだけど，この例では関数自体は再帰していない．
+再帰型と無名関数さえあれば，言語が再帰をサポートしていなくても再帰できてしまうのである．
+よって無限ループも書けるという理屈．
+
+それと以前の記事では書き忘れたのだけど，
+自分自身を含まない基本的なラベルがあることを検査するだけでは不十分で，
+なぜかというと次のようにして同様の構成ができてしまうから．
+
+#+BEGIN_SRC sh :exports results :results html
+pygmentize -l haskell -f html Y1.hs
+#+END_SRC
+
+しかしこのような構成には contravariant の位置で型が再帰する必要があって，
+それゆえ， covariant の位置でのみ型の再帰を許すことで強正規化性を復帰できるのである
+(元の論文ではこんなお粗末な説明ではなくてもっと難しい議論をしていたけど，
+ここはブログなので許してほしい)．
+
+それとこの記事では若干蛇足になってしまうのだけど，
+strictly positive について． 最初に触れたように上記の理屈は System F くらいの型システムにのみ通用する．
+依存型があると話がもっとややこしくなって， これだけでは不十分らしい．
+
+参考文献から引用すると， 依存型のある言語では
+
+#+BEGIN_SRC sh :exports results :results html
+pygmentize -l coq -f html A.v
+#+END_SRC
+
+のような定義から矛盾が導かれる．
+この定義では covariant の位置でのみ再帰していることに注意してほしい．
+
+ここまでは型の再帰の話のみで， let rec のような値の再帰はまた別の話になる．
+それと， 以上の話はいわゆる structural な再帰型 (代数的データ型のような nominal なものではなく，
+TaPL に載っているようなもの) でも通用するというか， 元の論文はそのようになっていた．
+もし定理証明系のような言語を実装したい方がいたら参考にしてほしい．
+
+* References
+
+- Recursive types for free! - http://homepages.inf.ed.ac.uk/wadler/papers/free-rectypes/free-rectypes.txt
+- Why must inductive types be strictly positive? - http://vilhelms.github.io/posts/why-must-inductive-types-be-strictly-positive/
