@@ -1,0 +1,208 @@
+#+SETUPFILE: ../setup.org
+#+TITLE: bydriv.ghithub.io/worldview
+
+#+BEGIN_LOCATION
+@@html:https://<a href="/">bydriv.github.io</a>/<strong>worldview</strong>/@@
+#+END_LOCATION
+
+#+BEGIN_CREATED_AT
+created at @@html:<time datetime="2018-05-17">2018-05-17</time>@@
+#+END_CREATED_AT
+
+#+BEGIN_UPDATED_AT
+updated at @@html:<time datetime="2018-05-17">2018-05-17</time>@@
+#+END_UPDATED_AT
+
+* Characters
+
+** 水無川定理
+
+#+ATTR_HTML: :style width: 240px;
+#+BEGIN_UPLEFT
+#+ATTR_HTML: :srcset teiri0000_480x1200.png 2x
+#+CAPTION: 2075年ころのテーリ．
+[[./teiri0000_240x600.png]]
+#+END_UPLEFT
+
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPRIGHT
+#+ATTR_HTML: :srcset teiri0001_600x800.png 2x
+#+CAPTION: 着物がすきなようで，彼女は合衆国に住んでいるが，毎年元旦やお盆には着物を着るらしい．
+[[./teiri0001_300x400.png]]
+#+END_UPRIGHT
+
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPRIGHT
+#+ATTR_HTML: :srcset teiri0002_600x800.png 2x
+#+CAPTION: バニーを着るテーリ．恥ずかしそうにしているが，まんざらでもないようである．
+[[./teiri0002_300x400.png]]
+#+END_UPRIGHT
+
+*ミナガワ・テーリ* (/水無川定理/; /MINAGAWA, Teiri/; /Theo/)は，
+21世紀の計算機科学者である．2056年2月29日，アメリカ合衆国カリフォルニア州
+リバーサイド生まれの女性．身長は4\prime{}8\prime{}\prime{}．母は
+*ミナガワ・マリ* (/水無川真理/)，祖母は *ミナガワ・コーリ* (/水無川考理/)．
+*レミリー・"レマ"・リバーズ* (/Lemily "Lemma" Rivers/)は彼女のクローンであり，
+法的に考えると厳密には違うのだが年齢的には彼女の娘である．
+孫娘は *ケイ・リバーズ* (/Kay Rivers/)，
+ひ孫娘は *レマ・リバーズ* (/Lemma Rivers/)．
+母が日本人，父がアメリカ人のハーフである．
+そのうえ生まれて間もなく Calexit と呼ばれるカリフォルニア独立運動が盛んになって
+*カリフォルニア共和国* (/Republic of California/) が成立してしまい，
+彼女は日本， 合衆国， 共和国の三重国籍となってしまった．
+合衆国と共和国は多重国籍を認めていたし，
+彼女は日本にあまり行ったことがなかったので，
+最終的に日本国籍のみを捨てる選択をした．
+マサチューセッツ工科大学を卒業， スタンフォード大学を修了後
+Intelligence Support Activity (ISA)に入局し，
+世界各国のコンピュータ・システムの脆弱性の発見と蒐集，およびエクスプロイトの開発，
+あるいはそれを利用した作戦に従事した．
+父の実家がボストンにあり，学部時代は父の実家で暮らしていた．
+専門は暗号論で，趣味は定理証明支援系による暗号アルゴリズムの安全性の証明．
+エミリーとは学部時代からの親友． テーリ(定理)は英語で Theorem を意味するため，
+彼女を *テオ* (/Theo/) と呼ぶ友人もいる．
+
+*肌の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(255,224,192);"></span>@@ (#FFE0C0).
+*髪の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(64,48,48);"></span>@@ (#403030).
+*瞳の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(128,128,128);"></span>@@ (#808080).
+*服の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(160,64,64);"></span>@@ (#A04040).
+
+*エミリーからの呼び名*: *テーリ* (/Teiri/).
+*その他の呼び名*: *ミナガワ博士* (/Dr. MINAGAWA/).
+(諜報員としての偽名) *ハセガワ・マリ* (/長谷川真理/; /HASEGAWA, Mari/).
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+** Emily "Emma" Rivers
+
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPLEFT
+#+CAPTION: 2085年ころのエマ．10年前に友人たちとした約束を果たした．
+#+ATTR_HTML: :srcset emma0000_600x800.png 2x
+[[./emma0000_300x400.png]]
+#+END_UPLEFT
+
+*エミリー・"エマ"・リバーズ* (/Emily "Emma" Rivers/)は，
+21世紀の物理学者である．2046年7月4日，アメリカ合衆国マサチューセッツ州
+ボストン生まれの女性．身長は5\prime{}10\prime{}\prime{}．
+*レミリー・"レマ"・リバーズ* (/Lemily "Lemma" Rivers/)の養母．
+レミリーは 2076年2月29日， テーリが ISA の任務中，
+ドイツで違法におこなわれていたヒトクローンの研究に巻きこまれ生まれたが，
+テーリは当時 20歳になったばかりであり子どもを育てるほど成長していなかったし，
+エミリーは子ども好きなのに不妊症で養子をほしがっていたので， 彼女をひきとった．
+マサチューセッツ工科大学を修了後NASAに入局し，
+*月の裏側国際天文台* (/International Observatory in the far side of the Moon/; IOM)に
+主任研究員として勤めた．そのあと *国家偵察局*
+(/National Reconnaissance Office/; NRO) にスカウトされ，
+主任研究員と諜報員の両方の仕事をこなしていた．
+幼少期から夢は異星人を見つけることだったが，
+きちんと物理を学んでからは非現実的だと感じつつも諦めきれず，
+知的であろうとなかろうと地球外生命体を見つけることを目指すようになった．
+重度のトレッキーでことあるごとにスタートレックのセリフを聖書のように引用する．
+好きな言葉は "/I have been, and always shall be, your friend/"．
+テーリとは学部時代からの親友であり，
+エミリーは1度も浪人や留年を経験したことがないことを誇りに思っていたが，
+それどころか10歳も年下のテーリの才能におそれおののいていた．
+
+*肌の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(255,248,240);"></span>@@ (#FFF8F0).
+*髪の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(192,64,64);"></span>@@ (#C04040).
+*瞳の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(0,160,0);"></span>@@ (#00A000).
+
+*テーリからの呼び名*: *エミリー* (/Emily/).
+*その他の呼び名*: *リバーズ博士* (/Dr. Rivers/); (部下からは) *主任* (/Chief/);
+(親しい部下からは，彼女がスタートレックを好きなことにちなんで) *船長* (/Captain/).
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+** ???
+
+#+ATTR_HTML: :style width: 400px;
+#+BEGIN_UPLEFT
+#+ATTR_HTML: :srcset q0000_800x600.png 2x
+#+CAPTION: Voyager のゴールデンレコードを調査する鳥人．背景に見える惑星には海や雲が存在するように見えるが，かれらの母星だろうか．
+[[./q0000_400x300.png]]
+#+END_UPLEFT
+
+人類ではない，謎の鳥人．
+Voyager のゴールデンレコードを調査した．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+* Culture
+
+** Lambda Church
+
+#+ATTR_HTML: :style width: 240px;
+#+BEGIN_UPLEFT
+#+ATTR_HTML: :srcset teiri0000_480x1200.png 2x
+#+CAPTION: ラムダ教会のシンボルを身につける女性．
+[[./teiri0000_240x600.png]]
+#+END_UPLEFT
+
+#+ATTR_HTML: :style width: 153px;
+#+BEGIN_UPRIGHT
+#+ATTR_HTML: :srcset lambda-construction_307x266.png 2x
+#+CAPTION: ラムダ教会のシンボルは定規とコンパスで簡単に作図できる．
+[[./lambda-construction_153x133.png]]
+#+END_UPRIGHT
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :srcset lambda-church_611x529.png 2x
+[[./lambda-church_305x265.png]]
+#+END_CENTER
+
+*ラムダ教会* (/Lambda Church/)とは，
+21世紀に計算機科学者のあいだで自然発祥した冗談宗教である．
+もともとはある無神論者の計算機科学者が宗教をたずねられたとき，
+ラムダ計算の創案者 Church にちなみ，冗談めかしてラムダ教会と答えたことが始まりとされる．
+21世紀末にはいくつかの国で宗教法人として認められた． ラムダ教会の信者をラムダ教徒といい，
+ラムダ教会のシンボルを身体のどこか見える場所に身につけることでそれを示すことが一般的である．
+組織的な活動などはとくにおこなわれないが，世界中で信者が思うままに活動しており，
+規模はそこそこ大きいものと推定されている．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+** International Observatory in the far side of the Moon
+
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPLEFT
+#+CAPTION: 2085年ころ，月の裏側天文台と地球をつなぐ基地局からの眺め．2085年はまだ観光目的で月へ行くことは一般的ではなく，科学者たちが研究のためにおもむくのみであった．そして月の裏側天文台からは地球が見えないため，科学者たちは地球を見るためにわざわざ基地局へ行くことがよくあった．
+#+ATTR_HTML: :srcset emma0000_600x800.png 2x
+[[./emma0000_300x400.png]]
+#+END_UPLEFT
+
+*月の裏側国際天文台* (/International Observatory in the far side of the Moon/; IOM)は，
+その名が示すように月の裏側に建造された天文台である．
+21世紀後半にJAXAの主導で建設され，現在では国際的に利用されている．
+
+月の裏側天文台は月の裏側にあるため，地球と直接通信することができない．
+そのため月の表面には地球と通信するための基地局がいくつか配備されている．
+21世紀後半，まだ月は研究開発の地であり，観光施設がなかった．
+月の裏側からは地球が見えないため，基地局は地球を眺めるための施設として科学者のあいだで人気が高かった．
+
+20世紀の合衆国とソ連による宇宙開発競争以来，宇宙開発は下火になっていた．
+21世紀の話題の筆頭は人工知能となり，とくに月や火星の開発なんてものには，
+もはや予算が下りない状況となっていたのだ． ところが JAXA の *かぐや*
+(*セレーネ*; /SELENE/) の成功によって日本では月探査の有用性が見なおされ，
+21世紀中ごろに月面基地の開発の計画が現実味を帯びることとなった．
+一方そのころアメリカ合衆国やロシア連邦，中華人民共和国は軌道エレベータのほうに関心が向いており，
+月面基地の開発は日本がもっとも積極的におこなうこととなった．
+その成果である月面基地は *月の都* (/City of the Moon/) と名づけられ，
+そのあと国際的に利用されるようになり，
+こんにちの月の裏側国際天文台の基礎となった．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+* License
+
+GPLv3.

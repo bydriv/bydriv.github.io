@@ -25,6 +25,20 @@ body > div#content > div.location {
     word-wrap: break-word;
 }
 
+body > div#content > div.index > ul.org-ul {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    word-spacing: 16px;
+    list-style: none;
+}
+
+body > div#content > div.index > ul.org-ul > li {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
 body > div#content > div.created_at,
 body > div#content > div.updated_at {
     margin: -16px 32px 0;
@@ -44,6 +58,25 @@ body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > p {
     word-wrap: break-word;
     font-family: "Georgia", "Yu Gothic", "YuGothic";
     font-size: 16px;
+    color: #404040;
+}
+
+body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > div.upleft > div.figure > p:nth-child(1),
+body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > div.upright > div.figure > p:nth-child(1) {
+    margin: 0;
+    padding: 0;
+}
+
+body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > div.upleft > div.figure > p:nth-child(2),
+body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > div.upright > div.figure > p:nth-child(2) {
+    margin: 8px;
+    padding: 0;
+    text-align: justify;
+    text-align-last: left;
+    text-indent: 1em;
+    word-wrap: break-word;
+    font-family: "Georgia", "Yu Gothic", "YuGothic";
+    font-size: 12px;
     color: #404040;
 }
 
@@ -109,4 +142,14 @@ span.overline {
 
 div.center {
     text-align: center;
+}
+
+div.upleft {
+    float: left;
+    margin: 0 16px 16px 0;
+}
+
+div.upright {
+    float: right;
+    margin: 0 0 16px 16px;
 }
