@@ -120,11 +120,11 @@ Intelligence Support Activity (ISA)に入局し，
 
 ** ???
 
-#+ATTR_HTML: :style width: 400px;
+#+ATTR_HTML: :style width: 320px;
 #+BEGIN_UPLEFT
-#+ATTR_HTML: :srcset q0000_800x600.png 2x
+#+ATTR_HTML: :srcset q0000_640x480.png 2x
 #+CAPTION: Voyager のゴールデンレコードを調査する鳥人．背景に見える惑星には海や雲が存在するように見えるが，かれらの母星だろうか．
-[[./q0000_400x300.png]]
+[[./q0000_320x240.png]]
 #+END_UPLEFT
 
 人類ではない，謎の鳥人．
