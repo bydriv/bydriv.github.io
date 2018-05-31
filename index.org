@@ -9,6 +9,7 @@
 - @@html:<a href="/blog">blog</a>@@
 - @@html:<a href="/Data">Data</a>@@
 - @@html:<a href="/worldview">worldview</a>@@
+- @@html:<a href="/novel">novel</a>@@
 #+END_INDEX
 
 #+BEGIN_CREATED_AT
@@ -19,28 +20,37 @@ created at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
 updated at @@html:<time datetime="2018-05-17">2018-05-17</time>@@
 #+END_UPDATED_AT
 
-* bydriv.ghithub.io/blog
+* News
 
-- [[./blog/rank2types.org][Rank2Types の推論，または Intersection Types について]]
-- [[./blog/regexp.org][正規言語， NFA, DFA, および正規表現の否定について]]
-- [[./blog/org-mode.org][Org mode 周辺のあれこれ]]
-- [[./blog/x86.org][x86 勉強メモ]]
-- [[./blog/positive.org][Strictly Positive, または Coq がいかにして停止性を保証しているか]]
-- [[./blog/exist.org][存在型， および Rank2Types によるそれと等価な表現について]]
-- [[./blog/layout.org][Layout ルール， Haskell のオフサイドルールについて]]
-- [[./blog/haskell-ffi.org][Haskell 2010 の FFI 周りについて]]
-- [[./blog/hsyacc.org][HsYACC/HsLex の使い方]]
-- [[./blog/2018-01.org][2018-01 の進捗まとめ]]
-- [[./blog/rectypes-and-positive.org][再帰型に Positive という制限を加えて強正規化性を保存する話]]
+** 2018-06
 
-* bydriv.ghithub.io/Data
+- 2018-06-??: Created [[./blog/pedia.org][図鑑を読むのがすきだった]] in @@html:<a href="/blog">blog</a>@@.
+- 2018-06-??: Created [[./novel/golden-record.org][黄金録/Golden Record]]^{[[[./novel/golden-record.txt][TXT]]][[[./novel/golden-record.pdf][PDF]]]} in @@html:<a href="/novel">novel</a>@@.
+- 2018-06-??: Updated @@html:<a href="/worldview">worldview</a>@@.
 
-勉強用のコード群．
-ライセンスはすべて GPLv3.
+** 2018-05
 
-- [[./Data/RBMap.html][Data.RBMap]] - 赤黒木の Haskell 実装 (写像モジュール)．
-- [[./Data/RBSet.html][Data.RBSet]] - 赤黒木の Haskell 実装 (集合モジュール).
-- [[./Data/Regexp.html][Data.Regexp]] - DFA 型正規表現エンジンの Haskell 実装．
+- 2018-05-17: Created @@html:<a href="/worldview">worldview</a>@@.
+
+** 2018-03
+
+- 2018-03-28: Created [[./blog/rectypes-and-positive.org][再帰型に Positive という制限を加えて強正規化性を保存する話]] in @@html:<a href="/blog">blog</a>@@.
+
+** 2018-01
+
+- 2018-01-30: Created [[./blog/2018-01.org][2018-01 の進捗まとめ]] in @@html:<a href="/blog">blog</a>@@.
+- 2018-01-29: Created [[./blog/hsyacc.org][HsYACC/HsLex の使い方]] in @@html:<a href="/blog">blog</a>@@.
+- 2018-01-22: Created [[./blog/haskell-ffi.org][Haskell 2010 の FFI 周りについて]] in @@html:<a href="/blog">blog</a>@@.
+- 2018-01-19: Created [[./blog/layout.org][Layout ルール， Haskell のオフサイドルールについて]] in @@html:<a href="/blog">blog</a>@@.
+- 2018-01-18: Created [[./blog/exist.org][存在型， および Rank2Types によるそれと等価な表現について]] in @@html:<a href="/blog">blog</a>@@.
+- 2018-01-17: Created [[./blog/positive.org][Strictly Positive, または Coq がいかにして停止性を保証しているか]] in @@html:<a href="/blog">blog</a>@@.
+- 2018-01-17: Created [[./blog/x86.org][x86 勉強メモ]] in @@html:<a href="/blog">blog</a>@@.
+- 2018-01-16: Created [[./Data/Regexp.html][Data.Regexp]] in
+- 2018-01-16: Created [[./Data/RBSet.html][Data.RBSet]] in @@html:<a href="/Data">Data</a>@@.
+- 2018-01-15: Created [[./Data/RBMap.html][Data.RBMap]] in @@html:<a href="/Data">Data</a>@@.
+- 2018-01-15: Created [[./blog/org-mode.org][Org mode 周辺のあれこれ]] in @@html:<a href="/blog">blog</a>@@.
+- 2018-01-14: Created [[./blog/regexp.org][正規言語， NFA, DFA, および正規表現の否定について]] in @@html:<a href="/blog">blog</a>@@.
+- 2018-01-13: Created [[./blog/rank2types.org][Rank2Types の推論，または Intersection Types について]] in @@html:<a href="/blog">blog</a>@@.
 
 * License
 

@@ -26,6 +26,7 @@ updated at @@html:<time datetime="2018-03-28">2018-03-28</time>@@
 - [[./hsyacc.org][HsYACC/HsLex の使い方]]
 - [[./2018-01.org][2018-01 の進捗まとめ]]
 - [[./rectypes-and-positive.org][再帰型に Positive という制限を加えて強正規化性を保存する話]]
+- [[./pedia.org][図鑑を読むのがすきだった]]
 
 * License
 
