@@ -145,6 +145,28 @@ Voyager のゴールデンレコードを調査した．
 #+BEGIN_CLEARFIX
 #+END_CLEARFIX
 
+* Technology
+
+** Holo I/O
+
+#+ATTR_HTML: :style width: 192px;
+#+BEGIN_UPLEFT
+#+ATTR_HTML: :srcset teiri0003_384x384.gif 2x
+#+CAPTION: ホロイオを使う女性．
+[[./teiri0003_192x192.gif]]
+#+END_UPLEFT
+
+*ホロイオ* (/Holo I/O/) は， 21世紀中ごろに開発されたウェアラブルデバイスである．
+リストバンド型の形状をしており，手首に巻いて使う．
+手の動きを追跡して *入力* (/input/) デバイスとして使え，
+また単色ではあるがホログラムを表示して *出力* (/output/) デバイスとしても使える．
+色は複数選べたが，同時に出力できるのは 1色のみだった．
+汎用的な入出力デバイスであり， さまざまな機器に対応していた．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
 * Culture
 
 ** Lambda Church
