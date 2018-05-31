@@ -4,4 +4,6 @@ My personal site.
 
 * License
 
-GPLv3.
+- GPLv3 (Almost).
+- Each copyright of all worldview/fan*.jpg belongs to its author.
+  - The author of worldview/fan0000_218x475.jpg and worldview/fan0000_437x950.jpg is [[https://twitter.com/kitunenobotan][@kitunenobotan]].

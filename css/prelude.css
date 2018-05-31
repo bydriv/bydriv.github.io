@@ -153,3 +153,7 @@ div.upright {
     float: right;
     margin: 0 0 16px 16px;
 }
+
+div.copyright {
+    border: dotted 1px #404040;
+}

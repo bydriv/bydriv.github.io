@@ -24,23 +24,16 @@ updated at @@html:<time datetime="2018-05-17">2018-05-17</time>@@
 [[./teiri0000_240x600.png]]
 #+END_UPLEFT
 
-#+ATTR_HTML: :style width: 300px;
+#+ATTR_HTML: :class copyright :style width: 220px;
 #+BEGIN_UPRIGHT
-#+ATTR_HTML: :srcset teiri0001_600x800.png 2x
-#+CAPTION: 着物がすきなようで，彼女は合衆国に住んでいるが，毎年元旦やお盆には着物を着るらしい．
-[[./teiri0001_300x400.png]]
-#+END_UPRIGHT
-
-#+ATTR_HTML: :style width: 300px;
-#+BEGIN_UPRIGHT
-#+ATTR_HTML: :srcset teiri0002_600x800.png 2x
-#+CAPTION: バニーを着るテーリ．恥ずかしそうにしているが，まんざらでもないようである．
-[[./teiri0002_300x400.png]]
+#+ATTR_HTML: :srcset fan0000_437x950.jpg 2x
+#+CAPTION: © 2018 [[https://twitter.com/kitunenobotan][@kitunenobotan]]. See [[license][License]].
+[[./fan0000_218x475.jpg]]
 #+END_UPRIGHT
 
 *ミナガワ・テーリ* (/水無川定理/; /MINAGAWA, Teiri/; /Theo/)は，
 21世紀の計算機科学者である．2056年2月29日，アメリカ合衆国カリフォルニア州
-リバーサイド生まれの女性．身長は4\prime{}8\prime{}\prime{}．母は
+リバーサイド生まれの女性．身長は4\prime{}8\prime{}\prime{}． 母は
 *ミナガワ・マリ* (/水無川真理/)，祖母は *ミナガワ・コーリ* (/水無川考理/)．
 *レミリー・"レマ"・リバーズ* (/Lemily "Lemma" Rivers/)は彼女のクローンであり，
 法的に考えると厳密には違うのだが年齢的には彼女の娘である．
@@ -70,6 +63,24 @@ Intelligence Support Activity (ISA)に入局し，
 *エミリーからの呼び名*: *テーリ* (/Teiri/).
 *その他の呼び名*: *ミナガワ博士* (/Dr. MINAGAWA/).
 (諜報員としての偽名) *ハセガワ・マリ* (/長谷川真理/; /HASEGAWA, Mari/).
+
+#+ATTR_HTML: :style clear: right;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPRIGHT
+#+ATTR_HTML: :srcset teiri0001_600x800.png 2x
+#+CAPTION: 着物がすきなようで，彼女は合衆国に住んでいるが，毎年元旦やお盆には着物を着るらしい．
+[[./teiri0001_300x400.png]]
+#+END_UPRIGHT
+
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPRIGHT
+#+ATTR_HTML: :srcset teiri0002_600x800.png 2x
+#+CAPTION: バニーを着るテーリ．恥ずかしそうにしているが，まんざらでもないようである．
+[[./teiri0002_300x400.png]]
+#+END_UPRIGHT
 
 #+ATTR_HTML: :style clear: both;
 #+BEGIN_CLEARFIX
@@ -203,6 +214,12 @@ Voyager のゴールデンレコードを調査した．
 #+BEGIN_CLEARFIX
 #+END_CLEARFIX
 
-* License
+* License <<license>>
+:PROPERTIES:
+:CUSTOM_ID: license
+:END:
 
-GPLv3.
+- 点線でかこまれた部分以外は GPLv3 です．
+- 点線でかこまれた部分の著作権はそれぞれの著作者に帰属します．
+  GPL などのライセンスは設定されておらず，
+  著作者がすべての権利を有していますので，ご注意ください．
