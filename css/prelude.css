@@ -265,3 +265,7 @@ body > div#content > div#footnotes > div#text-footnotes > div.footdef > p {
     font-size: 16px;
     color: #404040;
 }
+
+div.copyright {
+    border: dotted 1px #404040;
+}
