@@ -67,16 +67,18 @@ Intelligence Support Activity (ISA)に入局し，
 *その他の呼び名*: *ミナガワ博士* (/Dr. MINAGAWA/).
 (諜報員としての偽名) *ハセガワ・マリ* (/長谷川真理/; /HASEGAWA, Mari/).
 
-#+ATTR_HTML: :style clear: right;
+#+ATTR_HTML: :style clear: both;
 #+BEGIN_CLEARFIX
 #+END_CLEARFIX
 
+*** 人柄
+
 #+ATTR_HTML: :style width: 300px;
-#+BEGIN_UPRIGHT
+#+BEGIN_UPLEFT
 #+ATTR_HTML: :srcset teiri0001_600x800.png 2x
 #+CAPTION: 着物がすきなようで，彼女は合衆国に住んでいるが，毎年元旦やお盆には着物を着るらしい．
 [[./teiri0001_300x400.png]]
-#+END_UPRIGHT
+#+END_UPLEFT
 
 #+ATTR_HTML: :style width: 300px;
 #+BEGIN_UPRIGHT
@@ -85,14 +87,14 @@ Intelligence Support Activity (ISA)に入局し，
 [[./teiri0002_300x400.png]]
 #+END_UPRIGHT
 
+彼女はギフテッドだという自覚はあったが，けっして他人よりすぐれているとは思っていなかった
+[fn::@@html:<a href="/novel/golden-record.html#9:52">@@黄金録9:52@@html:</a>@@]．
+
+どうやらかわいい服を着るのがすきなようでバニーや着物などいろいろ着る．
+
 #+ATTR_HTML: :style clear: both;
 #+BEGIN_CLEARFIX
 #+END_CLEARFIX
-
-*** 人柄
-
-彼女はギフテッドだという自覚はあったが，けっして他人よりすぐれているとは思っていなかった
-[fn::@@html:<a href="/novel/golden-record.html#9:52">@@黄金録9:52@@html:</a>@@]．
 
 *** 学部生時代
 

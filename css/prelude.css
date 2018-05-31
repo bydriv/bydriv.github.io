@@ -84,13 +84,17 @@ body > div#content > div.outline-2 > div.outline-text-2 > div.center > p {
 }
 
 body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > div.upleft > div.figure > p:nth-child(1),
-body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > div.upright > div.figure > p:nth-child(1) {
+body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > div.upright > div.figure > p:nth-child(1),
+body > div#content > div.outline-2 > div.outline-3 > div.outline-4 > div.outline-text-4 > div.upleft > div.figure > p:nth-child(1),
+body > div#content > div.outline-2 > div.outline-3 > div.outline-4 > div.outline-text-4 > div.upright > div.figure > p:nth-child(1) {
     margin: 0;
     padding: 0;
 }
 
 body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > div.upleft > div.figure > p:nth-child(2),
-body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > div.upright > div.figure > p:nth-child(2) {
+body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > div.upright > div.figure > p:nth-child(2),
+body > div#content > div.outline-2 > div.outline-3 > div.outline-4 > div.outline-text-4 > div.upleft > div.figure > p:nth-child(2),
+body > div#content > div.outline-2 > div.outline-3 > div.outline-4 > div.outline-text-4 > div.upright > div.figure > p:nth-child(2) {
     margin: 8px;
     padding: 0;
     text-align: justify;
