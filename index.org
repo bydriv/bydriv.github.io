@@ -30,6 +30,7 @@ updated at @@html:<time datetime="2018-05-17">2018-05-17</time>@@
 
 ** 2018-05
 
+- 2018-05-31: Updated @@html:<a href="/worldview">worldview</a>@@.
 - 2018-05-17: Created @@html:<a href="/worldview">worldview</a>@@.
 
 ** 2018-03
