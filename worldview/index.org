@@ -10,7 +10,7 @@ created at @@html:<time datetime="2018-05-17">2018-05-17</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-05-31">2018-05-31</time>@@
+updated at @@html:<time datetime="2018-06-02">2018-06-02</time>@@
 #+END_UPDATED_AT
 
 * Characters
@@ -26,9 +26,9 @@ updated at @@html:<time datetime="2018-05-31">2018-05-31</time>@@
 
 #+ATTR_HTML: :class copyright :style width: 220px;
 #+BEGIN_UPRIGHT
-#+ATTR_HTML: :srcset fan0000_437x950.jpg 2x
+#+ATTR_HTML: :srcset contrib0000_437x950.png 2x
 #+CAPTION: © 2018 [[https://twitter.com/kitunenobotan][@kitunenobotan]]. See [[license][License]].
-[[./fan0000_218x475.jpg]]
+[[./contrib0000_218x475.png]]
 #+END_UPRIGHT
 
 *ミナガワ・テーリ* (/水無川定理/; /MINAGAWA, Teiri/; /Theo/)は，
