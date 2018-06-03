@@ -32,6 +32,7 @@ updated at @@html:<time datetime="2018-05-17">2018-05-17</time>@@
 - [[./blog/hsyacc.org][HsYACC/HsLex の使い方]]
 - [[./blog/2018-01.org][2018-01 の進捗まとめ]]
 - [[./blog/rectypes-and-positive.org][再帰型に Positive という制限を加えて強正規化性を保存する話]]
+- [[./blog/lambda-semantics.org][型なしラムダ計算の (small step | big step) semantics  について]]
 
 * bydriv.ghithub.io/Data
 
