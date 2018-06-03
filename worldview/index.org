@@ -24,9 +24,9 @@ updated at @@html:<time datetime="2018-06-03">2018-06-03</time>@@
 [[./teiri0000_240x600.png]]
 #+END_UPLEFT
 
-#+ATTR_HTML: :class copyright :style width: 220px;
+#+ATTR_HTML: :class copyright :style width: 218px;
 #+BEGIN_UPRIGHT
-#+ATTR_HTML: :srcset contrib0000_437x950.png 2x
+#+ATTR_HTML: :width 218 :height 475 :srcset contrib0000_437x950.png 2x
 #+CAPTION: © 2018 [[https://twitter.com/kitunenobotan][@kitunenobotan]]. See [[license][License]].
 [[./contrib0000_218x475.png]]
 #+END_UPRIGHT
@@ -249,7 +249,7 @@ Voyager のゴールデンレコードを調査した．
 
 #+ATTR_HTML: :class copyright :style width: 235px;
 #+BEGIN_UPRIGHT
-#+ATTR_HTML: :srcset fan0000_471x1024.png 2x
+#+ATTR_HTML: :width 235 :height 512 :srcset fan0000_471x1024.png 2x
 #+CAPTION: アルビノ宇宙のテーリ． 線画は © 2018 [[https://twitter.com/kitunenobotan][@kitunenobotan]]. See [[license][License]].
 [[./fan0000_235x512.png]]
 #+END_UPRIGHT
