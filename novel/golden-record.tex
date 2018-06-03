@@ -1,0 +1,96 @@
+\documentclass{ltjtbook}%
+\usepackage[%
+  twoside,%
+  %paperwidth = 111mm,%
+  %paperheight = 154mm,%
+  paperwidth = 105mm,%
+  paperheight = 148mm,%
+  layoutwidth = 148mm,%
+  layoutheight = 105mm,%
+  %layouthoffset = 3mm,%
+  %layoutvoffset = 3mm,%
+  layouthoffset = 0mm,%
+  layoutvoffset = -1mm,%
+  textwidth = 80mm,%
+  textheight = 120mm,%
+  %left = 10mm,%
+  %right = 15mm,%
+  left = 12.5mm,%
+  right = 12.5mm,%
+  %top = 18mm,%
+  %bottom = 10mm,%
+  %headheight = 6mm,%
+  %headsep = 6mm%
+  top = 15.5mm,%
+  bottom = 12.5mm,%
+  headheight = 5.5mm,%
+  headsep = 5mm%
+]{geometry}%
+\usepackage{luatexja-fontspec}%
+\usepackage{lltjext}%
+\usepackage{titlesec}%
+\usepackage{xpatch}%
+% luatexja-fontspec
+\setmainfont{Novelty Light}%
+\setsansfont{Novelty Light}%
+\setmainjfont{CandGReithic04}%
+\setsansjfont{CandGReithic04}%
+\newfontfamily\ebgaramond{EB Garamond}%
+% titlesec
+\newpagestyle{golden-record}{%
+  \sethead[][][%
+    \settowidth\pagenumberwidth{\ebgaramond\scriptsize\textit{\thepage}}%
+    \settoheight\pagenumberheight{\ebgaramond\scriptsize\textit{\thepage}}%
+    {\ebgaramond\scriptsize\textit{\thepage}}%
+    \hspace*{-0.5\dimexpr\oddsidemargin+1in\relax}\hspace*{-0.5\pagenumberwidth}\vspace*{0.5\headheight}\vspace*{-0.5\pagenumberheight}]{%
+    \settowidth\pagenumberwidth{\ebgaramond\scriptsize\textit{\thepage}}%
+    \settoheight\pagenumberheight{\ebgaramond\scriptsize\textit{\thepage}}%
+    \hspace*{2mm}\hspace*{-0.5\dimexpr\oddsidemargin+1in\relax}\hspace*{-0.5\pagenumberwidth}\vspace*{0.5\headheight}\vspace*{-0.5\pagenumberheight}%
+    {\ebgaramond\scriptsize\textit{\thepage}}}{}{}%
+  \setfoot[][][]{}{}{}}%
+\assignpagestyle{\chapter}{golden-record}%
+\xpretocmd\chapter{\pagestyle{golden-record}}{}{}%
+\titleformat{\chapter}[block]{}{%
+  \hspace*{4\zw}\prechaptername\thechapter\postchaptername\quad}{0mm}{}%
+% personal commands
+\newlength\pagenumberwidth%
+\newlength\pagenumberheight%
+\newlength\sectwidth%
+\newlength\sectheight%
+\makeatletter%
+\renewcommand\thechapter{\kansuji\c@chapter}%
+\makeatother%
+\newcommand\っ{\nolinebreak\hskip-0.125\zw\makebox[1\zw][l]{\raisebox{0.125\zh}[0mm][0mm]{っ}}\hskip0.125\zw}%
+\newcommand\ゃ{\nolinebreak\hskip-0.125\zw\makebox[1\zw][l]{\raisebox{0.125\zh}[0mm][0mm]{ゃ}}\hskip0.125\zw}%
+\newcommand\ゅ{\nolinebreak\hskip-0.125\zw\makebox[1\zw][l]{\raisebox{0.125\zh}[0mm][0mm]{ゅ}}\hskip0.125\zw}%
+\newcommand\ょ{\nolinebreak\hskip-0.125\zw\makebox[1\zw][l]{\raisebox{0.125\zh}[0mm][0mm]{ょ}}\hskip0.125\zw}%
+\newcommand\ァ{\nolinebreak\hskip-0.125\zw\makebox[1\zw][l]{\raisebox{0.125\zh}[0mm][0mm]{ァ}}\hskip0.125\zw}%
+\newcommand\ィ{\nolinebreak\hskip-0.125\zw\makebox[1\zw][l]{\raisebox{0.125\zh}[0mm][0mm]{ィ}}\hskip0.125\zw}%
+\newcommand\ゥ{\nolinebreak\hskip-0.125\zw\makebox[1\zw][l]{\raisebox{0.125\zh}[0mm][0mm]{ゥ}}\hskip0.125\zw}%
+\newcommand\ェ{\nolinebreak\hskip-0.125\zw\makebox[1\zw][l]{\raisebox{0.125\zh}[0mm][0mm]{ェ}}\hskip0.125\zw}%
+\newcommand\ォ{\nolinebreak\hskip-0.125\zw\makebox[1\zw][l]{\raisebox{0.125\zh}[0mm][0mm]{ォ}}\hskip0.125\zw}%
+\newcommand\ッ{\nolinebreak\hskip-0.125\zw\makebox[1\zw][l]{\raisebox{0.125\zh}[0mm][0mm]{ッ}}\hskip0.125\zw}%
+\newcommand\ャ{\nolinebreak\hskip-0.125\zw\makebox[1\zw][l]{\raisebox{0.125\zh}[0mm][0mm]{ャ}}\hskip0.125\zw}%
+\newcommand\ュ{\nolinebreak\hskip-0.125\zw\makebox[1\zw][l]{\raisebox{0.125\zh}[0mm][0mm]{ュ}}\hskip0.125\zw}%
+\newcommand\ョ{\nolinebreak\hskip-0.125\zw\makebox[1\zw][l]{\raisebox{0.125\zh}[0mm][0mm]{ョ}}\hskip0.125\zw}%
+\newcommand\、{\nolinebreak\hskip-0.65\zw\makebox[1\zw][l]{\raisebox{0.65\zh}[0mm][0mm]{、}}\hskip0.65\zw}%
+\newcommand\。{\nolinebreak\hskip-0.65\zw\makebox[1\zw][l]{\raisebox{0.65\zh}[0mm][0mm]{。}}\hskip0.65\zw}%
+\newcommand\exclexcl{\nolinebreak\makebox[1\zw][l]{\raisebox{-0.2\zh}{\rotatebox[origin = c]{-10}{！}}}\hskip-1\zw\makebox[1\zw][l]{\raisebox{0.2\zh}{\rotatebox[origin = c]{-10}{！}}}}%
+\newcommand\exclques{\nolinebreak\makebox[1\zw][l]{\raisebox{-0.2\zh}{\rotatebox[origin = c]{-10}{！}}}\hskip-1\zw\makebox[1\zw][l]{\raisebox{0.2\zh}{\rotatebox[origin = c]{-10}{？}}}}%
+\newcommand\！{\nolinebreak\makebox[1\zw][l]{\rotatebox[origin = c]{-10}{！}}}%
+\newcommand\？{\nolinebreak\makebox[1\zw][l]{\rotatebox[origin = c]{-10}{？}}}%
+\newcommand\ー{\nolinebreak\rotatebox[origin = c]{90}{ー}}%
+\newcommand\…{\nolinebreak\rotatebox[origin = c]{90}{…}\nolinebreak\rotatebox[origin = c]{90}{…}\nolinebreak}%
+\newcommand\「{\raisebox{-0.25\zh}[0mm][0mm]{\rotatebox[origin = c]{-90}{「}}\nolinebreak}%
+\newcommand\」{\nolinebreak\raisebox{0.25\zh}[0mm][0mm]{\rotatebox[origin = c]{-90}{」}}}%
+\newcommand\（{\raisebox{-0.25\zh}[0mm][0mm]{\rotatebox[origin = c]{-90}{（}}\nolinebreak}%
+\newcommand\）{\nolinebreak\raisebox{0.25\zh}[0mm][0mm]{\rotatebox[origin = c]{-90}{）}}}%
+\newcommand\：{\nolinebreak\raisebox{0.1\zh}[0mm][0mm]{:}\nolinebreak}%
+\begin{document}%
+\let\cleardoublepage\clearpage%
+\fontsize{3mm}{5mm}\selectfont%
+\input{golden-record.txt.tex}%
+%\clearpage\null%
+%\clearpage\null%
+%\clearpage\null%
+\end{document}%

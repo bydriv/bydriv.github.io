@@ -1,0 +1,22 @@
+#+SETUPFILE: ../setup.org
+#+TITLE: bydriv.ghithub.io/novel
+
+#+BEGIN_LOCATION
+@@html:https://<a href="/">bydriv.github.io</a>/<strong>novel</strong>/@@
+#+END_LOCATION
+
+#+BEGIN_CREATED_AT
+created at @@html:<time datetime="2018-06-04">2018-06-04</time>@@
+#+END_CREATED_AT
+
+#+BEGIN_UPDATED_AT
+updated at @@html:<time datetime="2018-06-04">2018-06-04</time>@@
+#+END_UPDATED_AT
+
+* Index
+
+- [[./golden-record.org][黄金録/Golden Record]]^{[[[./golden-record.txt][TXT]]][[[./golden-record.pdf][PDF]]]}
+
+* License
+
+GPLv3.
