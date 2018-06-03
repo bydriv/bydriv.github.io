@@ -61,6 +61,18 @@ body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > p {
     color: #404040;
 }
 
+body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > table {
+    margin: 16px auto;
+    padding: 0;
+    text-align: justify;
+    text-align-last: left;
+    text-indent: 1em;
+    word-wrap: break-word;
+    font-family: "Georgia", "Yu Gothic", "YuGothic";
+    font-size: 16px;
+    color: #404040;
+}
+
 body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > div.upleft > div.figure > p:nth-child(1),
 body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > div.upright > div.figure > p:nth-child(1) {
     margin: 0;
