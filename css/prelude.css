@@ -62,7 +62,8 @@ body > div#content > div.outline-2 > div.outline-3 > div.outline-4 > div.outline
     color: #404040;
 }
 
-body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > table {
+body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > table,
+body > div#content > div.outline-2 > div.outline-3 > div.outline-4 > div.outline-text-4 > table {
     margin: 16px auto;
     padding: 0;
     text-align: justify;
