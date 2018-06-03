@@ -62,7 +62,20 @@ body > div#content > div.outline-2 > div.outline-3 > div.outline-4 > div.outline
     color: #404040;
 }
 
-body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > table,
+body > div#content > div.outline-2 > div.outline-text-2 > div.center > p,
+body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > div.center > p {
+    margin: 16px;
+    padding: 0;
+    text-align: center;
+    text-indent: 1em;
+    word-wrap: break-word;
+    font-family: "Georgia", "Yu Gothic", "YuGothic";
+    font-size: 16px;
+    color: #404040;
+}
+
+body > div#content > div.outline-2 > div.outline-text-2 > table,
+body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > table, {
 body > div#content > div.outline-2 > div.outline-3 > div.outline-4 > div.outline-text-4 > table {
     margin: 16px auto;
     padding: 0;
@@ -273,4 +286,23 @@ body > div#content > div#footnotes > div#text-footnotes > div.footdef > p {
 
 div.copyright {
     border: dotted 1px #404040;
+}
+
+div.infer {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+div.premise {
+    display: inline-block;
+    margin: 0 16px;
+    padding: 0;
+}
+
+div.conclusion {
+    display: block;
+    margin: 0 16px;
+    padding: 0;
+    border-top: solid 1px #404040;
 }

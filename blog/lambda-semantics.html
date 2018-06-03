@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>型なしラムダ計算の (small step | big step) semantics  について</title>
+<!-- 2018-06-04 Mon 01:46 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/css/prelude.css" />
+<link rel="stylesheet" type="text/css" href="/css/highlight.css" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">型なしラムダ計算の (small step | big step) semantics  について</h1>
+<div class="location">
+<p>
+https://<a href="/">bydriv.github.io</a>/<a href="/blog">blog</a>/<strong>lambda-semantics.html</strong>
+</p>
+
+</div>
+
+<div class="created_at">
+<p>
+created at <time datetime="2018-06-04">2018-06-04</time>
+</p>
+
+</div>
+
+<div class="updated_at">
+<p>
+updated at <time datetime="2018-06-04">2018-06-04</time>
+</p>
+
+</div>
+
+<p>
+型なしラムダ計算の (small step | big step) semantics  について，
+勉強したことを雑にまとめておく．
+</p>
+
+<p>
+最近， 技術書典にラムダ計算本をだそうと思っていろいろ活動している．
+書籍版ではちゃんとした証明をやろうと思うが， なかなか簡単にはできないので，
+このブログで重要な定理などについて触れておく．
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">構文</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+まず構文について．これはウィキペディアにも載っているのでよく知られていると思うが，
+通常型なしラムダ計算のラムダ項（の構文）は次のように定義される．
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="left">
+
+<col  class="left">
+
+<col  class="left">
+</colgroup>
+<tbody>
+<tr>
+<td class="left"><i>e<sub>1</sub></i>, <i>e<sub>2</sub></i></td>
+<td class="left">::=</td>
+<td class="left"><i>x<sub>1</sub></i></td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">(<i>e<sub>1</sub></i> <i>e<sub>2</sub></i>)</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">(λ <i>x<sub>1</sub></i> <i>e<sub>1</sub></i>)</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+λ <i>x<sub>1</sub></i> . <i>e<sub>1</sub></i> のようにドットをつけて定義するひともいるが，
+あまり重要なことではない．
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">意味論</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+構文だけでは（型なし）ラムダ計算という体系についてちっともわかった気がしない．
+というか，わからない．もちろん人間の脳は推測を得意としているので，
+なんとなくこう実行されるのだろうというのはわかるだろうが，
+コンピュータにはわからないし， 人類が滅びたあと地球を探査しにきた何者かにもわからない．
+なんの前提知識もなしに（型なし）ラムダ計算という体系の意味を説明するのが意味論である．
+</p>
+
+<p>
+意味論は説明のためのものなので，説明の方法はいろいろある．
+操作的意味論は比較的よくもちいられる意味論である．
+操作的意味論にも small step semantics と big step semantics の区別がある．
+まずは "よりインタプリタの実装に近い" big step semantics について触れよう．
+</p>
+</div>
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">big step semantics</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+big step semantics というのは要するに eval の実装であると考えればよい．
+ほんとはいろいろ定義しなくちゃいけないのだがキモとなるのは次の適用に関する推論規則である．
+</p>
+
+<div class="center">
+<div class="infer">
+<div class="premise">
+<p>
+<i>e<sub>1</sub></i>
+⇓
+(λ <i>x<sub>1</sub></i> <i>e<sub>3</sub></i>)
+</p>
+
+</div>
+<div class="premise">
+<p>
+<i>e<sub>2</sub></i>
+⇓
+<i>v<sub>1</sub></i>
+</p>
+
+</div>
+<div class="premise">
+<p>
+([ <i>v<sub>1</sub></i> / <i>x<sub>1</sub></i> ] <i>e<sub>3</sub></i>)
+⇓
+<i>v<sub>2</sub></i>
+</p>
+
+</div>
+<div class="conclusion">
+<p>
+(<i>e<sub>1</sub></i> <i>e<sub>2</sub></i>)
+⇓
+<i>v<sub>2</sub></i>
+</p>
+
+</div>
+
+</div>
+</div>
+
+<p>
+⇓
+という記号が eval 関数を意味していると考えればよい．
+これは要するに (<i>e<sub>1</sub></i> <i>e<sub>2</sub></i>) という項を評価する場合，
+<i>e<sub>1</sub></i> と <i>e<sub>2</sub></i> を両方評価したうえでそれを代入し，
+さらにそれも評価して値を返すという関数を定義している．
+</p>
+
+<p>
+値とはなんぞや？　と気づかれた方は鋭い．
+big step semantics では通常， 項とは別に値というものを定義する．
+値の定義の仕方はいろいろあるが，とにかくそれ以上評価が進まない感じに定義する
+（クロージャで定義することが多いようだ）．
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">small step semantics</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+small step semantics はインタプリタっぽくはない，
+若干理論寄りの定義である． big step semantics と比べると定義がすっきりしているほか，
+無限ループの扱いなどがしやすいらしい（正直伝聞で聞いただけなのだが）．
+</p>
+
+<p>
+肝心の定義は "1ステップの簡約" と "nステップの簡約" をべつべつに定義する感じにする．
+具体的には，
+</p>
+
+<div class="center">
+<div class="infer">
+<div class="premise">
+
+</div>
+<div class="conclusion">
+<p>
+((λ <i>x<sub>1</sub></i> <i>e<sub>2</sub></i>) <i>e<sub>1</sub></i>)
+▷<sub>1</sub>
+([ <i>e<sub>1</sub></i> / <i>x<sub>1</sub></i> ] <i>e<sub>2</sub></i>)
+</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="center">
+<div class="infer">
+<div class="premise">
+<p>
+<i>e<sub>1</sub></i>
+▷<sub>1</sub>
+<i>e<sub>2</sub></i>
+</p>
+
+</div>
+<div class="conclusion">
+<p>
+(<i>e<sub>3</sub></i> <i>e<sub>1</sub></i>)
+▷<sub>1</sub>
+(<i>e<sub>3</sub></i> <i>e<sub>2</sub></i>)
+</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="center">
+<div class="infer">
+<div class="premise">
+<p>
+<i>e<sub>1</sub></i>
+▷<sub>1</sub>
+<i>e<sub>2</sub></i>
+</p>
+
+</div>
+<div class="conclusion">
+<p>
+(<i>e<sub>1</sub></i> <i>e<sub>3</sub></i>)
+▷<sub>1</sub>
+(<i>e<sub>2</sub></i> <i>e<sub>3</sub></i>)
+</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="center">
+<div class="infer">
+<div class="premise">
+<p>
+<i>e<sub>1</sub></i>
+▷<sub>1</sub>
+<i>e<sub>2</sub></i>
+</p>
+
+</div>
+<div class="conclusion">
+<p>
+(λ <i>x<sub>1</sub></i> <i>e<sub>1</sub></i>)
+▷<sub>1</sub>
+(λ <i>e<sub>2</sub></i>)
+</p>
+
+</div>
+
+</div>
+</div>
+
+<p>
+というふうに "1ステップの簡約" をまず定義する．
+▷<sub>1</sub>
+が 1ステップの簡約を表す記号である．
+なにがどう 1ステップなのかというと，
+これらの規則をいくら組みあわせても最初の (適用の) 規則を 2度使うことができないということである．
+うそだと思うのなら実際に手を動かして確かめてみよう．
+正直重要なのはいちばん最初の規則だけで，
+ほかの規則はどの部分項を簡約してもよい
+(ラムダ項を抽象構文木として見たときに，どの位置で簡約してもよい)
+ということを定めているだけである．
+なお，前提の部分が空の推論規則は伝統的な論理学では公理として定義されることが多く，
+計算機科学だと前提が空の推論規則として定義されることが多いようだ．
+</p>
+
+<p>
+そのあとで "nステップの簡約" を定義する．
+具体的には
+</p>
+
+<div class="center">
+<div class="infer">
+<div class="conclusion">
+<p>
+<i>e<sub>1</sub></i>
+▷
+<i>e<sub>1</sub></i>
+</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="center">
+<div class="infer">
+<div class="premise">
+<p>
+<i>e<sub>1</sub></i>
+▷<sub>1</sub>
+<i>e<sub>2</sub></i>
+</p>
+
+</div>
+<div class="premise">
+<p>
+<i>e<sub>2</sub></i>
+▷
+<i>e<sub>3</sub></i>
+</p>
+
+</div>
+<div class="conclusion">
+<p>
+<i>e<sub>1</sub></i>
+▷
+<i>e<sub>3</sub></i>
+</p>
+
+</div>
+
+</div>
+</div>
+
+<p>
+という具合にである．
+</p>
+
+<p>
+また以上の定義から <b>許容規則</b> (<i>admissible rule</i>, メタ定理) として
+▷
+が推移的であること，すなわち
+</p>
+
+<div class="center">
+<div class="infer">
+<div class="premise">
+<p>
+<i>e<sub>1</sub></i>
+▷
+<i>e<sub>2</sub></i>
+</p>
+
+</div>
+<div class="premise">
+<p>
+<i>e<sub>2</sub></i>
+▷
+<i>e<sub>3</sub></i>
+</p>
+
+</div>
+<div class="conclusion">
+<p>
+<i>e<sub>1</sub></i>
+▷
+<i>e<sub>3</sub></i>
+</p>
+
+</div>
+
+</div>
+</div>
+
+<p>
+が証明できる．注意しておくべきことは，
+<b>派生規則</b> (<i>derivable rule</i>) ではないということ，
+つまり以上の定義をただ単純に組みあわせただけでは証明できないということである．
+これを証明するには，ちょっとテクニカルなこと(推論図の長さに関する帰納法,
+いわば AST をとって AST を返すメタプログラミング)をする必要があるが，
+難しくはない．
+</p>
+
+<p>
+なおこれまでは意図的に無視して進めてきたが本来はα変換についてもちゃんとやらなければならない．
+α変換についてはちゃんと意味論に組みこんできっちり議論するひとと
+いつでもα変形してよいみたいな暗黙のルールを定めるひとがいる．
+個人的には後者のほうが議論の見通しがよくなる気がするので好み．
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">その他定理など</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+もちろん，意味論を定義してはい終わり，というわけにはなかなかならない．
+意味論を定義したうえで，その意味論に関する性質を証明したりすることが重要になってくる．
+</p>
+
+<p>
+なにを証明すればよいか，というのは体系によるのでなんともいえないのだが，
+たとえば強正規化性（停止性）が成りたつよね，
+あるいは逆に成りたたないことを示したりその理由とか考察するのが大事なのである．
+（なおこういう視点で見ると単純型つきラムダ計算は化け物じみた性質をもっている）
+</p>
+
+<p>
+型なしラムダ計算においては強正規化性は成りたたないので，
+合流性定理 (Church-Rosser 性) が重要な定理として紹介されることが多い．
+</p>
+
+<p>
+合流性というのは "どんな順番で簡約しても同じ結果になる" という性質で，
+形式的には
+</p>
+
+<div class="center">
+<p>
+<i>e<sub>1</sub></i> ▷ <i>e<sub>2</sub></i> かつ <i>e<sub>1</sub></i> ▷ <i>e<sub>3</sub></i> ならば，
+<i>e<sub>2</sub></i> ▷ <i>e<sub>4</sub></i> かつ <i>e<sub>3</sub></i> ▷ <i>e<sub>4</sub></i> となるような <i>e<sub>4</sub></i> が存在する．
+</p>
+</div>
+
+<p>
+と表される． (どこが形式的だ!! ∀ とか ∃ とか使って表さんかい!!
+というのは勘弁して)
+</p>
+</div>
+
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">合流性の証明</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+合流性の証明には <b>並行簡約</b> (<i>Parallel reduction</i>) というものを使うとよいらしい．
+このへんは正直理解できてないので勉強中．
+どうにも並行簡約を使わずとも証明はできるものの，
+並行簡約を使ったほうが証明が楽なようである．
+正直，まだまだ勉強することが多い……．
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">References</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>古森雄一, 小野寛晰. 『現代数理論理学序説』 2010.
+</li>
+<li>J. Roger Hindley, Jonathan P. Seldin.
+Lambda-Calculus and Combinators: An Introduction. 2008.
+</li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -23,10 +23,10 @@ updated at @@html:<time datetime="2018-05-17">2018-05-17</time>@@
 * News
 
 ** 2018-06
-
 - 2018-06-??: Created [[./blog/pedia.org][図鑑を読むのがすきだった]] in @@html:<a href="/blog">blog</a>@@.
 - 2018-06-??: Created [[./novel/golden-record.org][黄金録/Golden Record]]^{[[[./novel/golden-record.txt][TXT]]][[[./novel/golden-record.pdf][PDF]]]} in @@html:<a href="/novel">novel</a>@@.
 - 2018-06-??: Updated @@html:<a href="/worldview">worldview</a>@@.
+- 2018-06-04: Created [[./blog/lambda-semantics.org][型なしラムダ計算の (small step | big step) semantics  について]] in @@html:<a href="/blog">blog</a>@@.
 
 ** 2018-05
 
