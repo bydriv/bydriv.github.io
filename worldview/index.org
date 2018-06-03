@@ -10,7 +10,7 @@ created at @@html:<time datetime="2018-05-17">2018-05-17</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-05-31">2018-05-31</time>@@
+updated at @@html:<time datetime="2018-06-03">2018-06-03</time>@@
 #+END_UPDATED_AT
 
 * Characters
@@ -26,9 +26,9 @@ updated at @@html:<time datetime="2018-05-31">2018-05-31</time>@@
 
 #+ATTR_HTML: :class copyright :style width: 220px;
 #+BEGIN_UPRIGHT
-#+ATTR_HTML: :srcset fan0000_437x950.jpg 2x
+#+ATTR_HTML: :srcset contrib0000_437x950.png 2x
 #+CAPTION: © 2018 [[https://twitter.com/kitunenobotan][@kitunenobotan]]. See [[license][License]].
-[[./fan0000_218x475.jpg]]
+[[./contrib0000_218x475.png]]
 #+END_UPRIGHT
 
 *ミナガワ・テーリ* (/水無川定理/; /MINAGAWA, Teiri/; /Theo/)は，
@@ -565,6 +565,70 @@ Voyager のゴールデンレコードを調査した．
 | Grace      | Grace    | グレース       |                                                                                                            |
 | Autumn     | Autumn   | オータム       |                                                                                                            |
 | Waters     | Waters   | ウォーターズ   |                                                                                                            |
+* Worlds
+
+** Albino Universe
+
+#+ATTR_HTML: :style width: 320px;
+#+BEGIN_UPLEFT
+#+ATTR_HTML: :srcset q0000_640x480.png 2x
+#+CAPTION: この鳥人はアルビノ宇宙で，ガンマ線バーストが発生するまえに Voyager のゴールデンレコードを調査した．
+[[./q0000_320x240.png]]
+#+END_UPLEFT
+
+#+ATTR_HTML: :class copyright :style width: 235px;
+#+BEGIN_UPRIGHT
+#+ATTR_HTML: :srcset fan0000_471x1024.png 2x
+#+CAPTION: アルビノ宇宙のテーリ． 線画は © 2018 [[https://twitter.com/kitunenobotan][@kitunenobotan]]. See [[license][License]].
+[[./fan0000_235x512.png]]
+#+END_UPRIGHT
+
+*アルビノ宇宙* (/Albino Universe/) は， この宇宙とは別に存在する宇宙である．
+この宇宙と非常によく似た歴史を歩んでおり，同姓同名の人物も多数存在するが，
+この宇宙よりはるかに進んだ科学技術をもっていた．
+ところが2度に渡るガンマ線バーストの発生により，
+一時は滅亡寸前まで文明が縮退してしまった．
+生きのこった人々も一部の遺伝子情報が完全に破壊されてしまい，
+ほとんどすべての生物がアルビノになってしまった．
+
+2度に渡るガンマ線バーストは，アルビノ宇宙の歴史のうち，
+ふたつの時点で起こった． 1度めは人類の時代の，すくなくとも21世紀より以前であり，
+2度めは鳥人の時代で Voyager のゴールデンレコードが発見された直後であった．
+
+よく誤解されるが，平行宇宙とは異なる．
+アルビノ宇宙は非常に不安定な物理法則によってなりたっており，
+すくなくとも2度，全生命が滅びてしまった．
+1度めは人類が滅び，そのため宇宙の管理を司る *ミィ* (/ME/)
+が宇宙の物理法則を変えて宇宙を再編した．
+この宇宙は人類が栄えているあいだは非常に安定していて，
+生物がアルビノになってしまうようなガンマ線バーストも起こらなかった．
+ところが鳥人の時代になってふたたび物理法則が歪んで不安定な宇宙となり，
+ふたたびガンマ線バーストによってほとんどの生命がアルビノとなるアルビノ宇宙となった．
+この宇宙の鳥人もやはりかつての人類と同じように滅んでしまったため，
+ミィがふたたび新たな安定した宇宙を再編した．
+つまり時系列的には，
+
+人類時代のアルビノ宇宙(ガンマ線バーストまえ)→
+ガンマ線バースト→
+全生命がアルビノになる→
+人類時代のアルビノ宇宙(ガンマ線バーストあと)→
+全生命の滅亡→
+ミィによる宇宙の再編→\\
+この宇宙(現代)→
+遠い未来→\\
+鳥人時代のアルビノ宇宙(ガンマ線バーストまえ)→
+ガンマ線バースト→
+全生命がアルビノになる→
+鳥人時代のアルビノ宇宙(ガンマ線バーストあと)→
+全生命の滅亡→
+ミィによる宇宙の再編→\\
+この宇宙(鳥人時代)
+
+という歴史を歩んだ単一の宇宙であるということになる．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
 
 * License <<license>>
 :PROPERTIES:
