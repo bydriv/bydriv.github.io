@@ -13,7 +13,7 @@ created at @@html:<time datetime="2018-05-17">2018-05-17</time>@@
 updated at @@html:<time datetime="2018-06-04">2018-06-04</time>@@
 #+END_UPDATED_AT
 
-* Characters
+* Characters <<characters>>
 
 ** 水無川定理
 
@@ -355,7 +355,7 @@ Voyager のゴールデンレコードを調査した．
 #+BEGIN_CLEARFIX
 #+END_CLEARFIX
 
-* Technology
+* Technology <<technology>>
 
 ** Holo I/O
 
@@ -386,7 +386,7 @@ Voyager のゴールデンレコードを調査した．
 最初のミィは古宇宙のディーサによって設計され， 人類が絶滅したあと宇宙を再編した．
 つぎのミィは旧宇宙のディーサによって設計された．
 
-* Culture
+* Culture <<culture>>
 
 ** Lambda Church
 
@@ -422,7 +422,7 @@ Voyager のゴールデンレコードを調査した．
 #+BEGIN_CLEARFIX
 #+END_CLEARFIX
 
-* Moon
+* Moon <<moon>>
 
 ** First Flag
 
@@ -471,7 +471,7 @@ Voyager のゴールデンレコードを調査した．
 #+BEGIN_CLEARFIX
 #+END_CLEARFIX
 
-* Worlds
+* Worlds <<worlds>>
 
 ** Elder Universe
 
@@ -542,7 +542,7 @@ Voyager のゴールデンレコードを調査した．
 すくなくとも太陽系を制覇するほど栄えていた文明が存在したことを突きとめた．
 そのためその文明， すなわち人類のことを大文明と呼んだのである．
 
-* Chronology
+* Chronology <<chronology>>
 
 ** Elder Universe
 
@@ -609,7 +609,7 @@ Voyager のゴールデンレコードを調査した．
 |----+----+----+------+----------------------------------------------|
 | ?  |    |    |      | ミィによって宇宙が再編され，新宇宙が誕生する |
 
-* 対訳表
+* Translations <<translations>>
 
 ** 敬称
 
