@@ -26,15 +26,18 @@ body > div#content > div.location {
 }
 
 body > div#content > div.index > ul.org-ul {
-    margin: 0;
+    width: 240px;
+    margin: 0 auto;
     padding: 0;
-    text-align: center;
+    text-align: justify;
+    text-align-last: justify;
     word-spacing: 16px;
+    word-wrap: break-word;
     list-style: none;
 }
 
 body > div#content > div.index > ul.org-ul > li {
-    display: inline-block;
+    display: inline;
     margin: 0;
     padding: 0;
 }
