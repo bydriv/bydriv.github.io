@@ -666,6 +666,18 @@ Voyager のゴールデンレコードを調査した．
 | Grace      | Grace    | グレース       |                                                                                                            |
 | Autumn     | Autumn   | オータム       |                                                                                                            |
 | Waters     | Waters   | ウォーターズ   |                                                                                                            |
+
+* Contributing <<contributing>>
+
+1. https://github.com/bydriv/bydriv.github.io を fork してください．
+2. おすきなように編集してください．
+3. Pull Request をしてください (ただし merge されるかどうかは気分次第です)．
+
+このページは同一の世界観でいろいろ作品をつくって，
+それをまとめよう！　的な感じのページです．
+すでに書かれているように， 作中に登場したキャラや舞台の設定などを出典を示して記載したりします．
+もちろん文章や絵などの二次創作も歓迎です．
+
 * License <<license>>
 :PROPERTIES:
 :CUSTOM_ID: license
