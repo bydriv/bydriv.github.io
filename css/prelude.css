@@ -30,7 +30,7 @@ body > div#content > div.index > ul.org-ul {
     margin: 0 auto;
     padding: 0;
     text-align: justify;
-    text-align-last: justify;
+    text-align-last: left;
     word-spacing: 16px;
     word-wrap: break-word;
     list-style: none;
