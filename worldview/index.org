@@ -909,7 +909,7 @@ Voyager のゴールデンレコードを調査した．
 
 * Contributing <<contributing>>
 
-1. https://github.com/bydriv/bydriv.github.io を fork してください．
+1. [[https://github.com/bydriv/bydriv.github.io][GitHub]] で fork してください．
 2. おすきなように編集してください．
 3. Pull Request をしてください (ただし merge されるかどうかは気分次第です)．
 
