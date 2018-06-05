@@ -190,7 +190,7 @@ NASA に入局してからはふたたびエミリー・リバーズと名乗る
 
 彼女の専門は物理学であり，数学徒に対して強いライバル心を抱いていた
 [fn::@@html:<a href="/novel/golden-record.html#3:3">@@黄金録3:3@@html:</a>@@]．
-そのため数学を専門とする友人のヴェリティを，彼女はライバルだと認識していた
+そのため数学を専門とする友人の[[verity][ヴェリティ]]を，彼女はライバルだと認識していた
 [fn::@@html:<a href="/novel/golden-record.html#3:1">@@黄金録3:1@@html:</a>@@]．
 
 彼女はギャンブルがプレイすることもプレイするひとも苦手だった
@@ -246,11 +246,11 @@ CUIには苦手意識があるようだ
 
 *** 院生時代
 
-彼女は院生のとき，ヴェリティとディーサと出逢った
+彼女は院生のとき，[[verity][ヴェリティ]]と[[disa][ディーサ]]と出逢った
 [fn::@@html:<a href="/novel/golden-record.html#1:11">@@黄金録1:11@@html:</a>@@]．
-ヴェリティとはケンブリッジ大学のキングス・カレッジで
+[[verity][ヴェリティ]]とはケンブリッジ大学のキングス・カレッジで
 [fn::@@html:<a href="/novel/golden-record.html#3:6">@@黄金録3:6@@html:</a>@@]，
-ディーサとはある学会で出逢った
+[[disa][ディーサ]]とはある学会で出逢った
 [fn::@@html:<a href="/novel/golden-record.html#5:10">@@黄金録5:10@@html:</a>@@]．
 
 *** NASA局員時代
@@ -265,22 +265,22 @@ CUIには苦手意識があるようだ
 またコーリと出逢ったことがきっかけで，5年ぶりにテーリに連絡をした
 [fn::@@html:<a href="/novel/golden-record.html#2:21">@@黄金録2:21@@html:</a>@@]．
 
-2073年1月には地球でテーリ，ヴェリティ，そしてディーサと過ごしていた
+2073年1月には地球で[[teiri][テーリ]]，[[verity][ヴェリティ]]，そして[[disa][ディーサ]]と過ごしていた
 [fn::@@html:<a href="/novel/golden-record.html#2:54">@@黄金録2:54@@html:</a>@@]．
-同年1月1日にはマッカラン空港でヴェリティと待ちあわせ
+同年1月1日にはマッカラン空港で[[verity][ヴェリティ]]と待ちあわせ
 [fn::@@html:<a href="/novel/golden-record.html#3:44">@@黄金録3:44@@html:</a>@@]，
 ふたりはツインの部屋に泊まった
 [fn::@@html:<a href="/novel/golden-record.html#3:59">@@黄金録3:59@@html:</a>@@]．
-1月2日にはヴェリティとカジノで，どちらがより多く稼げるかの勝負をした
+1月2日には[[verity][ヴェリティ]]とカジノで，どちらがより多く稼げるかの勝負をした
 [fn::@@html:<a href="/novel/golden-record.html#4:2">@@黄金録4:2@@html:</a>@@]．
-1月7日から1月8日にはアイスランドでディーサと過ごし，
-1月14日から1月16日まではカリフォルニアでテーリと過ごす予定だった
+1月7日から1月8日にはアイスランドで[[disa][ディーサ]]と過ごし，
+1月14日から1月16日まではカリフォルニアで[[teiri][テーリ]]と過ごす予定だった
 [fn::@@html:<a href="/novel/golden-record.html#2:56">@@黄金録2:56@@html:</a>@@]
 が，
-1月13日にレマに邪魔されて飛行機に乗ることを諦めた
+1月13日に[[lemma][レマ]]に邪魔されて飛行機に乗ることを諦めた
 [fn::@@html:<a href="/novel/golden-record.html#7:68">@@黄金録7:68@@html:</a>@@]
 ので，
-テーリとの予定にはずいぶん遅れた．
+[[teiri][テーリ]]との予定にはずいぶん遅れた．
 
 ** Verity Arith Valley <<verity>>
 :PROPERTIES:
@@ -289,12 +289,80 @@ CUIには苦手意識があるようだ
 
 *ヴェリティ・アリス・バレー* (/Verity Arith Valley/)は，21世紀の数学者である．
 
+*** 人柄
+
+彼女は現実主義者の拝金主義者で，
+その主義に即しない夢は軽く見る傾向があった
+[fn::@@html:<a href="/novel/golden-record.html#1:29">@@黄金録1:29@@html:</a>@@]．
+賭け事が好きで年末年始にはたいていラスベガスにいた
+[fn::@@html:<a href="/novel/golden-record.html#2:56">@@黄金録2:56@@html:</a>@@]．
+すきなものはお金，地位，お酒，男で，ほかのものには興味を示さなかった
+[fn::@@html:<a href="/novel/golden-record.html#3:20">@@黄金録3:20@@html:</a>@@]．
+とはいえ友人は大切にするようで，よく友人を別荘にまねいたり
+[fn::@@html:<a href="/novel/golden-record.html#3:22">@@黄金録3:22@@html:</a>@@]，
+最終的にみずからの利益になるという建前で人助けもした
+[fn::@@html:<a href="/novel/golden-record.html#3:89">@@黄金録3:89@@html:</a>@@]．
+しかしながらその好意を表現することはへたなようで，しばしば誤解をまねいた
+[fn::@@html:<a href="/novel/golden-record.html#3:78">@@黄金録3:78@@html:</a>@@]．
+
+*** 能力
+
+彼女は映像記憶という特異な体質をもっていた
+[fn::@@html:<a href="/novel/golden-record.html#3:75">@@黄金録3:75@@html:</a>@@]．
+そのためブラックジャックが非常に得意で，
+1000ドルを8時間で1万6000ドルまで増やすことができた
+[fn::@@html:<a href="/novel/golden-record.html#4:97">@@黄金録4:97@@html:</a>@@]．
+かなり社交的なようで有名人の知りあいがたくさんおり
+[fn::@@html:<a href="/novel/golden-record.html#3:29">@@黄金録3:29@@html:</a>@@]，
+そのなかには仙丹製薬の会長のイェ・シャオシューや筆頭株主のチェン・スーシュー
+[fn::@@html:<a href="/novel/golden-record.html#3:24">@@黄金録11:87@@html:</a>@@]，
+桃山不動産の御曹司のモモヤマ・ゴーショーやその妹のモモヤマ・コソデもいた
+[fn::@@html:<a href="/novel/golden-record.html#3:24">@@黄金録3:24@@html:</a>@@]．
+
+*** 資産
+
+世界各国に別荘をもつほどの資産があった
+[fn::@@html:<a href="/novel/golden-record.html#3:22">@@黄金録3:22@@html:</a>@@]．
+
+*** 評価
+
+エミリーは彼女をライバルと認識していた
+[fn::@@html:<a href="/novel/golden-record.html#3:1">@@黄金録3:1@@html:</a>@@]．
+
+彼女はギャンブルでかなり稼いでいるというもっぱらのうわさだった
+[fn::@@html:<a href="/novel/golden-record.html#3:21">@@黄金録3:21@@html:</a>@@]．
+
 ** Dísa Jónudóttir <<disa>>
 :PROPERTIES:
 :CUSTOM_ID: disa
 :END:
 
 *ディーサ・ヨーヌドフテル* (/Dísa Jónudóttir/)は， 21世紀の工学者である．
+
+*** 人柄
+
+彼女は他人の夢をかっこいいことと表現した
+[fn::@@html:<a href="/novel/golden-record.html#1:17">@@黄金録1:17@@html:</a>@@]．
+物理主義者で人工知能は物理学にもとづいて設計できると信じていた
+[fn::@@html:<a href="/novel/golden-record.html#5:14">@@黄金録5:14@@html:</a>@@]．
+
+彼女の夢はエルトラをはじめ彼女の架空のキャラクターに人格を与えることだった
+[fn::@@html:<a href="/novel/golden-record.html#5:41">@@黄金録5:41@@html:</a>@@]．
+
+*** 能力
+
+高校生のころから学会に参加して質問するほど積極的だった
+[fn::@@html:<a href="/novel/golden-record.html#1:21">@@黄金録1:21@@html:</a>@@]．
+彼女はブログで既存の人工知能の手法を徹底的に実装して分析し，
+また新たな手法のスケッチさえ書いていた
+[fn::@@html:<a href="/novel/golden-record.html#5:22">@@黄金録5:22@@html:</a>@@]．
+彼女は大学では機械工学を専攻した
+[fn::@@html:<a href="/novel/golden-record.html#5:26">@@黄金録5:26@@html:</a>@@]．
+
+*** 評価
+
+エミリーから，その能力はテーリと甲乙つけがたいと評価されていた
+[fn::@@html:<a href="/novel/golden-record.html#5:9">@@黄金録5:9@@html:</a>@@]．
 
 ** 水無川考理 <<kouri>>
 :PROPERTIES:
