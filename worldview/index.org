@@ -10,7 +10,7 @@ created at @@html:<time datetime="2018-05-17">2018-05-17</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-06-04">2018-06-04</time>@@
+updated at @@html:<time datetime="2018-06-05">2018-06-05</time>@@
 #+END_UPDATED_AT
 
 * Characters <<characters>>
