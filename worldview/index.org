@@ -50,7 +50,7 @@ updated at @@html:<time datetime="2018-06-04">2018-06-04</time>@@
 ひ孫娘は[[lemma][レマ・リバーズ]]．
 母が日本人，父がアメリカ人のハーフである．
 そのうえ生まれて間もなく Calexit と呼ばれるカリフォルニア独立運動が盛んになって
-*カリフォルニア共和国* (/California Republic/) が成立してしまい，
+[[republic][カリフォルニア共和国]]が成立してしまい，
 彼女は日本， 合衆国， 共和国の三重国籍となってしまった．
 合衆国と共和国は多重国籍を認めていたし，
 彼女は日本にあまり行ったことがなかったので，
@@ -365,7 +365,6 @@ CUIには苦手意識があるようだ
 *ケイ・リバーズ* (/Kay Rivers/)は， [[lemily][レミリー・"レマ"・リバーズ]]の娘，
 [[lemma][レマ・リバーズ]]の母．
 
-
 ** Lemma  Rivers <<lemma>>
 :PROPERTIES:
 :CUSTOM_ID: lemma
@@ -465,6 +464,36 @@ Voyager のゴールデンレコードを調査した．
 #+ATTR_HTML: :style clear: both;
 #+BEGIN_CLEARFIX
 #+END_CLEARFIX
+
+* Countries <<countries>>
+:PROPERTIES:
+:CUSTOM_ID: countries
+:END:
+
+** California Republic <<republic>>
+:PROPERTIES:
+:CUSTOM_ID: republic
+:END:
+
+*カリフォルニア共和国* (/California Republic/) とは，
+21世紀中ごろに成立した共和国である．
+
+その歴史は古く， 1846年， 米墨戦争にまでさかのぼる．
+戦後には合衆国に吸収されカリフォルニア州となり共和国は消滅してしまった．
+ところが1848年ころに砂金が見つかるとゴールドラッシュが始まり，
+20世紀末にはシリコンバレーと呼ばれる大企業の本拠地がつらなる情報産業の中心地となるなど，
+またたく間に大国とならぶ経済圏を構成するにいたった．
+
+共和国はすくなくとも 2073年には独立国家を自称していた
+[fn::@@html:<a href="/novel/golden-record.html#9:2">@@黄金録9:2@@html:</a>@@]
+が，
+合衆国はそれを認めていなかった
+[fn::@@html:<a href="/novel/golden-record.html#9:3">@@黄金録9:3@@html:</a>@@]．
+ところがロシアや中国はすでに共和国を国家として承認しており，
+カリフォルニア独立問題が発生していた
+[fn::@@html:<a href="/novel/golden-record.html#9:4">@@黄金録9:4@@html:</a>@@]．
+2073年に就任したウォーターズ大統領はカリフォルニアの独立を認める方向性で考えていたらしい
+[fn::@@html:<a href="/novel/golden-record.html#9:12">@@黄金録9:12@@html:</a>@@]．
 
 * Moon <<moon>>
 
