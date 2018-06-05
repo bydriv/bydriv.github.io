@@ -627,6 +627,38 @@ Voyager のゴールデンレコードを調査した．
 2073年に就任した[[waters][ウォーターズ大統領]]はカリフォルニアの独立を認める方向性で考えていたらしい
 [fn::@@html:<a href="/novel/golden-record.html#9:12">@@黄金録9:12@@html:</a>@@]．
 
+* Cities <<cities>>
+:PROPERTIES:
+:CUSTOM_ID: cities
+:END:
+
+** Boston <<boston>>
+:PROPERTIES:
+:CUSTOM_ID: boston
+:END:
+
+*** Harvard Bridge <<harvard-bridge>>
+:PROPERTIES:
+:CUSTOM_ID: harvard-bridge
+:END:
+
+#+ATTR_HTML: :style width: 228px;
+#+BEGIN_UPLEFT
+#+ATTR_HTML: :srcset boston0000_456x304.png 2x
+#+CAPTION: MITのハッカーたちはハーバード橋に "Halfway to Hell" と書いた．矢印の指し示す方向にMITがある．
+[[./boston0000_228x152.png]]
+#+END_UPLEFT
+
+ハーバード橋とは，[[us][アメリカ合衆国]]マサチューセッツ州にある橋である．
+1958年10月， MIT のハッカーたちは *オリバー・スムート* (/Oliver R. Smoot/) の身長を
+1スムートと定義する *スムート* (/smoot/) という単位系を発明し， この橋の長さを測った．
+それによれば， この橋の長さは 364.4 スムート足すことの耳ひとつ分であった．
+また橋の中央には "Halfway to Hell" と書き，矢印で MIT を指し示した．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
 * Moon <<moon>>
 
 ** First Flag
