@@ -38,7 +38,7 @@ updated at @@html:<time datetime="2018-06-05">2018-06-05</time>@@
 #+END_UPRIGHT
 
 *ミナガワ・テーリ* (/水無川定理/; /MINAGAWA, Teiri/; /Theo/)は，
-21世紀の計算機科学者である．2056年2月29日，アメリカ合衆国カリフォルニア州
+21世紀の計算機科学者である．2056年2月29日， [[us][アメリカ合衆国]][[california][カリフォルニア州]]
 リバーサイド生まれの女性．身長は4\prime{}8\prime{}\prime{}．母は
 [[mari][ミナガワ・マリ]]，
 父は[[noah][ノア・トルーマン]]．
@@ -51,7 +51,7 @@ updated at @@html:<time datetime="2018-06-05">2018-06-05</time>@@
 母が日本人，父がアメリカ人のハーフである．
 そのうえ生まれて間もなく Calexit と呼ばれるカリフォルニア独立運動が盛んになって
 [[republic][カリフォルニア共和国]]が成立してしまい，
-彼女は日本， 合衆国， 共和国の三重国籍となってしまった．
+彼女は[[japan][日本]]， [[us][合衆国]]， [[republic][共和国]]の三重国籍となってしまった．
 合衆国と共和国は多重国籍を認めていたし，
 彼女は日本にあまり行ったことがなかったので，
 最終的に日本国籍のみを捨てる選択をした．
@@ -131,13 +131,13 @@ Intelligence Support Activity (ISA)に入局し，
 *エミリー・"エマ"・リバーズ* (/Emily "Emma" Rivers/)は，
 21世紀の物理学者である．2046年7月4日，アメリカ合衆国マサチューセッツ州
 ボストン生まれの女性．身長は5\prime{}10\prime{}\prime{}．
-*レミリー・"レマ"・リバーズ* (/Lemily "Lemma" Rivers/)の養母．
+[[lemily][レミリー・"レマ"・リバーズ]]の養母．
 レミリーは 2076年2月29日， テーリが ISA の任務中，
 ドイツで違法におこなわれていたヒトクローンの研究に巻きこまれ生まれたが，
 テーリは当時 20歳になったばかりであり子どもを育てるほど成長していなかったし，
 エミリーは子ども好きなのに不妊症で養子をほしがっていたので， 彼女をひきとった．
 マサチューセッツ工科大学を修了後NASAに入局し，
-*月の裏側国際天文台* (/International Observatory in the far side of the Moon/; IOM)に
+[[iom][月の裏側国際天文台]]に
 主任研究員として勤めた．そのあと *国家偵察局*
 (/National Reconnaissance Office/; NRO) にスカウトされ，
 主任研究員と諜報員の両方の仕事をこなしていた．
@@ -154,9 +154,9 @@ Intelligence Support Activity (ISA)に入局し，
 *髪の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(192,64,64);"></span>@@ (#C04040).
 *瞳の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(0,160,0);"></span>@@ (#00A000).
 
-*テーリからの呼び名*: *エミリー* (/Emily/).
-*ヴェリティからの呼び名*: *エマ* (/Emma/).
-*ディーサからの呼び名*: *エマ* (/Emma/).
+*[[teiri][テーリ]]からの呼び名*: *エミリー* (/Emily/).
+*[[verity][ヴェリティ]]からの呼び名*: *エマ* (/Emma/).
+*[[disa][ディーサ]]からの呼び名*: *エマ* (/Emma/).
 *その他の呼び名*: *リバーズ博士* (/Dr. Rivers/); (部下からは) *主任* (/Chief/);
 (親しい部下からは，彼女がスタートレックを好きなことにちなんで) *船長* (/Captain/).
 
@@ -282,15 +282,29 @@ CUIには苦手意識があるようだ
 ので，
 テーリとの予定にはずいぶん遅れた．
 
+** Verity Arith Valley <<verity>>
+:PROPERTIES:
+:CUSTOM_ID: verity
+:END:
+
+*ヴェリティ・アリス・バレー* (/Verity Arith Valley/)は，21世紀の数学者である．
+
+** Dísa Jónudóttir <<disa>>
+:PROPERTIES:
+:CUSTOM_ID: disa
+:END:
+
+*ディーサ・ヨーヌドフテル* (/Dísa Jónudóttir/)は， 21世紀の工学者である．
+
 ** 水無川考理 <<kouri>>
 :PROPERTIES:
 :CUSTOM_ID: kouri
 :END:
 
 *ミナガワ・コーリ* (/水無川考理/)は， 21世紀の技術者である．
-夫は *フユノ・ナツバナ* (/冬野夏花/)，
-娘は *ミナガワ・マリ* (/水無川真理/)．
-2000年2月29日，宮崎県生まれ．九州大学を卒業，東京大学を修了後JAXAで技術者を勤めた．
+夫は [[natsubana][フユノ・ナツバナ]]，
+娘は [[mari][ミナガワ・マリ]]．
+2000年2月29日，宮崎県生まれ．九州大学を卒業，東京大学を修了後[[jaxa][JAXA]]で技術者を勤めた．
 彼女は月の裏側国際天文台を開発するための作業ロボットの設計やメンテナンスをおこなった．
 開発中に大規模な事故が発生し，月で稼働中のすべてのシステムが停止する事態が起こったため，
 彼女は主任技術者として月へ着陸し，システムを復帰させた．
@@ -420,7 +434,10 @@ Voyager のゴールデンレコードを調査した．
 #+BEGIN_CLEARFIX
 #+END_CLEARFIX
 
-** ME: Mind Emulator
+** ME: Mind Emulator <<me>>
+:PROPERTIES:
+:CUSTOM_ID: me
+:END:
 
 *ミィ: マインド・エミュレータ* (ME: Mind Emulator) は，
 21世紀中ごろに *ディーサ・ヨーヌドフテル* (/Dísa Jónudóttir/) によって設計された人工知能である．
@@ -470,6 +487,53 @@ Voyager のゴールデンレコードを調査した．
 :CUSTOM_ID: countries
 :END:
 
+** United States of America <<us>>
+:PROPERTIES:
+:CUSTOM_ID: us
+:END:
+
+*アメリカ合衆国* (/United States of America/)は，
+北アメリカ大陸に位置する連邦共和国である．
+
+*** 大統領
+
+2073年1月20日には[[waters][グレース・A・ウォーターズ]]が大統領に就任した
+[fn::@@html:<a href="/novel/golden-record.html#9:8">@@黄金録9:8@@html:</a>@@]．
+
+*** 12人のムーンウォーカー
+
+アメリカ合衆国からはすくなくとも12人の月を歩いた人類が生まれた．
+かれらはムーンウォーカーと呼ばれた．
+
+*** State of California <<california>>
+:PROPERTIES:
+:CUSTOM_ID: california
+:END:
+
+*カリフォルニア州* (/State of California/)は，
+19世紀中ごろから21世紀後半まで存在したアメリカ合衆国の州である．
+
+** 日本 <<japan>>
+:PROPERTIES:
+:CUSTOM_ID: japan
+:END:
+
+*日本* (/Japan/)は，日本列島にある島国である．
+
+*** JAXA <<jaxa>>
+:PROPERTIES:
+:CUSTOM_ID: jaxa
+:END:
+
+[[iom][月の裏側国際天文台]]にはJAXAの研究員も多数いた
+[fn::@@html:<a href="/novel/golden-record.html#1:36">@@黄金録1:36@@html:</a>@@]．
+
+*** ムーンウォーカー
+
+日本から初めてでたムーンウォーカーは[[kouri][ミナガワ・コーリ]]であった．
+とはいえ，21世紀にはすでに月を歩くという目的で月開発をする組織は少なくなっており，
+彼女が月へ向かったのは停止したシステムを復元するためだった．
+
 ** California Republic <<republic>>
 :PROPERTIES:
 :CUSTOM_ID: republic
@@ -492,7 +556,7 @@ Voyager のゴールデンレコードを調査した．
 ところがロシアや中国はすでに共和国を国家として承認しており，
 カリフォルニア独立問題が発生していた
 [fn::@@html:<a href="/novel/golden-record.html#9:4">@@黄金録9:4@@html:</a>@@]．
-2073年に就任したウォーターズ大統領はカリフォルニアの独立を認める方向性で考えていたらしい
+2073年に就任した[[waters][ウォーターズ大統領]]はカリフォルニアの独立を認める方向性で考えていたらしい
 [fn::@@html:<a href="/novel/golden-record.html#9:12">@@黄金録9:12@@html:</a>@@]．
 
 * Moon <<moon>>
@@ -505,7 +569,10 @@ Voyager のゴールデンレコードを調査した．
 
 *5番旗* (/Fifth Flag/, ごばんばた)は，デカルト高地に位置する都市である．
 
-** International Observatory in the far side of the Moon
+** International Observatory in the far side of the Moon <<iom>>
+:PROPERTIES:
+:CUSTOM_ID: iom
+:END:
 
 #+ATTR_HTML: :style width: 300px;
 #+BEGIN_UPLEFT
@@ -581,7 +648,7 @@ Voyager のゴールデンレコードを調査した．
 
 よく誤解されるが，平行宇宙とは異なる．
 もともと旧宇宙は，
-宇宙規模の災害で古宇宙の全生命が滅んでしまったため宇宙の管理を司る *ミィ* (/ME/) が宇宙を再編して誕生した．
+宇宙規模の災害で古宇宙の全生命が滅んでしまったため宇宙の管理を司る [[me][ミィ]] が宇宙を再編して誕生した．
 しかしすくなくとも 21世紀以前にガンマ線バーストにより地球は危機的な被害をうけ，
 生きのこった人々も含めほとんどの生物がアルビノになってしまった．
 それでも文明は存続し， なんとか失われた遺伝子もとりもどしてふたたびアルビノでない生物が増えていたが，
