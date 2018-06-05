@@ -14,8 +14,14 @@ updated at @@html:<time datetime="2018-06-04">2018-06-04</time>@@
 #+END_UPDATED_AT
 
 * Characters <<characters>>
+:PROPERTIES:
+:CUSTOM_ID: characters
+:END:
 
-** 水無川定理
+** 水無川定理 <<teiri>>
+:PROPERTIES:
+:CUSTOM_ID: teiri
+:END:
 
 #+ATTR_HTML: :style width: 240px;
 #+BEGIN_UPLEFT
@@ -34,14 +40,14 @@ updated at @@html:<time datetime="2018-06-04">2018-06-04</time>@@
 *ミナガワ・テーリ* (/水無川定理/; /MINAGAWA, Teiri/; /Theo/)は，
 21世紀の計算機科学者である．2056年2月29日，アメリカ合衆国カリフォルニア州
 リバーサイド生まれの女性．身長は4\prime{}8\prime{}\prime{}．母は
-*ミナガワ・マリ* (/水無川真理/)，
-父は *ノア・トルーマン* (/Noah Truman/)．
-母方の祖母は *ミナガワ・コーリ* (/水無川考理/)，
-母方の祖父は *フユノ・ナツバナ* (/冬野夏花/)．
-*レミリー・"レマ"・リバーズ* (/Lemily "Lemma" Rivers/)は彼女のクローンであり，
+[[mari][ミナガワ・マリ]]，
+父は[[noah][ノア・トルーマン]]．
+母方の祖母は[[kouri][ミナガワ・コーリ]]，
+母方の祖父は[[natsubana][フユノ・ナツバナ]]．
+[[lemily][レミリー・"レマ"・リバーズ]]は彼女のクローンであり，
 法的に考えると厳密には違うのだが年齢的には彼女の娘である．
-孫娘は *ケイ・リバーズ* (/Kay Rivers/)，
-ひ孫娘は *レマ・リバーズ* (/Lemma Rivers/)．
+孫娘は[[kay][ケイ・リバーズ]]，
+ひ孫娘は[[lemma][レマ・リバーズ]]．
 母が日本人，父がアメリカ人のハーフである．
 そのうえ生まれて間もなく Calexit と呼ばれるカリフォルニア独立運動が盛んになって
 *カリフォルニア共和国* (/California Republic/) が成立してしまい，
@@ -63,7 +69,7 @@ Intelligence Support Activity (ISA)に入局し，
 *瞳の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(128,128,128);"></span>@@ (#808080).
 *服の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(160,64,64);"></span>@@ (#A04040).
 
-*エミリーからの呼び名*: *テーリ* (/Teiri/).
+*[[emily][エミリー]]からの呼び名*: *テーリ* (/Teiri/).
 *その他の呼び名*: *ミナガワ博士* (/Dr. MINAGAWA/).
 (諜報員としての偽名) *ハセガワ・マリ* (/長谷川真理/; /HASEGAWA, Mari/).
 
@@ -110,7 +116,10 @@ Intelligence Support Activity (ISA)に入局し，
 彼女は祖母が亡くなったと思っていた
 [fn::@@html:<a href="/novel/golden-record.html#2:30">@@黄金録2:30@@html:</a>@@]．
 
-** Emily "Emma" Rivers
+** Emily "Emma" Rivers <<emily>>
+:PROPERTIES:
+:CUSTOM_ID: emily
+:END:
 
 #+ATTR_HTML: :style width: 300px;
 #+BEGIN_UPLEFT
@@ -273,7 +282,10 @@ CUIには苦手意識があるようだ
 ので，
 テーリとの予定にはずいぶん遅れた．
 
-** 水無川考理
+** 水無川考理 <<kouri>>
+:PROPERTIES:
+:CUSTOM_ID: kouri
+:END:
 
 *ミナガワ・コーリ* (/水無川考理/)は， 21世紀の技術者である．
 夫は *フユノ・ナツバナ* (/冬野夏花/)，
@@ -284,7 +296,10 @@ CUIには苦手意識があるようだ
 彼女は主任技術者として月へ着陸し，システムを復帰させた．
 結果的に，彼女は人類で13番め，女性としては初めて月を歩いたムーンウォーカーとなった．
 
-** 冬野夏花
+** 冬野夏花 <<natsubana>>
+:PROPERTIES:
+:CUSTOM_ID: natsubana
+:END:
 
 *フユノ・ナツバナ* (/冬野夏花/)は， 21世紀の料理人．
 2001年生まれ．コーリが早生まれのため， 彼女とは2学年違っていた．
@@ -304,7 +319,10 @@ CUIには苦手意識があるようだ
 
 *コーリからの呼び名*: *なつばなくん*
 
-** 水無川真理
+** 水無川真理 <<mari>>
+:PROPERTIES:
+:CUSTOM_ID: mari
+:END:
 
 *ミナガワ・マリ* (/水無川真理/)は，21世紀の研究者である．
 2028年2月29日，東京都生まれ． 愛称は *トゥルーシー* (/Truthy/)．
@@ -323,17 +341,43 @@ CUIには苦手意識があるようだ
 テーリをもともとギフテッドのように育てるつもりなほど教育熱心だったようだ
 [fn::@@html:<a href="/novel/golden-record.html#5:7">@@黄金録5:7@@html:</a>@@]．
 
-** Noah Truman
+** Noah Truman <<noah>>
+:PROPERTIES:
+:CUSTOM_ID: noah
+:END:
 
 *ノア・トルーマン* (/Noah Truman/)は， 21世紀の研究者．
 妻は *ミナガワ・マリ* (/水無川真理/)．
 
-** Lemma  Rivers
+** Lemily "Lemma" Rivers <<lemily>>
+:PROPERTIES:
+:CUSTOM_ID: lemily
+:END:
+
+*レミリー・"レマ"・リバーズ* (/Lemma Rivers/)は，[[teiri][ミナガワ・テーリ]]のクローンである．
+2076年2月29日生まれ．
+
+** Kay Rivers <<kay>>
+:PROPERTIES:
+:CUSTOM_ID: kay
+:END:
+
+*ケイ・リバーズ* (/Kay Rivers/)は， [[lemily][レミリー・"レマ"・リバーズ]]の娘，
+[[lemma][レマ・リバーズ]]の母．
+
+
+** Lemma  Rivers <<lemma>>
+:PROPERTIES:
+:CUSTOM_ID: lemma
+:END:
 
 *レマ・リバーズ* (/Lemma Rivers/)は，22世紀の技術者である．
 2124年2月29日生まれ．
 
-** Grace Autumn Waters
+** Grace Autumn Waters <<grace>>
+:PROPERTIES:
+:CUSTOM_ID: grace
+:END:
 
 *グレース・オータム・ウォーターズ* (/Grace Autumn Waters/)は，
 オクラホマ州出身の数学者で，合衆国第59代大統領である．
