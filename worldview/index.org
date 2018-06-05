@@ -455,9 +455,9 @@ CUIには苦手意識があるようだ
 *レマ・リバーズ* (/Lemma Rivers/)は，22世紀の技術者である．
 2124年2月29日生まれ．
 
-** Grace Autumn Waters <<grace>>
+** Grace Autumn Waters <<waters>>
 :PROPERTIES:
-:CUSTOM_ID: grace
+:CUSTOM_ID: waters
 :END:
 
 *グレース・オータム・ウォーターズ* (/Grace Autumn Waters/)は，
