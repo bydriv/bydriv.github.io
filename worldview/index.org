@@ -659,6 +659,25 @@ Voyager のゴールデンレコードを調査した．
 #+BEGIN_CLEARFIX
 #+END_CLEARFIX
 
+** Luz Bethel <<luz-bethel>>
+:PROPERTIES:
+:CUSTOM_ID: luz-bethel
+:END:
+
+*ルズベテル* (/Luz Bethel/) とは，サンディエゴの南方，北緯0度2分20秒西経117度5分50秒，
+赤道直下の公海上に位置するメガフロートである
+[fn::@@html:<a href="/novel/golden-record.html#11:1">@@黄金録11:1@@html:</a>@@]．
+その中心には合衆国宇宙エレベータニュートンズ・クレードルがそびえたっていた
+[fn::@@html:<a href="/novel/golden-record.html#11:48">@@黄金録11:48@@html:</a>@@]．
+ルズベテルという名前はクレードルをヤコブのはしごにたとえ，
+さらに旧約聖書でヤコブの梯子が降りた町ルズと，
+ヤコブがその梯子を見てその町をベテルと名づけたこと(創世記28:19)にちなむものだった
+[fn::@@html:<a href="/novel/golden-record.html#11:3">@@黄金録11:3@@html:</a>@@]．
+中国語では *扶桑国* とも呼ばれていた．
+[fn::@@html:<a href="/novel/golden-record.html#11:20">@@黄金録11:20@@html:</a>@@]．
+*扶桑* とは，はるか東方に存在するといわれた伝説の大樹で，
+それを宇宙エレベータにたとえたものだった．
+
 * Moon <<moon>>
 
 ** First Flag
