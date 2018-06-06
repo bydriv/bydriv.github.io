@@ -1,5 +1,5 @@
 #+SETUPFILE: ../setup.org
-#+TITLE: bydriv.ghithub.io/worldview
+#+TITLE: bydriv.github.io/worldview
 
 #+BEGIN_LOCATION
 @@html:https://<a href="/">bydriv.github.io</a>/<strong>worldview</strong>/@@
