@@ -15,7 +15,7 @@ updated at @@html:<time datetime="2018-06-04">2018-06-04</time>@@
 
 * Index
 
-- [[./golden-record.org][黄金録/Golden Record]]^{[[[./golden-record.txt][TXT]]][[[./golden-record.pdf][PDF]]]}
+- [[./golden-record.org][黄金録/Golden Record]]
 
 * License
 

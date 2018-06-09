@@ -2,7 +2,7 @@
 #+TITLE: 黄金録/Golden Record
 
 #+BEGIN_LOCATION
-@@html:https://<a href="/">bydriv.github.io</a>/<a href="/novel">novel</a>/<strong>golden-record</strong>{<strong>.html</strong>[#<em>n</em>[:<em>m</em>]],<a href="golden-record.txt">.txt</a>,<a href="golden-record.pdf">.pdf</a>}@@
+@@html:https://<a href="/">bydriv.github.io</a>/<a href="/novel">novel</a>/<strong>golden-record.html</strong>[#<em>n</em>[:<em>m</em>]]@@
 #+END_LOCATION
 
 #+BEGIN_INDEX
@@ -26,6 +26,7 @@
 - @@html:<a href="#18">18</a>@@
 - @@html:<a href="#19">19</a>@@
 - @@html:<a href="#20">20</a>@@
+- @@html:<a href="#21">21</a>@@
 #+END_INDEX
 
 #+BEGIN_CREATED_AT
