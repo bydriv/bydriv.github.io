@@ -111,10 +111,21 @@ Intelligence Support Activity (ISA)に入局し，
 
 *** ISA局員時代
 
+#+ATTR_HTML: :class copyright :style width: 300px;
+#+BEGIN_UPRIGHT
+#+ATTR_HTML: :width 300 :height 300 :srcset contrib0001_600x600.png 2x
+#+CAPTION: © 2018 [[https://twitter.com/mangechan2][@mangechan2]]. See [[license][License]].
+[[./contrib0001_300x300.png]]
+#+END_UPRIGHT
+
 彼女は友人に，仕事はセキュリティ・エンジニアだと話していた
 [fn::@@html:<a href="/novel/golden-record.html#2:24">@@黄金録2:24@@html:</a>@@]．
 彼女は祖母が亡くなったと思っていた
 [fn::@@html:<a href="/novel/golden-record.html#2:30">@@黄金録2:30@@html:</a>@@]．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
 
 ** Emily "Emma" Rivers <<emily>>
 :PROPERTIES:
