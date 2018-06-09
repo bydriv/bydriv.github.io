@@ -17,12 +17,14 @@ created at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-06-04">2018-06-04</time>@@
+updated at @@html:<time datetime="2018-06-10">2018-06-10</time>@@
 #+END_UPDATED_AT
 
 * News
 
 ** 2018-06
+
+- 2018-06-10: Created [[./blog/progress.org][進捗報告会について]] in @@html:<a href="/blog">blog</a>@@.
 - 2018-06-04: Created [[./novel/golden-record.org][黄金録/Golden Record]] in @@html:<a href="/novel">novel</a>@@.
 - 2018-06-04: Updated @@html:<a href="/worldview">worldview</a>@@.
 - 2018-06-04: Created [[./blog/lambda-semantics.org][型なしラムダ計算の (small step | big step) semantics  について]] in @@html:<a href="/blog">blog</a>@@.
