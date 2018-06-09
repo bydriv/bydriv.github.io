@@ -1,6 +1,10 @@
 #+SETUPFILE: ../setup.org
 #+TITLE: bydriv.github.io/worldview
 
+#+HTML_HEAD: <script src="/js/ikagaka-shell-loader.js"></script>
+#+HTML_HEAD: <script src="/js/ikagaka-shell-state.js"></script>
+#+HTML_HEAD: <script src="/js/worldview.js"></script>
+
 #+BEGIN_LOCATION
 @@html:https://<a href="/">bydriv.github.io</a>/<strong>worldview</strong>/@@
 #+END_LOCATION
