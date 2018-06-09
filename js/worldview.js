@@ -8,7 +8,7 @@ window.addEventListener("load", function () {
         console.log(shell);
         console.log("a1");
         shell.config.enableRegion = true;
-        const shellState = new SHS.ShellState(shell);
+        const shellState = new ShellState.ShellState(shell);
         console.log("a2");
         const baseCache = new SurfaceBaseRenderer(shell);
         console.log("a3");
