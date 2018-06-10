@@ -27,6 +27,7 @@
 - @@html:<a href="#19">19</a>@@
 - @@html:<a href="#20">20</a>@@
 - @@html:<a href="#21">21</a>@@
+- @@html:<a href="#22">22</a>@@
 #+END_INDEX
 
 #+BEGIN_CREATED_AT
@@ -34,7 +35,7 @@ created at @@html:<time datetime="2018-06-04">2018-06-04</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-06-08">2018-06-08</time>@@
+updated at @@html:<time datetime="2018-06-10">2018-06-10</time>@@
 #+END_UPDATED_AT
 
 #+INCLUDE: golden-record.txt.org
