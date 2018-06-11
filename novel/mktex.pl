@@ -9,7 +9,7 @@ foreach my $line (<>) {
         $line =~ s/\[(\d+)\]/\\settowidth\\sectwidth{\\ebgaramond\\scriptsize{\1}}\\settoheight\\sectheight{\\ebgaramond\\scriptsize{\1}}\\hspace*{1\\zw}\\makebox[\\sectheight]{\\raisebox{\\zh}[0mm][0mm]{\\rotatebox[origin = c]{90}{\\ebgaramond\\scriptsize{\1}}}}\\hspace*{-\\sectheight}\\nolinebreak{}/;
     }
     $line =~ s/\[(\d+)\]/\\settowidth\\sectwidth{\\ebgaramond\\scriptsize{\1}}\\settoheight\\sectheight{\\ebgaramond\\scriptsize{\1}}\\makebox[\\sectheight]{\\raisebox{\\zh}[0mm][0mm]{\\rotatebox[origin = c]{90}{\\ebgaramond\\scriptsize{\1}}}}\\hspace*{-\\sectheight}\\nolinebreak{}/g;
-    $line =~ s/\[\*\]/\\vspace{\\baselineskip}/g;
+    $line =~ s/\[\*\]/\\vspace{3\\baselineskip}/g;
     $line =~ s/\[\+\]/\\newpage/g;
     $line =~ s/\[\$(.*?)\]/\\chapter{}/g;
 

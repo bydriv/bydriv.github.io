@@ -33,6 +33,11 @@
 - @@html:<a href="#25">25</a>@@
 - @@html:<a href="#26">26</a>@@
 - @@html:<a href="#27">27</a>@@
+- @@html:<a href="#28">28</a>@@
+- @@html:<a href="#29">29</a>@@
+- @@html:<a href="#30">30</a>@@
+- @@html:<a href="#31">31</a>@@
+- @@html:<a href="#32">32</a>@@
 #+END_INDEX
 
 #+BEGIN_CREATED_AT
@@ -40,7 +45,7 @@ created at @@html:<time datetime="2018-06-04">2018-06-04</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-06-11">2018-06-11</time>@@
+updated at @@html:<time datetime="2018-06-12">2018-06-12</time>@@
 #+END_UPDATED_AT
 
 #+INCLUDE: golden-record.txt.org
