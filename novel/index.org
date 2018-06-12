@@ -10,12 +10,16 @@ created at @@html:<time datetime="2018-06-04">2018-06-04</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-06-12">2018-06-12</time>@@
+updated at @@html:<time datetime="2018-06-13">2018-06-13</time>@@
 #+END_UPDATED_AT
 
-* Index
+* Long
 
 - [[./golden-record.org][黄金録/Golden Record]]
+
+* Short Short
+
+- [[./reverent-eugenist.org][敬虔な優生学者]]
 
 * License
 

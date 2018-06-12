@@ -24,6 +24,7 @@ updated at @@html:<time datetime="2018-06-12">2018-06-12</time>@@
 
 ** 2018-06
 
+- 2018-06-13: Created [[./novel/reverent-eugenist.org][敬虔な優生学者]] in @@html:<a href="/novel">novel</a>@@.
 - 2018-06-10: Created [[./blog/progress.org][進捗報告会について]] in @@html:<a href="/blog">blog</a>@@.
 - 2018-06-04: Created [[./novel/golden-record.org][黄金録/Golden Record]] in @@html:<a href="/novel">novel</a>@@.
 - 2018-06-04: Updated @@html:<a href="/worldview">worldview</a>@@.
