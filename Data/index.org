@@ -1,5 +1,5 @@
 #+SETUPFILE: ../setup.org
-#+TITLE: bydriv.ghithub.io/blog
+#+TITLE: bydriv.github.io/blog
 
 #+BEGIN_LOCATION
 @@html:https://<a href="/">bydriv.github.io</a>/<strong>Data</strong>/@@
@@ -10,7 +10,7 @@ created at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
+updated at @@html:<time datetime="2018-06-12">2018-06-12</time>@@
 #+END_UPDATED_AT
 
 * Index

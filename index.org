@@ -1,5 +1,5 @@
 #+SETUPFILE: setup.org
-#+TITLE: bydriv.ghithub.io
+#+TITLE: bydriv.github.io
 
 #+BEGIN_LOCATION
 @@html:https://<strong>bydriv.github.io</strong>/@@
@@ -17,7 +17,7 @@ created at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-06-10">2018-06-10</time>@@
+updated at @@html:<time datetime="2018-06-12">2018-06-12</time>@@
 #+END_UPDATED_AT
 
 * News
