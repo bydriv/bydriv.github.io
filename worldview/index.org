@@ -10,7 +10,7 @@ created at @@html:<time datetime="2018-05-17">2018-05-17</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-06-05">2018-06-05</time>@@
+updated at @@html:<time datetime="2018-06-12">2018-06-12</time>@@
 #+END_UPDATED_AT
 
 * Characters <<characters>>
@@ -740,6 +740,14 @@ Voyager のゴールデンレコードを調査した．
 #+ATTR_HTML: :style clear: both;
 #+BEGIN_CLEARFIX
 #+END_CLEARFIX
+
+*** 歴代台長
+
+| 初年   | 末年   | 台長                       | 補足事項                                                                                               |
+|--------+--------+----------------------------+--------------------------------------------------------------------------------------------------------|
+| 2071年 | 2075年 | ???                        | 任期は4年だったらしい[fn::@@html:<a href="/novel/golden-record.html#15:25">@@黄金録15:25@@html:</a>@@] |
+| 2075年 | 2081年 | [[kouri][ミナガワ・コーリ]]           |                                                                                                        |
+| 2081年 | 2087年 | [[emily][エミリー・"エマ"・リバーズ]] |                                                                                                        |
 
 * Worlds <<worlds>>
 
