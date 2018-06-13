@@ -1,0 +1,16 @@
+#+SETUPFILE: ../setup.org
+#+TITLE: 敬虔な優生学者/Reverent Eugenist
+
+#+BEGIN_LOCATION
+@@html:https://<a href="/">bydriv.github.io</a>/<a href="/novel">novel</a>/<strong>reverent-eugenist.html</strong>[#<em>n</em>[:<em>m</em>]]@@
+#+END_LOCATION
+
+#+BEGIN_CREATED_AT
+created at @@html:<time datetime="2018-06-13">2018-06-13</time>@@
+#+END_CREATED_AT
+
+#+BEGIN_UPDATED_AT
+updated at @@html:<time datetime="2018-06-13">2018-06-13</time>@@
+#+END_UPDATED_AT
+
+#+INCLUDE: reverent-eugenist.txt.org
