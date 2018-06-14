@@ -20,6 +20,7 @@ updated at @@html:<time datetime="2018-06-14">2018-06-14</time>@@
 * Short Short
 
 - [[./reverent-eugenist.org][敬虔な優生学者/Reverent Eugenist]]
+- [[./past.org][過去/Past]]
 
 * License
 
