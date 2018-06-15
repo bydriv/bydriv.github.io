@@ -559,6 +559,13 @@ Voyager のゴールデンレコードを調査した．
 [[./lambda-church_305x265.png]]
 #+END_CENTER
 
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPRIGHT
+#+CAPTION: ラムダ教会のシンボルの形状をした髪留めを身につける女性．
+#+ATTR_HTML: :srcset verity0000_600x800.png 2x
+[[./verity0000_300x400.png]]
+#+END_UPRIGHT
+
 *ラムダ教会* (/Lambda Church/)とは，
 21世紀に計算機科学者のあいだで自然発祥した冗談宗教である．
 もともとはある無神論者の計算機科学者が宗教をたずねられたとき，
