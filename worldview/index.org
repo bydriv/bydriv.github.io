@@ -10,7 +10,7 @@ created at @@html:<time datetime="2018-05-17">2018-05-17</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-06-14">2018-06-14</time>@@
+updated at @@html:<time datetime="2018-06-15">2018-06-15</time>@@
 #+END_UPDATED_AT
 
 * Characters <<characters>>
@@ -298,7 +298,18 @@ CUIには苦手意識があるようだ
 :CUSTOM_ID: verity
 :END:
 
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPLEFT
+#+CAPTION: 2075年ころのヴェリティ．
+#+ATTR_HTML: :srcset verity0000_600x800.png 2x
+[[./verity0000_300x400.png]]
+#+END_UPLEFT
+
 *ヴェリティ・アリス・バレー* (/Verity Arith Valley/)は，21世紀の数学者である．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
 
 *** 人柄
 
