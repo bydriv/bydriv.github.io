@@ -307,6 +307,14 @@ CUIには苦手意識があるようだ
 
 *ヴェリティ・アリス・バレー* (/Verity Arith Valley/)は，21世紀の数学者である．
 
+*肌の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(255,248,240);"></span>@@ (#FFF8F0).
+*髪の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(128,128,128);"></span>@@ (#808080).
+*瞳の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(0,128,255);"></span>@@ (#0080FF).
+
+*テーリからの呼び名*: *ヴェリティ* (/Verity/), (本名を知るまでは) *シャーロットさん* (/Charlotte/).
+*エミリーからの呼び名*: *ヴェリティ* (/Verity/), (挑発的に) *アリス* (/Arith/).
+*その他の呼び名*: (諜報員としての偽名) *シャーロット・A・キャロル* (/Charlotte A. Carroll/).
+
 #+ATTR_HTML: :style clear: both;
 #+BEGIN_CLEARFIX
 #+END_CLEARFIX
