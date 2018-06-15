@@ -17,13 +17,14 @@ created at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-06-14">2018-06-14</time>@@
+updated at @@html:<time datetime="2018-06-16">2018-06-16</time>@@
 #+END_UPDATED_AT
 
 * News
 
 ** 2018-06
 
+- 2018-06-16: Created [[./blog/naming.org][ディーサの名前，あるいはネーミングの難しさについて]] in @@html:<a href="/blog">blog</a>@@.
 - 2018-06-14: Created [[./novel/absurd.org][不合理/Absurd]] in @@html:<a href="/novel">novel</a>@@.
 - 2018-06-14: Created [[./novel/past.org][過去/Past]] in @@html:<a href="/novel">novel</a>@@.
 - 2018-06-13: Created [[./novel/reverent-eugenist.org][敬虔な優生学者/Reverent Eugenist]] in @@html:<a href="/novel">novel</a>@@.
