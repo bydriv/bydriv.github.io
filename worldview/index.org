@@ -494,6 +494,34 @@ CUIには苦手意識があるようだ
 オクラホマ州出身の数学者で，合衆国第59代大統領である．
 2037年6月3日生まれ． 2073年1月20日就任． 黒人とインディアンのハーフ．
 
+** @@html:<span class="chinese">@@葉小數@@html:</span>@@ <<xiaoshu>>
+:PROPERTIES:
+:CUSTOM_ID: xiaoshu
+:END:
+
+*イェ・シャオシュー* (*繁体字*: @@html:<span class="chinese">@@葉小數@@html:</span>@@)は，
+台湾生まれの[[xiandan-zhiyao][仙丹製薬]]の創業者．2002年生まれ．
+彼女の祖母は[[sushu][スーシュー]]の祖父の妹であり，
+彼女はスーシューのまたいとこにあたる．
+
+** @@html:<span class="chinese">@@陈素数@@html:</span>@@ <<sushu>>
+:PROPERTIES:
+:CUSTOM_ID: sushu
+:END:
+
+*チェン・スーシュー* (*簡体字*: @@html:<span class="chinese">@@陈素数@@html:</span>@@)は，
+香港生まれの素数会の龍頭．2011年生まれ．
+[[sushu-hui][素数会]]の龍頭．
+彼女の祖父は[[xiaoshu][シャオシュー]]の祖母の兄であり，
+国共内戦で中華民国の士官として戦ったが，国民革命軍が敗北し，
+中華人民共和国が成立すると人民解放軍に捕らえられた．
+そのため彼女は生粋の中華民国人を自負している．
+21世紀初頭より一国二制度が廃止されることを防ぐため，
+素数会を組織して反対運動をおこなう．
+2047年にそれが廃止されると素数会の活動はいっそう過激になり，
+彼女らは独立運動と称しているが，事実上の香港マフィアとなった．
+彼女はシャオシューのまたいとこにあたる．
+
 ** ???
 
 #+ATTR_HTML: :style width: 320px;
@@ -715,6 +743,26 @@ Voyager のゴールデンレコードを調査した．
 *扶桑* とは，はるか東方に存在するといわれた伝説の大樹で，
 それを宇宙エレベータにたとえたものだった．
 
+* Organizations
+
+** @@html:<span class="chinese">@@仙丹製藥@@html:</span>@@ <<xiandan-zhiyao>>
+:PROPERTIES:
+:CUSTOM_ID: xiandan-zhiyao
+:END:
+
+*仙丹製薬* (*繁体字*: @@html:<span class="chinese">@@仙丹製藥@@html:</span>@@,
+*簡体字*: @@html:<span class="chinese">@@仙丹制药@@html:</span>@@)は，
+台湾の製薬会社である．
+
+** @@html:<span class="chinese">@@素数会@@html:</span>@@ <<sushu-hui>>
+:PROPERTIES:
+:CUSTOM_ID: sushu-hui
+:END:
+
+*素数会* (*繁体字*: @@html:<span class="chinese">@@素数會@@html:</span>@@,
+*簡体字*: @@html:<span class="chinese">@@素数会@@html:</span>@@)は，
+香港マフィアの一派である．
+
 * Moon <<moon>>
 
 ** First Flag
@@ -892,7 +940,7 @@ Voyager のゴールデンレコードを調査した．
 |   2074 |      7 |       |         | [[emily][エミリー]]がNSAの勧誘を受ける[fn::@@html:<a href="/novel/golden-record.html#15:35">@@黄金録15:35@@html:</a>@@]                                                                                                           |
 |   2075 |      4 |       |         | [[kouri][ミナガワ・コーリ]]が[[iom][月の裏側国際天文台]]台長に就任する[fn::@@html:<a href="/novel/golden-record.html#16:9">@@黄金録16:9@@html:</a>@@]                                                                                      |
 |   2075 | 4-12頃 |       |         | [[teiri][テーリ]]がカイザー・ヴィルヘルム研究所で[[lemily][レミリー]]を見つける[fn::@@html:<a href="/novel/reverent-eugenist.html#3:14">@@敬虔な優生学者3:14@@html:</a>@@]                                                                    |
-|   2075 | 4-12頃 |       |         | [[emily][エミリー]]、[[verity][ヴェリティ]]、[[teiri][テーリ]]、[[disa][ディーサ]]の4人が月へ行く[fn::@@html:<a href="/novel/golden-record.html#16:56">@@黄金録16:56@@html:</a>@@]                                                                                 |
+|   2075 | 4-12頃 |       |         | [[emily][エミリー]]，[[verity][ヴェリティ]]，[[teiri][テーリ]]，[[disa][ディーサ]]の4人が月へ行く[fn::@@html:<a href="/novel/golden-record.html#16:56">@@黄金録16:56@@html:</a>@@]                                                                                 |
 |   2076 |      1 |       |         | [[emily][エミリー]]が桃山不動産に出資を頼みに行く[fn::@@html:<a href="/novel/golden-record.html#17:59">@@黄金録17:59@@html:</a>@@]                                                                                                |
 |   2076 |      2 |    29 | 土      | レミリー・"レマ"・リバーズが生まれる                                                                                                                                                                                   |
 |   2076 |    7頃 |       |         | [[emily][エミリー]]の停止していた計画が再始動する[fn::@@html:<a href="/novel/golden-record.html#19:37">@@黄金録19:37@@html:</a>@@]                                                                                                |

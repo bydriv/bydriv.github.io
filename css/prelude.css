@@ -200,6 +200,10 @@ span.overline {
     text-decoration: overline;
 }
 
+span.chinese {
+    font-family: SimSun;
+}
+
 span.cdots {
     font-family: "Yu Gothic", "YuGothic";
 }
