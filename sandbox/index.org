@@ -1,0 +1,23 @@
+#+SETUPFILE: ../setup.org
+#+TITLE: bydriv.github.io/sandbox
+
+#+HTML_HEAD: <script src="/js/three.min.js"></script>
+#+HTML_HEAD: <script src="/js/OrbitControls.js"></script>
+#+HTML_HEAD: <script src="/js/ColladaLoader.js"></script>
+#+HTML_HEAD: <script src="/js/sandbox.js"></script>
+
+#+BEGIN_LOCATION
+@@html:https://<a href="/">bydriv.github.io</a>/<strong>sandbox</strong>/@@
+#+END_LOCATION
+
+#+BEGIN_CREATED_AT
+created at @@html:<time datetime="2018-06-21">2018-06-21</time>@@
+#+END_CREATED_AT
+
+#+BEGIN_UPDATED_AT
+updated at @@html:<time datetime="2018-06-21">2018-06-21</time>@@
+#+END_UPDATED_AT
+
+* 3D Test
+
+#+HTML: <canvas id="teiri-3d"></canvas>
