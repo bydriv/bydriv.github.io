@@ -8,7 +8,7 @@ window.addEventListener("load", function () {
     renderer.setSize(width, height);
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 10000);
-    camera.position.set(0, 3, 3);
+    camera.position.set(0, 3, 10);
     const controls = new THREE.OrbitControls(camera);
     controls.target.set(0, 3, 0);
     controls.update();
