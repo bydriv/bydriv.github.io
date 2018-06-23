@@ -10,7 +10,7 @@ created at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-06-16">2018-06-16</time>@@
+updated at @@html:<time datetime="2018-06-23">2018-06-23</time>@@
 #+END_UPDATED_AT
 
 * Index
@@ -29,6 +29,7 @@ updated at @@html:<time datetime="2018-06-16">2018-06-16</time>@@
 - [[./lambda-semantics.org][型なしラムダ計算の (small step | big step) semantics  について]]
 - [[./progress.org][進捗報告会について]]
 - [[./naming.org][ディーサの名前，あるいはネーミングの難しさについて]]
+- [[./modeling-first-impression.org][モデリングをしてみた]]
 
 * License
 
