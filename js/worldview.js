@@ -25,7 +25,7 @@ window.addEventListener("load", function () {
         renderer.render(scene, camera);
 
         if (model) {
-            model.rotation.z += 1.0/60;
+            model.rotation.z -= 1.0/60;
         }
 
         requestAnimationFrame(tick);
