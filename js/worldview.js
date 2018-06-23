@@ -10,23 +10,24 @@ window.addEventListener("load", function () {
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 10000);
     camera.position.set(0, 3, 10);
     const controls = new THREE.OrbitControls(camera);
-    controls.target.set(0, 3, 0);
+    controls.target.set(0, 0, 0);
     controls.update();
-    //const directionalLight = new THREE.DirectionalLight(0xFFFFFF);
-    //directionalLight.position.set(0, 0, 1);
-    //scene.add(directionalLight);
-    //const ambientLight = new THREE.AmbientLight(0x333333);
     const ambientLight = new THREE.AmbientLight(0xFFFFFF);
     scene.add(ambientLight);
     const loader = new THREE.ColladaLoader();
-    loader.load('/sandbox/teiri.dae', (collada) => {
-        const model = collada.scene;
-        //model.applyMatrix(new THREE.Matrix4().makeScale(1, 1, -1));
+    var model = null;
+    loader.load('/worldview/teiri.dae', (collada) => {
+        model = collada.scene;
         scene.add(model);
     });
     tick();
     function tick() {
         renderer.render(scene, camera);
+
+        if (model) {
+            model.rotation.z += 1.0/60;
+        }
+
         requestAnimationFrame(tick);
     }
 });
