@@ -114,10 +114,17 @@ Intelligence Support Activity (ISA)に入局し，
 
 *** 学部生時代
 
-#+ATTR_HTML: :style width: 320px;
+#+ATTR_HTML: :style width: 160px;
 #+BEGIN_UPLEFT
-#+HTML: <canvas class="teiri_petan"></canvas>
+#+ATTR_HTML: :srcset teiri0004_320x540.gif 2x
+#+CAPTION: ゆらゆら揺れるテーリ．
+[[./teiri0004_160x270.gif]]
 #+END_UPLEFT
+
+#+ATTR_HTML: :style width: 320px;
+#+BEGIN_UPRIGHT
+#+HTML: <canvas class="teiri_petan"></canvas>
+#+END_UPRIGHT
 
 彼女はボストンとブルックラインの境界にあるロングウッドという街にある父方の実家に下宿していた
 [fn::@@html:<a href="/novel/golden-record.html#3:36">@@黄金録3:36@@html:</a>@@]．
