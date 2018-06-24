@@ -37,7 +37,7 @@ updated at @@html:<time datetime="2018-06-15">2018-06-15</time>@@
 
 #+ATTR_HTML: :style width: 320px;
 #+BEGIN_UPRIGHT
-#+HTML: <canvas id="teiri-3d"></canvas>
+#+HTML: <canvas class="teiri"></canvas>
 #+END_UPRIGHT
 
 *ミナガワ・テーリ* (/水無川定理/; /MINAGAWA, Teiri/; /Theo/)は，
@@ -114,10 +114,19 @@ Intelligence Support Activity (ISA)に入局し，
 
 *** 学部生時代
 
+#+ATTR_HTML: :style width: 320px;
+#+BEGIN_UPLEFT
+#+HTML: <canvas class="teiri_petan"></canvas>
+#+END_UPLEFT
+
 彼女はボストンとブルックラインの境界にあるロングウッドという街にある父方の実家に下宿していた
 [fn::@@html:<a href="/novel/golden-record.html#3:36">@@黄金録3:36@@html:</a>@@]．
 彼女は同年代がまったくいない学生生活にうまくなじめていなかった
 [fn::@@html:<a href="/novel/golden-record.html#9:51">@@黄金録9:51@@html:</a>@@]．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
 
 *** ISA局員時代
 

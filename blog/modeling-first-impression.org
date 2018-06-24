@@ -32,7 +32,7 @@ updated at @@html:<time datetime="2018-06-23">2018-06-23</time>@@
 (ブラウザによっては表示されないかもしれないけど，できたものは次の行に表示してある)
 
 #+BEGIN_CENTER
-#+HTML: <canvas id="teiri-3d"></canvas>
+#+HTML: <canvas class="teiri"></canvas>
 #+END_CENTER
 
 もともとモデリング自体は以前からやりたいと思っていて，
