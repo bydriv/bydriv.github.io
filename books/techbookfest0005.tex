@@ -30,6 +30,7 @@
 \renewcommand\proofname{証明}%
 \newtheorem{theorem}{定理}[section]%
 \newtheorem{lemma}{補題}[section]%
+\newtheorem{definition}{定義}[section]%
 \newtheorem{example}{例}[section]%
 % luatexja-fontspec
 \setmainfont{Novelty Light}%
@@ -140,27 +141,26 @@
 \frontmatter%
 \chapter{はしがき}%
 \hspace*{1\zw}本書はひとつのラムダ計算の入門書です．%
-\prechaptername\ref{chap:untyped}\postchaptername では%
-型なしラムダ計算を扱い， \prechaptername\ref{chap:typed}\postchaptername では%
-単純型つきラムダ計算を扱いまして，%
-\prechaptername\ref{chap:infer}\postchaptername では%
-単純型つきラムダ計算の型推論を扱います．%
+本書では型なしラムダ計算を扱います．%
 \tableofcontents%
 \mainmatter%
 \chapter{型なしラムダ計算}%
 \label{chap:untyped}%
 \section{構文}%
 \label{untyped:syntax}%
-\par\term{変数}{variable}をつぎのように定義します．%
-\begin{equation}%
-  \begin{array}{lrl}%
-    \mathit{x}_1,\mathit{x}_2,\cdots%
-    & \Coloneqq & x_1\\%
-    &         | & x_2\\%
-    &         | & \vdots%
-  \end{array}%
-\end{equation}%
-\par\term{項}{term}をつぎのように帰納的に定義します．%
+\begin{definition}%
+  \par\term{変数}{variable}%
+  \begin{equation}%
+    \begin{array}{lrl}%
+      \mathit{x}_1,\mathit{x}_2,\cdots%
+      & \Coloneqq & x_1\\%
+      &         | & x_2\\%
+      &         | & \vdots%
+    \end{array}%
+  \end{equation}%
+\end{definition}%
+\begin{definition}%
+\term{項}{term}%
 \begin{equation}%
   \begin{array}{lrl}%
     \mathit{e}_1,\mathit{e}_2,\cdots%
@@ -169,6 +169,7 @@
     &         | & (\lambda\mathit{x}_1\mathit{e}_1)%
   \end{array}%
 \end{equation}%
+\end{definition}%
 \par$x_1$や$x_2$は(具体的な)変数ですが$\mathit{x}_1$や$\mathit{x}_2$は%
 変数を表すメタ変数です．$\mathit{e}_1$や$\mathit{e}_2$は%
 項を表すメタ変数です．メタ変数が出現する項をメタ項と呼びます．%
@@ -189,25 +190,13 @@ $P(\mathit{e}_2),P(\mathit{e}_3),P(\mathit{e}_4)$%
 もとで%
 $\mathit{e}_1 = (\mathit{e}_2\mathit{e}_3),(\lambda\mathit{x}_2\mathit{e}_4)$に%
 ついて命題$P(\mathit{e}_1)$が成りたつことを証明します．%
-それで命題$\forall\mathit{e}_5(P(\mathit{e}_5))$が証明されたことになります．%
+それで命題$\forall\mathit{e}_5P(\mathit{e}_5)$が証明されたことになります．%
 再帰に似ていますが，CoqのFixpointのように%
 ``構造的に小さな''ものでしか帰納法の仮定は成立しません．%
-説明のためこれを\term{推論規則}{rule of inference}として書きくだすと，%
-つぎのようになります．%
-\begin{equation}%
-  \infer{%
-    \Gamma\vdash\forall\mathit{e}_5(P(\mathit{e}_5))%
-  }{%
-    \Gamma\vdash P(\mathit{x}_1)%
-  &%
-    \Gamma,P(\mathit{e}_2),P(\mathit{e}_3)\vdash P(\mathit{e}_2\mathit{e}_3)%
-  &%
-    \Gamma,P(\mathit{e}_4)\vdash (\lambda\mathit{x}_1\mathit{e}_4)%
-  }%
-\end{equation}%
 \section{長さ}%
 \label{sect:length}%
-項の\term{長さ}{length}をつぎのように帰納的に定義します．%
+\begin{definition}%
+項の\term{長さ}{length}%
 \begin{equation}%
   length(\mathit{e}_1) \coloneqq \begin{cases}%
     1 & \mathit{e}_1 = \mathit{x}_1\\%
@@ -216,6 +205,7 @@ $\mathit{e}_1 = (\mathit{e}_2\mathit{e}_3),(\lambda\mathit{x}_2\mathit{e}_4)$に
     length(\mathit{e}_2) + 1 & \mathit{e}_1 = (\lambda\mathit{x}\mathit{e}_2)%
   \end{cases}%
 \end{equation}%
+\end{definition}%
 \par$length(\mathit{e}_1)=n$についての帰納法を$\mathit{e}_1$の長さに関する%
 帰納法と呼びます．長さに関する帰納法では，まず$n = 1$%
 すなわち$\mathit{e}_1 = \mathit{x}_1$について命題が%
@@ -226,22 +216,11 @@ $n = k + 1$について命題が成りたつことを証明します．長さに
 なおかつ$length(\mathit{e}_2)\leqq length(\mathit{e}_1)$ならば%
 $P(\mathit{e}_2)$も成立するということです．%
 定義による帰納法では，長さが同じだからといって帰納法の仮定が成立する%
-というわけにはいきません．説明のためこれを推論規則として書きくだすと，%
-つぎのようになります．%
-\begin{equation}%
-  \infer{%
-    \Gamma\vdash\forall n(P(n))%
-  }{%
-    \Gamma,length(\mathit{x}_1)=1\vdash P(1)%
-  &%
-    \Gamma,length(\mathit{x}_1)=k+1,%
-    P(1),\cdots,P(k)\vdash P(k+1)%
-  }%
-\end{equation}%
+というわけにはいきません．
 \section{自由変数}%
 \label{untyped:fv}%
-項$\mathit{e}_1$に含まれる自由変数の集合$FV(\mathit{e}_1)$を%
-つぎのように帰納的に定義します．%
+\begin{definition}%
+自由変数の集合%
 \begin{equation}%
   FV(\mathit{e}_1) \coloneqq \begin{cases}%
     \{\mathit{x}_1\} & \mathit{e}_1 = \mathit{x}_1\\%
@@ -251,10 +230,11 @@ $P(\mathit{e}_2)$も成立するということです．%
     & \mathit{e}_1 = (\lambda\mathit{x}_1\mathit{e}_2)%
   \end{cases}%
 \end{equation}%
+\end{definition}%
 \section{束縛変数}%
 \label{untyped:bv}%
-項$\mathit{e}_1$に含まれる自由変数の集合$BV(\mathit{e}_1)$を%
-つぎのように帰納的に定義します．%
+\begin{definition}%
+束縛変数の集合%
 \begin{equation}%
   BV(\mathit{e}_1) \coloneqq \begin{cases}%
     \emptyset & \mathit{e}_1 = \mathit{x}_1\\%
@@ -264,17 +244,19 @@ $P(\mathit{e}_2)$も成立するということです．%
     & \mathit{e}_1 = (\lambda\mathit{x}_1\mathit{e}_2)%
   \end{cases}%
 \end{equation}%
+\end{definition}%
 \section{変数}%
 \label{untyped:v}%
-項$\mathit{e}_1$に含まれる変数の集合$V(\mathit{e}_1)$を%
-つぎのように定義します．%
+\begin{definition}%
+変数の集合%
 \begin{equation}%
   V(\mathit{e}_1) \coloneqq FV(\mathit{e}_1)\cup BV(\mathit{e}_1)%
 \end{equation}%
+\end{definition}%
 \section{代入}%
 \label{untyped:subst}%
-\par\term{代入}{substitution}%
-$[\mathit{e}_1/\mathit{x}_1]\mathit{e}_2$をつぎのように帰納的に定義します．%
+\begin{definition}%
+\term{代入}{substitution}%
 \begin{equation}%
   [\mathit{e}_1/\mathit{x}_1]\mathit{e}_2 \coloneqq \begin{cases}%
     \mathit{e}_1 & \mathit{e}_2 = \mathit{x}_2\land\mathit{x}_1=\mathit{x}_2\\%
@@ -296,6 +278,7 @@ $[\mathit{e}_1/\mathit{x}_1]\mathit{e}_2$をつぎのように帰納的に定義
     \land\mathit{x}_3\not\in V(\mathit{e}_2)%
   \end{cases}%
 \end{equation}%
+\end{definition}%
 \begin{lemma}%
   \label{lemma:subst_len}%
   $\forall\mathit{x}_1\forall\mathit{x}_2\forall\mathit{e}_1%
@@ -362,8 +345,8 @@ $[\mathit{e}_1/\mathit{x}_1]\mathit{e}_2$をつぎのように帰納的に定義
 \end{proof}%
 \section{$\alpha$-変換}%
 \label{sect:alpha}%
+\begin{definition}%
 \term{$\alpha$-同値}{$\alpha$-congruence}%
-$\mathit{e}_1\equiv\mathit{e}_2$をつぎのように帰納的に定義します．%
 \begin{equation}%
   \mathit{e}_1\equiv\mathit{e}_2 \coloneqq \begin{cases}%
     \mathit{x}_1 = \mathit{x}_2%
@@ -380,6 +363,7 @@ $\mathit{e}_1\equiv\mathit{e}_2$をつぎのように帰納的に定義します
     \land \mathit{x}_3\not\in V(\mathit{e}_2)%
   \end{cases}%
 \end{equation}%
+\end{definition}%
 \par$\mathit{e}_1\equiv\mathit{e}_2$が定義されないことを単に%
 $\mathit{e}_1\not\equiv\mathit{e}_2$と書きます．%
 $\mathit{e}_1\equiv\mathit{e}_2$は簡単には%
@@ -606,10 +590,13 @@ $\mathit{e}_1$を$\mathit{e}_2$で置きかえることを%
 $\mathit{e}_1$を$\mathit{e}_2$で置きかえてもよいと考えます．%
 \section{$\beta$-変形}%
 \label{sect:beta}%
-$\mathit{e}_1,\mathit{e}_2$が項ならば$\mathit{e}_1\triangleright_1\mathit{e}_2$%
-と$\mathit{e}_1\triangleright\mathit{e}_2$を\term{式}{expression}と呼びます．%
-1ステップの\term{$\beta$-変形}{$\beta$-reduction}の%
-\term{推論規則}{rule of inference}をつぎのように定義します．%
+\begin{definition}%
+  \term{式}{expression}%
+  \par$\mathit{e}_1,\mathit{e}_2$が項ならば$\mathit{e}_1\triangleright_1\mathit{e}_2$%
+  と$\mathit{e}_1\triangleright\mathit{e}_2$を$\beta$-変形の\term{式}{expression}と呼ぶ．%
+\end{definition}%
+\begin{definition}%
+1ステップの\term{$\beta$-変形}{$\beta$-reduction}%
 \begin{equation}%
   \infer{%
     ((\lambda\mathit{x}_1\mathit{e}_1)\mathit{e}_2)\triangleright_1%
@@ -639,7 +626,9 @@ $\mathit{e}_1,\mathit{e}_2$が項ならば$\mathit{e}_1\triangleright_1\mathit{e
     \mathit{e}_1\triangleright_1\mathit{e}_2%
   }%
 \end{equation}%
-\par さらにnステップの$\beta$-変形の推論規則をつぎのように定義します．%
+\end{definition}%
+\begin{definition}%
+nステップの$\beta$-変形%
 \begin{equation}%
   \infer{%
     \mathit{e}_1\triangleright\mathit{e}_1%
@@ -655,9 +644,12 @@ $\mathit{e}_1,\mathit{e}_2$が項ならば$\mathit{e}_1\triangleright_1\mathit{e
     \mathit{e}_2\triangleright\mathit{e}_3%
   }%
 \end{equation}%
+\end{definition}%
 \par 横線より上の部分を\term{前提}{premise}，下の部分を\term{結論}{conclusion}%
 と呼びます．推論規則をいくつか組みあわせた図を\term{推論図}{deduction}と%
-呼びます．推論図をつぎのように帰納的に定義します．%
+呼びます．
+\begin{definition}%
+\term{推論図}{deduction}%
 \begin{itemize}%
 \item 式$A$は推論図である．この形の推論図を\term{仮定}{assumption}と呼び，%
   前提は$\{A\}$で結論は$A$である．%
@@ -670,7 +662,8 @@ $\mathit{e}_1,\mathit{e}_2$が項ならば$\mathit{e}_1\triangleright_1\mathit{e
   $\Pi_1の前提\cup\cdots\cup\Pi_nの前提$であり，%
   結論は$B$である．%
 \end{itemize}%
-\par 推論図の概念は，帰納的に定義するより例示したほうがわかりやすいかもしれません．%
+\end{definition}%
+推論図の概念は，帰納的に定義するより例示したほうがわかりやすいかもしれません．%
 つぎの推論図は，$(((\lambda x_1(\lambda x_2 x_1))x_3)x_4)$という項が%
 nステップの$\beta$-変形で$x_3$になるということを表しています．%
 読みやすくするために代入はあらかじめ等価な項で置きかえてありますが，%
@@ -732,7 +725,8 @@ $\mathit{e}_1\triangleright\mathit{e}_2$が証明でき，%
 $\mathit{e}_1$は正規形をもつといいます．%
 正規形をもたない項が存在することに注意してください．%
 たとえば，$((\lambda x_0x_0)(\lambda x_0x_0))$は正規形をもちません．%
-推論図の\term{長さ}{length}をつぎのように帰納的に定義します．%
+\begin{definition}%
+推論図の\term{長さ}{length}%
 \begin{equation}%
   length(\Pi)\Coloneqq\begin{cases}%
   1&\Pi=A\\%
@@ -740,6 +734,7 @@ $\mathit{e}_1$は正規形をもつといいます．%
   &\Pi=\begin{array}{c}\infer{A}{\Pi_1&\cdots&\Pi_n}\end{array}%
   \end{cases}%
 \end{equation}%
+\end{definition}%
 \begin{lemma}%
   \label{lemma:beta_reduct1n}%
   $(\vdash\mathit{e}_1\triangleright_1\mathit{e}_2)\rightarrow%
@@ -885,10 +880,13 @@ $\vdash\mathit{e}_2\triangleright\mathit{e}_3$ならば%
 短く書けるようになります．%
 \section{並行簡約}%
 \label{sect:par}%
-$\mathit{e}_1,\mathit{e}_2$が項ならば$\mathit{e}_1\sqsupset_1\mathit{e}_2$%
-を\term{式}{expression}と呼びます．%
-1ステップの\term{並行簡約}{parallel reduction}の%
-\term{推論規則}{rule of inference}をつぎのように定義します．%
+\begin{definition}%
+並行簡約の\term{式}{expression}%
+\par$\mathit{e}_1,\mathit{e}_2$が項ならば$\mathit{e}_1\sqsupset_1\mathit{e}_2$%
+を並行簡約の\term{式}{expression}と呼ぶ．%
+\end{definition}%
+\begin{definition}%
+1ステップの\term{並行簡約}{parallel reduction}%
 \begin{equation}%
   \infer{%
     \mathit{x}_1\sqsupset_1\mathit{x}_1%
@@ -922,6 +920,7 @@ $\mathit{e}_1,\mathit{e}_2$が項ならば$\mathit{e}_1\sqsupset_1\mathit{e}_2$%
     \mathit{e}_3\sqsupset_1\mathit{e}_2%
   }%
 \end{equation}%
+\end{definition}%
 \section{合流性定理}%
 \label{sect:cr}%
 \begin{theorem}%
@@ -931,11 +930,13 @@ $\mathit{e}_1,\mathit{e}_2$が項ならば$\mathit{e}_1\sqsupset_1\mathit{e}_2$%
   (\vdash\mathit{e}_2\triangleright\mathit{e}_4)\land%
   (\vdash\mathit{e}_3\triangleright\mathit{e}_4))$%
 \end{theorem}%
-\chapter{単純型つきラムダ計算}%
-\label{chap:typed}%
-\chapter{単純型つきラムダ計算の型推論}%
-\label{chap:infer}%
 \backmatter%
+\chapter{あとがき}%
+もともと本書は，第1章で型なしラムダ計算を，第2章で単純型つきラムダ計算を，%
+第3章で制約型つけ，すなわち単純型つきラムダ計算の型推論を扱い，%
+3章構成にするつもりで書き始めました．スケジュールの都合上，%
+結局型なしラムダ計算のみを扱うことになってしまったのは無念ですが，%
+それでもひとまず本書を頒布できて，なによりでした．%
 \pagestyle{empty}%
 \originalcleardoublepage\null\clearpage%
 \begin{tikzpicture}[remember picture, overlay]%
