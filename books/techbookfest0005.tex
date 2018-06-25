@@ -291,7 +291,12 @@ $P(\mathit{e}_2)$も成立するということです．%
   \begin{itemize}%
   \item $[\mathit{x}_1/\mathit{x}_2]\mathit{e}_1 = \mathit{x}_1$の場合．%
     $\mathit{e}_1 = \mathit{x}_2$なので，%
-    $length([\mathit{x}_1/\mathit{x}_2]\mathit{e}_1)=1=length(\mathit{e}_1)$．%
+    \begin{align}%
+      length([\mathit{x}_1/\mathit{x}_2]\mathit{e}_1)&=length(\mathit{x}_1)\\%
+      &=1\\%
+      &=length(\mathit{x}_2)\\%
+      &=length(\mathit{e}_1)%
+    \end{align}%
   \item $[\mathit{x}_1/\mathit{x}_2]\mathit{e}_1 = \mathit{e}_1$の場合．%
     明らかに%
     $length([\mathit{x}_1/\mathit{x}_2]\mathit{e}_1)=length(\mathit{e}_1)$．%
@@ -323,13 +328,14 @@ $P(\mathit{e}_2)$も成立するということです．%
       length([\mathit{x}_4/\mathit{x}_3]\mathit{e}_2)%
       &=length(\mathit{e}_2)%
     \end{align}%
-    したがって，%
+    したがって，$\mathit{e}_1=(\lambda\mathit{x}_3\mathit{e}_2)$なので，%
     \begin{align}%
     length([\mathit{x}_1/\mathit{x}_2]\mathit{e}_1)%
     &=length(\lambda\mathit{x}_4[\mathit{x}_1/\mathit{x}_2][\mathit{x}_4/\mathit{x}_3]\mathit{e}_2)\\%
     &=length([\mathit{x}_1/\mathit{x}_2][\mathit{x}_4/\mathit{x}_3]\mathit{e}_2)+1\\%
     &=length([\mathit{x}_4/\mathit{x}_3]\mathit{e}_2)+1\\%
     &=length(\mathit{e}_2)+1\\%
+    &=length(\lambda\mathit{x}_3\mathit{e}_2)\\%
     &=length(\mathit{e}_1)%
     \end{align}%
   \end{itemize}%
