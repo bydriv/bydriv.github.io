@@ -948,7 +948,7 @@ $\vdash\mathit{e}_2^{}\triangleright\mathit{e}_3^{}$ならば%
 \end{equation}%
 \end{definition}%
 \begin{lemma}%
-  \label{lemma:parcr}%
+  \label{lemma:parcr1}%
   $\forall\mathit{e}_1^{}\forall\mathit{e}_2^{}%
   ((\vdash\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{})\rightarrow%
   (\vdash\mathit{e}_2^{}\sqsupset_1^{}\mathit{e}_1^{}\textasteriskcentered))$%
@@ -1133,6 +1133,7 @@ $\vdash\mathit{e}_2^{}\triangleright\mathit{e}_3^{}$ならば%
   \end{itemize}%
 \end{proof}%
 \begin{lemma}%
+  \label{lemma:parcr}%
   $\forall\mathit{e}_1^{}\forall\mathit{e}_2^{}\forall\mathit{e}_3^{}\exists\mathit{e}_4^{}%
   ((\vdash\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{})\rightarrow%
   (\vdash\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_3^{})\rightarrow%
@@ -1142,9 +1143,117 @@ $\vdash\mathit{e}_2^{}\triangleright\mathit{e}_3^{}$ならば%
 \begin{proof}%
   $\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{}$と%
   $\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_3^{}$に%
-  それぞれ\lemmaname\ref{lemma:parcr}を適用すれば，%
+  それぞれ\lemmaname\ref{lemma:parcr1}を適用すれば，%
   $\mathit{e}_2^{}\sqsupset_1^{}\mathit{e}_1^{}\textasteriskcentered$かつ%
   $\mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_1^{}\textasteriskcentered$となる．%
+\end{proof}%
+\par\lemmaname\ref{lemma:parcr}で%
+並行簡約の合流性を示しました．%
+肝心の$\beta$-変形の合流性の証明は，%
+$\beta$-変形の体系が並行簡約の体系に含まれることを示すことでおこないます．%
+そこで$\beta$-変形の合流性の証明のために，まず，つぎの補題を示します:%
+\begin{lemma}%
+  \label{lemma:betapar}%
+  すべての1ステップの$\beta$-変形の証明図$\mathit{e}_1^{}\triangleright_1^{}\mathit{e}_2^{}$には，%
+  それと等価な並行簡約の証明図$\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{}$が存在する．%
+\end{lemma}%
+\begin{proof}%
+  $\mathit{e}_1^{}\triangleright_1^{}\mathit{e}_2^{}$に至る証明図を$\Pi$とし，%
+  $\Pi$の長さに関する帰納法で証明する．%
+  \begin{itemize}%
+  \item $length(\Pi)=1$ の場合．%
+    $\Pi$で最後に使われた推論規則は%
+    \begin{equation}%
+      \infer{%
+        ((\lambda\mathit{x}_1^{}\mathit{e}_1^{})\mathit{e}_2^{})\triangleright_1^{}%
+        [\mathit{e}_1^{}/\mathit{x}_1^{}]\mathit{e}_2^{}%
+      }{%
+      }%
+    \end{equation}%
+    という形をしているから，これと等価な並行簡約の推論規則は%
+    \begin{equation}%
+      \infer{%
+        ((\lambda\mathit{x}_1^{}\mathit{e}_1^{})\mathit{e}_2^{})\sqsupset_1^{}%
+        [\mathit{e}_1^{}/\mathit{x}_1^{}]\mathit{e}_2^{}%
+      }{%
+        \mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_1^{}%
+      &%
+        \mathit{e}_2^{}\sqsupset_1^{}\mathit{e}_2^{}%
+      }%
+    \end{equation}%
+    となるからよい．%
+  \item $length(\Pi)=k + 1$ の場合．%
+    \begin{itemize}%
+    \item$\Pi$で最後に使われた推論規則が%
+    \begin{equation}%
+      \infer{%
+        (\mathit{e}_1^{}\mathit{e}_3^{})\triangleright_1^{}(\mathit{e}_2^{}\mathit{e}_3^{})%
+      }{%
+        \mathit{e}_1^{}\triangleright_1^{}\mathit{e}_2^{}%
+      }%
+    \end{equation}%
+    という形をしている場合．これと等価な並行簡約の推論規則は%
+    \begin{equation}%
+      \infer{%
+        (\mathit{e}_1^{}\mathit{e}_3^{})\sqsupset_1^{}(\mathit{e}_2^{}\mathit{e}_3^{})%
+      }{%
+        \mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{}%
+      &%
+        \mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_3^{}%
+      }%
+    \end{equation}%
+    となるからよい．%
+    \item$\Pi$で最後に使われた推論規則が%
+    \begin{equation}%
+      \infer{%
+        (\mathit{e}_3^{}\mathit{e}_1^{})\triangleright_1^{}(\mathit{e}_3^{}\mathit{e}_2^{})%
+      }{%
+        \mathit{e}_1^{}\triangleright_1^{}\mathit{e}_2^{}%
+      }%
+    \end{equation}%
+    という形をしている場合．これと等価な並行簡約の推論規則は%
+    \begin{equation}%
+      \infer{%
+        (\mathit{e}_3^{}\mathit{e}_1^{})\sqsupset_1^{}(\mathit{e}_3^{}\mathit{e}_2^{})%
+      }{%
+        \mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_3^{}%
+      &%
+        \mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{}%
+      }%
+    \end{equation}%
+    となるからよい．%
+    \item$\Pi$で最後に使われた推論規則が%
+    \begin{equation}%
+      \infer{%
+        (\lambda\mathit{x}_1^{}\mathit{e}_1^{})\triangleright_1^{}%
+        (\lambda\mathit{x}_1^{}\mathit{e}_2^{})%
+      }{%
+        \mathit{e}_1^{}\triangleright_1^{}\mathit{e}_2^{}%
+      }%
+    \end{equation}%
+    という形をしている場合．これと等価な並行簡約の推論規則は%
+    \begin{equation}%
+      \infer{%
+        (\lambda\mathit{x}_1^{}\mathit{e}_1^{})\triangleright_1^{}%
+        (\lambda\mathit{x}_1^{}\mathit{e}_2^{})%
+      }{%
+        \mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{}%
+      }%
+    \end{equation}%
+    となるからよい．%
+    \end{itemize}%
+  \end{itemize}%
+\end{proof}%
+\begin{lemma}%
+  \label{lemma:beta1cr}%
+  $\forall\mathit{e}_1^{}\forall\mathit{e}_2^{}\forall\mathit{e}_3^{}\exists\mathit{e}_4^{}%
+  ((\vdash\mathit{e}_1^{}\triangleright_1^{}\mathit{e}_2^{})\rightarrow%
+  (\vdash\mathit{e}_1^{}\triangleright_1^{}\mathit{e}_3^{})\rightarrow%
+  (\vdash\mathit{e}_2^{}\triangleright_1^{}\mathit{e}_4^{})\land%
+  (\vdash\mathit{e}_3^{}\triangleright_1^{}\mathit{e}_4^{}))$%
+\end{lemma}%
+\begin{proof}%
+  \lemmaname\ref{lemma:parcr}と\lemmaname\ref{lemma:beta1cr}による．%
 \end{proof}%
 \begin{theorem}%
   $\forall\mathit{e}_1^{}\forall\mathit{e}_2^{}\forall\mathit{e}_3^{}\exists\mathit{e}_4^{}%
@@ -1153,6 +1262,92 @@ $\vdash\mathit{e}_2^{}\triangleright\mathit{e}_3^{}$ならば%
   (\vdash\mathit{e}_2^{}\triangleright\mathit{e}_4^{})\land%
   (\vdash\mathit{e}_3^{}\triangleright\mathit{e}_4^{}))$%
 \end{theorem}%
+\begin{proof}%
+  $\mathit{e}_1^{}\triangleright\mathit{e}_2^{}$,$\mathit{e}_1^{}\triangleright\mathit{e}_3^{}$に至る%
+  証明図をそれぞれ$\Pi_1^{}$,$\Pi_2^{}$とし，$\Pi_1^{}$,$\Pi_2^{}$の長さに関する2重帰納法で証明する．%
+  \begin{itemize}%
+  \item $length(\Pi_1^{})=1$ の場合．%
+    $\Pi_1^{}$は%
+    \begin{equation}%
+      \infer{%
+        \mathit{e}_1^{}\triangleright\mathit{e}_1^{}%
+      }{%
+      }%
+    \end{equation}%
+    という形をしていて，$\Pi_2^{}$は%
+    \begin{equation}%
+      \infer{%
+        \mathit{e}_1^{}\triangleright\mathit{e}_3^{}%
+      }{%
+        \Pi_3^{}&\cdots&\Pi_{n+2}^{}%
+      }%
+    \end{equation}%
+    という形をしているから，単に$\mathit{e}_4^{}=\mathit{e}_3^{}$が存在するのでよい．%
+  \item $length(\Pi_2^{})=1$ の場合．%
+    $length(\Pi_1^{})=1$ の場合とまったく同様．%
+  \item $length(\Pi_1^{})=k+1$, $length(\Pi_2^{})=j+1$ の場合．%
+    $\Pi_1^{}$は%
+    \begin{equation}%
+      \infer{%
+        \mathit{e}_1^{}\triangleright\mathit{e}_2^{}%
+      }{%
+        \mathit{e}_1^{}\triangleright_1^{}\mathit{e}_5^{}%
+      &%
+        \Pi_3^{}%
+      }%
+    \end{equation}%
+    という形をしていて，%
+    $\Pi_2^{}$は%
+    \begin{equation}%
+      \infer{%
+        \mathit{e}_1^{}\triangleright\mathit{e}_3^{}%
+      }{%
+        \mathit{e}_1^{}\triangleright_1^{}\mathit{e}_6^{}%
+      &%
+        \Pi_4^{}%
+      }%
+    \end{equation}%
+    という形をしている．%
+    $\Pi_3^{}$,$\Pi_4^{}$の結論をそれぞれ%
+    $\mathit{e}_5^{}\triangleright\mathit{e}_2^{}$,%
+    $\mathit{e}_6^{}\triangleright\mathit{e}_3^{}$とする．%
+    \lemmaname\ref{lemma:beta1cr}により%
+    $\mathit{e}_5^{}\triangleright_1^{}\mathit{e}_7^{}$かつ%
+    $\mathit{e}_6^{}\triangleright_1^{}\mathit{e}_7^{}$となるような%
+    $\mathit{e}_7^{}$が存在する．%
+    ゆえに\lemmaname\ref{lemma:beta_reduct1n}により%
+    $\mathit{e}_5^{}\triangleright\mathit{e}_7^{}$かつ%
+    $\mathit{e}_6^{}\triangleright\mathit{e}_7^{}$である．%
+    帰納法の仮定より%
+    $\mathit{e}_5^{}\triangleright\mathit{e}_2^{}$かつ%
+    $\mathit{e}_5^{}\triangleright\mathit{e}_7^{}$ならば%
+    $\mathit{e}_2^{}\triangleright\mathit{e}_8^{}$かつ%
+    $\mathit{e}_7^{}\triangleright\mathit{e}_8^{}$となるような%
+    $\mathit{e}_8^{}$が存在し，%
+    $\mathit{e}_6^{}\triangleright\mathit{e}_3^{}$かつ%
+    $\mathit{e}_6^{}\triangleright\mathit{e}_7^{}$ならば%
+    $\mathit{e}_3^{}\triangleright\mathit{e}_9^{}$かつ%
+    $\mathit{e}_7^{}\triangleright\mathit{e}_9^{}$となるような%
+    $\mathit{e}_9^{}$が存在する．%
+    さらに$\mathit{e}_7^{}\triangleright\mathit{e}_8^{}$かつ%
+    $\mathit{e}_7^{}\triangleright\mathit{e}_9^{}$だから%
+    $\mathit{e}_8^{}\triangleright\mathit{e}_{10}^{}$かつ%
+    $\mathit{e}_9^{}\triangleright\mathit{e}_{10}^{}$となるような%
+    $\mathit{e}_{10}^{}$が存在する．%
+    $\mathit{e}_2^{}\triangleright\mathit{e}_8^{}$かつ%
+    $\mathit{e}_8^{}\triangleright\mathit{e}_{10}^{}$だから%
+    \lemmaname\ref{lemma:beta_reduct_trans}により%
+    $\mathit{e}_2^{}\triangleright\mathit{e}_{10}^{}$であり，%
+    $\mathit{e}_3^{}\triangleright\mathit{e}_9^{}$かつ%
+    $\mathit{e}_9^{}\triangleright\mathit{e}_{10}^{}$だから%
+    同様に%
+    $\mathit{e}_3^{}\triangleright\mathit{e}_{10}^{}$である．%
+    ゆえに%
+    $\mathit{e}_2^{}\triangleright\mathit{e}_{10}^{}$かつ%
+    $\mathit{e}_3^{}\triangleright\mathit{e}_{10}^{}$となるような．%
+    $\mathit{e}_{10}^{}$が存在する．これが証明すべきことであった．%
+  \end{itemize}%
+\end{proof}%
 \backmatter%
 \chapter{あとがき}%
 \pagestyle{empty}%
