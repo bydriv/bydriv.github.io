@@ -163,10 +163,10 @@
 \term{項}{term}%
 \begin{equation}%
   \begin{array}{lrl}%
-    \mathit{e}_1^{},\mathit{e}_2^{},\cdots%
+    \mathit{e}_1^{},\mathit{e}_2^{},\mathit{e}_3^{},\cdots%
     & \Coloneqq & \mathit{x}_1^{}\\%
     &         | & (\mathit{e}_1^{}\mathit{e}_2^{})\\%
-    &         | & (\lambda\mathit{x}_1^{}\mathit{e}_1^{})%
+    &         | & (\lambda\mathit{x}_2^{}\mathit{e}_3^{})%
   \end{array}%
 \end{equation}%
 \end{definition}%
@@ -182,15 +182,14 @@ $(\lambda\mathit{x}_1^{}(\lambda\mathit{x}_2^{}\mathit{x}_1^{}))$はメタ項で
 \par$\mathit{e}_1^{}$の構造についての帰納法を%
 $\mathit{e}_1^{}$の定義による帰納法と呼び，%
 まず\term{基礎ケース}{base case}すなわち%
-$\mathit{e}_1^{} = \mathit{x}_1^{}$について命題$P(\mathit{e}_1^{})$が成りたつことを%
+命題$P(\mathit{x}_1^{})$が成りたつことを%
 証明し，\term{帰納ステップ}{induction step}すなわち%
-$\mathit{e}_2^{},\mathit{e}_3^{},\mathit{e}_4^{}$について命題%
-$P(\mathit{e}_2^{}),P(\mathit{e}_3^{}),P(\mathit{e}_4^{})$%
-が成りたつという仮定------\term{帰納法の仮定}{induction hypothesis}------の%
-もとで%
-$\mathit{e}_1^{} = (\mathit{e}_2^{}\mathit{e}_3^{}),(\lambda\mathit{x}_2^{}\mathit{e}_4^{})$に%
-ついて命題$P(\mathit{e}_1^{})$が成りたつことを証明します．%
-それで命題$\forall\mathit{e}_5^{}P(\mathit{e}_5^{})$が証明されたことになります．%
+$\mathit{e}_1^{},\mathit{e}_2^{},\mathit{e}_3^{}$について命題%
+$P(\mathit{e}_1^{}),P(\mathit{e}_2^{}),P(\mathit{e}_3^{})$が成りたつ%
+という仮定------\term{帰納法の仮定}{induction hypothesis}------のもとで命題%
+$P(\mathit{e}_1^{}\mathit{e}_2^{}),P(\lambda\mathit{x}_2^{}\mathit{e}_3^{})$%
+が成りたつことを証明します．それで命題%
+$\forall\mathit{e}_4^{}P(\mathit{e}_4^{})$が証明されたことになります．%
 再帰に似ていますが，CoqのFixpointのように%
 ``構造的に小さな''ものでしか帰納法の仮定は成立しません．%
 \section{長さ}%
@@ -201,22 +200,29 @@ $\mathit{e}_1^{} = (\mathit{e}_2^{}\mathit{e}_3^{}),(\lambda\mathit{x}_2^{}\math
   length(\mathit{e}_1^{}) \coloneqq \begin{cases}%
     1 & \mathit{e}_1^{} = \mathit{x}_1^{}\\%
     length(\mathit{e}_2^{}) + length(\mathit{e}_3^{}) + 1%
-    & \mathit{e}_1^{} = (\mathit{e}_2^{}\mathit{e}_2^{})\\%
+    & \mathit{e}_1^{} = (\mathit{e}_2^{}\mathit{e}_3^{})\\%
     length(\mathit{e}_2^{}) + 1 & \mathit{e}_1^{} = (\lambda\mathit{x}\mathit{e}_2^{})%
   \end{cases}%
 \end{equation}%
 \end{definition}%
 \par$length(\mathit{e}_1^{})=n$についての帰納法を$\mathit{e}_1^{}$の長さに関する%
-帰納法と呼びます．長さに関する帰納法では，まず$n = 1$%
-すなわち$\mathit{e}_1^{} = \mathit{x}_1^{}$について命題が%
-成りたつことを証明し，$n = 1,\cdots,k$について命題が成りたつと仮定したうえで%
-$n = k + 1$について命題が成りたつことを証明します．長さに関する帰納法では%
-構造的に小さくなっていなくても，長さが同じなら帰納法の仮定が成立すると%
-考えます．言いかえれば帰納法の仮定で$P(\mathit{e}_1^{})$が成立し，%
-なおかつ$length(\mathit{e}_2^{})\leqq length(\mathit{e}_1^{})$ならば%
-$P(\mathit{e}_2^{})$も成立するということです．%
-定義による帰納法では，長さが同じだからといって帰納法の仮定が成立する%
-というわけにはいきません．%
+帰納法と呼びます．長さに関する帰納法では，まず$length(\mathit{e}_1^{}) = 1$%
+となるような$\mathit{e}_1^{}$すなわち$\mathit{x}_1^{}$について命題$P(\mathit{x}_1^{})$が%
+成りたつことを証明し，$length(\mathit{e})\leqq k$となるような%
+すべての$\mathit{e}$について命題$P(\mathit{e})$が成りたつと仮定した%
+うえで$length(\mathit{e}_1^{}) = k + 1$となるような$\mathit{e}_1^{}$すなわち%
+$(\mathit{e}_2^{}\mathit{e}_3^{}),(\lambda\mathit{x}_2^{}\mathit{e}_4^{})$%
+について命題%
+$P(\mathit{e}_2^{}\mathit{e}_3^{}),P(\lambda\mathit{x}_2^{}\mathit{e}_4^{})$%
+が成りたつことを証明します．%
+ここで$length(\mathit{e}_2^{})\leqq length(\mathit{e}_2^{}\mathit{e}_3^{})$%
+かつ$length(\mathit{e}_3^{})\leqq length(\mathit{e}_2^{}\mathit{e}_3^{})$%
+かつ$length(\mathit{e}_4^{})\leqq length(\lambda\mathit{x}_2^{}\mathit{e}_4^{})$なので%
+$P(\mathit{e}_2^{}),P(\mathit{e}_3^{}),P(\mathit{e}_4^{})$が%
+成りたつことは仮定してよいのです．%
+$length(\mathit{e})\leqq k$であることさえ証明できれば%
+仮定できるので，``構造的に小さくなくとも''%
+再帰できる点で定義による帰納法とは異なります．%
 \section{自由変数}%
 \label{untyped:fv}%
 \begin{definition}%
@@ -938,11 +944,6 @@ $\vdash\mathit{e}_2^{}\triangleright\mathit{e}_3^{}$ならば%
 \end{theorem}%
 \backmatter%
 \chapter{あとがき}%
-もともと本書は，第1章で型なしラムダ計算を，第2章で単純型つきラムダ計算を，%
-第3章で制約型つけ，すなわち単純型つきラムダ計算の型推論を扱い，%
-3章構成にするつもりで書き始めました．スケジュールの都合上，%
-結局型なしラムダ計算のみを扱うことになってしまったのは無念ですが，%
-それでもひとまず本書を頒布できて，なによりでした．%
 \pagestyle{empty}%
 \originalcleardoublepage\null\clearpage%
 \begin{tikzpicture}[remember picture, overlay]%
