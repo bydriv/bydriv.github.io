@@ -420,7 +420,7 @@ $length(\mathit{e}_1^{})=\cdots=length(\mathit{e}_n^{})$ですから，%
   $\forall\mathit{e}_1^{}(\mathit{e}_1^{}\equiv\mathit{e}_1^{})$.%
 \end{lemma}%
 \begin{proof}%
-  $\mathit{e}_1^{}を固定し$，$\mathit{e}_1^{}$の長さに関する帰納法で証明する．%
+  $\mathit{e}_1^{}$を固定し，$\mathit{e}_1^{}$の長さに関する帰納法で証明する．%
   \begin{itemize}%
   \item $length(\mathit{e}_1^{})=1$の場合．%
   \begin{itemize}%
@@ -929,12 +929,223 @@ $\vdash\mathit{e}_2^{}\triangleright\mathit{e}_3^{}$ならば%
   }{%
     \mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{}%
   &%
-    \mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_2^{}%
+    \mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_4^{}%
   }%
 \end{equation}%
 \end{definition}%
 \section{合流性定理}%
 \label{sect:cr}%
+\begin{definition}%
+\begin{equation}%
+  \mathit{e}_1^{}\textasteriskcentered\coloneqq \begin{cases}%
+    \mathit{e}_1^{} & \mathit{e}_1^{} = \mathit{x}_1^{}\\%
+    (\mathit{e}_2^{}\textasteriskcentered\mathit{e}_3^{}\textasteriskcentered)%
+    & \mathit{e}_1^{} = (\mathit{e}_2^{}\mathit{e}_3^{})%
+    \land \mathit{e}_2^{}\neq(\lambda\mathit{x}\mathit{e}_4^{})\\%
+    (\lambda\mathit{x}\mathit{e}_2^{}\textasteriskcentered) & \mathit{e}_1^{} = (\lambda\mathit{x}\mathit{e}_2^{})\\%
+    ([\mathit{e}_3^{}\textasteriskcentered/\mathit{x}]\mathit{e}_2^{}\textasteriskcentered) & \mathit{e}_1^{} = ((\lambda\mathit{x}\mathit{e}_2^{})\mathit{e}_3^{})%
+  \end{cases}%
+\end{equation}%
+\end{definition}%
+\begin{lemma}%
+  \label{lemma:parcr}%
+  $\forall\mathit{e}_1^{}\forall\mathit{e}_2^{}%
+  ((\vdash\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{})\rightarrow%
+  (\vdash\mathit{e}_2^{}\sqsupset_1^{}\mathit{e}_1^{}\textasteriskcentered))$%
+\end{lemma}%
+\begin{proof}%
+  $\mathit{e}_1^{}$を固定し，$\mathit{e}_1^{}$の長さに関する帰納法で証明する．%
+  \begin{itemize}%
+  \item $length(\mathit{e}_1^{})=1$の場合．%
+    \begin{itemize}%
+    \item $\mathit{e}_1^{}=\mathit{x}_1^{}$の場合．%
+      $\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{}$の証明図は%
+      \begin{equation}%
+        \infer{%
+          \mathit{x}_1^{}\sqsupset_1^{}\mathit{x}_1^{}%
+        }{%
+        }%
+      \end{equation}%
+      という形をしている．したがって，%
+      $\mathit{e}_2^{}\sqsupset_1^{}\mathit{e}_1^{}\textasteriskcentered$に至る証明図は%
+      \begin{equation}%
+        \infer{%
+          \mathit{x}_1^{}\sqsupset_1^{}\mathit{x}_1^{}\textasteriskcentered%
+        }{%
+        }%
+      \end{equation}%
+      となるからよい．%
+    \end{itemize}%
+  \item $length(\mathit{e}_1^{})=k + 1$の場合．%
+    \begin{itemize}%
+    \item $\mathit{e}_1^{}=(\mathit{e}_3^{}\mathit{e}_4^{})$ かつ%
+      $\mathit{e}_3^{}=(\lambda \mathit{x}_1^{}\mathit{e}_5^{})$ の場合．帰納法の仮定:%
+      \begin{align}%
+        \forall\mathit{e}_2^{}((\vdash\mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_2^{})\rightarrow%
+        (\vdash\mathit{e}_2^{}\sqsupset_1^{}\mathit{e}_3^{}\textasteriskcentered))\\%
+        \forall\mathit{e}_2^{}((\vdash\mathit{e}_4^{}\sqsupset_1^{}\mathit{e}_2^{})\rightarrow%
+        (\vdash\mathit{e}_2^{}\sqsupset_1^{}\mathit{e}_4^{}\textasteriskcentered))%
+      \end{align}%
+      \begin{itemize}%
+      \item $\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{}$に至る証明図が%
+        \begin{equation}%
+          \infer{%
+            ((\lambda\mathit{x}_1^{}\mathit{e}_5^{})\mathit{e}_4^{})\sqsupset_1^{}%
+            [\mathit{e}_6^{}/\mathit{x}_1^{}]\mathit{e}_7^{}%
+          }{%
+            \infer{%
+              \mathit{e}_4^{}\sqsupset_1^{}\mathit{e}_6^{}%
+            }{%
+              \Pi_1^{}&\cdots&\Pi_n%
+            }%
+          &%
+            \infer{%
+              \mathit{e}_5^{}\sqsupset_1^{}\mathit{e}_7^{}%
+            }{%
+              \Pi_{n+1}^{}&\cdots&\Pi_{n+m}%
+            }%
+          }%
+        \end{equation}%
+        という形をしている場合．%
+        $\mathit{e}_2^{}\sqsupset_1^{}\mathit{e}_1^{}\textasteriskcentered$に至る証明図は%
+        \begin{equation}%
+          \infer{%
+            [\mathit{e}_6^{}/\mathit{x}_1^{}]\mathit{e}_7^{}\sqsupset_1^{}%
+            [\mathit{e}_4^{}\textasteriskcentered/\mathit{x}_1^{}]\mathit{e}_5^{}\textasteriskcentered%
+          }{%
+            \infer{%
+              \mathit{e}_6^{}\sqsupset_1^{}\mathit{e}_4^{}\textasteriskcentered%
+            }{%
+              \infer{%
+                \mathit{e}_4^{}\sqsupset_1^{}\mathit{e}_6^{}%
+              }{%
+                \Pi_1^{}&\cdots&\Pi_n%
+              }%
+            }%
+          &%
+            \infer{%
+              \mathit{e}_7^{}\sqsupset_1^{}\mathit{e}_5^{}\textasteriskcentered%
+            }{%
+              \infer{%
+                \mathit{e}_5^{}\mathit{e}_7^{}%
+              }{%
+                \Pi_{n+1}^{}&\cdots&\Pi_{n+m}%
+              }%
+            }%
+          }%
+        \end{equation}%
+        となるからよい．%
+      \item その他の場合は%
+        $\mathit{e}_3^{}\neq(\lambda \mathit{x}_1^{}\mathit{e}_5^{})$の場合とまったく同様．%
+      \end{itemize}%
+    \item $\mathit{e}_1^{}=(\mathit{e}_3^{}\mathit{e}_4^{})$ かつ%
+      $\mathit{e}_3^{}\neq(\lambda \mathit{x}_1^{}\mathit{e}_5^{})$ の場合．帰納法の仮定:%
+      \begin{align}%
+        \forall\mathit{e}_2^{}((\vdash\mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_2^{})\rightarrow%
+        (\vdash\mathit{e}_2^{}\sqsupset_1^{}\mathit{e}_3^{}\textasteriskcentered))\\%
+        \forall\mathit{e}_2^{}((\vdash\mathit{e}_4^{}\sqsupset_1^{}\mathit{e}_2^{})\rightarrow%
+        (\vdash\mathit{e}_2^{}\sqsupset_1^{}\mathit{e}_4^{}\textasteriskcentered))%
+      \end{align}%
+      $\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{}$に至る証明図は%
+      \begin{equation}%
+        \infer{%
+          (\mathit{e}_3^{}\mathit{e}_4^{})\sqsupset_1^{}(\mathit{e}_5^{}\mathit{e}_6^{})%
+        }{%
+          \infer{%
+            \mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_5^{}%
+          }{%
+            \Pi_1^{}&\cdots&\Pi_n%
+          }%
+         &%
+          \infer{%
+            \mathit{e}_4^{}\sqsupset_1^{}\mathit{e}_6^{}%
+          }{%
+            \Pi_{n+1}^{}&\cdots&\Pi_{n+m}%
+          }%
+        }%
+      \end{equation}%
+      という形をしている．したがって，%
+      $\mathit{e}_2^{}\sqsupset_1^{}\mathit{e}_1^{}\textasteriskcentered$に至る証明図は%
+      \begin{equation}%
+        \infer{%
+          (\mathit{e}_5^{}\mathit{e}_6^{})\sqsupset_1^{}(\mathit{e}_3^{}\textasteriskcentered\mathit{e}_4^{}\textasteriskcentered)%
+        }{%
+          \infer{%
+            \mathit{e}_5^{}\sqsupset_1^{}\mathit{e}_3^{}\textasteriskcentered
+          }{%
+            \infer{%
+              \mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_5^{}%
+            }{%
+              \Pi_1^{}&\cdots&\Pi_n%
+            }%
+          }%
+        &%
+          \infer{%
+            \mathit{e}_6^{}\sqsupset_1^{}\mathit{e}_4^{}\textasteriskcentered
+          }{%
+            \infer{%
+              \mathit{e}_4^{}\sqsupset_1^{}\mathit{e}_6^{}%
+            }{%
+              \Pi_{n+1}^{}&\cdots&\Pi_{n+m}%
+            }%
+          }%
+        }%
+      \end{equation}%
+      となるからよい．%
+    \item $\mathit{e}_1^{}=(\lambda \mathit{x}_1^{}\mathit{e}_3^{})$の場合．帰納法の仮定:%
+      \begin{align}%
+        \forall\mathit{e}_2^{}((\vdash\mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_2^{})\rightarrow%
+        (\vdash\mathit{e}_2^{}\sqsupset_1^{}\mathit{e}_3^{}\textasteriskcentered))%
+      \end{align}%
+      $\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{}$に至る証明図は%
+      \begin{equation}%
+        \infer{%
+          (\lambda\mathit{x}_1^{}\mathit{e}_3^{})\sqsupset_1^{}%
+          (\lambda\mathit{x}_1^{}\mathit{e}_4^{})%
+        }{%
+          \infer{%
+            \mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_4^{}%
+          }{%
+            \Pi_1^{}&\cdots&\Pi_n%
+          }%
+        }%
+      \end{equation}%
+      という形をしている．したがって，%
+      $\mathit{e}_2^{}\sqsupset_1^{}\mathit{e}_1^{}\textasteriskcentered$に至る証明図は%
+      \begin{equation}%
+        \infer{%
+          (\lambda\mathit{x}_1^{}\mathit{e}_4^{})\sqsupset_1^{}%
+          (\lambda\mathit{x}_1^{}\mathit{e}_3^{}\textasteriskcentered)%
+        }{%
+          \infer{%
+            \mathit{e}_4^{}\sqsupset_1^{}\mathit{e}_3^{}\textasteriskcentered%
+          }{%
+            \infer{%
+              \mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_4^{}%
+            }{%
+              \Pi_1^{}&\cdots&\Pi_n%
+            }%
+          }%
+        }%
+      \end{equation}%
+      となるからよい．%
+    \end{itemize}%
+  \end{itemize}%
+\end{proof}%
+\begin{lemma}%
+  $\forall\mathit{e}_1^{}\forall\mathit{e}_2^{}\forall\mathit{e}_3^{}\exists\mathit{e}_4^{}%
+  ((\vdash\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{})\rightarrow%
+  (\vdash\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_3^{})\rightarrow%
+  (\vdash\mathit{e}_2^{}\sqsupset_1^{}\mathit{e}_4^{})\land%
+  (\vdash\mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_4^{}))$%
+\end{lemma}%
+\begin{proof}%
+  $\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{}$と%
+  $\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_3^{}$に%
+  それぞれ\lemmaname\ref{lemma:parcr}を適用すれば，%
+  $\mathit{e}_2^{}\sqsupset_1^{}\mathit{e}_1^{}\textasteriskcentered$かつ%
+  $\mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_1^{}\textasteriskcentered$となる．%
+\end{proof}%
 \begin{theorem}%
   $\forall\mathit{e}_1^{}\forall\mathit{e}_2^{}\forall\mathit{e}_3^{}\exists\mathit{e}_4^{}%
   ((\vdash\mathit{e}_1^{}\triangleright\mathit{e}_2^{})\rightarrow%
