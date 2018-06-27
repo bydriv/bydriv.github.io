@@ -1362,8 +1362,8 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression
     \end{equation}%
     という形をしている．帰納法の仮定:%
     \begin{align}%
-      \exists\mathit{e}_4^{}%
-      \forall\mathit{e}_3^{}((\vdash\mathit{e}_5^{}\sqsupset\mathit{e}_2^{})\rightarrow%
+      \forall\mathit{e}_3^{}\exists\mathit{e}_4^{}%
+      ((\vdash\mathit{e}_5^{}\sqsupset\mathit{e}_2^{})\rightarrow%
       (\vdash\mathit{e}_5^{}\sqsupset\mathit{e}_3^{})\rightarrow%
       (\vdash\mathit{e}_2^{}\sqsupset\mathit{e}_4^{})\land%
       (\vdash\mathit{e}_3^{}\sqsupset\mathit{e}_4^{}))\\%
@@ -1401,6 +1401,7 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression
     $\mathit{e}_2^{}\sqsupset\mathit{e}_8^{}$かつ%
     $\mathit{e}_8^{}\sqsupset\mathit{e}_9^{}$だから%
     \lemmaname\ref{lemma:par_reduct_trans}により%
+    $\mathit{e}_2^{}\sqsupset\mathit{e}_9^{}$．%
     ゆえに$\mathit{e}_2^{}\sqsupset\mathit{e}_9^{}$かつ%
     $\mathit{e}_3^{}\sqsupset\mathit{e}_9^{}$となるような%
     $\mathit{e}_9^{}$が存在する．%
