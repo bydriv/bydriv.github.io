@@ -218,9 +218,9 @@ $(\mathit{e}_2^{}\mathit{e}_3^{}),(\lambda\mathit{x}_2^{}\mathit{e}_4^{})$%
 について命題%
 $P(\mathit{e}_2^{}\mathit{e}_3^{}),P(\lambda\mathit{x}_2^{}\mathit{e}_4^{})$%
 が成りたつことを証明します．%
-ここで$length(\mathit{e}_2^{})\leqq length(\mathit{e}_2^{}\mathit{e}_3^{})$%
-かつ$length(\mathit{e}_3^{})\leqq length(\mathit{e}_2^{}\mathit{e}_3^{})$%
-かつ$length(\mathit{e}_4^{})\leqq length(\lambda\mathit{x}_2^{}\mathit{e}_4^{})$なので%
+ここで$length(\mathit{e}_2^{})\leqq k$%
+かつ$length(\mathit{e}_3^{})\leqq k$%
+かつ$length(\mathit{e}_4^{})\leqq k$なので%
 $P(\mathit{e}_2^{}),P(\mathit{e}_3^{}),P(\mathit{e}_4^{})$が%
 成りたつことは仮定してよいのです．%
 $length(\mathit{e})\leqq k$であることさえ証明できれば%
@@ -600,9 +600,10 @@ $length(\mathit{e}_1^{})=\cdots=length(\mathit{e}_n^{})$ですから，%
 \par$\mathit{e}_1^{}\equiv\mathit{e}_2^{}$のとき，%
 $\mathit{e}_1^{}$を$\mathit{e}_2^{}$で置きかえることを%
 \term{$\alpha$-変換}{$\alpha$-conversion}と呼びます．%
-以後，$\mathit{e}_1^{}\equiv\mathit{e}_2^{}$は通常の等号と同様に，%
-すなわち$\mathit{e}_1^{}\equiv\mathit{e}_2^{}$のときはいつでも%
-$\mathit{e}_1^{}$を$\mathit{e}_2^{}$で置きかえてもよいと考えます．%
+以後，とくに断りがなければ$\mathit{e}_1^{}=\mathit{e}_2^{}$のときは常に%
+$\mathit{e}_1^{}\equiv\mathit{e}_2^{}$であり，%
+また$\mathit{e}_1^{}\neq\mathit{e}_2^{}$のときは常に
+$\mathit{e}_1^{}\not\equiv\mathit{e}_2^{}$であるものとします．%
 \section{$\beta$-変形}%
 \label{sect:beta}%
 \begin{definition}%
@@ -739,7 +740,7 @@ $\mathit{e}_1^{}\triangleright\mathit{e}_2^{}$が証明でき，%
 かつ$\mathit{e}_2^{}$が正規形であるとき，%
 $\mathit{e}_1^{}$は正規形をもつといいます．%
 正規形をもたない項が存在することに注意してください．%
-たとえば，$((\lambda x_0x_0)(\lambda x_0x_0))$は正規形をもちません．%
+たとえば，$((\lambda x_1^{}x_1^{})(\lambda x_1^{}x_1^{}))$は正規形をもちません．%
 \begin{definition}%
 推論図の\term{長さ}{length}%
 \begin{equation}%
@@ -897,8 +898,8 @@ $\vdash\mathit{e}_2^{}\triangleright\mathit{e}_3^{}$ならば%
 \label{sect:par}%
 \begin{definition}%
 並行簡約の\term{式}{expression}%
-\par$\mathit{e}_1^{},\mathit{e}_2^{}$が項ならば$\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{}$%
-を並行簡約の\term{式}{expression}と呼ぶ．%
+\par$\mathit{e}_1^{},\mathit{e}_2^{}$が項ならば$\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{}$と%
+$\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression}と呼ぶ．%
 \end{definition}%
 \begin{definition}%
 1ステップの\term{並行簡約}{parallel reduction}%
