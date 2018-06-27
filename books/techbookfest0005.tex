@@ -1325,7 +1325,7 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression
 \begin{proof}%
   $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$,$\mathit{e}_1^{}\sqsupset\mathit{e}_3^{}$に至る%
   証明図をそれぞれ$\Pi_1^{}$,$\Pi_2^{}$とし，%
-  $\Pi_1^{}$の長さに関する帰納法で証明する．%
+  $\Pi_1^{}$,$\Pi_2^{}$の長さに関する2重帰納法で証明する．%
   \begin{itemize}%
   \item $length(\Pi_1^{})=1$ の場合．%
     $\Pi_1^{}$ は%
@@ -1336,7 +1336,9 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression
       }%
     \end{equation}%
     という形をしている．この場合は$\mathit{e}_3^{}$が存在するのでよい．%
-  \item $length(\Pi_1^{})=k+1$ の場合．%
+  \item $length(\Pi_2^{})=1$ の場合．%
+    $length(\Pi_1^{})=1$ の場合とまったく同様．%
+  \item $length(\Pi_1^{})=k+1$,$length(\Pi_2^{})=l+1$ の場合．%
     $\Pi_1^{}$ は%
     \begin{equation}%
       \infer{%
@@ -1347,32 +1349,61 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression
         \mathit{e}_5^{}\sqsupset\mathit{e}_2^{}%
       }%
     \end{equation}%
+    という形をしていて，%
+    $\Pi_2^{}$ は%
+    \begin{equation}%
+      \infer{%
+        \mathit{e}_1^{}\sqsupset\mathit{e}_3^{}%
+      }{%
+        \mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_6^{}%
+      &%
+        \mathit{e}_6^{}\sqsupset\mathit{e}_3^{}%
+      }%
+    \end{equation}%
     という形をしている．帰納法の仮定:%
     \begin{align}%
-      \forall\mathit{e}_3^{}\exists\mathit{e}_4^{}%
-      ((\vdash\mathit{e}_5^{}\sqsupset\mathit{e}_2^{})\rightarrow%
+      \exists\mathit{e}_4^{}%
+      \forall\mathit{e}_3^{}((\vdash\mathit{e}_5^{}\sqsupset\mathit{e}_2^{})\rightarrow%
       (\vdash\mathit{e}_5^{}\sqsupset\mathit{e}_3^{})\rightarrow%
+      (\vdash\mathit{e}_2^{}\sqsupset\mathit{e}_4^{})\land%
+      (\vdash\mathit{e}_3^{}\sqsupset\mathit{e}_4^{}))\\%
+      \forall\mathit{e}_2^{}\exists\mathit{e}_4^{}%
+      ((\vdash\mathit{e}_6^{}\sqsupset\mathit{e}_2^{})\rightarrow%
+      (\vdash\mathit{e}_6^{}\sqsupset\mathit{e}_3^{})\rightarrow%
       (\vdash\mathit{e}_2^{}\sqsupset\mathit{e}_4^{})\land%
       (\vdash\mathit{e}_3^{}\sqsupset\mathit{e}_4^{}))%
     \end{align}%
     \lemmaname\ref{lemma:parcr1}により%
-    $\mathit{e}_5^{}\sqsupset_1^{}\mathit{e}_6^{}$かつ%
-    $\mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_6^{}$となるような%
-    $\mathit{e}_6^{}$が存在する．%
+    $\mathit{e}_5^{}\sqsupset_1^{}\mathit{e}_7^{}$かつ%
+    $\mathit{e}_6^{}\sqsupset_1^{}\mathit{e}_7^{}$となるような%
+    $\mathit{e}_7^{}$が存在する．%
     \lemmaname\ref{lemma:par_reduct1n}により%
+    $\mathit{e}_5^{}\sqsupset\mathit{e}_7^{}$かつ%
+    $\mathit{e}_6^{}\sqsupset\mathit{e}_7^{}$である．%
+    前提より$\mathit{e}_5^{}\sqsupset\mathit{e}_2^{}$かつ%
+    $\mathit{e}_6^{}\sqsupset\mathit{e}_3^{}$である．%
     $\mathit{e}_5^{}\sqsupset\mathit{e}_2^{}$かつ%
-    $\mathit{e}_5^{}\sqsupset\mathit{e}_6^{}$だから%
+    $\mathit{e}_5^{}\sqsupset_1^{}\mathit{e}_7^{}$だから%
     帰納法の仮定により%
-    $\mathit{e}_2^{}\sqsupset\mathit{e}_7^{}$かつ%
-    $\mathit{e}_6^{}\sqsupset\mathit{e}_7^{}$となるような%
-    $\mathit{e}_7^{}$が存在する．%
-    $\mathit{e}_3^{}\sqsupset\mathit{e}_6^{}$かつ%
-    $\mathit{e}_6^{}\sqsupset\mathit{e}_7^{}$だから%
+    $\mathit{e}_2^{}\sqsupset\mathit{e}_8^{}$かつ%
+    $\mathit{e}_7^{}\sqsupset\mathit{e}_8^{}$となるような%
+    $\mathit{e}_8^{}$が存在する．%
+    $\mathit{e}_6^{}\sqsupset\mathit{e}_7^{}$かつ%
+    $\mathit{e}_7^{}\sqsupset\mathit{e}_8^{}$だから%
     \lemmaname\ref{lemma:par_reduct_trans}により%
-    $\mathit{e}_3^{}\sqsupset\mathit{e}_7^{}$．%
-    ゆえに$\mathit{e}_2^{}\sqsupset\mathit{e}_7^{}$かつ%
-    $\mathit{e}_3^{}\sqsupset\mathit{e}_7^{}$となるような%
-    $\mathit{e}_7^{}$が存在する．%
+    $\mathit{e}_6^{}\sqsupset\mathit{e}_8^{}$である．%
+    $\mathit{e}_6^{}\sqsupset\mathit{e}_3^{}$かつ%
+    $\mathit{e}_6^{}\sqsupset_1^{}\mathit{e}_8^{}$だから%
+    帰納法の仮定により%
+    $\mathit{e}_3^{}\sqsupset\mathit{e}_9^{}$かつ%
+    $\mathit{e}_8^{}\sqsupset\mathit{e}_9^{}$となるような%
+    $\mathit{e}_9^{}$が存在する．%
+    $\mathit{e}_2^{}\sqsupset\mathit{e}_8^{}$かつ%
+    $\mathit{e}_8^{}\sqsupset\mathit{e}_9^{}$だから%
+    \lemmaname\ref{lemma:par_reduct_trans}により%
+    ゆえに$\mathit{e}_2^{}\sqsupset\mathit{e}_9^{}$かつ%
+    $\mathit{e}_3^{}\sqsupset\mathit{e}_9^{}$となるような%
+    $\mathit{e}_9^{}$が存在する．%
   \end{itemize}%
 \end{proof}%
 \par\lemmaname\ref{lemma:parcr}で%
