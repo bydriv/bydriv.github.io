@@ -644,7 +644,7 @@ $\mathit{e}_1^{}\not\equiv\mathit{e}_2^{}$であるものとします．%
 \end{equation}%
 \end{definition}%
 \begin{definition}%
-nステップの$\beta$-変形%
+複数ステップの$\beta$-変形%
 \begin{equation}%
   \infer{%
     \mathit{e}_1^{}\triangleright\mathit{e}_1^{}%
@@ -681,7 +681,7 @@ nステップの$\beta$-変形%
 \end{definition}%
 推論図の概念は，帰納的に定義するより例示したほうがわかりやすいかもしれません．%
 つぎの推論図は，$(((\lambda x_1^{}(\lambda x_2^{} x_1^{}))x_3^{})x_4^{})$という項が%
-nステップの$\beta$-変形で$x_3^{}$になるということを表しています．%
+複数ステップの$\beta$-変形で$x_3^{}$になるということを表しています．%
 読みやすくするために代入はあらかじめ等価な項で置きかえてありますが，%
 厳密には代入が出現する場所もあることに注意してください．%
 \begin{example}%
@@ -716,11 +716,11 @@ nステップの$\beta$-変形で$x_3^{}$になるということを表してい
     }%
   \end{equation}%
 \end{example}%
-\par このように1ステップの$\beta$-変形とnステップの$\beta$-変形を別々に定義する%
+\par このように1ステップの$\beta$-変形と複数ステップの$\beta$-変形を別々に定義する%
 意味論をSmall Step Semanticsと呼びます．Small Step Semanticsの関心は%
-1ステップの$\beta$-変形にありますので，nステップの$\beta$-変形を定義しないこと%
+1ステップの$\beta$-変形にありますので，複数ステップの$\beta$-変形を定義しないこと%
 もあります．1ステップの$\beta$-変形を定義せず，%
-いきなりnステップの$\beta$-変形を定義する意味論をBig Step Semanticsと呼びます．%
+いきなり複数ステップの$\beta$-変形を定義する意味論をBig Step Semanticsと呼びます．%
 Big Step Semanticsでは$\Downarrow$という記号をもちいることが一般的です．%
 Big Step Semanticsのほうがより実際の実装に近い意味論なのでプログラム言語の%
 形式化ではよくもちいられますが，理論的な計算模型を考える場合には%
@@ -769,7 +769,7 @@ $\mathit{e}_1^{}$は正規形をもつといいます．%
 \end{proof}%
 \begin{lemma}%
   \label{lemma:beta_reduct_trans}%
-  nステップの$\beta$-変形は推移的である．すなわち，%
+  複数ステップの$\beta$-変形は推移的である．すなわち，%
   $(\vdash\mathit{e}_1^{}\triangleright\mathit{e}_2^{})\rightarrow%
   (\vdash\mathit{e}_2^{}\triangleright\mathit{e}_3^{})\rightarrow%
   (\vdash\mathit{e}_1^{}\triangleright\mathit{e}_3^{})$.%
@@ -938,7 +938,7 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression
 \end{equation}%
 \end{definition}%
 \begin{definition}%
-nステップの並行簡約%
+複数ステップの並行簡約%
 \begin{equation}%
   \infer{%
     \mathit{e}_1^{}\sqsupset\mathit{e}_1^{}%
@@ -973,7 +973,7 @@ nステップの並行簡約%
 \end{proof}%
 \begin{lemma}%
   \label{lemma:par_reduct_trans}%
-  nステップの並行簡約は推移的である．すなわち，%
+  複数ステップの並行簡約は推移的である．すなわち，%
   $(\vdash\mathit{e}_1^{}\sqsupset\mathit{e}_2^{})\rightarrow%
   (\vdash\mathit{e}_2^{}\sqsupset\mathit{e}_3^{})\rightarrow%
   (\vdash\mathit{e}_1^{}\sqsupset\mathit{e}_3^{})$.%
@@ -1359,9 +1359,9 @@ nステップの並行簡約%
   \end{itemize}%
 \end{proof}%
 \par\lemmaname\ref{lemma:parcr}で%
-nステップの並行簡約の合流性を示しました．%
+複数ステップの並行簡約の合流性を示しました．%
 肝心の$\beta$-変形の合流性の証明は，%
-nステップの$\beta$-変形の体系がnステップの並行簡約と同値であることを示すことでおこないます．%
+複数ステップの$\beta$-変形の体系が複数ステップの並行簡約と同値であることを示すことでおこないます．%
 そこで$\beta$-変形の合流性の証明のために，まず，つぎの補題を示します:%
 \begin{lemma}%
   \label{lemma:beta1par1}%
@@ -1457,8 +1457,8 @@ nステップの$\beta$-変形の体系がnステップの並行簡約と同値�
 \end{proof}%
 \begin{lemma}%
   \label{lemma:betapar}%
-  すべてのnステップの$\beta$-変形の証明図$\mathit{e}_1^{}\triangleright\mathit{e}_2^{}$には，%
-  それと等価なnステップの並行簡約の証明図$\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$が存在する．%
+  すべての複数ステップの$\beta$-変形の証明図$\mathit{e}_1^{}\triangleright\mathit{e}_2^{}$には，%
+  それと等価な複数ステップの並行簡約の証明図$\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$が存在する．%
 \end{lemma}%
 \begin{proof}
   $\mathit{e}_1^{}\triangleright\mathit{e}_2^{}$に至る証明図を$\Pi$とし，%
@@ -1472,7 +1472,7 @@ nステップの$\beta$-変形の体系がnステップの並行簡約と同値�
       }{%
       }%
     \end{equation}%
-    という形をしているから，これと等価なnステップの並行簡約の推論規則は%
+    という形をしているから，これと等価な複数ステップの並行簡約の推論規則は%
     \begin{equation}%
       \infer{%
         \mathit{e}_1^{}\sqsupset\mathit{e}_1^{}%
@@ -1492,7 +1492,7 @@ nステップの$\beta$-変形の体系がnステップの並行簡約と同値�
       }%
     \end{equation}%
     という形をしている．帰納法の仮定により%
-    $\mathit{e}_2^{}\triangleright\mathit{e}_3^{}$に至る推論図と等価なnステップの%
+    $\mathit{e}_2^{}\triangleright\mathit{e}_3^{}$に至る推論図と等価な複数ステップの%
     並行簡約の推論図が存在するし，\lemmaname\ref{lemma:beta1par1}により%
     $\mathit{e}_1^{}\triangleright_1^{}\mathit{e}_2^{}$に至る推論図と等価な1ステップの%
     並行簡約の推論図が存在するから，これと等価な推論規則は%
@@ -1511,7 +1511,7 @@ nステップの$\beta$-変形の体系がnステップの並行簡約と同値�
 \begin{lemma}%
   \label{lemma:par1beta}%
   すべての1ステップの並行簡約の証明図$\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{}$には，%
-  それと等価なnステップの$\beta$-変形の証明図$\mathit{e}_1^{}\triangleright\mathit{e}_2^{}$が存在する．%
+  それと等価な複数ステップの$\beta$-変形の証明図$\mathit{e}_1^{}\triangleright\mathit{e}_2^{}$が存在する．%
 \end{lemma}%
 \begin{proof}%
   $\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{}$に至る証明図を$\Pi$とし，%
@@ -1525,7 +1525,7 @@ nステップの$\beta$-変形の体系がnステップの並行簡約と同値�
       }{%
       }%
     \end{equation}%
-    という形をしているから，これと等価なnステップの$\beta$-変形の推論図は%
+    という形をしているから，これと等価な複数ステップの$\beta$-変形の推論図は%
     \begin{equation}%
       \infer{%
         \mathit{x}_1^{}\triangleright\mathit{x}_1^{}%
@@ -1545,7 +1545,7 @@ nステップの$\beta$-変形の体系がnステップの並行簡約と同値�
         \mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_4^{}%
       }%
     \end{equation}%
-    という形をしている場合．これと等価なnステップの$\beta$-変形の推論図は%
+    という形をしている場合．これと等価な複数ステップの$\beta$-変形の推論図は%
     \begin{equation}%
       \infer{%
         (\mathit{e}_1^{}\mathit{e}_3^{})\triangleright(\mathit{e}_2^{}\mathit{e}_4^{})%
@@ -1581,7 +1581,7 @@ nステップの$\beta$-変形の体系がnステップの並行簡約と同値�
         \mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{}%
       }%
     \end{equation}%
-    という形をしている場合．これと等価なnステップの$\beta$-変形の推論図は%
+    という形をしている場合．これと等価な複数ステップの$\beta$-変形の推論図は%
     \begin{equation}%
       \infer{%
         (\lambda\mathit{x}_1^{}\mathit{e}_1^{})\triangleright_1^{}%
@@ -1602,7 +1602,7 @@ nステップの$\beta$-変形の体系がnステップの並行簡約と同値�
         \mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_4^{}%
       }%
     \end{equation}%
-    という形をしている場合．これと等価なnステップの$\beta$-変形の推論図は%
+    という形をしている場合．これと等価な複数ステップの$\beta$-変形の推論図は%
     \begin{equation}%
       \infer{%
         ((\lambda\mathit{x}_1^{}\mathit{e}_1^{})\mathit{e}_3^{})\triangleright%
@@ -1656,8 +1656,8 @@ nステップの$\beta$-変形の体系がnステップの並行簡約と同値�
 \end{proof}%
 \begin{lemma}%
   \label{lemma:parbeta}%
-  すべてのnステップの並行簡約の証明図$\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$には，%
-  それと等価なnステップの$\beta$-変形の証明図$\mathit{e}_1^{}\triangleright\mathit{e}_2^{}$が存在する．%
+  すべての複数ステップの並行簡約の証明図$\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$には，%
+  それと等価な複数ステップの$\beta$-変形の証明図$\mathit{e}_1^{}\triangleright\mathit{e}_2^{}$が存在する．%
 \end{lemma}%
 \begin{proof}
   $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$に至る証明図を$\Pi$とし，%
@@ -1671,7 +1671,7 @@ nステップの$\beta$-変形の体系がnステップの並行簡約と同値�
       }{%
       }%
     \end{equation}%
-    という形をしているから，これと等価なnステップの並行簡約の推論規則は%
+    という形をしているから，これと等価な複数ステップの並行簡約の推論規則は%
     \begin{equation}%
       \infer{%
         \mathit{e}_1^{}\triangleright\mathit{e}_1^{}%
@@ -1691,11 +1691,11 @@ nステップの$\beta$-変形の体系がnステップの並行簡約と同値�
       }%
     \end{equation}%
     という形をしている．帰納法の仮定により%
-    $\mathit{e}_2^{}\sqsupset\mathit{e}_3^{}$に至る推論図と等価なnステップの%
+    $\mathit{e}_2^{}\sqsupset\mathit{e}_3^{}$に至る推論図と等価な複数ステップの%
     $\beta$-変形の推論図が存在するし，\lemmaname\ref{lemma:par1beta}により%
-    $\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{}$に至る推論図と等価なnステップの%
+    $\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{}$に至る推論図と等価な複数ステップの%
     $\beta$-変形の推論図が存在する．さらに\lemmaname\ref{lemma:beta_reduct_trans}により%
-    nステップの$\beta$-変形では推移律が成りたつから，これと等価な推論規則は%
+    複数ステップの$\beta$-変形では推移律が成りたつから，これと等価な推論規則は%
     \begin{equation}%
       \infer{%
         \mathit{e}_1^{}\triangleright\mathit{e}_3^{}%
@@ -1710,7 +1710,7 @@ nステップの$\beta$-変形の体系がnステップの並行簡約と同値�
 \end{proof}%
 \begin{lemma}%
 \label{lemma:betapareq}%
-nステップの$\beta$-変形とnステップの並行簡約は同値である．%
+複数ステップの$\beta$-変形と複数ステップの並行簡約は同値である．%
 \end{lemma}%
 \begin{proof}%
   \lemmaname\ref{lemma:betapar}, \lemmaname\ref{lemma:parbeta}による．%
