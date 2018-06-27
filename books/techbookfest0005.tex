@@ -1300,138 +1300,19 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression
   \end{itemize}%
 \end{proof}%
 \begin{lemma}%
-  \label{lemma:parast}%
-  $\forall\mathit{e}_1^{}\forall\mathit{e}_2^{}%
-  ((\vdash\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{})\rightarrow%
-  \mathit{e}_1^{}\textasteriskcentered=\mathit{e}_2^{}\textasteriskcentered)$%
-\end{lemma}%
-\begin{proof}%
-  $\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{}$に至る証明図を$\Pi$とし，%
-  $\Pi$の長さに関する帰納法で証明する．%
-  \begin{itemize}%
-  \item $length(\Pi)=1$ の場合．%
-    $\Pi$が%
-    \begin{equation}%
-      \infer{%
-        \mathit{x}_1^{}\sqsupset_1^{}\mathit{x}_1^{}%
-      }{%
-      }%
-    \end{equation}%
-    という形をしていることから明らか．%
-  \item $length(\Pi)=k+1$ の場合．%
-    \begin{itemize}%
-    \item $\Pi$が%
-      \begin{equation}%
-        \infer{%
-          (\mathit{e}_3^{}\mathit{e}_5^{})\sqsupset_1^{}(\mathit{e}_4^{}\mathit{e}_6^{})%
-        }{%
-          \mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_4^{}%
-        &%
-          \mathit{e}_5^{}\sqsupset_1^{}\mathit{e}_6^{}%
-        }%
-      \end{equation}%
-      という形をしている場合．帰納法の仮定:%
-      \begin{align}%
-        (\vdash\mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_4^{})\rightarrow%
-        (\vdash\mathit{e}_3^{}\textasteriskcentered=\mathit{e}_4^{}\textasteriskcentered)\\%
-        (\vdash\mathit{e}_5^{}\sqsupset_1^{}\mathit{e}_6^{})\rightarrow%
-        (\vdash\mathit{e}_5^{}\textasteriskcentered=\mathit{e}_6^{}\textasteriskcentered)%
-      \end{align}%
-      帰納法の仮定に適用すれば%
-      $(\mathit{e}_3^{}\textasteriskcentered\mathit{e}_5^{}\textasteriskcentered)=(\mathit{e}_4^{}\textasteriskcentered\mathit{e}_6^{}\textasteriskcentered)$%
-      となる．%
-    \item $\Pi$が%
-      \begin{equation}%
-        \infer{%
-          (\lambda\mathit{x}_1^{}\mathit{e}_3^{})\sqsupset_1^{}%
-          (\lambda\mathit{x}_1^{}\mathit{e}_4^{})%
-        }{%
-          \mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_4^{}%
-        }%
-      \end{equation}%
-      という形をしている場合．帰納法の仮定:%
-      \begin{align}%
-        (\vdash\mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_4^{})\rightarrow%
-        (\vdash\mathit{e}_3^{}\textasteriskcentered=\mathit{e}_4^{}\textasteriskcentered)%
-      \end{align}%
-      帰納法の仮定に適用すれば%
-      $(\lambda\mathit{x}_1^{}\mathit{e}_3^{}\textasteriskcentered)=%
-      (\lambda\mathit{x}_1^{}\mathit{e}_4^{}\textasteriskcentered)$%
-      となる．%
-    \item $\Pi$が%
-      \begin{equation}%
-        \infer{%
-          ((\lambda\mathit{x}_1^{}\mathit{e}_3^{})\mathit{e}_5^{})\sqsupset%
-          [\mathit{e}_6^{}/\mathit{x}_1^{}]\mathit{e}_4^{}%
-        }{%
-          \mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_4^{}%
-        &%
-          \mathit{e}_5^{}\sqsupset_1^{}\mathit{e}_6^{}%
-        }%
-      \end{equation}%
-      という形をしている場合．帰納法の仮定:%
-      \begin{align}%
-        (\vdash\mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_4^{})\rightarrow%
-        (\vdash\mathit{e}_3^{}\textasteriskcentered=\mathit{e}_4^{}\textasteriskcentered)\\%
-        (\vdash\mathit{e}_5^{}\sqsupset_1^{}\mathit{e}_6^{})\rightarrow%
-        (\vdash\mathit{e}_5^{}\textasteriskcentered=\mathit{e}_6^{}\textasteriskcentered)%
-      \end{align}%
-      帰納法の仮定に適用すれば%
-      $((\lambda\mathit{x}_1^{}\mathit{e}_3^{})\mathit{e}_5^{})\textasteriskcentered=%
-      [\mathit{e}_5^{}\textasteriskcentered/\mathit{x}_1^{}]\mathit{e}_3^{}\textasteriskcentered=%
-      [\mathit{e}_6^{}\textasteriskcentered/\mathit{x}_1^{}]\mathit{e}_4^{}\textasteriskcentered$%
-      となる．%
-    \end{itemize}%
-  \end{itemize}%
-\end{proof}%
-\begin{lemma}%
   \label{lemma:parcr1}%
-  $\forall\mathit{e}_1^{}\forall\mathit{e}_i^{}\cdots\forall\mathit{e}_{i+n}^{}\forall\mathit{e}_j^{}\cdots\forall\mathit{e}_{j+m}^{}\exists\mathit{e}_2^{}%
-  ((\vdash\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_i^{})\rightarrow\cdots\rightarrow%
-  (\vdash\mathit{e}_{i+n-1}^{}\sqsupset_1^{}\mathit{e}_{i+n}^{})\rightarrow%
-  (\vdash\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_j^{})\rightarrow\cdots\rightarrow%
-  (\vdash\mathit{e}_{i+m-1}^{}\sqsupset_1^{}\mathit{e}_{j+m}^{})\rightarrow%
-  (\vdash\mathit{e}_{i+n}^{}\sqsupset_1^{}\mathit{e}_2^{})\land%
-  (\vdash\mathit{e}_{j+m}^{}\sqsupset_1^{}\mathit{e}_2^{}))$%
+  $\forall\mathit{e}_1^{}\forall\mathit{e}_2^{}\forall\mathit{e}_3^{}\exists\mathit{e}_4^{}%
+  ((\vdash\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{})\rightarrow%
+  (\vdash\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_3^{})\rightarrow%
+  (\vdash\mathit{e}_2^{}\sqsupset_1^{}\mathit{e}_4^{})\land%
+  (\vdash\mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_4^{}))$%
 \end{lemma}%
 \begin{proof}%
-  $\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_i^{}$と%
-  $\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_j^{}$に%
+  $\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{}$と%
+  $\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_3^{}$に%
   それぞれ\lemmaname\ref{lemma:parcr2}を適用すれば，%
-  $\mathit{e}_i^{}\sqsupset_1^{}\mathit{e}_1^{}\textasteriskcentered$かつ%
-  $\mathit{e}_j^{}\sqsupset_1^{}\mathit{e}_1^{}\textasteriskcentered$となる．%
-  $\mathit{e}_i^{}\sqsupset_1^{}\mathit{e}_{i+1}^{}$と%
-  $\mathit{e}_i^{}\sqsupset_1^{}\mathit{e}_1^{}\textasteriskcentered$に，%
-  $\mathit{e}_j^{}\sqsupset_1^{}\mathit{e}_{j+1}^{}$と%
-  $\mathit{e}_j^{}\sqsupset_1^{}\mathit{e}_1^{}\textasteriskcentered$に%
-  それぞれ\lemmaname\ref{lemma:parcr2}を適用すれば，%
-  $\mathit{e}_{i+1}^{}\sqsupset_1^{}\mathit{e}_i^{}\textasteriskcentered$かつ%
-  $\mathit{e}_{j+1}^{}\sqsupset_1^{}\mathit{e}_j^{}\textasteriskcentered$となる．%
-  これを繰りかえせば%
-  $\mathit{e}_{i+n}^{}\sqsupset_1^{}\mathit{e}_{i+n-1}^{}\textasteriskcentered$かつ%
-  $\mathit{e}_{j+m}^{}\sqsupset_1^{}\mathit{e}_{j+m-1}^{}\textasteriskcentered$となる．%
-  ところで$\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_i^{}$かつ$\cdots$かつ%
-  $\mathit{e}_{i+n-1}^{}\sqsupset_1^{}\mathit{e}_{i+n}^{}$かつ%
-  $\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_j^{}$かつ$\cdots$かつ%
-  $\mathit{e}_{j+m-1}^{}\sqsupset_1^{}\mathit{e}_{j+m}^{}$を前提としているので，%
-  それぞれ\lemmaname\ref{lemma:parast}を適用すれば，%
-  \begin{align}%
-    \mathit{e}_1^{}\textasteriskcentered&=\mathit{e}_i^{}\textasteriskcentered\\%
-    &=\cdots\\%
-    &=\mathit{e}_{i+n-1}^{}\textasteriskcentered\\%
-    &=\mathit{e}_{i+n}^{}\textasteriskcentered\\%
-    &=\mathit{e}_1^{}\textasteriskcentered\\%
-    &=\mathit{e}_j^{}\textasteriskcentered\\%
-    &=\cdots\\%
-    &=\mathit{e}_{j+m-1}^{}\textasteriskcentered\\%
-    &=\mathit{e}_{j+m}^{}\textasteriskcentered%
-  \end{align}%
-  だとわかるので，%
-  $\mathit{e}_{i+n-1}^{}\textasteriskcentered=\mathit{e}_{j+m-1}^{}\textasteriskcentered$．%
-  ゆえに%
-  $\mathit{e}_{i+n}^{}\sqsupset_1^{}\mathit{e}_2^{}$かつ%
-  $\mathit{e}_{j+m}^{}\sqsupset_1^{}\mathit{e}_2^{}$となるような%
-  $\mathit{e}_2^{}$が存在する．%
+  $\mathit{e}_2^{}\sqsupset_1^{}\mathit{e}_1^{}\textasteriskcentered$かつ%
+  $\mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_1^{}\textasteriskcentered$となる．%
 \end{proof}%
 \begin{lemma}%
   \label{lemma:parcr}%
@@ -1444,23 +1325,55 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression
 \begin{proof}%
   $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$,$\mathit{e}_1^{}\sqsupset\mathit{e}_3^{}$に至る%
   証明図をそれぞれ$\Pi_1^{}$,$\Pi_2^{}$とし，%
-  $n$,$m$を$\Pi_1^{}$,$\Pi_2^{}$に含まれる1ステップの並行簡約の式の数とする．%
-  $\Pi_1^{}$,$\Pi_2^{}$に含まれる1ステップの並行簡約を並べるとそれぞれ%
-  \begin{equation}%
-    \mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_i^{}\sqsupset_1^{}\cdots\sqsupset_1^{}\mathit{e}_{i+n-2}^{}\sqsupset_1^{}\mathit{e}_2^{}%
-  \end{equation}%
-  そして%
-  \begin{equation}%
-    \mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_j^{}\sqsupset_1^{}\cdots\sqsupset_1^{}\mathit{e}_{j+m-2}^{}\sqsupset_1^{}\mathit{e}_3^{}%
-  \end{equation}%
-  となる．この列に\lemmaname\ref{lemma:parcr1}を適用すれば，%
-  $\mathit{e}_2^{}\sqsupset_1^{}\mathit{e}_4^{}$かつ%
-  $\mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_4^{}$かつとなるような%
-  $\mathit{e}_4^{}$が存在することがわかる．%
-  そして\lemmaname\ref{lemma:par_reduct1n}より，%
-  $\mathit{e}_2^{}\sqsupset\mathit{e}_4^{}$かつ%
-  $\mathit{e}_3^{}\sqsupset\mathit{e}_4^{}$かつとなるような%
-  $\mathit{e}_4^{}$が存在する．%
+  $\Pi_1^{}$の長さに関する帰納法で証明する．%
+  \begin{itemize}%
+  \item $length(\Pi_1^{})=1$ の場合．%
+    $\Pi_1^{}$ は%
+    \begin{equation}%
+      \infer{%
+        \mathit{e}_1^{}\sqsupset\mathit{e}_1^{}%
+      }{%
+      }%
+    \end{equation}%
+    という形をしている．この場合は$\mathit{e}_3^{}$が存在するのでよい．%
+  \item $length(\Pi_1^{})=k+1$ の場合．%
+    $\Pi_1^{}$ は%
+    \begin{equation}%
+      \infer{%
+        \mathit{e}_1^{}\sqsupset\mathit{e}_2^{}%
+      }{%
+        \mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_5^{}%
+      &%
+        \mathit{e}_5^{}\sqsupset\mathit{e}_2^{}%
+      }%
+    \end{equation}%
+    という形をしている．帰納法の仮定:%
+    \begin{align}%
+      \forall\mathit{e}_3^{}\exists\mathit{e}_4^{}%
+      ((\vdash\mathit{e}_5^{}\sqsupset\mathit{e}_2^{})\rightarrow%
+      (\vdash\mathit{e}_5^{}\sqsupset\mathit{e}_3^{})\rightarrow%
+      (\vdash\mathit{e}_2^{}\sqsupset\mathit{e}_4^{})\land%
+      (\vdash\mathit{e}_3^{}\sqsupset\mathit{e}_4^{}))%
+    \end{align}%
+    \lemmaname\ref{lemma:parcr1}により%
+    $\mathit{e}_5^{}\sqsupset_1^{}\mathit{e}_6^{}$かつ%
+    $\mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_6^{}$となるような%
+    $\mathit{e}_6^{}$が存在する．%
+    \lemmaname\ref{lemma:par_reduct1n}により%
+    $\mathit{e}_5^{}\sqsupset\mathit{e}_2^{}$かつ%
+    $\mathit{e}_5^{}\sqsupset\mathit{e}_6^{}$だから%
+    帰納法の仮定により%
+    $\mathit{e}_2^{}\sqsupset\mathit{e}_7^{}$かつ%
+    $\mathit{e}_6^{}\sqsupset\mathit{e}_7^{}$となるような%
+    $\mathit{e}_7^{}$が存在する．%
+    $\mathit{e}_3^{}\sqsupset\mathit{e}_6^{}$かつ%
+    $\mathit{e}_6^{}\sqsupset\mathit{e}_7^{}$だから%
+    \lemmaname\ref{lemma:par_reduct_trans}により%
+    $\mathit{e}_3^{}\sqsupset\mathit{e}_7^{}$．%
+    ゆえに$\mathit{e}_2^{}\sqsupset\mathit{e}_7^{}$かつ%
+    $\mathit{e}_3^{}\sqsupset\mathit{e}_7^{}$となるような%
+    $\mathit{e}_7^{}$が存在する．%
+  \end{itemize}%
 \end{proof}%
 \par\lemmaname\ref{lemma:parcr}で%
 複数ステップの並行簡約の合流性を示しました．%
