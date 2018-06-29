@@ -1327,6 +1327,63 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$をそれぞれ%
   $\mathit{e}_3^{}\sqsupset_1^{}\mathit{e}_1^{}\textasteriskcentered$となる．%
 \end{proof}%
 \begin{lemma}%
+  \label{lemma:parcr3}%
+  $\forall\mathit{e}_1^{}\forall\mathit{e}_2^{}\forall\mathit{e}_3^{}\exists\mathit{e}_4^{}%
+  ((\vdash\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{})\rightarrow%
+  (\vdash\mathit{e}_1^{}\sqsupset\mathit{e}_3^{})\rightarrow%
+  (\vdash\mathit{e}_2^{}\sqsupset\mathit{e}_4^{})\land%
+  (\vdash\mathit{e}_3^{}\sqsupset\mathit{e}_4^{}))$%
+\end{lemma}%
+\begin{proof}%
+  $\mathit{e}_1^{}\sqsupset\mathit{e}_3^{}$に至る証明図を$\Pi$,%
+  $\Pi$の長さを$n$とし，$n$に関する帰納法で証明する．%
+  \begin{itemize}%
+  \item $n = 1$ の場合．%
+    $\Pi$は%
+    \begin{equation}%
+      \infer{%
+        \mathit{e}_1^{}\sqsupset\mathit{e}_1^{}%
+      }{%
+      }%
+    \end{equation}%
+    という形をしている．\lemmaname\ref{lemma:par_reduct1n}により%
+    $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$で，%
+    複数ステップの並行簡約の定義より$\mathit{e}_2^{}\sqsupset\mathit{e}_2^{}$だからよい．%
+  \item $n = k + 1$ の場合．%
+    $\Pi$は%
+    \begin{equation}%
+      \infer{%
+        \mathit{e}_1^{}\sqsupset\mathit{e}_3^{}%
+      }{%
+        \mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_4^{}%
+      &%
+        \mathit{e}_4^{}\sqsupset\mathit{e}_3^{}%
+      }%
+    \end{equation}%
+    という形をしている．帰納法の仮定:%
+    \begin{equation}%
+      \forall\mathit{e}_2^{}\exists\mathit{e}_5^{}%
+      ((\vdash\mathit{e}_4^{}\sqsupset_1^{}\mathit{e}_2^{})\rightarrow%
+      (\vdash\mathit{e}_4^{}\sqsupset\mathit{e}_3^{})\rightarrow%
+      (\vdash\mathit{e}_2^{}\sqsupset\mathit{e}_4^{})\land%
+      (\vdash\mathit{e}_3^{}\sqsupset\mathit{e}_4^{}))%
+    \end{equation}%
+    \lemmaname\ref{lemma:parcr1}により%
+    $\mathit{e}_2^{}\sqsupset_1^{}\mathit{e}_5^{}$かつ%
+    $\mathit{e}_4^{}\sqsupset_1^{}\mathit{e}_5^{}$となるような%
+    $\mathit{e}_5^{}$が存在する．\lemmaname\ref{lemma:par_reduct1n}により%%
+    $\mathit{e}_4^{}\sqsupset\mathit{e}_5^{}$で，前提より%
+    $\mathit{e}_4^{}\sqsupset\mathit{e}_3^{}$だから，帰納法の仮定により%
+    $\mathit{e}_5^{}\sqsupset\mathit{e}_6^{}$かつ%
+    $\mathit{e}_3^{}\sqsupset\mathit{e}_6^{}$となるような%
+    $\mathit{e}_6^{}$が存在する．\lemmaname\ref{lemma:par_reduct_trans}により%
+    $\mathit{e}_2^{}\sqsupset\mathit{e}_6^{}$だから，%
+    $\mathit{e}_2^{}\sqsupset\mathit{e}_6^{}$かつ%
+    $\mathit{e}_3^{}\sqsupset\mathit{e}_6^{}$となるような%
+    $\mathit{e}_6^{}$が存在する．%
+  \end{itemize}%
+\end{proof}%
+\begin{lemma}%
   \label{lemma:parcr}%
   $\forall\mathit{e}_1^{}\forall\mathit{e}_2^{}\forall\mathit{e}_3^{}\exists\mathit{e}_4^{}%
   ((\vdash\mathit{e}_1^{}\sqsupset\mathit{e}_2^{})\rightarrow%
@@ -1335,6 +1392,51 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$をそれぞれ%
   (\vdash\mathit{e}_3^{}\sqsupset\mathit{e}_4^{}))$%
 \end{lemma}%
 \begin{proof}%
+  $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$に至る証明図を$\Pi$,%
+  $\Pi$の長さを$n$とし，$n$に関する帰納法で証明する．%
+  \begin{itemize}%
+  \item $n = 1$ の場合．%
+    $\Pi$は%
+    \begin{equation}%
+      \infer{%
+        \mathit{e}_1^{}\sqsupset\mathit{e}_1^{}%
+      }{%
+      }%
+    \end{equation}%
+    という形をしている．この場合は前提より$\mathit{e}_1^{}\sqsupset\mathit{e}_3^{}$で，%
+    複数ステップの並行簡約の定義より$\mathit{e}_3^{}\sqsupset\mathit{e}_3^{}$だからよい．%
+  \item $n = k + 1$ の場合．%
+    $\Pi$は%
+    \begin{equation}%
+      \infer{%
+        \mathit{e}_1^{}\sqsupset\mathit{e}_2^{}%
+      }{%
+        \mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_4^{}%
+      &%
+        \mathit{e}_4^{}\sqsupset\mathit{e}_2^{}%
+      }%
+    \end{equation}%
+    という形をしている．帰納法の仮定:%
+    \begin{equation}%
+      \forall\mathit{e}_3^{}\exists\mathit{e}_5^{}%
+      ((\vdash\mathit{e}_4^{}\sqsupset\mathit{e}_2^{})\rightarrow%
+      (\vdash\mathit{e}_4^{}\sqsupset\mathit{e}_3^{})\rightarrow%
+      (\vdash\mathit{e}_2^{}\sqsupset\mathit{e}_4^{})\land%
+      (\vdash\mathit{e}_3^{}\sqsupset\mathit{e}_4^{}))%
+    \end{equation}%
+    \lemmaname\ref{lemma:parcr3}により%
+    $\mathit{e}_4^{}\sqsupset\mathit{e}_5^{}$かつ%
+    $\mathit{e}_3^{}\sqsupset\mathit{e}_5^{}$となるような%
+    $\mathit{e}_5^{}$が存在する．前提より%
+    $\mathit{e}_4^{}\sqsupset\mathit{e}_2^{}$だから，帰納法の仮定により%
+    $\mathit{e}_2^{}\sqsupset\mathit{e}_6^{}$かつ%
+    $\mathit{e}_5^{}\sqsupset\mathit{e}_6^{}$となるような%
+    $\mathit{e}_6^{}$が存在する．\lemmaname\ref{lemma:par_reduct_trans}により%
+    $\mathit{e}_3^{}\sqsupset\mathit{e}_6^{}$だから，%
+    $\mathit{e}_2^{}\sqsupset\mathit{e}_6^{}$かつ%
+    $\mathit{e}_3^{}\sqsupset\mathit{e}_6^{}$となるような%
+    $\mathit{e}_6^{}$が存在する．%
+  \end{itemize}%
 \end{proof}%
 \par\lemmaname\ref{lemma:parcr}で%
 複数ステップの並行簡約の合流性を示しました．%
