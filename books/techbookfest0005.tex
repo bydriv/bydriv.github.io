@@ -612,7 +612,9 @@ $\mathit{e}_1^{}\not\equiv\mathit{e}_2^{}$であるものとします．%
 \begin{definition}%
   \term{式}{expression}%
   \par$\mathit{e}_1^{},\mathit{e}_2^{}$が項ならば$\mathit{e}_1^{}\triangleright_1^{}\mathit{e}_2^{}$%
-  と$\mathit{e}_1^{}\triangleright\mathit{e}_2^{}$を$\beta$-変形の\term{式}{expression}と呼ぶ．%
+  と$\mathit{e}_1^{}\triangleright\mathit{e}_2^{}$をそれぞれ%
+  1ステップの$\beta$-変形の\term{式}{expression},%
+  複数ステップの$\beta$-変形の\term{式}{expression}と呼ぶ．%
 \end{definition}%
 \begin{definition}%
 1ステップの\term{$\beta$-変形}{$\beta$-reduction}%
@@ -745,14 +747,12 @@ $\mathit{e}_1^{}$は正規形をもつといいます．%
 正規形をもたない項が存在することに注意してください．%
 たとえば，$((\lambda x_1^{}x_1^{})(\lambda x_1^{}x_1^{}))$は正規形をもちません．%
 \begin{definition}%
-推論図の\term{長さ}{length}%
-\begin{equation}%
-  length(\Pi)\Coloneqq\begin{cases}%
-  1&\Pi=A\\%
-  length(\Pi_1^{})+\cdots+length(\Pi_n^{})+1%
-  &\Pi=\begin{array}{c}\infer{A}{\Pi_1^{}&\cdots&\Pi_n^{}}\end{array}%
-  \end{cases}%
-\end{equation}%
+  1ステップの$\beta$-変形の推論図の\term{長さ}{length}\\%
+  推論図に含まれる1ステップの$\beta$-変形の式の数をその推論図の長さという．%
+\end{definition}%
+\begin{definition}%
+  複数ステップの$\beta$-変形の推論図の\term{長さ}{length}\\%
+  推論図に含まれる複数ステップの$\beta$-変形の式の数をその推論図の長さという．%
 \end{definition}%
 \begin{lemma}%
   \label{lemma:beta_reduct1n}%
@@ -779,9 +779,9 @@ $\mathit{e}_1^{}$は正規形をもつといいます．%
 \end{lemma}%
 \begin{proof}%
   $\mathit{e}_1^{}\triangleright\mathit{e}_2^{}$に至る証明図を$\Pi$とし，%
-  $\Pi$の長さに関する帰納法で証明する．%
+  $\Pi$の長さを$n$とし，$n$に関する帰納法で証明する．%
   \begin{itemize}%
-  \item $length(\Pi)=1$ の場合．%
+  \item $n=1$ の場合．%
     $\mathit{e}_1^{}\triangleright\mathit{e}_3^{}$に至る証明図は%
     \begin{equation}%
       \infer{%
@@ -798,7 +798,7 @@ $\mathit{e}_1^{}$は正規形をもつといいます．%
       \infer{\mathit{e}_1^{}\triangleright\mathit{e}_3^{}}{\Pi_1^{}&\cdots&\Pi_n^{}}%
     \end{equation}%
     と変形できるからよい．%
-  \item $length(\Pi)=k + 1$ の場合．%
+  \item $n=k + 1$ の場合．%
     $\mathit{e}_1^{}\triangleright\mathit{e}_3^{}$に至る証明図は%
     \begin{equation}%
       \infer{%
@@ -902,7 +902,9 @@ $\vdash\mathit{e}_2^{}\triangleright\mathit{e}_3^{}$ならば%
 \begin{definition}%
 並行簡約の\term{式}{expression}%
 \par$\mathit{e}_1^{},\mathit{e}_2^{}$が項ならば$\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{}$と%
-$\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression}と呼ぶ．%
+$\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$をそれぞれ%
+1ステップの並行簡約の\term{式}{expression},%
+複数ステップの並行簡約の\term{式}{expression}と呼ぶ．%
 \end{definition}%
 \begin{definition}%
 1ステップの\term{並行簡約}{parallel reduction}%
@@ -958,6 +960,14 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression
   }%
 \end{equation}%
 \end{definition}%
+\begin{definition}%
+  1ステップの並行簡約の推論図の\term{長さ}{length}\\%
+  推論図に含まれる1ステップの並行簡約の式の数をその推論図の長さという．%
+\end{definition}%
+\begin{definition}%
+  複数ステップの並行簡約の推論図の\term{長さ}{length}\\%
+  推論図に含まれる複数ステップの並行簡約の式の数をその推論図の長さという．%
+\end{definition}%
 \begin{lemma}%
   \label{lemma:par1_reduct_id}%
   $(\vdash\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_1^{})$.%
@@ -1011,7 +1021,7 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression
 \begin{lemma}%
   \label{lemma:par_reduct1n}%
   $(\vdash\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{})\rightarrow%
-  (\vdash\mathit{e}_1^{}\sqsupset\mathit{e}_2^{})\land length(\vdash\mathit{e}_1^{}\sqsupset\mathit{e}_2^{})=3$.%
+  (\vdash\mathit{e}_1^{}\sqsupset\mathit{e}_2^{})$.%
 \end{lemma}%
 \begin{proof}%
   \begin{equation}%
@@ -1023,7 +1033,6 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression
       \infer{\mathit{e}_2^{}\sqsupset\mathit{e}_2^{}}{}%
     }%
   \end{equation}%
-  長さは計算すればわかる．%
 \end{proof}%
 \begin{lemma}%
   \label{lemma:par_reduct_trans}%
@@ -1031,13 +1040,12 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression
   $(\vdash\mathit{e}_1^{}\sqsupset\mathit{e}_2^{})\rightarrow%
   (\vdash\mathit{e}_2^{}\sqsupset\mathit{e}_3^{})\rightarrow%
   (\vdash\mathit{e}_1^{}\sqsupset\mathit{e}_3^{})$.%
-  さらに$length(\vdash\mathit{e}_1^{}\sqsupset\mathit{e}_3^{})=length(\vdash\mathit{e}_1^{}\sqsupset\mathit{e}_2^{})+length(\vdash\mathit{e}_2^{}\sqsupset\mathit{e}_3^{})-1$．%
 \end{lemma}%
 \begin{proof}%
   $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$に至る証明図を$\Pi$とし，%
-  $\Pi$の長さに関する帰納法で証明する．%
+  $\Pi$の長さを$n$とし，$n$に関する帰納法で証明する．%
   \begin{itemize}%
-  \item $length(\Pi)=1$ の場合．%
+  \item $n=1$ の場合．%
     $\mathit{e}_1^{}\sqsupset\mathit{e}_3^{}$に至る証明図は%
     \begin{equation}%
       \infer{%
@@ -1053,9 +1061,7 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression
     \begin{equation}%
       \infer{\mathit{e}_1^{}\sqsupset\mathit{e}_3^{}}{\Pi_1^{}&\cdots&\Pi_n^{}}%
     \end{equation}%
-    と変形できるからよい．長さに関しても$\vdash\mathit{e}_1^{}\sqsupset\mathit{e}_1^{}$を%
-    はぶいているので$1$減っている．%
-  \item $length(\Pi)=k + 1$ の場合．%
+  \item $n=k + 1$ の場合．%
     $\mathit{e}_1^{}\sqsupset\mathit{e}_3^{}$に至る証明図は%
     \begin{equation}%
       \infer{%
@@ -1082,10 +1088,7 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression
     帰納法の仮定により%
     $(\vdash\mathit{e}_4^{}\sqsupset\mathit{e}_2^{})\rightarrow%
     (\vdash\mathit{e}_2^{}\sqsupset\mathit{e}_3^{})\rightarrow%
-    (\vdash\mathit{e}_4^{}\sqsupset\mathit{e}_3^{})\land%
-    length(\vdash\mathit{e}_4^{}\sqsupset\mathit{e}_3^{})=%
-    length(\vdash\mathit{e}_4^{}\sqsupset\mathit{e}_2^{})+%
-    length(\vdash\mathit{e}_2^{}\sqsupset\mathit{e}_3^{})-1$だから，%
+    (\vdash\mathit{e}_4^{}\sqsupset\mathit{e}_3^{})$だから，%
     $\mathit{e}_1^{}\sqsupset\mathit{e}_3^{}$に至る証明図は%
     \begin{equation}%
       \infer{%
@@ -1106,9 +1109,7 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression
         }%
       }%
     \end{equation}%
-    と変形できるからよい．長さに関しても%
-    $\mathit{e}_4^{}\sqsupset\mathit{e}_3^{}$に至る証明図の長さが%
-    $1$減っているので，全体としても$1$減っている．%
+    と変形できるからよい．%
   \end{itemize}%
 \end{proof}%
 \section{合流性定理}%
@@ -1331,157 +1332,9 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression
   ((\vdash\mathit{e}_1^{}\sqsupset\mathit{e}_2^{})\rightarrow%
   (\vdash\mathit{e}_1^{}\sqsupset\mathit{e}_3^{})\rightarrow%
   (\vdash\mathit{e}_2^{}\sqsupset\mathit{e}_4^{})\land%
-  (\vdash\mathit{e}_3^{}\sqsupset\mathit{e}_4^{})\land%
-  length(\vdash\mathit{e}_2^{}\sqsupset\mathit{e}_4^{})\leqq length(\vdash\mathit{e}_1^{}\sqsupset\mathit{e}_3^{})\land%
-  length(\vdash\mathit{e}_3^{}\sqsupset\mathit{e}_4^{})\leqq length(\vdash\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}))$%
+  (\vdash\mathit{e}_3^{}\sqsupset\mathit{e}_4^{}))$%
 \end{lemma}%
 \begin{proof}%
-  $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$,$\mathit{e}_1^{}\sqsupset\mathit{e}_3^{}$に至る%
-  証明図をそれぞれ$\Pi_1^{}$,$\Pi_2^{}$とし，%
-  $\Pi_1^{}$,$\Pi_2^{}$の長さに関する2重帰納法で証明する．%
-  \begin{itemize}%
-  \item $length(\Pi_1^{})=1$ の場合．%
-    $\Pi_1^{}$ は%
-    \begin{equation}%
-      \infer{%
-        \mathit{e}_1^{}\sqsupset\mathit{e}_1^{}%
-      }{%
-      }%
-    \end{equation}%
-    という形をしている．この場合は$\mathit{e}_1^{}\sqsupset\mathit{e}_3^{}$かつ%
-    $\mathit{e}_3^{}\sqsupset\mathit{e}_3^{}$が存在し，%
-    $length(\vdash\mathit{e}_1^{}\sqsupset\mathit{e}_3^{})\leqq%
-    length(\vdash\mathit{e}_1^{}\sqsupset\mathit{e}_3^{})$,%
-    $length(\vdash\mathit{e}_3^{}\sqsupset\mathit{e}_3^{})\leqq%
-    length(\vdash\mathit{e}_1^{}\sqsupset\mathit{e}_1^{})$なのでよい．%
-  \item $length(\Pi_2^{})=1$ の場合．%
-    $length(\Pi_1^{})=1$ の場合とまったく同様．%
-  \item $length(\Pi_1^{})=2$ の場合．%
-    $\Pi_1^{}$で最後に使われた推論規則が%
-    \begin{equation}%
-      \infer{%
-        \mathit{e}_1^{}\sqsupset\mathit{e}_1^{}%
-      }{%
-      }%
-    \end{equation}%
-    という形をしている場合は$length(\Pi_1^{})=1$だしそうではなく%
-    \begin{equation}%
-      \infer{%
-        \mathit{e}_1^{}\sqsupset\mathit{e}_3^{}%
-      }{%
-        \mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{}%
-      &%
-        \mathit{e}_2^{}\sqsupset\mathit{e}_3^{}%
-      }%
-    \end{equation}%
-    という形をしている場合は$length(\Pi_1^{})\geqq 3$である．%
-    したがって，$length(\Pi_1^{})=2$となるような証明図は存在しないのでよい．%
-  \item $length(\Pi_2^{})=2$ の場合．%
-    $length(\Pi_2^{})=1$ の場合とまったく同様．%
-  \item $length(\Pi_1^{})=k+1$または$length(\Pi_2^{})=l+1$ の場合．%
-    前述の議論からわかるように，証明図の長さは2ずつ増えるのでこういう場合は考えなくてよい．%
-  \item $length(\Pi_1^{})=k+2$,$length(\Pi_2^{})=l+2$ の場合．%
-    $\Pi_1^{}$ は%
-    \begin{equation}%
-      \infer{%
-        \mathit{e}_1^{}\sqsupset\mathit{e}_2^{}%
-      }{%
-        \mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_5^{}%
-      &%
-        \mathit{e}_5^{}\sqsupset\mathit{e}_2^{}%
-      }%
-    \end{equation}%
-    という形をしていて，%
-    $\Pi_2^{}$ は%
-    \begin{equation}%
-      \infer{%
-        \mathit{e}_1^{}\sqsupset\mathit{e}_3^{}%
-      }{%
-        \mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_6^{}%
-      &%
-        \mathit{e}_6^{}\sqsupset\mathit{e}_3^{}%
-      }%
-    \end{equation}%
-    という形をしている．
-    \begin{itemize}%
-    \item $\Pi_3^{}=\vdash\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$%
-    \item $\Pi_4^{}=\vdash\mathit{e}_1^{}\sqsupset\mathit{e}_3^{}$%
-    \item $\Pi_5^{}=\vdash\mathit{e}_2^{}\sqsupset\mathit{e}_4^{}$%
-    \item $\Pi_6^{}=\vdash\mathit{e}_3^{}\sqsupset\mathit{e}_4^{}$%
-    \item $n_1^{}=length(\Pi_3^{})$%
-    \item $n_2^{}=length(\Pi_4^{})$%
-    \item $n_3^{}=length(\Pi_5^{})$%
-    \item $n_4^{}=length(\Pi_6^{})$%
-    \end{itemize}%
-    とする．%
-    帰納法の仮定:%
-    \begin{align}%
-      \forall\mathit{e}_1^{}\forall\mathit{e}_2^{}\forall\mathit{e}_3^{}%
-      n_1^{}\leqq k\rightarrow%
-      n_2^{}\leqq l + 2\rightarrow%
-      \exists\mathit{e}_5^{}%
-      (\Pi_3^{}\rightarrow%
-      \Pi_4^{}\rightarrow%
-      \Pi_5^{}\land%
-      \Pi_6^{}\land%
-      n_3^{}\leqq n_2^{}\land%
-      n_4^{}\leqq n_1^{})\\%
-      \forall\mathit{e}_1^{}\forall\mathit{e}_2^{}\forall\mathit{e}_3^{}%
-      n_1^{}\leqq k + 2\rightarrow%
-      n_2^{}\leqq l\rightarrow%
-      \exists\mathit{e}_5^{}%
-      (\Pi_3^{}\rightarrow%
-      \Pi_4^{}\rightarrow%
-      \Pi_5^{}\land%
-      \Pi_6^{}\land%
-      n_3^{}\leqq n_2^{}\land%
-      n_4^{}\leqq n_1^{})%
-    \end{align}%
-    \lemmaname\ref{lemma:parcr1}により%
-    $\mathit{e}_5^{}\sqsupset_1^{}\mathit{e}_7^{}$かつ%
-    $\mathit{e}_6^{}\sqsupset_1^{}\mathit{e}_7^{}$となるような%
-    $\mathit{e}_7^{}$が存在する．%
-    \lemmaname\ref{lemma:par_reduct1n}により%
-    $\mathit{e}_5^{}\sqsupset\mathit{e}_7^{}$かつ%
-    $\mathit{e}_6^{}\sqsupset\mathit{e}_7^{}$で，%
-    それぞれ証明図の長さは3である．%
-    前提より$\mathit{e}_5^{}\sqsupset\mathit{e}_2^{}$かつ%
-    $\mathit{e}_6^{}\sqsupset\mathit{e}_3^{}$である．%
-    $\mathit{e}_5^{}\sqsupset\mathit{e}_2^{}$かつ%
-    $\mathit{e}_5^{}\sqsupset\mathit{e}_7^{}$かつ%
-    $length(\vdash\mathit{e}_5^{}\sqsupset\mathit{e}_2^{})=k$かつ%
-    $length(\vdash\mathit{e}_5^{}\sqsupset\mathit{e}_7^{})=3$で%
-    $3 \leqq l+2$だから帰納法の仮定により%
-    $\mathit{e}_2^{}\sqsupset\mathit{e}_8^{}$かつ%
-    $\mathit{e}_7^{}\sqsupset\mathit{e}_8^{}$かつ%
-    $length(\vdash\mathit{e}_2^{}\sqsupset\mathit{e}_8^{})\leqq 3$かつ%
-    $length(\vdash\mathit{e}_7^{}\sqsupset\mathit{e}_8^{})\leqq k$となるような%
-    $\mathit{e}_8^{}$が存在する．%
-    $\mathit{e}_6^{}\sqsupset\mathit{e}_7^{}$かつ%
-    $\mathit{e}_7^{}\sqsupset\mathit{e}_8^{}$だから%
-    \lemmaname\ref{lemma:par_reduct_trans}により%
-    $\mathit{e}_6^{}\sqsupset\mathit{e}_8^{}$で，%
-    $length(\vdash\mathit{e}_6^{}\sqsupset\mathit{e}_8^{})\leqq k+2$である．%
-    $\mathit{e}_6^{}\sqsupset\mathit{e}_3^{}$かつ%
-    $\mathit{e}_6^{}\sqsupset\mathit{e}_8^{}$かつ%
-    $length(\vdash\mathit{e}_6^{}\sqsupset\mathit{e}_3^{})=l$かつ%
-    $length(\vdash\mathit{e}_6^{}\sqsupset\mathit{e}_8^{})\leqq k+2$だから帰納法の仮定により%
-    $\mathit{e}_3^{}\sqsupset\mathit{e}_9^{}$かつ%
-    $\mathit{e}_8^{}\sqsupset\mathit{e}_9^{}$かつ%
-    $length(\vdash\mathit{e}_3^{}\sqsupset\mathit{e}_9^{})\leqq k+2$かつ%
-    $length(\vdash\mathit{e}_8^{}\sqsupset\mathit{e}_9^{})\leqq l$となるような%
-    $\mathit{e}_9^{}$が存在する．%
-    $\mathit{e}_2^{}\sqsupset\mathit{e}_8^{}$かつ%
-    $\mathit{e}_8^{}\sqsupset\mathit{e}_9^{}$だから%
-    \lemmaname\ref{lemma:par_reduct_trans}により%
-    $\mathit{e}_2^{}\sqsupset\mathit{e}_9^{}$かつ%
-    $length(\vdash\mathit{e}_2^{}\sqsupset\mathit{e}_9^{})\leqq l+2$．%
-    ゆえに$\mathit{e}_2^{}\sqsupset\mathit{e}_9^{}$かつ%
-    $\mathit{e}_3^{}\sqsupset\mathit{e}_9^{}$かつ%
-    $length(\vdash\mathit{e}_2^{}\sqsupset\mathit{e}_9^{})\leqq l+2$かつ%
-    $length(\vdash\mathit{e}_3^{}\sqsupset\mathit{e}_9^{})\leqq k+2$となるような%
-    $\mathit{e}_9^{}$が存在する．%
-  \end{itemize}%
 \end{proof}%
 \par\lemmaname\ref{lemma:parcr}で%
 複数ステップの並行簡約の合流性を示しました．%
@@ -1495,9 +1348,9 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression
 \end{lemma}%
 \begin{proof}%
   $\mathit{e}_1^{}\triangleright_1^{}\mathit{e}_2^{}$に至る証明図を$\Pi$とし，%
-  $\Pi$の長さに関する帰納法で証明する．%
+  $\Pi$の長さを$n$とし，$n$に関する帰納法で証明する．%
   \begin{itemize}%
-  \item $length(\Pi)=1$ の場合．%
+  \item $n=1$ の場合．%
     $\Pi$で最後に使われた推論規則は%
     \begin{equation}%
       \infer{%
@@ -1518,7 +1371,7 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression
       }%
     \end{equation}%
     となるからよい．%
-  \item $length(\Pi)=k + 1$ の場合．%
+  \item $n=k + 1$ の場合．%
     \begin{itemize}%
     \item$\Pi$で最後に使われた推論規則が%
     \begin{equation}%
@@ -1587,9 +1440,9 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression
 \end{lemma}%
 \begin{proof}
   $\mathit{e}_1^{}\triangleright\mathit{e}_2^{}$に至る証明図を$\Pi$とし，%
-  $\Pi$の長さに関する帰納法で証明する．%
+  $\Pi$の長さを$n$とし，$n$に関する帰納法で証明する．%
   \begin{itemize}%
-  \item $length(\Pi)=1$ の場合．%
+  \item $n=1$ の場合．%
     $\Pi$で最後に使われた推論規則は%
     \begin{equation}%
       \infer{%
@@ -1605,7 +1458,7 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression
       }%
     \end{equation}%
     となるからよい．%
-  \item $length(\Pi)=k + 1$ の場合．%
+  \item $n=k + 1$ の場合．%
     $\Pi$で最後に使われた推論規則は%
     \begin{equation}%
       \infer{%
@@ -1640,9 +1493,9 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression
 \end{lemma}%
 \begin{proof}%
   $\mathit{e}_1^{}\sqsupset_1^{}\mathit{e}_2^{}$に至る証明図を$\Pi$とし，%
-  $\Pi$の長さに関する帰納法で証明する．%
+  $\Pi$の長さを$n$とし，$n$に関する帰納法で証明する．%
   \begin{itemize}%
-  \item $length(\Pi)=1$ の場合．%
+  \item $n=1$ の場合．%
     $\Pi$で最後に使われた推論規則は%
     \begin{equation}%
       \infer{%
@@ -1658,7 +1511,7 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression
       }%
     \end{equation}%
     となるからよい．%
-  \item $length(\Pi)=k + 1$ の場合．%
+  \item $n=k + 1$ の場合．%
     \begin{itemize}%
     \item$\Pi$で最後に使われた推論規則が%
     \begin{equation}%
@@ -1786,9 +1639,9 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression
 \end{lemma}%
 \begin{proof}
   $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$に至る証明図を$\Pi$とし，%
-  $\Pi$の長さに関する帰納法で証明する．%
+  $\Pi$の長さを$n$とし，$n$に関する帰納法で証明する．%
   \begin{itemize}%
-  \item $length(\Pi)=1$ の場合．%
+  \item $n=1$ の場合．%
     $\Pi$で最後に使われた推論規則は%
     \begin{equation}%
       \infer{%
@@ -1804,7 +1657,7 @@ $\mathit{e}_1^{}\sqsupset\mathit{e}_2^{}$を並行簡約の\term{式}{expression
       }%
     \end{equation}%
     となるからよい．%
-  \item $length(\Pi)=k + 1$ の場合．%
+  \item $n=k + 1$ の場合．%
     $\Pi$で最後に使われた推論規則は%
     \begin{equation}%
       \infer{%
