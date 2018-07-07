@@ -15,7 +15,7 @@ created at @@html:<time datetime="2018-05-17">2018-05-17</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-06-15">2018-06-15</time>@@
+updated at @@html:<time datetime="2018-07-07">2018-07-07</time>@@
 #+END_UPDATED_AT
 
 * Characters <<characters>>
@@ -82,6 +82,10 @@ Intelligence Support Activity (ISA)に入局し，
 
 *** 人柄
 
+彼女はギフテッドだという自覚はあったが，けっして他人よりすぐれているとは思っていなかった
+[fn::@@html:<a href="/novel/golden-record.html#9:52">@@黄金録9:52@@html:</a>@@]．
+
+
 #+ATTR_HTML: :class copyright :style width: 218px;
 #+BEGIN_UPRIGHT
 #+ATTR_HTML: :width 218 :height 475 :srcset contrib0000_437x950.png 2x
@@ -90,23 +94,46 @@ Intelligence Support Activity (ISA)に入局し，
 #+END_UPRIGHT
 
 #+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPRIGHT
+#+ATTR_HTML: :srcset teiri0002_600x800.png 2x
+#+CAPTION: バニーを着るテーリ．恥ずかしそうにしているが，まんざらでもないようである．
+[[./teiri0002_300x400.png]]
+#+END_UPRIGHT
+
+どうやらかわいい服を着るのがすきなようでバニーや着物などいろいろ着る．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+#+ATTR_HTML: :style width: 300px;
 #+BEGIN_UPLEFT
 #+ATTR_HTML: :srcset teiri0001_600x800.png 2x
 #+CAPTION: 着物がすきなようで，彼女は合衆国に住んでいるが，毎年元旦やお盆には着物を着るらしい．
 [[./teiri0001_300x400.png]]
 #+END_UPLEFT
 
-彼女はギフテッドだという自覚はあったが，けっして他人よりすぐれているとは思っていなかった
-[fn::@@html:<a href="/novel/golden-record.html#9:52">@@黄金録9:52@@html:</a>@@]．
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPLEFT
+#+ATTR_HTML: :srcset teiri0006_600x800.png 2x
+#+CAPTION: 207x年ころ，日本の七夕でのテーリ．
+[[./teiri0006_300x400.png]]
+#+END_UPLEFT
 
-どうやらかわいい服を着るのがすきなようでバニーや着物などいろいろ着る．
+どうやら彼女は着物や浴衣，日本のお祭りなどがすきなようで，七夕などに日本へ行くこともあるらしい．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
 
 #+ATTR_HTML: :style width: 300px;
 #+BEGIN_UPRIGHT
-#+ATTR_HTML: :srcset teiri0002_600x800.png 2x
-#+CAPTION: バニーを着るテーリ．恥ずかしそうにしているが，まんざらでもないようである．
-[[./teiri0002_300x400.png]]
+#+ATTR_HTML: :srcset teiri0005_600x800.png 2x
+#+CAPTION: プリキュアランジェリーを着るテーリ．
+[[./teiri0005_300x400.png]]
 #+END_UPRIGHT
+
+またプリキュアのファンでもあるらしく，プリキュアランジェリーを着てポーズをとったりする．
 
 #+ATTR_HTML: :style clear: both;
 #+BEGIN_CLEARFIX
@@ -212,6 +239,13 @@ NASA に入局してからはふたたびエミリー・リバーズと名乗る
 
 *** 人柄
 
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPLEFT
+#+ATTR_HTML: :srcset emma0001_600x800.png 2x
+#+CAPTION: 207x年ころ，日本の七夕でのエマ．
+[[./emma0001_300x400.png]]
+#+END_UPLEFT
+
 エマの夢は異星人を発見することだった
 [fn::@@html:<a href="/novel/golden-record.html#1:5">@@黄金録1:5@@html:</a>@@]．しかし，
 一方で異星人が存在することを支持しつつ，発見することはきわめて難しいと考える現実主義者でもあった
@@ -249,6 +283,10 @@ NASA に入局してからはふたたびエミリー・リバーズと名乗る
 
 古風な木造のバーをおしゃれと感じるようだ
 [fn::@@html:<a href="/novel/golden-record.html#7:7">@@黄金録7:7@@html:</a>@@]．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
 
 *** 能力
 
@@ -347,6 +385,13 @@ CUIには苦手意識があるようだ
 
 *** 人柄
 
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPLEFT
+#+ATTR_HTML: :srcset verity0001_600x800.png 2x
+#+CAPTION: 207x年ころ，日本の七夕でのヴェリティ．
+[[./verity0001_300x400.png]]
+#+END_UPLEFT
+
 彼女は現実主義者の拝金主義者で，
 その主義に即しない夢は軽く見る傾向があった
 [fn::@@html:<a href="/novel/golden-record.html#1:29">@@黄金録1:29@@html:</a>@@]．
@@ -360,6 +405,10 @@ CUIには苦手意識があるようだ
 [fn::@@html:<a href="/novel/golden-record.html#3:89">@@黄金録3:89@@html:</a>@@]．
 しかしながらその好意を表現することはへたなようで，しばしば誤解をまねいた
 [fn::@@html:<a href="/novel/golden-record.html#3:78">@@黄金録3:78@@html:</a>@@]．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
 
 *** 能力
 
@@ -393,7 +442,18 @@ CUIには苦手意識があるようだ
 :CUSTOM_ID: disa
 :END:
 
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPLEFT
+#+ATTR_HTML: :srcset disa0000_600x800.png 2x
+#+CAPTION: 207x年ころ，日本の七夕でのディーサ．
+[[./disa0000_300x400.png]]
+#+END_UPLEFT
+
 *ディーサ・ヨーヌドフテル* (/Dísa Jónudóttir/)は， 21世紀の工学者である．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
 
 *** 人柄
 
@@ -928,6 +988,23 @@ Voyager のゴールデンレコードを調査した．
 鳥人たちの文明は人類が滅びてより遠い未来に誕生したが， かれらは地質学や考古学の見地から遠い昔，
 すくなくとも太陽系を制覇するほど栄えていた文明が存在したことを突きとめた．
 そのためその文明， すなわち人類のことを大文明と呼んだのである．
+
+* History <<history>>
+
+** 207x年の七夕
+
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPRIGHT
+#+ATTR_HTML: :srcset event0000_640x480.png 2x
+#+CAPTION: 日本の七夕祭りを楽しむ4人．
+[[./event0000_320x480.png]]
+#+END_UPRIGHT
+
+207x年，[[teiri][テーリ]]，[[emily][エマ]]，[[verity][ヴェリティ]]，[[disa][ディーサ]]の4人は日本の七夕祭りを楽しんだ．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
 
 * Chronology <<chronology>>
 

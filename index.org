@@ -25,6 +25,7 @@ updated at @@html:<time datetime="2018-07-07">2018-07-07</time>@@
 
 ** 2018-06
 
+- 2018-07-07: Updated @@html:<a href="/worldview">worldview</a>@@.
 - 2018-06-30: Created [[./blog/2018-06.org][2018-02 から 2018-6 の進捗まとめ]] in  @@html:<a href="/blog">blog</a>@@.
 - 2018-06-23: Created [[./blog/modeling-first-impression.org][モデリングをしてみた]] in  @@html:<a href="/blog">blog</a>@@.
 - 2018-06-16: Created [[./blog/naming.org][ディーサの名前，あるいはネーミングの難しさについて]] in @@html:<a href="/blog">blog</a>@@.
