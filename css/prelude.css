@@ -162,9 +162,11 @@ body > div#content > div.outline-2 > div.outline-3 > div.outline-4 > h4 {
 body > div#content > ul,
 body > div#content > div.outline-2 > div.outline-text-2 > ul,
 body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > ul,
+body > div#content > div.outline-2 > div.outline-3 > div.outline-4 > div.outline-text-4 > ul,
 body > div#content > ol,
 body > div#content > div.outline-2 > div.outline-text-2 > ol,
-body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > ol {
+body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > ol,
+body > div#content > div.outline-2 > div.outline-3 > div.outline-4 > div.outline-text-4 > ol {
     font-family: "Georgia", "Yu Gothic", "YuGothic";
     color: #404040;
 }

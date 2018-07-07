@@ -10,6 +10,7 @@
 - @@html:<a href="/Data">Data</a>@@
 - @@html:<a href="/worldview">worldview</a>@@
 - @@html:<a href="/novel">novel</a>@@
+- @@html:<a href="/log">log</a>@@
 #+END_INDEX
 
 #+BEGIN_CREATED_AT
@@ -17,7 +18,7 @@ created at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-06-30">2018-06-30</time>@@
+updated at @@html:<time datetime="2018-07-07">2018-07-07</time>@@
 #+END_UPDATED_AT
 
 * News

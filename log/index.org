@@ -1,0 +1,39 @@
+#+SETUPFILE: ../setup.org
+#+TITLE: bydriv.github.io/log
+
+#+BEGIN_LOCATION
+@@html:https://<a href="/">bydriv.github.io</a>/<strong>log</strong>/@@
+#+END_LOCATION
+
+#+BEGIN_CREATED_AT
+created at @@html:<time datetime="2018-07-07">2018-07-07</time>@@
+#+END_CREATED_AT
+
+#+BEGIN_UPDATED_AT
+updated at @@html:<time datetime="2018-07-07">2018-07-07</time>@@
+#+END_UPDATED_AT
+
+* Queue [2/2]
+
+- [X] シャンティで遊ぶ (2018-07-01 .. 2018-07-02; Enqueued at 2018-07-01; Dequeued at 2018-07-02)
+- [X] 七夕絵を描く (2018-07-02 .. 2018-07-06; Enqueued at 2018-07-02; Dequeued at 2018-07-06)
+
+* 2018
+
+** 2018-07
+
+*** 2018-07-01 .. 2018-07-02
+
+- シャンティで遊んだ．
+
+*** 2018-07-02 .. 2018-07-06
+
+- 七夕絵を描いた．
+
+*** 2018-07-07 .. 2018-07-07
+
+- 休養．
+
+* License
+
+GPLv3.
