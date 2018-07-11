@@ -993,7 +993,7 @@ Voyager のゴールデンレコードを調査した．
 
 ** 207x年の七夕
 
-#+ATTR_HTML: :style width: 300px;
+#+ATTR_HTML: :style width: 320px;
 #+BEGIN_UPRIGHT
 #+ATTR_HTML: :srcset event0000_640x480.png 2x
 #+CAPTION: 日本の七夕祭りを楽しむ4人．
