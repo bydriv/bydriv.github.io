@@ -35,9 +35,11 @@ updated at @@html:<time datetime="2018-07-07">2018-07-07</time>@@
 [[./teiri0000_240x600.png]]
 #+END_UPLEFT
 
-#+ATTR_HTML: :style width: 320px;
+#+ATTR_HTML: :style width: 300px;
 #+BEGIN_UPRIGHT
-#+HTML: <canvas class="teiri"></canvas>
+#+ATTR_HTML: :srcset teiri0007_600x800.png 2x
+#+CAPTION: [[just-a-board][ジャスト・ア・ボード]]に乗るテーリ．
+[[./teiri0007_300x400.png]]
 #+END_UPRIGHT
 
 *ミナガワ・テーリ* (/水無川定理/; /MINAGAWA, Teiri/; /Theo/)は，
@@ -163,6 +165,11 @@ Intelligence Support Activity (ISA)に入局し，
 #+END_CLEARFIX
 
 *** ISA局員時代
+
+#+ATTR_HTML: :style width: 320px;
+#+BEGIN_UPLEFT
+#+HTML: <canvas class="teiri"></canvas>
+#+END_UPLEFT
 
 #+ATTR_HTML: :class copyright :style width: 300px;
 #+BEGIN_UPRIGHT
@@ -619,6 +626,27 @@ CUIには苦手意識があるようだ
 
 人類ではない，謎の鳥人．
 Voyager のゴールデンレコードを調査した．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+* Gadgets <<gadgets>>
+
+** Just A Board <<just-a-board>>
+:PROPERTIES:
+:CUSTOM_ID: just-a-board
+:END:
+
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPRIGHT
+#+ATTR_HTML: :srcset teiri0007_600x800.png 2x
+#+CAPTION: [[just-a-board][ジャスト・ア・ボード]]に乗るテーリ．
+[[./teiri0007_300x400.png]]
+#+END_UPRIGHT
+
+*ジャスト・ア・ボード* (/Just A Board/)は，
+[[teiri][テーリ]]のスケートボード．
 
 #+ATTR_HTML: :style clear: both;
 #+BEGIN_CLEARFIX
