@@ -10,7 +10,7 @@ created at @@html:<time datetime="2018-07-07">2018-07-07</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-07-18">2018-07-18</time>@@
+updated at @@html:<time datetime="2018-07-19">2018-07-19</time>@@
 #+END_UPDATED_AT
 
 * Queue [3/3]
@@ -51,6 +51,11 @@ updated at @@html:<time datetime="2018-07-18">2018-07-18</time>@@
   計算量の本を書こうとしたり， MHC 本を書こうとしたり．
   ランク2型本書こうとしたり，型推論本書こうとしたり，
   結局，どれもうまくいかなかった．
+
+*** 2018-07-18 .. 2018-07-19
+
+- ラムダ計算実装本の原稿がひとまずできた。あとで推敲はする。
+- 典に応募した。
 
 * License
 
