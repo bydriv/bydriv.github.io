@@ -77,6 +77,7 @@ body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > div.ce
     color: #404040;
 }
 
+body > div#content > table,
 body > div#content > div.outline-2 > div.outline-text-2 > table,
 body > div#content > div.outline-2 > div.outline-3 > div.outline-text-3 > table,
 body > div#content > div.outline-2 > div.outline-3 > div.outline-4 > div.outline-text-4 > table {

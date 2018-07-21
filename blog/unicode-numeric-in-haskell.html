@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Haskell における Unicode 数値について</title>
+<!-- 2018-07-22 Sun 02:53 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/css/prelude.css" />
+<link rel="stylesheet" type="text/css" href="/css/highlight.css" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">Haskell における Unicode 数値について</h1>
+<div class="location">
+<p>
+https://<a href="/">bydriv.github.io</a>/<a href="/blog">blog</a>/<strong>unicode-numeric-in-haskell.html</strong>
+</p>
+
+</div>
+
+<div class="created_at">
+<p>
+created at <time datetime="2018-07-22">2018-07-22</time>
+</p>
+
+</div>
+
+<div class="updated_at">
+<p>
+updated at <time datetime="2018-07-22">2018-07-22</time>
+</p>
+
+</div>
+
+<p>
+なんか数日まえ， C言語では全角数字が識別子に使える，みたいな話が Twitter の TL に流れていた．
+わたしは以前から Haskell 2010 を読んで Haskell の数値には Unicode で数字として定義されているもの
+(GeneralCategory で Nd, Number, Decimal Digit と呼ばれるもの) ならば使えるという
+ことを知っていたので， Haskell なら全角数字も数値扱いになるよ，みたいなネタを言おうとして，
+GHC で試してみた．しかし，うまくいかない．
+</p>
+
+<pre class="example">
+$ ghci
+Prelude&gt; ４２
+
+&lt;interactive&gt;:1:1: error: lexical error at character '\65300'
+</pre>
+
+<p>
+あるぇ？　全角数字って Unicode でも数字扱いじゃなかったっけ？
+と思ったら，やっぱり数字を意味する Nd に分類されているし， Numeric_Value プロパティも定義されているではないか．
+これはおかしい． Haskell の仕様では，全角数字で ４２ と書いても数字扱いされなければならない．
+わたしの Haskell の仕様の理解がおかしいのか？　と思ってもう一度読んでみたところ，
+やはり Unicode の数字も使えるように定義されいてるではないか．
+(参照: <a href="https://www.haskell.org/onlinereport/haskell2010/haskellch2.html#x7-140002">https://www.haskell.org/onlinereport/haskell2010/haskellch2.html#x7-140002</a>)
+引用すると， Haskell の仕様的には
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="left">
+
+<col  class="left">
+
+<col  class="left">
+</colgroup>
+<tbody>
+<tr>
+<td class="left"><i>ascDigit</i></td>
+<td class="left">→</td>
+<td class="left"><code>1</code></td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left"><code>2</code></td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">:</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left"><code>9</code></td>
+</tr>
+
+<tr>
+<td class="left"><i>uniDigit</i></td>
+<td class="left">→</td>
+<td class="left">any Unicode decimal digit</td>
+</tr>
+
+<tr>
+<td class="left"><i>digit</i></td>
+<td class="left">→</td>
+<td class="left"><i>ascDigit</i></td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left"><i>uniDigit</i></td>
+</tr>
+
+<tr>
+<td class="left"><i>integer</i></td>
+<td class="left">→</td>
+<td class="left"><i>digit</i> { <i>digit</i> }</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+となっている．やはり，数値にも全角数字などが使えるはずである．
+なお， { <i>digit</i> } は <i>digit</i> の 0 回以上の繰り返しである．
+</p>
+
+<p>
+いや，そもそもエラーメッセージがおかしい．どうやら，字句解析時に弾かれているようだ．
+ということは識別子ですらないということになる． もし識別子ならば，
+Variable not in scope: 1 のようなエラーメッセージが出力されなければならない．
+では，どういう状況で １ は使えるのだろうか．まさかとは思って，試してみた．
+</p>
+
+<pre class="example">
+Prelude&gt; １９８４年
+
+&lt;interactive&gt;:2:1: error: lexical error at character '\65297'
+Prelude&gt; 宇宙世紀００７９
+
+&lt;interactive&gt;:3:1: error: Variable not in scope: 宇宙世紀００７９
+Prelude&gt; 銀河鉄道９９９
+
+&lt;interactive&gt;:4:1: error: Variable not in scope: 銀河鉄道９９９
+</pre>
+
+<p>
+フーム，なるほど． １９８４年はダメで， 宇宙世紀００７９や銀河鉄道９９９は問題なし．
+オーケー，つまり通常の識別子に出現する数字と同様に， 全角数字は識別子の先頭にくることができない，
+</p>
+
+<p>
+ふむふむ．と，いうことは全角数字は，識別子においてはアルファベットや記号とは区別され，半角数字と同様に扱われるものの，
+全角数字を数字に使うことはできない．
+</p>
+
+<p>
+と思って GHC の実装を読んでみた． どうやら問題は，
+つぎの行である: 
+</p>
+
+<p>
+<a href="https://github.com/ghc/ghc/blob/b202e7a48401bd8e805a92dcfe5ea059cbd8e41c/compiler/parser/Lexer.x#L139-L142">https://github.com/ghc/ghc/blob/b202e7a48401bd8e805a92dcfe5ea059cbd8e41c/compiler/parser/Lexer.x#L139-L142</a>
+</p>
+
+<p>
+引用すると
+</p>
+
+<pre class="example">
+$ascdigit  = 0-9
+$unidigit  = \x03 -- Trick Alex into handling Unicode. See [Unicode in Alex].
+$decdigit  = $ascdigit -- for now, should really be $digit (ToDo)
+$digit     = [$ascdigit $unidigit]
+</pre>
+
+<p>
+となっていて，本来 <code>$digit</code> を使わなければならない箇所で， <code>$decdigit</code> を使っているのだ．
+どうやら <code>$digit</code> は ４２ のような全角数字も含め Unicode で数字と定義されているものはすべて使える．
+しかしながら，数値の字句解析には <code>$digit</code> ではなくて <code>$decdigit</code> を使っている．
+</p>
+
+<p>
+(ToDo) と書かれていることからも， Haskell の仕様では ４２ が数値に使えることはまちがいなくて，
+これは GHC のバグ，ではないかもしれないが，すくなくとも未実装の仕様だろう．
+</p>
+
+<p>
+そのうちバグレポしたい．
+あと，気力があればなんとかパッチを書いてみたい，と思いました．
+</p>
+
+<p>
+ちなみに，実装するには UnicodeData.txt の Numeric_Value プロパティを見ればいい．
+(４２ を 42 に変換するため）．
+</p>
+
+<p>
+おまけ．つぎの Haskell コードは（仕様的には）合法である．
+しかしながら， GHC では未実装の仕様のため，コンパイルすることはできない．
+</p>
+
+<pre class="example">
+type The_Answer_to_the_Ultimate_Question_of_Life_the_Universe_and_Everything = Int
+answer :: The_Answer_to_the_Ultimate_Question_of_Life_the_Universe_and_Everything
+answer = 𝟜𝟚
+</pre>
+</div>
+</body>
+</html>
