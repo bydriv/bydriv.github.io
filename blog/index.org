@@ -10,7 +10,7 @@ created at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-07-22">2018-07-22</time>@@
+updated at @@html:<time datetime="2018-07-27">2018-07-27</time>@@
 #+END_UPDATED_AT
 
 * Index
@@ -32,6 +32,7 @@ updated at @@html:<time datetime="2018-07-22">2018-07-22</time>@@
 - [[./modeling-first-impression.org][モデリングをしてみた]]
 - [[./2018-06.org][2018-02 から 2018-6 の進捗まとめ]]
 - [[./unicode-numeric-in-haskell.org][Haskell における Unicode 数値について]]
+- [[./lamb.org][ラムダ計算のコンパイラをつくってみた]]
 
 * License
 

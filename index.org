@@ -18,13 +18,14 @@ created at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-07-22">2018-07-22</time>@@
+updated at @@html:<time datetime="2018-07-27">2018-07-27</time>@@
 #+END_UPDATED_AT
 
 * News
 
 ** 2018-07
 
+- 2018-07-27: Created [[./blog/lamb.org][ラムダ計算のコンパイラをつくってみた]] in @@html:<a href="/blog">blog</a>@@.
 - 2018-07-22: Created [[./blog/unicode-numeric-in-haskell.org][Haskell における Unicode 数値について]] in @@html:<a href="/blog">blog</a>@@.
 - 2018-07-07: Updated @@html:<a href="/worldview">worldview</a>@@.
 
