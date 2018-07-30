@@ -10,7 +10,7 @@ created at @@html:<time datetime="2018-07-07">2018-07-07</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-07-27">2018-07-27</time>@@
+updated at @@html:<time datetime="2018-07-30">2018-07-30</time>@@
 #+END_UPDATED_AT
 
 * Queue [3/3]
@@ -75,6 +75,12 @@ updated at @@html:<time datetime="2018-07-27">2018-07-27</time>@@
 
 - 実装の続き
 - 2018-07-27: パーサができた
+
+*** 2018-07-28 .. 2018-07-30
+
+- 実装の続き
+- エラーメッセージの改善など、細かいこと
+- くわしくはコミットログを読んで
 
 * License
 
