@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>単純型つきラムダ計算でチャーチエンコーディングする件の話をしましょうか</title>
+<!-- 2018-08-01 Wed 06:41 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/css/prelude.css" />
+<link rel="stylesheet" type="text/css" href="/css/highlight.css" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">単純型つきラムダ計算でチャーチエンコーディングする件の話をしましょうか</h1>
+<div class="location">
+<p>
+https://<a href="/">bydriv.github.io</a>/<a href="/blog">blog</a>/<strong>typed-church-encoding.html</strong>
+</p>
+
+</div>
+
+<div class="created_at">
+<p>
+created at <time datetime="2018-08-01">2018-08-01</time>
+</p>
+
+</div>
+
+<div class="updated_at">
+<p>
+updated at <time datetime="2018-08-01">2018-08-01</time>
+</p>
+
+</div>
+
+<p>
+チャーチエンコーディングというものがある．
+ラムダ計算で数値だとかそういうものをラムダ項で表そうというものである．
+厳密にはチャーチエンコーディングのほかにスコットエンコーディングというものもあるが本筋ではないので割愛する．
+</p>
+
+<p>
+現在， <a href="https://github.com/wejournal/lamb">Lamb</a> という処理系を開発している．
+これは単純型つきラムダ計算を冠頭多相という(let多相とも呼ばれる)簡単な多相性で拡張した体系の処理系である．
+もとも <b>型なし</b> ラムダ計算および <b>System F</b> では，
+チャーチエンコーディングをすることで bool や nat というデータ型を表せることは知っていたのだが，
+<b>単純型つき</b> ラムダ計算ではどうなのか，ということは知らなかった．
+それでいろいろ試行錯誤したことをメモしておく．
+</p>
+
+<p>
+ラムダ計算(Lambda Calculus)はもともとハット計算(Hat Calculus)と呼ばれていたらしい
+(参考: The Letter Before Lambda is Hat: A Reconstruction of Church's Hat Calculus)．
+ASCII にはラムダという記号がなく，
+プログラム言語のふつうは ASCII の範囲内の文字で設計されるため，
+Lamb ではラムダを表す文字として <code>^</code> を採用している．
+そこでこの記事では， ラムダの代わりに <code>^</code> という記号をもちいることにする．
+</p>
+
+<p>
+まず， 型なしラムダ計算では bool はつぎのように表せる．
+</p>
+
+<pre class="example">
+true := ^x. ^y. x
+false := ^x. ^y. y
+</pre>
+
+<p>
+必要な演算は簡単に定義できる．
+</p>
+
+<pre class="example">
+not := ^p. p false true
+and := ^p. ^q. p q false
+or := ^p. ^q. p true q
+</pre>
+
+<p>
+つぎにこれらの型を考えてみる．
+単純型つきラムダ計算なので，多相性はない．そこで <code>A</code> という単相の型を固定しておいて，
+<code>B := A -&gt; A -&gt; A</code> と定義して <code>B</code> を bool を表す型と考えることにする．
+すると <code>true</code> と <code>false</code> は，つぎのような型になる．
+</p>
+
+<pre class="example">
+true : B
+false : B
+</pre>
+
+<p>
+演算の型はつぎのとおり．
+</p>
+
+<pre class="example">
+not : (B -&gt; B -&gt; B) -&gt; B
+and : (B -&gt; B -&gt; B) -&gt; B -&gt; B
+or : (B -&gt; B -&gt; B) -&gt; B -&gt; B
+</pre>
+
+<p>
+おや？　なにかがおかしい．
+ふつうに考えれば，それぞれの演算は次のような型にならなければならない．
+</p>
+
+<pre class="example">
+not : B -&gt; B
+and : B -&gt; B -&gt; B
+or : B -&gt; B -&gt; B
+</pre>
+
+<p>
+なにがいけなかったのだろうか．
+問題は， <code>not</code>, <code>and</code>, <code>or</code> の定義にある．
+項に型をつけてみよう．
+</p>
+
+<pre class="example">
+not := ^p : B -&gt; B -&gt; B. p false true
+and := ^p : B -&gt; B -&gt; B. ^q : B. p q false
+or := ^p : B -&gt; B -&gt; B. ^q : B. p true q
+</pre>
+
+<p>
+<code>true</code> がすでに <code>true : B</code> なのだから， <code>p true q</code> のように渡せば当然， <code>p : B -&gt; B -&gt; B</code>
+となる．
+</p>
+
+<p>
+<code>p : B</code> となってほしいわけだから， <code>B = A -&gt; A -&gt; A</code> であることを思いだせば，
+<code>p</code> に渡せるのは <code>A</code> のみであって， <code>B</code> が渡せないことがわかるだろう．
+</p>
+
+<p>
+そもそもチャーチエンコーディングを型つけするには Rank 2 Types が必要なのかもしれない，
+と思って若干諦め気味だったのだが，ググったらけっこう簡単に解決できるようだった．
+</p>
+
+<p>
+<a href="https://cstheory.stackexchange.com/questions/10085/can-boolean-algebra-be-expressed-in-simply-typed-lambda-caclulus">https://cstheory.stackexchange.com/questions/10085/can-boolean-algebra-be-expressed-in-simply-typed-lambda-caclulus</a>
+</p>
+
+<p>
+のコメントにあるのだが，つぎのようにすればよいようである．
+</p>
+
+<pre class="example">
+not := ^p. ^x. ^y. p y x
+and := ^p. ^p. ^x. ^y. p (q x y) y
+or := ^p. ^q. ^x. ^y. p x (q x y)
+</pre>
+
+<p>
+ははあ， なるほど．
+うまいこと考えはりますなぁ．
+</p>
+
+<p>
+こうすれば見事型がつぎのようになって，万事解決というわけである．
+</p>
+
+<pre class="example">
+not : B -&gt; B
+and : B -&gt; B -&gt; B
+or : B -&gt; B -&gt; B
+</pre>
+
+<p>
+どうやらこの方法はリストや自然数などにも応用が利きそうである．
+正直途中で単純型つきラムダ計算でチャーチエンコーディングするのは無理なんじゃないかと思い始めていたので，
+よかったよかった．
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">件の話</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+10年ほどまえ，クダンの話をしましょうかというラノベを読んでいた．
+それ以来，わたしのなかで件(クダン)といえばこのラノベに登場する少女であった．
+件という漢字を書くたびに彼女のことを思いだすのである．
+この記事のタイトルは，最初～する件についてとしようとしていたのだが，
+～する件まで書いたとき，ふと彼女のことを思いだしてしまって，タイトルを変えた．
+</p>
+
+<p>
+最近，過去を追いかけることが多くなった．
+もう手に入らないのにもかかわらず．
+それで青春時代に見たもの読んだものを何度も見て読んでしまう．
+この記事とは関係ないことだが，個人の日記レベルの記事なので書いておく．
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>
