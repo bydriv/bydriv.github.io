@@ -27,7 +27,7 @@ updated at @@html:<time datetime="2018-08-01">2018-08-01</time>@@
 ラムダ計算(Lambda Calculus)はもともとハット計算(Hat Calculus)と呼ばれていたらしい
 (参考: The Letter Before Lambda is Hat: A Reconstruction of Church's Hat Calculus)．
 ASCII にはラムダという記号がなく，
-プログラム言語のふつうは ASCII の範囲内の文字で設計されるため，
+プログラム言語の構文はふつう ASCII の範囲内の文字で設計されるため，
 Lamb ではラムダを表す文字として ~^~ を採用している．
 そこでこの記事では， ラムダの代わりに ~^~ という記号をもちいることにする．
 
