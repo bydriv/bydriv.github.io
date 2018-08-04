@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2018-7 の進捗まとめ</title>
+<!-- 2018-08-04 Sat 22:13 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/css/prelude.css" />
+<link rel="stylesheet" type="text/css" href="/css/highlight.css" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">2018-7 の進捗まとめ</h1>
+<div class="location">
+<p>
+https://<a href="/">bydriv.github.io</a>/<a href="/blog">blog</a>/<strong>2018-07.html</strong>
+</p>
+
+</div>
+
+<div class="created_at">
+<p>
+created at <time datetime="2018-08-04">2018-08-04</time>
+</p>
+
+</div>
+
+<div class="updated_at">
+<p>
+updated at <time datetime="2018-08-04">2018-08-04</time>
+</p>
+
+</div>
+
+<p>
+<a href="./2018-06.html">2018-02 から 2018-6 の進捗まとめ</a> の続き．
+</p>
+
+<p>
+最近は <a href="./../log/index.html">bydriv.github.io/log</a> にやったことをこまめに書いているので，
+なにをやったか思いかえしやすい．
+</p>
+
+<p>
+こういうふうになにをやったか書いておくのは，
+あとあとあのときなにをやっていたのか思いだすために便利だと思った．
+泳ぎ続けなければならないマグロのように，
+常になにかをしていなければいけないというような焦りを感じるのだけど，
+その根本的な原因は，過去の自分を肯定できないことにある気がする．
+過去の自分を肯定できれば，現在すこしくらい怠けてもいいと思うのだけど，
+そうできないから，現在の自分がなにかをしなければならないと思う．
+ともかく，そのときにやっていたことをちゃんと記録しておくと，
+なんだ，わたしってけっこういろいろすごいことやってるじゃん，
+というふうに，自己肯定感をもちやすくなる気がする．
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">2018-07-01 .. 2018-07-18</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+七夕絵を描いたり，スニーカーサンダル絵を描いたりしていた．
+あとゲームもやったり．うん． まあそんな感じ．
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">2018-07-18 .. 2018-08-04</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+7月分の進捗まとめだけど8月4日に書いているので，
+8月4日までのことも含めて書いておく．
+</p>
+
+<p>
+この時期は技術書典に応募するためにラムダ計算実装本を書く，
+……ために Lamb という処理系を書いていた．
+</p>
+
+<p>
+で，まだ 3週間も経っていないけどかなりいろいろな機能をもつにいたった．
+</p>
+
+<p>
+できたこと:
+</p>
+
+<ul class="org-ul">
+<li>x64 コード生成
+</li>
+<li>Mark &amp; Sweep GC
+</li>
+<li>Krivine Machine
+</li>
+<li>遅延評価 (call-by-name)
+</li>
+<li>型推論
+</li>
+<li>let 多相
+</li>
+<li>クロスコンパイル
+</li>
+<li>分割コンパイル
+</li>
+<li>FFI
+</li>
+</ul>
+
+<p>
+という感じで，まあまあふつうのコンパイラに必要な機能はだいたい揃った気がする．
+</p>
+
+<p>
+Lamb はもともと， ラムダ計算実装本のサンプルコードとして実装を始めた．
+なので最初は簡単なインタプリタ実装にするつもりだった．
+ただいざ実装を始めると筆がのってしまったというかなんというか，
+実装が楽しくて，けっこういろいろやってしまった．
+</p>
+
+<p>
+それでも言語仕様はコンパクトなので，
+実装も本のサンプルコードに載せられるくらいコンパクトなものになっている．
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">おまけ: Lamb について</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+言語仕様としては，ほとんど単なる単純型つきラムダ計算である．
+式も変数，適用，抽象， let しかない．
+単純型つきラムダ計算には let はないが，
+<code>let x := M in N</code> を <code>(^x.N)M</code> の略記にしてしまうと，
+<code>x</code> が多相になれるかなれないかという違いがあるので，
+いわば単純型つきラムダ計算を let 多相で拡張した体系ということになる．
+式とはべつに宣言という概念もあり，
+これは <code>type</code>, <code>val</code>, <code>def</code> のみっつがある．
+これははつぎのような <code>C(decls)</code>
+という変換を考えれば式だけで同等な表現が可能になるので，
+本質的な拡張ではない．
+</p>
+
+<pre class="example">
+C(nil) := main
+C(type t :: decls) := (^_ : t -&gt; t. C(decls))(^x.x)
+C(val x : T :: decls) := let x : T := y in C(decls)
+C(def x [: T] := e :: decls) := let x [: T] := e in C(decls)
+</pre>
+
+<p>
+ただし <code>val</code> 宣言の変換における <code>y</code> は処理系が自動生成する外部変数への参照とし，
+任意の型をもつものとする．
+(この外部変数への参照は，単にプログラム全体のどこでも定義されていない自由変数が出現したときに
+そういう扱いにすればよいので，式を拡張する必要はない．
+しかし実際にそういうふうに実装してしまうと，ただ単に typo しただけでも
+外部変数への参照になってしまうので，基本的に不便であると考えられるため，
+こういう実装になっている．)
+</p>
+
+<p>
+それほどコンパクトな言語仕様にもかかわらず，
+FFI があるのでそれなりに現実的なプログラムも書けるようになっている．
+</p>
+
+<p>
+ところで， FFI はいわば仮定を追加する機能である． FFI という言語機能がある場合，
+健全性や無矛盾性をどう保つかということについて以前いろいろ考えていたのだが，
+健全性や無矛盾性は FFI がまったくない場合，
+あるいは，あるとしてもそれらが健全かつ無矛盾である場合にいえればよい， という結論に至った．
+数理論理学でいくつかの仮定をすればある体系である定理が証明可能なことを
+α<sub>1</sub>,…,α<sub>n</sub> ⊢β
+のように書くが， この
+α<sub>i</sub>
+という部分を追加するのが FFI であり，
+Lamb でいうところの <code>val</code> 宣言である．
+もし Lamb をひとつの形式体系と考えて，
+無矛盾性や完全性などの証明をするならば，
+<code>val x : T</code>
+と宣言された部分は，もし <code>T</code> の真理値が ⊤ ならば
+プログラム全体の真理値も ⊤ である，
+というふうにすればよい．
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

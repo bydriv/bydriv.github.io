@@ -18,13 +18,14 @@ created at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-08-01">2018-08-01</time>@@
+updated at @@html:<time datetime="2018-08-04">2018-08-04</time>@@
 #+END_UPDATED_AT
 
 * News
 
 ** 2018-08
 
+- 2018-08-04: Created [[./blog/2018-07.org][2018-7 の進捗まとめ]] in  @@html:<a href="/blog">blog</a>@@.
 - 2018-08-01: Created [[./blog/typed-church-encoding.org][単純型つきラムダ計算でチャーチエンコーディングする件の話をしましょうか]] in @@html:<a href="/blog">blog</a>@@.
 
 ** 2018-07
