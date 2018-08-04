@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>2018-7 の進捗まとめ</title>
-<!-- 2018-08-04 Sat 22:13 -->
+<!-- 2018-08-04 Sat 23:43 -->
 <meta  charset="utf-8">
 <meta  name="generator" content="Org-mode">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -145,14 +145,15 @@ Lamb はもともと， ラムダ計算実装本のサンプルコードとし�
 <pre class="example">
 C(nil) := main
 C(type t :: decls) := (^_ : t -&gt; t. C(decls))(^x.x)
-C(val x : T :: decls) := let x : T := y in C(decls)
-C(def x [: T] := e :: decls) := let x [: T] := e in C(decls)
+C(val x : T :: decls) := let x1 : T := y1 in .. let xn : T := yn in D(x, n, C(decls))
+C(def x [: T] := M :: decls) := let x [: T] := M in C(decls)
 </pre>
 
 <p>
-ただし <code>val</code> 宣言の変換における <code>y</code> は処理系が自動生成する外部変数への参照とし，
-任意の型をもつものとする．
-(この外部変数への参照は，単にプログラム全体のどこでも定義されていない自由変数が出現したときに
+ただし <code>val</code> 宣言の変換における <code>y1, .., yn</code> は処理系が自動生成する外部変数への参照とし，
+<code>D(x, n, M)</code> は <code>M</code> のなかに <code>x</code> が <code>n</code> 個出現する場合，
+それらを <code>x1, .., xn</code> というユニークな識別子に置きかえる変換とする．
+(<code>y1, .., yn</code> という外部変数への参照は，単にプログラム全体のどこでも定義されていない自由変数が出現したときに
 そういう扱いにすればよいので，式を拡張する必要はない．
 しかし実際にそういうふうに実装してしまうと，ただ単に typo しただけでも
 外部変数への参照になってしまうので，基本的に不便であると考えられるため，
