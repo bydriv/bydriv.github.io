@@ -10,14 +10,15 @@ created at @@html:<time datetime="2018-07-07">2018-07-07</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-07-30">2018-07-30</time>@@
+updated at @@html:<time datetime="2018-08-04">2018-08-04</time>@@
 #+END_UPDATED_AT
 
-* Queue [3/3]
+* Queue [4/4]
 
 - [X] シャンティで遊ぶ (2018-07-01 .. 2018-07-02; Enqueued at 2018-07-01; Dequeued at 2018-07-02)
 - [X] 七夕絵を描く (2018-07-02 .. 2018-07-06; Enqueued at 2018-07-02; Dequeued at 2018-07-06)
 - [X] スニーカーサンダル絵を描く (2018-07-08 .. 2018-07-11; Enqueued at 2018-07-07; Dequeued at 2018-07-11)
+- [X] Lamb の実装 (2018-07-18 .. 2018-08-04; Enqueued at 2018-07-18; Dequeued at 2018-08-04)
 
 * 2018
 
@@ -81,6 +82,18 @@ updated at @@html:<time datetime="2018-07-30">2018-07-30</time>@@
 - 実装の続き
 - エラーメッセージの改善など、細かいこと
 - くわしくはコミットログを読んで
+
+*** 2018-07-31 .. 2018-07-31
+
+- GC のデバッグなど
+
+** 2018-08
+
+*** 2018-08-01 .. 2018-08-04
+
+- 実装の続き
+- bin8 などの実装
+- 2018-08-03: FFI, 分割コンパイルの実装
 
 * License
 
