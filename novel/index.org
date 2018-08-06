@@ -23,6 +23,7 @@ updated at @@html:<time datetime="2018-08-06">2018-08-06</time>@@
 - [[./past.org][過去/Past]]
 - [[./absurd.org][不合理/Absurd]]
 - [[./breath.org][呼吸/Breath]]
+- [[./ava-light.org][アヴァ・ライト/Ava Light]]
 
 * License
 
