@@ -25,6 +25,7 @@ updated at @@html:<time datetime="2018-08-07">2018-08-07</time>@@
 - [[./breath.org][呼吸/Breath]]
 - [[./ava-light.org][アヴァ・ライト/Ava Light]]
 - [[./ideal-pilot.org][地獄の水先案内人/Ideal Pilot]]
+- [[./ghost-in-the-machine.org][こころ/Ghost in the Machine]]
 
 * License
 
