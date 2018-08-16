@@ -15,7 +15,7 @@ created at @@html:<time datetime="2018-05-17">2018-05-17</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-07-07">2018-07-07</time>@@
+updated at @@html:<time datetime="2018-08-16">2018-08-16</time>@@
 #+END_UPDATED_AT
 
 * Characters <<characters>>
@@ -1186,7 +1186,8 @@ Voyager のゴールデンレコードを調査した．
 :CUSTOM_ID: license
 :END:
 
-- 点線でかこまれた部分以外は GPLv3 です．
+- 点線でかこまれた部分以外は GPLv3 と CC BY-SA 4.0 のデュアルライセンスです．
+  あなたは， GPLv3 か CC BY-SA 4.0 のどちらかを選ぶことができます．
 - 点線でかこまれた部分の著作権はそれぞれの著作者に帰属します．
   GPL などのライセンスは設定されておらず，
   著作者がすべての権利を有していますので，ご注意ください．

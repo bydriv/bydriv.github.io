@@ -10,7 +10,7 @@ created at @@html:<time datetime="2018-06-04">2018-06-04</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-08-07">2018-08-07</time>@@
+updated at @@html:<time datetime="2018-08-16">2018-08-16</time>@@
 #+END_UPDATED_AT
 
 * Long
@@ -29,4 +29,7 @@ updated at @@html:<time datetime="2018-08-07">2018-08-07</time>@@
 
 * License
 
-GPLv3.
+Dual license of GPLv3 and CC BY-SA 4.0. You can choose either:
+
+- GPLv3
+- CC BY-SA 4.0
