@@ -10,7 +10,7 @@ created at @@html:<time datetime="2018-06-04">2018-06-04</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-08-16">2018-08-16</time>@@
+updated at @@html:<time datetime="2018-08-22">2018-08-22</time>@@
 #+END_UPDATED_AT
 
 * Long
@@ -26,6 +26,10 @@ updated at @@html:<time datetime="2018-08-16">2018-08-16</time>@@
 - [[./ava-light.org][アヴァ・ライト/Ava Light]]
 - [[./ideal-pilot.org][地獄の水先案内人/Ideal Pilot]]
 - [[./ghost-in-the-machine.org][こころ/Ghost in the Machine]]
+
+* Crossovers
+
+- [[./vixen-sniper.org][妖狐の狙撃手/Vixen Sniper]]
 
 * License
 
