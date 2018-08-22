@@ -15,7 +15,7 @@ created at @@html:<time datetime="2018-05-17">2018-05-17</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-08-16">2018-08-16</time>@@
+updated at @@html:<time datetime="2018-08-22">2018-08-22</time>@@
 #+END_UPDATED_AT
 
 * Characters <<characters>>
@@ -1111,6 +1111,13 @@ Voyager のゴールデンレコードを調査した．
 | 年 | 月 | 日 | 曜日 | できごと                                     |
 |----+----+----+------+----------------------------------------------|
 | ?  |    |    |      | ミィによって宇宙が再編され，新宇宙が誕生する |
+
+* Figures <<figures>>
+
+** Characters
+
+#+ATTR_HTML: :srcset graph_x2.png 2x
+[[./graph_x1.png]]
 
 * Translations <<translations>>
 
