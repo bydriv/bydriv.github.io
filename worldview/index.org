@@ -863,7 +863,7 @@ Voyager のゴールデンレコードを調査した．
 *扶桑* とは，はるか東方に存在するといわれた伝説の大樹で，
 それを宇宙エレベータにたとえたものだった．
 
-* Organizations
+* Organizations <<organizations>>
 
 ** @@html:<span class="chinese">@@仙丹製藥@@html:</span>@@ <<xiandan-zhiyao>>
 :PROPERTIES:
