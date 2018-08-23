@@ -26,6 +26,7 @@ updated at @@html:<time datetime="2018-08-22">2018-08-22</time>@@
 - [[./ava-light.org][アヴァ・ライト/Ava Light]]
 - [[./ideal-pilot.org][地獄の水先案内人/Ideal Pilot]]
 - [[./ghost-in-the-machine.org][こころ/Ghost in the Machine]]
+- [[./self-existence-of-space.org][宇宙の自存性/Self-Existence of Space]]
 
 * Crossovers
 
