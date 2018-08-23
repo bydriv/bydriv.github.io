@@ -1,0 +1,16 @@
+#+SETUPFILE: ../setup.org
+#+TITLE: フォーマルスピークの諸原理/Principles of Formalspeak
+
+#+BEGIN_LOCATION
+@@html:https://<a href="/">bydriv.github.io</a>/<a href="/novel">novel</a>/<strong>principles-of-formalspeak.html</strong>[#<em>n</em>[:<em>m</em>]]@@
+#+END_LOCATION
+
+#+BEGIN_CREATED_AT
+created at @@html:<time datetime="2018-08-23">2018-08-23</time>@@
+#+END_CREATED_AT
+
+#+BEGIN_UPDATED_AT
+updated at @@html:<time datetime="2018-08-23">2018-08-23</time>@@
+#+END_UPDATED_AT
+
+#+INCLUDE: principles-of-formalspeak.txt.org
