@@ -3,7 +3,11 @@ sentence =
 | clause CC sentence;
 
 clause =
-  VB;
+  noun_phrase VB
+| noun_phrase VB noun_phrase
+| noun_phrase VB adjective_phrase
+| noun_phrase VB noun_phrase noun_phrase
+| noun_phrase VB noun_phrase adjective_phrase;
 
 noun_phrase =
   NN;
@@ -11,5 +15,7 @@ noun_phrase =
 adjective_phrase =
   JJ;
 
+/*
 adverb_phrase =
   RB;
+*/
