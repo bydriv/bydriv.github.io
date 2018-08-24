@@ -1,5 +1,9 @@
 sentence =
-  VB;
+  clause;
+
+clause =
+  VB
+| clause CC clause;
 
 noun_phrase =
   NN;
