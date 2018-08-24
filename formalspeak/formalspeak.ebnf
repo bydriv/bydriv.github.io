@@ -1,8 +1,8 @@
 sentence =
   clause
-| clause CC sentence;
-| clause COMMA sentence;
-| clause COMMA RB sentence;
+| clause CC sentence
+| clause COMMA sentence
+| clause COMMA RB sentence
 | clause RB sentence;
 
 clause =
