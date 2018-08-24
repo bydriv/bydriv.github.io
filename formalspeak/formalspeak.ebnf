@@ -13,7 +13,8 @@ clause =
 | noun_phrase VB noun_phrase adjective_phrase;
 
 noun_phrase =
-  NN;
+  NN
+| PRP;
 
 adjective_phrase =
   JJ;
