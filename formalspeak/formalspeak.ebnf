@@ -13,12 +13,15 @@ clause =
 | noun_phrase VB noun_phrase adjective_phrase;
 
 noun_phrase =
-  DT NN (* singular nouns *)
-| NNS   (* plural nouns *)
-| PRP   (* personal pronouns *);
+  DT adjective_phrases NN (* singular nouns *)
+| adjective_phrases NNS   (* plural nouns *)
+| adjective_phrases PRP   (* personal pronouns *);
 
 adjective_phrase =
   JJ;
+
+adjective_phrases =
+| adjective_phrase adjective_phrases;
 
 (*
 adverb_phrase =
