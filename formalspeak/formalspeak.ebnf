@@ -1,1 +1,11 @@
-sentence = VB;
+sentence =
+  VB;
+
+noun_phrase =
+  NN;
+
+adjective_phrase =
+  JJ;
+
+adverb_phrase =
+  RB;
