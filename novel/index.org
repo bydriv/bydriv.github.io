@@ -28,6 +28,7 @@ updated at @@html:<time datetime="2018-08-22">2018-08-22</time>@@
 - [[./ghost-in-the-machine.org][こころ/Ghost in the Machine]]
 - [[./self-existence-of-space.org][宇宙の自存性/Self-Existence of Space]]
 - [[./principles-of-formalspeak.org][フォーマルスピークの諸原理/Principles of Formalspeak]]
+- [[./2063-04-05.org][2063年4月5日/Apr. 5, 2063]]
 
 * Crossovers
 
