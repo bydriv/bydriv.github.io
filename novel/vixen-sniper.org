@@ -10,7 +10,7 @@ created at @@html:<time datetime="2018-08-22">2018-08-22</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-08-22">2018-08-22</time>@@
+updated at @@html:<time datetime="2018-08-26">2018-08-26</time>@@
 #+END_UPDATED_AT
 
 この作品はクロスオーバーです．
