@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MLON</title>
+<!-- 2018-08-28 Tue 16:26 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/css/prelude.css" />
+<link rel="stylesheet" type="text/css" href="/css/highlight.css" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">MLON</h1>
+<div class="location">
+<p>
+https://<a href="/">bydriv.github.io</a>/<a href="/blog">blog</a>/<strong>mlon.html</strong>
+</p>
+
+</div>
+
+<div class="created_at">
+<p>
+created at <time datetime="2018-08-28">2018-08-28</time>
+</p>
+
+</div>
+
+<div class="updated_at">
+<p>
+updated at <time datetime="2018-08-28">2018-08-28</time>
+</p>
+
+</div>
+
+<p>
+Plain Text でデータ構造を表すファイル形式はいろいろあり，
+たとえば JSON, YAML, TOML などである．
+<a href="https://github.com/dhall-lang/dhall-lang">Dhall</a> というものもある．
+構文はおろか意味論まで定義してあり，関数すらサポートされているのにもかかわらず停止性のある，
+なかなかおもしろい言語である．
+</p>
+
+<p>
+正直，もう Dhall でいいんじゃないかというきもちもあるが，
+Haskell 以外の言語に Dhall を移植して使うのはなかなかたいへんだろうなぁ，
+というきもちもある． データフォーマットというからには，
+可搬性が重要である． JSON はたいていどの言語にも実装があるというのが使いやすいというのがある．
+そのためには， 簡単に実装できる言語仕様である必要がある．
+</p>
+
+<p>
+一般に， 型や関数がからんでくると実装の難易度がはねあがる．
+そう考えると， 実用的には JSON くらいがちょうどいいのかな，というきもちもある．
+</p>
+
+<p>
+一方で最低限必要なものとして， バリアントが挙げられると思う．
+JSON ではたとえば AST の表現に，しばしば <code>{"type": "X", "value": x}</code>
+などとしてバリアントであることを表すことがある．
+これでは JSON Schema などの実装がかなり闇になることがある．
+データ形式自体が静的型をもっていなくとも，
+静的解析しやすい仕様であることに越したことはないと思う．
+</p>
+
+<p>
+そこで ML の文法を借りてデータ構造を表す MLON (Meta Language Object Notation) というものを考えた
+(まだ仕様はないけど，だれも興味ないのに定義してもむなしいだけなので，
+反応を見たいというのも兼ねて，いちおうアイディアだけ書いておくことにする)．
+文法は基本， SML のものとする．
+</p>
+
+<pre class="example">
+{ x = "a"
+, y = 42
+, z = 3.14
+, flag = `ReadWrite () (* バリアントは必ず引数をひとつとる *)
+, xs = [`String "b", `Int 43, `Float 2.718, `Triple ("a", 42, 3.14)] }
+</pre>
+
+<p>
+<code>`Int</code> などの部分は SML にはない文法で，
+OCaml の多相バリアントを参考にしている．
+</p>
+
+<p>
+またレコードはデフォルトで多相レコードであり，
+バリアントもまた多相バリアントである．
+</p>
+
+<p>
+型推論は SML や OCaml と同様にできる．
+JSON Schema がデフォでくみこまれていると考えてもよいかもしれない．
+</p>
+
+<p>
+関数はいまのところない．
+いれることは可能だが，実際のところ，それをすると際限なく仕様が広がってしまう
+(たとえば関数があるなら四則演算もしたいだろうし，数学関数もほしいとなってきて手に負えない)．
+それよりは， 実装が簡単になる仕様にしておきたい気がする．
+</p>
+
+<p>
+コメントの入れ子はできないことにしたい．
+<code>(*</code> .. <code>*)</code> だと入れ子ができそうな感じがしてしまうので，
+<code>--</code> とかに置きかえたい．
+</p>
+
+<p>
+なんか反応がよかったら仕様とか決めて実際に実装するかもしれない．
+名前はテキトウなのでそのうちもっと良い名前があったら変わるかもしれない．
+</p>
+</div>
+</body>
+</html>
