@@ -36,6 +36,7 @@ updated at @@html:<time datetime="2018-08-01">2018-08-01</time>@@
 - [[./typed-church-encoding.org][単純型つきラムダ計算でチャーチエンコーディングする件の話をしましょうか]]
 - [[./2018-07.org][2018-7 の進捗まとめ]]
 - [[./mlon.org][MLON]]
+- [[./classical.org][古典論理で →, ⊥ だけで ∧, ∨ を定義する話]]
 
 * License
 
