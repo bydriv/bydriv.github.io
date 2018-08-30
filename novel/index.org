@@ -31,6 +31,7 @@ updated at @@html:<time datetime="2018-08-27">2018-08-27</time>@@
 - [[./2063-04-05.org][2063年4月5日/Apr. 5, 2063]]
 - [[./selective-and-transgenic.org][セレクティヴとトランスジェニック/Selective and Transgenic]]
 - [[./cotard-delusion.org][コタール症候群/Cotard Delusion]]
+- [[./information.org][情報/Information]]
 
 * Crossovers
 
