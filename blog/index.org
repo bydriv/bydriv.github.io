@@ -38,6 +38,7 @@ updated at @@html:<time datetime="2018-08-01">2018-08-01</time>@@
 - [[./mlon.org][MLON]]
 - [[./classical.org][古典論理で →, ⊥ だけで ∧, ∨ を定義する話]]
 - [[./klassisch.org][古典論理メモ]]
+- [[./2018-08.org][2018-8 の進捗まとめ]]
 
 * License
 
