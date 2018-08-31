@@ -10,15 +10,26 @@ created at @@html:<time datetime="2018-07-07">2018-07-07</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-08-04">2018-08-04</time>@@
+updated at @@html:<time datetime="2018-08-31">2018-08-31</time>@@
 #+END_UPDATED_AT
 
-* Queue [4/4]
+* Queue [15/15]
 
 - [X] シャンティで遊ぶ (2018-07-01 .. 2018-07-02; Enqueued at 2018-07-01; Dequeued at 2018-07-02)
 - [X] 七夕絵を描く (2018-07-02 .. 2018-07-06; Enqueued at 2018-07-02; Dequeued at 2018-07-06)
 - [X] スニーカーサンダル絵を描く (2018-07-08 .. 2018-07-11; Enqueued at 2018-07-07; Dequeued at 2018-07-11)
 - [X] Lamb の実装 (2018-07-18 .. 2018-08-04; Enqueued at 2018-07-18; Dequeued at 2018-08-04)
+- [X] [[./../novel/breath.org][呼吸/Breath]] (2018-08-06 .. 2018-08-06; Enqueued at 2018-08-06; Dequeued at 2018-08-06)
+- [X] [[./../novel/ava-light.org][アヴァ・ライト/Ava Light]] (2018-08-06 .. 2018-08-06; Enqueued at 2018-08-06; Dequeued at 2018-08-06)
+- [X] [[./../novel/ideal-pilot.org][地獄の水先案内人/Ideal Pilot]] (2018-08-07 .. 2018-08-07; Enqueued at 2018-08-07; Dequeued at 2018-08-07)
+- [X] [[./../novel/ghost-in-the-machine.org][こころ/Ghost in the Machine]] (2018-08-07 .. 2018-08-07; Enqueued at 2018-08-07; Dequeued at 2018-08-07)
+- [X] [[./../novel/vixen-sniper.org][妖狐の狙撃手/Vixen Sniper]] (2018-08-16 .. 2018-08-22; Enqueued at 2018-08-16; Dequeued at 2018-08-22)
+- [X] [[./../novel/self-existence-of-space.org][宇宙の自存性/Self-Existence of Space]] (2018-08-23 .. 2018-08-23; Enqueued at 2018-08-23; Dequeued at 2018-08-23)
+- [X] [[./../novel/principles-of-formalspeak.org][フォーマルスピークの諸原理/Principles of Formalspeak]] (2018-08-23 .. 2018-08-23; Enqueued at 2018-08-23; Dequeued at 2018-08-23)
+- [X] [[./../novel/2063-04-05.org][2063年4月5日/Apr. 5, 2063]] (2018-08-25 .. 2018-08-25; Enqueued at 2018-08-25; Dequeued at 2018-08-25)
+- [X] [[./../novel/selective-and-transgenic.org][セレクティヴとトランスジェニック/Selective and Transgenic]] (2018-08-27 .. 2018-08-27; Enqueued at 2018-08-27; Dequeued at 2018-08-27)
+- [X] [[./../novel/cotard-delusion.org][コタール症候群/Cotard Delusion]] (2018-08-27 .. 2018-08-27; Enqueued at 2018-08-27; Dequeued at 2018-08-27)
+- [X] [[./../novel/information.org][情報/Information]] (2018-08-30 .. 2018-08-30; Enqueued at 2018-08-30; Dequeued at 2018-08-30)
 
 * 2018
 
@@ -94,6 +105,50 @@ updated at @@html:<time datetime="2018-08-04">2018-08-04</time>@@
 - 実装の続き
 - bin8 などの実装
 - 2018-08-03: FFI, 分割コンパイルの実装
+
+*** 2018-08-05 .. 2018-08-05
+
+- Lamb 機能追加， デバッグ， リファクタリングなど
+
+*** 2018-08-06 .. 2018-08-06
+
+- [[./breath.org][呼吸/Breath]]
+- [[./ava-light.org][アヴァ・ライト/Ava Light]]
+- Lamb 機能追加， デバッグ， リファクタリングなど
+
+*** 2018-08-07 .. 2018-08-07
+
+- [[./../novel/ideal-pilot.org][地獄の水先案内人/Ideal Pilot]]
+- [[./../novel/ghost-in-the-machine.org][こころ/Ghost in the Machine]]
+- Lamb 機能追加， デバッグ， リファクタリングなど
+
+*** 2018-08-08 .. 2018-08-14
+
+- Lamb 機能追加， デバッグ， リファクタリングなど
+
+*** 2018-08-14 .. 2018-08-16
+
+- React でブラックジャックを実装してた
+
+*** 2018-08-16 .. 2018-08-22
+
+- [[./../novel/vixen-sniper.org][妖狐の狙撃手/Vixen Sniper]]
+
+*** 2018-08-23 .. 2018-08-27
+
+- [[./../novel/self-existence-of-space.org][宇宙の自存性/Self-Existence of Space]]
+- [[./../novel/principles-of-formalspeak.org][フォーマルスピークの諸原理/Principles of Formalspeak]]
+- [[./../novel/2063-04-05.org][2063年4月5日/Apr. 5, 2063]]
+- [[./../novel/selective-and-transgenic.org][セレクティヴとトランスジェニック/Selective and Transgenic]]
+- [[./../novel/cotard-delusion.org][コタール症候群/Cotard Delusion]]
+
+*** 2018-08-28 .. 2018-08-29
+
+- Lamb に継続を実装．
+
+*** 2018-08-30 .. 2018-08-30
+
+- [[./../novel/information.org][情報/Information]]
 
 * License
 
