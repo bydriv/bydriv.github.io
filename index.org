@@ -18,13 +18,28 @@ created at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-08-04">2018-08-04</time>@@
+updated at @@html:<time datetime="2018-08-31">2018-08-31</time>@@
 #+END_UPDATED_AT
 
 * News
 
 ** 2018-08
 
+- 2018-08-31: Created [[./blog/2018-8.org][2018-8 の進捗まとめ]] in  @@html:<a href="/blog">blog</a>@@.
+- 2018-08-30: Created [[./blog/klassisch.org][古典論理メモ]] in  @@html:<a href="/blog">blog</a>@@.
+- 2018-08-29: Created [[./blog/classical.org][古典論理で →, ⊥ だけで ∧, ∨ を定義する話]] in  @@html:<a href="/blog">blog</a>@@.
+- 2018-08-28: Created [[./blog/mlton.org][MLON]] in  @@html:<a href="/blog">blog</a>@@.
+- 2018-08-30: Created [[./information.org][情報/Information]] in @@html:<a href="/novel">novel</a>@@.
+- 2018-08-27: Created [[./cotard-delusion.org][コタール症候群/Cotard Delusion]] in @@html:<a href="/novel">novel</a>@@.
+- 2018-08-27: Created [[./selective-and-transgenic.org][セレクティヴとトランスジェニック/Selective and Transgenic]] in @@html:<a href="/novel">novel</a>@@.
+- 2018-08-25: Created [[./2063-04-05.org][2063年4月5日/Apr. 5, 2063]] in @@html:<a href="/novel">novel</a>@@.
+- 2018-08-23: Created [[./principles-of-formalspeak.org][フォーマルスピークの諸原理/Principles of Formalspeak]] in @@html:<a href="/novel">novel</a>@@.
+- 2018-08-23: Created [[./self-existence-of-space.org][宇宙の自存性/Self-Existence of Space]] in @@html:<a href="/novel">novel</a>@@.
+- 2018-08-22: Created [[./vixen-sniper.org][妖狐の狙撃手/Vixen Sniper]] in @@html:<a href="/novel">novel</a>@@.
+- 2018-08-07: Created [[./ghost-in-the-machine.org][こころ/Ghost in the Machine]] in @@html:<a href="/novel">novel</a>@@.
+- 2018-08-07: Created [[./ideal-pilot.org][地獄の水先案内人/Ideal Pilot]] in @@html:<a href="/novel">novel</a>@@.
+- 2018-08-06: Created [[./ava-light.org][アヴァ・ライト/Ava Light]] in @@html:<a href="/novel">novel</a>@@.
+- 2018-08-06: Created [[./novel/breath.org][呼吸/Breath]] in @@html:<a href="/novel">novel</a>@@.
 - 2018-08-04: Created [[./blog/2018-07.org][2018-7 の進捗まとめ]] in  @@html:<a href="/blog">blog</a>@@.
 - 2018-08-01: Created [[./blog/typed-church-encoding.org][単純型つきラムダ計算でチャーチエンコーディングする件の話をしましょうか]] in @@html:<a href="/blog">blog</a>@@.
 

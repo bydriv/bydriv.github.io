@@ -10,7 +10,7 @@ created at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-08-01">2018-08-01</time>@@
+updated at @@html:<time datetime="2018-08-31">2018-08-31</time>@@
 #+END_UPDATED_AT
 
 * Index
