@@ -39,6 +39,7 @@ updated at @@html:<time datetime="2018-08-31">2018-08-31</time>@@
 - [[./classical.org][古典論理で →, ⊥ だけで ∧, ∨ を定義する話]]
 - [[./klassisch.org][古典論理メモ]]
 - [[./2018-08.org][2018-8 の進捗まとめ]]
+- [[./five-year-mission.org][5年の歳月]]
 
 * License
 
