@@ -33,6 +33,7 @@ updated at @@html:<time datetime="2018-08-27">2018-08-27</time>@@
 - [[./cotard-delusion.org][コタール症候群/Cotard Delusion]]
 - [[./information.org][情報/Information]]
 - [[./lonely-computer.org][孤独な計算機/Lonely Computer]]
+- [[./wang-tile.org][ワンのタイル/Wang Tile]]
 
 * Crossovers
 

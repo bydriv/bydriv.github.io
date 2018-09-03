@@ -1,0 +1,16 @@
+#+SETUPFILE: ../setup.org
+#+TITLE: ワンのタイル/Wang Tile
+
+#+BEGIN_LOCATION
+@@html:https://<a href="/">bydriv.github.io</a>/<a href="/novel">novel</a>/<strong>wang-tile.html</strong>[#<em>n</em>[:<em>m</em>]]@@
+#+END_LOCATION
+
+#+BEGIN_CREATED_AT
+created at @@html:<time datetime="2018-09-04">2018-09-04</time>@@
+#+END_CREATED_AT
+
+#+BEGIN_UPDATED_AT
+updated at @@html:<time datetime="2018-09-04">2018-09-04</time>@@
+#+END_UPDATED_AT
+
+#+INCLUDE: wang-tile.txt.org
