@@ -244,3 +244,54 @@ n = m = 8 として、つぎのような盤が与えられたとして……」
 ここは空白なんだけど、赤のプレイヤーに 2点、緑と青のプレイヤーにそれぞれ 1点というのは、
 もう決まっちゃってるわけね。ということは、赤のプレイヤーにしてみれば 1手ぶん得してる、
 というふうに考えることもできる、というわけです」
+
+[$3]
+
+[1]「さっき、必勝法があるかどうかはわからない、って言ったよね」と、ディーサはつづけた。
+
+[2]ぼくは答えた。「うん」
+
+[3]「でも、あれは半分ほんとで、半分はうそ。 n, m の値によっては、
+必勝法がある場合があるの。たとえば、 n = 0 や m = 0 の場合、マスの数は 0 個だよね。
+ということは全員の合計点数は 0 で、 0 手めでゲーム終了だから、
+必ず全員ひきわけ。 n = m = 1 の場合、マスの数は 1 個だから、
+全員の合計点数は 4 で、 1 手めでゲーム終了だから、
+プレイヤーがもっとも有利な選択肢をとると仮定して、だけど、
+最初のプレイヤーの必勝。あ、言いわすれてたけど、このゲームでは通常、
+赤、緑、青、黄色の順番でプレイするの。
+だから、赤のプレイヤーの先手必勝ね。
+ちなみに、もっとも有利な選択肢をとるという仮定は、
+たとえば赤のプレイヤーが緑に 4点のチップを置いてわざと負けるようなことはない、
+というために必要」
+
+[4]「なるほど。 n = 1, m = 2 の場合マスの数は 2 個だから、
+やっぱり先手必勝。なぜなら最初のプレイヤーは 4 点を置けるけど、
+つぎのプレイヤーは最大で 3 点しか置けないから、
+最初のプレイヤーが 5 点、つぎのプレイヤーが 3 点で先手の勝ち。
+n = 2, m = 1 の場合もまったく同様。
+こういうただ盤を回転させたり反転させただけの局面は同型と考えてもよいかもしれないね。
+じゃあ、 n = m = 2 の場合は？」
+
+[5]「その場合は、いくつかの場合があるんだけど、どの場合においても、盤はこうなる」
+
+@@html:<div style="line-height: 10px; margin: 0 auto; padding: 0; width: 32px; height: 32p;x"><div style="display: inline-block; margin: 0; padding: 0; width: 16px; height: 16px; background-color: #E0E0E0;"></div><div style="display: inline-block; margin: 0; padding: 0; width: 16px; height: 16px; background-color: #404040;"></div><div style="display: inline-block; margin: 0; padding: 0; width: 16px; height: 16px; background-color: #404040;"></div><div style="display: inline-block; margin: 0; padding: 0; width: 16px; height: 16px; background-color: #E0E0E0;"></div></div>@@
+
+[6]「それから、プレイヤーが2人の場合……」
+
+@@html:<div style="line-height: 10px; margin: 0 auto; padding: 0; width: 32px; height: 32p;x"><div style="display: inline-block; margin: 0; padding: 0; width: 0; height: 0; border-left: 8px solid #FF0000; border-top: 8px solid #FF0000; border-right: 8px solid #FF0000; border-bottom: 8px solid #FF0000;"></div><div style="display: inline-block; margin: 0; padding: 0; width: 0; height: 0; border-left: 8px solid #FF0000; border-top: 8px solid #FF0000; border-right: 8px solid #FF0000; border-bottom: 8px solid #00FF00;"></div><div style="display: inline-block; margin: 0; padding: 0; width: 0; height: 0; border-left: 8px solid #00FF00; border-top: 8px solid #FF0000; border-right: 8px solid #00FF00; border-bottom: 8px solid #00FF00;"></div><div style="display: inline-block; margin: 0; padding: 0; width: 0; height: 0; border-left: 8px solid #00FF00; border-top: 8px solid #00FF00; border-right: 8px solid #00FF00; border-bottom: 8px solid #00FF00;"></div></div>@@
+
+[7]「となってひきわけ。プレイヤーが3人の場合……」
+
+@@html:<div style="line-height: 10px; margin: 0 auto; padding: 0; width: 32px; height: 32p;x"><div style="display: inline-block; margin: 0; padding: 0; width: 0; height: 0; border-left: 8px solid #FF0000; border-top: 8px solid #FF0000; border-right: 8px solid #FF0000; border-bottom: 8px solid #FF0000;"></div><div style="display: inline-block; margin: 0; padding: 0; width: 0; height: 0; border-left: 8px solid #FF0000; border-top: 8px solid #FF0000; border-right: 8px solid #FF0000; border-bottom: 8px solid #00FF00;"></div><div style="display: inline-block; margin: 0; padding: 0; width: 0; height: 0; border-left: 8px solid #0000FF; border-top: 8px solid #FF0000; border-right: 8px solid #00FF00; border-bottom: 8px solid #0000FF;"></div><div style="display: inline-block; margin: 0; padding: 0; width: 0; height: 0; border-left: 8px solid #00FF00; border-top: 8px solid #00FF00; border-right: 8px solid #00FF00; border-bottom: 8px solid #00FF00;"></div></div>@@
+
+[8]「となって先手必勝。プレイヤーが4人の場合……」
+
+@@html:<div style="line-height: 10px; margin: 0 auto; padding: 0; width: 32px; height: 32p;x"><div style="display: inline-block; margin: 0; padding: 0; width: 0; height: 0; border-left: 8px solid #FF0000; border-top: 8px solid #FF0000; border-right: 8px solid #FF0000; border-bottom: 8px solid #FF0000;"></div><div style="display: inline-block; margin: 0; padding: 0; width: 0; height: 0; border-left: 8px solid #FF0000; border-top: 8px solid #E0E000; border-right: 8px solid #E0E000; border-bottom: 8px solid #00FF00;"></div><div style="display: inline-block; margin: 0; padding: 0; width: 0; height: 0; border-left: 8px solid #0000FF; border-top: 8px solid #FF0000; border-right: 8px solid #00FF00; border-bottom: 8px solid #0000FF;"></div><div style="display: inline-block; margin: 0; padding: 0; width: 0; height: 0; border-left: 8px solid #00FF00; border-top: 8px solid #00FF00; border-right: 8px solid #00FF00; border-bottom: 8px solid #00FF00;"></div></div>@@
+
+[9]「となって赤、緑のプレイヤーが同点で勝ち。
+でも、これは極端な話、囲碁だってそうだからね。
+n, m がじゅうぶん大きければ必勝法はないと思うの。
+ただ、そのじゅうぶん大きな n, m の値というのがどれほどが適切か、決めあぐねているところはあるんだけれど。
+いまのところ、囲碁くらいの広さがあればじゅうぶん複雑になると思う。
+n = m = 20 くらいかな。 今回 n = m = 8 としたのは、説明のため。
+囲碁も初心者がやるときは 7路盤 みたいなのを使うしね」
