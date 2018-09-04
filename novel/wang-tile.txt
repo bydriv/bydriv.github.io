@@ -289,8 +289,12 @@ n = 2, m = 1 の場合もまったく同様。
 @@html:<div style="line-height: 10px; margin: 0 auto; padding: 0; width: 32px; height: 32p;x"><div style="display: inline-block; margin: 0; padding: 0; width: 0; height: 0; border-left: 8px solid #FF0000; border-top: 8px solid #FF0000; border-right: 8px solid #FF0000; border-bottom: 8px solid #FF0000;"></div><div style="display: inline-block; margin: 0; padding: 0; width: 0; height: 0; border-left: 8px solid #FF0000; border-top: 8px solid #E0E000; border-right: 8px solid #E0E000; border-bottom: 8px solid #00FF00;"></div><div style="display: inline-block; margin: 0; padding: 0; width: 0; height: 0; border-left: 8px solid #0000FF; border-top: 8px solid #FF0000; border-right: 8px solid #00FF00; border-bottom: 8px solid #0000FF;"></div><div style="display: inline-block; margin: 0; padding: 0; width: 0; height: 0; border-left: 8px solid #00FF00; border-top: 8px solid #00FF00; border-right: 8px solid #00FF00; border-bottom: 8px solid #00FF00;"></div></div>@@
 
 [9]「となって赤、緑のプレイヤーが同点で勝ち。
-でも、これは極端な話、囲碁だってそうだからね。
+でも、小さい盤面で必勝法があるというのは、囲碁やオセロだってそうだからね。
 n, m がじゅうぶん大きければ必勝法はないと思うの。
+いや、ない、というのは適切じゃないかな。
+わたしが言いたいのは、 n, m
+がじゅうぶん大きければもし必勝法があったとしても人間がそれをプレイすることはきわめて難しいほど複雑だから、
+ゲームとしての意味を失わない、ってこと。
 ただ、そのじゅうぶん大きな n, m の値というのがどれほどが適切か、決めあぐねているところはあるんだけれど。
 いまのところ、囲碁くらいの広さがあればじゅうぶん複雑になると思う。
 n = m = 20 くらいかな。 今回 n = m = 8 としたのは、説明のため。
