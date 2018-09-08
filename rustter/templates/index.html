@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
-Hi, {{screen_name}}!
+Hi, {{screen_name}}!<br />
 
 {% for status in statuses %}
-  {{ status.text }}
+  {{ status.user.screen_name }}: {{ status.text }}<br />
 {% endfor %}

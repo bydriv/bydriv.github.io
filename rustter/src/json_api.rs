@@ -13,13 +13,19 @@ use json_api;
 
 #[derive(Serialize, Deserialize)]
 pub struct User
-{ id : i64
-, screen_name : String }
+{ pub id : i64
+, pub screen_name : String }
 
 #[derive(Serialize, Deserialize)]
 pub struct SignInParams
-{ screen_name : String
-, password : String }
+{ pub screen_name : String
+, pub password : String }
+
+#[derive(Serialize, Deserialize)]
+pub struct Status
+{ pub id : i64
+, pub user : User
+, pub text : String }
 
 pub fn sign_up((req, params): (HttpRequest<Arc<r2d2::Pool<r2d2::ConnectionManager<PgConnection>>>>, Form<SignInParams>)) -> String
 { let connection : &PgConnection = &req.state().get().unwrap()
