@@ -17,6 +17,17 @@ struct SignUpTemplate {}
 #[template(path = "sign-in.html")]
 struct SignInTemplate {}
 
+#[derive(Template)]
+#[template(path = "user-show.html")]
+struct UserShowTemplate
+{ screen_name : String
+, following_count : i64
+, follower_count : i64 }
+
+#[derive(Template)]
+#[template(path = "not-found.html")]
+struct NotFoundTemplate {}
+
 pub fn index(req: &HttpRequest) -> Result<HttpResponse>
 { match req.session().get::<i64>("user_id")
   { Ok(Some(user_id)) =>
@@ -39,3 +50,19 @@ pub fn sign_in(_req: &HttpRequest) -> Result<HttpResponse>
 ; Ok(HttpResponse::build(http::StatusCode::OK)
     .content_type("text/html; charset=utf-8")
     .body(sign_in.render().unwrap())) }
+
+pub mod users
+{ use super::*
+; pub fn show(req: &HttpRequest) -> Result<HttpResponse>
+  { let user = api::find_user_by_screen_name(req.match_info().get("screen_name").unwrap().to_string())
+  ; match user
+    { Some(user) =>
+      { let user_show = UserShowTemplate {screen_name: user.screen_name, following_count: api::users::following_count(user.id), follower_count: api::users::follower_count(user.id) }
+      ; Ok(HttpResponse::build(http::StatusCode::OK)
+          .content_type("text/html; charset=utf-8")
+          .body(user_show.render().unwrap())) }
+    , None =>
+      { let not_found = NotFoundTemplate {}
+      ; Ok(HttpResponse::build(http::StatusCode::OK)
+          .content_type("text/html; charset=utf-8")
+          .body(not_found.render().unwrap())) } } } }

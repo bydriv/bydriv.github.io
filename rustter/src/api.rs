@@ -2,6 +2,7 @@ use std::env;
 use std::hash::{Hash, Hasher};
 
 use diesel::*;
+use diesel::dsl::*;
 use diesel::pg::PgConnection;
 
 use dotenv::dotenv;
@@ -27,6 +28,18 @@ pub fn find_user(id : i64) -> Option<models::User>
   { Ok(user) =>
       Some(models::User {id: user.id, screen_name: user.screen_name.clone(), hash: user.hash})
   , Err(_) =>
+      None } }
+
+pub fn find_user_by_screen_name(screen_name : String) -> Option<models::User>
+{ let connection = establish_connection()
+; match
+    schema::users::table
+    .filter(schema::users::screen_name.eq(&screen_name))
+    .load::<models::User>(&connection).expect("Error loading users")
+    .first()
+  { Some(user) =>
+      Some(models::User {id: user.id, screen_name: user.screen_name.clone(), hash: user.hash})
+  , None =>
       None } }
 
 pub fn sign_up(screen_name : String, password : String)
@@ -68,11 +81,22 @@ pub fn sign_in<'a>(screen_name : String, password : String) -> Option<models::Us
       None } }
 
 pub mod users
-{ use diesel::*
-; use models
-; use schema
-; use api
+{ use super::*
 ; pub fn list() -> Vec<models::User>
-  { let connection = api::establish_connection()
+  { let connection = establish_connection()
   ; schema::users::table
-    .load::<models::User>(&connection).expect("Error loading users") } }
+    .load::<models::User>(&connection).expect("Error loading users") }
+  pub fn following_count(id : i64) -> i64
+  { let connection = establish_connection()
+  ; schema::followings::table
+    .filter(schema::followings::user_id.eq(id))
+    .select(count(schema::followings::id))
+    .first(&connection)
+    .expect("Error loading users") }
+  pub fn follower_count(id : i64) -> i64
+  { let connection = establish_connection()
+  ; schema::followings::table
+    .filter(schema::followings::following_user_id.eq(id))
+    .select(count(schema::followings::id))
+    .first(&connection)
+    .expect("Error loading users") } }
