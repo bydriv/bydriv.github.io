@@ -83,4 +83,34 @@ pub mod users
           { let not_found = NotFoundTemplate {}
           ; Ok(HttpResponse::build(http::StatusCode::OK)
               .content_type("text/html; charset=utf-8")
-              .body(not_found.render().unwrap())) } } } } } }
+              .body(not_found.render().unwrap())) } } } } }
+  pub fn follow(req: &HttpRequest) -> Result<HttpResponse>
+  { match req.session().get::<i64>("user_id")
+    { Ok(Some(user_id)) =>
+      { let showing_user = api::find_user_by_screen_name(req.match_info().get("screen_name").unwrap().to_string())
+      ; match showing_user
+        { Some(showing_user) =>
+          { api::users::follow(user_id, showing_user.id)
+          ; index(req) }
+        , None =>
+          { let not_found = NotFoundTemplate {}
+          ; Ok(HttpResponse::build(http::StatusCode::OK)
+              .content_type("text/html; charset=utf-8")
+              .body(not_found.render().unwrap())) } } }
+    , _ =>
+        sign_in(req) } }
+  pub fn unfollow(req: &HttpRequest) -> Result<HttpResponse>
+  { match req.session().get::<i64>("user_id")
+    { Ok(Some(user_id)) =>
+      { let showing_user = api::find_user_by_screen_name(req.match_info().get("screen_name").unwrap().to_string())
+      ; match showing_user
+        { Some(showing_user) =>
+          { api::users::unfollow(user_id, showing_user.id)
+          ; index(req) }
+        , None =>
+          { let not_found = NotFoundTemplate {}
+          ; Ok(HttpResponse::build(http::StatusCode::OK)
+              .content_type("text/html; charset=utf-8")
+              .body(not_found.render().unwrap())) } } }
+    , _ =>
+        sign_in(req) } } }

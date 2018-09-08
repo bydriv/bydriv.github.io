@@ -86,6 +86,22 @@ pub mod users
   { let connection = establish_connection()
   ; schema::users::table
     .load::<models::User>(&connection).expect("Error loading users") }
+  pub fn follow(user_id : i64, following_user_id : i64)
+  { if (is_followed(user_id, following_user_id))
+    { return () }
+  ; let connection = establish_connection()
+  ; let new_followings = vec![(schema::followings::user_id.eq(user_id), schema::followings::following_user_id.eq(following_user_id))]
+  ; insert_into(schema::followings::table)
+    .values(&new_followings)
+    .execute(&connection)
+  ; () }
+  pub fn unfollow(user_id : i64, following_user_id : i64)
+  { if (!is_followed(user_id, following_user_id))
+    { return () }
+  ; let connection = establish_connection()
+  ; delete(schema::followings::table.filter(schema::followings::user_id.eq(user_id)).filter(schema::followings::following_user_id.eq(following_user_id)))
+    .execute(&connection)
+  ; () }
   pub fn is_followed(user_id : i64, following_user_id : i64) -> bool
   { let connection = establish_connection()
   ; select(exists(schema::followings::table
