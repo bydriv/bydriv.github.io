@@ -38,6 +38,24 @@ pub fn sign_up(screen_name : String, password : String)
   .execute(&connection)
 ; () }
 
+pub fn sign_in<'a>(screen_name : String, password : String) -> Option<models::User>
+{ let connection = establish_connection()
+; match
+    schema::users::table
+    .filter(schema::users::screen_name.eq(&screen_name))
+    .load::<models::User>(&connection).expect("Error loading users")
+    .first()
+  { Some(user) =>
+    { let mut s = SipHasher24::new()
+    ; password.hash(&mut s)
+    ; let hash = s.finish()
+    ; if user.hash == (hash as i64)
+      { Some(models::User {id: user.id, screen_name: user.screen_name.clone(), hash: user.hash}) }
+      else
+      { None } }
+  , None =>
+      None } }
+
 pub mod users
 { use diesel::*
 ; use models
