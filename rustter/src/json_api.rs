@@ -12,6 +12,13 @@ pub struct SignInParams
 { screen_name : String
 , password : String }
 
+pub fn sign_up((req, params): (HttpRequest, Form<SignInParams>)) -> String
+{ api::sign_up(params.screen_name.clone(), params.password.clone())
+; if let Some(user) = api::sign_in(params.screen_name.clone(), params.password.clone())
+  { req.session().set::<i64>("user_id", user.id); "true".to_owned() }
+  else
+  { "false".to_owned() } }
+
 pub fn sign_in((req, params): (HttpRequest, Form<SignInParams>)) -> String
 { if let Some(user) = api::sign_in(params.screen_name.clone(), params.password.clone())
   { req.session().set::<i64>("user_id", user.id); "true".to_owned() }

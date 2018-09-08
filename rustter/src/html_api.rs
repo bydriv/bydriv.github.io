@@ -10,6 +10,10 @@ struct IndexTemplate
 { screen_name : String }
 
 #[derive(Template)]
+#[template(path = "sign-up.html")]
+struct SignUpTemplate {}
+
+#[derive(Template)]
 #[template(path = "sign-in.html")]
 struct SignInTemplate {}
 
@@ -23,6 +27,12 @@ pub fn index(req: &HttpRequest) -> Result<HttpResponse>
         .body(index.render().unwrap())) }
   , _ =>
       sign_in(req) } }
+
+pub fn sign_up(_req: &HttpRequest) -> Result<HttpResponse>
+{ let sign_up = SignUpTemplate {}
+; Ok(HttpResponse::build(http::StatusCode::OK)
+    .content_type("text/html; charset=utf-8")
+    .body(sign_up.render().unwrap())) }
 
 pub fn sign_in(_req: &HttpRequest) -> Result<HttpResponse>
 { let sign_in = SignInTemplate {}
