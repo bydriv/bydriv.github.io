@@ -1,0 +1,6 @@
+[package]
+name = "rustter"
+version = "0.1.0"
+authors = ["bydriv <bydriv@gmail.com>"]
+
+[dependencies]
