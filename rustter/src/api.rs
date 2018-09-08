@@ -35,22 +35,20 @@ pub fn find_user_by_screen_name(connection : &PgConnection, screen_name : String
 { match
     schema::users::table
     .filter(schema::users::screen_name.eq(&screen_name))
-    .load::<models::User>(connection).expect("Error loading users")
-    .first()
-  { Some(user) =>
+    .first::<models::User>(connection)
+  { Ok(user) =>
       Some(models::User {id: user.id, screen_name: user.screen_name.clone(), hash: user.hash})
-  , None =>
+  , _ =>
       None } }
 
 pub fn sign_up(connection : &PgConnection, screen_name : String, password : String)
 { match
     schema::users::table
     .filter(schema::users::screen_name.eq(&screen_name))
-    .load::<models::User>(connection).expect("Error loading users")
-    .first()
-  { Some(_) =>
+    .first::<models::User>(connection)
+  { Ok(_) =>
       return ()
-  , None =>
+  , _ =>
       () }
 ; let mut s = SipHasher24::new()
 ; password.hash(&mut s)
@@ -65,9 +63,8 @@ pub fn sign_in(connection : &PgConnection, screen_name : String, password : Stri
 { match
     schema::users::table
     .filter(schema::users::screen_name.eq(&screen_name))
-    .load::<models::User>(connection).expect("Error loading users")
-    .first()
-  { Some(user) =>
+    .first::<models::User>(connection)
+  { Ok(user) =>
     { let mut s = SipHasher24::new()
     ; password.hash(&mut s)
     ; let hash = s.finish()
@@ -75,7 +72,7 @@ pub fn sign_in(connection : &PgConnection, screen_name : String, password : Stri
       { Some(models::User {id: user.id, screen_name: user.screen_name.clone(), hash: user.hash}) }
       else
       { None } }
-  , None =>
+  , _ =>
       None } }
 
 pub mod users
