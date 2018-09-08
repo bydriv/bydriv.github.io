@@ -1,3 +1,5 @@
+extern crate rustter;
+
 fn main() {
-    println!("Hello, world!");
+  rustter::f();
 }
