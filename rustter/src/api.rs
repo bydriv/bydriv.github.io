@@ -18,6 +18,17 @@ pub fn establish_connection() -> PgConnection
 ; PgConnection::establish(&database_url)
   .expect(&format!("Error connecting to {}", database_url)) }
 
+pub fn find_user(id : i64) -> Option<models::User>
+{ let connection = establish_connection()
+; match
+    schema::users::table
+    .find(id)
+    .get_result::<models::User>(&connection)
+  { Ok(user) =>
+      Some(models::User {id: user.id, screen_name: user.screen_name.clone(), hash: user.hash})
+  , Err(_) =>
+      None } }
+
 pub fn sign_up(screen_name : String, password : String)
 { let connection = establish_connection()
 ; match
