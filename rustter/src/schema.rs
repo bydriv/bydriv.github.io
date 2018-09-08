@@ -7,6 +7,15 @@ table! {
 }
 
 table! {
+    statuses (id) {
+        id -> Int8,
+        user_id -> Int8,
+        text -> Text,
+        created_at -> Timestamp,
+    }
+}
+
+table! {
     users (id) {
         id -> Int8,
         screen_name -> Text,
@@ -16,5 +25,6 @@ table! {
 
 allow_tables_to_appear_in_same_query!(
     followings,
+    statuses,
     users,
 );

@@ -1,3 +1,7 @@
 <!DOCTYPE html>
 
 Hi, {{screen_name}}!
+
+{% for status in statuses %}
+  {{ status.text }}
+{% endfor %}

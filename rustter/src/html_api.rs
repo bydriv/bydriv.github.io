@@ -7,12 +7,14 @@ use askama::Template;
 use diesel::pg::PgConnection;
 use diesel::r2d2;
 
+use models;
 use api;
 
 #[derive(Template)]
 #[template(path = "index.html")]
 struct IndexTemplate
-{ screen_name : String }
+{ screen_name : String
+, statuses : Vec<models::Status> }
 
 #[derive(Template)]
 #[template(path = "sign-up.html")]
@@ -40,7 +42,7 @@ pub fn index(req: &HttpRequest<Arc<r2d2::Pool<r2d2::ConnectionManager<PgConnecti
   { Ok(Some(user_id)) =>
     { let connection : &PgConnection = &req.state().get().unwrap()
     ; let user = api::find_user(connection, user_id).unwrap()
-    ; let index = IndexTemplate {screen_name: user.screen_name}
+    ; let index = IndexTemplate { screen_name: user.screen_name, statuses: api::timeline(connection, user.id) }
     ; Ok(HttpResponse::build(http::StatusCode::OK)
         .content_type("text/html; charset=utf-8")
         .body(index.render().unwrap())) }

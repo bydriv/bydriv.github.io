@@ -111,4 +111,28 @@ pub mod users
     .filter(schema::followings::following_user_id.eq(id))
     .select(count(schema::followings::id))
     .first(connection)
-    .expect("Error loading users") } }
+    .expect("Error loading users") }
+  pub fn following_user_ids(connection : &PgConnection, id : i64) -> Vec<i64>
+  { schema::followings::table
+    .filter(schema::followings::user_id.eq(id))
+    .load::<models::Following>(connection)
+    .expect("Error loading users")
+    .into_iter()
+    .map(|following| following.following_user_id)
+    .collect() } }
+
+pub fn timeline(connection : &PgConnection, id : i64) -> Vec<models::Status>
+{ let following_user_ids = users::following_user_ids(connection, id)
+; let mut statuses = vec![]
+; statuses.extend
+    (schema::statuses::table
+    .filter(schema::statuses::user_id.eq(id))
+    .load::<models::Status>(connection)
+    .expect("Error loading users"))
+; for following_user_id in following_user_ids
+  { statuses.extend
+      (schema::statuses::table
+      .filter(schema::statuses::user_id.eq(following_user_id))
+      .load::<models::Status>(connection)
+      .expect("Error loading users")) }
+; statuses }

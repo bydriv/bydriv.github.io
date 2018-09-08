@@ -1,0 +1,6 @@
+-- Your SQL goes here
+CREATE TABLE statuses
+  ( id BIGSERIAL PRIMARY KEY
+  , user_id BIGINT NOT NULL
+  , text TEXT NOT NULL
+  , created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP );
