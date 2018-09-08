@@ -23,7 +23,7 @@ pub fn main()
 { let sys = actix::System::new("rustter")
 ; server::new(||
     App::new()
-    .middleware(SessionStorage::new(RedisSessionBackend::new("127.0.0.1:6379", &[0; 32])))
+    .middleware(SessionStorage::new(RedisSessionBackend::new("127.0.0.1:6379", &[0; 32]).ttl(60)))
     .resource("/sign_in.json", |r| r.with(json_api::sign_in))
     .resource("/users/list.json", |r| r.f(json_api::users::list)))
   .bind("127.0.0.1:8088")
