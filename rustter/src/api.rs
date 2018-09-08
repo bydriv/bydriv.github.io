@@ -135,4 +135,5 @@ pub fn timeline(connection : &PgConnection, id : i64) -> Vec<models::Status>
       .filter(schema::statuses::user_id.eq(following_user_id))
       .load::<models::Status>(connection)
       .expect("Error loading users")) }
+; statuses.sort_by(|lhs, rhs| rhs.created_at.cmp(&lhs.created_at))
 ; statuses }
