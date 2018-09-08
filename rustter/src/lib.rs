@@ -9,11 +9,14 @@ extern crate serde_json;
 #[macro_use]
 extern crate serde_derive;
 extern crate actix_redis;
+#[macro_use]
+extern crate askama;
 
 pub mod models;
 pub mod schema;
 pub mod api;
 pub mod json_api;
+pub mod html_api;
 
 use actix_web::{server, App, middleware};
 use actix_web::middleware::session::SessionStorage;
@@ -24,8 +27,9 @@ pub fn main()
 ; server::new(||
     App::new()
     .middleware(SessionStorage::new(RedisSessionBackend::new("127.0.0.1:6379", &[0; 32]).ttl(60)))
-    .resource("/sign_in.json", |r| r.with(json_api::sign_in))
-    .resource("/users/list.json", |r| r.f(json_api::users::list)))
+    .resource("/sign-in.json", |r| r.with(json_api::sign_in))
+    .resource("/users/list.json", |r| r.f(json_api::users::list))
+    .resource("/sign-in.html", |r| r.f(html_api::sign_in)))
   .bind("127.0.0.1:8088")
   .unwrap()
   .start()
