@@ -86,6 +86,13 @@ pub mod users
   { let connection = establish_connection()
   ; schema::users::table
     .load::<models::User>(&connection).expect("Error loading users") }
+  pub fn is_followed(user_id : i64, following_user_id : i64) -> bool
+  { let connection = establish_connection()
+  ; select(exists(schema::followings::table
+    .filter(schema::followings::user_id.eq(user_id))
+    .filter(schema::followings::following_user_id.eq(following_user_id))))
+    .get_result(&connection)
+    .expect("Error loading users") }
   pub fn following_count(id : i64) -> i64
   { let connection = establish_connection()
   ; schema::followings::table

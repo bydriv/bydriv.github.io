@@ -1,3 +1,14 @@
 <!DOCTYPE html>
 
-{{screen_name}}<br />Followings: {{following_count}}<br />Followers: {{follower_count}}
+{{screen_name}}<br />Followings: {{following_count}}<br />Followers: {{follower_count}}<br />
+{% if you_followed %}
+You followed<br />
+{% endif %}
+{% if you_are_followed %}
+You are followed <br />
+{% endif %}
+{% if you_followed %}
+<a href="unfollow/{{screen_name}}">Unfollow</a>
+{% else %}
+<a href="follow/{{screen_name}}">Follow</a>
+{% endif %}

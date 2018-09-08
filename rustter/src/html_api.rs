@@ -22,7 +22,9 @@ struct SignInTemplate {}
 struct UserShowTemplate
 { screen_name : String
 , following_count : i64
-, follower_count : i64 }
+, follower_count : i64
+, you_followed : bool
+, you_are_followed : bool }
 
 #[derive(Template)]
 #[template(path = "not-found.html")]
@@ -54,15 +56,31 @@ pub fn sign_in(_req: &HttpRequest) -> Result<HttpResponse>
 pub mod users
 { use super::*
 ; pub fn show(req: &HttpRequest) -> Result<HttpResponse>
-  { let user = api::find_user_by_screen_name(req.match_info().get("screen_name").unwrap().to_string())
-  ; match user
-    { Some(user) =>
-      { let user_show = UserShowTemplate {screen_name: user.screen_name, following_count: api::users::following_count(user.id), follower_count: api::users::follower_count(user.id) }
-      ; Ok(HttpResponse::build(http::StatusCode::OK)
-          .content_type("text/html; charset=utf-8")
-          .body(user_show.render().unwrap())) }
-    , None =>
-      { let not_found = NotFoundTemplate {}
-      ; Ok(HttpResponse::build(http::StatusCode::OK)
-          .content_type("text/html; charset=utf-8")
-          .body(not_found.render().unwrap())) } } } }
+  { match req.session().get::<i64>("user_id")
+    { Ok(Some(user_id)) =>
+      { let user = api::find_user(user_id).unwrap()
+      ; let showing_user = api::find_user_by_screen_name(req.match_info().get("screen_name").unwrap().to_string())
+      ; match showing_user
+        { Some(showing_user) =>
+          { let user_show = UserShowTemplate {screen_name: showing_user.screen_name, following_count: api::users::following_count(showing_user.id), follower_count: api::users::follower_count(showing_user.id), you_followed: api::users::is_followed(user.id, showing_user.id), you_are_followed: api::users::is_followed(showing_user.id, user.id) }
+          ; Ok(HttpResponse::build(http::StatusCode::OK)
+              .content_type("text/html; charset=utf-8")
+              .body(user_show.render().unwrap())) }
+        , None =>
+          { let not_found = NotFoundTemplate {}
+          ; Ok(HttpResponse::build(http::StatusCode::OK)
+              .content_type("text/html; charset=utf-8")
+              .body(not_found.render().unwrap())) } } }
+    , _ =>
+      { let showing_user = api::find_user_by_screen_name(req.match_info().get("screen_name").unwrap().to_string())
+      ; match showing_user
+        { Some(showing_user) =>
+          { let user_show = UserShowTemplate {screen_name: showing_user.screen_name, following_count: api::users::following_count(showing_user.id), follower_count: api::users::follower_count(showing_user.id), you_followed: false, you_are_followed: false }
+          ; Ok(HttpResponse::build(http::StatusCode::OK)
+              .content_type("text/html; charset=utf-8")
+              .body(user_show.render().unwrap())) }
+        , None =>
+          { let not_found = NotFoundTemplate {}
+          ; Ok(HttpResponse::build(http::StatusCode::OK)
+              .content_type("text/html; charset=utf-8")
+              .body(not_found.render().unwrap())) } } } } } }
