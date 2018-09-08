@@ -1,6 +1,11 @@
+use std::sync::Arc;
+
 use actix_web::{http, Result, HttpRequest, HttpResponse};
 use actix_web::middleware::session::{self, RequestSession};
 use askama::Template;
+
+use diesel::pg::PgConnection;
+use diesel::r2d2;
 
 use api;
 
@@ -30,10 +35,11 @@ struct UserShowTemplate
 #[template(path = "not-found.html")]
 struct NotFoundTemplate {}
 
-pub fn index(req: &HttpRequest) -> Result<HttpResponse>
+pub fn index(req: &HttpRequest<Arc<r2d2::Pool<r2d2::ConnectionManager<PgConnection>>>>) -> Result<HttpResponse>
 { match req.session().get::<i64>("user_id")
   { Ok(Some(user_id)) =>
-    { let user = api::find_user(user_id).unwrap()
+    { let connection : &PgConnection = &req.state().get().unwrap()
+    ; let user = api::find_user(connection, user_id).unwrap()
     ; let index = IndexTemplate {screen_name: user.screen_name}
     ; Ok(HttpResponse::build(http::StatusCode::OK)
         .content_type("text/html; charset=utf-8")
@@ -41,13 +47,13 @@ pub fn index(req: &HttpRequest) -> Result<HttpResponse>
   , _ =>
       sign_in(req) } }
 
-pub fn sign_up(_req: &HttpRequest) -> Result<HttpResponse>
+pub fn sign_up(_req: &HttpRequest<Arc<r2d2::Pool<r2d2::ConnectionManager<PgConnection>>>>) -> Result<HttpResponse>
 { let sign_up = SignUpTemplate {}
 ; Ok(HttpResponse::build(http::StatusCode::OK)
     .content_type("text/html; charset=utf-8")
     .body(sign_up.render().unwrap())) }
 
-pub fn sign_in(_req: &HttpRequest) -> Result<HttpResponse>
+pub fn sign_in(_req: &HttpRequest<Arc<r2d2::Pool<r2d2::ConnectionManager<PgConnection>>>>) -> Result<HttpResponse>
 { let sign_in = SignInTemplate {}
 ; Ok(HttpResponse::build(http::StatusCode::OK)
     .content_type("text/html; charset=utf-8")
@@ -55,14 +61,15 @@ pub fn sign_in(_req: &HttpRequest) -> Result<HttpResponse>
 
 pub mod users
 { use super::*
-; pub fn show(req: &HttpRequest) -> Result<HttpResponse>
+; pub fn show(req: &HttpRequest<Arc<r2d2::Pool<r2d2::ConnectionManager<PgConnection>>>>) -> Result<HttpResponse>
   { match req.session().get::<i64>("user_id")
     { Ok(Some(user_id)) =>
-      { let user = api::find_user(user_id).unwrap()
-      ; let showing_user = api::find_user_by_screen_name(req.match_info().get("screen_name").unwrap().to_string())
+      { let connection : &PgConnection = &req.state().get().unwrap()
+      ; let user = api::find_user(connection, user_id).unwrap()
+      ; let showing_user = api::find_user_by_screen_name(connection, req.match_info().get("screen_name").unwrap().to_string())
       ; match showing_user
         { Some(showing_user) =>
-          { let user_show = UserShowTemplate {screen_name: showing_user.screen_name, following_count: api::users::following_count(showing_user.id), follower_count: api::users::follower_count(showing_user.id), you_followed: api::users::is_followed(user.id, showing_user.id), you_are_followed: api::users::is_followed(showing_user.id, user.id) }
+          { let user_show = UserShowTemplate {screen_name: showing_user.screen_name, following_count: api::users::following_count(connection, showing_user.id), follower_count: api::users::follower_count(connection, showing_user.id), you_followed: api::users::is_followed(connection, user.id, showing_user.id), you_are_followed: api::users::is_followed(connection, showing_user.id, user.id) }
           ; Ok(HttpResponse::build(http::StatusCode::OK)
               .content_type("text/html; charset=utf-8")
               .body(user_show.render().unwrap())) }
@@ -72,10 +79,11 @@ pub mod users
               .content_type("text/html; charset=utf-8")
               .body(not_found.render().unwrap())) } } }
     , _ =>
-      { let showing_user = api::find_user_by_screen_name(req.match_info().get("screen_name").unwrap().to_string())
+      { let connection : &PgConnection = &req.state().get().unwrap()
+      ; let showing_user = api::find_user_by_screen_name(connection, req.match_info().get("screen_name").unwrap().to_string())
       ; match showing_user
         { Some(showing_user) =>
-          { let user_show = UserShowTemplate {screen_name: showing_user.screen_name, following_count: api::users::following_count(showing_user.id), follower_count: api::users::follower_count(showing_user.id), you_followed: false, you_are_followed: false }
+          { let user_show = UserShowTemplate {screen_name: showing_user.screen_name, following_count: api::users::following_count(connection, showing_user.id), follower_count: api::users::follower_count(connection, showing_user.id), you_followed: false, you_are_followed: false }
           ; Ok(HttpResponse::build(http::StatusCode::OK)
               .content_type("text/html; charset=utf-8")
               .body(user_show.render().unwrap())) }
@@ -84,13 +92,14 @@ pub mod users
           ; Ok(HttpResponse::build(http::StatusCode::OK)
               .content_type("text/html; charset=utf-8")
               .body(not_found.render().unwrap())) } } } } }
-  pub fn follow(req: &HttpRequest) -> Result<HttpResponse>
+  pub fn follow(req: &HttpRequest<Arc<r2d2::Pool<r2d2::ConnectionManager<PgConnection>>>>) -> Result<HttpResponse>
   { match req.session().get::<i64>("user_id")
     { Ok(Some(user_id)) =>
-      { let showing_user = api::find_user_by_screen_name(req.match_info().get("screen_name").unwrap().to_string())
+      { let connection : &PgConnection = &req.state().get().unwrap()
+      ; let showing_user = api::find_user_by_screen_name(connection, req.match_info().get("screen_name").unwrap().to_string())
       ; match showing_user
         { Some(showing_user) =>
-          { api::users::follow(user_id, showing_user.id)
+          { api::users::follow(connection, user_id, showing_user.id)
           ; index(req) }
         , None =>
           { let not_found = NotFoundTemplate {}
@@ -99,13 +108,14 @@ pub mod users
               .body(not_found.render().unwrap())) } } }
     , _ =>
         sign_in(req) } }
-  pub fn unfollow(req: &HttpRequest) -> Result<HttpResponse>
+  pub fn unfollow(req: &HttpRequest<Arc<r2d2::Pool<r2d2::ConnectionManager<PgConnection>>>>) -> Result<HttpResponse>
   { match req.session().get::<i64>("user_id")
     { Ok(Some(user_id)) =>
-      { let showing_user = api::find_user_by_screen_name(req.match_info().get("screen_name").unwrap().to_string())
+      { let connection : &PgConnection = &req.state().get().unwrap()
+      ; let showing_user = api::find_user_by_screen_name(connection, req.match_info().get("screen_name").unwrap().to_string())
       ; match showing_user
         { Some(showing_user) =>
-          { api::users::unfollow(user_id, showing_user.id)
+          { api::users::unfollow(connection, user_id, showing_user.id)
           ; index(req) }
         , None =>
           { let not_found = NotFoundTemplate {}
