@@ -1,8 +1,39 @@
 <!DOCTYPE html>
 
-<form action="sign-in.json" method="post">
-  screen_name: <input type="text" name="screen_name" size="32">
-  password: <input type="text" name="password" size="32">
+<head>
+  <style>
+    html, body, h1, p, span, form, input, ul, li, a {
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      padding: 8px;
+      font-size: 16px;
+      font-family: Pirulen;
+      color: #F0F0F0;
+      background: linear-gradient(to bottom, #808080, #404040);
+    }
+    .nav {
+      margin-top: 16px !important;
+    }
+    .sign-in, .sign-up, .nav {
+      width: 640px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<h1>Rustter</h1>
+
+<p class="nav">Sign in:</p>
+<form class="sign-in" action="sign-in.json" method="post">
+  <input type="text" name="screen_name" placeholder="screen_name" size="32">
+  <input type="password" name="password" placeholder="password" size="32">
   <input type="submit" value="submit">
 </form>
-or <a href="/sign-up.html">sign up</a>
+<p class="nav">Sign up:</p>
+<form class="sign-up" action="sign-up.json" method="post">
+  <input type="text" name="screen_name" placeholder="screen_name" size="32">
+  <input type="password" name="password" placeholder="password" size="32">
+  <input type="submit" value="submit">
+</form>
