@@ -7,6 +7,7 @@ use askama::Template;
 use diesel::pg::PgConnection;
 use diesel::r2d2;
 
+use models;
 use api;
 use json_api;
 
@@ -31,8 +32,10 @@ struct UserShowTemplate
 { screen_name : String
 , following_count : i64
 , follower_count : i64
+, you : bool
 , you_followed : bool
-, you_are_followed : bool }
+, you_are_followed : bool
+, statuses : Vec<json_api::Status> }
 
 #[derive(Template)]
 #[template(path = "not-found.html")]
@@ -72,7 +75,7 @@ pub mod users
       ; let showing_user = api::find_user_by_screen_name(connection, req.match_info().get("screen_name").unwrap().to_string())
       ; match showing_user
         { Some(showing_user) =>
-          { let user_show = UserShowTemplate {screen_name: showing_user.screen_name, following_count: api::users::following_count(connection, showing_user.id), follower_count: api::users::follower_count(connection, showing_user.id), you_followed: api::users::is_followed(connection, user.id, showing_user.id), you_are_followed: api::users::is_followed(connection, showing_user.id, user.id) }
+          { let user_show = UserShowTemplate {screen_name: showing_user.screen_name, following_count: api::users::following_count(connection, showing_user.id), follower_count: api::users::follower_count(connection, showing_user.id), you: user.id == showing_user.id, you_followed: api::users::is_followed(connection, user.id, showing_user.id), you_are_followed: api::users::is_followed(connection, showing_user.id, user.id), statuses: api::user_timeline(connection, showing_user.id).into_iter().map(|status| { let user = api::find_user(connection, status.user_id).unwrap(); json_api::Status { id: status.id, user: json_api::User { id: user.id, screen_name: user.screen_name }, text: status.text } }).collect() }
           ; Ok(HttpResponse::build(http::StatusCode::OK)
               .content_type("text/html; charset=utf-8")
               .body(user_show.render().unwrap())) }
@@ -86,7 +89,7 @@ pub mod users
       ; let showing_user = api::find_user_by_screen_name(connection, req.match_info().get("screen_name").unwrap().to_string())
       ; match showing_user
         { Some(showing_user) =>
-          { let user_show = UserShowTemplate {screen_name: showing_user.screen_name, following_count: api::users::following_count(connection, showing_user.id), follower_count: api::users::follower_count(connection, showing_user.id), you_followed: false, you_are_followed: false }
+          { let user_show = UserShowTemplate {screen_name: showing_user.screen_name, following_count: api::users::following_count(connection, showing_user.id), follower_count: api::users::follower_count(connection, showing_user.id), you: false, you_followed: false, you_are_followed: false, statuses: api::user_timeline(connection, showing_user.id).into_iter().map(|status| { let user = api::find_user(connection, status.user_id).unwrap(); json_api::Status { id: status.id, user: json_api::User { id: user.id, screen_name: user.screen_name }, text: status.text } }).collect() }
           ; Ok(HttpResponse::build(http::StatusCode::OK)
               .content_type("text/html; charset=utf-8")
               .body(user_show.render().unwrap())) }
