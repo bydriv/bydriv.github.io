@@ -19,10 +19,6 @@ struct IndexTemplate
 , users : Vec<json_api::User> }
 
 #[derive(Template)]
-#[template(path = "sign-up.html")]
-struct SignUpTemplate {}
-
-#[derive(Template)]
 #[template(path = "sign-in.html")]
 struct SignInTemplate {}
 
@@ -52,12 +48,6 @@ pub fn index(req: &HttpRequest<Arc<r2d2::Pool<r2d2::ConnectionManager<PgConnecti
         .body(index.render().unwrap())) }
   , _ =>
       sign_in(req) } }
-
-pub fn sign_up(_req: &HttpRequest<Arc<r2d2::Pool<r2d2::ConnectionManager<PgConnection>>>>) -> Result<HttpResponse>
-{ let sign_up = SignUpTemplate {}
-; Ok(HttpResponse::build(http::StatusCode::OK)
-    .content_type("text/html; charset=utf-8")
-    .body(sign_up.render().unwrap())) }
 
 pub fn sign_in(_req: &HttpRequest<Arc<r2d2::Pool<r2d2::ConnectionManager<PgConnection>>>>) -> Result<HttpResponse>
 { let sign_in = SignInTemplate {}
