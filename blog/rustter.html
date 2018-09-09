@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Rust の所感、あるいは Rustter のこと</title>
+<!-- 2018-09-10 Mon 03:44 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/css/prelude.css" />
+<link rel="stylesheet" type="text/css" href="/css/highlight.css" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">Rust の所感、あるいは Rustter のこと</h1>
+<div class="location">
+<p>
+https://<a href="/">bydriv.github.io</a>/<a href="/blog">blog</a>/<strong>rustter.html</strong>
+</p>
+
+</div>
+
+<div class="created_at">
+<p>
+created at <time datetime="2018-09-10">2018-09-10</time>
+</p>
+
+</div>
+
+<div class="updated_at">
+<p>
+updated at <time datetime="2018-09-10">2018-09-10</time>
+</p>
+
+</div>
+
+<p>
+この土日を使って Rustter という Rust で書かれた Twitter クローン（？）を開発していた．
+リポジトリを独立させるつもりはいまのところなくて，
+ソースコードは <a href="https://github.com/bydriv/bydriv.github.io/tree/master/rustter">https://github.com/bydriv/bydriv.github.io/tree/master/rustter</a> にある．
+</p>
+
+<p>
+スクリーンショット．
+</p>
+
+<p>
+ホームタイムライン:
+</p>
+
+<div class="center">
+
+<div class="figure">
+<p><img src="./ss0007.png" alt="ss0007.png">
+</p>
+</div>
+</div>
+
+<p>
+ユーザページ:
+</p>
+
+<div class="center">
+
+<div class="figure">
+<p><img src="./ss0008.png" alt="ss0008.png">
+</p>
+</div>
+</div>
+
+<p>
+なんでつくってたのか． Rust の勉強とか予習（？）のため．
+某社がサーバサイドを Rust でやってるらしいので， 所感を掴むためというのもある．
+それとはべつに， 個人的にも Rust をちゃんと書いてみるいい機会だったと思う．
+</p>
+
+<p>
+技術的詳細．
+</p>
+
+<ul class="org-ul">
+<li><b>actix</b>: Actor ライブラリ（？）らしい．よくわかっていない．
+</li>
+<li><b>actix-web</b>: Actix で実装されたサーバサイドのフレームワーク．
+</li>
+<li><b>diesel</b>: Rust の ORM で SQL を操作するのに使う．
+migration もある．
+</li>
+<li><b>dotenv</b>: <code>.env</code> というファイルを読みこむために使うらしい
+</li>
+<li><b>siphasher</b>: djb 御大の SipHash の実装．
+</li>
+<li><b>serde</b>: なんかシリアライズとかするライブラリ．
+</li>
+<li><b>serde_json</b>: json 用の serde ．
+</li>
+<li><b>serde_derive</b>: シリアライズとかするのを <code>#[derive()]</code> とかできるようになる．
+</li>
+<li><b>actix-redis</b>: Actix において Redis でセッション管理をするやつ．
+</li>
+<li><b>askama</b>: テンプレートエンジン．
+</li>
+<li><b>r2d2</b>: SQL のコネクションプールを管理してくれる．
+</li>
+</ul>
+
+<p>
+所感．
+</p>
+
+<ul class="org-ul">
+<li>Rust という言語で詰まることはあんまなかった． 気がする．
+</li>
+<li>コンパイルはなかなか通らないけど通ってから落ちたことはない(といってもまだ2日しか使ってないのだけど)．
+これはすごいことだと思う．そのへんの書き味は Haskell みたいにかなり高級言語な感じ．
+にもかかわらず GC もないのだからすごい．
+</li>
+<li>わたしの場合，数年前に Rust のチュートリアルを流し読みしていたからその知識で多少書けたけど，
+完全に初見だったかつらかったかもしれない．
+</li>
+</ul>
+
+<p>
+そんな感じ．
+</p>
+</div>
+</body>
+</html>
