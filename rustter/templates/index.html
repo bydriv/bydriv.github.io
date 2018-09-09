@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 
 Hi, {{screen_name}}!<br />
+<form action="/statuses/update.json" method="post">
+  <input type="text" name="text" placeholder="いまどうしてる？" size="128">
+  <input type="submit" value="submit">
+</form>
 
 {% for status in statuses %}
   <a href="/user/{{status.user.screen_name}}">{{ status.user.screen_name }}</a>: {{ status.text }}<br />

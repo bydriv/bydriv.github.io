@@ -27,6 +27,10 @@ pub struct Status
 , pub user : User
 , pub text : String }
 
+#[derive(Serialize, Deserialize)]
+pub struct StatusesUpdateParams
+{ pub text: String }
+
 pub fn sign_up((req, params): (HttpRequest<Arc<r2d2::Pool<r2d2::ConnectionManager<PgConnection>>>>, Form<SignInParams>)) -> HttpResponse
 { let connection : &PgConnection = &req.state().get().unwrap()
 ; api::sign_up(connection, params.screen_name.clone(), params.password.clone())
@@ -55,10 +59,22 @@ pub fn sign_in((req, params): (HttpRequest<Arc<r2d2::Pool<r2d2::ConnectionManage
 pub mod users
 { use super::*
 ; pub fn list(req: &HttpRequest<Arc<r2d2::Pool<r2d2::ConnectionManager<PgConnection>>>>) -> String
-  { match req.session().get::<i64>("user_id")
-    { Ok(Some(user_id)) => println!("{}", user_id)
-    , Ok(None) => println!("Ok(None)")
-    , Err(_) => println!("Err(_)") }
-  ; let connection : &PgConnection = &req.state().get().unwrap()
+  { let connection : &PgConnection = &req.state().get().unwrap()
   ; let users = api::users::list(connection)
   ; serde_json::to_string(&users.into_iter().map(|user| json_api::User{id: user.id, screen_name: user.screen_name}).collect::<Vec<json_api::User>>()).expect("can't convert users to json") } }
+
+pub mod statuses
+{ use super::*
+; pub fn update((req, params): (HttpRequest<Arc<r2d2::Pool<r2d2::ConnectionManager<PgConnection>>>>, Form<StatusesUpdateParams>)) -> HttpResponse
+  { match req.session().get::<i64>("user_id")
+    { Ok(Some(user_id)) =>
+      { let connection : &PgConnection = &req.state().get().unwrap()
+      ; let user = api::find_user(connection, user_id).unwrap()
+      ; api::statuses::update(connection, user.id, params.text.clone())
+      ; HttpResponse::Found()
+        .header(http::header::LOCATION, "/")
+        .finish() }
+    , _ =>
+        HttpResponse::Found()
+        .header(http::header::LOCATION, "/")
+        .finish() } } }

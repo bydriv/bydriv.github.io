@@ -109,6 +109,15 @@ pub mod users
     .map(|following| following.following_user_id)
     .collect() } }
 
+pub mod statuses
+{ use super::*
+; pub fn update(connection : &PgConnection, user_id : i64, text : String)
+  { let new_statuses = vec![(schema::statuses::user_id.eq(user_id), schema::statuses::text.eq(text))]
+  ; insert_into(schema::statuses::table)
+    .values(&new_statuses)
+    .execute(connection)
+  ; () } }
+
 pub fn timeline(connection : &PgConnection, id : i64) -> Vec<models::Status>
 { let following_user_ids = users::following_user_ids(connection, id)
 ; let mut statuses = vec![]
