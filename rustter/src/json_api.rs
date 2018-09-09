@@ -56,6 +56,12 @@ pub fn sign_in((req, params): (HttpRequest<Arc<r2d2::Pool<r2d2::ConnectionManage
     .header(http::header::LOCATION, "/")
     .finish() } }
 
+pub fn sign_out(req : &HttpRequest<Arc<r2d2::Pool<r2d2::ConnectionManager<PgConnection>>>>) -> HttpResponse
+{ req.session().clear()
+; HttpResponse::Found()
+  .header(http::header::LOCATION, "/")
+  .finish() }
+
 pub mod users
 { use super::*
 ; pub fn list(req: &HttpRequest<Arc<r2d2::Pool<r2d2::ConnectionManager<PgConnection>>>>) -> String

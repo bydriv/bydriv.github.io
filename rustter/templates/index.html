@@ -45,10 +45,14 @@
       padding-bottom: 4px !important;
       margin-bottom: 12px !important;
     }
+    .control {
+      text-align: right;
+    }
   </style>
 </head>
 
 <h1><a href="/">Rustter</a></h1>
+<div class="control"><a href="/sign-out.json">Sign out</a></div>
 
 <p class="welcome">Hi, <span class="screen_name">@{{screen_name}}</span>!</p>
 <form class="whats-happening" action="/statuses/update.json" method="post">
