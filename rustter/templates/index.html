@@ -3,5 +3,5 @@
 Hi, {{screen_name}}!<br />
 
 {% for status in statuses %}
-  {{ status.user.screen_name }}: {{ status.text }}<br />
+  <a href="/user/{{status.user.screen_name}}">{{ status.user.screen_name }}</a>: {{ status.text }}<br />
 {% endfor %}

@@ -102,14 +102,18 @@ pub mod users
       ; match showing_user
         { Some(showing_user) =>
           { api::users::follow(connection, user_id, showing_user.id)
-          ; index(req) }
+          ; Ok(HttpResponse::Found()
+            .header(http::header::LOCATION, "/")
+            .finish()) }
         , None =>
           { let not_found = NotFoundTemplate {}
           ; Ok(HttpResponse::build(http::StatusCode::OK)
               .content_type("text/html; charset=utf-8")
               .body(not_found.render().unwrap())) } } }
     , _ =>
-        sign_in(req) } }
+      Ok(HttpResponse::Found()
+      .header(http::header::LOCATION, "/")
+      .finish()) } }
   pub fn unfollow(req: &HttpRequest<Arc<r2d2::Pool<r2d2::ConnectionManager<PgConnection>>>>) -> Result<HttpResponse>
   { match req.session().get::<i64>("user_id")
     { Ok(Some(user_id)) =>
@@ -118,11 +122,15 @@ pub mod users
       ; match showing_user
         { Some(showing_user) =>
           { api::users::unfollow(connection, user_id, showing_user.id)
-          ; index(req) }
+          ; Ok(HttpResponse::Found()
+            .header(http::header::LOCATION, "/")
+            .finish()) }
         , None =>
           { let not_found = NotFoundTemplate {}
           ; Ok(HttpResponse::build(http::StatusCode::OK)
               .content_type("text/html; charset=utf-8")
               .body(not_found.render().unwrap())) } } }
     , _ =>
-        sign_in(req) } } }
+      Ok(HttpResponse::Found()
+      .header(http::header::LOCATION, "/")
+      .finish()) } } }
