@@ -1,7 +1,7 @@
 use std::sync::Arc;
 
-use actix_web::{HttpRequest, Form};
-use actix_web::middleware::session::{self, RequestSession};
+use actix_web::{http, HttpRequest, HttpResponse, Form};
+use actix_web::middleware::session::{RequestSession};
 
 use diesel::pg::PgConnection;
 use diesel::r2d2;
@@ -27,20 +27,30 @@ pub struct Status
 , pub user : User
 , pub text : String }
 
-pub fn sign_up((req, params): (HttpRequest<Arc<r2d2::Pool<r2d2::ConnectionManager<PgConnection>>>>, Form<SignInParams>)) -> String
+pub fn sign_up((req, params): (HttpRequest<Arc<r2d2::Pool<r2d2::ConnectionManager<PgConnection>>>>, Form<SignInParams>)) -> HttpResponse
 { let connection : &PgConnection = &req.state().get().unwrap()
 ; api::sign_up(connection, params.screen_name.clone(), params.password.clone())
 ; if let Some(user) = api::sign_in(connection, params.screen_name.clone(), params.password.clone())
-  { req.session().set::<i64>("user_id", user.id); "true".to_owned() }
+  { req.session().set::<i64>("user_id", user.id)
+  ; HttpResponse::Found()
+    .header(http::header::LOCATION, "/")
+    .finish() }
   else
-  { "false".to_owned() } }
+  { HttpResponse::Found()
+    .header(http::header::LOCATION, "/")
+    .finish() } }
 
-pub fn sign_in((req, params): (HttpRequest<Arc<r2d2::Pool<r2d2::ConnectionManager<PgConnection>>>>, Form<SignInParams>)) -> String
+pub fn sign_in((req, params): (HttpRequest<Arc<r2d2::Pool<r2d2::ConnectionManager<PgConnection>>>>, Form<SignInParams>)) -> HttpResponse
 { let connection : &PgConnection = &req.state().get().unwrap()
 ; if let Some(user) = api::sign_in(connection, params.screen_name.clone(), params.password.clone())
-  { req.session().set::<i64>("user_id", user.id); "true".to_owned() }
+  { req.session().set::<i64>("user_id", user.id)
+  ; HttpResponse::Found()
+    .header(http::header::LOCATION, "/")
+    .finish() }
   else
-  { "false".to_owned() } }
+  { HttpResponse::Found()
+    .header(http::header::LOCATION, "/")
+    .finish() } }
 
 pub mod users
 { use super::*

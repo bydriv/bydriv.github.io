@@ -22,7 +22,7 @@ pub mod html_api;
 use std::sync::Arc;
 use std::env;
 
-use actix_web::{server, App, middleware};
+use actix_web::{server, App};
 use actix_web::middleware::session::SessionStorage;
 use actix_redis::RedisSessionBackend;
 

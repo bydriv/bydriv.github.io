@@ -1,25 +1,13 @@
-use std::env;
 use std::hash::{Hash, Hasher};
 
 use diesel::*;
 use diesel::dsl::*;
 use diesel::pg::PgConnection;
 
-use dotenv::dotenv;
-
 use siphasher::sip::{SipHasher24};
 
 use models;
 use schema;
-
-/*
-pub fn establish_connection() -> PgConnection
-{ dotenv().ok()
-; let database_url = env::var("DATABASE_URL")
-      .expect("DATABASE_URL must be set")
-; PgConnection::establish(&database_url)
-  .expect(&format!("Error connecting to {}", database_url)) }
-*/
 
 pub fn find_user(connection : &PgConnection, id : i64) -> Option<models::User>
 { match
@@ -81,7 +69,7 @@ pub mod users
   { schema::users::table
     .load::<models::User>(connection).expect("Error loading users") }
   pub fn follow(connection : &PgConnection, user_id : i64, following_user_id : i64)
-  { if (is_followed(connection, user_id, following_user_id))
+  { if is_followed(connection, user_id, following_user_id)
     { return () }
   ; let new_followings = vec![(schema::followings::user_id.eq(user_id), schema::followings::following_user_id.eq(following_user_id))]
   ; insert_into(schema::followings::table)
@@ -89,7 +77,7 @@ pub mod users
     .execute(connection)
   ; () }
   pub fn unfollow(connection : &PgConnection, user_id : i64, following_user_id : i64)
-  { if (!is_followed(connection, user_id, following_user_id))
+  { if !is_followed(connection, user_id, following_user_id)
     { return () }
   ; delete(schema::followings::table.filter(schema::followings::user_id.eq(user_id)).filter(schema::followings::following_user_id.eq(following_user_id)))
     .execute(connection)

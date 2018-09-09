@@ -1,13 +1,12 @@
 use std::sync::Arc;
 
 use actix_web::{http, Result, HttpRequest, HttpResponse};
-use actix_web::middleware::session::{self, RequestSession};
+use actix_web::middleware::session::{RequestSession};
 use askama::Template;
 
 use diesel::pg::PgConnection;
 use diesel::r2d2;
 
-use models;
 use api;
 use json_api;
 
