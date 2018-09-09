@@ -9,3 +9,10 @@ Hi, {{screen_name}}!<br />
 {% for status in statuses %}
   <a href="/user/{{status.user.screen_name}}">{{ status.user.screen_name }}</a>: {{ status.text }}<br />
 {% endfor %}
+
+All Users (for test):
+<ul>
+{% for user in users %}
+  <li><a href="/user/{{user.screen_name}}">{{user.screen_name}}</a></li>
+{% endfor %}
+</ul>

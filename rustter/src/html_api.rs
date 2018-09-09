@@ -14,7 +14,8 @@ use json_api;
 #[template(path = "index.html")]
 struct IndexTemplate
 { screen_name : String
-, statuses : Vec<json_api::Status> }
+, statuses : Vec<json_api::Status>
+, users : Vec<json_api::User> }
 
 #[derive(Template)]
 #[template(path = "sign-up.html")]
@@ -42,7 +43,7 @@ pub fn index(req: &HttpRequest<Arc<r2d2::Pool<r2d2::ConnectionManager<PgConnecti
   { Ok(Some(user_id)) =>
     { let connection : &PgConnection = &req.state().get().unwrap()
     ; let user = api::find_user(connection, user_id).unwrap()
-    ; let index = IndexTemplate { screen_name: user.screen_name, statuses: api::timeline(connection, user.id).into_iter().map(|status| { let user = api::find_user(connection, status.user_id).unwrap(); json_api::Status { id: status.id, user: json_api::User { id: user.id, screen_name: user.screen_name }, text: status.text } }).collect() }
+    ; let index = IndexTemplate { screen_name: user.screen_name, statuses: api::timeline(connection, user.id).into_iter().map(|status| { let user = api::find_user(connection, status.user_id).unwrap(); json_api::Status { id: status.id, user: json_api::User { id: user.id, screen_name: user.screen_name }, text: status.text } }).collect(), users: api::users::list(connection).into_iter().map(|user| json_api::User{id: user.id, screen_name: user.screen_name}).collect::<Vec<json_api::User>>() }
     ; Ok(HttpResponse::build(http::StatusCode::OK)
         .content_type("text/html; charset=utf-8")
         .body(index.render().unwrap())) }
