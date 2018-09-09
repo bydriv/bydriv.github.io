@@ -1,18 +1,57 @@
 <!DOCTYPE html>
 
-Hi, {{screen_name}}!<br />
-<form action="/statuses/update.json" method="post">
-  <input type="text" name="text" placeholder="いまどうしてる？" size="128">
+<head>
+  <style>
+    html, body, h1, p, span, form, input, ul, li, a {
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      padding: 8px;
+      font-size: 16px;
+      font-family: Pirulen;
+      color: #F0F0F0;
+      background: linear-gradient(to bottom, #808080, #404040);
+    }
+    .welcome {
+      margin-top: 16px !important;
+    }
+    .whats-happening {
+      margin-bottom: 16px !important;
+    }
+    .who-to-follow-nav {
+      margin-top: 16px !important;
+      margin-bottom: 16px !important;
+    }
+    .welcome, .whats-happening, .statuses, .who-to-follow-nav, .who-to-follow {
+      width: 640px;
+      margin: 0 auto;
+    }
+    ul { list-style-type: none; }
+    .status .screen_name {
+      display: inline-block;
+      width: 64px;
+    }
+  </style>
+</head>
+
+<h1>Rustter</h1>
+
+<p class="welcome">Hi, <span class="screen_name">{{screen_name}}</span>!</p>
+<form class="whats-happening" action="/statuses/update.json" method="post">
+  <textarea name="text" placeholder="what's happening?" cols="64" rows="2"></textarea>
   <input type="submit" value="submit">
 </form>
 
+<ul class="statuses">
 {% for status in statuses %}
-  <a href="/user/{{status.user.screen_name}}">{{ status.user.screen_name }}</a>: {{ status.text }}<br />
+  <li class="status"><a class="screen_name" href="/user/{{status.user.screen_name}}">{{ status.user.screen_name }}</a><span class="text">{{ status.text }}</span></li>
 {% endfor %}
+</ul>
 
-All Users (for test):
-<ul>
+<p class="who-to-follow-nav">Who to follow (for test):</p>
+<ul class="who-to-follow">
 {% for user in users %}
-  <li><a href="/user/{{user.screen_name}}">{{user.screen_name}}</a></li>
+  <li class="user"><a class="screen_name" href="/user/{{user.screen_name}}">{{user.screen_name}}</a></li>
 {% endfor %}
 </ul>
