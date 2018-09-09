@@ -34,6 +34,16 @@
     .status .screen_name {
       display: inline-block;
       width: 64px;
+      vertical-align: top;
+    }
+    .status .text {
+      display: inline-block;
+      width: 448px;
+    }
+    .status {
+      border-bottom: solid 1px #C0C0C0;
+      padding-bottom: 4px !important;
+      margin-bottom: 12px !important;
     }
   </style>
 </head>
@@ -52,9 +62,11 @@
 {% endfor %}
 </ul>
 
+<!--
 <p class="who-to-follow-nav">Who to follow (for test):</p>
 <ul class="who-to-follow">
 {% for user in users %}
   <li class="user"><a class="screen_name" href="/user/{{user.screen_name}}">{{user.screen_name}}</a></li>
 {% endfor %}
 </ul>
+-->
