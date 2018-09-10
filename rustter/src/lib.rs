@@ -24,7 +24,7 @@ use std::env;
 
 use actix_web::{server, App};
 use actix_web::middleware::session::SessionStorage;
-use actix_redis::RedisSessionBackend;
+use actix_redis::{RedisSessionBackend, SameSite};
 
 use diesel::pg::PgConnection;
 use diesel::r2d2::ConnectionManager;
@@ -40,7 +40,7 @@ pub fn main()
 ; let sys = actix::System::new("rustter")
 ; server::new(move ||
     App::with_state(pool.clone())
-    .middleware(SessionStorage::new(RedisSessionBackend::new("127.0.0.1:6379", &[0; 32]).ttl(7200)))
+    .middleware(SessionStorage::new(RedisSessionBackend::new("127.0.0.1:6379", &[0; 32]).ttl(7200).cookie_same_site(SameSite::Strict)))
     .resource("/sign-up.json", |r| r.with(json_api::sign_up))
     .resource("/sign-in.json", |r| r.with(json_api::sign_in))
     .resource("/sign-out.json", |r| r.f(json_api::sign_out))

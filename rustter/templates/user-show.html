@@ -59,7 +59,7 @@
 <h1><a href="/">Rustter</a></h1>
 
 <div class="user">
-  <p class="center"><span class="screen_name">@{{screen_name}}</span></p>
+  <p class="center"><span class="screen_name">@{{screen_name|escape}}</span></p>
 {% if !you %}
 {% if you_are_followed %}
   <p class="center"><span class="you-are-followed">You are followed</span></p>
@@ -69,17 +69,17 @@
     <tr><td>Followings:</td><td>Followers:</td>
 <td>
 {% if you_followed %}
-<a href="/unfollow/{{screen_name}}">Unfollow</a>
+<a href="/unfollow/{{screen_name|escape}}">Unfollow</a>
 {% else %}
-<a href="/follow/{{screen_name}}">Follow</a>
+<a href="/follow/{{screen_name|escape}}">Follow</a>
 {% endif %}
 </td></tr>
-    <tr><td>{{following_count}}</td><td>{{follower_count}}</td><td></td></tr>
+    <tr><td>{{following_count|escape}}</td><td>{{follower_count|escape}}</td><td></td></tr>
   </table>
 </div>
 
 <ul class="statuses">
 {% for status in statuses %}
-  <li class="status"><a class="screen_name" href="/user/{{status.user.screen_name}}">@{{ status.user.screen_name }}</a><span class="text">{{ status.text }}</span></li>
+  <li class="status"><a class="screen_name" href="/user/{{status.user.screen_name|escape}}">@{{status.user.screen_name|escape}}</a><span class="text">{{status.text|escape}}</span></li>
 {% endfor %}
 </ul>
