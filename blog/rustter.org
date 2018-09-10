@@ -1,6 +1,6 @@
 #+SETUPFILE: ../setup.org
 #+OPTIONS: ^:nil
-#+TITLE: Rust の所感、あるいは Rustter のこと
+#+TITLE: Rust の所感，あるいは Rustter のこと
 
 #+BEGIN_LOCATION
 @@html:https://<a href="/">bydriv.github.io</a>/<a href="/blog">blog</a>/<strong>rustter.html</strong>@@
