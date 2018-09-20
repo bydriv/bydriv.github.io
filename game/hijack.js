@@ -1,5 +1,5 @@
-window.addEventListener("load", function () {
-    game_new().then(function (game) {
+window.addEventListener("load", () => {
+    game_new().then(game => {
         requestAnimationFrame(function step () {
             game_step(game).then(function (next_game) {
                 game = next_game;
@@ -9,7 +9,7 @@ window.addEventListener("load", function () {
     });
 });
 
-window.addEventListener("resize", function () {
+window.addEventListener("resize", () => {
     game_resize();
 });
 
@@ -25,17 +25,17 @@ const ASSETS = [
 ];
 
 function game_new() {
-    return new Promise(function (resolve) {
+    return new Promise(resolve => {
         WebFont.load({
             custom: {
                 families: ["IBM BIOS", "Misaki Gothic"]
             },
-            active: function () {
+            active: () => {
                 game_resize();
 
                 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 
-                PIXI.loader.add(ASSETS).load(function () {
+                PIXI.loader.add(ASSETS).load(() => {
                     const app = new PIXI.Application({autoStart: false, width: 1920, height: 1280});
                     app.stage.scale.set(8, 8);
                     app.renderer.backgroundColor = 0xC0C0C0;
