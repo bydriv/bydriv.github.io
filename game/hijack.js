@@ -21,7 +21,15 @@ const ASSETS = [
     "hijack/pixelart/teiri/walk/back/0.png",
     "hijack/pixelart/teiri/walk/back/1.png",
     "hijack/pixelart/teiri/walk/back/2.png",
-    "hijack/pixelart/teiri/walk/back/3.png"
+    "hijack/pixelart/teiri/walk/back/3.png",
+    "hijack/pixelart/teiri/walk/right/0.png",
+    "hijack/pixelart/teiri/walk/right/1.png",
+    "hijack/pixelart/teiri/walk/right/2.png",
+    "hijack/pixelart/teiri/walk/right/3.png",
+    "hijack/pixelart/teiri/walk/left/0.png",
+    "hijack/pixelart/teiri/walk/left/1.png",
+    "hijack/pixelart/teiri/walk/left/2.png",
+    "hijack/pixelart/teiri/walk/left/3.png"
 ];
 
 async function game_new() {
@@ -52,10 +60,32 @@ async function game_new() {
         PIXI.loader.resources["hijack/pixelart/teiri/walk/back/2.png"].texture,
         PIXI.loader.resources["hijack/pixelart/teiri/walk/back/3.png"].texture
     ]);
-    sprite2.x = 16;
+    sprite2.x = 20;
     sprite2.animationSpeed = 1/10;
     sprite2.play();
     app.stage.addChild(sprite2);
+
+    const sprite3 = new PIXI.extras.AnimatedSprite([
+        PIXI.loader.resources["hijack/pixelart/teiri/walk/right/0.png"].texture,
+        PIXI.loader.resources["hijack/pixelart/teiri/walk/right/1.png"].texture,
+        PIXI.loader.resources["hijack/pixelart/teiri/walk/right/2.png"].texture,
+        PIXI.loader.resources["hijack/pixelart/teiri/walk/right/3.png"].texture
+    ]);
+    sprite3.x = 40;
+    sprite3.animationSpeed = 1/10;
+    sprite3.play();
+    app.stage.addChild(sprite3);
+
+    const sprite4 = new PIXI.extras.AnimatedSprite([
+        PIXI.loader.resources["hijack/pixelart/teiri/walk/left/0.png"].texture,
+        PIXI.loader.resources["hijack/pixelart/teiri/walk/left/1.png"].texture,
+        PIXI.loader.resources["hijack/pixelart/teiri/walk/left/2.png"].texture,
+        PIXI.loader.resources["hijack/pixelart/teiri/walk/left/3.png"].texture
+    ]);
+    sprite4.x = 60;
+    sprite4.animationSpeed = 1/10;
+    sprite4.play();
+    app.stage.addChild(sprite4);
 
     document.getElementById("game").appendChild(app.view);
 
