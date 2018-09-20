@@ -1,7 +1,7 @@
 window.addEventListener("load", () => {
     game_new().then(game => {
         requestAnimationFrame(function step () {
-            game_step(game).then(function (next_game) {
+            game_step(game).then(next_game => {
                 game = next_game;
                 requestAnimationFrame(step);
             });
