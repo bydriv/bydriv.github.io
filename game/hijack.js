@@ -67,7 +67,7 @@ async function game_new() {
                 sprite.y += 8;
         }
     }
-    sprite.animationSpeed = 1/6;
+    sprite.animationSpeed = 1/8;
     sprite.play();
     app.stage.addChild(sprite);
 
