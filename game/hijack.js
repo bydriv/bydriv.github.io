@@ -9,6 +9,16 @@ window.addEventListener("load", function () {
     });
 });
 
+window.addEventListener("resize", function () {
+    if (document.body.clientWidth < 480)
+        document.getElementById("game").setAttribute("class", "single");
+    else if (document.body.clientWidth < 960)
+        document.getElementById("game").setAttribute("class", "double");
+    else
+        document.getElementById("game").setAttribute("class", "quadruple");
+
+});
+
 const ASSETS = [
     "hijack/pixelart/teiri/walk/front/0.png",
     "hijack/pixelart/teiri/walk/front/1.png",
@@ -66,15 +76,6 @@ function game_new(k) {
 
 function game_step(game, k) {
     const app = game.app;
-
-    if (document.body.clientWidth < 480)
-        document.getElementById("game").setAttribute("class", "single");
-    else if (document.body.clientWidth < 960)
-        document.getElementById("game").setAttribute("class", "double");
-    else
-        document.getElementById("game").setAttribute("class", "quadruple");
-
     app.renderer.render(app.stage);
-
     k(game);
 }
