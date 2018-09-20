@@ -26,7 +26,6 @@ function game_new(k) {
             families: ["IBM BIOS", "Misaki Gothic"]
         },
         active: function () {
-
             PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 
             PIXI.loader.add(ASSETS).load(function () {
