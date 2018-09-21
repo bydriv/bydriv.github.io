@@ -35,8 +35,7 @@ const ASSETS = [
 async function game_new() {
     PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 
-    await font_load();
-    await assets_load();
+    await Promise.all([font_load(), assets_load()]);
 
     game_resize();
 
