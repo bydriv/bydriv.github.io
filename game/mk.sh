@@ -1,0 +1,1 @@
+montage -tile 4x4 -geometry 16x16 -background none hijack/pixelart/teiri/walk/left/*.png hijack/pixelart/teiri/walk/back/*.png hijack/pixelart/teiri/walk/right/*.png hijack/pixelart/teiri/walk/front/*.png hijack/pixelart/teiri/walk.png

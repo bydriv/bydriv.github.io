@@ -14,23 +14,10 @@ window.addEventListener("resize", () => {
 });
 
 const ASSETS = [
-    "hijack/pixelart/teiri/walk/front/0.png",
-    "hijack/pixelart/teiri/walk/front/1.png",
-    "hijack/pixelart/teiri/walk/front/2.png",
-    "hijack/pixelart/teiri/walk/front/3.png",
-    "hijack/pixelart/teiri/walk/back/0.png",
-    "hijack/pixelart/teiri/walk/back/1.png",
-    "hijack/pixelart/teiri/walk/back/2.png",
-    "hijack/pixelart/teiri/walk/back/3.png",
-    "hijack/pixelart/teiri/walk/right/0.png",
-    "hijack/pixelart/teiri/walk/right/1.png",
-    "hijack/pixelart/teiri/walk/right/2.png",
-    "hijack/pixelart/teiri/walk/right/3.png",
-    "hijack/pixelart/teiri/walk/left/0.png",
-    "hijack/pixelart/teiri/walk/left/1.png",
-    "hijack/pixelart/teiri/walk/left/2.png",
-    "hijack/pixelart/teiri/walk/left/3.png"
+    "hijack/pixelart/teiri/walk.png"
 ];
+
+const TEXTURES = {};
 
 async function game_new() {
     PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
@@ -52,11 +39,11 @@ async function game_new() {
             case "b":
                 game.input.x = -1;
                 return e.preventDefault();
-            case "f":
-                game.input.x = 1;
-                return e.preventDefault();
             case "p":
                 game.input.y = -1;
+                return e.preventDefault();
+            case "f":
+                game.input.x = 1;
                 return e.preventDefault();
             case "n":
                 game.input.y = 1;
@@ -70,17 +57,17 @@ async function game_new() {
             case "ArrowLeft":
                 game.input.x = -1;
                 return e.preventDefault();
-            case "l":
-            case "d":
-            case "Right":
-            case "ArrowRight":
-                game.input.x = 1;
-                return e.preventDefault();
             case "k":
             case "w":
             case "Up":
             case "ArrowUp":
                 game.input.y = -1;
+                return e.preventDefault();
+            case "l":
+            case "d":
+            case "Right":
+            case "ArrowRight":
+                game.input.x = 1;
                 return e.preventDefault();
             case "j":
             case "s":
@@ -96,8 +83,8 @@ async function game_new() {
         if (e.ctrlKey) {
             switch (e.key) {
             case "b":
-            case "f":
             case "p":
+            case "f":
             case "n":
                 game.input.x = 0;
                 game.input.y = 0;
@@ -106,20 +93,20 @@ async function game_new() {
         } else {
             switch (e.key) {
             case "h":
-            case "l":
             case "k":
+            case "l":
             case "j":
             case "a":
-            case "d":
             case "w":
+            case "d":
             case "s":
             case "Left":
-            case "Right":
             case "Up":
+            case "Right":
             case "Down":
             case "ArrowLeft":
-            case "ArrowRight":
             case "ArrowUp":
+            case "ArrowRight":
             case "ArrowDown":
                 game.input.x = 0;
                 game.input.y = 0;
@@ -133,10 +120,10 @@ async function game_new() {
     app.renderer.backgroundColor = 0xC0C0C0;
 
     const sprite = new PIXI.extras.AnimatedSprite([
-        PIXI.loader.resources["hijack/pixelart/teiri/walk/front/0.png"].texture,
-        PIXI.loader.resources["hijack/pixelart/teiri/walk/front/1.png"].texture,
-        PIXI.loader.resources["hijack/pixelart/teiri/walk/front/2.png"].texture,
-        PIXI.loader.resources["hijack/pixelart/teiri/walk/front/3.png"].texture
+        TEXTURES["hijack/pixelart/teiri/walk/front/0.png"],
+        TEXTURES["hijack/pixelart/teiri/walk/front/1.png"],
+        TEXTURES["hijack/pixelart/teiri/walk/front/2.png"],
+        TEXTURES["hijack/pixelart/teiri/walk/front/3.png"]
     ]);
     sprite.onFrameChange = () => {
         if (game.input.x < -0.25)
@@ -175,10 +162,10 @@ async function game_step(game) {
         if (game.heroine.direction !== "back") {
             game.heroine.direction = "back";
             game.heroine.sprite.textures = [
-                PIXI.loader.resources["hijack/pixelart/teiri/walk/back/0.png"].texture,
-                PIXI.loader.resources["hijack/pixelart/teiri/walk/back/1.png"].texture,
-                PIXI.loader.resources["hijack/pixelart/teiri/walk/back/2.png"].texture,
-                PIXI.loader.resources["hijack/pixelart/teiri/walk/back/3.png"].texture
+                TEXTURES["hijack/pixelart/teiri/walk/back/0.png"],
+                TEXTURES["hijack/pixelart/teiri/walk/back/1.png"],
+                TEXTURES["hijack/pixelart/teiri/walk/back/2.png"],
+                TEXTURES["hijack/pixelart/teiri/walk/back/3.png"]
             ];
             game.heroine.sprite.play();
         }
@@ -186,10 +173,10 @@ async function game_step(game) {
         if (game.heroine.direction !== "front") {
             game.heroine.direction = "front";
             game.heroine.sprite.textures = [
-                PIXI.loader.resources["hijack/pixelart/teiri/walk/front/0.png"].texture,
-                PIXI.loader.resources["hijack/pixelart/teiri/walk/front/1.png"].texture,
-                PIXI.loader.resources["hijack/pixelart/teiri/walk/front/2.png"].texture,
-                PIXI.loader.resources["hijack/pixelart/teiri/walk/front/3.png"].texture
+                TEXTURES["hijack/pixelart/teiri/walk/front/0.png"],
+                TEXTURES["hijack/pixelart/teiri/walk/front/1.png"],
+                TEXTURES["hijack/pixelart/teiri/walk/front/2.png"],
+                TEXTURES["hijack/pixelart/teiri/walk/front/3.png"]
             ];
             game.heroine.sprite.play();
         }
@@ -197,10 +184,10 @@ async function game_step(game) {
         if (game.heroine.direction !== "left") {
             game.heroine.direction = "left";
             game.heroine.sprite.textures = [
-                PIXI.loader.resources["hijack/pixelart/teiri/walk/left/0.png"].texture,
-                PIXI.loader.resources["hijack/pixelart/teiri/walk/left/1.png"].texture,
-                PIXI.loader.resources["hijack/pixelart/teiri/walk/left/2.png"].texture,
-                PIXI.loader.resources["hijack/pixelart/teiri/walk/left/3.png"].texture
+                TEXTURES["hijack/pixelart/teiri/walk/left/0.png"],
+                TEXTURES["hijack/pixelart/teiri/walk/left/1.png"],
+                TEXTURES["hijack/pixelart/teiri/walk/left/2.png"],
+                TEXTURES["hijack/pixelart/teiri/walk/left/3.png"]
             ];
             game.heroine.sprite.play();
         }
@@ -208,10 +195,10 @@ async function game_step(game) {
         if (game.heroine.direction !== "right") {
             game.heroine.direction = "right";
             game.heroine.sprite.textures = [
-                PIXI.loader.resources["hijack/pixelart/teiri/walk/right/0.png"].texture,
-                PIXI.loader.resources["hijack/pixelart/teiri/walk/right/1.png"].texture,
-                PIXI.loader.resources["hijack/pixelart/teiri/walk/right/2.png"].texture,
-                PIXI.loader.resources["hijack/pixelart/teiri/walk/right/3.png"].texture
+                TEXTURES["hijack/pixelart/teiri/walk/right/0.png"],
+                TEXTURES["hijack/pixelart/teiri/walk/right/1.png"],
+                TEXTURES["hijack/pixelart/teiri/walk/right/2.png"],
+                TEXTURES["hijack/pixelart/teiri/walk/right/3.png"]
             ];
             game.heroine.sprite.play();
         }
@@ -233,6 +220,17 @@ function game_resize() {
 function assets_load() {
     return new Promise(resolve => {
         PIXI.loader.add(ASSETS).load(() => {
+            for (var i = 0; i < 4; ++i) {
+                const name = i === 0 ? "left" : i === 1 ? "back" : i === 2 ? "right" : "front";
+
+                for (var j = 0; j < 4; ++j) {
+                    const path = "hijack/pixelart/teiri/walk/" + name + "/" + j + ".png";
+
+                    TEXTURES[path] = new PIXI.Texture(PIXI.loader.resources["hijack/pixelart/teiri/walk.png"].texture, new PIXI.Rectangle(j * 16, i * 16, 16, 16));
+                    //TEXTURES[path].orig = new PIXI.Rectangle(0, 0, 64, 64);
+                    //TEXTURES[path].trim = ;
+                }
+            }
             resolve();
         });
     });

@@ -1,5 +1,5 @@
 * pixelart
 
-| path                                   | image                                    |
-|----------------------------------------+------------------------------------------|
-| hijack/pixelart/teiri/walk/front/0.png | [[./hijack/pixelart/teiri/walk/front/0.png]] |
+| path                           | image                            |
+|--------------------------------+----------------------------------|
+| hijack/pixelart/teiri/walk.png | [[./hijack/pixelart/teiri/walk.png]] |
