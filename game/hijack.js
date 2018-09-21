@@ -1,8 +1,7 @@
 window.addEventListener("load", () => {
     game_new().then(game => {
         requestAnimationFrame(function step () {
-            game_step(game).then(next_game => {
-                game = next_game;
+            game_step(game).then(() => {
                 requestAnimationFrame(step);
             });
         });
@@ -204,7 +203,6 @@ async function game_step(game) {
         game.heroine.sprite.y += 1;
 
     game.app.renderer.render(game.app.stage);
-    return game;
 }
 
 function game_resize() {
