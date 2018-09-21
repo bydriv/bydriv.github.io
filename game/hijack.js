@@ -42,6 +42,69 @@ async function game_new() {
 
     const game = {}
 
+    game.input = {
+        x: 0,
+        y: 0
+    };
+
+    window.addEventListener("keydown", (e) => {
+        if (e.ctrlKey) {
+            switch (e.key) {
+            case "b":
+                game.input.x = -1;
+                return e.preventDefault();
+            case "f":
+                game.input.x = 1;
+                return e.preventDefault();
+            case "p":
+                game.input.y = -1;
+                return e.preventDefault();
+            case "n":
+                game.input.y = 1;
+                return e.preventDefault();
+            };
+        } else {
+            switch (e.key) {
+            case "h":
+                game.input.x = -1;
+                return e.preventDefault();
+            case "l":
+                game.input.x = 1;
+                return e.preventDefault();
+            case "k":
+                game.input.y = -1;
+                return e.preventDefault();
+            case "j":
+                game.input.y = 1;
+                return e.preventDefault();
+            };
+        }
+    });
+
+    window.addEventListener("keyup", (e) => {
+        if (e.ctrlKey) {
+            switch (e.key) {
+            case "b":
+            case "f":
+            case "p":
+            case "n":
+                game.input.x = 0;
+                game.input.y = 0;
+                return e.preventDefault();
+            };
+        } else {
+            switch (e.key) {
+            case "h":
+            case "l":
+            case "k":
+            case "j":
+                game.input.x = 0;
+                game.input.y = 0;
+                return e.preventDefault();
+            };
+        }
+    });
+
     const app = new PIXI.Application({autoStart: false, width: 1920, height: 1280});
     app.stage.scale.set(8, 8);
     app.renderer.backgroundColor = 0xC0C0C0;
@@ -53,19 +116,14 @@ async function game_new() {
         PIXI.loader.resources["hijack/pixelart/teiri/walk/front/3.png"].texture
     ]);
     sprite.onFrameChange = () => {
-        if (game.gamepad) {
-            const gamepadX = game.gamepad.axes[0];
-            const gamepadY = game.gamepad.axes[1];
-
-            if (gamepadX < -0.25)
-                sprite.x -= 8;
-            if (gamepadX > 0.25)
-                sprite.x += 8;
-            if (gamepadY < -0.25)
-                sprite.y -= 8;
-            if (gamepadY > 0.25)
-                sprite.y += 8;
-        }
+        if (game.input.x < -0.25)
+            sprite.x -= 8;
+        if (game.input.x > 0.25)
+            sprite.x += 8;
+        if (game.input.y < -0.25)
+            sprite.y -= 8;
+        if (game.input.y > 0.25)
+            sprite.y += 8;
     }
     sprite.animationSpeed = 1/8;
     sprite.play();
@@ -74,7 +132,6 @@ async function game_new() {
     document.getElementById("game").appendChild(app.view);
 
     game.app = app;
-    game.gamepad = navigator.getGamepads()[0];
     game.heroine = {
         sprite: sprite,
         direction: "front"
@@ -84,56 +141,56 @@ async function game_new() {
 }
 
 async function game_step(game) {
-    game.gamepad = navigator.getGamepads()[0];
+    const gamepad = navigator.getGamepads()[0];
 
-    if (game.gamepad) {
-        const gamepadX = game.gamepad.axes[0];
-        const gamepadY = game.gamepad.axes[1];
+    if (gamepad) {
+        game.input.x = gamepad.axes[0];
+        game.input.y = gamepad.axes[1];
+    }
 
-        if (gamepadY < -0.25) {
-            if (game.heroine.direction !== "back") {
-                game.heroine.direction = "back";
-                game.heroine.sprite.textures = [
-                    PIXI.loader.resources["hijack/pixelart/teiri/walk/back/0.png"].texture,
-                    PIXI.loader.resources["hijack/pixelart/teiri/walk/back/1.png"].texture,
-                    PIXI.loader.resources["hijack/pixelart/teiri/walk/back/2.png"].texture,
-                    PIXI.loader.resources["hijack/pixelart/teiri/walk/back/3.png"].texture
-                ];
-                game.heroine.sprite.play();
-            }
-        } else if (gamepadY > 0.25) {
-            if (game.heroine.direction !== "front") {
-                game.heroine.direction = "front";
-                game.heroine.sprite.textures = [
-                    PIXI.loader.resources["hijack/pixelart/teiri/walk/front/0.png"].texture,
-                    PIXI.loader.resources["hijack/pixelart/teiri/walk/front/1.png"].texture,
-                    PIXI.loader.resources["hijack/pixelart/teiri/walk/front/2.png"].texture,
-                    PIXI.loader.resources["hijack/pixelart/teiri/walk/front/3.png"].texture
-                ];
-                game.heroine.sprite.play();
-            }
-        } else if (gamepadX < -0.25) {
-            if (game.heroine.direction !== "left") {
-                game.heroine.direction = "left";
-                game.heroine.sprite.textures = [
-                    PIXI.loader.resources["hijack/pixelart/teiri/walk/left/0.png"].texture,
-                    PIXI.loader.resources["hijack/pixelart/teiri/walk/left/1.png"].texture,
-                    PIXI.loader.resources["hijack/pixelart/teiri/walk/left/2.png"].texture,
-                    PIXI.loader.resources["hijack/pixelart/teiri/walk/left/3.png"].texture
-                ];
-                game.heroine.sprite.play();
-            }
-        } else if (gamepadX > 0.25) {
-            if (game.heroine.direction !== "right") {
-                game.heroine.direction = "right";
-                game.heroine.sprite.textures = [
-                    PIXI.loader.resources["hijack/pixelart/teiri/walk/right/0.png"].texture,
-                    PIXI.loader.resources["hijack/pixelart/teiri/walk/right/1.png"].texture,
-                    PIXI.loader.resources["hijack/pixelart/teiri/walk/right/2.png"].texture,
-                    PIXI.loader.resources["hijack/pixelart/teiri/walk/right/3.png"].texture
-                ];
-                game.heroine.sprite.play();
-            }
+    if (game.input.y < -0.25) {
+        if (game.heroine.direction !== "back") {
+            game.heroine.direction = "back";
+            game.heroine.sprite.textures = [
+                PIXI.loader.resources["hijack/pixelart/teiri/walk/back/0.png"].texture,
+                PIXI.loader.resources["hijack/pixelart/teiri/walk/back/1.png"].texture,
+                PIXI.loader.resources["hijack/pixelart/teiri/walk/back/2.png"].texture,
+                PIXI.loader.resources["hijack/pixelart/teiri/walk/back/3.png"].texture
+            ];
+            game.heroine.sprite.play();
+        }
+    } else if (game.input.y > 0.25) {
+        if (game.heroine.direction !== "front") {
+            game.heroine.direction = "front";
+            game.heroine.sprite.textures = [
+                PIXI.loader.resources["hijack/pixelart/teiri/walk/front/0.png"].texture,
+                PIXI.loader.resources["hijack/pixelart/teiri/walk/front/1.png"].texture,
+                PIXI.loader.resources["hijack/pixelart/teiri/walk/front/2.png"].texture,
+                PIXI.loader.resources["hijack/pixelart/teiri/walk/front/3.png"].texture
+            ];
+            game.heroine.sprite.play();
+        }
+    } else if (game.input.x < -0.25) {
+        if (game.heroine.direction !== "left") {
+            game.heroine.direction = "left";
+            game.heroine.sprite.textures = [
+                PIXI.loader.resources["hijack/pixelart/teiri/walk/left/0.png"].texture,
+                PIXI.loader.resources["hijack/pixelart/teiri/walk/left/1.png"].texture,
+                PIXI.loader.resources["hijack/pixelart/teiri/walk/left/2.png"].texture,
+                PIXI.loader.resources["hijack/pixelart/teiri/walk/left/3.png"].texture
+            ];
+            game.heroine.sprite.play();
+        }
+    } else if (game.input.x > 0.25) {
+        if (game.heroine.direction !== "right") {
+            game.heroine.direction = "right";
+            game.heroine.sprite.textures = [
+                PIXI.loader.resources["hijack/pixelart/teiri/walk/right/0.png"].texture,
+                PIXI.loader.resources["hijack/pixelart/teiri/walk/right/1.png"].texture,
+                PIXI.loader.resources["hijack/pixelart/teiri/walk/right/2.png"].texture,
+                PIXI.loader.resources["hijack/pixelart/teiri/walk/right/3.png"].texture
+            ];
+            game.heroine.sprite.play();
         }
     }
 
