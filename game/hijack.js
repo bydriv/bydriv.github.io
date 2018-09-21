@@ -131,11 +131,75 @@ async function game_new() {
 
     return {
         app: app,
-        heroine: {
-            sprite: sprite,
-            direction: "front"
-        }
+        objects: [
+            {
+                type: "teiri",
+                sprite: sprite,
+                direction: "front"
+            }
+        ]
     };
+}
+
+async function object_step(object) {
+    switch (object.type) {
+    case "teiri":
+        if (INPUT.y < -0.25) {
+            if (object.direction !== "back") {
+                object.direction = "back";
+                object.sprite.textures = [
+                    TEXTURES["hijack/pixelart/teiri/walk/back/0.png"],
+                    TEXTURES["hijack/pixelart/teiri/walk/back/1.png"],
+                    TEXTURES["hijack/pixelart/teiri/walk/back/2.png"],
+                    TEXTURES["hijack/pixelart/teiri/walk/back/3.png"]
+                ];
+                object.sprite.play();
+            }
+        } else if (INPUT.y > 0.25) {
+            if (object.direction !== "front") {
+                object.direction = "front";
+                object.sprite.textures = [
+                    TEXTURES["hijack/pixelart/teiri/walk/front/0.png"],
+                    TEXTURES["hijack/pixelart/teiri/walk/front/1.png"],
+                    TEXTURES["hijack/pixelart/teiri/walk/front/2.png"],
+                    TEXTURES["hijack/pixelart/teiri/walk/front/3.png"]
+                ];
+                object.sprite.play();
+            }
+        } else if (INPUT.x < -0.25) {
+            if (object.direction !== "left") {
+                object.direction = "left";
+                object.sprite.textures = [
+                    TEXTURES["hijack/pixelart/teiri/walk/left/0.png"],
+                    TEXTURES["hijack/pixelart/teiri/walk/left/1.png"],
+                    TEXTURES["hijack/pixelart/teiri/walk/left/2.png"],
+                    TEXTURES["hijack/pixelart/teiri/walk/left/3.png"]
+                ];
+                object.sprite.play();
+            }
+        } else if (INPUT.x > 0.25) {
+            if (object.direction !== "right") {
+                object.direction = "right";
+                object.sprite.textures = [
+                    TEXTURES["hijack/pixelart/teiri/walk/right/0.png"],
+                    TEXTURES["hijack/pixelart/teiri/walk/right/1.png"],
+                    TEXTURES["hijack/pixelart/teiri/walk/right/2.png"],
+                    TEXTURES["hijack/pixelart/teiri/walk/right/3.png"]
+                ];
+                object.sprite.play();
+            }
+        }
+
+        if (INPUT.x < -0.25)
+            object.sprite.x -= 1;
+        if (INPUT.x > 0.25)
+            object.sprite.x += 1;
+        if (INPUT.y < -0.25)
+            object.sprite.y -= 1;
+        if (INPUT.y > 0.25)
+            object.sprite.y += 1;
+        break;
+    }
 }
 
 async function game_step(game) {
@@ -146,60 +210,8 @@ async function game_step(game) {
         INPUT.y = gamepad.axes[1];
     }
 
-    if (INPUT.y < -0.25) {
-        if (game.heroine.direction !== "back") {
-            game.heroine.direction = "back";
-            game.heroine.sprite.textures = [
-                TEXTURES["hijack/pixelart/teiri/walk/back/0.png"],
-                TEXTURES["hijack/pixelart/teiri/walk/back/1.png"],
-                TEXTURES["hijack/pixelart/teiri/walk/back/2.png"],
-                TEXTURES["hijack/pixelart/teiri/walk/back/3.png"]
-            ];
-            game.heroine.sprite.play();
-        }
-    } else if (INPUT.y > 0.25) {
-        if (game.heroine.direction !== "front") {
-            game.heroine.direction = "front";
-            game.heroine.sprite.textures = [
-                TEXTURES["hijack/pixelart/teiri/walk/front/0.png"],
-                TEXTURES["hijack/pixelart/teiri/walk/front/1.png"],
-                TEXTURES["hijack/pixelart/teiri/walk/front/2.png"],
-                TEXTURES["hijack/pixelart/teiri/walk/front/3.png"]
-            ];
-            game.heroine.sprite.play();
-        }
-    } else if (INPUT.x < -0.25) {
-        if (game.heroine.direction !== "left") {
-            game.heroine.direction = "left";
-            game.heroine.sprite.textures = [
-                TEXTURES["hijack/pixelart/teiri/walk/left/0.png"],
-                TEXTURES["hijack/pixelart/teiri/walk/left/1.png"],
-                TEXTURES["hijack/pixelart/teiri/walk/left/2.png"],
-                TEXTURES["hijack/pixelart/teiri/walk/left/3.png"]
-            ];
-            game.heroine.sprite.play();
-        }
-    } else if (INPUT.x > 0.25) {
-        if (game.heroine.direction !== "right") {
-            game.heroine.direction = "right";
-            game.heroine.sprite.textures = [
-                TEXTURES["hijack/pixelart/teiri/walk/right/0.png"],
-                TEXTURES["hijack/pixelart/teiri/walk/right/1.png"],
-                TEXTURES["hijack/pixelart/teiri/walk/right/2.png"],
-                TEXTURES["hijack/pixelart/teiri/walk/right/3.png"]
-            ];
-            game.heroine.sprite.play();
-        }
-    }
-
-    if (INPUT.x < -0.25)
-        game.heroine.sprite.x -= 1;
-    if (INPUT.x > 0.25)
-        game.heroine.sprite.x += 1;
-    if (INPUT.y < -0.25)
-        game.heroine.sprite.y -= 1;
-    if (INPUT.y > 0.25)
-        game.heroine.sprite.y += 1;
+    for (var i = 0; i < game.objects.length; ++i)
+        await object_step(game.objects[i]);
 
     game.app.renderer.render(game.app.stage);
 
