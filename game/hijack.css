@@ -33,3 +33,8 @@ div#game.quadruple, div#game.quadruple canvas {
     margin: 0 auto;
     padding: 0;
 }
+
+div#nav {
+    font-family: "IBM BIOS";
+    font-size: 8px;
+}
