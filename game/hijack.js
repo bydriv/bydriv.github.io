@@ -122,6 +122,17 @@ async function game_new() {
     app.stage.scale.set(8, 8);
     app.renderer.backgroundColor = 0xC0C0C0;
 
+    document.getElementById("game").appendChild(app.view);
+
+    const teiri = await teiri_new(app);
+
+    return {
+        app: app,
+        objects: [teiri]
+    };
+}
+
+async function teiri_new(app) {
     const sprite = new PIXI.extras.AnimatedSprite([
         TEXTURES["hijack/pixelart/teiri/walk/front/0.png"],
         TEXTURES["hijack/pixelart/teiri/walk/front/1.png"],
@@ -132,22 +143,15 @@ async function game_new() {
     sprite.play();
     app.stage.addChild(sprite);
 
-    document.getElementById("game").appendChild(app.view);
-
     return {
-        app: app,
-        objects: [
-            {
-                type: "teiri",
-                control: {
-                    type: "playable",
-                    state: null,
-                    input: INPUT_EMPTY
-                },
-                sprite: sprite,
-                direction: "front"
-            }
-        ]
+        type: "teiri",
+        control: {
+            type: "playable",
+            state: null,
+            input: INPUT_EMPTY
+        },
+        sprite: sprite,
+        direction: "front"
     };
 }
 
