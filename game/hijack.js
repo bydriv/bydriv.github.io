@@ -1,7 +1,8 @@
 window.addEventListener("load", () => {
     game_new().then(game => {
         requestAnimationFrame(function step () {
-            game_step(game).then(() => {
+            game_step(game).then(next_game => {
+                game = next_game;
                 requestAnimationFrame(step);
             });
         });
@@ -10,6 +11,93 @@ window.addEventListener("load", () => {
 
 window.addEventListener("resize", () => {
     game_resize();
+});
+
+window.addEventListener("keydown", (e) => {
+    if (e.ctrlKey) {
+        switch (e.key) {
+        case "b":
+            INPUT.x = -1;
+            return e.preventDefault();
+        case "p":
+            INPUT.y = -1;
+            return e.preventDefault();
+        case "f":
+            INPUT.x = 1;
+            return e.preventDefault();
+        case "n":
+            INPUT.y = 1;
+            return e.preventDefault();
+        };
+    } else {
+        switch (e.key) {
+        case "h":
+        case "a":
+        case "Left":
+        case "ArrowLeft":
+            INPUT.x = -1;
+            return e.preventDefault();
+        case "k":
+        case "w":
+        case "Up":
+        case "ArrowUp":
+            INPUT.y = -1;
+            return e.preventDefault();
+        case "l":
+        case "d":
+        case "Right":
+        case "ArrowRight":
+            INPUT.x = 1;
+            return e.preventDefault();
+        case "j":
+        case "s":
+        case "Down":
+        case "ArrowDown":
+            INPUT.y = 1;
+            return e.preventDefault();
+        };
+    }
+});
+
+const INPUT = {
+    x: 0,
+    y: 0
+};
+
+window.addEventListener("keyup", (e) => {
+    if (e.ctrlKey) {
+        switch (e.key) {
+        case "b":
+        case "p":
+        case "f":
+        case "n":
+            INPUT.x = 0;
+            INPUT.y = 0;
+            return e.preventDefault();
+        };
+    } else {
+        switch (e.key) {
+        case "h":
+        case "k":
+        case "l":
+        case "j":
+        case "a":
+        case "w":
+        case "d":
+        case "s":
+        case "Left":
+        case "Up":
+        case "Right":
+        case "Down":
+        case "ArrowLeft":
+        case "ArrowUp":
+        case "ArrowRight":
+        case "ArrowDown":
+            INPUT.x = 0;
+            INPUT.y = 0;
+            return e.preventDefault();
+        };
+    }
 });
 
 const ASSETS = [
@@ -24,95 +112,6 @@ async function game_new() {
     await Promise.all([font_load(), assets_load()]);
 
     game_resize();
-
-    const game = {}
-
-    game.input = {
-        x: 0,
-        y: 0
-    };
-
-    window.addEventListener("keydown", (e) => {
-        if (e.ctrlKey) {
-            switch (e.key) {
-            case "b":
-                game.input.x = -1;
-                return e.preventDefault();
-            case "p":
-                game.input.y = -1;
-                return e.preventDefault();
-            case "f":
-                game.input.x = 1;
-                return e.preventDefault();
-            case "n":
-                game.input.y = 1;
-                return e.preventDefault();
-            };
-        } else {
-            switch (e.key) {
-            case "h":
-            case "a":
-            case "Left":
-            case "ArrowLeft":
-                game.input.x = -1;
-                return e.preventDefault();
-            case "k":
-            case "w":
-            case "Up":
-            case "ArrowUp":
-                game.input.y = -1;
-                return e.preventDefault();
-            case "l":
-            case "d":
-            case "Right":
-            case "ArrowRight":
-                game.input.x = 1;
-                return e.preventDefault();
-            case "j":
-            case "s":
-            case "Down":
-            case "ArrowDown":
-                game.input.y = 1;
-                return e.preventDefault();
-            };
-        }
-    });
-
-    window.addEventListener("keyup", (e) => {
-        if (e.ctrlKey) {
-            switch (e.key) {
-            case "b":
-            case "p":
-            case "f":
-            case "n":
-                game.input.x = 0;
-                game.input.y = 0;
-                return e.preventDefault();
-            };
-        } else {
-            switch (e.key) {
-            case "h":
-            case "k":
-            case "l":
-            case "j":
-            case "a":
-            case "w":
-            case "d":
-            case "s":
-            case "Left":
-            case "Up":
-            case "Right":
-            case "Down":
-            case "ArrowLeft":
-            case "ArrowUp":
-            case "ArrowRight":
-            case "ArrowDown":
-                game.input.x = 0;
-                game.input.y = 0;
-                return e.preventDefault();
-            };
-        }
-    });
 
     const app = new PIXI.Application({autoStart: false, width: 1920, height: 1280});
     app.stage.scale.set(8, 8);
@@ -130,24 +129,24 @@ async function game_new() {
 
     document.getElementById("game").appendChild(app.view);
 
-    game.app = app;
-    game.heroine = {
-        sprite: sprite,
-        direction: "front"
-    }
-
-    return game;
+    return {
+        app: app,
+        heroine: {
+            sprite: sprite,
+            direction: "front"
+        }
+    };
 }
 
 async function game_step(game) {
     const gamepad = navigator.getGamepads()[0];
 
     if (gamepad) {
-        game.input.x = gamepad.axes[0];
-        game.input.y = gamepad.axes[1];
+        INPUT.x = gamepad.axes[0];
+        INPUT.y = gamepad.axes[1];
     }
 
-    if (game.input.y < -0.25) {
+    if (INPUT.y < -0.25) {
         if (game.heroine.direction !== "back") {
             game.heroine.direction = "back";
             game.heroine.sprite.textures = [
@@ -158,7 +157,7 @@ async function game_step(game) {
             ];
             game.heroine.sprite.play();
         }
-    } else if (game.input.y > 0.25) {
+    } else if (INPUT.y > 0.25) {
         if (game.heroine.direction !== "front") {
             game.heroine.direction = "front";
             game.heroine.sprite.textures = [
@@ -169,7 +168,7 @@ async function game_step(game) {
             ];
             game.heroine.sprite.play();
         }
-    } else if (game.input.x < -0.25) {
+    } else if (INPUT.x < -0.25) {
         if (game.heroine.direction !== "left") {
             game.heroine.direction = "left";
             game.heroine.sprite.textures = [
@@ -180,7 +179,7 @@ async function game_step(game) {
             ];
             game.heroine.sprite.play();
         }
-    } else if (game.input.x > 0.25) {
+    } else if (INPUT.x > 0.25) {
         if (game.heroine.direction !== "right") {
             game.heroine.direction = "right";
             game.heroine.sprite.textures = [
@@ -193,16 +192,18 @@ async function game_step(game) {
         }
     }
 
-    if (game.input.x < -0.25)
+    if (INPUT.x < -0.25)
         game.heroine.sprite.x -= 1;
-    if (game.input.x > 0.25)
+    if (INPUT.x > 0.25)
         game.heroine.sprite.x += 1;
-    if (game.input.y < -0.25)
+    if (INPUT.y < -0.25)
         game.heroine.sprite.y -= 1;
-    if (game.input.y > 0.25)
+    if (INPUT.y > 0.25)
         game.heroine.sprite.y += 1;
 
     game.app.renderer.render(game.app.stage);
+
+    return game;
 }
 
 function game_resize() {
@@ -224,8 +225,6 @@ function assets_load() {
                     const path = "hijack/pixelart/teiri/walk/" + name + "/" + j + ".png";
 
                     TEXTURES[path] = new PIXI.Texture(PIXI.loader.resources["hijack/pixelart/teiri/walk.png"].texture, new PIXI.Rectangle(j * 16, i * 16, 16, 16));
-                    //TEXTURES[path].orig = new PIXI.Rectangle(0, 0, 64, 64);
-                    //TEXTURES[path].trim = ;
                 }
             }
             resolve();
