@@ -125,16 +125,6 @@ async function game_new() {
         TEXTURES["hijack/pixelart/teiri/walk/front/2.png"],
         TEXTURES["hijack/pixelart/teiri/walk/front/3.png"]
     ]);
-    sprite.onFrameChange = () => {
-        if (game.input.x < -0.25)
-            sprite.x -= 8;
-        if (game.input.x > 0.25)
-            sprite.x += 8;
-        if (game.input.y < -0.25)
-            sprite.y -= 8;
-        if (game.input.y > 0.25)
-            sprite.y += 8;
-    }
     sprite.animationSpeed = 1/8;
     sprite.play();
     app.stage.addChild(sprite);
@@ -203,6 +193,15 @@ async function game_step(game) {
             game.heroine.sprite.play();
         }
     }
+
+    if (game.input.x < -0.25)
+        game.heroine.sprite.x -= 1;
+    if (game.input.x > 0.25)
+        game.heroine.sprite.x += 1;
+    if (game.input.y < -0.25)
+        game.heroine.sprite.y -= 1;
+    if (game.input.y > 0.25)
+        game.heroine.sprite.y += 1;
 
     game.app.renderer.render(game.app.stage);
     return game;
