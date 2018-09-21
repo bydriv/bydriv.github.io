@@ -59,6 +59,11 @@ window.addEventListener("keydown", (e) => {
     }
 });
 
+const INPUT_EMPTY = {
+    x: 0,
+    y: 0
+};
+
 const INPUT = {
     x: 0,
     y: 0
@@ -134,7 +139,11 @@ async function game_new() {
         objects: [
             {
                 type: "teiri",
-                input_type: "playable",
+                control: {
+                    type: "playable",
+                    state: null,
+                    input: INPUT_EMPTY
+                },
                 sprite: sprite,
                 direction: "front"
             }
@@ -142,7 +151,9 @@ async function game_new() {
     };
 }
 
-async function teiri_step(object, input) {
+async function teiri_step(game, object) {
+    const input = object.control.input;
+
     if (input.y < -0.25) {
         if (object.direction !== "back") {
             object.direction = "back";
@@ -199,24 +210,29 @@ async function teiri_step(object, input) {
         object.sprite.y += 1;
 }
 
-async function object_input(object) {
-    switch (object.input_type) {
+async function object_control(game, control) {
+    switch (control.type) {
     case "playable":
-        return INPUT;
+        return {
+            type: control.type,
+            state: control.state,
+            input: INPUT
+        };
     default:
         return {
-            x: 0,
-            y: 0
+            type: control.type,
+            state: control.state,
+            input: INPUT_EMPTY
         };
     }
 }
 
-async function object_step(object) {
-    const input = await object_input(object);
+async function object_step(game, object) {
+    object.control = await object_control(game, object.control);
 
     switch (object.type) {
     case "teiri":
-        await teiri_step(object, input);
+        await teiri_step(game, object);
         break;
     }
 }
@@ -230,7 +246,7 @@ async function game_step(game) {
     }
 
     for (var i = 0; i < game.objects.length; ++i)
-        await object_step(game.objects[i]);
+        await object_step(game, game.objects[i]);
 
     game.app.renderer.render(game.app.stage);
 
