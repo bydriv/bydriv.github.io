@@ -66,15 +66,27 @@ async function game_new() {
         } else {
             switch (e.key) {
             case "h":
+            case "a":
+            case "Left":
+            case "ArrowLeft":
                 game.input.x = -1;
                 return e.preventDefault();
             case "l":
+            case "d":
+            case "Right":
+            case "ArrowRight":
                 game.input.x = 1;
                 return e.preventDefault();
             case "k":
+            case "w":
+            case "Up":
+            case "ArrowUp":
                 game.input.y = -1;
                 return e.preventDefault();
             case "j":
+            case "s":
+            case "Down":
+            case "ArrowDown":
                 game.input.y = 1;
                 return e.preventDefault();
             };
@@ -98,6 +110,18 @@ async function game_new() {
             case "l":
             case "k":
             case "j":
+            case "a":
+            case "d":
+            case "w":
+            case "s":
+            case "Left":
+            case "Right":
+            case "Up":
+            case "Down":
+            case "ArrowLeft":
+            case "ArrowRight":
+            case "ArrowUp":
+            case "ArrowDown":
                 game.input.x = 0;
                 game.input.y = 0;
                 return e.preventDefault();
