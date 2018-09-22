@@ -115,19 +115,21 @@ const Game = {
 
         document.getElementById("game").appendChild(app.view);
 
-        const teiri = await Game.Object.Teiri.create(app, await Game.Control.Playable.create());
-        const teiri2 = await Game.Object.Teiri.create(app, await Game.Control.Random.create(0.252));
-        const teiri3 = await Game.Object.Teiri.create(app, await Game.Control.Random.create(0.252));
-        const teiri4 = await Game.Object.Teiri.create(app, await Game.Control.Random.create(0.252));
-        const teiri5 = await Game.Object.Teiri.create(app, await Game.Control.Random.create(0.252));
-        teiri2.sprite.x = 60;
-        teiri2.sprite.y = 40;
-        teiri3.sprite.x = 120;
-        teiri3.sprite.y = 40;
-        teiri4.sprite.x = 60;
-        teiri4.sprite.y = 80;
-        teiri5.sprite.x = 120;
-        teiri5.sprite.y = 80;
+        const teiri = await Game.Object.Teiri.create(0, 0, await Game.Control.Playable.create());
+        const teiri2 = await Game.Object.Teiri.create(60, 40, await Game.Control.Random.create(0.252));
+        const teiri3 = await Game.Object.Teiri.create(120, 40, await Game.Control.Random.create(0.252));
+        const teiri4 = await Game.Object.Teiri.create(60, 80, await Game.Control.Random.create(0.252));
+        const teiri5 = await Game.Object.Teiri.create(120, 80, await Game.Control.Random.create(0.252));
+        teiri.sprite.play();
+        app.stage.addChild(teiri.sprite);
+        teiri2.sprite.play();
+        app.stage.addChild(teiri2.sprite);
+        teiri3.sprite.play();
+        app.stage.addChild(teiri3.sprite);
+        teiri4.sprite.play();
+        app.stage.addChild(teiri4.sprite);
+        teiri5.sprite.play();
+        app.stage.addChild(teiri5.sprite);
 
         return {
             app: app,
@@ -218,23 +220,25 @@ const Game = {
             }
         },
         Teiri: {
-            create: async (app, control) => {
+            create: async (x, y, control) => {
                 const sprite = new PIXI.extras.AnimatedSprite([
                     TEXTURES["hijack/pixelart/teiri/walk/front/0.png"],
                     TEXTURES["hijack/pixelart/teiri/walk/front/1.png"],
                     TEXTURES["hijack/pixelart/teiri/walk/front/2.png"],
                     TEXTURES["hijack/pixelart/teiri/walk/front/3.png"]
                 ]);
+                sprite.x = x;
+                sprite.y = y;
                 sprite.animationSpeed = 1/8;
-                sprite.play();
-                app.stage.addChild(sprite);
 
                 return {
                     type: "teiri",
                     control: control,
                     sprite: sprite,
                     direction: "front",
-                    count: 0
+                    count: 0,
+                    x: x,
+                    y: y
                 };
             },
             step: async (game, object) => {
