@@ -221,7 +221,8 @@ const Game = {
                     type: "teiri",
                     control: await Game.Control.Playable.create(),
                     sprite: sprite,
-                    direction: "front"
+                    direction: "front",
+                    count: 0
                 };
             },
             step: async (game, object) => {
@@ -229,58 +230,67 @@ const Game = {
 
                 if (input.y < -0.25) {
                     if (object.direction !== "back") {
-                        object.direction = "back";
                         object.sprite.textures = [
                             TEXTURES["hijack/pixelart/teiri/walk/back/0.png"],
                             TEXTURES["hijack/pixelart/teiri/walk/back/1.png"],
                             TEXTURES["hijack/pixelart/teiri/walk/back/2.png"],
                             TEXTURES["hijack/pixelart/teiri/walk/back/3.png"]
                         ];
-                        object.sprite.play();
+                        object.sprite.play()
+                        object.direction = "back";
+                        object.count = 0;
                     }
                 } else if (input.y > 0.25) {
                     if (object.direction !== "front") {
-                        object.direction = "front";
                         object.sprite.textures = [
                             TEXTURES["hijack/pixelart/teiri/walk/front/0.png"],
                             TEXTURES["hijack/pixelart/teiri/walk/front/1.png"],
                             TEXTURES["hijack/pixelart/teiri/walk/front/2.png"],
                             TEXTURES["hijack/pixelart/teiri/walk/front/3.png"]
                         ];
-                        object.sprite.play();
+                        object.sprite.play()
+                        object.direction = "front";
+                        object.count = 0;
                     }
                 } else if (input.x < -0.25) {
                     if (object.direction !== "left") {
-                        object.direction = "left";
                         object.sprite.textures = [
                             TEXTURES["hijack/pixelart/teiri/walk/left/0.png"],
                             TEXTURES["hijack/pixelart/teiri/walk/left/1.png"],
                             TEXTURES["hijack/pixelart/teiri/walk/left/2.png"],
                             TEXTURES["hijack/pixelart/teiri/walk/left/3.png"]
                         ];
-                        object.sprite.play();
+                        object.sprite.play()
+                        object.direction = "left";
+                        object.count = 0;
                     }
                 } else if (input.x > 0.25) {
                     if (object.direction !== "right") {
-                        object.direction = "right";
                         object.sprite.textures = [
                             TEXTURES["hijack/pixelart/teiri/walk/right/0.png"],
                             TEXTURES["hijack/pixelart/teiri/walk/right/1.png"],
                             TEXTURES["hijack/pixelart/teiri/walk/right/2.png"],
                             TEXTURES["hijack/pixelart/teiri/walk/right/3.png"]
                         ];
-                        object.sprite.play();
+                        object.sprite.play()
+                        object.direction = "right";
+                        object.count = 0;
                     }
                 }
 
-                if (input.x < -0.25)
-                    object.sprite.x -= 1;
-                if (input.x > 0.25)
-                    object.sprite.x += 1;
-                if (input.y < -0.25)
-                    object.sprite.y -= 1;
-                if (input.y > 0.25)
-                    object.sprite.y += 1;
+                if (object.count % 8 === 0) {
+                    if (input.x < -0.25)
+                        object.sprite.x -= 8;
+                    if (input.x > 0.25)
+                        object.sprite.x += 8;
+                    if (input.y < -0.25)
+                        object.sprite.y -= 8;
+                    if (input.y > 0.25)
+                        object.sprite.y += 8;
+                }
+
+                if (input.x < -0.25 || input.x > 0.25 || input.y < -0.25 || input.y > 0.25)
+                    ++object.count;
             }
         }
     }
