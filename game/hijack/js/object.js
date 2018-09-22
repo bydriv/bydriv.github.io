@@ -89,13 +89,15 @@ export const Teiri = {
 
         if (object.count % 8 === 0) {
             if (input.x < -0.25)
-                object.sprite.x -= 8;
+                object.x -= 8;
             if (input.x > 0.25)
-                object.sprite.x += 8;
+                object.x += 8;
             if (input.y < -0.25)
-                object.sprite.y -= 8;
+                object.y -= 8;
             if (input.y > 0.25)
-                object.sprite.y += 8;
+                object.y += 8;
+            object.sprite.x = object.x;
+            object.sprite.y = object.y;
         }
 
         if (input.x < -0.25 || input.x > 0.25 || input.y < -0.25 || input.y > 0.25)
