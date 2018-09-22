@@ -17,16 +17,16 @@ window.addEventListener("keydown", (e) => {
     if (e.ctrlKey) {
         switch (e.key) {
         case "b":
-            Game.Input.x = -1;
+            Game.Input.PLAYER.x = -1;
             return e.preventDefault();
         case "p":
-            Game.Input.y = -1;
+            Game.Input.PLAYER.y = -1;
             return e.preventDefault();
         case "f":
-            Game.Input.x = 1;
+            Game.Input.PLAYER.x = 1;
             return e.preventDefault();
         case "n":
-            Game.Input.y = 1;
+            Game.Input.PLAYER.y = 1;
             return e.preventDefault();
         };
     } else {
@@ -35,25 +35,25 @@ window.addEventListener("keydown", (e) => {
         case "a":
         case "Left":
         case "ArrowLeft":
-            Game.Input.x = -1;
+            Game.Input.PLAYER.x = -1;
             return e.preventDefault();
         case "k":
         case "w":
         case "Up":
         case "ArrowUp":
-            Game.Input.y = -1;
+            Game.Input.PLAYER.y = -1;
             return e.preventDefault();
         case "l":
         case "d":
         case "Right":
         case "ArrowRight":
-            Game.Input.x = 1;
+            Game.Input.PLAYER.x = 1;
             return e.preventDefault();
         case "j":
         case "s":
         case "Down":
         case "ArrowDown":
-            Game.Input.y = 1;
+            Game.Input.PLAYER.y = 1;
             return e.preventDefault();
         };
     }
@@ -66,8 +66,8 @@ window.addEventListener("keyup", (e) => {
         case "p":
         case "f":
         case "n":
-            Game.Input.x = 0;
-            Game.Input.y = 0;
+            Game.Input.PLAYER.x = 0;
+            Game.Input.PLAYER.y = 0;
             return e.preventDefault();
         };
     } else {
@@ -88,8 +88,8 @@ window.addEventListener("keyup", (e) => {
         case "ArrowUp":
         case "ArrowRight":
         case "ArrowDown":
-            Game.Input.x = 0;
-            Game.Input.y = 0;
+            Game.Input.PLAYER.x = 0;
+            Game.Input.PLAYER.y = 0;
             return e.preventDefault();
         };
     }
@@ -126,8 +126,8 @@ const Game = {
         const gamepad = navigator.getGamepads()[0];
 
         if (gamepad) {
-            Game.Input.x = gamepad.axes[0];
-            Game.Input.y = gamepad.axes[1];
+            Game.Input.PLAYER.x = gamepad.axes[0];
+            Game.Input.PLAYER.y = gamepad.axes[1];
         }
 
         for (var i = 0; i < game.objects.length; ++i)
@@ -162,7 +162,7 @@ const Game = {
                 return {
                     type: control.type,
                     state: control.state,
-                    input: Game.Input
+                    input: Game.Input.PLAYER
                 };
             default:
                 return {
