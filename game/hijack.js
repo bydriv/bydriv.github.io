@@ -157,23 +157,24 @@ const Game = {
     },
     Object: {
         Control: {
-            playable: async () => {
-                return {
-                    type: "playable",
-                    state: null,
-                    input: Game.Input.PLAYER
-                };
+            Playable: {
+                create: async () => {
+                    return {
+                        type: "playable",
+                        state: null,
+                        input: Game.Input.PLAYER
+                    };
+                },
+                step: async (game, control) => {
+                    return control;
+                }
             },
             step: async (game, control) => {
                 switch (control.type) {
                 case "playable":
-                    return control;
+                    return await Game.Object.Control.Playable.step(game, control);
                 default:
-                    return {
-                        type: control.type,
-                        state: control.state,
-                        input: Game.Input.EMPTY
-                    };
+                    console.log("undefined control type: %o", control.type);
                 }
             }
         },
@@ -182,8 +183,9 @@ const Game = {
 
             switch (object.type) {
             case "teiri":
-                await Teiri.step(game, object);
-                break;
+                return await Teiri.step(game, object);
+            default:
+                console.log("undefined object type: %o", object.type);
             }
         }
     }
@@ -203,7 +205,7 @@ const Teiri = {
 
         return {
             type: "teiri",
-            control: await Game.Object.Control.playable(),
+            control: await Game.Object.Control.Playable.create(),
             sprite: sprite,
             direction: "front"
         };
