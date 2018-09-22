@@ -4,7 +4,6 @@ export const Playable = {
     create: async () => {
         return {
             type: "playable",
-            state: null,
             input: Input.PLAYER
         };
     },
@@ -17,15 +16,15 @@ export const Random = {
     create: async (bias) => {
         return {
             type: "random",
-            state: bias,
             input: {
                 x: (Math.random() * 2 - 1) * bias,
                 y: (Math.random() * 2 - 1) * bias
-            }
+            },
+            bias: bias
         };
     },
     step: async (game, control) => {
-        return await Random.create(control.state);
+        return await Random.create(control.bias);
     }
 };
 
