@@ -31,7 +31,7 @@ export const Random = {
 
 export const Wave = {
     create: async (incr, bias) => {
-        const i = Math.random() * (Math.PI / incr);
+        const i = Math.floor(Math.random() * (Math.PI / incr));
         const j = i + Math.round(Math.random()) * (Math.PI / incr);
 
         return {
