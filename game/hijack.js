@@ -168,10 +168,27 @@ const Game = {
                 return control;
             }
         },
+        Random: {
+            create: async () => {
+                return {
+                    type: "random",
+                    state: null,
+                    input: {
+                        x: Math.random() * 2 - 1,
+                        y: Math.random() * 2 - 1
+                    }
+                };
+            },
+            step: async (game, control) => {
+                return Game.Control.Random.create();
+            }
+        },
         step: async (game, control) => {
             switch (control.type) {
             case "playable":
                 return await Game.Control.Playable.step(game, control);
+            case "random":
+                return await Game.Control.Random.step(game, control);
             default:
                 console.log("undefined control type: %o", control.type);
             }
