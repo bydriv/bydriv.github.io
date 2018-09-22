@@ -96,10 +96,6 @@ window.addEventListener("keyup", (e) => {
 });
 
 const Game = {
-    ASSETS: [
-        "hijack/pixelart/teiri/walk.png"
-    ],
-    TEXTURES: {},
     create: async () => {
         PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 
@@ -220,10 +216,10 @@ const Game = {
         Teiri: {
             create: async (x, y, control) => {
                 const sprite = new PIXI.extras.AnimatedSprite([
-                    Game.TEXTURES["hijack/pixelart/teiri/walk/front/0.png"],
-                    Game.TEXTURES["hijack/pixelart/teiri/walk/front/1.png"],
-                    Game.TEXTURES["hijack/pixelart/teiri/walk/front/2.png"],
-                    Game.TEXTURES["hijack/pixelart/teiri/walk/front/3.png"]
+                    Game.Asset.TEXTURES["hijack/pixelart/teiri/walk/front/0.png"],
+                    Game.Asset.TEXTURES["hijack/pixelart/teiri/walk/front/1.png"],
+                    Game.Asset.TEXTURES["hijack/pixelart/teiri/walk/front/2.png"],
+                    Game.Asset.TEXTURES["hijack/pixelart/teiri/walk/front/3.png"]
                 ]);
                 sprite.x = x;
                 sprite.y = y;
@@ -245,10 +241,10 @@ const Game = {
                 if (input.y < -0.25) {
                     if (object.direction !== "back") {
                         object.sprite.textures = [
-                            Game.TEXTURES["hijack/pixelart/teiri/walk/back/0.png"],
-                            Game.TEXTURES["hijack/pixelart/teiri/walk/back/1.png"],
-                            Game.TEXTURES["hijack/pixelart/teiri/walk/back/2.png"],
-                            Game.TEXTURES["hijack/pixelart/teiri/walk/back/3.png"]
+                            Game.Asset.TEXTURES["hijack/pixelart/teiri/walk/back/0.png"],
+                            Game.Asset.TEXTURES["hijack/pixelart/teiri/walk/back/1.png"],
+                            Game.Asset.TEXTURES["hijack/pixelart/teiri/walk/back/2.png"],
+                            Game.Asset.TEXTURES["hijack/pixelart/teiri/walk/back/3.png"]
                         ];
                         object.sprite.play()
                         object.direction = "back";
@@ -257,10 +253,10 @@ const Game = {
                 } else if (input.y > 0.25) {
                     if (object.direction !== "front") {
                         object.sprite.textures = [
-                            Game.TEXTURES["hijack/pixelart/teiri/walk/front/0.png"],
-                            Game.TEXTURES["hijack/pixelart/teiri/walk/front/1.png"],
-                            Game.TEXTURES["hijack/pixelart/teiri/walk/front/2.png"],
-                            Game.TEXTURES["hijack/pixelart/teiri/walk/front/3.png"]
+                            Game.Asset.TEXTURES["hijack/pixelart/teiri/walk/front/0.png"],
+                            Game.Asset.TEXTURES["hijack/pixelart/teiri/walk/front/1.png"],
+                            Game.Asset.TEXTURES["hijack/pixelart/teiri/walk/front/2.png"],
+                            Game.Asset.TEXTURES["hijack/pixelart/teiri/walk/front/3.png"]
                         ];
                         object.sprite.play()
                         object.direction = "front";
@@ -269,10 +265,10 @@ const Game = {
                 } else if (input.x < -0.25) {
                     if (object.direction !== "left") {
                         object.sprite.textures = [
-                            Game.TEXTURES["hijack/pixelart/teiri/walk/left/0.png"],
-                            Game.TEXTURES["hijack/pixelart/teiri/walk/left/1.png"],
-                            Game.TEXTURES["hijack/pixelart/teiri/walk/left/2.png"],
-                            Game.TEXTURES["hijack/pixelart/teiri/walk/left/3.png"]
+                            Game.Asset.TEXTURES["hijack/pixelart/teiri/walk/left/0.png"],
+                            Game.Asset.TEXTURES["hijack/pixelart/teiri/walk/left/1.png"],
+                            Game.Asset.TEXTURES["hijack/pixelart/teiri/walk/left/2.png"],
+                            Game.Asset.TEXTURES["hijack/pixelart/teiri/walk/left/3.png"]
                         ];
                         object.sprite.play()
                         object.direction = "left";
@@ -281,10 +277,10 @@ const Game = {
                 } else if (input.x > 0.25) {
                     if (object.direction !== "right") {
                         object.sprite.textures = [
-                            Game.TEXTURES["hijack/pixelart/teiri/walk/right/0.png"],
-                            Game.TEXTURES["hijack/pixelart/teiri/walk/right/1.png"],
-                            Game.TEXTURES["hijack/pixelart/teiri/walk/right/2.png"],
-                            Game.TEXTURES["hijack/pixelart/teiri/walk/right/3.png"]
+                            Game.Asset.TEXTURES["hijack/pixelart/teiri/walk/right/0.png"],
+                            Game.Asset.TEXTURES["hijack/pixelart/teiri/walk/right/1.png"],
+                            Game.Asset.TEXTURES["hijack/pixelart/teiri/walk/right/2.png"],
+                            Game.Asset.TEXTURES["hijack/pixelart/teiri/walk/right/3.png"]
                         ];
                         object.sprite.play()
                         object.direction = "right";
@@ -309,15 +305,19 @@ const Game = {
         }
     },
     Asset: {
+        ASSETS: [
+            "hijack/pixelart/teiri/walk.png"
+        ],
+        TEXTURES: {},
         load: () => {
             return new Promise(resolve => {
-                PIXI.loader.add(Game.ASSETS).load(() => {
+                PIXI.loader.add(Game.Asset.ASSETS).load(() => {
                     for (var i = 0; i < 4; ++i) {
                         const name = i === 0 ? "left" : i === 1 ? "back" : i === 2 ? "right" : "front";
 
                         for (var j = 0; j < 4; ++j) {
                             const path = "hijack/pixelart/teiri/walk/" + name + "/" + j + ".png";
-                            Game.TEXTURES[path] = new PIXI.Texture(PIXI.loader.resources["hijack/pixelart/teiri/walk.png"].texture, new PIXI.Rectangle(j * 16, i * 16, 16, 16));
+                            Game.Asset.TEXTURES[path] = new PIXI.Texture(PIXI.loader.resources["hijack/pixelart/teiri/walk.png"].texture, new PIXI.Rectangle(j * 16, i * 16, 16, 16));
                         }
                     }
                     resolve();
