@@ -115,7 +115,7 @@ const Game = {
 
         document.getElementById("game").appendChild(app.view);
 
-        const teiri = await Teiri.create(app);
+        const teiri = await Game.Object.Teiri.create(app);
 
         return {
             app: app,
@@ -183,92 +183,91 @@ const Game = {
 
             switch (object.type) {
             case "teiri":
-                return await Teiri.step(game, object);
+                return await Game.Object.Teiri.step(game, object);
             default:
                 console.log("undefined object type: %o", object.type);
             }
-        }
-    }
-};
-
-const Teiri = {
-    create: async (app) => {
-        const sprite = new PIXI.extras.AnimatedSprite([
-            TEXTURES["hijack/pixelart/teiri/walk/front/0.png"],
-            TEXTURES["hijack/pixelart/teiri/walk/front/1.png"],
-            TEXTURES["hijack/pixelart/teiri/walk/front/2.png"],
-            TEXTURES["hijack/pixelart/teiri/walk/front/3.png"]
-        ]);
-        sprite.animationSpeed = 1/8;
-        sprite.play();
-        app.stage.addChild(sprite);
-
-        return {
-            type: "teiri",
-            control: await Game.Control.Playable.create(),
-            sprite: sprite,
-            direction: "front"
-        };
-    },
-    step: async (game, object) => {
-        const input = object.control.input;
-
-        if (input.y < -0.25) {
-            if (object.direction !== "back") {
-                object.direction = "back";
-                object.sprite.textures = [
-                    TEXTURES["hijack/pixelart/teiri/walk/back/0.png"],
-                    TEXTURES["hijack/pixelart/teiri/walk/back/1.png"],
-                    TEXTURES["hijack/pixelart/teiri/walk/back/2.png"],
-                    TEXTURES["hijack/pixelart/teiri/walk/back/3.png"]
-                ];
-                object.sprite.play();
-            }
-        } else if (input.y > 0.25) {
-            if (object.direction !== "front") {
-                object.direction = "front";
-                object.sprite.textures = [
+        },
+        Teiri: {
+            create: async (app) => {
+                const sprite = new PIXI.extras.AnimatedSprite([
                     TEXTURES["hijack/pixelart/teiri/walk/front/0.png"],
                     TEXTURES["hijack/pixelart/teiri/walk/front/1.png"],
                     TEXTURES["hijack/pixelart/teiri/walk/front/2.png"],
                     TEXTURES["hijack/pixelart/teiri/walk/front/3.png"]
-                ];
-                object.sprite.play();
-            }
-        } else if (input.x < -0.25) {
-            if (object.direction !== "left") {
-                object.direction = "left";
-                object.sprite.textures = [
-                    TEXTURES["hijack/pixelart/teiri/walk/left/0.png"],
-                    TEXTURES["hijack/pixelart/teiri/walk/left/1.png"],
-                    TEXTURES["hijack/pixelart/teiri/walk/left/2.png"],
-                    TEXTURES["hijack/pixelart/teiri/walk/left/3.png"]
-                ];
-                object.sprite.play();
-            }
-        } else if (input.x > 0.25) {
-            if (object.direction !== "right") {
-                object.direction = "right";
-                object.sprite.textures = [
-                    TEXTURES["hijack/pixelart/teiri/walk/right/0.png"],
-                    TEXTURES["hijack/pixelart/teiri/walk/right/1.png"],
-                    TEXTURES["hijack/pixelart/teiri/walk/right/2.png"],
-                    TEXTURES["hijack/pixelart/teiri/walk/right/3.png"]
-                ];
-                object.sprite.play();
+                ]);
+                sprite.animationSpeed = 1/8;
+                sprite.play();
+                app.stage.addChild(sprite);
+
+                return {
+                    type: "teiri",
+                    control: await Game.Control.Playable.create(),
+                    sprite: sprite,
+                    direction: "front"
+                };
+            },
+            step: async (game, object) => {
+                const input = object.control.input;
+
+                if (input.y < -0.25) {
+                    if (object.direction !== "back") {
+                        object.direction = "back";
+                        object.sprite.textures = [
+                            TEXTURES["hijack/pixelart/teiri/walk/back/0.png"],
+                            TEXTURES["hijack/pixelart/teiri/walk/back/1.png"],
+                            TEXTURES["hijack/pixelart/teiri/walk/back/2.png"],
+                            TEXTURES["hijack/pixelart/teiri/walk/back/3.png"]
+                        ];
+                        object.sprite.play();
+                    }
+                } else if (input.y > 0.25) {
+                    if (object.direction !== "front") {
+                        object.direction = "front";
+                        object.sprite.textures = [
+                            TEXTURES["hijack/pixelart/teiri/walk/front/0.png"],
+                            TEXTURES["hijack/pixelart/teiri/walk/front/1.png"],
+                            TEXTURES["hijack/pixelart/teiri/walk/front/2.png"],
+                            TEXTURES["hijack/pixelart/teiri/walk/front/3.png"]
+                        ];
+                        object.sprite.play();
+                    }
+                } else if (input.x < -0.25) {
+                    if (object.direction !== "left") {
+                        object.direction = "left";
+                        object.sprite.textures = [
+                            TEXTURES["hijack/pixelart/teiri/walk/left/0.png"],
+                            TEXTURES["hijack/pixelart/teiri/walk/left/1.png"],
+                            TEXTURES["hijack/pixelart/teiri/walk/left/2.png"],
+                            TEXTURES["hijack/pixelart/teiri/walk/left/3.png"]
+                        ];
+                        object.sprite.play();
+                    }
+                } else if (input.x > 0.25) {
+                    if (object.direction !== "right") {
+                        object.direction = "right";
+                        object.sprite.textures = [
+                            TEXTURES["hijack/pixelart/teiri/walk/right/0.png"],
+                            TEXTURES["hijack/pixelart/teiri/walk/right/1.png"],
+                            TEXTURES["hijack/pixelart/teiri/walk/right/2.png"],
+                            TEXTURES["hijack/pixelart/teiri/walk/right/3.png"]
+                        ];
+                        object.sprite.play();
+                    }
+                }
+
+                if (input.x < -0.25)
+                    object.sprite.x -= 1;
+                if (input.x > 0.25)
+                    object.sprite.x += 1;
+                if (input.y < -0.25)
+                    object.sprite.y -= 1;
+                if (input.y > 0.25)
+                    object.sprite.y += 1;
             }
         }
-
-        if (input.x < -0.25)
-            object.sprite.x -= 1;
-        if (input.x > 0.25)
-            object.sprite.x += 1;
-        if (input.y < -0.25)
-            object.sprite.y -= 1;
-        if (input.y > 0.25)
-            object.sprite.y += 1;
     }
-}
+};
 
 function assets_load() {
     return new Promise(resolve => {
