@@ -34,6 +34,18 @@ window.addEventListener("keydown", (e) => {
         };
     } else {
         switch (e.key) {
+        case "z":
+            Input.PLAYER.buttons[0] = true;
+            return e.preventDefault();
+        case "x":
+            Input.PLAYER.buttons[1] = true;
+            return e.preventDefault();
+        case "c":
+            Input.PLAYER.buttons[2] = true;
+            return e.preventDefault();
+        case "v":
+            Input.PLAYER.buttons[3] = true;
+            return e.preventDefault();
         case "h":
         case "a":
         case "Left":
@@ -75,6 +87,10 @@ window.addEventListener("keyup", (e) => {
         };
     } else {
         switch (e.key) {
+        case "z":
+        case "x":
+        case "c":
+        case "v":
         case "h":
         case "k":
         case "l":
@@ -93,6 +109,10 @@ window.addEventListener("keyup", (e) => {
         case "ArrowDown":
             Input.PLAYER.x = 0;
             Input.PLAYER.y = 0;
+            Input.PLAYER.buttons[0] = false;
+            Input.PLAYER.buttons[1] = false;
+            Input.PLAYER.buttons[2] = false;
+            Input.PLAYER.buttons[3] = false;
             return e.preventDefault();
         };
     }

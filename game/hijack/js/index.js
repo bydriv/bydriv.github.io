@@ -47,6 +47,7 @@ export async function step(game) {
     if (gamepad) {
         Input.PLAYER.x = gamepad.axes[0];
         Input.PLAYER.y = gamepad.axes[1];
+        Input.PLAYER.buttons = [gamepad.buttons[0].pressed, gamepad.buttons[1].pressed, gamepad.buttons[2].pressed, gamepad.buttons[3].pressed];
     }
 
     for (var i = 0; i < game.objects.length; ++i)

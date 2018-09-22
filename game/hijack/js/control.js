@@ -18,7 +18,8 @@ export const Random = {
             type: "random",
             input: {
                 x: (Math.random() * 2 - 1) * bias,
-                y: (Math.random() * 2 - 1) * bias
+                y: (Math.random() * 2 - 1) * bias,
+                buttons: [false, false, false, false]
             },
             bias: bias
         };
