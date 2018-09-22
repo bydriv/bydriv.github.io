@@ -115,11 +115,23 @@ const Game = {
 
         document.getElementById("game").appendChild(app.view);
 
-        const teiri = await Game.Object.Teiri.create(app);
+        const teiri = await Game.Object.Teiri.create(app, await Game.Control.Playable.create());
+        const teiri2 = await Game.Object.Teiri.create(app, await Game.Control.Random.create(0.252));
+        const teiri3 = await Game.Object.Teiri.create(app, await Game.Control.Random.create(0.252));
+        const teiri4 = await Game.Object.Teiri.create(app, await Game.Control.Random.create(0.252));
+        const teiri5 = await Game.Object.Teiri.create(app, await Game.Control.Random.create(0.252));
+        teiri2.sprite.x = 60;
+        teiri2.sprite.y = 40;
+        teiri3.sprite.x = 120;
+        teiri3.sprite.y = 40;
+        teiri4.sprite.x = 60;
+        teiri4.sprite.y = 80;
+        teiri5.sprite.x = 120;
+        teiri5.sprite.y = 80;
 
         return {
             app: app,
-            objects: [teiri]
+            objects: [teiri, teiri2, teiri3, teiri4, teiri5]
         };
     },
     step: async (game) => {
@@ -169,18 +181,18 @@ const Game = {
             }
         },
         Random: {
-            create: async () => {
+            create: async (bias) => {
                 return {
                     type: "random",
-                    state: null,
+                    state: bias,
                     input: {
-                        x: Math.random() * 2 - 1,
-                        y: Math.random() * 2 - 1
+                        x: (Math.random() * 2 - 1) * bias,
+                        y: (Math.random() * 2 - 1) * bias
                     }
                 };
             },
             step: async (game, control) => {
-                return Game.Control.Random.create();
+                return await Game.Control.Random.create(control.state);
             }
         },
         step: async (game, control) => {
@@ -206,7 +218,7 @@ const Game = {
             }
         },
         Teiri: {
-            create: async (app) => {
+            create: async (app, control) => {
                 const sprite = new PIXI.extras.AnimatedSprite([
                     TEXTURES["hijack/pixelart/teiri/walk/front/0.png"],
                     TEXTURES["hijack/pixelart/teiri/walk/front/1.png"],
@@ -219,7 +231,7 @@ const Game = {
 
                 return {
                     type: "teiri",
-                    control: await Game.Control.Playable.create(),
+                    control: control,
                     sprite: sprite,
                     direction: "front",
                     count: 0
