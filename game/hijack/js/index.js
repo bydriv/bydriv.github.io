@@ -20,10 +20,10 @@ export async function create() {
     document.getElementById("game").appendChild(app.view);
 
     const teiri = await Object.Teiri.create(0, 0, await Control.Playable.create());
-    const teiri2 = await Object.Teiri.create(60, 40, await Control.Random.create(0.252));
-    const teiri3 = await Object.Teiri.create(120, 40, await Control.Random.create(0.252));
-    const teiri4 = await Object.Teiri.create(60, 80, await Control.Random.create(0.252));
-    const teiri5 = await Object.Teiri.create(120, 80, await Control.Random.create(0.252));
+    const teiri2 = await Object.Teiri.create(60, 40, await Control.Wave.create(Math.PI/256, 0.252));
+    const teiri3 = await Object.Teiri.create(120, 40, await Control.Wave.create(Math.PI/256, 0.252));
+    const teiri4 = await Object.Teiri.create(60, 80, await Control.Wave.create(Math.PI/256, 0.252));
+    const teiri5 = await Object.Teiri.create(120, 80, await Control.Wave.create(Math.PI/256, 0.252));
     teiri.sprite.play();
     app.stage.addChild(teiri.sprite);
     teiri2.sprite.play();
