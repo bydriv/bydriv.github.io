@@ -156,24 +156,29 @@ const Game = {
         }
     },
     Object: {
-        control: async (game, control) => {
-            switch (control.type) {
-            case "playable":
+        Control: {
+            playable: async () => {
                 return {
-                    type: control.type,
-                    state: control.state,
+                    type: "playable",
+                    state: null,
                     input: Game.Input.PLAYER
                 };
-            default:
-                return {
-                    type: control.type,
-                    state: control.state,
-                    input: Game.Input.EMPTY
-                };
+            },
+            step: async (game, control) => {
+                switch (control.type) {
+                case "playable":
+                    return control;
+                default:
+                    return {
+                        type: control.type,
+                        state: control.state,
+                        input: Game.Input.EMPTY
+                    };
+                }
             }
         },
         step: async (game, object) => {
-            object.control = await Game.Object.control(game, object.control);
+            object.control = await Game.Object.Control.step(game, object.control);
 
             switch (object.type) {
             case "teiri":
@@ -198,11 +203,7 @@ const Teiri = {
 
         return {
             type: "teiri",
-            control: {
-                type: "playable",
-                state: null,
-                input: Game.Input.EMPTY
-            },
+            control: await Game.Object.Control.playable(),
             sprite: sprite,
             direction: "front"
         };
