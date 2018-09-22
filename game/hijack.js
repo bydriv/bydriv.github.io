@@ -17,16 +17,16 @@ window.addEventListener("keydown", (e) => {
     if (e.ctrlKey) {
         switch (e.key) {
         case "b":
-            INPUT.x = -1;
+            Game.Input.x = -1;
             return e.preventDefault();
         case "p":
-            INPUT.y = -1;
+            Game.Input.y = -1;
             return e.preventDefault();
         case "f":
-            INPUT.x = 1;
+            Game.Input.x = 1;
             return e.preventDefault();
         case "n":
-            INPUT.y = 1;
+            Game.Input.y = 1;
             return e.preventDefault();
         };
     } else {
@@ -35,39 +35,29 @@ window.addEventListener("keydown", (e) => {
         case "a":
         case "Left":
         case "ArrowLeft":
-            INPUT.x = -1;
+            Game.Input.x = -1;
             return e.preventDefault();
         case "k":
         case "w":
         case "Up":
         case "ArrowUp":
-            INPUT.y = -1;
+            Game.Input.y = -1;
             return e.preventDefault();
         case "l":
         case "d":
         case "Right":
         case "ArrowRight":
-            INPUT.x = 1;
+            Game.Input.x = 1;
             return e.preventDefault();
         case "j":
         case "s":
         case "Down":
         case "ArrowDown":
-            INPUT.y = 1;
+            Game.Input.y = 1;
             return e.preventDefault();
         };
     }
 });
-
-const INPUT_EMPTY = {
-    x: 0,
-    y: 0
-};
-
-const INPUT = {
-    x: 0,
-    y: 0
-};
 
 window.addEventListener("keyup", (e) => {
     if (e.ctrlKey) {
@@ -76,8 +66,8 @@ window.addEventListener("keyup", (e) => {
         case "p":
         case "f":
         case "n":
-            INPUT.x = 0;
-            INPUT.y = 0;
+            Game.Input.x = 0;
+            Game.Input.y = 0;
             return e.preventDefault();
         };
     } else {
@@ -98,8 +88,8 @@ window.addEventListener("keyup", (e) => {
         case "ArrowUp":
         case "ArrowRight":
         case "ArrowDown":
-            INPUT.x = 0;
-            INPUT.y = 0;
+            Game.Input.x = 0;
+            Game.Input.y = 0;
             return e.preventDefault();
         };
     }
@@ -136,8 +126,8 @@ const Game = {
         const gamepad = navigator.getGamepads()[0];
 
         if (gamepad) {
-            INPUT.x = gamepad.axes[0];
-            INPUT.y = gamepad.axes[1];
+            Game.Input.x = gamepad.axes[0];
+            Game.Input.y = gamepad.axes[1];
         }
 
         for (var i = 0; i < game.objects.length; ++i)
@@ -155,6 +145,16 @@ const Game = {
         else
             document.getElementById("game").setAttribute("class", "quadruple");
     },
+    Input: {
+        EMPTY: {
+            x: 0,
+            y: 0
+        },
+        PLAYER: {
+            x: 0,
+            y: 0
+        }
+    },
     Object: {
         control: async (game, control) => {
             switch (control.type) {
@@ -162,13 +162,13 @@ const Game = {
                 return {
                     type: control.type,
                     state: control.state,
-                    input: INPUT
+                    input: Game.Input
                 };
             default:
                 return {
                     type: control.type,
                     state: control.state,
-                    input: INPUT_EMPTY
+                    input: Game.Input.EMPTY
                 };
             }
         },
@@ -201,7 +201,7 @@ const Teiri = {
             control: {
                 type: "playable",
                 state: null,
-                input: INPUT_EMPTY
+                input: Game.Input.EMPTY
             },
             sprite: sprite,
             direction: "front"
