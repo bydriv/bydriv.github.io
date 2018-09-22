@@ -24,16 +24,16 @@ export const Random = {
         };
     },
     step: async (game, control) => {
-        return await Random.create(control.bias);
+        return Random.create(control.bias);
     }
 };
 
 export async function step(game, control) {
     switch (control.type) {
     case "playable":
-        return await Playable.step(game, control);
+        return Playable.step(game, control);
     case "random":
-        return await Random.step(game, control);
+        return Random.step(game, control);
     default:
         console.log("undefined control type: %o", control.type);
     }

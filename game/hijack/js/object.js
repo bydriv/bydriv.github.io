@@ -6,7 +6,7 @@ export async function step(game, object) {
 
     switch (object.type) {
     case "teiri":
-        return await Teiri.step(game, object);
+        return Teiri.step(game, object);
     default:
         console.log("undefined object type: %o", object.type);
     }
