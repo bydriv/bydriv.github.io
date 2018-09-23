@@ -35,12 +35,14 @@ export const Teiri = {
         return {
             type: "teiri",
             id: object.id,
+            x: object.x,
+            y: object.y,
+            width: 16,
+            height: 16,
             control: await Control.create(object.control),
             pose: object.pose,
             direction: object.direction,
-            count: 0,
-            x: object.x,
-            y: object.y
+            count: 0
         };
     },
     createSprite: async (object) => {

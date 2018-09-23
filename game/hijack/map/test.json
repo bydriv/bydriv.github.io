@@ -1,15 +1,70 @@
 {
+    "width": 240,
+    "height": 160,
+    "lock": ["0"],
     "objects": [
         {
             "type": "teiri",
             "id": "0",
+            "x": 0,
+            "y": 0,
             "control": {
                 "type": "playable"
             },
             "pose": "walk",
-            "direction": "front",
-            "x": 0,
-            "y": 0
+            "direction": "front"
+        },
+        {
+            "type": "teiri",
+            "id": "1",
+            "x": 60,
+            "y": 40,
+            "control": {
+                "type": "wave",
+                "incr": 0.0245,
+                "bias": 0.252
+            },
+            "pose": "walk",
+            "direction": "front"
+        },
+        {
+            "type": "teiri",
+            "id": "2",
+            "x": -60,
+            "y": 40,
+            "control": {
+                "type": "wave",
+                "incr": 0.0245,
+                "bias": 0.252
+            },
+            "pose": "walk",
+            "direction": "front"
+        },
+        {
+            "type": "teiri",
+            "id": "3",
+            "x": 60,
+            "y": -40,
+            "control": {
+                "type": "wave",
+                "incr": 0.0245,
+                "bias": 0.252
+            },
+            "pose": "walk",
+            "direction": "front"
+        },
+        {
+            "type": "teiri",
+            "id": "4",
+            "x": -60,
+            "y": -40,
+            "control": {
+                "type": "wave",
+                "incr": 0.0245,
+                "bias": 0.252
+            },
+            "pose": "walk",
+            "direction": "front"
         }
     ]
 }

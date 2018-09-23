@@ -38,7 +38,7 @@ export const Random = {
         };
     },
     step: async (game, control) => {
-        return Random.create(control.bias);
+        return Random.create(control);
     }
 };
 

@@ -6,6 +6,10 @@ import * as Object from "./object.js";
 
 export {Asset, Control, Font, Input, Object};
 
+const WIDTH = 240;
+const HEIGHT = 160;
+const SCALE = 8;
+
 export async function create() {
     PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 
@@ -13,8 +17,8 @@ export async function create() {
 
     resize();
 
-    const app = new PIXI.Application({autoStart: false, width: 1920, height: 1280});
-    app.stage.scale.set(8, 8);
+    const app = new PIXI.Application({autoStart: false, width: WIDTH * SCALE, height: HEIGHT * SCALE});
+    app.stage.scale.set(SCALE, SCALE);
     app.renderer.backgroundColor = 0xC0C0C0;
 
     document.getElementById("game").appendChild(app.view);
@@ -32,6 +36,7 @@ export async function create() {
 
     return {
         app: app,
+        map: Asset.MAPS["hijack/map/test.json"],
         sprites: sprites,
         objects: objects
     };
@@ -48,6 +53,15 @@ export async function step(game) {
 
     for (var i = 0; i < game.objects.length; ++i)
         await Object.step(game, game.objects[i]);
+
+    for (var i = 0; i < game.objects.length; ++i)
+        if (game.map.lock.includes(game.objects[i].id)) {
+            const centralX = (game.objects[i].x + game.objects[i].width / 2) * SCALE;
+            const centralY = (game.objects[i].y + game.objects[i].height / 2) * SCALE;
+            game.app.stage.x = WIDTH * SCALE / 2 - centralX;
+            game.app.stage.y = HEIGHT * SCALE / 2 - centralY;
+            break;
+        }
 
     game.app.renderer.render(game.app.stage);
 
