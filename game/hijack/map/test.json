@@ -1,0 +1,21 @@
+{
+    "objects": [
+        {
+            "id": "0",
+            "type": "teiri",
+            "control": {
+                "type": "playable",
+                "input": {
+                    "x": 0,
+                    "y": 0,
+                    "buttons": [false, false, false, false]
+                }
+            },
+            "pose": "walk",
+            "direction": "front",
+            "count": 0,
+            "x": 0,
+            "y": 0
+        }
+    ]
+}

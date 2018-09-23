@@ -19,25 +19,20 @@ export async function create() {
 
     document.getElementById("game").appendChild(app.view);
 
-    const teiri = await Object.Teiri.create(0, 0, await Control.Playable.create());
-    const teiri2 = await Object.Teiri.create(60, 40, await Control.Wave.create(Math.PI/256, 0.252));
-    const teiri3 = await Object.Teiri.create(120, 40, await Control.Wave.create(Math.PI/256, 0.252));
-    const teiri4 = await Object.Teiri.create(60, 80, await Control.Wave.create(Math.PI/256, 0.252));
-    const teiri5 = await Object.Teiri.create(120, 80, await Control.Wave.create(Math.PI/256, 0.252));
-    teiri.sprite.play();
-    app.stage.addChild(teiri.sprite);
-    teiri2.sprite.play();
-    app.stage.addChild(teiri2.sprite);
-    teiri3.sprite.play();
-    app.stage.addChild(teiri3.sprite);
-    teiri4.sprite.play();
-    app.stage.addChild(teiri4.sprite);
-    teiri5.sprite.play();
-    app.stage.addChild(teiri5.sprite);
+    const objects = Asset.MAPS["hijack/map/test.json"].objects;
+    const sprites = {};
+
+    for (var i = 0; i < objects.length; ++i) {
+        const object = objects[i];
+        sprites[object.id] = await Object.createSprite(object);
+        sprites[object.id].play();
+        app.stage.addChild(sprites[object.id]);
+    }
 
     return {
         app: app,
-        objects: [teiri, teiri2, teiri3, teiri4, teiri5]
+        sprites: sprites,
+        objects: objects
     };
 }
 

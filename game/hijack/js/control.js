@@ -4,11 +4,14 @@ export const Playable = {
     create: async () => {
         return {
             type: "playable",
-            input: Input.PLAYER
+            input: Input.EMPTY
         };
     },
     step: async (game, control) => {
-        return control;
+        return {
+            type: "playable",
+            input: Input.PLAYER
+        };
     }
 };
 
