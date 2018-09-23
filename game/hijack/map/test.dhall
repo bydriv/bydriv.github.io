@@ -1,148 +1,84 @@
-{
+let Point = {
+  x : Integer,
+  y : Integer
+} in
+let Playable = {
+  type : Text
+} in
+let Wave = {
+  type : Text,
+  incr : Double,
+  bias : Double
+} in
+let Control = <
+  playable : Playable
+| wave : Wave
+> in
+let playable = \(playable : Playable) -> <playable = playable | wave : Wave> in
+let wave = \(wave : Wave) -> <wave = wave | playable : Playable> in
+let Teiri = {
+  type : Text,
+  id : Optional Text,
+  x : Integer,
+  y : Integer,
+  control : Control,
+  pose : Text,
+  direction : Text
+} in
+let Gray = {
+  type : Text,
+  id : Optional Text,
+  x : Integer,
+  y : Integer
+} in
+let Object = <
+  teiri : Teiri
+| gray : Gray
+> in
+let teiri = \(teiri : Teiri) -> <teiri = teiri | gray : Gray> in
+let gray = \(gray : Gray) -> <gray = gray | teiri : Teiri> in {
   width = 240,
   height = 160,
   lock = "teiri",
   objects = [
-    <
-      teiri = {
-        type = "teiri",
-        id = ["teiri"] : Optional Text,
-        x = +0,
-        y = +0,
-        control = <
-          playable = {
-            type = "playable"
-          }
-        | wave : {
-            type : Text,
-            incr : Double,
-            bias : Double
-          }
-        >,
-        pose = "walk",
-        direction = "front"
-      }
-    | gray : {
-        type : Text,
-        id : Optional Text,
-        x : Integer,
-        y : Integer
-      }
-    >
-  ] # ./Prelude/List/map {
-    x : Integer,
-    y : Integer
-  } <
-    teiri : {
-      type : Text,
-      id : Optional Text,
-      x : Integer,
-      y : Integer,
-      control : <
-        playable : {
-          type : Text
-        }
-      | wave : {
-          type : Text,
-          incr : Double,
-          bias : Double
-        }
-      >,
-      pose : Text,
-      direction : Text
+    teiri {
+      type = "teiri",
+      id = ["teiri"] : Optional Text,
+      x = +0,
+      y = +0,
+      control = playable {
+        type = "playable"
+      },
+      pose = "walk",
+      direction = "front"
     }
-  | gray : {
-      type : Text,
-      id : Optional Text,
-      x : Integer,
-      y : Integer
-    }
-  > (\(p : {
-    x : Integer,
-    y : Integer
-  }) ->
-    <teiri = {
+  ] # ./Prelude/List/map Point Object (\(p : Point) ->
+    teiri {
       type = "teiri",
       id = [] : Optional Text,
       x = p.x,
       y = p.y,
-      control = <wave = {
+      control = wave {
         type = "wave",
         incr = 0.0245,
         bias = 0.252
-      } | playable : {
-        type : Text
-      }>,
+      },
       pose = "walk",
-      direction = "front" }
-    | gray : {
-        type : Text,
-        id : Optional Text,
-        x : Integer,
-        y : Integer
-      }>
+      direction = "front"
+    }
   ) [
     {x = +60, y = +40},
     {x = -60, y = +40},
     {x = +60, y = -40},
     {x = -60, y = -40}
-  ] # ./Prelude/List/map {
-    x : Integer,
-    y : Integer
-  } <
-    teiri : {
-      type : Text,
-      id : Optional Text,
-      x : Integer,
-      y : Integer,
-      control : <
-        playable : {
-          type : Text
-        }
-      | wave : {
-          type : Text,
-          incr : Double,
-          bias : Double
-        }
-      >,
-      pose : Text,
-      direction : Text
-    }
-  | gray : {
-      type : Text,
-      id : Optional Text,
-      x : Integer,
-      y : Integer
-    }
-  > (\(p : {
-    x : Integer,
-    y : Integer
-  }) ->  <
-    gray = {
+  ] # ./Prelude/List/map Point Object (\(p : Point) ->
+    gray {
       type = "gray",
       id = [] : Optional Text,
       x = p.x,
       y = p.y
     }
-  | teiri : {
-      type : Text,
-      id : Optional Text,
-      x : Integer,
-      y : Integer,
-      control : <
-        playable : {
-          type : Text
-        }
-      | wave : {
-          type : Text,
-          incr : Double,
-          bias : Double
-        }
-      >,
-      pose : Text,
-      direction : Text
-    }
-  >) [
+  ) [
     {x = -96, y = -64},
     {x = -96, y = -48},
     {x = -96, y = -32},
