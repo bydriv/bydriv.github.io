@@ -68,7 +68,7 @@ export async function step(game) {
     return game;
 }
 
-export async function resize() {
+export function resize() {
     if (document.body.clientWidth < 480)
         document.getElementById("game").setAttribute("class", "single");
     else if (document.body.clientWidth < 960)
