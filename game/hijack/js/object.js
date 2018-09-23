@@ -44,7 +44,7 @@ export const Teiri = {
     create: async (object) => {
         return {
             type: "teiri",
-            id: object.id,
+            id: object.id || Symbol(),
             x: object.x,
             y: object.y,
             width: 16,
@@ -182,7 +182,7 @@ export const Silver = {
     create: async (object) => {
         return {
             type: "silver",
-            id: object.id,
+            id: object.id || Symbol(),
             x: object.x,
             y: object.y,
             width: 16,
@@ -202,7 +202,7 @@ export const Gray = {
     create: async (object) => {
         return {
             type: "gray",
-            id: object.id,
+            id: object.id || Symbol(),
             x: object.x,
             y: object.y,
             width: 16,
