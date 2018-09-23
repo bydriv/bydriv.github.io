@@ -1,6 +1,8 @@
 export const ASSETS = [
     "hijack/pixelart/teiri/walk.png",
     "hijack/pixelart/teiri/truncheon.png",
+    "hijack/pixelart/maptip/silver.png",
+    "hijack/pixelart/maptip/gray.png",
     "hijack/map/test.json"
 ];
 
@@ -11,6 +13,8 @@ export function load() {
     return new Promise(resolve => {
         PIXI.loader.add(ASSETS).load(() => {
             MAPS["hijack/map/test.json"] = PIXI.loader.resources["hijack/map/test.json"].data;
+            TEXTURES["hijack/pixelart/maptip/silver.png"] = PIXI.loader.resources["hijack/pixelart/maptip/silver.png"].texture;
+            TEXTURES["hijack/pixelart/maptip/gray.png"] = PIXI.loader.resources["hijack/pixelart/maptip/gray.png"].texture;
             for (var i = 0; i < 4; ++i) {
                 const name = i === 0 ? "left" : i === 1 ? "back" : i === 2 ? "right" : "front";
 
