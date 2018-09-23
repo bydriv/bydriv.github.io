@@ -68,9 +68,8 @@ export const Wave = {
                 y: Math.sin(control.j * control.incr) * control.bias,
                 buttons: [false, false, false, false]
             },
-            i: control.i % (Math.PI / control.incr) === (Math.PI / control.incr / 2) ? control.i + Math.round(Math.random()) * (Math.PI / control.incr) + 1 : control.i + 1,
-            j: control.j % (Math.PI / control.incr) === 0 ? control.j + Math.round(Math.random()) * (Math.PI / control.
-incr) + 1 : control.j + 1,
+            i: control.i % Math.floor(Math.PI / control.incr) === Math.floor(Math.PI / control.incr / 2) ? control.i + Math.round(Math.random()) * Math.floor(Math.PI / control.incr) + 1 : control.i + 1,
+            j: control.j % Math.floor(Math.PI / control.incr) === 0 ? control.j + Math.round(Math.random()) * Math.floor(Math.PI / control.incr) + 1 : control.j + 1,
             incr: control.incr,
             bias: control.bias
         };
