@@ -9,6 +9,9 @@
       "direction": "front",
       "id": "teiri",
       "pose": "walk",
+      "team": {
+        "type": "player"
+      },
       "type": "teiri",
       "x": 0,
       "y": 0
@@ -22,6 +25,9 @@
       "direction": "front",
       "id": null,
       "pose": "walk",
+      "team": {
+        "type": "enemy"
+      },
       "type": "teiri",
       "x": 60,
       "y": 40
@@ -35,6 +41,9 @@
       "direction": "front",
       "id": null,
       "pose": "walk",
+      "team": {
+        "type": "enemy"
+      },
       "type": "teiri",
       "x": -60,
       "y": 40
@@ -48,6 +57,9 @@
       "direction": "front",
       "id": null,
       "pose": "walk",
+      "team": {
+        "type": "enemy"
+      },
       "type": "teiri",
       "x": 60,
       "y": -40
@@ -61,246 +73,369 @@
       "direction": "front",
       "id": null,
       "pose": "walk",
+      "team": {
+        "type": "enemy"
+      },
       "type": "teiri",
       "x": -60,
       "y": -40
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": -96,
       "y": -64
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": -96,
       "y": -48
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": -96,
       "y": -32
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": -96,
       "y": -16
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": -96,
       "y": 0
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": -96,
       "y": 16
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": -96,
       "y": 32
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": -96,
       "y": 48
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": -96,
       "y": 64
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": 96,
       "y": -64
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": 96,
       "y": -48
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": 96,
       "y": -32
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": 96,
       "y": -16
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": 96,
       "y": 0
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": 96,
       "y": 16
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": 96,
       "y": 32
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": 96,
       "y": 48
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": 96,
       "y": 64
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": -80,
       "y": -64
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": -64,
       "y": -64
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": -48,
       "y": -64
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": -32,
       "y": -64
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": -16,
       "y": -64
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": 0,
       "y": -64
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": 80,
       "y": -64
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": 64,
       "y": -64
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": 48,
       "y": -64
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": 32,
       "y": -64
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": 16,
       "y": -64
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": -80,
       "y": 64
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": -64,
       "y": 64
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": -48,
       "y": 64
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": -32,
       "y": 64
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": -16,
       "y": 64
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": 0,
       "y": 64
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": 80,
       "y": 64
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": 64,
       "y": 64
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": 48,
       "y": 64
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": 32,
       "y": 64
     },
     {
       "id": null,
+      "team": {
+        "type": "enemy"
+      },
       "type": "gray",
       "x": 16,
       "y": 64

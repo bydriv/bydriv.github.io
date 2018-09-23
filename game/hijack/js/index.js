@@ -24,20 +24,18 @@ export async function create() {
     document.getElementById("game").appendChild(app.view);
 
     const objects = [];
-    const sprites = {};
+    const states = {};
 
     for (var i = 0; i < Asset.MAPS["hijack/map/test.json"].objects.length; ++i) {
         const object = await Object.create(Asset.MAPS["hijack/map/test.json"].objects[i]);
         objects.push(object);
-        sprites[object.id] = await Object.createSprite(object);
-        sprites[object.id].play();
-        app.stage.addChild(sprites[object.id]);
+        states[object.id] = await Object.setup(app, object);
     }
 
     return {
         app: app,
         map: Asset.MAPS["hijack/map/test.json"],
-        sprites: sprites,
+        states: states,
         objects: objects
     };
 }

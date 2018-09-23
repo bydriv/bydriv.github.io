@@ -14,14 +14,14 @@ export async function create(object) {
     }
 }
 
-export async function createSprite(object) {
+export async function setup(app, object) {
     switch (object.type) {
     case "teiri":
-        return Teiri.createSprite(object);
+        return Teiri.setup(app, object);
     case "silver":
-        return Silver.createSprite(object);
+        return Silver.setup(app, object);
     case "gray":
-        return Gray.createSprite(object);
+        return Gray.setup(app, object);
     default:
         console.log("undefined object type: %o", object.type);
     }
@@ -55,7 +55,7 @@ export const Teiri = {
             count: 0
         };
     },
-    createSprite: async (object) => {
+    setup: async (app, object) => {
         const sprite = new PIXI.extras.AnimatedSprite([
             Asset.TEXTURES["hijack/pixelart/teiri/walk/front/0.png"],
             Asset.TEXTURES["hijack/pixelart/teiri/walk/front/1.png"],
@@ -65,6 +65,8 @@ export const Teiri = {
         sprite.x = object.x;
         sprite.y = object.y;
         sprite.animationSpeed = 1/8;
+        sprite.play();
+        app.stage.addChild(sprite);
 
         return sprite;
     },
@@ -76,16 +78,16 @@ export const Teiri = {
             const input = object.control.input;
 
             if (input.buttons[0]) {
-                game.sprites[object.id].textures = [
+                game.states[object.id].textures = [
                     Asset.TEXTURES["hijack/pixelart/teiri/truncheon/" + object.direction + "/0.png"],
                     Asset.TEXTURES["hijack/pixelart/teiri/truncheon/" + object.direction + "/1.png"],
                     Asset.TEXTURES["hijack/pixelart/teiri/truncheon/" + object.direction + "/2.png"],
                     Asset.TEXTURES["hijack/pixelart/teiri/truncheon/" + object.direction + "/3.png"]
                 ];
-                game.sprites[object.id].x = object.x - 8;
-                game.sprites[object.id].y = object.y - 8;
-                game.sprites[object.id].animationSpeed = 1/3;
-                game.sprites[object.id].play()
+                game.states[object.id].x = object.x - 8;
+                game.states[object.id].y = object.y - 8;
+                game.states[object.id].animationSpeed = 1/3;
+                game.states[object.id].play()
                 object.pose = "truncheon";
                 object.count = 0;
                 return Teiri.step(game, object);
@@ -93,49 +95,49 @@ export const Teiri = {
 
             if (input.y < -0.25) {
                 if (object.direction !== "back") {
-                    game.sprites[object.id].textures = [
+                    game.states[object.id].textures = [
                         Asset.TEXTURES["hijack/pixelart/teiri/walk/back/0.png"],
                         Asset.TEXTURES["hijack/pixelart/teiri/walk/back/1.png"],
                         Asset.TEXTURES["hijack/pixelart/teiri/walk/back/2.png"],
                         Asset.TEXTURES["hijack/pixelart/teiri/walk/back/3.png"]
                     ];
-                    game.sprites[object.id].play()
+                    game.states[object.id].play()
                     object.direction = "back";
                     object.count = 0;
                 }
             } else if (input.y > 0.25) {
                 if (object.direction !== "front") {
-                    game.sprites[object.id].textures = [
+                    game.states[object.id].textures = [
                         Asset.TEXTURES["hijack/pixelart/teiri/walk/front/0.png"],
                         Asset.TEXTURES["hijack/pixelart/teiri/walk/front/1.png"],
                         Asset.TEXTURES["hijack/pixelart/teiri/walk/front/2.png"],
                         Asset.TEXTURES["hijack/pixelart/teiri/walk/front/3.png"]
                     ];
-                    game.sprites[object.id].play()
+                    game.states[object.id].play()
                     object.direction = "front";
                     object.count = 0;
                 }
             } else if (input.x < -0.25) {
                 if (object.direction !== "left") {
-                    game.sprites[object.id].textures = [
+                    game.states[object.id].textures = [
                         Asset.TEXTURES["hijack/pixelart/teiri/walk/left/0.png"],
                         Asset.TEXTURES["hijack/pixelart/teiri/walk/left/1.png"],
                         Asset.TEXTURES["hijack/pixelart/teiri/walk/left/2.png"],
                         Asset.TEXTURES["hijack/pixelart/teiri/walk/left/3.png"]
                     ];
-                    game.sprites[object.id].play()
+                    game.states[object.id].play()
                     object.direction = "left";
                     object.count = 0;
                 }
             } else if (input.x > 0.25) {
                 if (object.direction !== "right") {
-                    game.sprites[object.id].textures = [
+                    game.states[object.id].textures = [
                         Asset.TEXTURES["hijack/pixelart/teiri/walk/right/0.png"],
                         Asset.TEXTURES["hijack/pixelart/teiri/walk/right/1.png"],
                         Asset.TEXTURES["hijack/pixelart/teiri/walk/right/2.png"],
                         Asset.TEXTURES["hijack/pixelart/teiri/walk/right/3.png"]
                     ];
-                    game.sprites[object.id].play()
+                    game.states[object.id].play()
                     object.direction = "right";
                     object.count = 0;
                 }
@@ -150,8 +152,8 @@ export const Teiri = {
                     moveUp(game, object, 1);
                 if (input.y > 0.25)
                     moveDown(game, object, 1);
-                game.sprites[object.id].x = object.x;
-                game.sprites[object.id].y = object.y;
+                game.states[object.id].x = object.x;
+                game.states[object.id].y = object.y;
             }
 
             if (input.x < -0.25 || input.x > 0.25 || input.y < -0.25 || input.y > 0.25)
@@ -162,14 +164,14 @@ export const Teiri = {
             if (object.count < 12) {
                 ++object.count;
             } else {
-                game.sprites[object.id].textures = [
+                game.states[object.id].textures = [
                     Asset.TEXTURES["hijack/pixelart/teiri/walk/" + object.direction + "/0.png"],
                     Asset.TEXTURES["hijack/pixelart/teiri/walk/" + object.direction + "/1.png"],
                     Asset.TEXTURES["hijack/pixelart/teiri/walk/" + object.direction + "/2.png"],
                     Asset.TEXTURES["hijack/pixelart/teiri/walk/" + object.direction + "/3.png"]
                 ];
-                game.sprites[object.id].animationSpeed = 1/8;
-                game.sprites[object.id].play();
+                game.states[object.id].animationSpeed = 1/8;
+                game.states[object.id].play();
                 object.pose = "walk";
                 object.count = 0;
                 Teiri.step(game, object);
@@ -189,10 +191,11 @@ export const Silver = {
             height: 16
         };
     },
-    createSprite: async (object) => {
-        const sprite = new PIXI.extras.AnimatedSprite([Asset.TEXTURES["hijack/pixelart/maptip/silver.png"]]);
+    setup: async (app, object) => {
+        const sprite = new PIXI.Sprite(Asset.TEXTURES["hijack/pixelart/maptip/silver.png"]);
         sprite.x = object.x;
         sprite.y = object.y;
+        app.stage.addChild(sprite);
         return sprite;
     },
     step: async (game, object) => {}
@@ -209,10 +212,11 @@ export const Gray = {
             height: 16
         };
     },
-    createSprite: async (object) => {
-        const sprite = new PIXI.extras.AnimatedSprite([Asset.TEXTURES["hijack/pixelart/maptip/gray.png"]]);
+    setup: async (app, object) => {
+        const sprite = new PIXI.Sprite(Asset.TEXTURES["hijack/pixelart/maptip/gray.png"]);
         sprite.x = object.x;
         sprite.y = object.y;
+        app.stage.addChild(sprite);
         return sprite;
     },
     step: async (game, object) => {}
