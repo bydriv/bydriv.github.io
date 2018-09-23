@@ -1,6 +1,15 @@
 import * as Asset from "./asset.js";
 import * as Control from "./control.js";
 
+export async function create(object) {
+    switch (object.type) {
+    case "teiri":
+        return Teiri.create(object);
+    default:
+        console.log("undefined object type: %o", object.type);
+    }
+}
+
 export async function createSprite(object) {
     switch (object.type) {
     case "teiri":
@@ -22,16 +31,16 @@ export async function step(game, object) {
 };
 
 export const Teiri = {
-    create: async (id, x, y, control) => {
+    create: async (object) => {
         return {
-            id: id,
             type: "teiri",
-            control: control,
-            pose: "walk",
-            direction: "front",
+            id: object.id,
+            control: await Control.create(object.control),
+            pose: object.pose,
+            direction: object.direction,
             count: 0,
-            x: x,
-            y: y
+            x: object.x,
+            y: object.y
         };
     },
     createSprite: async (object) => {

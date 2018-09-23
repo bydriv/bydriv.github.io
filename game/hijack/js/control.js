@@ -1,30 +1,40 @@
 import * as Input from "./input.js";
 
+export async function create(control) {
+    switch (control.type) {
+    case "playable":
+        return Playable.create(control);
+    case "random":
+        return Random.create(control);
+    case "wave":
+        return Wave.create(control);
+    default:
+        console.log("undefined object type: %o", control.type);
+    }
+}
+
 export const Playable = {
-    create: async () => {
-        return {
-            type: "playable",
-            input: Input.EMPTY
-        };
-    },
-    step: async (game, control) => {
+    create: async (control) => {
         return {
             type: "playable",
             input: Input.PLAYER
         };
+    },
+    step: async (game, control) => {
+        return control;
     }
 };
 
 export const Random = {
-    create: async (bias) => {
+    create: async (control) => {
         return {
             type: "random",
             input: {
-                x: (Math.random() * 2 - 1) * bias,
-                y: (Math.random() * 2 - 1) * bias,
+                x: (Math.random() * 2 - 1) * control.bias,
+                y: (Math.random() * 2 - 1) * control.bias,
                 buttons: [false, false, false, false]
             },
-            bias: bias
+            bias: control.bias
         };
     },
     step: async (game, control) => {
@@ -33,21 +43,21 @@ export const Random = {
 };
 
 export const Wave = {
-    create: async (incr, bias) => {
-        const i = Math.floor(Math.random() * (Math.PI / incr));
-        const j = i + Math.round(Math.random()) * (Math.PI / incr);
+    create: async (control) => {
+        const i = Math.floor(Math.random() * (Math.PI / control.incr));
+        const j = i + Math.round(Math.random()) * (Math.PI / control.incr);
 
         return {
             type: "wave",
             input: {
-                x: Math.cos(i * incr) * bias,
-                y: Math.sin(j * incr) * bias,
+                x: Math.cos(i * control.incr) * control.bias,
+                y: Math.sin(j * control.incr) * control.bias,
                 buttons: [false, false, false, false]
             },
             i: i,
             j: j,
-            incr: incr,
-            bias: bias
+            incr: control.incr,
+            bias: control.bias
         };
     },
     step: async (game, control) => {
