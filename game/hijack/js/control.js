@@ -106,27 +106,46 @@ export const TypeA = {
         };
     },
     step: async (game, object, control) => {
+        const sight = {
+            width: object.width * 3,
+            height: object.height * 3
+        };
+
         const attack = {
-            width: object.width,
-            height: object.height
         };
 
         switch (object.direction) {
         case "left":
-            attack.x = object.x - object.width;
+            sight.x = object.x - object.width * 2;
+            sight.y = object.y - object.height;
+            attack.x = object.x - object.width / 2;
             attack.y = object.y;
+            attack.width = object.width / 2;
+            attack.height = object.height;
             break;
         case "back":
+            sight.x = object.x - object.width;
+            sight.y = object.y - object.height * 2;
             attack.x = object.x;
-            attack.y = object.y - object.height;
+            attack.y = object.y - object.height / 2;
+            attack.width = object.width;
+            attack.height = object.height / 2;
             break;
         case "right":
-            attack.x = object.x + object.width;
+            sight.x = object.x;
+            sight.y = object.y - object.height;
+            attack.x = object.x + object.width + object.width / 2;
             attack.y = object.y;
+            attack.width = object.width / 2;
+            attack.height = object.height;
             break;
         case "front":
+            sight.x = object.x - object.width;
+            sight.y = object.y;
             attack.x = object.x;
-            attack.y = object.y + object.height;
+            attack.y = object.y + object.height + object.height / 2;
+            attack.width = object.width;
+            attack.height = object.height / 2;
             break;
         }
 
@@ -142,6 +161,23 @@ export const TypeA = {
                         },
                         wave: control.wave
                     };
+
+        for (var i = 0; i < game.objects.length; ++i)
+            if (Team.enemy(object.team, game.objects[i].team))
+                if (Object.collision(game.objects[i], sight)) {
+                    const x = game.objects[i].x - object.x;
+                    const y = game.objects[i].y - object.y;
+
+                    return {
+                        type: "typeA",
+                        input: {
+                            x: x / Math.max(Math.abs(x), Math.abs(y), 1),
+                            y: y / Math.max(Math.abs(x), Math.abs(y), 1),
+                            buttons: [false, false, false, false]
+                        },
+                        wave: control.wave
+                    };
+                }
 
         const wave = await Wave.step(game, object, control.wave);
 
