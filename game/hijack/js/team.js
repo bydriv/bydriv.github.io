@@ -16,3 +16,18 @@ export function enemy(team1, team2) {
         }
     }
 }
+
+export function color(team) {
+    switch (team) {
+    case "player":
+        return {
+            fg: 0x00FF00,
+            bg: 0x008000
+        };
+    case "enemy":
+        return {
+            fg: 0xFF0000,
+            bg: 0x800000
+        };
+    }
+}

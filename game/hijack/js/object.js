@@ -1,5 +1,6 @@
 import * as Asset from "./asset.js";
 import * as Control from "./control.js";
+import * as Team from "./team.js";
 
 export async function create(object) {
     switch (object.type) {
@@ -100,7 +101,8 @@ export const Teiri = {
         const shield = new PIXI.Graphics();
         shield.x = object.x;
         shield.y = object.y - 2;
-        shield.lineStyle(1, (((16 - object.shield) * 16) << 16) | ((object.shield * 16 - 1) << 8)).moveTo(0, 0).lineTo(object.shield, 0);
+        shield.lineStyle(1, Team.color(object.team).fg).moveTo(0, 0).lineTo(object.shield, 0);
+        shield.lineStyle(1, Team.color(object.team).bg).moveTo(object.shield, 0).lineTo(16, 0);
         app.stage.addChild(shield);
 
         return {
@@ -251,7 +253,8 @@ export const Teiri = {
         if (object.shield > 0) {
             object.shield -= 1;
             game.states[object.id].shield.clear();
-            game.states[object.id].shield.lineStyle(1, (((16 - object.shield) * 16) << 16) | ((object.shield * 16 - 1) << 8)).moveTo(0, 0).lineTo(object.shield, 0);
+            game.states[object.id].shield.lineStyle(1, Team.color(object.team).fg).moveTo(0, 0).lineTo(object.shield, 0);
+            game.states[object.id].shield.lineStyle(1, Team.color(object.team).bg).moveTo(object.shield, 0).lineTo(16, 0);
         } else {
             await Teiri.teardown(game.app, object, game.states[object.id]);
             game.objects = game.objects.filter(o => o.id !== object.id);
