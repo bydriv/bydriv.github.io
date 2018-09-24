@@ -26,11 +26,13 @@ export async function create() {
 
     const objects = [];
     const states = {};
+    const hits = {};
 
     for (var i = 0; i < Asset.MAPS["hijack/map/test.json"].objects.length; ++i) {
         const object = await Object.create(Asset.MAPS["hijack/map/test.json"].objects[i]);
         objects.push(object);
         states[object.id] = await Object.setup(app, object);
+        hits[object.id] = {};
     }
 
     return {
@@ -38,7 +40,8 @@ export async function create() {
         map: Asset.MAPS["hijack/map/test.json"],
         states: states,
         objects: objects,
-        attacks: []
+        attacks: [],
+        hits: hits
     };
 }
 
@@ -52,12 +55,15 @@ export async function step(game) {
     }
 
     for (var i = 0; i < game.objects.length; ++i)
-        await Object.step(game, game.objects[i]);
+        game.objects[i] = await Object.step(game, game.objects[i]);
 
     for (var i = 0; i < game.objects.length; ++i)
         for (var j = 0; j < game.attacks.length; ++j)
-            if (Object.collision(game.objects[i], game.attacks[j]))
-                await Object.onAttack(game, game.objects[i], game.attacks[j]);
+            if (!(game.hits[game.objects[i].id][game.attacks[j].id]))
+                if (Object.collision(game.objects[i], game.attacks[j])) {
+                    game.hits[game.objects[i].id][game.attacks[j].id] = true;
+                    await Object.onAttack(game, game.objects[i], game.attacks[j]);
+                }
 
     game.attacks = [];
 

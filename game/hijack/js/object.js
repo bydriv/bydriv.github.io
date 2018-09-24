@@ -80,7 +80,8 @@ export const Teiri = {
             pose: object.pose,
             direction: object.direction,
             shield: 16,
-            count: 0
+            count: 0,
+            attack: null
         };
     },
     setup: async (app, object) => {
@@ -204,27 +205,32 @@ export const Teiri = {
             if (input.x < -0.25 || input.x > 0.25 || input.y < -0.25 || input.y > 0.25)
                 ++object.count;
 
-            break;
+            return object;
         case "truncheon":
-            if (object.count < 6) {
-                ++object.count;
-            } else if (object.count < 12) {
+            if (!object.attack) {
                 switch (object.direction) {
                 case "left":
-                    game.attacks.push({ x: object.x - 8, y: object.y, width: 8, height: 16 });
+                    object.attack = { id: Symbol(), x: object.x - 8, y: object.y, width: 8, height: 16 };
                     break;
                 case "back":
-                    game.attacks.push({ x: object.x, y: object.y - 8, width: 16, height: 8 });
+                    object.attack = { id: Symbol(), x: object.x, y: object.y - 8, width: 16, height: 8 };
                     break;
                 case "right":
-                    game.attacks.push({ x: object.x + 16, y: object.y, width: 8, height: 16 });
+                    object.attack = { id: Symbol(), x: object.x + 16, y: object.y, width: 8, height: 16 };
                     break;
                 case "front":
-                    game.attacks.push({ x: object.x, y: object.y + 16, width: 16, height: 8 });
+                    object.attack = { id: Symbol(), x: object.x, y: object.y + 16, width: 16, height: 8 };
                     break;
                 }
+            }
 
+            if (object.count < 6) {
                 ++object.count;
+                return object;
+            } else if (object.count < 12) {
+                game.attacks.push(object.attack);
+                ++object.count;
+                return object;
             } else {
                 game.states[object.id].sprite.textures = [
                     Asset.TEXTURES["hijack/pixelart/teiri/walk/" + object.direction + "/0.png"],
@@ -236,7 +242,8 @@ export const Teiri = {
                 game.states[object.id].sprite.play();
                 object.pose = "walk";
                 object.count = 0;
-                Teiri.step(game, object);
+                object.attack = null;
+                return Teiri.step(game, object);
             }
         }
     },
@@ -249,6 +256,7 @@ export const Teiri = {
             await Teiri.teardown(game.app, object, game.states[object.id]);
             game.objects = game.objects.filter(o => o.id !== object.id);
             delete game.states[object.id];
+            delete game.hits[object.id];
         }
     }
 };
@@ -273,7 +281,7 @@ export const Silver = {
         return sprite;
     },
     teardown: async (game, object) => {},
-    step: async (game, object) => {},
+    step: async (game, object) => object,
     onAttack: async (game, object, attack) => {}
 };
 
@@ -297,7 +305,7 @@ export const Gray = {
         return sprite;
     },
     teardown: async (game, object) => {},
-    step: async (game, object) => {},
+    step: async (game, object) => object,
     onAttack: async (game, object, attack) => {}
 };
 
