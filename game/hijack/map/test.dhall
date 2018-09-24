@@ -10,12 +10,15 @@ let Wave = {
   incr : Double,
   bias : Double
 } in
+let TypeA = Wave in
 let Control = <
   playable : Playable
 | wave : Wave
+| typeA : TypeA
 > in
-let playable = \(playable : Playable) -> <playable = playable | wave : Wave> in
-let wave = \(wave : Wave) -> <wave = wave | playable : Playable> in
+let playable = \(playable : Playable) -> <playable = playable | wave : Wave | typeA : TypeA> in
+let wave = \(wave : Wave) -> <wave = wave | playable : Playable | typeA : TypeA> in
+let typeA = \(typeA : TypeA) -> <typeA = typeA | playable : Playable | wave : Wave> in
 let Teiri = {
   type : Text,
   id : Optional Text,
@@ -62,8 +65,8 @@ let gray = \(gray : Gray) -> <gray = gray | teiri : Teiri> in {
       x = p.x,
       y = p.y,
       team = "enemy",
-      control = wave {
-        type = "wave",
+      control = typeA {
+        type = "typeA",
         incr = 0.0245,
         bias = 0.252
       },

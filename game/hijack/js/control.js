@@ -1,4 +1,6 @@
 import * as Input from "./input.js";
+import * as Object from "./object.js";
+import * as Team from "./team.js";
 
 export async function create(object, control) {
     switch (control.type) {
@@ -8,6 +10,8 @@ export async function create(object, control) {
         return Random.create(object, control);
     case "wave":
         return Wave.create(object, control);
+    case "typeA":
+        return TypeA.create(object, control);
     default:
         console.log("undefined object type: %o", control.type);
     }
@@ -21,6 +25,8 @@ export async function step(game, object, control) {
         return Random.step(game, object, control);
     case "wave":
         return Wave.step(game, object, control);
+    case "typeA":
+        return TypeA.step(game, object, control);
     default:
         console.log("undefined control type: %o", control.type);
     }
@@ -85,6 +91,64 @@ export const Wave = {
             j: control.j % Math.floor(Math.PI / control.incr) === 0 ? control.j + Math.round(Math.random()) * Math.floor(Math.PI / control.incr) + 1 : control.j + 1,
             incr: control.incr,
             bias: control.bias
+        };
+    }
+};
+
+export const TypeA = {
+    create: async (object, control) => {
+        const wave = await Wave.create(object, control);
+
+        return {
+            type: "typeA",
+            input: wave.input,
+            wave: wave
+        };
+    },
+    step: async (game, object, control) => {
+        const attack = {
+            width: object.width,
+            height: object.height
+        };
+
+        switch (object.direction) {
+        case "left":
+            attack.x = object.x - object.width;
+            attack.y = object.y;
+            break;
+        case "back":
+            attack.x = object.x;
+            attack.y = object.y - object.height;
+            break;
+        case "right":
+            attack.x = object.x + object.width;
+            attack.y = object.y;
+            break;
+        case "front":
+            attack.x = object.x;
+            attack.y = object.y + object.height;
+            break;
+        }
+
+        for (var i = 0; i < game.objects.length; ++i)
+            if (Team.enemy(object.team, game.objects[i].team))
+                if (Object.collision(game.objects[i], attack))
+                    return {
+                        type: "typeA",
+                        input: {
+                            x: 0,
+                            y: 0,
+                            buttons: [true, false, false, false]
+                        },
+                        wave: control.wave
+                    };
+
+        const wave = await Wave.step(game, object, control.wave);
+
+        return {
+            type: "typeA",
+            input: wave.input,
+            wave: wave
         };
     }
 };

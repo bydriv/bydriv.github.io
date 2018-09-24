@@ -18,7 +18,7 @@
       "control": {
         "bias": 0.252,
         "incr": 2.45e-2,
-        "type": "wave"
+        "type": "typeA"
       },
       "direction": "front",
       "id": null,
@@ -32,7 +32,7 @@
       "control": {
         "bias": 0.252,
         "incr": 2.45e-2,
-        "type": "wave"
+        "type": "typeA"
       },
       "direction": "front",
       "id": null,
@@ -46,7 +46,7 @@
       "control": {
         "bias": 0.252,
         "incr": 2.45e-2,
-        "type": "wave"
+        "type": "typeA"
       },
       "direction": "front",
       "id": null,
@@ -60,7 +60,7 @@
       "control": {
         "bias": 0.252,
         "incr": 2.45e-2,
-        "type": "wave"
+        "type": "typeA"
       },
       "direction": "front",
       "id": null,
