@@ -2,18 +2,6 @@ let Point = {
   x : Integer,
   y : Integer
 } in
-let Player = {
-  type : Text
-} in
-let Enemy = {
-  type : Text
-} in
-let Team = <
-  player : Player
-| enemy : Enemy
-> in
-let player = \(player : Player) -> <player = player | enemy : Enemy> in
-let enemy = \(enemy : Enemy) -> <enemy = enemy | player : Player> in
 let Playable = {
   type : Text
 } in
@@ -33,7 +21,7 @@ let Teiri = {
   id : Optional Text,
   x : Integer,
   y : Integer,
-  team : Team,
+  team : Text,
   control : Control,
   pose : Text,
   direction : Text
@@ -43,7 +31,7 @@ let Gray = {
   id : Optional Text,
   x : Integer,
   y : Integer,
-  team : Team
+  team : Text
 } in
 let Object = <
   teiri : Teiri
@@ -60,9 +48,7 @@ let gray = \(gray : Gray) -> <gray = gray | teiri : Teiri> in {
       id = ["teiri"] : Optional Text,
       x = +0,
       y = +0,
-      team = player {
-        type = "player"
-      },
+      team = "player",
       control = playable {
         type = "playable"
       },
@@ -75,9 +61,7 @@ let gray = \(gray : Gray) -> <gray = gray | teiri : Teiri> in {
       id = [] : Optional Text,
       x = p.x,
       y = p.y,
-      team = enemy {
-        type = "enemy"
-      },
+      team = "enemy",
       control = wave {
         type = "wave",
         incr = 0.0245,
@@ -97,9 +81,7 @@ let gray = \(gray : Gray) -> <gray = gray | teiri : Teiri> in {
       id = [] : Optional Text,
       x = p.x,
       y = p.y,
-      team = enemy {
-        type = "enemy"
-      }
+      team = "enemy"
     }
   ) [
     {x = -96, y = -64},
