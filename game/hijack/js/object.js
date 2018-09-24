@@ -212,16 +212,16 @@ export const Teiri = {
             if (!object.attack) {
                 switch (object.direction) {
                 case "left":
-                    object.attack = { id: Symbol(), x: object.x - 8, y: object.y, width: 8, height: 16 };
+                    object.attack = { id: Symbol(), x: object.x - 8, y: object.y, width: 8, height: 16, damage: 1 };
                     break;
                 case "back":
-                    object.attack = { id: Symbol(), x: object.x, y: object.y - 8, width: 16, height: 8 };
+                    object.attack = { id: Symbol(), x: object.x, y: object.y - 8, width: 16, height: 8, damage: 1 };
                     break;
                 case "right":
-                    object.attack = { id: Symbol(), x: object.x + 16, y: object.y, width: 8, height: 16 };
+                    object.attack = { id: Symbol(), x: object.x + 16, y: object.y, width: 8, height: 16, damage: 1 };
                     break;
                 case "front":
-                    object.attack = { id: Symbol(), x: object.x, y: object.y + 16, width: 16, height: 8 };
+                    object.attack = { id: Symbol(), x: object.x, y: object.y + 16, width: 16, height: 8, damage: 1 };
                     break;
                 }
             }
@@ -250,12 +250,12 @@ export const Teiri = {
         }
     },
     onAttack: async (game, object, attack) => {
-        if (object.shield > 0) {
-            object.shield -= 1;
-            game.states[object.id].shield.clear();
-            game.states[object.id].shield.lineStyle(1, Team.color(object.team).fg).moveTo(0, 0).lineTo(object.shield, 0);
-            game.states[object.id].shield.lineStyle(1, Team.color(object.team).bg).moveTo(object.shield, 0).lineTo(16, 0);
-        } else {
+        object.shield -= Math.min(attack.damage, object.shield);
+        game.states[object.id].shield.clear();
+        game.states[object.id].shield.lineStyle(1, Team.color(object.team).fg).moveTo(0, 0).lineTo(object.shield, 0);
+        game.states[object.id].shield.lineStyle(1, Team.color(object.team).bg).moveTo(object.shield, 0).lineTo(16, 0);
+
+        if (object.shield === 0) {
             await Teiri.teardown(game.app, object, game.states[object.id]);
             game.objects = game.objects.filter(o => o.id !== object.id);
             delete game.states[object.id];
