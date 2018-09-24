@@ -57,8 +57,8 @@ export const Random = {
 
 export const Wave = {
     create: async (object, control) => {
-        const i = Math.floor(Math.random() * (Math.PI / control.incr));
-        const j = i + Math.round(Math.random()) * (Math.PI / control.incr);
+        const i = Math.floor(Math.random() *  Math.floor(Math.PI / control.incr));
+        const j = i + Math.round(Math.random()) *  Math.floor(Math.PI / control.incr);
 
         return {
             type: "wave",
