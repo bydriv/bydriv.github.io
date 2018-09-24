@@ -28,8 +28,8 @@ export async function create() {
     const states = new Map();
     const hits = new Map();
 
-    for (var i = 0; i < Asset.MAPS["hijack/map/test.json"].objects.length; ++i) {
-        const object = await Object.create(Asset.MAPS["hijack/map/test.json"].objects[i]);
+    for (var i = 0; i < Asset.MAPS.get("hijack/map/test.json").objects.length; ++i) {
+        const object = await Object.create(Asset.MAPS.get("hijack/map/test.json").objects[i]);
         objects.push(object);
         states.set(object.id, await Object.setup(app, object));
         hits.set(object.id, new Map());
@@ -37,7 +37,7 @@ export async function create() {
 
     return {
         app: app,
-        map: Asset.MAPS["hijack/map/test.json"],
+        map: Asset.MAPS.get("hijack/map/test.json"),
         states: states,
         objects: objects,
         attacks: [],
