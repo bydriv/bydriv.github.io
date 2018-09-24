@@ -25,14 +25,14 @@ export async function create() {
     document.getElementById("game").appendChild(app.view);
 
     const objects = [];
-    const states = {};
-    const hits = {};
+    const states = new Map();
+    const hits = new Map();
 
     for (var i = 0; i < Asset.MAPS["hijack/map/test.json"].objects.length; ++i) {
         const object = await Object.create(Asset.MAPS["hijack/map/test.json"].objects[i]);
         objects.push(object);
-        states[object.id] = await Object.setup(app, object);
-        hits[object.id] = {};
+        states.set(object.id, await Object.setup(app, object));
+        hits.set(object.id, new Map());
     }
 
     return {
@@ -59,9 +59,9 @@ export async function step(game) {
 
     for (var i = 0; i < game.objects.length; ++i)
         for (var j = 0; j < game.attacks.length; ++j)
-            if (!(game.hits[game.objects[i].id][game.attacks[j].id]))
+            if (!(game.hits.get(game.objects[i].id).has(game.attacks[j].id)))
                 if (Object.collision(game.objects[i], game.attacks[j])) {
-                    game.hits[game.objects[i].id][game.attacks[j].id] = true;
+                    game.hits.get(game.objects[i].id).set(game.attacks[j].id, true);
                     await Object.onAttack(game, game.objects[i], game.attacks[j]);
                 }
 
