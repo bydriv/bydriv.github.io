@@ -134,7 +134,7 @@ export const TypeA = {
         case "right":
             sight.x = object.x;
             sight.y = object.y - object.height;
-            attack.x = object.x + object.width + object.width / 2;
+            attack.x = object.x + object.width;
             attack.y = object.y;
             attack.width = object.width / 2;
             attack.height = object.height;
@@ -143,7 +143,7 @@ export const TypeA = {
             sight.x = object.x - object.width;
             sight.y = object.y;
             attack.x = object.x;
-            attack.y = object.y + object.height + object.height / 2;
+            attack.y = object.y + object.height;
             attack.width = object.width;
             attack.height = object.height / 2;
             break;
