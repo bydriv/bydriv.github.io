@@ -152,6 +152,7 @@ export const TypeA = {
         for (var i = 0; i < game.objects.length; ++i)
             if (Team.enemy(object.team, game.objects[i].team))
                 if (Object.collision(game.objects[i], attack))
+                    if (game.objects[i].shield) // TODO
                     return {
                         type: "typeA",
                         input: {
@@ -164,6 +165,7 @@ export const TypeA = {
 
         for (var i = 0; i < game.objects.length; ++i)
             if (Team.enemy(object.team, game.objects[i].team))
+                if (game.objects[i].shield) // TODO
                 if (Object.collision(game.objects[i], sight)) {
                     const x = game.objects[i].x - object.x;
                     const y = game.objects[i].y - object.y;
