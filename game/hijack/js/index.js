@@ -3,8 +3,9 @@ import * as Control from "./control.js";
 import * as Font from "./font.js";
 import * as Input from "./input.js";
 import * as Object from "./object.js";
+import * as Team from "./team.js";
 
-export {Asset, Control, Font, Input, Object};
+export {Asset, Control, Font, Input, Object, Team};
 
 const WIDTH = 240;
 const HEIGHT = 160;

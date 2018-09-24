@@ -62,6 +62,7 @@ export const Teiri = {
             y: object.y,
             width: 16,
             height: 16,
+            team: object.team,
             control: await Control.create(object.control),
             pose: object.pose,
             direction: object.direction,
@@ -239,7 +240,8 @@ export const Silver = {
             x: object.x,
             y: object.y,
             width: 16,
-            height: 16
+            height: 16,
+            team: object.team
         };
     },
     setup: async (app, object) => {
@@ -261,7 +263,8 @@ export const Gray = {
             x: object.x,
             y: object.y,
             width: 16,
-            height: 16
+            height: 16,
+            team: object.team
         };
     },
     setup: async (app, object) => {
