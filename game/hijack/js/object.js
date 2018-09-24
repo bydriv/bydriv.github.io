@@ -27,6 +27,19 @@ export async function setup(app, object) {
     }
 }
 
+export async function teardown(app, object, state) {
+    switch (object.type) {
+    case "teiri":
+        return Teiri.teardown(app, object, state);
+    case "silver":
+        return Silver.teardown(app, object, state);
+    case "gray":
+        return Gray.teardown(app, object, state);
+    default:
+        console.log("undefined object type: %o", object.type);
+    }
+}
+
 export async function step(game, object) {
     switch (object.type) {
     case "teiri":
@@ -93,6 +106,10 @@ export const Teiri = {
             sprite: sprite,
             shield: shield
         };
+    },
+    teardown: async (app, object, state) => {
+        app.stage.removeChild(state.sprite);
+        app.stage.removeChild(state.shield);
     },
     step: async (game, object) => {
         object.control = await Control.step(game, object, object.control);
@@ -228,6 +245,10 @@ export const Teiri = {
             object.shield -= 1;
             game.states[object.id].shield.clear();
             game.states[object.id].shield.lineStyle(1, (((16 - object.shield) * 16) << 16) | ((object.shield * 16 - 1) << 8)).moveTo(0, 0).lineTo(object.shield, 0);
+        } else {
+            await Teiri.teardown(game.app, object, game.states[object.id]);
+            game.objects = game.objects.filter(o => o.id !== object.id);
+            delete game.states[object.id];
         }
     }
 };
@@ -251,6 +272,7 @@ export const Silver = {
         app.stage.addChild(sprite);
         return sprite;
     },
+    teardown: async (game, object) => {},
     step: async (game, object) => {},
     onAttack: async (game, object, attack) => {}
 };
@@ -274,6 +296,7 @@ export const Gray = {
         app.stage.addChild(sprite);
         return sprite;
     },
+    teardown: async (game, object) => {},
     step: async (game, object) => {},
     onAttack: async (game, object, attack) => {}
 };
