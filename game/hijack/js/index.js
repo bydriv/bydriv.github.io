@@ -36,7 +36,8 @@ export async function create() {
         app: app,
         map: Asset.MAPS["hijack/map/test.json"],
         states: states,
-        objects: objects
+        objects: objects,
+        attacks: []
     };
 }
 
@@ -51,6 +52,13 @@ export async function step(game) {
 
     for (var i = 0; i < game.objects.length; ++i)
         await Object.step(game, game.objects[i]);
+
+    for (var i = 0; i < game.objects.length; ++i)
+        for (var j = 0; j < game.attacks.length; ++j)
+            if (Object.collision(game.objects[i], game.attacks[j]))
+                await Object.onAttack(game, game.objects[i], game.attacks[j]);
+
+    game.attacks = [];
 
     for (var i = 0; i < game.objects.length; ++i)
         if (game.map.lock === game.objects[i].id) {
