@@ -1,32 +1,32 @@
 import * as Input from "./input.js";
 
-export async function create(control) {
+export async function create(object, control) {
     switch (control.type) {
     case "playable":
-        return Playable.create(control);
+        return Playable.create(object, control);
     case "random":
-        return Random.create(control);
+        return Random.create(object, control);
     case "wave":
-        return Wave.create(control);
+        return Wave.create(object, control);
     default:
         console.log("undefined object type: %o", control.type);
     }
 }
 
 export const Playable = {
-    create: async (control) => {
+    create: async (object, control) => {
         return {
             type: "playable",
             input: Input.PLAYER
         };
     },
-    step: async (game, control) => {
+    step: async (game, object, control) => {
         return control;
     }
 };
 
 export const Random = {
-    create: async (control) => {
+    create: async (object, control) => {
         return {
             type: "random",
             input: {
@@ -37,13 +37,13 @@ export const Random = {
             bias: control.bias
         };
     },
-    step: async (game, control) => {
-        return Random.create(control);
+    step: async (game, object, control) => {
+        return Random.create(object, control);
     }
 };
 
 export const Wave = {
-    create: async (control) => {
+    create: async (object, control) => {
         const i = Math.floor(Math.random() * (Math.PI / control.incr));
         const j = i + Math.round(Math.random()) * (Math.PI / control.incr);
 
@@ -60,7 +60,7 @@ export const Wave = {
             bias: control.bias
         };
     },
-    step: async (game, control) => {
+    step: async (game, object, control) => {
         return {
             type: "wave",
             input: {
@@ -76,14 +76,14 @@ export const Wave = {
     }
 };
 
-export async function step(game, control) {
+export async function step(game, object, control) {
     switch (control.type) {
     case "playable":
-        return Playable.step(game, control);
+        return Playable.step(game, object, control);
     case "random":
-        return Random.step(game, control);
+        return Random.step(game, object, control);
     case "wave":
-        return Wave.step(game, control);
+        return Wave.step(game, object, control);
     default:
         console.log("undefined control type: %o", control.type);
     }

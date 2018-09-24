@@ -63,7 +63,7 @@ export const Teiri = {
             width: 16,
             height: 16,
             team: object.team,
-            control: await Control.create(object.control),
+            control: await Control.create(object, object.control),
             pose: object.pose,
             direction: object.direction,
             shield: 16,
@@ -95,7 +95,7 @@ export const Teiri = {
         };
     },
     step: async (game, object) => {
-        object.control = await Control.step(game, object.control);
+        object.control = await Control.step(game, object, object.control);
 
         switch (object.pose) {
         case "walk":
