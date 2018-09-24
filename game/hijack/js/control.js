@@ -13,6 +13,19 @@ export async function create(object, control) {
     }
 }
 
+export async function step(game, object, control) {
+    switch (control.type) {
+    case "playable":
+        return Playable.step(game, object, control);
+    case "random":
+        return Random.step(game, object, control);
+    case "wave":
+        return Wave.step(game, object, control);
+    default:
+        console.log("undefined control type: %o", control.type);
+    }
+}
+
 export const Playable = {
     create: async (object, control) => {
         return {
@@ -75,16 +88,3 @@ export const Wave = {
         };
     }
 };
-
-export async function step(game, object, control) {
-    switch (control.type) {
-    case "playable":
-        return Playable.step(game, object, control);
-    case "random":
-        return Random.step(game, object, control);
-    case "wave":
-        return Wave.step(game, object, control);
-    default:
-        console.log("undefined control type: %o", control.type);
-    }
-}

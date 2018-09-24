@@ -16,7 +16,7 @@ window.addEventListener("resize", () => {
     Game.resize();
 });
 
-window.addEventListener("keydown", (e) => {
+window.addEventListener("keydown", e => {
     if (e.ctrlKey) {
         switch (e.key) {
         case "b":
@@ -74,7 +74,7 @@ window.addEventListener("keydown", (e) => {
     }
 });
 
-window.addEventListener("keyup", (e) => {
+window.addEventListener("keyup", e => {
     if (e.ctrlKey) {
         switch (e.key) {
         case "b":
