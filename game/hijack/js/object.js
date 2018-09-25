@@ -1,6 +1,5 @@
-import * as Asset from "./asset.js";
 import * as Control from "./control.js";
-import * as Team from "./team.js";
+import * as View from "./view.js";
 
 export async function create(object) {
     switch (object.type) {
@@ -10,45 +9,6 @@ export async function create(object) {
         return Silver.create(object);
     case "gray":
         return Gray.create(object);
-    default:
-        console.log("undefined object type: %o", object.type);
-    }
-}
-
-export async function setup(app, object) {
-    switch (object.type) {
-    case "teiri":
-        return Teiri.setup(app, object);
-    case "silver":
-        return Silver.setup(app, object);
-    case "gray":
-        return Gray.setup(app, object);
-    default:
-        console.log("undefined object type: %o", object.type);
-    }
-}
-
-export async function update(app, object, state) {
-    switch (object.type) {
-    case "teiri":
-        return Teiri.update(app, object, state);
-    case "silver":
-        return Silver.update(app, object, state);
-    case "gray":
-        return Gray.update(app, object, state);
-    default:
-        console.log("undefined object type: %o", object.type);
-    }
-}
-
-export async function teardown(app, object, state) {
-    switch (object.type) {
-    case "teiri":
-        return Teiri.teardown(app, object, state);
-    case "silver":
-        return Silver.teardown(app, object, state);
-    case "gray":
-        return Gray.teardown(app, object, state);
     default:
         console.log("undefined object type: %o", object.type);
     }
@@ -97,77 +57,6 @@ export const Teiri = {
             count: 0,
             attack: null
         };
-    },
-    setup: async (app, object) => {
-        const sprite = new PIXI.extras.AnimatedSprite([
-            Asset.TEXTURES.get("hijack/pixelart/teiri/walk/front/0.png"),
-            Asset.TEXTURES.get("hijack/pixelart/teiri/walk/front/1.png"),
-            Asset.TEXTURES.get("hijack/pixelart/teiri/walk/front/2.png"),
-            Asset.TEXTURES.get("hijack/pixelart/teiri/walk/front/3.png")
-        ]);
-        sprite.x = object.x;
-        sprite.y = object.y;
-        sprite.animationSpeed = 1/8;
-        sprite.play();
-        app.stage.addChild(sprite);
-
-        const shield = new PIXI.Graphics();
-        shield.x = object.x;
-        shield.y = object.y - 2;
-        shield.lineStyle(1, Team.color(object.team).fg).moveTo(0, 0).lineTo(object.shield, 0);
-        shield.lineStyle(1, Team.color(object.team).bg).moveTo(object.shield, 0).lineTo(16, 0);
-        app.stage.addChild(shield);
-
-        return {
-            sprite: sprite,
-            shield: shield
-        };
-    },
-    update: async (app, object, state) => {
-        switch (object.pose) {
-        case "walk":
-            if (object.count === 0) {
-                state.sprite.textures = [
-                    Asset.TEXTURES.get("hijack/pixelart/teiri/walk/" + object.direction + "/0.png"),
-                    Asset.TEXTURES.get("hijack/pixelart/teiri/walk/" + object.direction + "/1.png"),
-                    Asset.TEXTURES.get("hijack/pixelart/teiri/walk/" + object.direction + "/2.png"),
-                    Asset.TEXTURES.get("hijack/pixelart/teiri/walk/" + object.direction + "/3.png")
-                ];
-                state.sprite.animationSpeed = 1/8;
-                state.sprite.play();
-            }
-
-            state.sprite.x = object.x;
-            state.sprite.y = object.y;
-            state.shield.x = object.x;
-            state.shield.y = object.y - 2;
-
-            return;
-        case "truncheon":
-            if (object.count === 0) {
-                state.sprite.textures = [
-                    Asset.TEXTURES.get("hijack/pixelart/teiri/truncheon/" + object.direction + "/0.png"),
-                    Asset.TEXTURES.get("hijack/pixelart/teiri/truncheon/" + object.direction + "/1.png"),
-                    Asset.TEXTURES.get("hijack/pixelart/teiri/truncheon/" + object.direction + "/2.png"),
-                    Asset.TEXTURES.get("hijack/pixelart/teiri/truncheon/" + object.direction + "/3.png")
-                ];
-                state.sprite.animationSpeed = 1/3;
-                state.sprite.play();
-            }
-
-            state.sprite.x = object.x - 8;
-            state.sprite.y = object.y - 8;
-            state.shield.x = object.x;
-            state.shield.y = object.y - 2;
-
-            return;
-        default:
-            console.log("undefined object pose: %o", object.pose);
-        }
-    },
-    teardown: async (app, object, state) => {
-        app.stage.removeChild(state.sprite);
-        app.stage.removeChild(state.shield);
     },
     step: async (game, object) => {
         object.control = await Control.step(game, object, object.control);
@@ -219,8 +108,8 @@ export const Teiri = {
                     moveDown(game, object, 1);
             }
 
-            if (input.x < -0.25 || input.x > 0.25 || input.y < -0.25 || input.y > 0.25)
-                ++object.count;
+            //if (input.x < -0.25 || input.x > 0.25 || input.y < -0.25 || input.y > 0.25)
+            ++object.count;
 
             return object;
         case "truncheon":
@@ -258,14 +147,11 @@ export const Teiri = {
     },
     onAttack: async (game, object, attack) => {
         object.shield -= Math.min(attack.damage, object.shield);
-        game.states.get(object.id).shield.clear();
-        game.states.get(object.id).shield.lineStyle(1, Team.color(object.team).fg).moveTo(0, 0).lineTo(object.shield, 0);
-        game.states.get(object.id).shield.lineStyle(1, Team.color(object.team).bg).moveTo(object.shield, 0).lineTo(16, 0);
 
         if (object.shield === 0) {
-            await Teiri.teardown(game.app, object, game.states.get(object.id));
+            await View.teardown(game.app.stage, game.views.get(object.id));
             game.objects = game.objects.filter(o => o.id !== object.id);
-            game.states.delete(object.id);
+            game.views.delete(object.id);
             game.hits.delete(object.id);
         }
     }
@@ -283,15 +169,6 @@ export const Silver = {
             team: object.team
         };
     },
-    setup: async (app, object) => {
-        const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/maptip/silver.png"));
-        sprite.x = object.x;
-        sprite.y = object.y;
-        app.stage.addChild(sprite);
-        return sprite;
-    },
-    update: async (app, object, state) => {},
-    teardown: async (app, object, state) => {},
     step: async (game, object) => object,
     onAttack: async (game, object, attack) => {}
 };
@@ -308,15 +185,6 @@ export const Gray = {
             team: object.team
         };
     },
-    setup: async (app, object) => {
-        const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/maptip/gray.png"));
-        sprite.x = object.x;
-        sprite.y = object.y;
-        app.stage.addChild(sprite);
-        return sprite;
-    },
-    update: async (app, object, state) => {},
-    teardown: async (app, object, state) => {},
     step: async (game, object) => object,
     onAttack: async (game, object, attack) => {}
 };

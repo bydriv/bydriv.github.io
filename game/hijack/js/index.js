@@ -4,8 +4,9 @@ import * as Font from "./font.js";
 import * as Input from "./input.js";
 import * as Object from "./object.js";
 import * as Team from "./team.js";
+import * as View from "./view.js";
 
-export {Asset, Control, Font, Input, Object, Team};
+export {Asset, Control, Font, Input, Object, Team, View};
 
 const WIDTH = 240;
 const HEIGHT = 160;
@@ -25,20 +26,22 @@ export async function create() {
     document.getElementById("game").appendChild(app.view);
 
     const objects = [];
-    const states = new Map();
+    const views = new Map();
     const hits = new Map();
 
     for (var i = 0; i < Asset.MAPS.get("hijack/map/test.json").objects.length; ++i) {
         const object = await Object.create(Asset.MAPS.get("hijack/map/test.json").objects[i]);
+        const view = await View.create(object);
+        await View.setup(app.stage, view);
         objects.push(object);
-        states.set(object.id, await Object.setup(app, object));
+        views.set(object.id, view);
         hits.set(object.id, new Map());
     }
 
     return {
         app: app,
         map: Asset.MAPS.get("hijack/map/test.json"),
-        states: states,
+        views: views,
         objects: objects,
         attacks: [],
         hits: hits
@@ -68,7 +71,7 @@ export async function step(game) {
     game.attacks = [];
 
     for (var i = 0; i < game.objects.length; ++i)
-        await Object.update(game.app, game.objects[i], game.states.get(game.objects[i].id));
+        await View.update(game.objects[i], game.views.get(game.objects[i].id));
 
     for (var i = 0; i < game.objects.length; ++i)
         if (game.map.lock === game.objects[i].id) {
