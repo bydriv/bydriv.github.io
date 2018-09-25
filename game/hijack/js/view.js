@@ -55,16 +55,9 @@ export async function teardown(container, view) {
 
 export const Teiri = {
     create: async (object) => {
-        const sprite = new PIXI.extras.AnimatedSprite([
-            Asset.TEXTURES.get("hijack/pixelart/teiri/walk/front/0.png"),
-            Asset.TEXTURES.get("hijack/pixelart/teiri/walk/front/1.png"),
-            Asset.TEXTURES.get("hijack/pixelart/teiri/walk/front/2.png"),
-            Asset.TEXTURES.get("hijack/pixelart/teiri/walk/front/3.png")
-        ]);
+        const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/teiri/walk/front/0.png"));
         sprite.x = object.x;
         sprite.y = object.y;
-        sprite.animationSpeed = 1/8;
-        sprite.play();
 
         const shield = new PIXI.Graphics();
         shield.x = object.x;
@@ -85,16 +78,8 @@ export const Teiri = {
 
         switch (object.pose) {
         case "walk":
-            if (object.count === 0) {
-                view.sprite.textures = [
-                    Asset.TEXTURES.get("hijack/pixelart/teiri/walk/" + object.direction + "/0.png"),
-                    Asset.TEXTURES.get("hijack/pixelart/teiri/walk/" + object.direction + "/1.png"),
-                    Asset.TEXTURES.get("hijack/pixelart/teiri/walk/" + object.direction + "/2.png"),
-                    Asset.TEXTURES.get("hijack/pixelart/teiri/walk/" + object.direction + "/3.png")
-                ];
-                view.sprite.animationSpeed = 1/8;
-                view.sprite.play();
-            }
+            if (object.count % 8 === 0)
+                view.sprite.texture = Asset.TEXTURES.get("hijack/pixelart/teiri/walk/" + object.direction + "/" + object.count / 8 % 4 + ".png");
 
             view.sprite.x = object.x;
             view.sprite.y = object.y;
@@ -103,16 +88,8 @@ export const Teiri = {
 
             return;
         case "truncheon":
-            if (object.count === 0) {
-                view.sprite.textures = [
-                    Asset.TEXTURES.get("hijack/pixelart/teiri/truncheon/" + object.direction + "/0.png"),
-                    Asset.TEXTURES.get("hijack/pixelart/teiri/truncheon/" + object.direction + "/1.png"),
-                    Asset.TEXTURES.get("hijack/pixelart/teiri/truncheon/" + object.direction + "/2.png"),
-                    Asset.TEXTURES.get("hijack/pixelart/teiri/truncheon/" + object.direction + "/3.png")
-                ];
-                view.sprite.animationSpeed = 1/3;
-                view.sprite.play();
-            }
+            if (object.count % 3 === 0)
+                view.sprite.texture = Asset.TEXTURES.get("hijack/pixelart/teiri/truncheon/" + object.direction + "/" + object.count / 3 % 4 + ".png");
 
             view.sprite.x = object.x - 8;
             view.sprite.y = object.y - 8;
