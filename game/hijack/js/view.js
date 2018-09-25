@@ -1,3 +1,16 @@
+// signature VIEW = sig
+//   type view
+//   structure Object : OBJECT
+//   val create : Object.object -> view promise
+//   val update : Object.object * view -> unit promise
+//   val setup : PIXI.container * view -> unit promise
+//   val teardown : PIXI.container * view -> unit promise
+// end
+
+// structure Teiri : VIEW where structure Object = Object.Teiri
+// structure Silver : VIEW where structure Object = Object.Silver
+// structure Gray : VIEW where structure Object = Object.Gray
+
 import * as Asset from "./asset.js";
 import * as Team from "./team.js";
 

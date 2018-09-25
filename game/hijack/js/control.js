@@ -1,3 +1,10 @@
+// signature CONTROL = sig
+//   type control
+//   type control_scheme
+//   val create : (Object : OBJECT) => Object.object * control_scheme -> control proimise
+//   val step : (Object : OBJECT) => Game.game * Object.object * control -> control promise
+// end
+
 import * as Input from "./input.js";
 import * as Object from "./object.js";
 import * as Team from "./team.js";

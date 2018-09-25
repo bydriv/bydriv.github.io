@@ -1,3 +1,19 @@
+// signature GAME = sig
+//   type game
+//   type attack = {
+//     x : int,
+//     y : int,
+//     width : int,
+//     height : int,
+//     damage : int
+//   }
+//   val create : unit -> game promise
+//   val step : game -> game promise
+//   val resize : unit -> unit
+// end
+
+// structure Game : GAME
+
 import * as Asset from "./asset.js";
 import * as Control from "./control.js";
 import * as Font from "./font.js";

@@ -1,3 +1,15 @@
+// signature OBJECT = sig
+//   type object_scheme
+//   type object
+//   val create : object_scheme -> object promise
+//   val step : Game.game * object -> object promise
+//   val onAttack : Game.game * object * Game.attack -> unit promise
+// end
+
+// structure Teiri : OBJECT
+// structure Silver : OBJECT
+// structure Gray : OBJECT
+
 import * as Control from "./control.js";
 import * as View from "./view.js";
 
