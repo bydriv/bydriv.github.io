@@ -67,42 +67,12 @@ export const Teiri = {
                 return object;
             }
 
-            if (input.y < -0.25) {
-                if (object.direction !== "back") {
-                    object.direction = "back";
-                    object.count = 0;
-                    return object;
-                }
-            } else if (input.y > 0.25) {
-                if (object.direction !== "front") {
-                    object.direction = "front";
-                    object.count = 0;
-                    return object;
-                }
-            } else if (input.x < -0.25) {
-                if (object.direction !== "left") {
-                    object.direction = "left";
-                    object.count = 0;
-                    return object;
-                }
-            } else if (input.x > 0.25) {
-                if (object.direction !== "right") {
-                    object.direction = "right";
-                    object.count = 0;
-                    return object;
-                }
+            if (turn(object)) {
+                object.count = 0;
+                return object;
             }
 
-            if (object.count % 1 === 0) {
-                if (input.x < -0.25)
-                    moveLeft(game, object, 1);
-                if (input.x > 0.25)
-                    moveRight(game, object, 1);
-                if (input.y < -0.25)
-                    moveUp(game, object, 1);
-                if (input.y > 0.25)
-                    moveDown(game, object, 1);
-            }
+            move(game, object, 1, 1);
 
             ++object.count;
 
@@ -197,6 +167,59 @@ export function collision(object1, object2) {
     return width > 0 && height > 0;
 }
 
+function turn(object) {
+    const input = object.control.input;
+
+    if (input.y < -0.25) {
+        const direction = object.direction;
+
+        if (direction !== "back") {
+            object.direction = "back";
+            return [direction, "back"];
+        }
+    } else if (input.y > 0.25) {
+        const direction = object.direction;
+
+        if (direction !== "front") {
+            object.direction = "front";
+            return [direction, "front"];
+        }
+    } else if (input.x < -0.25) {
+        const direction = object.direction;
+
+        if (direction !== "left") {
+            object.direction = "left";
+            return [direction, "left"];
+        }
+    } else if (input.x > 0.25) {
+        const direction = object.direction;
+
+        if (object.direction !== "right") {
+            object.direction = "right";
+            return [direction, "right"];
+        }
+    }
+
+    return null;
+}
+
+function move(game, object, pixels, perFrames) {
+    const input = object.control.input;
+
+    if (object.count % perFrames === 0) {
+        if (input.x < -0.25)
+            return moveLeft(game, object, pixels);
+        if (input.x > 0.25)
+            return moveRight(game, object, pixels);
+        if (input.y < -0.25)
+            return moveUp(game, object, pixels);
+        if (input.y > 0.25)
+            return moveDown(game, object, pixels);
+    }
+
+    return 0;
+}
+
 function moveLeft(game, object, n) {
     for (var i = 0; i < n; ++i) {
         object.x -= 1;
@@ -204,9 +227,11 @@ function moveLeft(game, object, n) {
         for (var j = 0; j < game.objects.length; ++j)
             if (object.id !== game.objects[j].id && collision(object, game.objects[j])) {
                 object.x += 1;
-                return;
+                return i;
             }
     }
+
+    return n;
 }
 
 function moveRight(game, object, n) {
@@ -216,9 +241,11 @@ function moveRight(game, object, n) {
         for (var j = 0; j < game.objects.length; ++j)
             if (object.id !== game.objects[j].id && collision(object, game.objects[j])) {
                 object.x -= 1;
-                return;
+                return i;
             }
     }
+
+    return n;
 }
 
 function moveUp(game, object, n) {
@@ -228,9 +255,11 @@ function moveUp(game, object, n) {
         for (var j = 0; j < game.objects.length; ++j)
             if (object.id !== game.objects[j].id && collision(object, game.objects[j])) {
                 object.y += 1;
-                return;
+                return i;
             }
     }
+
+    return n;
 }
 
 function moveDown(game, object, n) {
@@ -240,7 +269,9 @@ function moveDown(game, object, n) {
         for (var j = 0; j < game.objects.length; ++j)
             if (object.id !== game.objects[j].id && collision(object, game.objects[j])) {
                 object.y -= 1;
-                return;
+                return i;
             }
     }
+
+    return n;
 }
