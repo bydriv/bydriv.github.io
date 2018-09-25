@@ -74,39 +74,21 @@ export const Teiri = {
             move(game, object, 1, 1);
 
             ++object.count;
-
             return object;
         case "truncheon":
-            if (!object.attack) {
-                switch (object.direction) {
-                case "left":
-                    object.attack = { id: Symbol(), x: object.x - 8, y: object.y, width: 8, height: 16, damage: 1 };
-                    break;
-                case "back":
-                    object.attack = { id: Symbol(), x: object.x, y: object.y - 8, width: 16, height: 8, damage: 1 };
-                    break;
-                case "right":
-                    object.attack = { id: Symbol(), x: object.x + 16, y: object.y, width: 8, height: 16, damage: 1 };
-                    break;
-                case "front":
-                    object.attack = { id: Symbol(), x: object.x, y: object.y + 16, width: 16, height: 8, damage: 1 };
-                    break;
-                }
-            }
+            const leftAttack = { x: -8, y: 0, width: 8, height: 16, damage: 1 };
+            const backAttack = { x: 0, y: -8, width: 16, height: 8, damage: 1 };
+            const rightAttack = { x: 16, y: 0, width: 8, height: 16, damage: 1 };
+            const frontAttack = { x: 0, y: 16, width: 16, height: 8, damage: 1 };
 
-            if (object.count < 6) {
-                ++object.count;
-                return object;
-            } else if (object.count < 12) {
-                game.attacks.push(object.attack);
-                ++object.count;
-                return object;
-            } else {
+            if (attack(game, object, 6, 6, 0, leftAttack, backAttack, rightAttack, frontAttack)) {
                 object.pose = "walk";
                 object.count = 0;
-                object.attack = null;
                 return object;
             }
+
+            ++object.count;
+            return object;
         }
     },
     onAttack: async (game, object, attack) => {
@@ -284,4 +266,33 @@ function button(object, pose, n) {
         object.pose = pose;
 
     return object.control.input.buttons[n];
+}
+
+function attack(game, object, n, m, r, leftAttack, backAttack, rightAttack, frontAttack) {
+    if (!object.attack) {
+        switch (object.direction) {
+        case "left":
+            object.attack = { id: Symbol(), x: object.x + leftAttack.x, y: object.y + leftAttack.y, width: leftAttack.width, height: leftAttack.height, damage: leftAttack.damage };
+            break;
+        case "back":
+            object.attack = { id: Symbol(), x: object.x + backAttack.x, y: object.y + backAttack.y, width: backAttack.width, height: backAttack.height, damage: backAttack.damage };
+            break;
+        case "right":
+            object.attack = { id: Symbol(), x: object.x + rightAttack.x, y: object.y + rightAttack.y, width: rightAttack.width, height: rightAttack.height, damage: rightAttack.damage };
+            break;
+        case "front":
+            object.attack = { id: Symbol(), x: object.x + frontAttack.x, y: object.y + frontAttack.y, width: frontAttack.width, height: frontAttack.height, damage: frontAttack.damage };
+            break;
+        }
+    }
+
+    if (object.count < 6) {
+        return false;
+    } else if (object.count < 12) {
+        game.attacks.push(object.attack);
+        return false;
+    } else {
+        object.attack = null;
+        return true;
+    }
 }
