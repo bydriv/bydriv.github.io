@@ -68,6 +68,9 @@ export async function step(game) {
     game.attacks = [];
 
     for (var i = 0; i < game.objects.length; ++i)
+        await Object.update(game.app, game.objects[i], game.states.get(game.objects[i].id));
+
+    for (var i = 0; i < game.objects.length; ++i)
         if (game.map.lock === game.objects[i].id) {
             const centralX = (game.objects[i].x + game.objects[i].width / 2) * SCALE;
             const centralY = (game.objects[i].y + game.objects[i].height / 2) * SCALE;
