@@ -286,10 +286,13 @@ function attack(game, object, n, m, r, leftAttack, backAttack, rightAttack, fron
         }
     }
 
-    if (object.count < 6) {
+    if (object.count < n) {
         return false;
-    } else if (object.count < 12) {
+    } else if (object.count < n + m) {
         game.attacks.push(object.attack);
+        return false;
+    } else if (object.count < n + m + r) {
+        object.attack = null;
         return false;
     } else {
         object.attack = null;
