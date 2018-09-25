@@ -20,28 +20,28 @@ export async function create(object) {
     if (INSTANCES.has(object.type))
         return INSTANCES.get(object.type).create(object);
     else
-        console.log("undefined object type: %o", object.type);
+        console.error("undefined object type: %o", object.type);
 }
 
 export async function update(object, view) {
     if (INSTANCES.has(view.type))
         return INSTANCES.get(view.type).update(object, view);
     else
-        console.log("undefined view type: %o", view.type);
+        console.error("undefined view type: %o", view.type);
 }
 
 export async function setup(container, view) {
     if (INSTANCES.has(view.type))
         return INSTANCES.get(view.type).setup(container, view);
     else
-        console.log("undefined view type: %o", view.type);
+        console.error("undefined view type: %o", view.type);
 }
 
 export async function teardown(container, view) {
     if (INSTANCES.has(view.type))
         return INSTANCES.get(view.type).teardown(container, view);
     else
-        console.log("undefined view type: %o", view.type);
+        console.error("undefined view type: %o", view.type);
 }
 
 export const Teiri = {
@@ -89,7 +89,7 @@ export const Teiri = {
 
             return;
         default:
-            console.log("undefined object pose: %o", object.pose);
+            console.error("undefined object pose: %o", object.pose);
         }
     },
     setup: async (container, view) => {

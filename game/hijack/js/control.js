@@ -15,14 +15,14 @@ export async function create(object, control) {
     if (INSTANCES.has(control.type))
         return INSTANCES.get(control.type).create(object, control);
     else
-        console.log("undefined control type: %o", control.type);
+        console.error("undefined control type: %o", control.type);
 }
 
 export async function step(game, object, control) {
     if (INSTANCES.has(control.type))
         return INSTANCES.get(control.type).step(game, object, control);
     else
-        console.log("undefined control type: %o", control.type);
+        console.error("undefined control type: %o", control.type);
 }
 
 export const Playable = {

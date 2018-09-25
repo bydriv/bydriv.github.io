@@ -19,21 +19,21 @@ export async function create(object) {
     if (INSTANCES.has(object.type))
         return INSTANCES.get(object.type).create(object);
     else
-        console.log("undefined object type: %o", object.type);
+        console.error("undefined object type: %o", object.type);
 }
 
 export async function step(game, object) {
     if (INSTANCES.has(object.type))
         return INSTANCES.get(object.type).step(game, object);
     else
-        console.log("undefined object type: %o", object.type);
+        console.error("undefined object type: %o", object.type);
 };
 
 export async function onAttack(game, object, attack) {
     if (INSTANCES.has(object.type))
         return INSTANCES.get(object.type).onAttack(game, object, attack);
     else
-        console.log("undefined object type: %o", object.type);
+        console.error("undefined object type: %o", object.type);
 }
 
 export const Teiri = {
