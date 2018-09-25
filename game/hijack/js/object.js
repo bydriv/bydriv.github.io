@@ -67,7 +67,7 @@ export const Teiri = {
                 return object;
             }
 
-            if (turn(object)) {
+            if (isTurned(turn(object))) {
                 object.count = 0;
                 return object;
             }
@@ -200,7 +200,11 @@ function turn(object) {
         }
     }
 
-    return null;
+    return [object.direction, object.direction];
+}
+
+function isTurned(pair) {
+    return pair[0] !== pair[1];
 }
 
 function move(game, object, pixels, perFrames) {
