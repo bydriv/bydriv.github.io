@@ -1,56 +1,34 @@
 import * as Asset from "./asset.js";
 import * as Team from "./team.js";
 
+const INSTANCES = new Map();
+
 export async function create(object) {
-    switch (object.type) {
-    case "teiri":
-        return Teiri.create(object);
-    case "silver":
-        return Silver.create(object);
-    case "gray":
-        return Gray.create(object);
-    default:
+    if (INSTANCES.has(object.type))
+        return INSTANCES.get(object.type).create(object);
+    else
         console.log("undefined object type: %o", object.type);
-    }
 }
 
 export async function update(object, view) {
-    switch (view.type) {
-    case "teiri":
-        return Teiri.update(object, view);
-    case "silver":
-        return Silver.update(object, view);
-    case "gray":
-        return Gray.update(object, view);
-    default:
-        console.log("undefined object type: %o", view.type);
-    }
+    if (INSTANCES.has(view.type))
+        return INSTANCES.get(view.type).update(object, view);
+    else
+        console.log("undefined view type: %o", view.type);
 }
 
 export async function setup(container, view) {
-    switch (view.type) {
-    case "teiri":
-        return Teiri.setup(container, view);
-    case "silver":
-        return Silver.setup(container, view);
-    case "gray":
-        return Gray.setup(container, view);
-    default:
-        console.log("undefined object type: %o", view.type);
-    }
+    if (INSTANCES.has(view.type))
+        return INSTANCES.get(view.type).setup(container, view);
+    else
+        console.log("undefined view type: %o", view.type);
 }
 
 export async function teardown(container, view) {
-    switch (view.type) {
-    case "teiri":
-        return Teiri.teardown(container, view);
-    case "silver":
-        return Silver.teardown(container, view);
-    case "gray":
-        return Gray.teardown(container, view);
-    default:
-        console.log("undefined object type: %o", view.type);
-    }
+    if (INSTANCES.has(view.type))
+        return INSTANCES.get(view.type).teardown(container, view);
+    else
+        console.log("undefined view type: %o", view.type);
 }
 
 export const Teiri = {
@@ -110,6 +88,7 @@ export const Teiri = {
         container.removeChild(view.shield);
     }
 };
+INSTANCES.set("teiri", Teiri);
 
 export const Silver = {
     create: async (object) => {
@@ -129,6 +108,7 @@ export const Silver = {
         container.removeChild(view.sprite);
     }
 };
+INSTANCES.set("silver", Silver);
 
 export const Gray = {
     create: async (object) => {
@@ -148,3 +128,4 @@ export const Gray = {
         container.removeChild(view.sprite);
     }
 };
+INSTANCES.set("gray", Gray);

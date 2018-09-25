@@ -1,43 +1,27 @@
 import * as Control from "./control.js";
 import * as View from "./view.js";
 
+const INSTANCES = new Map();
+
 export async function create(object) {
-    switch (object.type) {
-    case "teiri":
-        return Teiri.create(object);
-    case "silver":
-        return Silver.create(object);
-    case "gray":
-        return Gray.create(object);
-    default:
+    if (INSTANCES.has(object.type))
+        return INSTANCES.get(object.type).create(object);
+    else
         console.log("undefined object type: %o", object.type);
-    }
 }
 
 export async function step(game, object) {
-    switch (object.type) {
-    case "teiri":
-        return Teiri.step(game, object);
-    case "silver":
-        return Silver.step(game, object);
-    case "gray":
-        return Gray.step(game, object);
-    default:
+    if (INSTANCES.has(object.type))
+        return INSTANCES.get(object.type).step(game, object);
+    else
         console.log("undefined object type: %o", object.type);
-    }
 };
 
 export async function onAttack(game, object, attack) {
-    switch (object.type) {
-    case "teiri":
-        return Teiri.onAttack(game, object, attack);
-    case "silver":
-        return Silver.onAttack(game, object, attack);
-    case "gray":
-        return Gray.onAttack(game, object, attack);
-    default:
+    if (INSTANCES.has(object.type))
+        return INSTANCES.get(object.type).onAttack(game, object, attack);
+    else
         console.log("undefined object type: %o", object.type);
-    }
 }
 
 export const Teiri = {
@@ -108,7 +92,6 @@ export const Teiri = {
                     moveDown(game, object, 1);
             }
 
-            //if (input.x < -0.25 || input.x > 0.25 || input.y < -0.25 || input.y > 0.25)
             ++object.count;
 
             return object;
@@ -156,6 +139,7 @@ export const Teiri = {
         }
     }
 };
+INSTANCES.set("teiri", Teiri);
 
 export const Silver = {
     create: async (object) => {
@@ -172,6 +156,7 @@ export const Silver = {
     step: async (game, object) => object,
     onAttack: async (game, object, attack) => {}
 };
+INSTANCES.set("silver", Silver);
 
 export const Gray = {
     create: async (object) => {
@@ -188,6 +173,7 @@ export const Gray = {
     step: async (game, object) => object,
     onAttack: async (game, object, attack) => {}
 };
+INSTANCES.set("gray", Gray);
 
 export function collision(object1, object2) {
     const left = Math.max(object1.x, object2.x);

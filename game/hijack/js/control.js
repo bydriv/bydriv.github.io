@@ -2,34 +2,20 @@ import * as Input from "./input.js";
 import * as Object from "./object.js";
 import * as Team from "./team.js";
 
+const INSTANCES = new Map();
+
 export async function create(object, control) {
-    switch (control.type) {
-    case "playable":
-        return Playable.create(object, control);
-    case "random":
-        return Random.create(object, control);
-    case "wave":
-        return Wave.create(object, control);
-    case "typeA":
-        return TypeA.create(object, control);
-    default:
-        console.log("undefined object type: %o", control.type);
-    }
+    if (INSTANCES.has(control.type))
+        return INSTANCES.get(control.type).create(object, control);
+    else
+        console.log("undefined control type: %o", control.type);
 }
 
 export async function step(game, object, control) {
-    switch (control.type) {
-    case "playable":
-        return Playable.step(game, object, control);
-    case "random":
-        return Random.step(game, object, control);
-    case "wave":
-        return Wave.step(game, object, control);
-    case "typeA":
-        return TypeA.step(game, object, control);
-    default:
+    if (INSTANCES.has(control.type))
+        return INSTANCES.get(control.type).step(game, object, control);
+    else
         console.log("undefined control type: %o", control.type);
-    }
 }
 
 export const Playable = {
@@ -43,6 +29,7 @@ export const Playable = {
         return control;
     }
 };
+INSTANCES.set("playable", Playable);
 
 export const Random = {
     create: async (object, control) => {
@@ -60,6 +47,7 @@ export const Random = {
         return Random.create(object, control);
     }
 };
+INSTANCES.set("random", Random);
 
 export const Wave = {
     create: async (object, control) => {
@@ -94,6 +82,7 @@ export const Wave = {
         };
     }
 };
+INSTANCES.set("wave", Wave);
 
 export const TypeA = {
     create: async (object, control) => {
@@ -188,3 +177,4 @@ export const TypeA = {
         };
     }
 };
+INSTANCES.set("typeA", TypeA);
