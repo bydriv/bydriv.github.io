@@ -61,8 +61,7 @@ export const Teiri = {
         case "walk":
             const input = object.control.input;
 
-            if (input.buttons[0]) {
-                object.pose = "truncheon";
+            if (button(object, "truncheon", 0)) {
                 object.count = 0;
                 return object;
             }
@@ -278,4 +277,11 @@ function moveDown(game, object, n) {
     }
 
     return n;
+}
+
+function button(object, pose, n) {
+    if (object.control.input.buttons[n])
+        object.pose = pose;
+
+    return object.control.input.buttons[n];
 }
