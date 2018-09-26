@@ -51,7 +51,28 @@ export const Teiri = {
             direction: object.direction,
             shield: 16,
             count: 0,
-            attack: null
+            attack: null,
+            sight: {
+                left: { x: -32, y: -16, width: 48, height: 48 },
+                back: { x: -16, y: -32, width: 48, height: 48 },
+                right: { x: 0, y: -16, width: 48, height: 48 },
+                front: { x: -16, y: 0, width: 48, height: 48 }
+            },
+            buttons: [
+                {
+                    type: "attack",
+                    startup: 6,
+                    active: 6,
+                    recovery: 0,
+                    left: { x: -8, y: 0, width: 8, height: 16, damage: 1 },
+                    back: { x: 0, y: -8, width: 16, height: 8, damage: 1 },
+                    right: { x: 16, y: 0, width: 8, height: 16, damage: 1 },
+                    front: { x: 0, y: 16, width: 16, height: 8, damage: 1 }
+                },
+                null,
+                null,
+                null
+            ]
         };
     },
     step: async (game, object) => {
@@ -76,12 +97,7 @@ export const Teiri = {
             ++object.count;
             return object;
         case "truncheon":
-            const leftAttack = { x: -8, y: 0, width: 8, height: 16, damage: 1 };
-            const backAttack = { x: 0, y: -8, width: 16, height: 8, damage: 1 };
-            const rightAttack = { x: 16, y: 0, width: 8, height: 16, damage: 1 };
-            const frontAttack = { x: 0, y: 16, width: 16, height: 8, damage: 1 };
-
-            if (attack(game, object, 6, 6, 0, leftAttack, backAttack, rightAttack, frontAttack)) {
+            if (attack(game, object, object.buttons[0].startup, object.buttons[0].active, object.buttons[0].recovery, object.buttons[0].left, object.buttons[0].back, object.buttons[0].right, object.buttons[0].front)) {
                 object.pose = "walk";
                 object.count = 0;
                 return object;
@@ -268,7 +284,7 @@ function button(object, pose, n) {
     return object.control.input.buttons[n];
 }
 
-function attack(game, object, n, m, r, leftAttack, backAttack, rightAttack, frontAttack) {
+function attack(game, object, startup, active, recovery, leftAttack, backAttack, rightAttack, frontAttack) {
     if (!object.attack) {
         switch (object.direction) {
         case "left":
@@ -286,12 +302,12 @@ function attack(game, object, n, m, r, leftAttack, backAttack, rightAttack, fron
         }
     }
 
-    if (object.count < n) {
+    if (object.count < startup) {
         return false;
-    } else if (object.count < n + m) {
+    } else if (object.count < startup + active) {
         game.attacks.push(object.attack);
         return false;
-    } else if (object.count < n + m + r) {
+    } else if (object.count < startup + active + recovery) {
         object.attack = null;
         return false;
     } else {

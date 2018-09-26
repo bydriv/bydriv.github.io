@@ -102,61 +102,35 @@ export const TypeA = {
         };
     },
     step: async (game, object, control) => {
-        const sight = {
-            width: object.width * 3,
-            height: object.height * 3
-        };
-
-        const attack = {
-        };
-
-        switch (object.direction) {
-        case "left":
-            sight.x = object.x - object.width * 2;
-            sight.y = object.y - object.height;
-            attack.x = object.x - object.width / 2;
-            attack.y = object.y;
-            attack.width = object.width / 2;
-            attack.height = object.height;
-            break;
-        case "back":
-            sight.x = object.x - object.width;
-            sight.y = object.y - object.height * 2;
-            attack.x = object.x;
-            attack.y = object.y - object.height / 2;
-            attack.width = object.width;
-            attack.height = object.height / 2;
-            break;
-        case "right":
-            sight.x = object.x;
-            sight.y = object.y - object.height;
-            attack.x = object.x + object.width;
-            attack.y = object.y;
-            attack.width = object.width / 2;
-            attack.height = object.height;
-            break;
-        case "front":
-            sight.x = object.x - object.width;
-            sight.y = object.y;
-            attack.x = object.x;
-            attack.y = object.y + object.height;
-            attack.width = object.width;
-            attack.height = object.height / 2;
-            break;
-        }
-
         for (var i = 0; i < game.objects.length; ++i)
             if (Team.enemy(object.team, game.objects[i].team))
-                if (Object.collision(game.objects[i], attack))
-                    return {
-                        type: "typeA",
-                        input: {
-                            x: 0,
-                            y: 0,
-                            buttons: [true, false, false, false]
-                        },
-                        wave: control.wave
-                    };
+                for (var j = 0; j < object.buttons.length; ++j)
+                    if (object.buttons[j] && object.buttons[j].type === "attack") {
+                        const attack = {
+                            x: object.x + object.buttons[j][object.direction].x,
+                            y: object.y + object.buttons[j][object.direction].y,
+                            width: object.buttons[j][object.direction].width,
+                            height: object.buttons[j][object.direction].height
+                        };
+
+                        if (Object.collision(game.objects[i], attack))
+                            return {
+                                type: "typeA",
+                                input: {
+                                    x: 0,
+                                    y: 0,
+                                    buttons: [j === 0, j === 1, j === 2, j === 3]
+                                },
+                                wave: control.wave
+                            };
+                    }
+
+        const sight = {
+            x: object.x + object.sight[object.direction].x,
+            y: object.y + object.sight[object.direction].y,
+            width: object.sight[object.direction].width,
+            height: object.sight[object.direction].height
+        };
 
         for (var i = 0; i < game.objects.length; ++i)
             if (Team.enemy(object.team, game.objects[i].team))
