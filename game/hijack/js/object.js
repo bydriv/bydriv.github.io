@@ -278,8 +278,8 @@ export const Shot = {
             id: object.id || Symbol(),
             x: object.x,
             y: object.y,
-            width: 2,
-            height: 2,
+            width: 0,
+            height: 0,
             team: object.team,
             direction: object.direction,
             count: 0,
@@ -305,7 +305,7 @@ export const Shot = {
                 console.error("undefined object direction: %o", object.direction);
             }
 
-            game.attacks.push({ id: object.id, x: object.x, y: object.y, width: object.width, height: object.height, damage: 1, team: object.team });
+            game.attacks.push({ id: object.id, x: object.x, y: object.y, width: 2, height: 2, damage: 1, team: object.team });
 
             ++object.count;
             return object;
