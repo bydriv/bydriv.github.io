@@ -109,7 +109,7 @@ export const Creature = {
                         return object;
                     }
                 default:
-                    console.error("undefined object button type: %o", object.buttons[0].type);
+                    console.error("undefined object button type: %o", object.buttons[i].type);
                 }
 
                 ++object.count;
@@ -136,7 +136,7 @@ export const Teiri = {
     create: async (object) => {
         return Creature.create({
             type: object.type,
-            id: object.id || Symbol(),
+            id: object.id,
             x: object.x,
             y: object.y,
             width: 16,
@@ -177,6 +177,43 @@ export const Teiri = {
     onAttack: async (game, object, attack) => Creature.onAttack(game, object, attack)
 };
 INSTANCES.set("teiri", Teiri);
+
+export const SecurityDrone = {
+    create: async (object) => {
+        return Creature.create({
+            type: object.type,
+            id: object.id,
+            x: object.x,
+            y: object.y,
+            width: 16,
+            height: 16,
+            team: object.team,
+            control: object.control,
+            pose: object.pose,
+            direction: object.direction,
+            shield: 1,
+            sight: {
+                left: { x: 0, y: 0, width: 0, height: 0 },
+                back: { x: 0, y: 0, width: 0, height: 0 },
+                right: { x: 0, y: 0, width: 0, height: 0 },
+                front: { x: 0, y: 0, width: 0, height: 0 }
+            },
+            buttons: [
+                null,
+                null,
+                null,
+                null
+            ],
+            move: {
+                pixels: 2,
+                perFrames: 1
+            }
+        });
+    },
+    step: async (game, object) => Creature.step(game, object),
+    onAttack: async (game, object, attack) => Creature.onAttack(game, object, attack)
+};
+INSTANCES.set("security-drone", SecurityDrone);
 
 export const Silver = {
     create: async (object) => {

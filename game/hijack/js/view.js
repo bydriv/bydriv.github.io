@@ -103,6 +103,55 @@ export const Teiri = {
 };
 INSTANCES.set("teiri", Teiri);
 
+export const SecurityDrone = {
+    create: async (object) => {
+        const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/security-drone/front/0.png"));
+        sprite.x = object.x;
+        sprite.y = object.y;
+
+        const shield = new PIXI.Graphics();
+        shield.x = object.x;
+        shield.y = object.y - 2;
+        shield.lineStyle(1, Team.color(object.team).fg).moveTo(0, 0).lineTo(object.shield * 16, 0);
+        shield.lineStyle(1, Team.color(object.team).bg).moveTo(object.shield * 16, 0).lineTo(16, 0);
+
+        return {
+            type: "security-drone",
+            sprite: sprite,
+            shield: shield
+        };
+    },
+    update: async (object, view) => {
+        view.shield.clear();
+        view.shield.lineStyle(1, Team.color(object.team).fg).moveTo(0, 0).lineTo(object.shield * 16, 0);
+        view.shield.lineStyle(1, Team.color(object.team).bg).moveTo(object.shield * 16, 0).lineTo(16, 0);
+
+        switch (object.pose) {
+        case "default":
+            if (object.count % 1 === 0)
+                view.sprite.texture = Asset.TEXTURES.get("hijack/pixelart/security-drone/" + object.direction + "/" + object.count / 1 % 4 + ".png");
+
+            view.sprite.x = object.x;
+            view.sprite.y = object.y;
+            view.shield.x = object.x;
+            view.shield.y = object.y - 2;
+
+            return;
+        default:
+            console.error("undefined object pose: %o", object.pose);
+        }
+    },
+    setup: async (container, view) => {
+        container.addChild(view.sprite);
+        container.addChild(view.shield);
+    },
+    teardown: async (container, view) => {
+        container.removeChild(view.sprite);
+        container.removeChild(view.shield);
+    }
+};
+INSTANCES.set("security-drone", SecurityDrone);
+
 export const Silver = {
     create: async (object) => {
         const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/maptip/silver.png"));

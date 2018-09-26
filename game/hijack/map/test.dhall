@@ -60,7 +60,7 @@ let gray = \(gray : Gray) -> <gray = gray | teiri : Teiri> in {
     }
   ] # ./Prelude/List/map Point Object (\(p : Point) ->
     teiri {
-      type = "teiri",
+      type = "security-drone",
       id = [] : Optional Text,
       x = p.x,
       y = p.y,
