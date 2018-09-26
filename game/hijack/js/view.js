@@ -128,6 +128,7 @@ export const SecurityDrone = {
 
         switch (object.pose) {
         case "default":
+        case "button0":
             if (object.count % 1 === 0)
                 view.sprite.texture = Asset.TEXTURES.get("hijack/pixelart/security-drone/" + object.direction + "/" + object.count / 1 % 4 + ".png");
 
@@ -191,3 +192,26 @@ export const Gray = {
     }
 };
 INSTANCES.set("gray", Gray);
+
+export const Shot = {
+    create: async (object) => {
+        const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/common/shot.png"));
+        sprite.x = object.x - 7;
+        sprite.y = object.y - 7;
+        return {
+            type: "shot",
+            sprite: sprite
+        };
+    },
+    update: async (object, view) => {
+        view.sprite.x = object.x - 7;
+        view.sprite.y = object.y - 7;
+    },
+    setup: async (container, view) => {
+        container.addChild(view.sprite);
+    },
+    teardown: async (container, view) => {
+        container.removeChild(view.sprite);
+    }
+};
+INSTANCES.set("shot", Shot);

@@ -2,6 +2,7 @@ export const ASSETS = [
     "hijack/pixelart/teiri/walk.png",
     "hijack/pixelart/teiri/truncheon.png",
     "hijack/pixelart/security-drone.png",
+    "hijack/pixelart/common/shot.png",
     "hijack/pixelart/maptip/silver.png",
     "hijack/pixelart/maptip/gray.png",
     "hijack/map/test.json"
@@ -25,6 +26,7 @@ export function load() {
                     TEXTURES.set("hijack/pixelart/security-drone/" + name + "/" + j + ".png", new PIXI.Texture(PIXI.loader.resources["hijack/pixelart/security-drone.png"].texture, new PIXI.Rectangle(j * 16, i * 16, 16, 16)));
                 }
             }
+            TEXTURES.set("hijack/pixelart/common/shot.png", PIXI.loader.resources["hijack/pixelart/common/shot.png"].texture);
             resolve();
         });
     });

@@ -108,6 +108,14 @@ export const Creature = {
                         object.count = 0;
                         return object;
                     }
+                    break;
+                case "shot":
+                    if (await shot(game, object, object.buttons[i].startup, object.buttons[i].recovery, object.buttons[i].offset[object.direction])) {
+                        object.pose = "default";
+                        object.count = 0;
+                        return object;
+                    }
+                    break;
                 default:
                     console.error("undefined object button type: %o", object.buttons[i].type);
                 }
@@ -199,7 +207,21 @@ export const SecurityDrone = {
                 front: { x: 0, y: 0, width: 0, height: 0 }
             },
             buttons: [
-                null,
+                {
+                    type: "shot",
+                    startup: 10,
+                    recovery: 10,
+                    left: { x: -240, y: 8, width: 240, height: 4 },
+                    back: { x: 7, y: -240, width: 4, height: 240 },
+                    right: { x: 16, y: 8, width: 240, height: 4 },
+                    front: { x: 7, y: 16, width: 4, height: 240 },
+                    offset: {
+                        left: { x: -4, y: 8 },
+                        back: { x: 7, y: -4 },
+                        right: { x: 16, y: 8 },
+                        front: { x: 7, y: 16 }
+                    }
+                },
                 null,
                 null,
                 null
@@ -248,6 +270,56 @@ export const Gray = {
     onAttack: async (game, object, attack) => {}
 };
 INSTANCES.set("gray", Gray);
+
+export const Shot = {
+    create: async (object) => {
+        return {
+            type: object.type,
+            id: object.id || Symbol(),
+            x: object.x,
+            y: object.y,
+            width: 2,
+            height: 2,
+            team: object.team,
+            direction: object.direction,
+            count: 0,
+            lifetime: 120
+        };
+    },
+    step: async (game, object) => {
+        if (object.count < object.lifetime) {
+            switch (object.direction) {
+            case "left":
+                object.x -= 2;
+                break;
+            case "back":
+                object.y -= 2;
+                break;
+            case "right":
+                object.x += 2;
+                break;
+            case "front":
+                object.y += 2;
+                break;
+            default:
+                console.error("undefined object direction: %o", object.direction);
+            }
+
+            game.attacks.push({ id: object.id, x: object.x, y: object.y, width: object.width, height: object.height, damage: 1 });
+
+            ++object.count;
+            return object;
+        } else {
+            await View.teardown(game.app.stage, game.views.get(object.id));
+            game.objects = game.objects.filter(o => o.id !== object.id);
+            game.views.delete(object.id);
+            game.hits.delete(object.id);
+            return object;
+        }
+    },
+    onAttack: async (game, object, attack) => {}
+};
+INSTANCES.set("shot", Shot);
 
 export function collision(object1, object2) {
     const left = Math.max(object1.x, object2.x);
@@ -407,6 +479,24 @@ function attack(game, object, startup, active, recovery, leftAttack, backAttack,
         return false;
     } else {
         object.attack = null;
+        return true;
+    }
+}
+
+async function shot(game, object, startup, recovery, offset) {
+    if (object.count < startup) {
+        return false;
+    } else if (object.count === startup) {
+        const shot = await Shot.create({ type: "shot", direction: object.direction, team: object.team, x: object.x + offset.x, y: object.y + offset.y });
+        const view = await View.create(shot);
+        await View.setup(game.app.stage, view);
+        game.objects.push(shot);
+        game.views.set(shot.id, view);
+        game.hits.set(shot.id, new Map());
+        return false;
+    } else if (object.count < startup + recovery) {
+        return false;
+    } else {
         return true;
     }
 }

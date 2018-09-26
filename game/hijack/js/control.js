@@ -105,7 +105,7 @@ export const TypeA = {
         for (var i = 0; i < game.objects.length; ++i)
             if (Team.enemy(object.team, game.objects[i].team))
                 for (var j = 0; j < object.buttons.length; ++j)
-                    if (object.buttons[j] && object.buttons[j].type === "attack") {
+                    if (object.buttons[j] && (object.buttons[j].type === "attack" || object.buttons[j].type === "shot")) {
                         const attack = {
                             x: object.x + object.buttons[j][object.direction].x,
                             y: object.y + object.buttons[j][object.direction].y,
