@@ -36,22 +36,116 @@ export async function onAttack(game, object, attack) {
         console.error("undefined object type: %o", object.type);
 }
 
-export const Teiri = {
+export const Creature = {
     create: async (object) => {
         return {
-            type: "teiri",
+            type: object.type,
+            id: object.id || Symbol(),
+            x: object.x,
+            y: object.y,
+            width: object.width,
+            height: object.height,
+            team: object.team,
+            control: await Control.create(object, object.control),
+            pose: object.pose,
+            direction: object.direction,
+            shield: object.shield,
+            count: 0,
+            attack: null,
+            sight: object.sight,
+            buttons: object.buttons,
+            move: object.move
+        };
+    },
+    step: async (game, object) => {
+        object.control = await Control.step(game, object, object.control);
+
+        switch (object.pose) {
+        case "default":
+            const input = object.control.input;
+
+            if (object.buttons[0] && button(object, "button0", 0)) {
+                object.count = 0;
+                return object;
+            }
+
+            if (object.buttons[1] && button(object, "button1", 1)) {
+                object.count = 0;
+                return object;
+            }
+
+            if (object.buttons[2] && button(object, "button2", 2)) {
+                object.count = 0;
+                return object;
+            }
+
+            if (object.buttons[3] && button(object, "button3", 3)) {
+                object.count = 0;
+                return object;
+            }
+
+            if (isTurned(turn(object))) {
+                object.count = 0;
+                return object;
+            }
+
+            move(game, object, object.move.pixels, object.move.perFrames);
+
+            ++object.count;
+            return object;
+        default:
+            switch (object.pose) {
+            case "button0":
+            case "button1":
+            case "button2":
+            case "button3":
+                const i = object.pose === "button0" ? 0 : object.pose === "button1" ? 1 : object.pose === "button2" ? 2 : 3;
+
+                switch (object.buttons[i].type) {
+                case "attack":
+                    if (attack(game, object, object.buttons[i].startup, object.buttons[i].active, object.buttons[i].recovery, object.buttons[i].left, object.buttons[i].back, object.buttons[i].right, object.buttons[i].front)) {
+                        object.pose = "default";
+                        object.count = 0;
+                        return object;
+                    }
+                default:
+                    console.error("undefined object button type: %o", object.buttons[0].type);
+                }
+
+                ++object.count;
+                return object;
+            default:
+                console.error("undefined object pose type: %o", object.pose);
+            }
+        }
+    },
+    onAttack: async (game, object, attack) => {
+        object.shield -= Math.min(attack.damage, object.shield);
+
+        if (object.shield === 0) {
+            await View.teardown(game.app.stage, game.views.get(object.id));
+            game.objects = game.objects.filter(o => o.id !== object.id);
+            game.views.delete(object.id);
+            game.hits.delete(object.id);
+        }
+    }
+};
+INSTANCES.set("creature", Creature);
+
+export const Teiri = {
+    create: async (object) => {
+        return Creature.create({
+            type: object.type,
             id: object.id || Symbol(),
             x: object.x,
             y: object.y,
             width: 16,
             height: 16,
             team: object.team,
-            control: await Control.create(object, object.control),
+            control: object.control,
             pose: object.pose,
             direction: object.direction,
             shield: 16,
-            count: 0,
-            attack: null,
             sight: {
                 left: { x: -32, y: -16, width: 48, height: 48 },
                 back: { x: -16, y: -32, width: 48, height: 48 },
@@ -72,51 +166,15 @@ export const Teiri = {
                 null,
                 null,
                 null
-            ]
-        };
+            ],
+            move: {
+                pixels: 1,
+                perFrames: 1
+            }
+        });
     },
-    step: async (game, object) => {
-        object.control = await Control.step(game, object, object.control);
-
-        switch (object.pose) {
-        case "walk":
-            const input = object.control.input;
-
-            if (button(object, "truncheon", 0)) {
-                object.count = 0;
-                return object;
-            }
-
-            if (isTurned(turn(object))) {
-                object.count = 0;
-                return object;
-            }
-
-            move(game, object, 1, 1);
-
-            ++object.count;
-            return object;
-        case "truncheon":
-            if (attack(game, object, object.buttons[0].startup, object.buttons[0].active, object.buttons[0].recovery, object.buttons[0].left, object.buttons[0].back, object.buttons[0].right, object.buttons[0].front)) {
-                object.pose = "walk";
-                object.count = 0;
-                return object;
-            }
-
-            ++object.count;
-            return object;
-        }
-    },
-    onAttack: async (game, object, attack) => {
-        object.shield -= Math.min(attack.damage, object.shield);
-
-        if (object.shield === 0) {
-            await View.teardown(game.app.stage, game.views.get(object.id));
-            game.objects = game.objects.filter(o => o.id !== object.id);
-            game.views.delete(object.id);
-            game.hits.delete(object.id);
-        }
-    }
+    step: async (game, object) => Creature.step(game, object),
+    onAttack: async (game, object, attack) => Creature.onAttack(game, object, attack)
 };
 INSTANCES.set("teiri", Teiri);
 

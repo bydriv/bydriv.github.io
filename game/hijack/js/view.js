@@ -68,7 +68,7 @@ export const Teiri = {
         view.shield.lineStyle(1, Team.color(object.team).bg).moveTo(object.shield, 0).lineTo(16, 0);
 
         switch (object.pose) {
-        case "walk":
+        case "default":
             if (object.count % 8 === 0)
                 view.sprite.texture = Asset.TEXTURES.get("hijack/pixelart/teiri/walk/" + object.direction + "/" + object.count / 8 % 4 + ".png");
 
@@ -78,7 +78,7 @@ export const Teiri = {
             view.shield.y = object.y - 2;
 
             return;
-        case "truncheon":
+        case "button0":
             if (object.count % 3 === 0)
                 view.sprite.texture = Asset.TEXTURES.get("hijack/pixelart/teiri/truncheon/" + object.direction + "/" + object.count / 3 % 4 + ".png");
 

@@ -55,7 +55,7 @@ let gray = \(gray : Gray) -> <gray = gray | teiri : Teiri> in {
       control = playable {
         type = "playable"
       },
-      pose = "walk",
+      pose = "default",
       direction = "front"
     }
   ] # ./Prelude/List/map Point Object (\(p : Point) ->
@@ -70,7 +70,7 @@ let gray = \(gray : Gray) -> <gray = gray | teiri : Teiri> in {
         incr = 0.0245,
         bias = 0.252
       },
-      pose = "walk",
+      pose = "default",
       direction = "front"
     }
   ) [
