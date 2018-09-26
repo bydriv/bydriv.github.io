@@ -11,6 +11,7 @@
 // structure Gray : OBJECT
 
 import * as Control from "./control.js";
+import * as Team from "./team.js";
 import * as View from "./view.js";
 
 const INSTANCES = new Map();
@@ -128,6 +129,9 @@ export const Creature = {
         }
     },
     onAttack: async (game, object, attack) => {
+        if (!Team.enemy(object.team, attack.team))
+            return;
+
         object.shield -= Math.min(attack.damage, object.shield);
 
         if (object.shield === 0) {
@@ -305,7 +309,7 @@ export const Shot = {
                 console.error("undefined object direction: %o", object.direction);
             }
 
-            game.attacks.push({ id: object.id, x: object.x, y: object.y, width: object.width, height: object.height, damage: 1 });
+            game.attacks.push({ id: object.id, x: object.x, y: object.y, width: object.width, height: object.height, damage: 1, team: object.team });
 
             ++object.count;
             return object;
@@ -455,16 +459,16 @@ function attack(game, object, startup, active, recovery, leftAttack, backAttack,
     if (!object.attack) {
         switch (object.direction) {
         case "left":
-            object.attack = { id: Symbol(), x: object.x + leftAttack.x, y: object.y + leftAttack.y, width: leftAttack.width, height: leftAttack.height, damage: leftAttack.damage };
+            object.attack = { id: Symbol(), x: object.x + leftAttack.x, y: object.y + leftAttack.y, width: leftAttack.width, height: leftAttack.height, damage: leftAttack.damage, team: object.team };
             break;
         case "back":
-            object.attack = { id: Symbol(), x: object.x + backAttack.x, y: object.y + backAttack.y, width: backAttack.width, height: backAttack.height, damage: backAttack.damage };
+            object.attack = { id: Symbol(), x: object.x + backAttack.x, y: object.y + backAttack.y, width: backAttack.width, height: backAttack.height, damage: backAttack.damage, team: object.team };
             break;
         case "right":
-            object.attack = { id: Symbol(), x: object.x + rightAttack.x, y: object.y + rightAttack.y, width: rightAttack.width, height: rightAttack.height, damage: rightAttack.damage };
+            object.attack = { id: Symbol(), x: object.x + rightAttack.x, y: object.y + rightAttack.y, width: rightAttack.width, height: rightAttack.height, damage: rightAttack.damage, team: object.team };
             break;
         case "front":
-            object.attack = { id: Symbol(), x: object.x + frontAttack.x, y: object.y + frontAttack.y, width: frontAttack.width, height: frontAttack.height, damage: frontAttack.damage };
+            object.attack = { id: Symbol(), x: object.x + frontAttack.x, y: object.y + frontAttack.y, width: frontAttack.width, height: frontAttack.height, damage: frontAttack.damage, team: object.team };
             break;
         }
     }
