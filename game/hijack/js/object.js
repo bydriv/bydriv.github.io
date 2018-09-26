@@ -134,12 +134,8 @@ export const Creature = {
 
         object.shield -= Math.min(attack.damage, object.shield);
 
-        if (object.shield === 0) {
-            await View.teardown(game.app.stage, game.views.get(object.id));
-            game.objects = game.objects.filter(o => o.id !== object.id);
-            game.views.delete(object.id);
-            game.hits.delete(object.id);
-        }
+        if (object.shield === 0)
+            object.exiled = true;
     }
 };
 INSTANCES.set("creature", Creature);
@@ -215,10 +211,10 @@ export const SecurityDrone = {
                     type: "shot",
                     startup: 10,
                     recovery: 10,
-                    left: { x: -240, y: 8, width: 240, height: 4 },
-                    back: { x: 7, y: -240, width: 4, height: 240 },
-                    right: { x: 16, y: 8, width: 240, height: 4 },
-                    front: { x: 7, y: 16, width: 4, height: 240 },
+                    left: { x: -240, y: 8, width: 240, height: 2 },
+                    back: { x: 7, y: -240, width: 2, height: 240 },
+                    right: { x: 16, y: 8, width: 240, height: 2 },
+                    front: { x: 7, y: 16, width: 2, height: 240 },
                     offset: {
                         left: { x: -4, y: 8 },
                         back: { x: 7, y: -4 },
@@ -314,10 +310,7 @@ export const Shot = {
             ++object.count;
             return object;
         } else {
-            await View.teardown(game.app.stage, game.views.get(object.id));
-            game.objects = game.objects.filter(o => o.id !== object.id);
-            game.views.delete(object.id);
-            game.hits.delete(object.id);
+            object.exiled = true;
             return object;
         }
     },
