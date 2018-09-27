@@ -6,6 +6,8 @@ export function enemy(team1, team2) {
             return false;
         case "enemy":
             return true;
+        case "neutral":
+            return false;
         }
     case "enemy":
         switch (team2) {
@@ -13,7 +15,11 @@ export function enemy(team1, team2) {
             return true;
         case "enemy":
             return false;
+        case "neutral":
+            return false;
         }
+    case "neutral":
+        return false;
     }
 }
 

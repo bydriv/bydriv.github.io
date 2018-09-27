@@ -84,7 +84,7 @@ let gray = \(gray : Gray) -> <gray = gray | teiri : Teiri> in {
       id = [] : Optional Text,
       x = p.x,
       y = p.y,
-      team = "enemy"
+      team = "neutral"
     }
   ) [
     {x = -96, y = -64},
