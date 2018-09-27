@@ -385,18 +385,21 @@ function isTurned(pair) {
 function move(game, object, pixels, perFrames) {
     const input = object.control.input;
 
+    var i = 0;
+    var j = 0;
+
     if (object.count % perFrames === 0) {
         if (input.x < -0.25)
-            return moveLeft(game, object, pixels);
+            i = moveLeft(game, object, pixels);
         if (input.x > 0.25)
-            return moveRight(game, object, pixels);
+            i = moveRight(game, object, pixels);
         if (input.y < -0.25)
-            return moveUp(game, object, pixels);
+            j = moveUp(game, object, pixels);
         if (input.y > 0.25)
-            return moveDown(game, object, pixels);
+            j = moveDown(game, object, pixels);
     }
 
-    return 0;
+    return [i, j];
 }
 
 function moveLeft(game, object, n) {
