@@ -65,6 +65,54 @@ export async function create() {
     window.renderable = false;
     app.stage.addChild(window);
 
+    var touches = [];
+
+    app.view.addEventListener("touchstart", e => {
+        touches = e.touches;
+    });
+    app.view.addEventListener("touchend", e => {
+        if (touches.length === 1 && Input.PLAYER.x === 0 && Input.PLAYER.y === 0) {
+            Input.PLAYER.buttons[0] = true;
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            requestAnimationFrame(() => {
+                                requestAnimationFrame(() => {
+                                    requestAnimationFrame(() => {
+                                        requestAnimationFrame(() => {
+                                            Input.PLAYER.buttons[0] = false;
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        } else if (touches.length === 2) {
+            Input.PLAYER.buttons[1] = true;
+            requestAnimationFrame(() => {
+                Input.PLAYER.buttons[1] = false;
+            });
+            Input.PLAYER.buttons[2] = true;
+            requestAnimationFrame(() => {
+                Input.PLAYER.buttons[2] = false;
+            });
+        } else {
+            Input.PLAYER.x = 0;
+            Input.PLAYER.y = 0;
+        }
+    });
+    app.view.addEventListener("touchcancel", e => {
+    });
+    app.view.addEventListener("touchmove", e => {
+        if (e.touches.length === 1) {
+            Input.PLAYER.x = (e.touches[0].clientX - app.view.getBoundingClientRect().x) / app.stage.scale.x / WIDTH * 4 - 1;
+            Input.PLAYER.y = (e.touches[0].clientY - app.view.getBoundingClientRect().y) / app.stage.scale.y / HEIGHT * 4 - 1;
+        }
+    });
+
     return {
         app: app,
         map: Asset.MAPS.get("hijack/map/test.json"),
