@@ -485,7 +485,7 @@ function hijack(game, object) {
         return false;
 
     if (object.count % 8 === 0) {
-        if (object.control.input.y < 0.25 && 0 <= i - 1 && i - 1 < targets.length)
+        if (object.control.input.y < -0.25 && 0 <= i - 1 && i - 1 < targets.length)
             --i;
         if (object.control.input.y > 0.25 && 0 <= i + 1 && i + 1 < targets.length)
             ++i;

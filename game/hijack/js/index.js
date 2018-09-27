@@ -55,13 +55,27 @@ export async function create() {
         hits.set(object.id, new Map());
     }
 
+    const window = new PIXI.Graphics();
+    window.x = 0;
+    window.y = 0;
+    window.width = WIDTH;
+    window.height = HEIGHT;
+    window.beginFill(0x000000, 0.5);
+    window.drawRect(0, 0, WIDTH, HEIGHT);
+    window.renderable = false;
+    app.stage.addChild(window);
+
     return {
         app: app,
         map: Asset.MAPS.get("hijack/map/test.json"),
         views: views,
         objects: objects,
         attacks: [],
-        hits: hits
+        hits: hits,
+        dialog: {
+            window: window,
+            log: []
+        }
     };
 }
 
@@ -99,16 +113,65 @@ export async function step(game) {
     for (var i = 0; i < game.objects.length; ++i)
         await View.update(game.objects[i], game.views.get(game.objects[i].id));
 
+    game.dialog.window.renderable = false;
+
     for (var i = 0; i < game.objects.length; ++i)
         if (game.map.lock === game.objects[i].id) {
-            const centralX = (game.objects[i].x + game.objects[i].width / 2) * SCALE;
-            const centralY = (game.objects[i].y + game.objects[i].height / 2) * SCALE;
+            const object = game.objects[i];
+            const centralX = (object.x + object.width / 2) * SCALE;
+            const centralY = (object.y + object.height / 2) * SCALE;
             game.app.stage.x = WIDTH * SCALE / 2 - centralX;
             game.app.stage.y = HEIGHT * SCALE / 2 - centralY;
+
+            if (object.hijack) {
+                game.dialog.window.renderable = true;
+
+                var i = 0;
+                for (; i < game.dialog.log.length; ++i)
+                    for (var j = 0; j < game.dialog.log[i].length; ++j)
+                        game.dialog.window.addChild(game.dialog.log[i][j]);
+
+                const enStyle = new PIXI.TextStyle({
+                    fontFamily: "Misaki Gothic",
+                    fontSize: 8,
+                    fill: "white"
+                });
+
+                if (object.hijack.target) {
+                    const hijackText = new PIXI.Text("$ hijack ", enStyle);
+                    const idText = new PIXI.Text(object.hijack.target, enStyle);
+                    hijackText.x = 0;
+                    hijackText.y = i * 8;
+                    idText.x = "$ hijack ".length * 4;
+                    idText.y = i * 8;
+                    game.dialog.window.addChild(hijackText);
+                    game.dialog.window.addChild(idText);
+
+                    if (object.count % 8 === 0 && object.control.input.buttons[0]) {
+                        if (game.dialog.log.length < 20) {
+                            game.dialog.log.push([hijackText, idText]);
+                        } else {
+                            game.dialog.log.shift();
+                            game.dialog.log.push([hijackText, idText]);
+
+                            i = 0;
+                            for (; i < game.dialog.log.length; ++i)
+                                for (var j = 0; j < game.dialog.log[i].length; ++j)
+                                    game.dialog.log[i][j].y -= 8;
+                        }
+                    }
+                }
+            }
+
             break;
         }
 
+    game.dialog.window.x = -game.app.stage.x / SCALE;
+    game.dialog.window.y = -game.app.stage.y / SCALE;
+
     game.app.renderer.render(game.app.stage);
+
+    game.dialog.window.removeChildren();
 
     return game;
 }
