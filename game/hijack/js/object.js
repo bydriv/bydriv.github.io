@@ -11,6 +11,7 @@
 // structure Gray : OBJECT
 
 import * as Control from "./control.js";
+import * as Gensym from "./gensym.js";
 import * as Team from "./team.js";
 import * as View from "./view.js";
 
@@ -41,7 +42,7 @@ export const Creature = {
     create: async (object) => {
         return {
             type: object.type,
-            id: object.id || Symbol(),
+            id: object.id || "0x" + Gensym.gensym().toString(16).toUpperCase(),
             x: object.x,
             y: object.y,
             width: object.width,
@@ -52,10 +53,12 @@ export const Creature = {
             direction: object.direction,
             shield: object.shield,
             count: 0,
+            hijack: null,
             attack: null,
             sight: object.sight,
             buttons: object.buttons,
-            move: object.move
+            move: object.move,
+            hijackable: object.hijackable
         };
     },
     step: async (game, object) => {
@@ -103,6 +106,13 @@ export const Creature = {
                 const i = object.pose === "button0" ? 0 : object.pose === "button1" ? 1 : object.pose === "button2" ? 2 : 3;
 
                 switch (object.buttons[i].type) {
+                case "hijack":
+                    if (hijack(game, object)) {
+                        object.pose = "default";
+                        object.count = 0;
+                        return object;
+                    }
+                    break;
                 case "attack":
                     if (attack(game, object, object.buttons[i].startup, object.buttons[i].active, object.buttons[i].recovery, object.buttons[i].left, object.buttons[i].back, object.buttons[i].right, object.buttons[i].front)) {
                         object.pose = "default";
@@ -172,13 +182,16 @@ export const Teiri = {
                     front: { x: 0, y: 16, width: 16, height: 8, damage: 1 }
                 },
                 null,
-                null,
+                {
+                    type: "hijack"
+                },
                 null
             ],
             move: {
                 pixels: 1,
                 perFrames: 1
-            }
+            },
+            hijackable: false
         });
     },
     step: async (game, object) => Creature.step(game, object),
@@ -201,10 +214,10 @@ export const SecurityDrone = {
             direction: object.direction,
             shield: 1,
             sight: {
-                left: { x: 0, y: 0, width: 0, height: 0 },
-                back: { x: 0, y: 0, width: 0, height: 0 },
-                right: { x: 0, y: 0, width: 0, height: 0 },
-                front: { x: 0, y: 0, width: 0, height: 0 }
+                left: { x: -32, y: -16, width: 48, height: 48 },
+                back: { x: -16, y: -32, width: 48, height: 48 },
+                right: { x: 0, y: -16, width: 48, height: 48 },
+                front: { x: -16, y: 0, width: 48, height: 48 }
             },
             buttons: [
                 {
@@ -229,7 +242,8 @@ export const SecurityDrone = {
             move: {
                 pixels: 2,
                 perFrames: 1
-            }
+            },
+            hijackable: true
         });
     },
     step: async (game, object) => Creature.step(game, object),
@@ -241,7 +255,7 @@ export const Silver = {
     create: async (object) => {
         return {
             type: "silver",
-            id: object.id || Symbol(),
+            id: object.id || "0x" + Gensym.gensym().toString(16).toUpperCase(),
             x: object.x,
             y: object.y,
             width: 16,
@@ -258,7 +272,7 @@ export const Gray = {
     create: async (object) => {
         return {
             type: "gray",
-            id: object.id || Symbol(),
+            id: object.id || "0x" + Gensym.gensym().toString(16).toUpperCase(),
             x: object.x,
             y: object.y,
             width: 16,
@@ -275,7 +289,7 @@ export const Shot = {
     create: async (object) => {
         return {
             type: object.type,
-            id: object.id || Symbol(),
+            id: object.id || "0x" + Gensym.gensym().toString(16).toUpperCase(),
             x: object.x,
             y: object.y,
             width: 0,
@@ -448,20 +462,72 @@ function button(object, pose, n) {
     return object.control.input.buttons[n];
 }
 
+function hijack(game, object) {
+    if (object.control.input.buttons[1]) {
+        object.hijack = null;
+        return true;
+    }
+
+    const targets = game.objects.filter(o => Team.enemy(object.team, o.team) && o.hijackable);
+
+    if (!object.hijack) {
+        object.hijack = { target: targets.length === 0 ? null : targets[0].id };
+    }
+
+    var i = targets.findIndex(o => object.hijack.target === o.id);
+
+    if (i < 0) {
+        object.hijack = { target: targets.length === 0 ? null : targets[0].id };
+        i = targets.findIndex(o => object.hijack.target === o.id);
+    }
+
+    if (targets.length === 0)
+        return false;
+
+    if (object.count % 8 === 0) {
+        if (object.control.input.y < 0.25 && 0 <= i - 1 && i - 1 < targets.length)
+            --i;
+        if (object.control.input.y > 0.25 && 0 <= i + 1 && i + 1 < targets.length)
+            ++i;
+
+        if (object.hijack.target !== targets[i].id) {
+            object.hijack.target = targets[i].id;
+            return false;
+        }
+
+        if (object.control.input.buttons[0]) {
+            const target = targets[i];
+            target.team = object.team;
+
+            const targets1 = game.objects.filter(o => Team.enemy(object.team, o.team) && o.hijackable);
+
+            if (targets1.length === 0) {
+                object.hijack = { target: null };
+                return false;
+            } else {
+                object.hijack = { target: targets1[0].id };
+                return false;
+            }
+        }
+    }
+
+    return false;
+}
+
 function attack(game, object, startup, active, recovery, leftAttack, backAttack, rightAttack, frontAttack) {
     if (!object.attack) {
         switch (object.direction) {
         case "left":
-            object.attack = { id: Symbol(), x: object.x + leftAttack.x, y: object.y + leftAttack.y, width: leftAttack.width, height: leftAttack.height, damage: leftAttack.damage, team: object.team };
+            object.attack = { id: "0x" + Gensym.gensym().toString(16).toUpperCase(), x: object.x + leftAttack.x, y: object.y + leftAttack.y, width: leftAttack.width, height: leftAttack.height, damage: leftAttack.damage, team: object.team };
             break;
         case "back":
-            object.attack = { id: Symbol(), x: object.x + backAttack.x, y: object.y + backAttack.y, width: backAttack.width, height: backAttack.height, damage: backAttack.damage, team: object.team };
+            object.attack = { id: "0x" + Gensym.gensym().toString(16).toUpperCase(), x: object.x + backAttack.x, y: object.y + backAttack.y, width: backAttack.width, height: backAttack.height, damage: backAttack.damage, team: object.team };
             break;
         case "right":
-            object.attack = { id: Symbol(), x: object.x + rightAttack.x, y: object.y + rightAttack.y, width: rightAttack.width, height: rightAttack.height, damage: rightAttack.damage, team: object.team };
+            object.attack = { id: "0x" + Gensym.gensym().toString(16).toUpperCase(), x: object.x + rightAttack.x, y: object.y + rightAttack.y, width: rightAttack.width, height: rightAttack.height, damage: rightAttack.damage, team: object.team };
             break;
         case "front":
-            object.attack = { id: Symbol(), x: object.x + frontAttack.x, y: object.y + frontAttack.y, width: frontAttack.width, height: frontAttack.height, damage: frontAttack.damage, team: object.team };
+            object.attack = { id: "0x" + Gensym.gensym().toString(16).toUpperCase(), x: object.x + frontAttack.x, y: object.y + frontAttack.y, width: frontAttack.width, height: frontAttack.height, damage: frontAttack.damage, team: object.team };
             break;
         }
     }

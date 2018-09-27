@@ -17,6 +17,7 @@
 import * as Asset from "./asset.js";
 import * as Control from "./control.js";
 import * as Font from "./font.js";
+import * as Gensym from "./gensym.js";
 import * as Input from "./input.js";
 import * as Object from "./object.js";
 import * as Team from "./team.js";

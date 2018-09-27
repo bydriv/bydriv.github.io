@@ -88,6 +88,16 @@ export const Teiri = {
             view.shield.y = object.y - 2;
 
             return;
+        case "button2":
+            if (object.count % 8 === 0)
+                view.sprite.texture = Asset.TEXTURES.get("hijack/pixelart/teiri/hijack/" + object.direction + "/" + object.count / 8 % 4 + ".png");
+
+            view.sprite.x = object.x - 8;
+            view.sprite.y = object.y - 8;
+            view.shield.x = object.x;
+            view.shield.y = object.y - 2;
+
+            return;
         default:
             console.error("undefined object pose: %o", object.pose);
         }
