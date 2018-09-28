@@ -549,6 +549,19 @@ function hijack(game, object) {
         //}
     }
 
+    const x = (object.hijack.x + object.hijack.width / 2) - (object.x + object.width / 2);
+    const y = (object.hijack.y + object.hijack.height / 2) - (object.y + object.height / 2);
+
+    if (y < 0) {
+        object.direction = "back";
+    } else if (x < 0) {
+        object.direction = "left";
+    } else if (x > 0) {
+        object.direction = "right";
+    } else if (y > 0) {
+        object.direction = "front";
+    }
+
     game.hijacks.push(object.hijack);
 
     return false;
