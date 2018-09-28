@@ -67,6 +67,38 @@ export async function create() {
     window.renderable = false;
     app.stage.addChild(window);
 
+    const textStyle = new PIXI.TextStyle({
+        lineHeight: 13,
+        textBaseline: "top",
+        fontFamily: "Misaki Gothic",
+        fontSize: 8,
+        fill: 0x00FF00
+    });
+
+    const cursorText1 = new PIXI.Text("┏━━┓", textStyle);
+    const cursorText2 = new PIXI.Text("┃    ┃", textStyle);
+    const cursorText3 = new PIXI.Text("┃    ┃", textStyle);
+    const cursorText4 = new PIXI.Text("┗━━┛", textStyle);
+
+    const log = [];
+
+    for (var i = 0; i < 20; ++i) {
+        const hijackingText = new PIXI.Text("", textStyle);
+        const percentageText = new PIXI.Text("", textStyle);
+        const progressText = new PIXI.Text("", textStyle);
+        hijackingText.x = 0;
+        hijackingText.y = i * 8 - 4;
+        percentageText.x = 23 * 4;
+        percentageText.y = i * 8 - 4;
+        progressText.x = 27 * 4;
+        progressText.y = i * 8 - 4;
+        log.push({
+            hijackingText: hijackingText,
+            percentageText: percentageText,
+            progressText: progressText
+        });
+    }
+
     var touches = [];
 
     app.view.addEventListener("touchstart", e => {
@@ -107,7 +139,12 @@ export async function create() {
         hits: hits,
         dialog: {
             window: window,
-            log: []
+            textStyle: textStyle,
+            cursorText1: cursorText1,
+            cursorText2: cursorText2,
+            cursorText3: cursorText3,
+            cursorText4: cursorText4,
+            log: log
         }
     };
 }
@@ -175,52 +212,29 @@ export async function step(game) {
 
                 const targets = game.objects.filter(o => o.hijackable && Team.enemy(o.team, object.hijack.team) && Object.collision(o, object.hijack));
 
-                const cursorStyle = new PIXI.TextStyle({
-                    lineHeight: 13,
-                    textBaseline: "top",
-                    fontFamily: "Misaki Gothic",
-                    fontSize: 8,
-                    fill: targets.length === 0 ? 0x008000 : 0x00FF00
-                });
-                const cursorText1 = new PIXI.Text("┏━━┓", cursorStyle);
-                const cursorText2 = new PIXI.Text("┃    ┃", cursorStyle);
-                const cursorText3 = new PIXI.Text("┃    ┃", cursorStyle);
-                const cursorText4 = new PIXI.Text("┗━━┛", cursorStyle);
-                cursorText1.x = object.hijack.x + game.app.stage.x / SCALE;
-                cursorText1.y = object.hijack.y + game.app.stage.y / SCALE - 4;
-                cursorText2.x = object.hijack.x + game.app.stage.x / SCALE;
-                cursorText2.y = object.hijack.y + game.app.stage.y / SCALE + 8 - 4;
-                cursorText3.x = object.hijack.x + game.app.stage.x / SCALE;
-                cursorText3.y = object.hijack.y + game.app.stage.y / SCALE + 16 - 4;
-                cursorText4.x = object.hijack.x + game.app.stage.x / SCALE;
-                cursorText4.y = object.hijack.y + game.app.stage.y / SCALE + 24 - 4;
-                game.dialog.window.addChild(cursorText1);
-                game.dialog.window.addChild(cursorText2);
-                game.dialog.window.addChild(cursorText3);
-                game.dialog.window.addChild(cursorText4);
+                game.dialog.textStyle.fill = targets.length === 0 ? 0x008000 : 0x00FF00;
 
-                const logStyle = new PIXI.TextStyle({
-                    lineHeight: 13,
-                    textBaseline: "top",
-                    fontFamily: "Misaki Gothic",
-                    fontSize: 8,
-                    fill: "white"
-                });
+                game.dialog.cursorText1.x = object.hijack.x + game.app.stage.x / SCALE;
+                game.dialog.cursorText1.y = object.hijack.y + game.app.stage.y / SCALE - 4;
+                game.dialog.cursorText2.x = object.hijack.x + game.app.stage.x / SCALE;
+                game.dialog.cursorText2.y = object.hijack.y + game.app.stage.y / SCALE + 8 - 4;
+                game.dialog.cursorText3.x = object.hijack.x + game.app.stage.x / SCALE;
+                game.dialog.cursorText3.y = object.hijack.y + game.app.stage.y / SCALE + 16 - 4;
+                game.dialog.cursorText4.x = object.hijack.x + game.app.stage.x / SCALE;
+                game.dialog.cursorText4.y = object.hijack.y + game.app.stage.y / SCALE + 24 - 4;
+                game.dialog.window.addChild(game.dialog.cursorText1);
+                game.dialog.window.addChild(game.dialog.cursorText2);
+                game.dialog.window.addChild(game.dialog.cursorText3);
+                game.dialog.window.addChild(game.dialog.cursorText4);
 
                 for (var i = 0; i < targets.length; ++i) {
                     const target = targets[i];
-                    const hijackingText = new PIXI.Text("[" + (i + 1) + " of " + targets.length +  "] Hijacking", logStyle);
-                    const percentageText = new PIXI.Text(("  " + Math.floor((60 - target.security) / 60 * 100)).slice(-3) + "%", logStyle);
-                    const progressText = new PIXI.Text("[" + ("=".repeat(Math.floor((60 - target.security) / 60 * 100 / 5)) + " ".repeat(20)).slice(0, 20) + "] eta " + ("   " + Math.floor(target.security / 60 * 1000)).slice(-4) + "ms", logStyle);
-                    hijackingText.x = 0;
-                    hijackingText.y = i * 8 - 4;
-                    percentageText.x = 23 * 4;
-                    percentageText.y = i * 8 - 4;
-                    progressText.x = 27 * 4;
-                    progressText.y = i * 8 - 4;
-                    game.dialog.window.addChild(hijackingText);
-                    game.dialog.window.addChild(percentageText);
-                    game.dialog.window.addChild(progressText);
+                    game.dialog.log[i].hijackingText.text = "[" + (i + 1) + " of " + targets.length +  "] Hijacking";
+                    game.dialog.log[i].percentageText.text = ("  " + Math.floor((60 - target.security) / 60 * 100)).slice(-3) + "%";
+                    game.dialog.log[i].progressText.text = "[" + ("=".repeat(Math.floor((60 - target.security) / 60 * 100 / 5)) + " ".repeat(20)).slice(0, 20) + "] eta " + ("   " + Math.floor(target.security / 60 * 1000)).slice(-4) + "ms";
+                    game.dialog.window.addChild(game.dialog.log[i].hijackingText);
+                    game.dialog.window.addChild(game.dialog.log[i].percentageText);
+                    game.dialog.window.addChild(game.dialog.log[i].progressText);
                 }
                 /*
                 var i = 0;
