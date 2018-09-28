@@ -77,22 +77,22 @@ export const Creature = {
         case "default":
             const input = object.control.input;
 
-            if (object.buttons[0] && button(object, "button0", 0)) {
+            if (object.count >= 8 && object.buttons[0] && button(object, "button0", 0)) {
                 object.count = 0;
                 return object;
             }
 
-            if (object.buttons[1] && button(object, "button1", 1)) {
+            if (object.count >= 8 && object.buttons[1] && button(object, "button1", 1)) {
                 object.count = 0;
                 return object;
             }
 
-            if (object.buttons[2] && button(object, "button2", 2)) {
+            if (object.count >= 8 && object.buttons[2] && button(object, "button2", 2)) {
                 object.count = 0;
                 return object;
             }
 
-            if (object.buttons[3] && button(object, "button3", 3)) {
+            if (object.count >= 8 && object.buttons[3] && button(object, "button3", 3)) {
                 object.count = 0;
                 return object;
             }
@@ -202,10 +202,10 @@ export const Teiri = {
                     right: { x: 16, y: 0, width: 8, height: 16, damage: 1 },
                     front: { x: 0, y: 16, width: 16, height: 8, damage: 1 }
                 },
-                null,
                 {
                     type: "hijack"
                 },
+                null,
                 null
             ],
             move: {
@@ -494,7 +494,7 @@ function button(object, pose, n) {
 }
 
 function hijack(game, object) {
-    if (object.control.input.buttons[1]) {
+    if (object.count >= 8 && object.control.input.buttons[1]) {
         object.hijack = null;
         return true;
     }

@@ -76,30 +76,12 @@ export async function create() {
         if (touches.length === 1 && Input.PLAYER.x === 0 && Input.PLAYER.y === 0) {
             Input.PLAYER.buttons[0] = true;
             requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        requestAnimationFrame(() => {
-                            requestAnimationFrame(() => {
-                                requestAnimationFrame(() => {
-                                    requestAnimationFrame(() => {
-                                        requestAnimationFrame(() => {
-                                            Input.PLAYER.buttons[0] = false;
-                                        });
-                                    });
-                                });
-                            });
-                        });
-                    });
-                });
+                Input.PLAYER.buttons[0] = false;
             });
         } else if (touches.length === 2) {
             Input.PLAYER.buttons[1] = true;
             requestAnimationFrame(() => {
                 Input.PLAYER.buttons[1] = false;
-            });
-            Input.PLAYER.buttons[2] = true;
-            requestAnimationFrame(() => {
-                Input.PLAYER.buttons[2] = false;
             });
         } else {
             Input.PLAYER.x = 0;

@@ -88,7 +88,7 @@ export const Teiri = {
             view.shield.y = object.y - 2;
 
             return;
-        case "button2":
+        case "button1":
             if (object.count % 8 === 0)
                 view.sprite.texture = Asset.TEXTURES.get("hijack/pixelart/teiri/hijack/" + object.direction + "/" + object.count / 8 % 4 + ".png");
 
