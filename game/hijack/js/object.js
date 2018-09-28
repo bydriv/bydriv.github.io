@@ -501,8 +501,8 @@ function hijack(game, object) {
 
     if (!object.hijack) {
         object.hijack = {
-            x: (object.x + (object.direction === "left" ? -32 : object.direction === "right" ? 16 : 0)),
-            y: (object.y + (object.direction === "back" ? -32 : object.direction === "front" ? 16 : 0)),
+            x: (object.x + (object.direction === "left" ? -32 : object.direction === "right" ? 16 : -8)),
+            y: (object.y + (object.direction === "back" ? -32 : object.direction === "front" ? 16 : -8)),
             width: 32,
             height: 32,
             damage: 1,
