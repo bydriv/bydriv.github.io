@@ -58,7 +58,8 @@ export const Creature = {
             sight: object.sight,
             buttons: object.buttons,
             move: object.move,
-            hijackable: object.hijackable
+            hijackable: object.hijackable,
+            security: object.security
         };
     },
     step: async (game, object) => {
@@ -191,7 +192,8 @@ export const Teiri = {
                 pixels: 1,
                 perFrames: 1
             },
-            hijackable: false
+            hijackable: false,
+            security: 0
         });
     },
     step: async (game, object) => Creature.step(game, object),
@@ -243,7 +245,8 @@ export const SecurityDrone = {
                 pixels: 2,
                 perFrames: 1
             },
-            hijackable: true
+            hijackable: true,
+            security: 60
         });
     },
     step: async (game, object) => Creature.step(game, object),
@@ -474,13 +477,19 @@ function hijack(game, object) {
     const targets = game.objects.filter(o => Team.enemy(object.team, o.team) && o.hijackable);
 
     if (!object.hijack) {
-        object.hijack = { target: targets.length === 0 ? null : targets[0].id };
+        object.hijack = {
+            target: targets.length === 0 ? null : targets[0].id,
+            count: 0
+        };
     }
 
     var i = targets.findIndex(o => object.hijack.target === o.id);
 
     if (i < 0) {
-        object.hijack = { target: targets.length === 0 ? null : targets[0].id };
+        object.hijack = {
+            target: targets.length === 0 ? null : targets[0].id,
+            count: 0
+        };
         i = targets.findIndex(o => object.hijack.target === o.id);
     }
 
@@ -497,20 +506,25 @@ function hijack(game, object) {
             object.hijack.target = targets[i].id;
             return false;
         }
+    }
 
-        if (object.control.input.buttons[0]) {
-            const target = targets[i];
-            target.team = object.team;
+    if (object.control.input.buttons[0]) {
+        const target = targets[i];
+        if (object.hijack.count < target.security) {
+            ++object.hijack.count;
+            return false;
+        }
 
-            const targets1 = game.objects.filter(o => Team.enemy(object.team, o.team) && o.hijackable);
+        target.team = object.team;
 
-            if (targets1.length === 0) {
-                object.hijack = { target: null };
-                return false;
-            } else {
-                object.hijack = { target: targets1[0].id };
-                return false;
-            }
+        const targets1 = game.objects.filter(o => Team.enemy(object.team, o.team) && o.hijackable);
+
+        if (targets1.length === 0) {
+            object.hijack = { target: null, count: 0 };
+            return false;
+        } else {
+            object.hijack = { target: targets1[0].id, count: 0 };
+            return false;
         }
     }
 

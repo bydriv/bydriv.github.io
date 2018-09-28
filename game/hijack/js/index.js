@@ -180,32 +180,63 @@ export async function step(game) {
                         game.dialog.window.addChild(game.dialog.log[i][j]);
 
                 const enStyle = new PIXI.TextStyle({
+                    lineHeight: 12,
+                    textBaseline: "top",
                     fontFamily: "Misaki Gothic",
                     fontSize: 8,
                     fill: "white"
                 });
 
-                if (object.hijack.target) {
+                if (object.hijack.target && game.objects.find(o => o.id == object.hijack.target)) {
                     const hijackText = new PIXI.Text("$ hijack ", enStyle);
                     const idText = new PIXI.Text(object.hijack.target, enStyle);
                     hijackText.x = 0;
-                    hijackText.y = i * 8;
+                    hijackText.y = i * 8 - 4;
                     idText.x = "$ hijack ".length * 4;
-                    idText.y = i * 8;
+                    idText.y = i * 8  - 4;
                     game.dialog.window.addChild(hijackText);
                     game.dialog.window.addChild(idText);
 
-                    if (object.count % 8 === 0 && object.control.input.buttons[0]) {
-                        if (game.dialog.log.length < 20) {
-                            game.dialog.log.push([hijackText, idText]);
-                        } else {
-                            game.dialog.log.shift();
-                            game.dialog.log.push([hijackText, idText]);
+                    const target = game.objects.find(o => o.id == object.hijack.target);
+                    const hijackingText = new PIXI.Text("Hijacking ", enStyle);
+                    const percentageText = new PIXI.Text(("  " + Math.floor(object.hijack.count / target.security * 100)).slice(-3) + "%", enStyle);
+                    const progressText = new PIXI.Text("[" + ("=".repeat(Math.floor(object.hijack.count / target.security * 100 / 5)) + " ".repeat(20)).slice(0, 20) + "]", enStyle);
+                    hijackingText.x = 0;
+                    hijackingText.y = i * 8 + 8 - 4;
+                    percentageText.x = 34 * 4;
+                    percentageText.y = i * 8 + 8 - 4;
+                    progressText.x = 38 * 4;
+                    progressText.y = i * 8 + 8 - 4;
+                    game.dialog.window.addChild(hijackingText);
+                    game.dialog.window.addChild(percentageText);
+                    game.dialog.window.addChild(progressText);
 
-                            i = 0;
-                            for (; i < game.dialog.log.length; ++i)
-                                for (var j = 0; j < game.dialog.log[i].length; ++j)
-                                    game.dialog.log[i][j].y -= 8;
+                    if (object.control.input.buttons[0]) {
+                        if (object.hijack.count < target.security) {
+                        } else {
+                            if (game.dialog.log.length < 19) {
+                                game.dialog.log.push([hijackText, idText]);
+                                game.dialog.log.push([hijackingText, percentageText, progressText]);
+                            } else if (game.dialog.log.length < 20) {
+                                game.dialog.log.shift();
+                                game.dialog.log.push([hijackText, idText]);
+                                game.dialog.log.push([hijackingText, percentageText, progressText]);
+
+                                i = 0;
+                                for (; i < game.dialog.log.length; ++i)
+                                    for (var j = 0; j < game.dialog.log[i].length; ++j)
+                                        game.dialog.log[i][j].y -= 8;
+                            } else {
+                                game.dialog.log.shift();
+                                game.dialog.log.shift();
+                                game.dialog.log.push([hijackText, idText]);
+                                game.dialog.log.push([hijackingText, percentageText, progressText]);
+
+                                i = 0;
+                                for (; i < game.dialog.log.length; ++i)
+                                    for (var j = 0; j < game.dialog.log[i].length; ++j)
+                                        game.dialog.log[i][j].y -= 16;
+                            }
                         }
                     }
                 }
