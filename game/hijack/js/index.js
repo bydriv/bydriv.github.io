@@ -213,14 +213,14 @@ export async function step(game) {
 
                 for (var i = 0; i < targets.length; ++i) {
                     const target = targets[i];
-                    const hijackingText = new PIXI.Text("[" + i + " of " + targets.length +  "] Hijacking " + target.id, logStyle);
+                    const hijackingText = new PIXI.Text("[" + i + " of " + targets.length +  "] " + target.id, logStyle);
                     const percentageText = new PIXI.Text(("  " + Math.floor((60 - target.security) / 60 * 100)).slice(-3) + "%", logStyle);
-                    const progressText = new PIXI.Text("[" + ("=".repeat(Math.floor((60 - target.security) / 60 * 100 / 5)) + " ".repeat(20)).slice(0, 20) + "]", logStyle);
+                    const progressText = new PIXI.Text("[" + ("=".repeat(Math.floor((60 - target.security) / 60 * 100 / 5)) + " ".repeat(20)).slice(0, 20) + "] eta " + ("   " + Math.floor(target.security / 60 * 1000)).slice(-4) + "ms", logStyle);
                     hijackingText.x = 0;
                     hijackingText.y = i * 8 - 4;
-                    percentageText.x = 34 * 4;
+                    percentageText.x = 23 * 4;
                     percentageText.y = i * 8 - 4;
-                    progressText.x = 38 * 4;
+                    progressText.x = 27 * 4;
                     progressText.y = i * 8 - 4;
                     game.dialog.window.addChild(hijackingText);
                     game.dialog.window.addChild(percentageText);
