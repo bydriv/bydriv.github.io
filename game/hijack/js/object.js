@@ -501,10 +501,10 @@ function hijack(game, object) {
 
     if (!object.hijack) {
         object.hijack = {
-            x: (object.x + (object.direction === "left" ? -16 : object.direction === "right" ? 16 : 0)),
-            y: (object.y + (object.direction === "back" ? -8 : object.direction === "front" ? 16 : 0)),
-            width: 8,
-            height: 8,
+            x: (object.x + (object.direction === "left" ? -32 : object.direction === "right" ? 16 : 0)),
+            y: (object.y + (object.direction === "back" ? -32 : object.direction === "front" ? 16 : 0)),
+            width: 32,
+            height: 32,
             damage: 1,
             team: object.team
         };
@@ -514,13 +514,13 @@ function hijack(game, object) {
 
     if (targets.length === 0) {
         if (object.count % 2 === 0) {
-            if (object.control.input.x < -0.25 && Math.abs(object.x - (object.hijack.x - 8)) <= 112)
+            if (object.control.input.x < -0.25 && Math.abs(object.x + object.width - (object.hijack.x + object.hijack.width / 2 - 8)) <= 120)
                 object.hijack.x -= 8;
-            if (object.control.input.x > 0.25 && Math.abs(object.x - (object.hijack.x + object.hijack.width + 8)) <= 120)
+            if (object.control.input.x > 0.25 && Math.abs(object.x - (object.hijack.x + object.hijack.width / 2 + 8)) <= 120)
                 object.hijack.x += 8;
-            if (object.control.input.y < -0.25 && Math.abs(object.y - (object.hijack.y - 8)) <= 72)
+            if (object.control.input.y < -0.25 && Math.abs(object.y + object.height - (object.hijack.y + object.hijack.height / 2 - 8)) <= 80)
                 object.hijack.y -= 8;
-            if (object.control.input.y > 0.25 && Math.abs(object.y - (object.hijack.y + object.hijack.height + 8)) <= 88)
+            if (object.control.input.y > 0.25 && Math.abs(object.y - (object.hijack.y + object.hijack.height / 2 + 8)) <= 80)
                 object.hijack.y += 8;
         }
     } else {
@@ -530,8 +530,8 @@ function hijack(game, object) {
         const bottom = Math.max.apply(null, targets.map(target => target.y + target.height));
         const width = right - left;
         const height = bottom - top;
-        const x = left + Math.max(width - object.hijack.width, 0) / 2;
-        const y = top + Math.max(height - object.hijack.height, 0) / 2;
+        const x = left + width / 2 - object.hijack.width / 2;
+        const y = top + height / 2 - object.hijack.height / 2;
 
         /*if (object.count % 8 === 0 && object.hijack.x === x && object.hijack.y === y) {
             if (object.control.input.x < -0.25 && Math.abs(object.x - (object.hijack.x - 8)) <= 112)

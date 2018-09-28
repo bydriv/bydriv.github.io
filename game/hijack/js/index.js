@@ -176,17 +176,31 @@ export async function step(game) {
                 const targets = game.objects.filter(o => o.hijackable && Team.enemy(o.team, object.hijack.team) && Object.collision(o, object.hijack));
 
                 const cursorStyle = new PIXI.TextStyle({
-                    fontFamily: "IBM BIOS",
+                    lineHeight: 13,
+                    textBaseline: "top",
+                    fontFamily: "Misaki Gothic",
                     fontSize: 8,
                     fill: targets.length === 0 ? 0x008000 : 0x00FF00
                 });
-                const cursorText = new PIXI.Text("[]", cursorStyle);
-                cursorText.x = object.hijack.x + game.app.stage.x / SCALE;
-                cursorText.y = object.hijack.y + 1 + game.app.stage.y / SCALE;
-                game.dialog.window.addChild(cursorText);
+                const cursorText1 = new PIXI.Text("┏━━┓", cursorStyle);
+                const cursorText2 = new PIXI.Text("┃    ┃", cursorStyle);
+                const cursorText3 = new PIXI.Text("┃    ┃", cursorStyle);
+                const cursorText4 = new PIXI.Text("┗━━┛", cursorStyle);
+                cursorText1.x = object.hijack.x + game.app.stage.x / SCALE;
+                cursorText1.y = object.hijack.y + game.app.stage.y / SCALE - 4;
+                cursorText2.x = object.hijack.x + game.app.stage.x / SCALE;
+                cursorText2.y = object.hijack.y + game.app.stage.y / SCALE + 8 - 4;
+                cursorText3.x = object.hijack.x + game.app.stage.x / SCALE;
+                cursorText3.y = object.hijack.y + game.app.stage.y / SCALE + 16 - 4;
+                cursorText4.x = object.hijack.x + game.app.stage.x / SCALE;
+                cursorText4.y = object.hijack.y + game.app.stage.y / SCALE + 24 - 4;
+                game.dialog.window.addChild(cursorText1);
+                game.dialog.window.addChild(cursorText2);
+                game.dialog.window.addChild(cursorText3);
+                game.dialog.window.addChild(cursorText4);
 
                 const logStyle = new PIXI.TextStyle({
-                    lineHeight: 12,
+                    lineHeight: 13,
                     textBaseline: "top",
                     fontFamily: "Misaki Gothic",
                     fontSize: 8,
