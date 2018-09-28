@@ -31,12 +31,20 @@ export async function step(game, object) {
         console.error("undefined object type: %o", object.type);
 };
 
+export async function onHijack(game, object, hijack) {
+    if (INSTANCES.has(object.type))
+        return INSTANCES.get(object.type).onHijack(game, object, hijack);
+    else
+        console.error("undefined object type: %o", object.type);
+}
+;
+
 export async function onAttack(game, object, attack) {
     if (INSTANCES.has(object.type))
         return INSTANCES.get(object.type).onAttack(game, object, attack);
     else
         console.error("undefined object type: %o", object.type);
-}
+};
 
 export const Creature = {
     create: async (object) => {
@@ -139,6 +147,18 @@ export const Creature = {
             }
         }
     },
+    onHijack: async (game, object, hijack) => {
+        if (!object.hijackable)
+            return;
+
+        if (!Team.enemy(object.team, hijack.team))
+            return;
+
+        object.security -= Math.min(hijack.damage, object.security);
+
+        if (object.security === 0)
+            object.team = hijack.team;
+    },
     onAttack: async (game, object, attack) => {
         if (!Team.enemy(object.team, attack.team))
             return;
@@ -197,6 +217,7 @@ export const Teiri = {
         });
     },
     step: async (game, object) => Creature.step(game, object),
+    onHijack: async (game, object, hijack) => Creature.onHijack(game, object, hijack),
     onAttack: async (game, object, attack) => Creature.onAttack(game, object, attack)
 };
 INSTANCES.set("teiri", Teiri);
@@ -250,6 +271,7 @@ export const SecurityDrone = {
         });
     },
     step: async (game, object) => Creature.step(game, object),
+    onHijack: async (game, object, hijack) => Creature.onHijack(game, object, hijack),
     onAttack: async (game, object, attack) => Creature.onAttack(game, object, attack)
 };
 INSTANCES.set("security-drone", SecurityDrone);
@@ -267,6 +289,7 @@ export const Silver = {
         };
     },
     step: async (game, object) => object,
+    onHijack: async (game, object, hijack) => {},
     onAttack: async (game, object, attack) => {}
 };
 INSTANCES.set("silver", Silver);
@@ -284,6 +307,7 @@ export const Gray = {
         };
     },
     step: async (game, object) => object,
+    onHijack: async (game, object, hijack) => {},
     onAttack: async (game, object, attack) => {}
 };
 INSTANCES.set("gray", Gray);
@@ -331,6 +355,7 @@ export const Shot = {
             return object;
         }
     },
+    onHijack: async (game, object, hijack) => {},
     onAttack: async (game, object, attack) => {}
 };
 INSTANCES.set("shot", Shot);
@@ -474,59 +499,57 @@ function hijack(game, object) {
         return true;
     }
 
-    const targets = game.objects.filter(o => Team.enemy(object.team, o.team) && o.hijackable);
-
     if (!object.hijack) {
         object.hijack = {
-            target: targets.length === 0 ? null : targets[0].id,
-            count: 0
+            x: (object.x + (object.direction === "left" ? -16 : object.direction === "right" ? 16 : 0)),
+            y: (object.y + (object.direction === "back" ? -8 : object.direction === "front" ? 16 : 0)),
+            width: 8,
+            height: 8,
+            damage: 1,
+            team: object.team
         };
     }
 
-    var i = targets.findIndex(o => object.hijack.target === o.id);
+    const targets = game.objects.filter(o => o.hijackable && Team.enemy(o.team, object.hijack.team) && collision(o, object.hijack));
 
-    if (i < 0) {
-        object.hijack = {
-            target: targets.length === 0 ? null : targets[0].id,
-            count: 0
-        };
-        i = targets.findIndex(o => object.hijack.target === o.id);
-    }
-
-    if (targets.length === 0)
-        return false;
-
-    if (object.count % 8 === 0) {
-        if (object.control.input.y < -0.25 && 0 <= i - 1 && i - 1 < targets.length)
-            --i;
-        if (object.control.input.y > 0.25 && 0 <= i + 1 && i + 1 < targets.length)
-            ++i;
-
-        if (object.hijack.target !== targets[i].id) {
-            object.hijack.target = targets[i].id;
-            return false;
+    if (targets.length === 0) {
+        if (object.count % 2 === 0) {
+            if (object.control.input.x < -0.25 && Math.abs(object.x - (object.hijack.x - 8)) <= 112)
+                object.hijack.x -= 8;
+            if (object.control.input.x > 0.25 && Math.abs(object.x - (object.hijack.x + object.hijack.width + 8)) <= 120)
+                object.hijack.x += 8;
+            if (object.control.input.y < -0.25 && Math.abs(object.y - (object.hijack.y - 8)) <= 72)
+                object.hijack.y -= 8;
+            if (object.control.input.y > 0.25 && Math.abs(object.y - (object.hijack.y + object.hijack.height + 8)) <= 88)
+                object.hijack.y += 8;
         }
-    }
+    } else {
+        const left = Math.min.apply(null, targets.map(target => target.x));
+        const top = Math.min.apply(null, targets.map(target => target.y));
+        const right = Math.max.apply(null, targets.map(target => target.x + target.width));
+        const bottom = Math.max.apply(null, targets.map(target => target.y + target.height));
+        const width = right - left;
+        const height = bottom - top;
+        const x = left + Math.max(width - object.hijack.width, 0) / 2;
+        const y = top + Math.max(height - object.hijack.height, 0) / 2;
 
-    if (object.control.input.buttons[0]) {
-        const target = targets[i];
-        if (object.hijack.count < target.security) {
-            ++object.hijack.count;
-            return false;
-        }
-
-        target.team = object.team;
-
-        const targets1 = game.objects.filter(o => Team.enemy(object.team, o.team) && o.hijackable);
-
-        if (targets1.length === 0) {
-            object.hijack = { target: null, count: 0 };
-            return false;
+        /*if (object.count % 8 === 0 && object.hijack.x === x && object.hijack.y === y) {
+            if (object.control.input.x < -0.25 && Math.abs(object.x - (object.hijack.x - 8)) <= 112)
+                object.hijack.x += (left - object.hijack.x - 8) & 0xFFFFFFF8;
+            if (object.control.input.x > 0.25 && Math.abs(object.x - (object.hijack.x + object.hijack.width + 8)) <= 120)
+                object.hijack.x += (right - object.hijack.x + 8) & 0xFFFFFFF8;
+            if (object.control.input.y < -0.25 && Math.abs(object.y - (object.hijack.y - 8)) <= 72)
+                object.hijack.y += (top - object.hijack.y - 8) & 0xFFFFFFF8;
+            if (object.control.input.y > 0.25 && Math.abs(object.y - (object.hijack.y + object.hijack.height + 8)) <= 88)
+                object.hijack.y += (bottom - object.hijack.x + 8) & 0xFFFFFFF8;
         } else {
-            object.hijack = { target: targets1[0].id, count: 0 };
-            return false;
-        }
+        */
+            object.hijack.x = x;
+            object.hijack.y = y;
+        //}
     }
+
+    game.hijacks.push(object.hijack);
 
     return false;
 }

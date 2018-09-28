@@ -120,6 +120,7 @@ export async function create() {
         map: Asset.MAPS.get("hijack/map/test.json"),
         views: views,
         objects: objects,
+        hijacks: [],
         attacks: [],
         hits: hits,
         dialog: {
@@ -142,6 +143,11 @@ export async function step(game) {
         game.objects[i] = await Object.step(game, game.objects[i]);
 
     for (var i = 0; i < game.objects.length; ++i)
+        for (var j = 0; j < game.hijacks.length; ++j)
+            if (Object.collision(game.objects[i], game.hijacks[j]))
+                await Object.onHijack(game, game.objects[i], game.hijacks[j]);
+
+    for (var i = 0; i < game.objects.length; ++i)
         for (var j = 0; j < game.attacks.length; ++j)
             if (!(game.hits.get(game.objects[i].id).has(game.attacks[j].id)))
                 if (Object.collision(game.objects[i], game.attacks[j])) {
@@ -158,6 +164,7 @@ export async function step(game) {
 
     game.objects = game.objects.filter(object => !object.exiled);
 
+    game.hijacks = [];
     game.attacks = [];
 
     for (var i = 0; i < game.objects.length; ++i)
@@ -168,14 +175,58 @@ export async function step(game) {
     for (var i = 0; i < game.objects.length; ++i)
         if (game.map.lock === game.objects[i].id) {
             const object = game.objects[i];
-            const centralX = (object.x + object.width / 2) * SCALE;
-            const centralY = (object.y + object.height / 2) * SCALE;
-            game.app.stage.x = WIDTH * SCALE / 2 - centralX;
-            game.app.stage.y = HEIGHT * SCALE / 2 - centralY;
+
+            if (!object.hijack) {
+                const centralX = (object.x + object.width / 2) * SCALE;
+                const centralY = (object.y + object.height / 2) * SCALE;
+                game.app.stage.x = WIDTH * SCALE / 2 - centralX;
+                game.app.stage.y = HEIGHT * SCALE / 2 - centralY;
+            } else {
+                const centralX = (object.hijack.x + object.hijack.width / 2) * SCALE;
+                const centralY = (object.hijack.y + object.hijack.height / 2) * SCALE;
+                game.app.stage.x = WIDTH * SCALE / 2 - centralX;
+                game.app.stage.y = HEIGHT * SCALE / 2 - centralY;
+            }
 
             if (object.hijack) {
                 game.dialog.window.renderable = true;
 
+                const targets = game.objects.filter(o => o.hijackable && Team.enemy(o.team, object.hijack.team) && Object.collision(o, object.hijack));
+
+                const cursorStyle = new PIXI.TextStyle({
+                    fontFamily: "IBM BIOS",
+                    fontSize: 8,
+                    fill: targets.length === 0 ? 0x008000 : 0x00FF00
+                });
+                const cursorText = new PIXI.Text("[]", cursorStyle);
+                cursorText.x = object.hijack.x + game.app.stage.x / SCALE;
+                cursorText.y = object.hijack.y + 1 + game.app.stage.y / SCALE;
+                game.dialog.window.addChild(cursorText);
+
+                const logStyle = new PIXI.TextStyle({
+                    lineHeight: 12,
+                    textBaseline: "top",
+                    fontFamily: "Misaki Gothic",
+                    fontSize: 8,
+                    fill: "white"
+                });
+
+                for (var i = 0; i < targets.length; ++i) {
+                    const target = targets[i];
+                    const hijackingText = new PIXI.Text("[" + i + " of " + targets.length +  "] Hijacking " + target.id, logStyle);
+                    const percentageText = new PIXI.Text(("  " + Math.floor((60 - target.security) / 60 * 100)).slice(-3) + "%", logStyle);
+                    const progressText = new PIXI.Text("[" + ("=".repeat(Math.floor((60 - target.security) / 60 * 100 / 5)) + " ".repeat(20)).slice(0, 20) + "]", logStyle);
+                    hijackingText.x = 0;
+                    hijackingText.y = i * 8 - 4;
+                    percentageText.x = 34 * 4;
+                    percentageText.y = i * 8 - 4;
+                    progressText.x = 38 * 4;
+                    progressText.y = i * 8 - 4;
+                    game.dialog.window.addChild(hijackingText);
+                    game.dialog.window.addChild(percentageText);
+                    game.dialog.window.addChild(progressText);
+                }
+                /*
                 var i = 0;
                 for (; i < game.dialog.log.length; ++i)
                     for (var j = 0; j < game.dialog.log[i].length; ++j)
@@ -242,6 +293,7 @@ export async function step(game) {
                         }
                     }
                 }
+                */
             }
 
             break;
