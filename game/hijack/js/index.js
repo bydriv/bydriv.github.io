@@ -29,6 +29,8 @@ const WIDTH = 240;
 const HEIGHT = 160;
 const SCALE = 8;
 
+var currentScale = SCALE;
+
 export async function create() {
     PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 
@@ -108,8 +110,8 @@ export async function create() {
     });
     app.view.addEventListener("touchmove", e => {
         if (e.touches.length === 1) {
-            Input.PLAYER.x = (e.touches[0].clientX - app.view.getBoundingClientRect().x) / app.stage.scale.x / WIDTH * 4 - 1;
-            Input.PLAYER.y = (e.touches[0].clientY - app.view.getBoundingClientRect().y) / app.stage.scale.y / HEIGHT * 4 - 1;
+            Input.PLAYER.x = (e.touches[0].clientX - app.view.getBoundingClientRect().x) / currentScale / WIDTH * 4 - 1;
+            Input.PLAYER.y = (e.touches[0].clientY - app.view.getBoundingClientRect().y) / currentScale / HEIGHT * 4 - 1;
         }
     });
 
@@ -256,10 +258,14 @@ export async function step(game) {
 }
 
 export function resize() {
-    if (document.body.clientWidth < 480)
+    if (document.body.clientWidth < 480) {
+        currentScale = 2;
         document.getElementById("game").setAttribute("class", "single");
-    else if (document.body.clientWidth < 960)
+    } else if (document.body.clientWidth < 960) {
+        currentScale = 4;
         document.getElementById("game").setAttribute("class", "double");
-    else
+    } else {
+        currentScale = 8;
         document.getElementById("game").setAttribute("class", "quadruple");
+    }
 }
