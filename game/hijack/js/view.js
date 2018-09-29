@@ -8,8 +8,6 @@
 // end
 
 // structure Teiri : VIEW where structure Object = Object.Teiri
-// structure Silver : VIEW where structure Object = Object.Silver
-// structure Gray : VIEW where structure Object = Object.Gray
 
 import * as Asset from "./asset.js";
 import * as Team from "./team.js";
@@ -163,26 +161,6 @@ export const SecurityDrone = {
 };
 INSTANCES.set("security-drone", SecurityDrone);
 
-export const Silver = {
-    create: async (object) => {
-        const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/maptip/silver.png"));
-        sprite.x = object.x;
-        sprite.y = object.y;
-        return {
-            type: "silver",
-            sprite: sprite
-        };
-    },
-    update: async (object, view) => {},
-    setup: async (container, view) => {
-        container.addChild(view.sprite);
-    },
-    teardown: async (container, view) => {
-        container.removeChild(view.sprite);
-    }
-};
-INSTANCES.set("silver", Silver);
-
 export const Gray = {
     create: async (object) => {
         const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/maptip/gray.png"));
@@ -202,6 +180,86 @@ export const Gray = {
     }
 };
 INSTANCES.set("gray", Gray);
+
+export const GrayDoor = {
+    create: async (object) => {
+        const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/maptip/gray-door.png"));
+        sprite.x = object.x;
+        sprite.y = object.y;
+        return {
+            type: "gray-door",
+            sprite: sprite
+        };
+    },
+    update: async (object, view) => {},
+    setup: async (container, view) => {
+        container.addChild(view.sprite);
+    },
+    teardown: async (container, view) => {
+        container.removeChild(view.sprite);
+    }
+};
+INSTANCES.set("gray-door", GrayDoor);
+
+export const StoneWall = {
+    create: async (object) => {
+        const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/maptip/stone-wall.png"));
+        sprite.x = object.x;
+        sprite.y = object.y;
+        return {
+            type: "stone-wall",
+            sprite: sprite
+        };
+    },
+    update: async (object, view) => {},
+    setup: async (container, view) => {
+        container.addChild(view.sprite);
+    },
+    teardown: async (container, view) => {
+        container.removeChild(view.sprite);
+    }
+};
+INSTANCES.set("stone-wall", StoneWall);
+
+export const StoneTile = {
+    create: async (object) => {
+        const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/maptip/stone-tile.png"));
+        sprite.x = object.x;
+        sprite.y = object.y;
+        return {
+            type: "stone-tile",
+            sprite: sprite
+        };
+    },
+    update: async (object, view) => {},
+    setup: async (container, view) => {
+        container.addChild(view.sprite);
+    },
+    teardown: async (container, view) => {
+        container.removeChild(view.sprite);
+    }
+};
+INSTANCES.set("stone-tile", StoneTile);
+
+export const Exit = {
+    create: async (object) => {
+        const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/maptip/exit.png"));
+        sprite.x = object.x;
+        sprite.y = object.y;
+        return {
+            type: "exit",
+            sprite: sprite
+        };
+    },
+    update: async (object, view) => {},
+    setup: async (container, view) => {
+        container.addChild(view.sprite);
+    },
+    teardown: async (container, view) => {
+        container.removeChild(view.sprite);
+    }
+};
+INSTANCES.set("exit", Exit);
 
 export const Shot = {
     create: async (object) => {

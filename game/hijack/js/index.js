@@ -40,7 +40,7 @@ export async function create() {
 
     const app = new PIXI.Application({autoStart: false, width: WIDTH * SCALE, height: HEIGHT * SCALE});
     app.stage.scale.set(SCALE, SCALE);
-    app.renderer.backgroundColor = 0xC0C0C0;
+    app.renderer.backgroundColor = 0x404040;
 
     document.getElementById("game").appendChild(app.view);
 

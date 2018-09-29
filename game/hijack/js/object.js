@@ -7,8 +7,6 @@
 // end
 
 // structure Teiri : OBJECT
-// structure Silver : OBJECT
-// structure Gray : OBJECT
 
 import * as Control from "./control.js";
 import * as Gensym from "./gensym.js";
@@ -276,15 +274,15 @@ export const SecurityDrone = {
 };
 INSTANCES.set("security-drone", SecurityDrone);
 
-export const Silver = {
+export const Permanent = {
     create: async (object) => {
         return {
-            type: "silver",
+            type: object.type,
             id: object.id || "0x" + Gensym.gensym().toString(16).toUpperCase(),
             x: object.x,
             y: object.y,
-            width: 16,
-            height: 16,
+            width: object.width,
+            height: object.height,
             team: object.team
         };
     },
@@ -292,25 +290,97 @@ export const Silver = {
     onHijack: async (game, object, hijack) => {},
     onAttack: async (game, object, attack) => {}
 };
-INSTANCES.set("silver", Silver);
+INSTANCES.set("permanent", Permanent);
 
 export const Gray = {
     create: async (object) => {
-        return {
-            type: "gray",
-            id: object.id || "0x" + Gensym.gensym().toString(16).toUpperCase(),
+        return Permanent.create({
+            type: object.type,
+            id: object.id,
             x: object.x,
             y: object.y,
             width: 16,
             height: 16,
-            team: object.team
-        };
+            team: "neutral"
+        });
     },
-    step: async (game, object) => object,
-    onHijack: async (game, object, hijack) => {},
-    onAttack: async (game, object, attack) => {}
+    step: async (game, object) => Permanent.step(game, object),
+    onHijack: async (game, object, hijack) => Permanent.onHijack(game, object. hijack),
+    onAttack: async (game, object, attack) => Permanent.onAttack(game, object. attack)
 };
 INSTANCES.set("gray", Gray);
+
+export const GrayDoor = {
+    create: async (object) => {
+        return Permanent.create({
+            type: object.type,
+            id: object.id,
+            x: object.x,
+            y: object.y,
+            width: 16,
+            height: 16,
+            team: "neutral"
+        });
+    },
+    step: async (game, object) => Permanent.step(game, object),
+    onHijack: async (game, object, hijack) => Permanent.onHijack(game, object. hijack),
+    onAttack: async (game, object, attack) => Permanent.onAttack(game, object. attack)
+};
+INSTANCES.set("gray-door", GrayDoor);
+
+export const StoneWall = {
+    create: async (object) => {
+        return Permanent.create({
+            type: object.type,
+            id: object.id,
+            x: object.x,
+            y: object.y,
+            width: 16,
+            height: 16,
+            team: "neutral"
+        });
+    },
+    step: async (game, object) => Permanent.step(game, object),
+    onHijack: async (game, object, hijack) => Permanent.onHijack(game, object. hijack),
+    onAttack: async (game, object, attack) => Permanent.onAttack(game, object. attack)
+};
+INSTANCES.set("stone-wall", StoneWall);
+
+export const StoneTile = {
+    create: async (object) => {
+        return Permanent.create({
+            type: object.type,
+            id: object.id,
+            x: object.x,
+            y: object.y,
+            width: 0,
+            height: 0,
+            team: "neutral"
+        });
+    },
+    step: async (game, object) => Permanent.step(game, object),
+    onHijack: async (game, object, hijack) => Permanent.onHijack(game, object. hijack),
+    onAttack: async (game, object, attack) => Permanent.onAttack(game, object. attack)
+};
+INSTANCES.set("stone-tile", StoneTile);
+
+export const Exit = {
+    create: async (object) => {
+        return Permanent.create({
+            type: object.type,
+            id: object.id,
+            x: object.x,
+            y: object.y,
+            width: 16,
+            height: 16,
+            team: "neutral"
+        });
+    },
+    step: async (game, object) => Permanent.step(game, object),
+    onHijack: async (game, object, hijack) => Permanent.onHijack(game, object. hijack),
+    onAttack: async (game, object, attack) => Permanent.onAttack(game, object. attack)
+};
+INSTANCES.set("exit", Exit);
 
 export const Shot = {
     create: async (object) => {

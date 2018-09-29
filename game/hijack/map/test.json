@@ -1,523 +1,477 @@
 {
-  "height": 160,
-  "lock": "teiri",
-  "objects": [
-    {
-      "control": {
-        "type": "playable"
-      },
-      "direction": "front",
-      "id": "teiri",
-      "pose": "default",
-      "team": "player",
-      "type": "teiri",
-      "x": 0,
-      "y": 0
-    },
-    {
-      "control": {
-        "bias": 0.252,
-        "incr": 2.45e-2,
-        "type": "typeA"
-      },
-      "direction": "front",
-      "id": null,
-      "pose": "default",
-      "team": "enemy",
-      "type": "security-drone",
-      "x": 64,
-      "y": 48
-    },
-    {
-      "control": {
-        "bias": 0.252,
-        "incr": 2.45e-2,
-        "type": "typeA"
-      },
-      "direction": "front",
-      "id": null,
-      "pose": "default",
-      "team": "enemy",
-      "type": "security-drone",
-      "x": -64,
-      "y": 48
-    },
-    {
-      "control": {
-        "bias": 0.252,
-        "incr": 2.45e-2,
-        "type": "typeA"
-      },
-      "direction": "front",
-      "id": null,
-      "pose": "default",
-      "team": "enemy",
-      "type": "security-drone",
-      "x": 64,
-      "y": -48
-    },
-    {
-      "control": {
-        "bias": 0.252,
-        "incr": 2.45e-2,
-        "type": "typeA"
-      },
-      "direction": "front",
-      "id": null,
-      "pose": "default",
-      "team": "enemy",
-      "type": "security-drone",
-      "x": -64,
-      "y": -48
-    },
-    {
-      "control": {
-        "bias": 0.252,
-        "incr": 2.45e-2,
-        "type": "typeA"
-      },
-      "direction": "front",
-      "id": null,
-      "pose": "default",
-      "team": "enemy",
-      "type": "security-drone",
-      "x": 64,
-      "y": 32
-    },
-    {
-      "control": {
-        "bias": 0.252,
-        "incr": 2.45e-2,
-        "type": "typeA"
-      },
-      "direction": "front",
-      "id": null,
-      "pose": "default",
-      "team": "enemy",
-      "type": "security-drone",
-      "x": -64,
-      "y": 32
-    },
-    {
-      "control": {
-        "bias": 0.252,
-        "incr": 2.45e-2,
-        "type": "typeA"
-      },
-      "direction": "front",
-      "id": null,
-      "pose": "default",
-      "team": "enemy",
-      "type": "security-drone",
-      "x": 64,
-      "y": -32
-    },
-    {
-      "control": {
-        "bias": 0.252,
-        "incr": 2.45e-2,
-        "type": "typeA"
-      },
-      "direction": "front",
-      "id": null,
-      "pose": "default",
-      "team": "enemy",
-      "type": "security-drone",
-      "x": -64,
-      "y": -32
-    },
-    {
-      "control": {
-        "bias": 0.252,
-        "incr": 2.45e-2,
-        "type": "typeA"
-      },
-      "direction": "front",
-      "id": null,
-      "pose": "default",
-      "team": "enemy",
-      "type": "security-drone",
-      "x": 80,
-      "y": 48
-    },
-    {
-      "control": {
-        "bias": 0.252,
-        "incr": 2.45e-2,
-        "type": "typeA"
-      },
-      "direction": "front",
-      "id": null,
-      "pose": "default",
-      "team": "enemy",
-      "type": "security-drone",
-      "x": -80,
-      "y": 48
-    },
-    {
-      "control": {
-        "bias": 0.252,
-        "incr": 2.45e-2,
-        "type": "typeA"
-      },
-      "direction": "front",
-      "id": null,
-      "pose": "default",
-      "team": "enemy",
-      "type": "security-drone",
-      "x": 80,
-      "y": -48
-    },
-    {
-      "control": {
-        "bias": 0.252,
-        "incr": 2.45e-2,
-        "type": "typeA"
-      },
-      "direction": "front",
-      "id": null,
-      "pose": "default",
-      "team": "enemy",
-      "type": "security-drone",
-      "x": -80,
-      "y": -48
-    },
-    {
-      "control": {
-        "bias": 0.252,
-        "incr": 2.45e-2,
-        "type": "typeA"
-      },
-      "direction": "front",
-      "id": null,
-      "pose": "default",
-      "team": "enemy",
-      "type": "security-drone",
-      "x": 80,
-      "y": 32
-    },
-    {
-      "control": {
-        "bias": 0.252,
-        "incr": 2.45e-2,
-        "type": "typeA"
-      },
-      "direction": "front",
-      "id": null,
-      "pose": "default",
-      "team": "enemy",
-      "type": "security-drone",
-      "x": -80,
-      "y": 32
-    },
-    {
-      "control": {
-        "bias": 0.252,
-        "incr": 2.45e-2,
-        "type": "typeA"
-      },
-      "direction": "front",
-      "id": null,
-      "pose": "default",
-      "team": "enemy",
-      "type": "security-drone",
-      "x": 80,
-      "y": -32
-    },
-    {
-      "control": {
-        "bias": 0.252,
-        "incr": 2.45e-2,
-        "type": "typeA"
-      },
-      "direction": "front",
-      "id": null,
-      "pose": "default",
-      "team": "enemy",
-      "type": "security-drone",
-      "x": -80,
-      "y": -32
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": -96,
-      "y": -64
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": -96,
-      "y": -48
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": -96,
-      "y": -32
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": -96,
-      "y": -16
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": -96,
-      "y": 0
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": -96,
-      "y": 16
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": -96,
-      "y": 32
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": -96,
-      "y": 48
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": -96,
-      "y": 64
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": 96,
-      "y": -64
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": 96,
-      "y": -48
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": 96,
-      "y": -32
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": 96,
-      "y": -16
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": 96,
-      "y": 0
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": 96,
-      "y": 16
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": 96,
-      "y": 32
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": 96,
-      "y": 48
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": 96,
-      "y": 64
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": -80,
-      "y": -64
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": -64,
-      "y": -64
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": -48,
-      "y": -64
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": -32,
-      "y": -64
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": -16,
-      "y": -64
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": 0,
-      "y": -64
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": 80,
-      "y": -64
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": 64,
-      "y": -64
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": 48,
-      "y": -64
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": 32,
-      "y": -64
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": 16,
-      "y": -64
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": -80,
-      "y": 64
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": -64,
-      "y": 64
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": -48,
-      "y": 64
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": -32,
-      "y": 64
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": -16,
-      "y": 64
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": 0,
-      "y": 64
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": 80,
-      "y": 64
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": 64,
-      "y": 64
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": 48,
-      "y": 64
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": 32,
-      "y": 64
-    },
-    {
-      "id": null,
-      "team": "neutral",
-      "type": "gray",
-      "x": 16,
-      "y": 64
-    }
-  ],
-  "width": 240
+    "lock": "teiri",
+    "objects": [
+        {
+            "type": "stone-wall",
+            "x": -16,
+            "y": -16
+        },
+        {
+            "type": "stone-wall",
+            "x": 0,
+            "y": -16
+        },
+        {
+            "type": "stone-wall",
+            "x": 16,
+            "y": -16
+        },
+        {
+            "type": "stone-wall",
+            "x": -64,
+            "y": -16
+        },
+        {
+            "type": "stone-wall",
+            "x": -48,
+            "y": -16
+        },
+        {
+            "type": "stone-wall",
+            "x": -32,
+            "y": -16
+        },        {
+            "type": "stone-wall",
+            "x": 32,
+            "y": -16
+        },
+        {
+            "type": "stone-wall",
+            "x": 48,
+            "y": -16
+        },
+        {
+            "type": "stone-wall",
+            "x": 64,
+            "y": -16
+        },
+        {
+            "type": "stone-wall",
+            "x": -16,
+            "y": -32
+        },
+        {
+            "type": "stone-wall",
+            "x": 0,
+            "y": -32
+        },
+        {
+            "type": "stone-wall",
+            "x": 16,
+            "y": -32
+        },
+        {
+            "type": "stone-wall",
+            "x": -64,
+            "y": -32
+        },
+        {
+            "type": "stone-wall",
+            "x": -48,
+            "y": -32
+        },
+        {
+            "type": "stone-wall",
+            "x": -32,
+            "y": -32
+        },        {
+            "type": "stone-wall",
+            "x": 32,
+            "y": -32
+        },
+        {
+            "type": "stone-wall",
+            "x": 48,
+            "y": -32
+        },
+        {
+            "type": "stone-wall",
+            "x": 64,
+            "y": -32
+        },
+        {
+            "type": "stone-tile",
+            "x": -16,
+            "y": 0
+        },
+        {
+            "type": "stone-tile",
+            "x": 0,
+            "y": 0
+        },
+        {
+            "type": "stone-tile",
+            "x": 16,
+            "y": 0
+        },
+        {
+            "type": "stone-tile",
+            "x": -16,
+            "y": 16
+        },
+        {
+            "type": "stone-tile",
+            "x": 0,
+            "y": 16
+        },
+        {
+            "type": "stone-tile",
+            "x": 16,
+            "y": 16
+        },
+        {
+            "type": "stone-tile",
+            "x": -16,
+            "y": 32
+        },
+        {
+            "type": "stone-tile",
+            "x": 0,
+            "y": 32
+        },
+        {
+            "type": "stone-tile",
+            "x": 16,
+            "y": 32
+        },
+        {
+            "type": "stone-tile",
+            "x": -64,
+            "y": 0
+        },
+        {
+            "type": "stone-tile",
+            "x": -48,
+            "y": 0
+        },
+        {
+            "type": "stone-tile",
+            "x": -32,
+            "y": 0
+        },
+        {
+            "type": "stone-tile",
+            "x": -64,
+            "y": 16
+        },
+        {
+            "type": "stone-tile",
+            "x": -48,
+            "y": 16
+        },
+        {
+            "type": "stone-tile",
+            "x": -32,
+            "y": 16
+        },
+        {
+            "type": "stone-tile",
+            "x": -64,
+            "y": 32
+        },
+        {
+            "type": "stone-tile",
+            "x": -48,
+            "y": 32
+        },
+        {
+            "type": "stone-tile",
+            "x": -32,
+            "y": 32
+        },
+        {
+            "type": "stone-tile",
+            "x": 64,
+            "y": 0
+        },
+        {
+            "type": "stone-tile",
+            "x": 48,
+            "y": 0
+        },
+        {
+            "type": "stone-tile",
+            "x": 32,
+            "y": 0
+        },
+        {
+            "type": "stone-tile",
+            "x": 64,
+            "y": 16
+        },
+        {
+            "type": "stone-tile",
+            "x": 48,
+            "y": 16
+        },
+        {
+            "type": "stone-tile",
+            "x": 32,
+            "y": 16
+        },
+        {
+            "type": "stone-tile",
+            "x": 64,
+            "y": 32
+        },
+        {
+            "type": "stone-tile",
+            "x": 48,
+            "y": 32
+        },
+        {
+            "type": "stone-tile",
+            "x": 32,
+            "y": 32
+        },
+        {
+            "type": "stone-tile",
+            "x": -16,
+            "y": 48
+        },
+        {
+            "type": "stone-tile",
+            "x": 0,
+            "y": 48
+        },
+        {
+            "type": "stone-tile",
+            "x": 16,
+            "y": 48
+        },
+        {
+            "type": "stone-tile",
+            "x": -16,
+            "y": 64
+        },
+        {
+            "type": "stone-tile",
+            "x": 0,
+            "y": 64
+        },
+        {
+            "type": "stone-tile",
+            "x": 16,
+            "y": 64
+        },
+        {
+            "type": "stone-tile",
+            "x": -16,
+            "y": 80
+        },
+        {
+            "type": "stone-tile",
+            "x": 0,
+            "y": 80
+        },
+        {
+            "type": "stone-tile",
+            "x": 16,
+            "y": 80
+        },
+        {
+            "type": "gray",
+            "x": -64,
+            "y": 48
+        },
+        {
+            "type": "gray",
+            "x": -48,
+            "y": 48
+        },
+        {
+            "type": "gray",
+            "x": -32,
+            "y": 48
+        },
+        {
+            "type": "gray",
+            "x": -64,
+            "y": 64
+        },
+        {
+            "type": "gray",
+            "x": -48,
+            "y": 64
+        },
+        {
+            "type": "gray",
+            "x": -32,
+            "y": 64
+        },
+        {
+            "type": "gray",
+            "x": -64,
+            "y": 80
+        },
+        {
+            "type": "gray",
+            "x": -48,
+            "y": 80
+        },
+        {
+            "type": "gray",
+            "x": -32,
+            "y": 80
+        },
+        {
+            "type": "exit",
+            "x": 0,
+            "y": -32
+        },
+        {
+            "type": "gray",
+            "x": 64,
+            "y": 48
+        },
+        {
+            "type": "gray",
+            "x": 48,
+            "y": 48
+        },
+        {
+            "type": "gray",
+            "x": 32,
+            "y": 48
+        },
+        {
+            "type": "gray",
+            "x": 64,
+            "y": 64
+        },
+        {
+            "type": "gray",
+            "x": 48,
+            "y": 64
+        },
+        {
+            "type": "gray",
+            "x": 32,
+            "y": 64
+        },
+        {
+            "type": "gray",
+            "x": 64,
+            "y": 80
+        },
+        {
+            "type": "gray",
+            "x": 48,
+            "y": 80
+        },
+        {
+            "type": "gray",
+            "x": 32,
+            "y": 80
+        },
+        {
+            "type": "exit",
+            "x": 0,
+            "y": -32
+        },
+        {
+            "type": "gray-door",
+            "x": 0,
+            "y": -16
+        },
+        {
+            "type": "gray",
+            "x": -80,
+            "y": 0
+        },
+        {
+            "type": "gray",
+            "x": -80,
+            "y": 16
+        },
+        {
+            "type": "gray",
+            "x": -80,
+            "y": 32
+        },
+        {
+            "type": "gray",
+            "x": 80,
+            "y": 0
+        },
+        {
+            "type": "gray",
+            "x": 80,
+            "y": 16
+        },
+        {
+            "type": "gray",
+            "x": 80,
+            "y": 32
+        },
+        {
+            "type": "gray",
+            "x": 16,
+            "y": 96
+        },
+        {
+            "type": "gray",
+            "x": 0,
+            "y": 96
+        },
+        {
+            "type": "gray",
+            "x": -16,
+            "y": 96
+        },
+        {
+            "type": "teiri",
+            "id": "teiri",
+            "x": 0,
+            "y": 0,
+            "team": "player",
+            "control": {
+                "type": "playable"
+            },
+            "pose": "default",
+            "direction": "front"
+        },
+        {
+            "type": "security-drone",
+            "id": null,
+            "x": 64,
+            "y": 16,
+            "team": "enemy",
+            "control": {
+                "bias": 0.252,
+                "incr": 2.45e-2,
+                "type": "typeA"
+            },
+            "direction": "front",
+            "pose": "default"
+        },
+        {
+            "type": "security-drone",
+            "id": null,
+            "x": -64,
+            "y": 16,
+            "team": "enemy",
+            "control": {
+                "bias": 0.252,
+                "incr": 2.45e-2,
+                "type": "typeA"
+            },
+            "direction": "front",
+            "pose": "default"
+        },
+        {
+            "type": "security-drone",
+            "id": null,
+            "x": 0,
+            "y": 80,
+            "team": "enemy",
+            "control": {
+                "bias": 0.252,
+                "incr": 2.45e-2,
+                "type": "typeA"
+            },
+            "direction": "front",
+            "pose": "default"
+        }
+    ]
 }

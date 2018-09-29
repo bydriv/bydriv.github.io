@@ -4,8 +4,11 @@ export const ASSETS = [
     "hijack/pixelart/teiri/hijack.png",
     "hijack/pixelart/security-drone.png",
     "hijack/pixelart/common/shot.png",
-    "hijack/pixelart/maptip/silver.png",
     "hijack/pixelart/maptip/gray.png",
+    "hijack/pixelart/maptip/gray-door.png",
+    "hijack/pixelart/maptip/stone-wall.png",
+    "hijack/pixelart/maptip/stone-tile.png",
+    "hijack/pixelart/maptip/exit.png",
     "hijack/map/test.json"
 ];
 
@@ -16,8 +19,11 @@ export function load() {
     return new Promise(resolve => {
         PIXI.loader.add(ASSETS).load(() => {
             MAPS.set("hijack/map/test.json", PIXI.loader.resources["hijack/map/test.json"].data);
-            TEXTURES.set("hijack/pixelart/maptip/silver.png", PIXI.loader.resources["hijack/pixelart/maptip/silver.png"].texture);
             TEXTURES.set("hijack/pixelart/maptip/gray.png", PIXI.loader.resources["hijack/pixelart/maptip/gray.png"].texture);
+            TEXTURES.set("hijack/pixelart/maptip/gray-door.png", PIXI.loader.resources["hijack/pixelart/maptip/gray-door.png"].texture);
+            TEXTURES.set("hijack/pixelart/maptip/stone-wall.png", PIXI.loader.resources["hijack/pixelart/maptip/stone-wall.png"].texture);
+            TEXTURES.set("hijack/pixelart/maptip/stone-tile.png", PIXI.loader.resources["hijack/pixelart/maptip/stone-tile.png"].texture);
+            TEXTURES.set("hijack/pixelart/maptip/exit.png", PIXI.loader.resources["hijack/pixelart/maptip/exit.png"].texture);
             for (var i = 0; i < 4; ++i) {
                 const name = i === 0 ? "left" : i === 1 ? "back" : i === 2 ? "right" : "front";
 

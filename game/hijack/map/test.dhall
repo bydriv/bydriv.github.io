@@ -92,7 +92,7 @@ let gray = \(gray : Gray) -> <gray = gray | teiri : Teiri> in {
     {x = -80, y = -32}
   ] # ./Prelude/List/map Point Object (\(p : Point) ->
     gray {
-      type = "gray",
+      type = "stone-tile",
       id = [] : Optional Text,
       x = p.x,
       y = p.y,
