@@ -261,6 +261,52 @@ export const Exit = {
 };
 INSTANCES.set("exit", Exit);
 
+export const Water = {
+    create: async (object) => {
+        const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/maptip/water/0.png"));
+        sprite.x = object.x;
+        sprite.y = object.y;
+        return {
+            type: "water",
+            sprite: sprite
+        };
+    },
+    update: async (object, view) => {
+        if (object.count % 8 === 0)
+            view.sprite.texture = Asset.TEXTURES.get("hijack/pixelart/maptip/water/" + object.count / 8 % 8 + ".png");
+    },
+    setup: async (container, view) => {
+        container.addChild(view.sprite);
+    },
+    teardown: async (container, view) => {
+        container.removeChild(view.sprite);
+    }
+};
+INSTANCES.set("water", Water);
+
+export const WaterMid = {
+    create: async (object) => {
+        const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/maptip/water-mid/0.png"));
+        sprite.x = object.x;
+        sprite.y = object.y;
+        return {
+            type: "water-mid",
+            sprite: sprite
+        };
+    },
+    update: async (object, view) => {
+        if (object.count % 8 === 0)
+            view.sprite.texture = Asset.TEXTURES.get("hijack/pixelart/maptip/water-mid/" + object.count / 8 % 8 + ".png");
+    },
+    setup: async (container, view) => {
+        container.addChild(view.sprite);
+    },
+    teardown: async (container, view) => {
+        container.removeChild(view.sprite);
+    }
+};
+INSTANCES.set("water-mid", WaterMid);
+
 export const Shot = {
     create: async (object) => {
         const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/common/shot.png"));

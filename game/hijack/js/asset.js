@@ -9,6 +9,8 @@ export const ASSETS = [
     "hijack/pixelart/maptip/stone-wall.png",
     "hijack/pixelart/maptip/stone-tile.png",
     "hijack/pixelart/maptip/exit.png",
+    "hijack/pixelart/maptip/water.png",
+    "hijack/pixelart/maptip/water-mid.png",
     "hijack/map/test.json"
 ];
 
@@ -24,6 +26,10 @@ export function load() {
             TEXTURES.set("hijack/pixelart/maptip/stone-wall.png", PIXI.loader.resources["hijack/pixelart/maptip/stone-wall.png"].texture);
             TEXTURES.set("hijack/pixelart/maptip/stone-tile.png", PIXI.loader.resources["hijack/pixelart/maptip/stone-tile.png"].texture);
             TEXTURES.set("hijack/pixelart/maptip/exit.png", PIXI.loader.resources["hijack/pixelart/maptip/exit.png"].texture);
+            for (var i = 0; i < 8; ++i) {
+                TEXTURES.set("hijack/pixelart/maptip/water/" + i + ".png", new PIXI.Texture(PIXI.loader.resources["hijack/pixelart/maptip/water.png"].texture, new PIXI.Rectangle(i * 16, 0, 16, 16)));
+                TEXTURES.set("hijack/pixelart/maptip/water-mid/" + i + ".png", new PIXI.Texture(PIXI.loader.resources["hijack/pixelart/maptip/water-mid.png"].texture, new PIXI.Rectangle(i * 16, 0, 16, 16)));
+            }
             for (var i = 0; i < 4; ++i) {
                 const name = i === 0 ? "left" : i === 1 ? "back" : i === 2 ? "right" : "front";
 

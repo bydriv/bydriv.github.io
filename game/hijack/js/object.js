@@ -283,10 +283,14 @@ export const Permanent = {
             y: object.y,
             width: object.width,
             height: object.height,
-            team: object.team
+            team: object.team,
+            count: 0
         };
     },
-    step: async (game, object) => object,
+    step: async (game, object) => {
+        ++object.count;
+        return object;
+    },
     onHijack: async (game, object, hijack) => {},
     onAttack: async (game, object, attack) => {}
 };
@@ -381,6 +385,42 @@ export const Exit = {
     onAttack: async (game, object, attack) => Permanent.onAttack(game, object. attack)
 };
 INSTANCES.set("exit", Exit);
+
+export const Water = {
+    create: async (object) => {
+        return Permanent.create({
+            type: object.type,
+            id: object.id,
+            x: object.x,
+            y: object.y,
+            width: 16,
+            height: 16,
+            team: "neutral"
+        });
+    },
+    step: async (game, object) => Permanent.step(game, object),
+    onHijack: async (game, object, hijack) => Permanent.onHijack(game, object. hijack),
+    onAttack: async (game, object, attack) => Permanent.onAttack(game, object. attack)
+};
+INSTANCES.set("water", Water);
+
+export const WaterMid = {
+    create: async (object) => {
+        return Permanent.create({
+            type: object.type,
+            id: object.id,
+            x: object.x,
+            y: object.y,
+            width: 16,
+            height: 16,
+            team: "neutral"
+        });
+    },
+    step: async (game, object) => Permanent.step(game, object),
+    onHijack: async (game, object, hijack) => Permanent.onHijack(game, object. hijack),
+    onAttack: async (game, object, attack) => Permanent.onAttack(game, object. attack)
+};
+INSTANCES.set("water-mid", WaterMid);
 
 export const Shot = {
     create: async (object) => {
