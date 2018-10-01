@@ -210,7 +210,7 @@ export async function step(game) {
             if (object.hijack) {
                 game.dialog.window.renderable = true;
 
-                const targets = game.objects.filter(o => o.hijackable && Team.enemy(o.team, object.hijack.team) && Object.collision(o, object.hijack));
+                const targets = game.objects.filter(o => o.hijackable && Team.enemy(o, object) && Object.collision(o, object.hijack));
 
                 game.dialog.textStyle.fill = targets.length === 0 ? 0x008000 : 0x00FF00;
 

@@ -103,7 +103,7 @@ export const TypeA = {
     },
     step: async (game, object, control) => {
         for (var i = 0; i < game.objects.length; ++i)
-            if (Team.enemy(object.team, game.objects[i].team))
+            if (Team.enemy(object, game.objects[i]))
                 for (var j = 0; j < object.buttons.length; ++j)
                     if (object.buttons[j] && (object.buttons[j].type === "attack" || object.buttons[j].type === "shot")) {
                         const attack = {
@@ -133,7 +133,7 @@ export const TypeA = {
         };
 
         for (var i = 0; i < game.objects.length; ++i)
-            if (Team.enemy(object.team, game.objects[i].team))
+            if (Team.enemy(object, game.objects[i]))
                 if (Object.collision(game.objects[i], sight)) {
                     const x = game.objects[i].x - object.x;
                     const y = game.objects[i].y - object.y;

@@ -1,4 +1,12 @@
-export function enemy(team1, team2) {
+export function enemy(object1, object2) {
+    if (object1.rejectedIds.some(id => id === object2.id))
+        return true;
+    if (object1.acceptedIds.some(id => id === object2.id))
+        return false;
+
+    const team1 = object1.team;
+    const team2 = object2.team;
+
     switch (team1) {
     case "player":
         switch (team2) {
