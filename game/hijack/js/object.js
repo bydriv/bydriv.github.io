@@ -65,6 +65,7 @@ export const Creature = {
             buttons: object.buttons,
             move: object.move,
             hijackable: object.hijackable,
+            hijacked: false,
             security: object.security,
             acceptedIds: [],
             rejectedIds: []
@@ -157,9 +158,12 @@ export const Creature = {
 
         object.security -= Math.min(hijack.damage, object.security);
 
-        if (object.security === 0)
+        if (object.security === 0) {
+            object.hijacked = true;
+
             if (!object.acceptedIds.some(id => id === hijack.source))
                 object.acceptedIds.push(hijack.source);
+        }
     },
     onAttack: async (game, object, attack) => {
         const sourceObject = game.objects.find(o => o.id === attack.source);

@@ -31,7 +31,7 @@ export function enemy(object1, object2) {
     }
 }
 
-export function color(team) {
+export function color(team, hijacked) {
     switch (team) {
     case "player":
         return {
@@ -39,9 +39,15 @@ export function color(team) {
             bg: 0x008000
         };
     case "enemy":
-        return {
-            fg: 0xFF0000,
-            bg: 0x800000
-        };
+        if (hijacked)
+            return {
+                fg: 0xFFFF00,
+                bg: 0x808000
+            };
+        else
+            return {
+                fg: 0xFF0000,
+                bg: 0x800000
+            };
     }
 }
