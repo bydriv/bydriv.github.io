@@ -161,8 +161,10 @@ export const Creature = {
         if (object.security === 0) {
             object.hijacked = true;
 
-            if (!object.acceptedIds.some(id => id === hijack.source))
+            if (!object.acceptedIds.some(id => id === hijack.source)) {
                 object.acceptedIds.push(hijack.source);
+                object.rejectedIds = object.rejectedIds.filter(id => id !== hijack.source);
+            }
         }
     },
     onAttack: async (game, object, attack) => {
@@ -172,8 +174,12 @@ export const Creature = {
 
         object.shield -= Math.min(attack.damage, object.shield);
 
-        if (!object.rejectedIds.some(id => id === attack.source))
+        object.hijacked = false;
+
+        if (!object.rejectedIds.some(id => id === attack.source)) {
             object.rejectedIds.push(attack.source);
+            object.acceptedIds = object.acceptedIds.filter(id => id !== attack.source);
+        }
 
         if (object.shield === 0)
             object.exiled = true;
@@ -245,7 +251,7 @@ export const SecurityDrone = {
             control: object.control,
             pose: object.pose,
             direction: object.direction,
-            shield: 1,
+            shield: 2,
             sight: {
                 left: { x: -32, y: -16, width: 48, height: 48 },
                 back: { x: -16, y: -32, width: 48, height: 48 },

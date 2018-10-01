@@ -120,8 +120,8 @@ export const SecurityDrone = {
         const shield = new PIXI.Graphics();
         shield.x = object.x;
         shield.y = object.y - 2;
-        shield.lineStyle(1, Team.color(object.team, object.hijacked).fg).moveTo(0, 0).lineTo(object.shield * 16, 0);
-        shield.lineStyle(1, Team.color(object.team, object.hijacked).bg).moveTo(object.shield * 16, 0).lineTo(16, 0);
+        shield.lineStyle(1, Team.color(object.team, object.hijacked).fg).moveTo(0, 0).lineTo(object.shield * 8, 0);
+        shield.lineStyle(1, Team.color(object.team, object.hijacked).bg).moveTo(object.shield * 8, 0).lineTo(16, 0);
 
         return {
             type: "security-drone",
@@ -131,8 +131,8 @@ export const SecurityDrone = {
     },
     update: async (object, view) => {
         view.shield.clear();
-        view.shield.lineStyle(1, Team.color(object.team, object.hijacked).fg).moveTo(0, 0).lineTo(object.shield * 16, 0);
-        view.shield.lineStyle(1, Team.color(object.team, object.hijacked).bg).moveTo(object.shield * 16, 0).lineTo(16, 0);
+        view.shield.lineStyle(1, Team.color(object.team, object.hijacked).fg).moveTo(0, 0).lineTo(object.shield * 8, 0);
+        view.shield.lineStyle(1, Team.color(object.team, object.hijacked).bg).moveTo(object.shield * 8, 0).lineTo(16, 0);
 
         switch (object.pose) {
         case "default":
