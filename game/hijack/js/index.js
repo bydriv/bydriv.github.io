@@ -71,9 +71,6 @@ export async function create() {
         hits.set(object.id, new Map());
     }
 
-    console.log(staticObjects.length);
-    console.log(staticRects.length);
-
     for (var i = 0; i < staticRects.length; ++i)
         for (var j = 0; j < staticRects.length; ++j) {
             const rect1 = staticRects[i];
@@ -101,8 +98,6 @@ export async function create() {
         }
 
     staticRects = staticRects.filter((rect1, i) => !staticRects.slice(i + 1).some(rect2 => Object.subrect(rect1, rect2)));
-    console.log(staticRects.length);
-
     const window = new PIXI.Graphics();
     window.x = 0;
     window.y = 0;
