@@ -45,6 +45,8 @@ export async function create() {
     document.getElementById("game").appendChild(app.view);
 
     const objects = [];
+    const staticObjects = [];
+    var staticRects = [];
     const views = new Map();
     const hits = new Map();
 
@@ -52,10 +54,54 @@ export async function create() {
         const object = await Object.create(Asset.MAPS.get("hijack/map/test.json").objects[i]);
         const view = await View.create(object);
         await View.setup(app.stage, view);
-        objects.push(object);
+
+        if (object.control)
+            objects.push(object);
+        else {
+            staticObjects.push(object);
+            staticRects.push({
+                x: object.x,
+                y: object.y,
+                width: object.width,
+                height: object.height
+            });
+        }
+
         views.set(object.id, view);
         hits.set(object.id, new Map());
     }
+
+    console.log(staticObjects.length);
+    console.log(staticRects.length);
+
+    for (var i = 0; i < staticRects.length; ++i)
+        for (var j = 0; j < staticRects.length; ++j) {
+            const rect1 = staticRects[i];
+            const rect2 = staticRects[j];
+
+            if (rect1.x === rect2.x && rect1.width === rect2.width) {
+                if (rect1.y === rect2.y + rect2.height || rect2.y === rect1.y + rect1.height) {
+                    const y = Math.min(rect1.y, rect2.y);
+                    const height = rect1.height + rect2.height;
+                    rect1.y = y;
+                    rect1.height = height;
+                    rect2.y = y;
+                    rect2.height = height;
+                }
+            } else if (rect1.y === rect2.y && rect1.height === rect2.height) {
+                if (rect1.x === rect2.x + rect2.width || rect2.x === rect1.x + rect1.width) {
+                    const x = Math.min(rect1.x, rect2.x);
+                    const width = rect1.width + rect2.width;
+                    rect1.x = x;
+                    rect1.width = width;
+                    rect2.x = x;
+                    rect2.width = width;
+                }
+            }
+        }
+
+    staticRects = staticRects.filter((rect1, i) => !staticRects.slice(i + 1).some(rect2 => Object.subrect(rect1, rect2)));
+    console.log(staticRects.length);
 
     const window = new PIXI.Graphics();
     window.x = 0;
@@ -132,8 +178,14 @@ export async function create() {
     return {
         app: app,
         map: Asset.MAPS.get("hijack/map/test.json"),
+        x: Asset.MAPS.get("hijack/map/test.json").x,
+        y: Asset.MAPS.get("hijack/map/test.json").y,
+        width: Asset.MAPS.get("hijack/map/test.json").width,
+        height: Asset.MAPS.get("hijack/map/test.json").height,
         views: views,
         objects: objects,
+        staticObjects: staticObjects,
+        staticRects: staticRects,
         hijacks: [],
         attacks: [],
         hits: hits,
@@ -236,74 +288,6 @@ export async function step(game) {
                     game.dialog.window.addChild(game.dialog.log[i].percentageText);
                     game.dialog.window.addChild(game.dialog.log[i].progressText);
                 }
-                /*
-                var i = 0;
-                for (; i < game.dialog.log.length; ++i)
-                    for (var j = 0; j < game.dialog.log[i].length; ++j)
-                        game.dialog.window.addChild(game.dialog.log[i][j]);
-
-                const enStyle = new PIXI.TextStyle({
-                    lineHeight: 12,
-                    textBaseline: "top",
-                    fontFamily: "Misaki Gothic",
-                    fontSize: 8,
-                    fill: "white"
-                });
-
-                if (object.hijack.target && game.objects.find(o => o.id == object.hijack.target)) {
-                    const hijackText = new PIXI.Text("$ hijack ", enStyle);
-                    const idText = new PIXI.Text(object.hijack.target, enStyle);
-                    hijackText.x = 0;
-                    hijackText.y = i * 8 - 4;
-                    idText.x = "$ hijack ".length * 4;
-                    idText.y = i * 8  - 4;
-                    game.dialog.window.addChild(hijackText);
-                    game.dialog.window.addChild(idText);
-
-                    const target = game.objects.find(o => o.id == object.hijack.target);
-                    const hijackingText = new PIXI.Text("Hijacking ", enStyle);
-                    const percentageText = new PIXI.Text(("  " + Math.floor(object.hijack.count / target.security * 100)).slice(-3) + "%", enStyle);
-                    const progressText = new PIXI.Text("[" + ("=".repeat(Math.floor(object.hijack.count / target.security * 100 / 5)) + " ".repeat(20)).slice(0, 20) + "]", enStyle);
-                    hijackingText.x = 0;
-                    hijackingText.y = i * 8 + 8 - 4;
-                    percentageText.x = 34 * 4;
-                    percentageText.y = i * 8 + 8 - 4;
-                    progressText.x = 38 * 4;
-                    progressText.y = i * 8 + 8 - 4;
-                    game.dialog.window.addChild(hijackingText);
-                    game.dialog.window.addChild(percentageText);
-                    game.dialog.window.addChild(progressText);
-
-                    if (object.control.input.buttons[0]) {
-                        if (object.hijack.count < target.security) {
-                        } else {
-                            if (game.dialog.log.length < 19) {
-                                game.dialog.log.push([hijackText, idText]);
-                                game.dialog.log.push([hijackingText, percentageText, progressText]);
-                            } else if (game.dialog.log.length < 20) {
-                                game.dialog.log.shift();
-                                game.dialog.log.push([hijackText, idText]);
-                                game.dialog.log.push([hijackingText, percentageText, progressText]);
-
-                                i = 0;
-                                for (; i < game.dialog.log.length; ++i)
-                                    for (var j = 0; j < game.dialog.log[i].length; ++j)
-                                        game.dialog.log[i][j].y -= 8;
-                            } else {
-                                game.dialog.log.shift();
-                                game.dialog.log.shift();
-                                game.dialog.log.push([hijackText, idText]);
-                                game.dialog.log.push([hijackingText, percentageText, progressText]);
-
-                                i = 0;
-                                for (; i < game.dialog.log.length; ++i)
-                                    for (var j = 0; j < game.dialog.log[i].length; ++j)
-                                        game.dialog.log[i][j].y -= 16;
-                            }
-                        }
-                    }
-                }
-                */
             }
 
             break;

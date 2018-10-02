@@ -489,6 +489,16 @@ export const Shot = {
 };
 INSTANCES.set("shot", Shot);
 
+export function subrect(object1, object2) {
+    const left = Math.max(object1.x, object2.x);
+    const top = Math.max(object1.y, object2.y);
+    const right = Math.min(object1.x + object1.width, object2.x + object2.width);
+    const bottom = Math.min(object1.y + object1.height, object2.y + object2.height);
+    const width = right - left;
+    const height = bottom - top;
+    return left === object1.x && top === object1.y && width === object1.width && height === object1.height;
+}
+
 export function collision(object1, object2) {
     const left = Math.max(object1.x, object2.x);
     const top = Math.max(object1.y, object2.y);
@@ -561,10 +571,19 @@ function move(game, object, pixels, perFrames) {
 
 function moveLeft(game, object, n) {
     for (var i = 0; i < n; ++i) {
+        if (!(game.x <= object.x - 1 && object.x - 1 < game.x + game.width))
+            return i;
+
         object.x -= 1;
 
         for (var j = 0; j < game.objects.length; ++j)
             if (object.id !== game.objects[j].id && collision(object, game.objects[j])) {
+                object.x += 1;
+                return i;
+            }
+
+        for (var j = 0; j < game.staticRects.length; ++j)
+            if (collision(object, game.staticRects[j])) {
                 object.x += 1;
                 return i;
             }
@@ -575,10 +594,19 @@ function moveLeft(game, object, n) {
 
 function moveRight(game, object, n) {
     for (var i = 0; i < n; ++i) {
+        if (!(game.x <= object.x + object.width + 1 && object.x + object.width + 1 < game.x + game.width))
+            return i;
+
         object.x += 1;
 
         for (var j = 0; j < game.objects.length; ++j)
             if (object.id !== game.objects[j].id && collision(object, game.objects[j])) {
+                object.x -= 1;
+                return i;
+            }
+
+        for (var j = 0; j < game.staticRects.length; ++j)
+            if (collision(object, game.staticRects[j])) {
                 object.x -= 1;
                 return i;
             }
@@ -589,10 +617,19 @@ function moveRight(game, object, n) {
 
 function moveUp(game, object, n) {
     for (var i = 0; i < n; ++i) {
+        if (!(game.y <= object.y - 1 && object.y - 1 < game.y + game.height))
+            return i;
+
         object.y -= 1;
 
         for (var j = 0; j < game.objects.length; ++j)
             if (object.id !== game.objects[j].id && collision(object, game.objects[j])) {
+                object.y += 1;
+                return i;
+            }
+
+        for (var j = 0; j < game.staticRects.length; ++j)
+            if (collision(object, game.staticRects[j])) {
                 object.y += 1;
                 return i;
             }
@@ -603,10 +640,19 @@ function moveUp(game, object, n) {
 
 function moveDown(game, object, n) {
     for (var i = 0; i < n; ++i) {
+        if (!(game.y <= object.y + object.height + 1 && object.y + object.height + 1 < game.y + game.height))
+            return i;
+
         object.y += 1;
 
         for (var j = 0; j < game.objects.length; ++j)
             if (object.id !== game.objects[j].id && collision(object, game.objects[j])) {
+                object.y -= 1;
+                return i;
+            }
+
+        for (var j = 0; j < game.staticRects.length; ++j)
+            if (collision(object, game.staticRects[j])) {
                 object.y -= 1;
                 return i;
             }
