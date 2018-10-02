@@ -1,16 +1,16 @@
 * pixelart
 
-| path                                | image                                 |
-|-------------------------------------+---------------------------------------|
-| hijack/pixelart/teiri/walk.png      | [[./hijack/pixelart/teiri/walk.png]]      |
-| hijack/pixelart/teiri/truncheon.png | [[./hijack/pixelart/teiri/truncheon.png]] |
-| hijack/pixelart/teiri/hijack.png    | [[./hijack/pixelart/teiri/hijack.png]]    |
-| hijack/pixelart/security-drone.png  | [[./hijack/pixelart/security-drone.png]]  |
-| hijack/common/shot.png              | [[./hijack/common/shot.png]]              |
-| hijack/maptip/water.png             | [[./hijack/maptip/water.png]]             |
-| hijack/maptip/water-mid.png         | [[./hijack/maptip/water-mid.png]]         |
-| hijack/maptip/stone-wall.png        | [[./hijack/maptip/stone-wall.png]]        |
-| hijack/maptip/stone-tile.png        | [[./hijack/maptip/stone-tile.png]]        |
-| hijack/maptip/gray.png              | [[./hijack/maptip/gray.png]]              |
-| hijack/maptip/gray-door.png         | [[./hijack/maptip/gray-door.png]]         |
-| hijack/maptip/exit.png              | [[./hijack/maptip/exit.png]]              |
+| path                                | image                                   |
+|-------------------------------------+-----------------------------------------|
+| hijack/pixelart/teiri/walk.png      | [[./hijack/pixelart/teiri/walk.png]]        |
+| hijack/pixelart/teiri/truncheon.png | [[./hijack/pixelart/teiri/truncheon.png]]   |
+| hijack/pixelart/teiri/hijack.png    | [[./hijack/pixelart/teiri/hijack.png]]      |
+| hijack/pixelart/security-drone.png  | [[./hijack/pixelart/security-drone.png]]    |
+| hijack/common/shot.png              | [[./hijack/pixelart/common/shot.png]]       |
+| hijack/maptip/water.png             | [[./hijack/pixelart/maptip/water.png]]      |
+| hijack/maptip/water-mid.png         | [[./hijack/pixelart/maptip/water-mid.png]]  |
+| hijack/maptip/stone-wall.png        | [[./hijack/pixelart/maptip/stone-wall.png]] |
+| hijack/maptip/stone-tile.png        | [[./hijack/pixelart/maptip/stone-tile.png]] |
+| hijack/maptip/gray.png              | [[./hijack/pixelart/maptip/gray.png]]       |
+| hijack/maptip/gray-door.png         | [[./hijack/pixelart/maptip/gray-door.png]]  |
+| hijack/maptip/exit.png              | [[./hijack/pixelart/maptip/exit.png]]       |
