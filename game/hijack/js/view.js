@@ -183,126 +183,182 @@ INSTANCES.set("gray", Gray);
 
 export const GrayDoor = {
     create: async (object) => {
-        const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/maptip/gray-door.png"));
-        sprite.x = object.x;
-        sprite.y = object.y;
+        const sprites = [];
+
+        for (var i = 0; i < object.repeatX; ++i)
+            for (var j = 0; j < object.repeatY; ++j) {
+                const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/maptip/gray-door.png"));
+                sprite.x = object.x + i * 16;
+                sprite.y = object.y + j * 16;
+                sprites.push(sprite);
+            }
+
         return {
             type: "gray-door",
-            sprite: sprite
+            sprites: sprites
         };
     },
     update: async (object, view) => {},
     setup: async (container, view) => {
-        container.addChild(view.sprite);
+        for (var i = 0; i < view.sprites.length; ++i)
+            container.addChild(view.sprites[i]);
     },
     teardown: async (container, view) => {
-        container.removeChild(view.sprite);
+        for (var i = 0; i < view.sprites.length; ++i)
+            container.removeChild(view.sprites[i]);
     }
 };
 INSTANCES.set("gray-door", GrayDoor);
 
 export const StoneWall = {
     create: async (object) => {
-        const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/maptip/stone-wall.png"));
-        sprite.x = object.x;
-        sprite.y = object.y;
+        const sprites = [];
+
+        for (var i = 0; i < object.repeatX; ++i)
+            for (var j = 0; j < object.repeatY; ++j) {
+                const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/maptip/stone-wall.png"));
+                sprite.x = object.x + i * 16;
+                sprite.y = object.y + j * 16;
+                sprites.push(sprite);
+            }
+
         return {
             type: "stone-wall",
-            sprite: sprite
+            sprites: sprites
         };
     },
     update: async (object, view) => {},
     setup: async (container, view) => {
-        container.addChild(view.sprite);
+        for (var i = 0; i < view.sprites.length; ++i)
+            container.addChild(view.sprites[i]);
     },
     teardown: async (container, view) => {
-        container.removeChild(view.sprite);
+        for (var i = 0; i < view.sprites.length; ++i)
+            container.removeChild(view.sprites[i]);
     }
 };
 INSTANCES.set("stone-wall", StoneWall);
 
 export const StoneTile = {
     create: async (object) => {
-        const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/maptip/stone-tile.png"));
-        sprite.x = object.x;
-        sprite.y = object.y;
+        const sprites = [];
+
+        for (var i = 0; i < object.repeatX; ++i)
+            for (var j = 0; j < object.repeatY; ++j) {
+                const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/maptip/stone-tile.png"));
+                sprite.x = object.x + i * 16;
+                sprite.y = object.y + j * 16;
+                sprites.push(sprite);
+            }
+
         return {
             type: "stone-tile",
-            sprite: sprite
+            sprites: sprites
         };
     },
     update: async (object, view) => {},
     setup: async (container, view) => {
-        container.addChild(view.sprite);
+        for (var i = 0; i < view.sprites.length; ++i)
+            container.addChild(view.sprites[i]);
     },
     teardown: async (container, view) => {
-        container.removeChild(view.sprite);
+        for (var i = 0; i < view.sprites.length; ++i)
+            container.removeChild(view.sprites[i]);
     }
 };
 INSTANCES.set("stone-tile", StoneTile);
 
 export const Exit = {
     create: async (object) => {
-        const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/maptip/exit.png"));
-        sprite.x = object.x;
-        sprite.y = object.y;
+        const sprites = [];
+
+        for (var i = 0; i < object.repeatX; ++i)
+            for (var j = 0; j < object.repeatY; ++j) {
+                const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/maptip/exit.png"));
+                sprite.x = object.x + i * 16;
+                sprite.y = object.y + j * 16;
+                sprites.push(sprite);
+            }
+
         return {
             type: "exit",
-            sprite: sprite
+            sprites: sprites
         };
     },
     update: async (object, view) => {},
     setup: async (container, view) => {
-        container.addChild(view.sprite);
+        for (var i = 0; i < view.sprites.length; ++i)
+            container.addChild(view.sprites[i]);
     },
     teardown: async (container, view) => {
-        container.removeChild(view.sprite);
+        for (var i = 0; i < view.sprites.length; ++i)
+            container.removeChild(view.sprites[i]);
     }
 };
 INSTANCES.set("exit", Exit);
 
 export const Water = {
     create: async (object) => {
-        const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/maptip/water/0.png"));
-        sprite.x = object.x;
-        sprite.y = object.y;
+        const sprites = [];
+
+        for (var i = 0; i < object.repeatX; ++i)
+            for (var j = 0; j < object.repeatY; ++j) {
+                const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/maptip/water/0.png"));
+                sprite.x = object.x + i * 16;
+                sprite.y = object.y + j * 16;
+                sprites.push(sprite);
+            }
+
         return {
             type: "water",
-            sprite: sprite
+            sprites: sprites
         };
     },
     update: async (object, view) => {
         if (object.count % 8 === 0)
-            view.sprite.texture = Asset.TEXTURES.get("hijack/pixelart/maptip/water/" + object.count / 8 % 8 + ".png");
+            for (var i = 0; i < view.sprites.length; ++i)
+                view.sprites[i].texture = Asset.TEXTURES.get("hijack/pixelart/maptip/water/" + object.count / 8 % 8 + ".png");
     },
     setup: async (container, view) => {
-        container.addChild(view.sprite);
+        for (var i = 0; i < view.sprites.length; ++i)
+            container.addChild(view.sprites[i]);
     },
     teardown: async (container, view) => {
-        container.removeChild(view.sprite);
+        for (var i = 0; i < view.sprites.length; ++i)
+            container.removeChild(view.sprites[i]);
     }
 };
 INSTANCES.set("water", Water);
 
 export const WaterMid = {
     create: async (object) => {
-        const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/maptip/water-mid/0.png"));
-        sprite.x = object.x;
-        sprite.y = object.y;
+        const sprites = [];
+
+        for (var i = 0; i < object.repeatX; ++i)
+            for (var j = 0; j < object.repeatY; ++j) {
+                const sprite = new PIXI.Sprite(Asset.TEXTURES.get("hijack/pixelart/maptip/water-mid/0.png"));
+                sprite.x = object.x + i * 16;
+                sprite.y = object.y + j * 16;
+                sprites.push(sprite);
+            }
+
         return {
             type: "water-mid",
-            sprite: sprite
+            sprites: sprites
         };
     },
     update: async (object, view) => {
         if (object.count % 8 === 0)
-            view.sprite.texture = Asset.TEXTURES.get("hijack/pixelart/maptip/water-mid/" + object.count / 8 % 8 + ".png");
+            for (var i = 0; i < view.sprites.length; ++i)
+                view.sprites[i].texture = Asset.TEXTURES.get("hijack/pixelart/maptip/water-mid/" + object.count / 8 % 8 + ".png");
     },
     setup: async (container, view) => {
-        container.addChild(view.sprite);
+        for (var i = 0; i < view.sprites.length; ++i)
+            container.addChild(view.sprites[i]);
     },
     teardown: async (container, view) => {
-        container.removeChild(view.sprite);
+        for (var i = 0; i < view.sprites.length; ++i)
+            container.removeChild(view.sprites[i]);
     }
 };
 INSTANCES.set("water-mid", WaterMid);

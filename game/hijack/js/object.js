@@ -299,10 +299,12 @@ export const Permanent = {
             id: object.id || "0x" + Gensym.gensym().toString(16).toUpperCase(),
             x: object.x,
             y: object.y,
-            width: object.width,
-            height: object.height,
+            width: object.width * (object.repeatX || 1),
+            height: object.height * (object.repeatY || 1),
             team: object.team,
-            count: 0
+            count: 0,
+            repeatX: object.repeatX || 1,
+            repeatY: object.repeatY || 1
         };
     },
     step: async (game, object) => {
@@ -359,7 +361,9 @@ export const StoneWall = {
             y: object.y,
             width: 16,
             height: 16,
-            team: "neutral"
+            team: "neutral",
+            repeatX: object.repeatX,
+            repeatY: object.repeatY
         });
     },
     step: async (game, object) => Permanent.step(game, object),
@@ -377,7 +381,9 @@ export const StoneTile = {
             y: object.y,
             width: 0,
             height: 0,
-            team: "neutral"
+            team: "neutral",
+            repeatX: object.repeatX,
+            repeatY: object.repeatY
         });
     },
     step: async (game, object) => Permanent.step(game, object),
@@ -395,7 +401,9 @@ export const Exit = {
             y: object.y,
             width: 16,
             height: 16,
-            team: "neutral"
+            team: "neutral",
+            repeatX: object.repeatX,
+            repeatY: object.repeatY
         });
     },
     step: async (game, object) => Permanent.step(game, object),
@@ -413,7 +421,9 @@ export const Water = {
             y: object.y,
             width: 16,
             height: 16,
-            team: "neutral"
+            team: "neutral",
+            repeatX: object.repeatX,
+            repeatY: object.repeatY
         });
     },
     step: async (game, object) => Permanent.step(game, object),
@@ -431,7 +441,9 @@ export const WaterMid = {
             y: object.y,
             width: 16,
             height: 16,
-            team: "neutral"
+            team: "neutral",
+            repeatX: object.repeatX,
+            repeatY: object.repeatY
         });
     },
     step: async (game, object) => Permanent.step(game, object),
@@ -581,12 +593,6 @@ function moveLeft(game, object, n) {
                 object.x += 1;
                 return i;
             }
-
-        for (var j = 0; j < game.staticRects.length; ++j)
-            if (collision(object, game.staticRects[j])) {
-                object.x += 1;
-                return i;
-            }
     }
 
     return n;
@@ -601,12 +607,6 @@ function moveRight(game, object, n) {
 
         for (var j = 0; j < game.objects.length; ++j)
             if (object.id !== game.objects[j].id && collision(object, game.objects[j])) {
-                object.x -= 1;
-                return i;
-            }
-
-        for (var j = 0; j < game.staticRects.length; ++j)
-            if (collision(object, game.staticRects[j])) {
                 object.x -= 1;
                 return i;
             }
@@ -627,12 +627,6 @@ function moveUp(game, object, n) {
                 object.y += 1;
                 return i;
             }
-
-        for (var j = 0; j < game.staticRects.length; ++j)
-            if (collision(object, game.staticRects[j])) {
-                object.y += 1;
-                return i;
-            }
     }
 
     return n;
@@ -647,12 +641,6 @@ function moveDown(game, object, n) {
 
         for (var j = 0; j < game.objects.length; ++j)
             if (object.id !== game.objects[j].id && collision(object, game.objects[j])) {
-                object.y -= 1;
-                return i;
-            }
-
-        for (var j = 0; j < game.staticRects.length; ++j)
-            if (collision(object, game.staticRects[j])) {
                 object.y -= 1;
                 return i;
             }

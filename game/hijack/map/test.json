@@ -2,68 +2,15 @@
     "lock": "teiri",
     "x": 0,
     "y": 0,
-    "width": 416,
+    "width": 400,
     "height": 272,
     "objects": [
         {
             "type": "stone-wall",
-            "x": 16,
-            "y": 0
-        },
-        {
-            "type": "stone-wall",
-            "x": 32,
-            "y": 0
-        },
-        {
-            "type": "stone-wall",
-            "x": 48,
-            "y": 0
-        },
-        {
-            "type": "stone-wall",
-            "x": 64,
-            "y": 0
-        },
-        {
-            "type": "stone-wall",
-            "x": 80,
-            "y": 0
-        },
-        {
-            "type": "stone-wall",
-            "x": 96,
-            "y": 0
-        },
-        {
-            "type": "stone-wall",
-            "x": 112,
-            "y": 0
-        },
-        {
-            "type": "stone-wall",
-            "x": 128,
-            "y": 0
-        },
-        {
-            "type": "stone-wall",
-            "x": 144,
-            "y": 0
-        },
-        {
-            "type": "stone-wall",
-            "x": 160,
-            "y": 0
-        },
-        {
-            "type": "stone-wall",
-            "x": 176,
-            "y": 0
-        },
-        {
-            "type": "stone-wall",
-            "x": 192,
-            "y": 0
+            "x": 0,
+            "y": 0,
+            "repeatX": 25,
+            "repeatY": 2
         },
         {
             "type": "exit",
@@ -71,264 +18,15 @@
             "y": 0
         },
         {
-            "type": "stone-wall",
-            "x": 208,
-            "y": 0
-        },
-        {
-            "type": "stone-wall",
-            "x": 224,
-            "y": 0
-        },
-        {
-            "type": "stone-wall",
-            "x": 240,
-            "y": 0
-        },
-        {
-            "type": "stone-wall",
-            "x": 256,
-            "y": 0
-        },
-        {
-            "type": "stone-wall",
-            "x": 272,
-            "y": 0
-        },
-        {
-            "type": "stone-wall",
-            "x": 288,
-            "y": 0
-        },
-        {
-            "type": "stone-wall",
-            "x": 304,
-            "y": 0
-        },
-        {
-            "type": "stone-wall",
-            "x": 320,
-            "y": 0
-        },
-        {
-            "type": "stone-wall",
-            "x": 336,
-            "y": 0
-        },
-        {
-            "type": "stone-wall",
-            "x": 352,
-            "y": 0
-        },
-        {
-            "type": "stone-wall",
-            "x": 368,
-            "y": 0
-        },
-        {
-            "type": "stone-wall",
-            "x": 384,
-            "y": 0
-        },
-        {
-            "type": "stone-wall",
-            "x": 400,
-            "y": 0
-        },
-        {
-            "type": "stone-wall",
-            "x": 0,
-            "y": 16
-        },
-        {
-            "type": "stone-wall",
-            "x": 16,
-            "y": 16
-        },
-        {
-            "type": "stone-wall",
-            "x": 32,
-            "y": 16
-        },
-        {
-            "type": "stone-wall",
-            "x": 48,
-            "y": 16
-        },
-        {
-            "type": "stone-wall",
-            "x": 64,
-            "y": 16
-        },
-        {
-            "type": "stone-wall",
-            "x": 80,
-            "y": 16
-        },
-        {
-            "type": "stone-wall",
-            "x": 96,
-            "y": 16
-        },
-        {
-            "type": "stone-wall",
-            "x": 112,
-            "y": 16
-        },
-        {
-            "type": "stone-wall",
-            "x": 128,
-            "y": 16
-        },
-        {
-            "type": "stone-wall",
-            "x": 144,
-            "y": 16
-        },
-        {
-            "type": "stone-wall",
-            "x": 160,
-            "y": 16
-        },
-        {
-            "type": "stone-wall",
-            "x": 176,
-            "y": 16
-        },
-        {
-            "type": "stone-wall",
-            "x": 192,
-            "y": 16
-        },
-        {
             "type": "gray-door",
             "x": 192,
             "y": 16
         },
         {
-            "type": "stone-wall",
-            "x": 208,
-            "y": 16
-        },
-        {
-            "type": "stone-wall",
-            "x": 224,
-            "y": 16
-        },
-        {
-            "type": "stone-wall",
-            "x": 240,
-            "y": 16
-        },
-        {
-            "type": "stone-wall",
-            "x": 256,
-            "y": 16
-        },
-        {
-            "type": "stone-wall",
-            "x": 272,
-            "y": 16
-        },
-        {
-            "type": "stone-wall",
-            "x": 288,
-            "y": 16
-        },
-        {
-            "type": "stone-wall",
-            "x": 304,
-            "y": 16
-        },
-        {
-            "type": "stone-wall",
-            "x": 320,
-            "y": 16
-        },
-        {
-            "type": "stone-wall",
-            "x": 336,
-            "y": 16
-        },
-        {
-            "type": "stone-wall",
-            "x": 352,
-            "y": 16
-        },
-        {
-            "type": "stone-wall",
-            "x": 368,
-            "y": 16
-        },
-        {
-            "type": "stone-wall",
-            "x": 384,
-            "y": 16
-        },
-        {
-            "type": "stone-wall",
-            "x": 400,
-            "y": 16
-        },
-        {
             "type": "water",
             "x": 0,
-            "y": 32
-        },
-        {
-            "type": "water",
-            "x": 16,
-            "y": 32
-        },
-        {
-            "type": "water",
-            "x": 32,
-            "y": 32
-        },
-        {
-            "type": "water",
-            "x": 48,
-            "y": 32
-        },
-        {
-            "type": "water",
-            "x": 64,
-            "y": 32
-        },
-        {
-            "type": "water",
-            "x": 80,
-            "y": 32
-        },
-        {
-            "type": "water",
-            "x": 96,
-            "y": 32
-        },
-        {
-            "type": "water",
-            "x": 112,
-            "y": 32
-        },
-        {
-            "type": "water",
-            "x": 128,
-            "y": 32
-        },
-        {
-            "type": "water",
-            "x": 144,
-            "y": 32
-        },
-        {
-            "type": "water",
-            "x": 160,
-            "y": 32
-        },
-        {
-            "type": "water",
-            "x": 176,
-            "y": 32
+            "y": 32,
+            "repeatX": 25
         },
         {
             "type": "stone-tile",
@@ -336,1889 +34,341 @@
             "y": 32
         },
         {
-            "type": "water",
-            "x": 208,
-            "y": 32
-        },
-        {
-            "type": "water",
-            "x": 224,
-            "y": 32
-        },
-        {
-            "type": "water",
-            "x": 240,
-            "y": 32
-        },
-        {
-            "type": "water",
-            "x": 256,
-            "y": 32
-        },
-        {
-            "type": "water",
-            "x": 272,
-            "y": 32
-        },
-        {
-            "type": "water",
-            "x": 288,
-            "y": 32
-        },
-        {
-            "type": "water",
-            "x": 304,
-            "y": 32
-        },
-        {
-            "type": "water",
-            "x": 320,
-            "y": 32
-        },
-        {
-            "type": "water",
-            "x": 336,
-            "y": 32
-        },
-        {
-            "type": "water",
-            "x": 352,
-            "y": 32
-        },
-        {
-            "type": "water",
-            "x": 368,
-            "y": 32
-        },
-        {
-            "type": "water",
-            "x": 384,
-            "y": 32
-        },
-        {
-            "type": "water",
-            "x": 400,
-            "y": 32
+            "type": "stone-tile",
+            "x": 0,
+            "y": 48,
+            "repeatX": 25,
+            "repeatY": 3
         },
         {
             "type": "stone-tile",
             "x": 0,
-            "y": 48
+            "y": 96,
+            "repeatX": 3
         },
         {
-            "type": "stone-tile",
-            "x": 16,
-            "y": 48
-        },
-        {
-            "type": "stone-tile",
-            "x": 32,
-            "y": 48
-        },
-        {
-            "type": "stone-tile",
+            "type": "water-mid",
             "x": 48,
-            "y": 48
-        },
-        {
-            "type": "stone-tile",
-            "x": 64,
-            "y": 48
-        },
-        {
-            "type": "stone-tile",
-            "x": 80,
-            "y": 48
-        },
-        {
-            "type": "stone-tile",
-            "x": 96,
-            "y": 48
-        },
-        {
-            "type": "stone-tile",
-            "x": 112,
-            "y": 48
-        },
-        {
-            "type": "stone-tile",
-            "x": 128,
-            "y": 48
-        },
-        {
-            "type": "stone-tile",
-            "x": 144,
-            "y": 48
-        },
-        {
-            "type": "stone-tile",
-            "x": 160,
-            "y": 48
+            "y": 96,
+            "repeatX": 8
         },
         {
             "type": "stone-tile",
             "x": 176,
-            "y": 48
+            "y": 96,
+            "repeatX": 3
         },
         {
-            "type": "stone-tile",
-            "x": 192,
-            "y": 48
-        },
-        {
-            "type": "stone-tile",
-            "x": 208,
-            "y": 48
-        },
-        {
-            "type": "stone-tile",
+            "type": "water-mid",
             "x": 224,
-            "y": 48
-        },
-        {
-            "type": "stone-tile",
-            "x": 240,
-            "y": 48
-        },
-        {
-            "type": "stone-tile",
-            "x": 256,
-            "y": 48
-        },
-        {
-            "type": "stone-tile",
-            "x": 272,
-            "y": 48
-        },
-        {
-            "type": "stone-tile",
-            "x": 288,
-            "y": 48
-        },
-        {
-            "type": "stone-tile",
-            "x": 304,
-            "y": 48
-        },
-        {
-            "type": "stone-tile",
-            "x": 320,
-            "y": 48
-        },
-        {
-            "type": "stone-tile",
-            "x": 336,
-            "y": 48
+            "y": 96,
+            "repeatX": 8
         },
         {
             "type": "stone-tile",
             "x": 352,
-            "y": 48
-        },
-        {
-            "type": "stone-tile",
-            "x": 368,
-            "y": 48
-        },
-        {
-            "type": "stone-tile",
-            "x": 384,
-            "y": 48
-        },
-        {
-            "type": "stone-tile",
-            "x": 400,
-            "y": 48
+            "y": 96,
+            "repeatX": 3
         },
         {
             "type": "stone-tile",
             "x": 0,
-            "y": 64
+            "y": 112,
+            "repeatX": 3
         },
         {
-            "type": "stone-tile",
-            "x": 16,
-            "y": 64
-        },
-        {
-            "type": "stone-tile",
-            "x": 32,
-            "y": 64
-        },
-        {
-            "type": "stone-tile",
+            "type": "water-mid",
             "x": 48,
-            "y": 64
-        },
-        {
-            "type": "stone-tile",
-            "x": 64,
-            "y": 64
-        },
-        {
-            "type": "stone-tile",
-            "x": 80,
-            "y": 64
-        },
-        {
-            "type": "stone-tile",
-            "x": 96,
-            "y": 64
-        },
-        {
-            "type": "stone-tile",
-            "x": 112,
-            "y": 64
-        },
-        {
-            "type": "stone-tile",
-            "x": 128,
-            "y": 64
-        },
-        {
-            "type": "stone-tile",
-            "x": 144,
-            "y": 64
-        },
-        {
-            "type": "stone-tile",
-            "x": 160,
-            "y": 64
+            "y": 112,
+            "repeatX": 8
         },
         {
             "type": "stone-tile",
             "x": 176,
-            "y": 64
+            "y": 112,
+            "repeatX": 3
         },
         {
-            "type": "stone-tile",
-            "x": 192,
-            "y": 64
-        },
-        {
-            "type": "stone-tile",
-            "x": 208,
-            "y": 64
-        },
-        {
-            "type": "stone-tile",
+            "type": "water-mid",
             "x": 224,
-            "y": 64
-        },
-        {
-            "type": "stone-tile",
-            "x": 240,
-            "y": 64
-        },
-        {
-            "type": "stone-tile",
-            "x": 256,
-            "y": 64
-        },
-        {
-            "type": "stone-tile",
-            "x": 272,
-            "y": 64
-        },
-        {
-            "type": "stone-tile",
-            "x": 288,
-            "y": 64
-        },
-        {
-            "type": "stone-tile",
-            "x": 304,
-            "y": 64
-        },
-        {
-            "type": "stone-tile",
-            "x": 320,
-            "y": 64
-        },
-        {
-            "type": "stone-tile",
-            "x": 336,
-            "y": 64
+            "y": 112,
+            "repeatX": 8
         },
         {
             "type": "stone-tile",
             "x": 352,
-            "y": 64
-        },
-        {
-            "type": "stone-tile",
-            "x": 368,
-            "y": 64
-        },
-        {
-            "type": "stone-tile",
-            "x": 384,
-            "y": 64
-        },
-        {
-            "type": "stone-tile",
-            "x": 400,
-            "y": 64
+            "y": 112,
+            "repeatX": 3
         },
         {
             "type": "stone-tile",
             "x": 0,
-            "y": 80
+            "y": 128,
+            "repeatX": 3
         },
         {
-            "type": "stone-tile",
-            "x": 16,
-            "y": 80
-        },
-        {
-            "type": "stone-tile",
-            "x": 32,
-            "y": 80
-        },
-        {
-            "type": "stone-tile",
+            "type": "water-mid",
             "x": 48,
-            "y": 80
-        },
-        {
-            "type": "stone-tile",
-            "x": 64,
-            "y": 80
-        },
-        {
-            "type": "stone-tile",
-            "x": 80,
-            "y": 80
-        },
-        {
-            "type": "stone-tile",
-            "x": 96,
-            "y": 80
-        },
-        {
-            "type": "stone-tile",
-            "x": 112,
-            "y": 80
-        },
-        {
-            "type": "stone-tile",
-            "x": 128,
-            "y": 80
-        },
-        {
-            "type": "stone-tile",
-            "x": 144,
-            "y": 80
-        },
-        {
-            "type": "stone-tile",
-            "x": 160,
-            "y": 80
+            "y": 128,
+            "repeatX": 8
         },
         {
             "type": "stone-tile",
             "x": 176,
-            "y": 80
+            "y": 128,
+            "repeatX": 3
         },
         {
-            "type": "stone-tile",
-            "x": 192,
-            "y": 80
-        },
-        {
-            "type": "stone-tile",
-            "x": 208,
-            "y": 80
-        },
-        {
-            "type": "stone-tile",
+            "type": "water-mid",
             "x": 224,
-            "y": 80
-        },
-        {
-            "type": "stone-tile",
-            "x": 240,
-            "y": 80
-        },
-        {
-            "type": "stone-tile",
-            "x": 256,
-            "y": 80
-        },
-        {
-            "type": "stone-tile",
-            "x": 272,
-            "y": 80
-        },
-        {
-            "type": "stone-tile",
-            "x": 288,
-            "y": 80
-        },
-        {
-            "type": "stone-tile",
-            "x": 304,
-            "y": 80
-        },
-        {
-            "type": "stone-tile",
-            "x": 320,
-            "y": 80
-        },
-        {
-            "type": "stone-tile",
-            "x": 336,
-            "y": 80
+            "y": 128,
+            "repeatX": 8
         },
         {
             "type": "stone-tile",
             "x": 352,
-            "y": 80
-        },
-        {
-            "type": "stone-tile",
-            "x": 368,
-            "y": 80
-        },
-        {
-            "type": "stone-tile",
-            "x": 384,
-            "y": 80
-        },
-        {
-            "type": "stone-tile",
-            "x": 400,
-            "y": 80
+            "y": 128,
+            "repeatX": 3
         },
         {
             "type": "stone-tile",
             "x": 0,
-            "y": 96
-        },
-        {
-            "type": "stone-tile",
-            "x": 16,
-            "y": 96
-        },
-        {
-            "type": "stone-tile",
-            "x": 32,
-            "y": 96
+            "y": 144,
+            "repeatX": 3
         },
         {
             "type": "water-mid",
             "x": 48,
-            "y": 96
-        },
-        {
-            "type": "water-mid",
-            "x": 64,
-            "y": 96
-        },
-        {
-            "type": "water-mid",
-            "x": 80,
-            "y": 96
-        },
-        {
-            "type": "water-mid",
-            "x": 96,
-            "y": 96
-        },
-        {
-            "type": "water-mid",
-            "x": 112,
-            "y": 96
-        },
-        {
-            "type": "water-mid",
-            "x": 128,
-            "y": 96
-        },
-        {
-            "type": "water-mid",
-            "x": 144,
-            "y": 96
-        },
-        {
-            "type": "water-mid",
-            "x": 160,
-            "y": 96
+            "y": 144,
+            "repeatX": 8
         },
         {
             "type": "stone-tile",
             "x": 176,
-            "y": 96
-        },
-        {
-            "type": "stone-tile",
-            "x": 192,
-            "y": 96
-        },
-        {
-            "type": "stone-tile",
-            "x": 208,
-            "y": 96
+            "y": 144,
+            "repeatX": 3
         },
         {
             "type": "water-mid",
             "x": 224,
-            "y": 96
+            "y": 144,
+            "repeatX": 8
         },
         {
-            "type": "water-mid",
-            "x": 240,
-            "y": 96
-        },
-        {
-            "type": "water-mid",
-            "x": 256,
-            "y": 96
-        },
-        {
-            "type": "water-mid",
-            "x": 272,
-            "y": 96
-        },
-        {
-            "type": "water-mid",
-            "x": 288,
-            "y": 96
-        },
-        {
-            "type": "water-mid",
-            "x": 304,
-            "y": 96
-        },
-        {
-            "type": "water-mid",
-            "x": 320,
-            "y": 96
-        },
-        {
-            "type": "water-mid",
-            "x": 336,
-            "y": 96
-        },
-        {
-            "type": "water-mid",
+            "type": "stone-tile",
             "x": 352,
-            "y": 96
-        },
-        {
-            "type": "stone-tile",
-            "x": 368,
-            "y": 96
-        },
-        {
-            "type": "stone-tile",
-            "x": 384,
-            "y": 96
-        },
-        {
-            "type": "stone-tile",
-            "x": 400,
-            "y": 96
+            "y": 144,
+            "repeatX": 3
         },
         {
             "type": "stone-tile",
             "x": 0,
-            "y": 112
-        },
-        {
-            "type": "stone-tile",
-            "x": 16,
-            "y": 112
-        },
-        {
-            "type": "stone-tile",
-            "x": 32,
-            "y": 112
+            "y": 160,
+            "repeatX": 3
         },
         {
             "type": "water-mid",
             "x": 48,
-            "y": 112
+            "y": 160,
+            "repeatX": 4
         },
         {
-            "type": "water-mid",
-            "x": 64,
-            "y": 112
-        },
-        {
-            "type": "water-mid",
-            "x": 80,
-            "y": 112
-        },
-        {
-            "type": "water-mid",
-            "x": 96,
-            "y": 112
-        },
-        {
-            "type": "water-mid",
+            "type": "stone-tile",
             "x": 112,
-            "y": 112
-        },
-        {
-            "type": "water-mid",
-            "x": 128,
-            "y": 112
-        },
-        {
-            "type": "water-mid",
-            "x": 144,
-            "y": 112
-        },
-        {
-            "type": "water-mid",
-            "x": 160,
-            "y": 112
-        },
-        {
-            "type": "stone-tile",
-            "x": 176,
-            "y": 112
-        },
-        {
-            "type": "stone-tile",
-            "x": 192,
-            "y": 112
-        },
-        {
-            "type": "stone-tile",
-            "x": 208,
-            "y": 112
-        },
-        {
-            "type": "water-mid",
-            "x": 224,
-            "y": 112
-        },
-        {
-            "type": "water-mid",
-            "x": 240,
-            "y": 112
-        },
-        {
-            "type": "water-mid",
-            "x": 256,
-            "y": 112
-        },
-        {
-            "type": "water-mid",
-            "x": 272,
-            "y": 112
+            "y": 160,
+            "repeatX": 11
         },
         {
             "type": "water-mid",
             "x": 288,
-            "y": 112
+            "y": 160,
+            "repeatX": 4
         },
         {
-            "type": "water-mid",
-            "x": 304,
-            "y": 112
-        },
-        {
-            "type": "water-mid",
-            "x": 320,
-            "y": 112
-        },
-        {
-            "type": "water-mid",
-            "x": 336,
-            "y": 112
-        },
-        {
-            "type": "water-mid",
+            "type": "stone-tile",
             "x": 352,
-            "y": 112
-        },
-        {
-            "type": "stone-tile",
-            "x": 368,
-            "y": 112
-        },
-        {
-            "type": "stone-tile",
-            "x": 384,
-            "y": 112
-        },
-        {
-            "type": "stone-tile",
-            "x": 400,
-            "y": 112
+            "y": 160,
+            "repeatX": 3
         },
         {
             "type": "stone-tile",
             "x": 0,
-            "y": 128
-        },
-        {
-            "type": "stone-tile",
-            "x": 16,
-            "y": 128
-        },
-        {
-            "type": "stone-tile",
-            "x": 32,
-            "y": 128
+            "y": 176,
+            "repeatX": 3
         },
         {
             "type": "water-mid",
             "x": 48,
-            "y": 128
+            "y": 176,
+            "repeatX": 4
         },
         {
-            "type": "water-mid",
-            "x": 64,
-            "y": 128
-        },
-        {
-            "type": "water-mid",
-            "x": 80,
-            "y": 128
-        },
-        {
-            "type": "water-mid",
-            "x": 96,
-            "y": 128
-        },
-        {
-            "type": "water-mid",
+            "type": "stone-tile",
             "x": 112,
-            "y": 128
-        },
-        {
-            "type": "water-mid",
-            "x": 128,
-            "y": 128
-        },
-        {
-            "type": "water-mid",
-            "x": 144,
-            "y": 128
-        },
-        {
-            "type": "water-mid",
-            "x": 160,
-            "y": 128
-        },
-        {
-            "type": "stone-tile",
-            "x": 176,
-            "y": 128
-        },
-        {
-            "type": "stone-tile",
-            "x": 192,
-            "y": 128
-        },
-        {
-            "type": "stone-tile",
-            "x": 208,
-            "y": 128
-        },
-        {
-            "type": "water-mid",
-            "x": 224,
-            "y": 128
-        },
-        {
-            "type": "water-mid",
-            "x": 240,
-            "y": 128
-        },
-        {
-            "type": "water-mid",
-            "x": 256,
-            "y": 128
-        },
-        {
-            "type": "water-mid",
-            "x": 272,
-            "y": 128
+            "y": 176,
+            "repeatX": 11
         },
         {
             "type": "water-mid",
             "x": 288,
-            "y": 128
+            "y": 176,
+            "repeatX": 4
         },
         {
-            "type": "water-mid",
-            "x": 304,
-            "y": 128
-        },
-        {
-            "type": "water-mid",
-            "x": 320,
-            "y": 128
-        },
-        {
-            "type": "water-mid",
-            "x": 336,
-            "y": 128
-        },
-        {
-            "type": "water-mid",
+            "type": "stone-tile",
             "x": 352,
-            "y": 128
-        },
-        {
-            "type": "stone-tile",
-            "x": 368,
-            "y": 128
-        },
-        {
-            "type": "stone-tile",
-            "x": 384,
-            "y": 128
-        },
-        {
-            "type": "stone-tile",
-            "x": 400,
-            "y": 128
+            "y": 176,
+            "repeatX": 3
         },
         {
             "type": "stone-tile",
             "x": 0,
-            "y": 144
-        },
-        {
-            "type": "stone-tile",
-            "x": 16,
-            "y": 144
-        },
-        {
-            "type": "stone-tile",
-            "x": 32,
-            "y": 144
+            "y": 192,
+            "repeatX": 3
         },
         {
             "type": "water-mid",
             "x": 48,
-            "y": 144
+            "y": 192,
+            "repeatX": 4
         },
         {
-            "type": "water-mid",
-            "x": 64,
-            "y": 144
-        },
-        {
-            "type": "water-mid",
-            "x": 80,
-            "y": 144
-        },
-        {
-            "type": "water-mid",
-            "x": 96,
-            "y": 144
-        },
-        {
-            "type": "water-mid",
+            "type": "stone-tile",
             "x": 112,
-            "y": 144
-        },
-        {
-            "type": "water-mid",
-            "x": 128,
-            "y": 144
-        },
-        {
-            "type": "water-mid",
-            "x": 144,
-            "y": 144
-        },
-        {
-            "type": "water-mid",
-            "x": 160,
-            "y": 144
-        },
-        {
-            "type": "stone-tile",
-            "x": 176,
-            "y": 144
-        },
-        {
-            "type": "stone-tile",
-            "x": 192,
-            "y": 144
-        },
-        {
-            "type": "stone-tile",
-            "x": 208,
-            "y": 144
-        },
-        {
-            "type": "water-mid",
-            "x": 224,
-            "y": 144
-        },
-        {
-            "type": "water-mid",
-            "x": 240,
-            "y": 144
-        },
-        {
-            "type": "water-mid",
-            "x": 256,
-            "y": 144
-        },
-        {
-            "type": "water-mid",
-            "x": 272,
-            "y": 144
+            "y": 192,
+            "repeatX": 11
         },
         {
             "type": "water-mid",
             "x": 288,
-            "y": 144
+            "y": 192,
+            "repeatX": 4
         },
         {
-            "type": "water-mid",
-            "x": 304,
-            "y": 144
-        },
-        {
-            "type": "water-mid",
-            "x": 320,
-            "y": 144
-        },
-        {
-            "type": "water-mid",
-            "x": 336,
-            "y": 144
-        },
-        {
-            "type": "water-mid",
+            "type": "stone-tile",
             "x": 352,
-            "y": 144
-        },
-        {
-            "type": "stone-tile",
-            "x": 368,
-            "y": 144
-        },
-        {
-            "type": "stone-tile",
-            "x": 384,
-            "y": 144
-        },
-        {
-            "type": "stone-tile",
-            "x": 400,
-            "y": 144
+            "y": 192,
+            "repeatX": 3
         },
         {
             "type": "stone-tile",
             "x": 0,
-            "y": 160
-        },
-        {
-            "type": "stone-tile",
-            "x": 16,
-            "y": 160
-        },
-        {
-            "type": "stone-tile",
-            "x": 32,
-            "y": 160
+            "y": 208,
+            "repeatX": 3
         },
         {
             "type": "water-mid",
             "x": 48,
-            "y": 160
-        },
-        {
-            "type": "water-mid",
-            "x": 64,
-            "y": 160
-        },
-        {
-            "type": "water-mid",
-            "x": 80,
-            "y": 160
-        },
-        {
-            "type": "water-mid",
-            "x": 96,
-            "y": 160
+            "y": 208,
+            "repeatX": 4
         },
         {
             "type": "stone-tile",
             "x": 112,
-            "y": 160
+            "y": 208,
+            "repeatX": 3
         },
         {
-            "type": "stone-tile",
-            "x": 128,
-            "y": 160
-        },
-        {
-            "type": "stone-tile",
-            "x": 144,
-            "y": 160
-        },
-        {
-            "type": "stone-tile",
+            "type": "water-mid",
             "x": 160,
-            "y": 160
-        },
-        {
-            "type": "stone-tile",
-            "x": 176,
-            "y": 160
-        },
-        {
-            "type": "stone-tile",
-            "x": 192,
-            "y": 160
-        },
-        {
-            "type": "stone-tile",
-            "x": 208,
-            "y": 160
-        },
-        {
-            "type": "stone-tile",
-            "x": 224,
-            "y": 160
+            "y": 208,
+            "repeatX": 5
         },
         {
             "type": "stone-tile",
             "x": 240,
-            "y": 160
-        },
-        {
-            "type": "stone-tile",
-            "x": 256,
-            "y": 160
-        },
-        {
-            "type": "stone-tile",
-            "x": 272,
-            "y": 160
+            "y": 208,
+            "repeatX": 3
         },
         {
             "type": "water-mid",
             "x": 288,
-            "y": 160
+            "y": 208,
+            "repeatX": 4
         },
         {
-            "type": "water-mid",
-            "x": 304,
-            "y": 160
-        },
-        {
-            "type": "water-mid",
-            "x": 320,
-            "y": 160
-        },
-        {
-            "type": "water-mid",
-            "x": 336,
-            "y": 160
-        },
-        {
-            "type": "water-mid",
+            "type": "stone-tile",
             "x": 352,
-            "y": 160
-        },
-        {
-            "type": "stone-tile",
-            "x": 368,
-            "y": 160
-        },
-        {
-            "type": "stone-tile",
-            "x": 384,
-            "y": 160
-        },
-        {
-            "type": "stone-tile",
-            "x": 400,
-            "y": 160
+            "y": 208,
+            "repeatX": 3
         },
         {
             "type": "stone-tile",
             "x": 0,
-            "y": 176
-        },
-        {
-            "type": "stone-tile",
-            "x": 16,
-            "y": 176
-        },
-        {
-            "type": "stone-tile",
-            "x": 32,
-            "y": 176
+            "y": 224,
+            "repeatX": 10
         },
         {
             "type": "water-mid",
-            "x": 48,
-            "y": 176
-        },
-        {
-            "type": "water-mid",
-            "x": 64,
-            "y": 176
-        },
-        {
-            "type": "water-mid",
-            "x": 80,
-            "y": 176
-        },
-        {
-            "type": "water-mid",
-            "x": 96,
-            "y": 176
-        },
-        {
-            "type": "stone-tile",
-            "x": 112,
-            "y": 176
-        },
-        {
-            "type": "stone-tile",
-            "x": 128,
-            "y": 176
-        },
-        {
-            "type": "stone-tile",
-            "x": 144,
-            "y": 176
-        },
-        {
-            "type": "stone-tile",
             "x": 160,
-            "y": 176
-        },
-        {
-            "type": "stone-tile",
-            "x": 176,
-            "y": 176
-        },
-        {
-            "type": "stone-tile",
-            "x": 192,
-            "y": 176
-        },
-        {
-            "type": "stone-tile",
-            "x": 208,
-            "y": 176
-        },
-        {
-            "type": "stone-tile",
-            "x": 224,
-            "y": 176
+            "y": 224,
+            "repeatX": 5
         },
         {
             "type": "stone-tile",
             "x": 240,
-            "y": 176
-        },
-        {
-            "type": "stone-tile",
-            "x": 256,
-            "y": 176
-        },
-        {
-            "type": "stone-tile",
-            "x": 272,
-            "y": 176
-        },
-        {
-            "type": "water-mid",
-            "x": 288,
-            "y": 176
-        },
-        {
-            "type": "water-mid",
-            "x": 304,
-            "y": 176
-        },
-        {
-            "type": "water-mid",
-            "x": 320,
-            "y": 176
-        },
-        {
-            "type": "water-mid",
-            "x": 336,
-            "y": 176
-        },
-        {
-            "type": "water-mid",
-            "x": 352,
-            "y": 176
-        },
-        {
-            "type": "stone-tile",
-            "x": 368,
-            "y": 176
-        },
-        {
-            "type": "stone-tile",
-            "x": 384,
-            "y": 176
-        },
-        {
-            "type": "stone-tile",
-            "x": 400,
-            "y": 176
+            "y": 224,
+            "repeatX": 10
         },
         {
             "type": "stone-tile",
             "x": 0,
-            "y": 192
-        },
-        {
-            "type": "stone-tile",
-            "x": 16,
-            "y": 192
-        },
-        {
-            "type": "stone-tile",
-            "x": 32,
-            "y": 192
+            "y": 240,
+            "repeatX": 10
         },
         {
             "type": "water-mid",
-            "x": 48,
-            "y": 192
-        },
-        {
-            "type": "water-mid",
-            "x": 64,
-            "y": 192
-        },
-        {
-            "type": "water-mid",
-            "x": 80,
-            "y": 192
-        },
-        {
-            "type": "water-mid",
-            "x": 96,
-            "y": 192
-        },
-        {
-            "type": "stone-tile",
-            "x": 112,
-            "y": 192
-        },
-        {
-            "type": "stone-tile",
-            "x": 128,
-            "y": 192
-        },
-        {
-            "type": "stone-tile",
-            "x": 144,
-            "y": 192
-        },
-        {
-            "type": "stone-tile",
             "x": 160,
-            "y": 192
-        },
-        {
-            "type": "stone-tile",
-            "x": 176,
-            "y": 192
-        },
-        {
-            "type": "stone-tile",
-            "x": 192,
-            "y": 192
-        },
-        {
-            "type": "stone-tile",
-            "x": 208,
-            "y": 192
-        },
-        {
-            "type": "stone-tile",
-            "x": 224,
-            "y": 192
+            "y": 240,
+            "repeatX": 5
         },
         {
             "type": "stone-tile",
             "x": 240,
-            "y": 192
-        },
-        {
-            "type": "stone-tile",
-            "x": 256,
-            "y": 192
-        },
-        {
-            "type": "stone-tile",
-            "x": 272,
-            "y": 192
-        },
-        {
-            "type": "water-mid",
-            "x": 288,
-            "y": 192
-        },
-        {
-            "type": "water-mid",
-            "x": 304,
-            "y": 192
-        },
-        {
-            "type": "water-mid",
-            "x": 320,
-            "y": 192
-        },
-        {
-            "type": "water-mid",
-            "x": 336,
-            "y": 192
-        },
-        {
-            "type": "water-mid",
-            "x": 352,
-            "y": 192
-        },
-        {
-            "type": "stone-tile",
-            "x": 368,
-            "y": 192
-        },
-        {
-            "type": "stone-tile",
-            "x": 384,
-            "y": 192
-        },
-        {
-            "type": "stone-tile",
-            "x": 400,
-            "y": 192
+            "y": 240,
+            "repeatX": 10
         },
         {
             "type": "stone-tile",
             "x": 0,
-            "y": 208
-        },
-        {
-            "type": "stone-tile",
-            "x": 16,
-            "y": 208
-        },
-        {
-            "type": "stone-tile",
-            "x": 32,
-            "y": 208
+            "y": 256,
+            "repeatX": 3
         },
         {
             "type": "water-mid",
             "x": 48,
-            "y": 208
-        },
-        {
-            "type": "water-mid",
-            "x": 64,
-            "y": 208
-        },
-        {
-            "type": "water-mid",
-            "x": 80,
-            "y": 208
-        },
-        {
-            "type": "water-mid",
-            "x": 96,
-            "y": 208
+            "y": 256,
+            "repeatX": 4
         },
         {
             "type": "stone-tile",
             "x": 112,
-            "y": 208
-        },
-        {
-            "type": "stone-tile",
-            "x": 128,
-            "y": 208
-        },
-        {
-            "type": "stone-tile",
-            "x": 144,
-            "y": 208
+            "y": 256,
+            "repeatX": 3
         },
         {
             "type": "water-mid",
             "x": 160,
-            "y": 208
-        },
-        {
-            "type": "water-mid",
-            "x": 176,
-            "y": 208
-        },
-        {
-            "type": "water-mid",
-            "x": 192,
-            "y": 208
-        },
-        {
-            "type": "water-mid",
-            "x": 208,
-            "y": 208
-        },
-        {
-            "type": "water-mid",
-            "x": 224,
-            "y": 208
+            "y": 256,
+            "repeatX": 5
         },
         {
             "type": "stone-tile",
             "x": 240,
-            "y": 208
-        },
-        {
-            "type": "stone-tile",
-            "x": 256,
-            "y": 208
-        },
-        {
-            "type": "stone-tile",
-            "x": 272,
-            "y": 208
+            "y": 256,
+            "repeatX": 3
         },
         {
             "type": "water-mid",
             "x": 288,
-            "y": 208
-        },
-        {
-            "type": "water-mid",
-            "x": 304,
-            "y": 208
-        },
-        {
-            "type": "water-mid",
-            "x": 320,
-            "y": 208
-        },
-        {
-            "type": "water-mid",
-            "x": 336,
-            "y": 208
-        },
-        {
-            "type": "water-mid",
-            "x": 352,
-            "y": 208
-        },
-        {
-            "type": "stone-tile",
-            "x": 368,
-            "y": 208
-        },
-        {
-            "type": "stone-tile",
-            "x": 384,
-            "y": 208
-        },
-        {
-            "type": "stone-tile",
-            "x": 400,
-            "y": 208
-        },
-        {
-            "type": "stone-tile",
-            "x": 0,
-            "y": 224
-        },
-        {
-            "type": "stone-tile",
-            "x": 16,
-            "y": 224
-        },
-        {
-            "type": "stone-tile",
-            "x": 32,
-            "y": 224
-        },
-        {
-            "type": "stone-tile",
-            "x": 48,
-            "y": 224
-        },
-        {
-            "type": "stone-tile",
-            "x": 64,
-            "y": 224
-        },
-        {
-            "type": "stone-tile",
-            "x": 80,
-            "y": 224
-        },
-        {
-            "type": "stone-tile",
-            "x": 96,
-            "y": 224
-        },
-        {
-            "type": "stone-tile",
-            "x": 112,
-            "y": 224
-        },
-        {
-            "type": "stone-tile",
-            "x": 128,
-            "y": 224
-        },
-        {
-            "type": "stone-tile",
-            "x": 144,
-            "y": 224
-        },
-        {
-            "type": "water-mid",
-            "x": 160,
-            "y": 224
-        },
-        {
-            "type": "water-mid",
-            "x": 176,
-            "y": 224
-        },
-        {
-            "type": "water-mid",
-            "x": 192,
-            "y": 224
-        },
-        {
-            "type": "water-mid",
-            "x": 208,
-            "y": 224
-        },
-        {
-            "type": "water-mid",
-            "x": 224,
-            "y": 224
-        },
-        {
-            "type": "stone-tile",
-            "x": 240,
-            "y": 224
-        },
-        {
-            "type": "stone-tile",
-            "x": 256,
-            "y": 224
-        },
-        {
-            "type": "stone-tile",
-            "x": 272,
-            "y": 224
-        },
-        {
-            "type": "stone-tile",
-            "x": 288,
-            "y": 224
-        },
-        {
-            "type": "stone-tile",
-            "x": 304,
-            "y": 224
-        },
-        {
-            "type": "stone-tile",
-            "x": 320,
-            "y": 224
-        },
-        {
-            "type": "stone-tile",
-            "x": 336,
-            "y": 224
+            "y": 256,
+            "repeatX": 4
         },
         {
             "type": "stone-tile",
             "x": 352,
-            "y": 224
-        },
-        {
-            "type": "stone-tile",
-            "x": 368,
-            "y": 224
-        },
-        {
-            "type": "stone-tile",
-            "x": 384,
-            "y": 224
-        },
-        {
-            "type": "stone-tile",
-            "x": 400,
-            "y": 224
-        },
-        {
-            "type": "stone-tile",
-            "x": 0,
-            "y": 240
-        },
-        {
-            "type": "stone-tile",
-            "x": 16,
-            "y": 240
-        },
-        {
-            "type": "stone-tile",
-            "x": 32,
-            "y": 240
-        },
-        {
-            "type": "stone-tile",
-            "x": 48,
-            "y": 240
-        },
-        {
-            "type": "stone-tile",
-            "x": 64,
-            "y": 240
-        },
-        {
-            "type": "stone-tile",
-            "x": 80,
-            "y": 240
-        },
-        {
-            "type": "stone-tile",
-            "x": 96,
-            "y": 240
-        },
-        {
-            "type": "stone-tile",
-            "x": 112,
-            "y": 240
-        },
-        {
-            "type": "stone-tile",
-            "x": 128,
-            "y": 240
-        },
-        {
-            "type": "stone-tile",
-            "x": 144,
-            "y": 240
-        },
-        {
-            "type": "water-mid",
-            "x": 160,
-            "y": 240
-        },
-        {
-            "type": "water-mid",
-            "x": 176,
-            "y": 240
-        },
-        {
-            "type": "water-mid",
-            "x": 192,
-            "y": 240
-        },
-        {
-            "type": "water-mid",
-            "x": 208,
-            "y": 240
-        },
-        {
-            "type": "water-mid",
-            "x": 224,
-            "y": 240
-        },
-        {
-            "type": "stone-tile",
-            "x": 240,
-            "y": 240
-        },
-        {
-            "type": "stone-tile",
-            "x": 256,
-            "y": 240
-        },
-        {
-            "type": "stone-tile",
-            "x": 272,
-            "y": 240
-        },
-        {
-            "type": "stone-tile",
-            "x": 288,
-            "y": 240
-        },
-        {
-            "type": "stone-tile",
-            "x": 304,
-            "y": 240
-        },
-        {
-            "type": "stone-tile",
-            "x": 320,
-            "y": 240
-        },
-        {
-            "type": "stone-tile",
-            "x": 336,
-            "y": 240
-        },
-        {
-            "type": "stone-tile",
-            "x": 352,
-            "y": 240
-        },
-        {
-            "type": "stone-tile",
-            "x": 368,
-            "y": 240
-        },
-        {
-            "type": "stone-tile",
-            "x": 384,
-            "y": 240
-        },
-        {
-            "type": "stone-tile",
-            "x": 400,
-            "y": 240
-        },
-        {
-            "type": "stone-tile",
-            "x": 0,
-            "y": 256
-        },
-        {
-            "type": "stone-tile",
-            "x": 16,
-            "y": 256
-        },
-        {
-            "type": "stone-tile",
-            "x": 32,
-            "y": 256
-        },
-        {
-            "type": "water-mid",
-            "x": 48,
-            "y": 256
-        },
-        {
-            "type": "water-mid",
-            "x": 64,
-            "y": 256
-        },
-        {
-            "type": "water-mid",
-            "x": 80,
-            "y": 256
-        },
-        {
-            "type": "water-mid",
-            "x": 96,
-            "y": 256
-        },
-        {
-            "type": "stone-tile",
-            "x": 112,
-            "y": 256
-        },
-        {
-            "type": "stone-tile",
-            "x": 128,
-            "y": 256
-        },
-        {
-            "type": "stone-tile",
-            "x": 144,
-            "y": 256
-        },
-        {
-            "type": "water-mid",
-            "x": 160,
-            "y": 256
-        },
-        {
-            "type": "water-mid",
-            "x": 176,
-            "y": 256
-        },
-        {
-            "type": "water-mid",
-            "x": 192,
-            "y": 256
-        },
-        {
-            "type": "water-mid",
-            "x": 208,
-            "y": 256
-        },
-        {
-            "type": "water-mid",
-            "x": 224,
-            "y": 256
-        },
-        {
-            "type": "stone-tile",
-            "x": 240,
-            "y": 256
-        },
-        {
-            "type": "stone-tile",
-            "x": 256,
-            "y": 256
-        },
-        {
-            "type": "stone-tile",
-            "x": 272,
-            "y": 256
-        },
-        {
-            "type": "water-mid",
-            "x": 288,
-            "y": 256
-        },
-        {
-            "type": "water-mid",
-            "x": 304,
-            "y": 256
-        },
-        {
-            "type": "water-mid",
-            "x": 320,
-            "y": 256
-        },
-        {
-            "type": "water-mid",
-            "x": 336,
-            "y": 256
-        },
-        {
-            "type": "water-mid",
-            "x": 352,
-            "y": 256
-        },
-        {
-            "type": "stone-tile",
-            "x": 368,
-            "y": 256
-        },
-        {
-            "type": "stone-tile",
-            "x": 384,
-            "y": 256
-        },
-        {
-            "type": "stone-tile",
-            "x": 400,
-            "y": 256
+            "y": 256,
+            "repeatX": 3
         },
         {
             "type": "teiri",

@@ -45,8 +45,6 @@ export async function create() {
     document.getElementById("game").appendChild(app.view);
 
     const objects = [];
-    const staticObjects = [];
-    var staticRects = [];
     const views = new Map();
     const hits = new Map();
 
@@ -54,50 +52,11 @@ export async function create() {
         const object = await Object.create(Asset.MAPS.get("hijack/map/test.json").objects[i]);
         const view = await View.create(object);
         await View.setup(app.stage, view);
-
-        if (object.control)
-            objects.push(object);
-        else {
-            staticObjects.push(object);
-            staticRects.push({
-                x: object.x,
-                y: object.y,
-                width: object.width,
-                height: object.height
-            });
-        }
-
+        objects.push(object);
         views.set(object.id, view);
         hits.set(object.id, new Map());
     }
 
-    for (var i = 0; i < staticRects.length; ++i)
-        for (var j = 0; j < staticRects.length; ++j) {
-            const rect1 = staticRects[i];
-            const rect2 = staticRects[j];
-
-            if (rect1.x === rect2.x && rect1.width === rect2.width) {
-                if (rect1.y === rect2.y + rect2.height || rect2.y === rect1.y + rect1.height) {
-                    const y = Math.min(rect1.y, rect2.y);
-                    const height = rect1.height + rect2.height;
-                    rect1.y = y;
-                    rect1.height = height;
-                    rect2.y = y;
-                    rect2.height = height;
-                }
-            } else if (rect1.y === rect2.y && rect1.height === rect2.height) {
-                if (rect1.x === rect2.x + rect2.width || rect2.x === rect1.x + rect1.width) {
-                    const x = Math.min(rect1.x, rect2.x);
-                    const width = rect1.width + rect2.width;
-                    rect1.x = x;
-                    rect1.width = width;
-                    rect2.x = x;
-                    rect2.width = width;
-                }
-            }
-        }
-
-    staticRects = staticRects.filter((rect1, i) => !staticRects.slice(i + 1).some(rect2 => Object.subrect(rect1, rect2)));
     const window = new PIXI.Graphics();
     window.x = 0;
     window.y = 0;
@@ -179,8 +138,6 @@ export async function create() {
         height: Asset.MAPS.get("hijack/map/test.json").height,
         views: views,
         objects: objects,
-        staticObjects: staticObjects,
-        staticRects: staticRects,
         hijacks: [],
         attacks: [],
         hits: hits,
