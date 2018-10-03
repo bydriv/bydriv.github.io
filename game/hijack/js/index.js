@@ -99,6 +99,25 @@ export async function create() {
         });
     }
 
+    const clearTextStyle = new PIXI.TextStyle({
+        fontFamily: "IBM BIOS",
+        fontSize: 16,
+        fill: 0x00FF00
+    });
+
+    const gameoverTextStyle = new PIXI.TextStyle({
+        fontFamily: "IBM BIOS",
+        fontSize: 16,
+        fill: 0xFF0000
+    });
+
+    const clearText = new PIXI.Text("ALL CLEAR!", clearTextStyle);
+    clearText.x = 120 - "ALL CLEAR!".length * 16 / 2;
+    clearText.y = 80 - 16 / 2 + 2;
+    const gameoverText = new PIXI.Text("GAMEOVER", gameoverTextStyle);
+    gameoverText.x = 120 - "GAMEOVER".length * 16 / 2;
+    gameoverText.y = 80 - 16 / 2 + 2;
+
     var touches = [];
 
     app.view.addEventListener("touchstart", e => {
@@ -148,7 +167,9 @@ export async function create() {
             cursorText2: cursorText2,
             cursorText3: cursorText3,
             cursorText4: cursorText4,
-            log: log
+            log: log,
+            clearText: clearText,
+            gameoverText: gameoverText
         }
     };
 }
@@ -248,11 +269,27 @@ export async function step(game) {
     game.dialog.window.x = -game.app.stage.x / SCALE;
     game.dialog.window.y = -game.app.stage.y / SCALE;
 
+    if (await gameover(game)) {
+        game.dialog.window.renderable = true;
+        game.dialog.window.addChild(game.dialog.gameoverText);
+    } else if (await clear(game)) {
+        game.dialog.window.renderable = true;
+        game.dialog.window.addChild(game.dialog.clearText);
+    }
+
     game.app.renderer.render(game.app.stage);
 
     game.dialog.window.removeChildren();
 
     return game;
+}
+
+async function clear(game) {
+    return !game.objects.some(object => object.team === "enemy" && object.hijackedByTeam !== "player");
+}
+
+async function gameover(game) {
+    return !game.objects.some(object => object.team === "player");
 }
 
 export function resize() {
