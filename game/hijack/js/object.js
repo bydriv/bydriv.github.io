@@ -669,14 +669,58 @@ function hijack(game, object) {
 
     if (targets.length === 0) {
         if (object.count % 2 === 0) {
-            if (object.control.input.x < -0.25 && Math.abs(object.x + object.width - (object.hijack.x + object.hijack.width / 2 - 8)) <= 120)
+            const rects = game.objects.filter(o => o.team === object.team || o.hijackedByTeam === object.team).map(o => ({
+                x: o.x + o.width / 2 - 80,
+                y: o.y + o.height / 2 - 80,
+                width: 160,
+                height: 160,
+            }));
+
+            if (!rects.some(rect => subrect(object.hijack, rect))) {
                 object.hijack.x -= 8;
-            if (object.control.input.x > 0.25 && Math.abs(object.x - (object.hijack.x + object.hijack.width / 2 + 8)) <= 120)
+
+                if (!rects.some(rect => subrect(object.hijack, rect))) {
+                    object.hijack.x += 16;
+
+                    if (!rects.some(rect => subrect(object.hijack, rect))) {
+                        object.hijack.x -= 8;
+                        object.hijack.y -= 8;
+
+                        if (!rects.some(rect => subrect(object.hijack, rect))) {
+                            object.hijack.y += 16;
+
+                            if (!rects.some(rect => subrect(object.hijack, rect))) {
+                                object.hijack.x = (object.x + (object.direction === "left" ? -32 : object.direction === "right" ? 16 : -8));
+                                object.hijack.y = (object.y + (object.direction === "back" ? -32 : object.direction === "front" ? 16 : -8));
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (object.control.input.x < -0.25) {
+                object.hijack.x -= 8;
+                if (!rects.some(rect => subrect(object.hijack, rect)))
+                    object.hijack.x += 8;
+            }
+
+            if (object.control.input.x > 0.25) {
                 object.hijack.x += 8;
-            if (object.control.input.y < -0.25 && Math.abs(object.y + object.height - (object.hijack.y + object.hijack.height / 2 - 8)) <= 80)
+                if (!rects.some(rect => subrect(object.hijack, rect)))
+                    object.hijack.x -= 8;
+            }
+
+            if (object.control.input.y < -0.25) {
                 object.hijack.y -= 8;
-            if (object.control.input.y > 0.25 && Math.abs(object.y - (object.hijack.y + object.hijack.height / 2 + 8)) <= 80)
+                if (!rects.some(rect => subrect(object.hijack, rect)))
+                    object.hijack.y += 8;
+            }
+
+            if (object.control.input.y > 0.25) {
                 object.hijack.y += 8;
+                if (!rects.some(rect => subrect(object.hijack, rect)))
+                    object.hijack.y -= 8;
+            }
         }
     } else {
         const left = Math.min.apply(null, targets.map(target => target.x));
