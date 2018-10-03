@@ -764,6 +764,216 @@
             },
             "direction": "front",
             "pose": "default"
+        },
+        {
+            "type": "security-drone",
+            "id": null,
+            "x": 0,
+            "y": 384,
+            "team": "enemy",
+            "control": {
+                "bias": 0.252,
+                "incr": 2.45e-2,
+                "type": "typeA"
+            },
+            "direction": "front",
+            "pose": "default"
+        },
+        {
+            "type": "security-drone",
+            "id": null,
+            "x": 0,
+            "y": 400,
+            "team": "enemy",
+            "control": {
+                "bias": 0.252,
+                "incr": 2.45e-2,
+                "type": "typeA"
+            },
+            "direction": "front",
+            "pose": "default"
+        },
+        {
+            "type": "security-drone",
+            "id": null,
+            "x": 0,
+            "y": 416,
+            "team": "enemy",
+            "control": {
+                "bias": 0.252,
+                "incr": 2.45e-2,
+                "type": "typeA"
+            },
+            "direction": "front",
+            "pose": "default"
+        },
+        {
+            "type": "security-drone",
+            "id": null,
+            "x": 384,
+            "y": 384,
+            "team": "enemy",
+            "control": {
+                "bias": 0.252,
+                "incr": 2.45e-2,
+                "type": "typeA"
+            },
+            "direction": "front",
+            "pose": "default"
+        },
+        {
+            "type": "security-drone",
+            "id": null,
+            "x": 384,
+            "y": 400,
+            "team": "enemy",
+            "control": {
+                "bias": 0.252,
+                "incr": 2.45e-2,
+                "type": "typeA"
+            },
+            "direction": "front",
+            "pose": "default"
+        },
+        {
+            "type": "security-drone",
+            "id": null,
+            "x": 384,
+            "y": 416,
+            "team": "enemy",
+            "control": {
+                "bias": 0.252,
+                "incr": 2.45e-2,
+                "type": "typeA"
+            },
+            "direction": "front",
+            "pose": "default"
+        },
+        {
+            "type": "security-drone",
+            "id": null,
+            "x": 0,
+            "y": 192,
+            "team": "enemy",
+            "control": {
+                "bias": 0.252,
+                "incr": 2.45e-2,
+                "type": "typeA"
+            },
+            "direction": "front",
+            "pose": "default"
+        },
+        {
+            "type": "security-drone",
+            "id": null,
+            "x": 0,
+            "y": 208,
+            "team": "enemy",
+            "control": {
+                "bias": 0.252,
+                "incr": 2.45e-2,
+                "type": "typeA"
+            },
+            "direction": "front",
+            "pose": "default"
+        },
+        {
+            "type": "security-drone",
+            "id": null,
+            "x": 0,
+            "y": 224,
+            "team": "enemy",
+            "control": {
+                "bias": 0.252,
+                "incr": 2.45e-2,
+                "type": "typeA"
+            },
+            "direction": "front",
+            "pose": "default"
+        },
+        {
+            "type": "security-drone",
+            "id": null,
+            "x": 384,
+            "y": 192,
+            "team": "enemy",
+            "control": {
+                "bias": 0.252,
+                "incr": 2.45e-2,
+                "type": "typeA"
+            },
+            "direction": "front",
+            "pose": "default"
+        },
+        {
+            "type": "security-drone",
+            "id": null,
+            "x": 384,
+            "y": 208,
+            "team": "enemy",
+            "control": {
+                "bias": 0.252,
+                "incr": 2.45e-2,
+                "type": "typeA"
+            },
+            "direction": "front",
+            "pose": "default"
+        },
+        {
+            "type": "security-drone",
+            "id": null,
+            "x": 384,
+            "y": 224,
+            "team": "enemy",
+            "control": {
+                "bias": 0.252,
+                "incr": 2.45e-2,
+                "type": "typeA"
+            },
+            "direction": "front",
+            "pose": "default"
+        },
+        {
+            "type": "security-drone",
+            "id": null,
+            "x": 176,
+            "y": 416,
+            "team": "enemy",
+            "control": {
+                "bias": 0.252,
+                "incr": 2.45e-2,
+                "type": "typeA"
+            },
+            "direction": "front",
+            "pose": "default"
+        },
+        {
+            "type": "security-drone",
+            "id": null,
+            "x": 192,
+            "y": 416,
+            "team": "enemy",
+            "control": {
+                "bias": 0.252,
+                "incr": 2.45e-2,
+                "type": "typeA"
+            },
+            "direction": "front",
+            "pose": "default"
+        },
+        {
+            "type": "security-drone",
+            "id": null,
+            "x": 208,
+            "y": 416,
+            "team": "enemy",
+            "control": {
+                "bias": 0.252,
+                "incr": 2.45e-2,
+                "type": "typeA"
+            },
+            "direction": "front",
+            "pose": "default"
         }
     ]
 }
