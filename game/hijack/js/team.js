@@ -1,4 +1,6 @@
 export function enemy(object1, object2) {
+    if (object1.hijackedByTeam === object2.team)
+        return false;
     if (object1.rejectedIds.some(id => id === object2.id))
         return true;
     if (object1.acceptedIds.some(id => id === object2.id))
@@ -31,7 +33,7 @@ export function enemy(object1, object2) {
     }
 }
 
-export function color(team, hijacked) {
+export function color(team, hijackedByTeam) {
     switch (team) {
     case "player":
         return {
@@ -39,15 +41,17 @@ export function color(team, hijacked) {
             bg: 0x008000
         };
     case "enemy":
-        if (hijacked)
+        switch (hijackedByTeam) {
+        case "player":
             return {
                 fg: 0xFFFF00,
                 bg: 0x808000
             };
-        else
+        default:
             return {
                 fg: 0xFF0000,
                 bg: 0x800000
             };
+        }
     }
 }

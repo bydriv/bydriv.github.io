@@ -65,7 +65,7 @@ export const Creature = {
             buttons: object.buttons,
             move: object.move,
             hijackable: object.hijackable,
-            hijacked: false,
+            hijackedByTeam: null,
             security: object.security,
             acceptedIds: [],
             rejectedIds: []
@@ -158,14 +158,8 @@ export const Creature = {
 
         object.security -= Math.min(hijack.damage, object.security);
 
-        if (object.security === 0) {
-            object.hijacked = true;
-
-            if (!object.acceptedIds.some(id => id === hijack.source)) {
-                object.acceptedIds.push(hijack.source);
-                object.rejectedIds = object.rejectedIds.filter(id => id !== hijack.source);
-            }
-        }
+        if (object.security === 0)
+            object.hijackedByTeam = sourceObject.team;
     },
     onAttack: async (game, object, attack) => {
         const sourceObject = game.objects.find(o => o.id === attack.source);
@@ -174,9 +168,7 @@ export const Creature = {
 
         object.shield -= Math.min(attack.damage, object.shield);
 
-        object.hijacked = false;
-
-        if (!object.rejectedIds.some(id => id === attack.source)) {
+        if (sourceObject.team !== object.hijackedByTeam && !object.rejectedIds.some(id => id === attack.source)) {
             object.rejectedIds.push(attack.source);
             object.acceptedIds = object.acceptedIds.filter(id => id !== attack.source);
         }
