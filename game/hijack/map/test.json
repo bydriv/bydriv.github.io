@@ -3,7 +3,7 @@
     "x": 0,
     "y": 0,
     "width": 400,
-    "height": 272,
+    "height": 432,
     "objects": [
         {
             "type": "stone-wall",
@@ -369,6 +369,221 @@
             "x": 352,
             "y": 256,
             "repeatX": 3
+        },
+        {
+            "type": "stone-tile",
+            "x": 0,
+            "y": 272,
+            "repeatX": 3
+        },
+        {
+            "type": "water-mid",
+            "x": 48,
+            "y": 272,
+            "repeatX": 4
+        },
+        {
+            "type": "stone-tile",
+            "x": 112,
+            "y": 272,
+            "repeatX": 11
+        },
+        {
+            "type": "water-mid",
+            "x": 288,
+            "y": 272,
+            "repeatX": 4
+        },
+        {
+            "type": "stone-tile",
+            "x": 352,
+            "y": 272,
+            "repeatX": 3
+        },
+        {
+            "type": "stone-tile",
+            "x": 0,
+            "y": 288,
+            "repeatX": 3
+        },
+        {
+            "type": "water-mid",
+            "x": 48,
+            "y": 288,
+            "repeatX": 4
+        },
+        {
+            "type": "stone-tile",
+            "x": 112,
+            "y": 288,
+            "repeatX": 11
+        },
+        {
+            "type": "water-mid",
+            "x": 288,
+            "y": 288,
+            "repeatX": 4
+        },
+        {
+            "type": "stone-tile",
+            "x": 352,
+            "y": 288,
+            "repeatX": 3
+        },
+        {
+            "type": "stone-tile",
+            "x": 0,
+            "y": 304,
+            "repeatX": 3
+        },
+        {
+            "type": "water-mid",
+            "x": 48,
+            "y": 304,
+            "repeatX": 4
+        },
+        {
+            "type": "stone-tile",
+            "x": 112,
+            "y": 304,
+            "repeatX": 11
+        },
+        {
+            "type": "water-mid",
+            "x": 288,
+            "y": 304,
+            "repeatX": 4
+        },
+        {
+            "type": "stone-tile",
+            "x": 352,
+            "y": 304,
+            "repeatX": 3
+        },
+        {
+            "type": "stone-tile",
+            "x": 0,
+            "y": 320,
+            "repeatX": 3
+        },
+        {
+            "type": "water-mid",
+            "x": 48,
+            "y": 320,
+            "repeatX": 8
+        },
+        {
+            "type": "stone-tile",
+            "x": 176,
+            "y": 320,
+            "repeatX": 3
+        },
+        {
+            "type": "water-mid",
+            "x": 224,
+            "y": 320,
+            "repeatX": 8
+        },
+        {
+            "type": "stone-tile",
+            "x": 352,
+            "y": 320,
+            "repeatX": 3
+        },
+        {
+            "type": "stone-tile",
+            "x": 0,
+            "y": 336,
+            "repeatX": 3
+        },
+        {
+            "type": "water-mid",
+            "x": 48,
+            "y": 336,
+            "repeatX": 8
+        },
+        {
+            "type": "stone-tile",
+            "x": 176,
+            "y": 336,
+            "repeatX": 3
+        },
+        {
+            "type": "water-mid",
+            "x": 224,
+            "y": 336,
+            "repeatX": 8
+        },
+        {
+            "type": "stone-tile",
+            "x": 352,
+            "y": 336,
+            "repeatX": 3
+        },        {
+            "type": "stone-tile",
+            "x": 0,
+            "y": 352,
+            "repeatX": 3
+        },
+        {
+            "type": "water-mid",
+            "x": 48,
+            "y": 352,
+            "repeatX": 8
+        },
+        {
+            "type": "stone-tile",
+            "x": 176,
+            "y": 352,
+            "repeatX": 3
+        },
+        {
+            "type": "water-mid",
+            "x": 224,
+            "y": 352,
+            "repeatX": 8
+        },
+        {
+            "type": "stone-tile",
+            "x": 352,
+            "y": 352,
+            "repeatX": 3
+        },        {
+            "type": "stone-tile",
+            "x": 0,
+            "y": 368,
+            "repeatX": 3
+        },
+        {
+            "type": "water-mid",
+            "x": 48,
+            "y": 368,
+            "repeatX": 8
+        },
+        {
+            "type": "stone-tile",
+            "x": 176,
+            "y": 368,
+            "repeatX": 3
+        },
+        {
+            "type": "water-mid",
+            "x": 224,
+            "y": 368,
+            "repeatX": 8
+        },
+        {
+            "type": "stone-tile",
+            "x": 352,
+            "y": 368,
+            "repeatX": 3
+        },
+        {
+            "type": "stone-tile",
+            "x": 0,
+            "y": 384,
+            "repeatX": 25,
+            "repeatY": 3
         },
         {
             "type": "teiri",
