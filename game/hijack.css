@@ -38,3 +38,9 @@ div#nav {
     font-family: "IBM BIOS";
     font-size: 8px;
 }
+
+div#desc {
+    font-family: "Misaki Gothic";
+    font-size: 8px;
+    margin: 16px;
+}
