@@ -319,7 +319,7 @@ export async function step(game) {
 }
 
 async function clear(game) {
-    return !game.allObjects.some(object => object.team === "enemy" && object.hijackedByTeam !== "player");
+    return !game.allObjects.some(object => object.team === "enemy" && object.type !== "shot" && object.hijackedByTeam !== "player");
 }
 
 async function gameover(game) {
