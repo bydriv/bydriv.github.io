@@ -186,12 +186,11 @@ export async function step(game) {
     for (var i = 0; i < game.objects.length; ++i)
         game.objects[i] = await Object.step(game, game.objects[i]);
 
-    for (var i = 0; i < game.objects.length; ++i)
+    for (var i = 0; i < game.objects.length; ++i) {
         for (var j = 0; j < game.hijacks.length; ++j)
             if (Object.collision(game.objects[i], game.hijacks[j]))
                 await Object.onHijack(game, game.objects[i], game.hijacks[j]);
 
-    for (var i = 0; i < game.objects.length; ++i)
         for (var j = 0; j < game.attacks.length; ++j)
             if (!(game.hits.get(game.objects[i].id).has(game.attacks[j].id)))
                 if (Object.collision(game.objects[i], game.attacks[j])) {
@@ -199,20 +198,19 @@ export async function step(game) {
                     await Object.onAttack(game, game.objects[i], game.attacks[j]);
                 }
 
-    for (var i = 0; i < game.objects.length; ++i)
         if (game.objects[i].exiled) {
             await View.teardown(game.app.stage, game.views.get(game.objects[i].id));
             game.views.delete(game.objects[i].id);
             game.hits.delete(game.objects[i].id);
+            game.objects.splice(i, 1);
+            --i;
+        } else {
+            await View.update(game.objects[i], game.views.get(game.objects[i].id));
         }
-
-    game.objects = game.objects.filter(object => !object.exiled);
+    }
 
     game.hijacks = [];
     game.attacks = [];
-
-    for (var i = 0; i < game.objects.length; ++i)
-        await View.update(game.objects[i], game.views.get(game.objects[i].id));
 
     game.dialog.window.renderable = false;
 
