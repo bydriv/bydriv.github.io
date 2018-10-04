@@ -451,8 +451,8 @@ export const Shot = {
             id: object.id || "0x" + Gensym.gensym().toString(16).toUpperCase(),
             x: object.x,
             y: object.y,
-            width: 0,
-            height: 0,
+            width: 2,
+            height: 2,
             team: object.team,
             direction: object.direction,
             count: 0,
@@ -805,7 +805,7 @@ async function shot(game, object, startup, recovery, offset) {
         const shot = await Shot.create({ type: "shot", direction: object.direction, team: object.team, x: object.x + offset.x, y: object.y + offset.y, source: object.id });
         const view = await View.create(shot);
         await View.setup(game.app.stage, view);
-        game.objects.push(shot);
+        game.allObjects.push(shot);
         game.views.set(shot.id, view);
         game.hits.set(shot.id, new Map());
         return false;

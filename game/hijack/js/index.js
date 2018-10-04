@@ -57,6 +57,27 @@ export async function create() {
         hits.set(object.id, new Map());
     }
 
+    const activeRect = {
+        x: Asset.MAPS.get("hijack/map/test.json").x,
+        y: Asset.MAPS.get("hijack/map/test.json").y,
+        width: Asset.MAPS.get("hijack/map/test.json").width,
+        height: Asset.MAPS.get("hijack/map/test.json").height
+    };
+
+    for (var i = 0; i < objects.length; ++i)
+        if (Asset.MAPS.get("hijack/map/test.json").lock === objects[i].id) {
+            const object = objects[i];
+
+            const centralX = (object.x + object.width / 2);
+            const centralY = (object.y + object.height / 2);
+            activeRect.x = centralX - WIDTH / 2;
+            activeRect.y = centralY - HEIGHT / 2;
+            activeRect.width = WIDTH;
+            activeRect.height = HEIGHT;
+
+            break;
+        }
+
     const window = new PIXI.Graphics();
     window.x = 0;
     window.y = 0;
@@ -156,7 +177,9 @@ export async function create() {
         width: Asset.MAPS.get("hijack/map/test.json").width,
         height: Asset.MAPS.get("hijack/map/test.json").height,
         views: views,
-        objects: objects,
+        allObjects: objects,
+        activeRect: activeRect,
+        objects: activeObjects(activeRect, objects),
         hijacks: [],
         attacks: [],
         hits: hits,
@@ -199,6 +222,7 @@ export async function step(game) {
                 }
 
         if (game.objects[i].exiled) {
+            game.allObjects = game.allObjects.filter(object => object.id !== game.objects[i].id);
             await View.teardown(game.app.stage, game.views.get(game.objects[i].id));
             game.views.delete(game.objects[i].id);
             game.hits.delete(game.objects[i].id);
@@ -223,11 +247,21 @@ export async function step(game) {
                 const centralY = (object.y + object.height / 2) * SCALE;
                 game.app.stage.x = WIDTH * SCALE / 2 - centralX;
                 game.app.stage.y = HEIGHT * SCALE / 2 - centralY;
+
+                game.activeRect.x = centralX / SCALE - WIDTH / 2;
+                game.activeRect.y = centralY / SCALE - HEIGHT / 2;
+                game.activeRect.width = WIDTH;
+                game.activeRect.height = HEIGHT;
             } else {
                 const centralX = (object.hijack.x + object.hijack.width / 2) * SCALE;
                 const centralY = (object.hijack.y + object.hijack.height / 2) * SCALE;
                 game.app.stage.x = WIDTH * SCALE / 2 - centralX;
                 game.app.stage.y = HEIGHT * SCALE / 2 - centralY;
+
+                game.activeRect.x = centralX / SCALE - WIDTH / 2;
+                game.activeRect.y = centralY / SCALE - HEIGHT / 2;
+                game.activeRect.width = WIDTH;
+                game.activeRect.height = HEIGHT;
             }
 
             if (object.hijack) {
@@ -279,15 +313,21 @@ export async function step(game) {
 
     game.dialog.window.removeChildren();
 
+    game.objects = activeObjects(game.activeRect, game.allObjects);
+
     return game;
 }
 
 async function clear(game) {
-    return !game.objects.some(object => object.team === "enemy" && object.hijackedByTeam !== "player");
+    return !game.allObjects.some(object => object.team === "enemy" && object.hijackedByTeam !== "player");
 }
 
 async function gameover(game) {
-    return !game.objects.some(object => object.team === "player");
+    return !game.allObjects.some(object => object.team === "player");
+}
+
+function activeObjects(activeRect, objects) {
+    return objects.filter(object => object.team === "player" || Object.collision(activeRect, object));
 }
 
 export function resize() {
