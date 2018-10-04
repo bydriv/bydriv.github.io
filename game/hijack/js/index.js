@@ -169,13 +169,18 @@ export async function create() {
         }
     });
 
+    const left = Math.max(activeRect.x, Asset.MAPS.get("hijack/map/test.json").x);
+    const top = Math.max(activeRect.y, Asset.MAPS.get("hijack/map/test.json").y);
+    const right = Math.min(activeRect.x + activeRect.width, Asset.MAPS.get("hijack/map/test.json").x + Asset.MAPS.get("hijack/map/test.json").width);
+    const bottom = Math.min(activeRect.y + activeRect.height, Asset.MAPS.get("hijack/map/test.json").y + Asset.MAPS.get("hijack/map/test.json").height);
+
     return {
         app: app,
         map: Asset.MAPS.get("hijack/map/test.json"),
-        x: Asset.MAPS.get("hijack/map/test.json").x,
-        y: Asset.MAPS.get("hijack/map/test.json").y,
-        width: Asset.MAPS.get("hijack/map/test.json").width,
-        height: Asset.MAPS.get("hijack/map/test.json").height,
+        x: left,
+        y: top,
+        width: right - left,
+        height: bottom - top,
         views: views,
         allObjects: objects,
         activeRect: activeRect,
@@ -252,6 +257,16 @@ export async function step(game) {
                 game.activeRect.y = centralY / SCALE - HEIGHT / 2;
                 game.activeRect.width = WIDTH;
                 game.activeRect.height = HEIGHT;
+
+                const left = Math.max(game.activeRect.x, Asset.MAPS.get("hijack/map/test.json").x);
+                const top = Math.max(game.activeRect.y, Asset.MAPS.get("hijack/map/test.json").y);
+                const right = Math.min(game.activeRect.x + game.activeRect.width, Asset.MAPS.get("hijack/map/test.json").x + Asset.MAPS.get("hijack/map/test.json").width);
+                const bottom = Math.min(game.activeRect.y + game.activeRect.height, Asset.MAPS.get("hijack/map/test.json").y + Asset.MAPS.get("hijack/map/test.json").height);
+
+                game.x = left;
+                game.y = top;
+                game.width = right - left;
+                game.height = bottom - top;
             } else {
                 const centralX = (object.hijack.x + object.hijack.width / 2) * SCALE;
                 const centralY = (object.hijack.y + object.hijack.height / 2) * SCALE;
@@ -262,6 +277,16 @@ export async function step(game) {
                 game.activeRect.y = centralY / SCALE - HEIGHT / 2;
                 game.activeRect.width = WIDTH;
                 game.activeRect.height = HEIGHT;
+
+                const left = Math.max(game.activeRect.x, Asset.MAPS.get("hijack/map/test.json").x);
+                const top = Math.max(game.activeRect.y, Asset.MAPS.get("hijack/map/test.json").y);
+                const right = Math.min(game.activeRect.x + game.activeRect.width, Asset.MAPS.get("hijack/map/test.json").x + Asset.MAPS.get("hijack/map/test.json").width);
+                const bottom = Math.min(game.activeRect.y + game.activeRect.height, Asset.MAPS.get("hijack/map/test.json").y + Asset.MAPS.get("hijack/map/test.json").height);
+
+                game.x = left;
+                game.y = top;
+                game.width = right - left;
+                game.height = bottom - top;
             }
 
             if (object.hijack) {
