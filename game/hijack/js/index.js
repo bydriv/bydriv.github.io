@@ -212,7 +212,7 @@ export async function step(game) {
     }
 
     for (var i = 0; i < game.objects.length; ++i)
-        game.objects[i] = await Object.step(game, game.objects[i]);
+        Object.step(game, game.objects[i]);
 
     for (var i = 0; i < game.objects.length; ++i) {
         for (var j = 0; j < game.hijacks.length; ++j)
