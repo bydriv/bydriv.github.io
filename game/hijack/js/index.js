@@ -211,9 +211,8 @@ export async function step(game) {
         Input.PLAYER.buttons = [gamepad.buttons[0].pressed, gamepad.buttons[1].pressed, gamepad.buttons[2].pressed, gamepad.buttons[3].pressed];
     }
 
-    Promise.all(game.objects.map(object => new Promise((resolve, reject) => {
-        setTimeout(() => Object.step(game, object).then(resolve, reject), 16);
-    })));
+    for (var i = 0; i < game.objects.length; ++i)
+        game.objects[i] = await Object.step(game, game.objects[i]);
 
     for (var i = 0; i < game.objects.length; ++i) {
         for (var j = 0; j < game.hijacks.length; ++j)
