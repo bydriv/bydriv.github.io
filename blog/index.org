@@ -42,6 +42,7 @@ updated at @@html:<time datetime="2018-10-03">2018-10-03</time>@@
 - [[./five-year-mission.org][5年の歳月]]
 - [[./rustter.org][Rust の所感、あるいは Rustter のこと]]
 - [[./hijack-dev.org][Hijack 開発ブログ]]
+- [[./tbf5.org][技術書典5にサークル参加した]]
 
 * License
 
