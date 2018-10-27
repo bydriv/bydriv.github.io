@@ -32,7 +32,7 @@ updated at @@html:<time datetime="2018-10-03">2018-10-03</time>@@
 
 ** 2018-08
 
-- 2018-08-31: Created [[./blog/2018-8.org][2018-8 の進捗まとめ]] in  @@html:<a href="/blog">blog</a>@@.
+- 2018-08-31: Created [[./blog/2018-08.org][2018-8 の進捗まとめ]] in  @@html:<a href="/blog">blog</a>@@.
 - 2018-08-30: Created [[./blog/klassisch.org][古典論理メモ]] in  @@html:<a href="/blog">blog</a>@@.
 - 2018-08-29: Created [[./blog/classical.org][古典論理で →, ⊥ だけで ∧, ∨ を定義する話]] in  @@html:<a href="/blog">blog</a>@@.
 - 2018-08-28: Created [[./blog/mlton.org][MLON]] in  @@html:<a href="/blog">blog</a>@@.
