@@ -1,0 +1,47 @@
+#+SETUPFILE: ../setup.org
+#+TITLE: 2018-9, 2018-10 の進捗まとめ
+
+#+BEGIN_LOCATION
+@@html:https://<a href="/">bydriv.github.io</a>/<a href="/blog">blog</a>/<strong>2018-10.html</strong>@@
+#+END_LOCATION
+
+#+BEGIN_CREATED_AT
+created at @@html:<time datetime="2018-10-27">2018-10-27</time>@@
+#+END_CREATED_AT
+
+#+BEGIN_UPDATED_AT
+updated at @@html:<time datetime="2018-10-27">2018-10-27</time>@@
+#+END_UPDATED_AT
+
+[[./2018-08.org][2018-8 の進捗まとめ]] の続き．
+
+* 2018-09-19 .. 2018-10-04
+
+[[../game/hijack.org][Hijack]] を開発した．
+
+* 2018-10-08
+
+ラムダ計算を実装してみる。を頒布した．
+
+あと， Hijack はひとまず現時点で完成とすることにした．
+いちお，敵を全滅したらクリアなゲームです（？）．
+
+* 2018年のまとめ
+
+ちょっと早いのだけど，今年やりたいことはだいたいできた気がするのでまとめを書く．
+
+開発した(完成した)もの:
+
+- HsYACC/HsLex ([[./hsyacc.org][HsYACC/HsLex の使い方]])
+- [[./../novel/golden-record.org][黄金録]], および諸々の小説や絵など
+- 3Dテーリ ([[./modeling-first-impression.org][モデリングをしてみた]])
+- Lamb ([[./lamb.org][ラムダ計算のコンパイラをつくってみた]])
+- Hijack ([[./hijack-dev.org][Hijack 開発ブログ]])
+- ラムダ計算を実装してみる。  ([[./tbf5.org][技術書典5にサークル参加した]])
+
+とりあえず今年やりたかったのは *コンパイラ and/or ゲーム* および *同人誌を書くこと* だったので，
+いちお Lamb はコンパイラだし， Hijack はゲームだし，
+ラムダ計算を実装してみる。 は同人誌なので，今年の始めに立てた新年の抱負は達成したということにする！
+
+今年の目標は達成したので，つぎは来年の目標をたてながら，
+あと2ヶ月はだらだらなんかしたい．

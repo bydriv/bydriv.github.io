@@ -26,6 +26,7 @@ updated at @@html:<time datetime="2018-10-03">2018-10-03</time>@@
 
 ** 2018-10
 
+- 2018-10-27: Created [[./blog/2018-10.org][2018-9, 2018-10 の進捗まとめ]] in  @@html:<a href="/blog">blog</a>@@.
 - 2018-10-09: Created [[./blog/tbf5.org][技術書典5にサークル参加した]] in  @@html:<a href="/blog">blog</a>@@.
 - 2018-10-03: Created [[./game/hijack.org][Hijack]] in  @@html:<a href="/game">game</a>@@.
 - 2018-10-03: Created [[./blog/hijack-dev.org][Hijack 開発ブログ]] in  @@html:<a href="/blog">blog</a>@@.

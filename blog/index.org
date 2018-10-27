@@ -43,6 +43,7 @@ updated at @@html:<time datetime="2018-10-03">2018-10-03</time>@@
 - [[./rustter.org][Rust の所感、あるいは Rustter のこと]]
 - [[./hijack-dev.org][Hijack 開発ブログ]]
 - [[./tbf5.org][技術書典5にサークル参加した]]
+- [[./2018-10.org][2018-9, 2018-10 の進捗まとめ]]
 
 * License
 
