@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>2019年の準備</title>
-<!-- 2018-11-02 Fri 04:38 -->
+<!-- 2018-11-02 Fri 06:20 -->
 <meta  charset="utf-8">
 <meta  name="generator" content="Org-mode">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -94,7 +94,7 @@ updated at <time datetime="2018-11-01">2018-11-01</time>
 <div class="outline-text-2" id="text-1">
 <p>
 計算複雑性理論の複雑性クラスを参考にしたいと思っている．
-たとえば， <b>R</b> (帰納的関数のクラス) と
+たとえば， <b>RE</b> (帰納的可算関数のクラス) と
 <b>PR</b> (原始再帰関数のクラス)
 を型によって区別できる，など．
 構文はテキトウなのだがこんな感じ:
@@ -102,19 +102,19 @@ updated at <time datetime="2018-11-01">2018-11-01</time>
 
 <pre class="example">
 val f : Int -&gt; PR Int
-val g : Int -&gt; R Int
+val g : Int -&gt; RE Int
 </pre>
 
 <p>
-<b>PR</b> ⊆ <b>R</b> だから，
+<b>PR</b> ⊆ <b>RE</b> だから，
 </p>
 
 <pre class="example">
-val R : PR a -&gt; R a
+val RE : PR a -&gt; RE a
 </pre>
 
 <p>
-は認めてよい． <code>R a -&gt; PR a</code> は実装(証明)できない．
+は認めてよい． <code>RE a -&gt; PR a</code> は実装(証明)できない．
 </p>
 
 <p>
@@ -137,15 +137,16 @@ _____________________________________________________
 </p>
 
 <p>
-チャーチ＝チューリングのテーゼによれば計算可能関数というのは帰納的関数のことで， 帰納的関数の集合は <b>R</b> と呼ばれる．
-つまりわれわれが <b>R</b> で表したいのは計算可能関数， 言いかえればチューリング完全な関数であるから，
+チューリングマシンが認識する言語は帰納的可算言語というらしい．
+複雑性クラスでは <b>RE</b> と呼ばれる．
+つまりわれわれが <b>RE</b> で表したいのはチューリング完全な関数だから，
 <code>while</code> は認めてもよかろう:
 </p>
 
 <pre class="example">
- x : R bool    y : R unit
-__________________________
-while x do y done : R unit
+ x : RE bool    y : RE unit
+___________________________
+while x do y done : RE unit
 </pre>
 </div>
 
@@ -153,8 +154,8 @@ while x do y done : R unit
 <h3 id="sec-1-1">そもそもこういうふうに区別する意義はあるのか</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
-<b>PR</b> や <b>R</b> を区別したい第一の意義は，
-<b>PR</b> の関数はすべて全域関数だが <b>R</b> の関数は部分関数である可能性があるということ．
+<b>PR</b> や <b>RE</b> を区別したい第一の意義は，
+<b>PR</b> の関数はすべて全域関数だが <b>RE</b> の関数は部分関数である可能性があるということ．
 </p>
 
 <p>
@@ -198,10 +199,10 @@ fun head (x :: _) = x
 ……というのは言いすぎで，チューリング完全な必要があるならチューリング完全に，
 ないならもうちょっと制約の強い体系で書けてもいいんじゃないの，
 ということです．
-それが <b>R</b> と <b>PR</b> の意図するところで，
-<b>R</b> は <b>チューリング完全かつ部分関数</b> を書くもので，
+それが <b>RE</b> と <b>PR</b> の意図するところで，
+<b>RE</b> は <b>チューリング完全かつ部分関数</b> を書くもので，
 <b>PR</b> は <b>チューリング不完全かつ全域関数</b> を書くもの．
-<code>main</code> 関数は <code>val main : R unit</code> とか型をつける．
+<code>main</code> 関数は <code>val main : RE unit</code> とか型をつける．
 <code>val head : list a -&gt; PR (option a)</code>  とかそんな．
 </p>
 
@@ -263,7 +264,7 @@ LOOP には参照というか変数はあることがわかる．
 <p>
 ということで，関数の参照はつくれない，というふうに制限することを考えている．
 すくなくとも関数の参照をつくった時点でチューリング完全になることはまちがいないので，
-関数の参照を扱えるとしても <b>R</b> のみで，
+関数の参照を扱えるとしても <b>RE</b> のみで，
 <b>PR</b> では関数の参照は扱えないべきである．
 </p>
 
@@ -280,7 +281,7 @@ LOOP には参照というか変数はあることがわかる．
 <p>
 再帰型は recursive types for free! という論文にある通り covariant の位置でのみ許すようにする．
 すくなくとも <b>PR</b> では covariant の位置でのみ再帰できて，
-<b>R</b> では contravariant でも再帰できる，というふうにする．
+<b>RE</b> では contravariant でも再帰できる，というふうにする．
 </p>
 
 <p>
@@ -307,8 +308,8 @@ hungry function のようなものは書けなくなるが，
 <h3 id="sec-1-5">もっと細かい複雑性クラスを扱えるようにするか</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
-そもそも <b>PR</b> と <b>R</b> を区別できるような言語をつくろう，
-というのは， <code>for</code> や <code>while</code> で書けるプログラムの集合が <b>PR</b> や <b>R</b> になるから，
+そもそも <b>PR</b> と <b>RE</b> を区別できるような言語をつくろう，
+というのは， <code>for</code> や <code>while</code> で書けるプログラムの集合が <b>PR</b> や <b>RE</b> になるから，
 <b>PR</b> しか書けないようにするには <code>for</code> しか書けないようにすればいいだけなので実装が簡単だから．
 <b>DTIME</b> とか <b>EXPTIME</b> を区別できるようにするには，
 <b>どういう推論規則で検査すればEXPTIMEしか書けないと保証できるか</b> ということがわからないので，
@@ -322,7 +323,7 @@ hungry function のようなものは書けなくなるが，
 </p>
 
 <p>
-<b>PR</b> や <b>R</b> 以外のクラスを扱えるようにするなら，まずは定数時間を扱えるようにしたい……のだけど，
+<b>PR</b> や <b>RE</b> 以外のクラスを扱えるようにするなら，まずは定数時間を扱えるようにしたい……のだけど，
 定数時間を扱う複雑性クラスに名前がついているのか知らない（あるのか？）ので，
 便宜的に <b>K</b> で表すことにする．
 そうすると
