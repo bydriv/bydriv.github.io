@@ -88,13 +88,6 @@ Intelligence Support Activity (ISA)に入局し，
 [fn::@@html:<a href="/novel/golden-record.html#9:52">@@黄金録9:52@@html:</a>@@]．
 
 
-#+ATTR_HTML: :class copyright :style width: 218px;
-#+BEGIN_UPRIGHT
-#+ATTR_HTML: :width 218 :height 475 :srcset contrib0000_437x950.png 2x
-#+CAPTION: © 2018 [[https://twitter.com/kitunenobotan][@kitunenobotan]]. See [[license][License]].
-[[./contrib0000_218x475.png]]
-#+END_UPRIGHT
-
 #+ATTR_HTML: :style width: 300px;
 #+BEGIN_UPRIGHT
 #+ATTR_HTML: :srcset teiri0002_600x800.png 2x
@@ -170,13 +163,6 @@ Intelligence Support Activity (ISA)に入局し，
 #+BEGIN_UPLEFT
 #+HTML: <canvas class="teiri"></canvas>
 #+END_UPLEFT
-
-#+ATTR_HTML: :class copyright :style width: 300px;
-#+BEGIN_UPRIGHT
-#+ATTR_HTML: :width 300 :height 300 :srcset contrib0001_600x600.png 2x
-#+CAPTION: © 2018 [[https://twitter.com/mangechan2][@mangechan2]]. See [[license][License]].
-[[./contrib0001_300x300.png]]
-#+END_UPRIGHT
 
 彼女は友人に，仕事はセキュリティ・エンジニアだと話していた
 [fn::@@html:<a href="/novel/golden-record.html#2:24">@@黄金録2:24@@html:</a>@@]．
@@ -1007,13 +993,6 @@ Voyager のゴールデンレコードを調査した．
 [[./q0000_320x240.png]]
 #+END_UPLEFT
 
-#+ATTR_HTML: :class copyright :style width: 235px;
-#+BEGIN_UPRIGHT
-#+ATTR_HTML: :width 235 :height 512 :srcset fan0000_471x1024.png 2x
-#+CAPTION: 旧宇宙のテーリ． 線画は © 2018 [[https://twitter.com/kitunenobotan][@kitunenobotan]]. See [[license][License]].
-[[./fan0000_235x512.png]]
-#+END_UPRIGHT
-
 *旧宇宙* (/Old Universe/) は， 古宇宙のつぎの世代にあたる，
 古宇宙とは別に存在する宇宙である．
 古宇宙と非常によく似た歴史を歩んでおり，同姓同名の人物も多数存在するが，
@@ -1238,9 +1217,3 @@ Voyager のゴールデンレコードを調査した．
 :PROPERTIES:
 :CUSTOM_ID: license
 :END:
-
-- 点線でかこまれた部分以外は GPLv3 と CC BY-SA 4.0 のデュアルライセンスです．
-  あなたは， GPLv3 か CC BY-SA 4.0 のどちらかを選ぶことができます．
-- 点線でかこまれた部分の著作権はそれぞれの著作者に帰属します．
-  GPL などのライセンスは設定されておらず，
-  著作者がすべての権利を有していますので，ご注意ください．
