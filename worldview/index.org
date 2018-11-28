@@ -15,7 +15,7 @@ created at @@html:<time datetime="2018-05-17">2018-05-17</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-08-23">2018-08-23</time>@@
+updated at @@html:<time datetime="2018-11-28">2018-11-28</time>@@
 #+END_UPDATED_AT
 
 * Characters <<characters>>
@@ -68,6 +68,7 @@ Intelligence Support Activity (ISA)に入局し，
 専門は暗号論で，趣味は定理証明支援系による暗号アルゴリズムの安全性の証明．
 エミリーとは学部時代からの親友． テーリ(定理)は英語で Theorem を意味するため，
 彼女を *テオ* (/Theo/) と呼ぶ友人もいる．
+生粋の[[kludger][クラッジャー]]．
 
 *肌の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(255,224,192);"></span>@@ (#FFE0C0).
 *髪の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(64,48,48);"></span>@@ (#403030).
@@ -716,6 +717,30 @@ Voyager のゴールデンレコードを調査した．
 ラムダ教会のシンボルを身体のどこか見える場所に身につけることでそれを示すことが一般的である．
 組織的な活動などはとくにおこなわれないが，世界中で信者が思うままに活動しており，
 規模はそこそこ大きいものと推定されている．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+** Kludger <<kludger>>
+
+*クラッジャー* (/Kludger/)とは， *クラッジ* (/Kludge/)をする人物のことである．
+発音は諸説あり， *クルージャー* ， *クルージ* とも。
+
+クラッジとは，その場かぎりのいい加減な方法で問題を解決することで，
+たとえば， プログラムのバグを， 泥臭い方法で修正することなどである．
+これに対して， 鮮やかで華麗に問題を解決することを *ハック* (/Hack/) という．
+また，プログラム以外にもハードウェア，ネットワークなどについてもクラッジはおこなわれる．
+
+クラッジャーという言葉の意味あいは *ハッカー* (/Hacker/)に似ているが，
+クラッジャーはハッカーを最高峰の開発者の称号と考えており，
+ハッカーを自称することはない．その代わりへりくだって，クラッジャーを自称するわけである．
+
+ニュアンスとしては，ハッカーの謙譲語がクラッジャーに近い．
+基本的に，クラッジという言葉はみずからの行為をへりくだって言う場合に使うもので，
+他人の行為に対しては，たとえきれいではなくともハックというのが礼儀というものである．
+
+とはいえ，クラッジャー同士では話がややこしくなり，クラッジをハックと呼ぶことが失礼にある場合もある．
 
 #+ATTR_HTML: :style clear: both;
 #+BEGIN_CLEARFIX
