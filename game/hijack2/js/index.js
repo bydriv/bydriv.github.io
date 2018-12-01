@@ -566,8 +566,8 @@ window.addEventListener("load", function() {
                 input.buttons[3] = gamepad.buttons[3].pressed;
                 input.buttons[4] = gamepad.buttons[4].pressed;
                 input.buttons[5] = gamepad.buttons[5].pressed;
-                input.buttons[4] = gamepad.buttons[6].pressed;
-                input.buttons[5] = gamepad.buttons[7].pressed;
+                input.buttons[6] = gamepad.buttons[6].pressed;
+                input.buttons[7] = gamepad.buttons[7].pressed;
             }
 
             return input;
