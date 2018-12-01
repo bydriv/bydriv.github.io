@@ -46,15 +46,33 @@ module Teiri : Object with type param = int * int = struct
   }
 
   let step inputs teiri =
-    let xshift = if inputs.(0)##x < -0.25 then -1 else if inputs.(0)##x > 0.25 then 1 else 0 in
-    let yshift = if inputs.(0)##y < -0.25 then -1 else if inputs.(0)##y > 0.25 then 1 else 0 in
+    let xshift =
+      if Array.length inputs = 0 then
+        0
+      else if inputs.(0)##x < -0.25 then
+        -1
+      else if inputs.(0)##x > 0.25 then
+        1
+      else 0 in
+    let yshift =
+      if Array.length inputs = 0 then
+        0
+      else if inputs.(0)##y < -0.25 then
+        -1
+      else if inputs.(0)##y > 0.25 then
+        1
+      else
+        0
+    in
       Js.Promise.resolve {
         i = teiri.i + 1;
         x = teiri.x + xshift;
         y = teiri.y + yshift;
 
         pose =
-          if (inputs.(0)##buttons).(4) then
+          if Array.length inputs = 0 then
+            Walk
+          else if (inputs.(0)##buttons).(4) then
             Hijack
           else
             Walk;

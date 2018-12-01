@@ -16,17 +16,21 @@ function intro(param) {
 }
 
 function step(inputs, teiri) {
-  var xshift = Caml_array.caml_array_get(inputs, 0).x < -0.25 ? -1 : (
-      Caml_array.caml_array_get(inputs, 0).x > 0.25 ? 1 : 0
+  var xshift = inputs.length === 0 ? 0 : (
+      Caml_array.caml_array_get(inputs, 0).x < -0.25 ? -1 : (
+          Caml_array.caml_array_get(inputs, 0).x > 0.25 ? 1 : 0
+        )
     );
-  var yshift = Caml_array.caml_array_get(inputs, 0).y < -0.25 ? -1 : (
-      Caml_array.caml_array_get(inputs, 0).y > 0.25 ? 1 : 0
+  var yshift = inputs.length === 0 ? 0 : (
+      Caml_array.caml_array_get(inputs, 0).y < -0.25 ? -1 : (
+          Caml_array.caml_array_get(inputs, 0).y > 0.25 ? 1 : 0
+        )
     );
   return Promise.resolve(/* record */[
               /* i */teiri[/* i */0] + 1 | 0,
               /* x */teiri[/* x */1] + xshift | 0,
               /* y */teiri[/* y */2] + yshift | 0,
-              /* pose */Caml_array.caml_array_get(Caml_array.caml_array_get(inputs, 0).buttons, 4) ? /* Hijack */1 : /* Walk */0,
+              /* pose */inputs.length === 0 || !Caml_array.caml_array_get(Caml_array.caml_array_get(inputs, 0).buttons, 4) ? /* Walk */0 : /* Hijack */1,
               /* direction */yshift < 0 ? /* Back */1 : (
                   yshift > 0 ? /* Front */3 : (
                       xshift < 0 ? /* Left */0 : (
