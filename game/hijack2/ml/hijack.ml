@@ -182,10 +182,10 @@ end = struct
       (fun objects -> Js.Promise.resolve {
         objects = objects
       })
-     (Js.Promise.all
-       (Array.map
-         (fun obj -> Object.step inputs obj)
-          map.objects))
+      (Js.Promise.all
+        (Array.map
+          (fun obj -> Object.step inputs obj)
+           map.objects))
 
   let views map =
     Js.Promise.then_
