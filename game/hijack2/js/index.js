@@ -516,14 +516,13 @@ function initSystem() {
   return Promise.all(promises).then(function () {
     const offscreenCanvas = document.createElement("canvas");
     const onscreenCanvas = document.createElement("canvas");
-    offscreenCanvas.width = Game.width * Game.scale;
-    offscreenCanvas.height = Game.height * Game.scale;
+    offscreenCanvas.width = Game.width;
+    offscreenCanvas.height = Game.height;
     onscreenCanvas.width = Game.width * Game.scale;
     onscreenCanvas.height = Game.height * Game.scale;
     document.getElementById("game").appendChild(onscreenCanvas);
 
     const offscreenContext = offscreenCanvas.getContext("2d");
-    offscreenContext.imageSmoothingEnabled = false;
 
     const onscreenContext = onscreenCanvas.getContext("2d");
     onscreenContext.imageSmoothingEnabled = false;
@@ -555,10 +554,10 @@ function drawView(canvas, context, assets, view) {
       sprite.sy,
       sprite.sw,
       sprite.sh,
-      dx * Game.scale,
-      dy * Game.scale,
-      sprite.sw * Game.scale,
-      sprite.sh * Game.scale
+      dx,
+      dy,
+      sprite.sw,
+      sprite.sh
     );
     break;
   default:
@@ -693,7 +692,17 @@ window.addEventListener("load", function() {
           for (var i = 0; i < views.length; ++i)
             drawView(offscreen.canvas, offscreen.context, assets, views[i]);
 
-          onscreen.context.drawImage(offscreen.canvas, 0, 0);
+            onscreen.context.drawImage(
+              offscreen.canvas,
+              0,
+              0,
+              offscreen.canvas.width,
+              offscreen.canvas.height,
+              0,
+              0,
+              onscreen.canvas.width,
+              onscreen.canvas.height
+            );
 
           const inputs = navigator.getGamepads().map(function(gamepad, i) {
             const input = {
