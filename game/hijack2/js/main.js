@@ -40,17 +40,29 @@ function initSystem() {
   });
 
   return Promise.all(promises).then(function () {
-    const canvas = document.createElement("canvas");
-    canvas.width = Game.width * Game.scale;
-    canvas.height = Game.height * Game.scale;
-    document.getElementById("game").appendChild(canvas);
+    const offscreenCanvas = document.createElement("canvas");
+    const onscreenCanvas = document.createElement("canvas");
+    offscreenCanvas.width = Game.width * Game.scale;
+    offscreenCanvas.height = Game.height * Game.scale;
+    onscreenCanvas.width = Game.width * Game.scale;
+    onscreenCanvas.height = Game.height * Game.scale;
+    document.getElementById("game").appendChild(onscreenCanvas);
 
-    const context = canvas.getContext("2d");
-    context.imageSmoothingEnabled = false;
+    const offscreenContext = offscreenCanvas.getContext("2d");
+    offscreenContext.imageSmoothingEnabled = false;
+
+    const onscreenContext = onscreenCanvas.getContext("2d");
+    onscreenContext.imageSmoothingEnabled = false;
 
     return Promise.resolve({
-      canvas: canvas,
-      context: context,
+      offscreen: {
+        canvas: offscreenCanvas,
+        context: offscreenContext
+      },
+      onscreen: {
+        canvas: onscreenCanvas,
+        context: onscreenContext
+      },
       assets: assets
     });
   });
@@ -195,17 +207,19 @@ window.addEventListener("keyup", e => {
 
 window.addEventListener("load", function() {
   initSystem().then(function(ret) {
-    const canvas = ret.canvas;
-    const context = ret.context;
+    const offscreen = ret.offscreen;
+    const onscreen = ret.onscreen;
     const assets = ret.assets;
 
     Game.intro().then(function(game) {
       requestAnimationFrame(function step() {
         Game.views(game).then(function (views) {
-          context.clearRect(0, 0, canvas.width, canvas.height);
+          offscreen.context.fillRect(0, 0, offscreen.canvas.width, offscreen.canvas.height);
 
           for (var i = 0; i < views.length; ++i)
-            drawView(canvas, context, assets, views[i]);
+            drawView(offscreen.canvas, offscreen.context, assets, views[i]);
+
+          onscreen.context.drawImage(offscreen.canvas, 0, 0);
 
           const inputs = navigator.getGamepads().map(function(gamepad, i) {
             const input = {
