@@ -612,7 +612,7 @@ var assets = /* array */[
     ]
   ],
   /* tuple */[
-    "pixelart/maptip/archimedes.png",
+    "pixelart/maptip/archimedes-small.png",
     /* array */[
       /* tuple */[
         "pixelart/maptip/archimedes/0-0.png",
@@ -626,7 +626,7 @@ var assets = /* array */[
       /* tuple */[
         "pixelart/maptip/archimedes/1-0.png",
         /* tuple */[
-          16,
+          0,
           0,
           16,
           16
@@ -636,7 +636,7 @@ var assets = /* array */[
         "pixelart/maptip/archimedes/0-1.png",
         /* tuple */[
           0,
-          16,
+          0,
           16,
           16
         ]
@@ -644,8 +644,8 @@ var assets = /* array */[
       /* tuple */[
         "pixelart/maptip/archimedes/1-1.png",
         /* tuple */[
-          16,
-          16,
+          0,
+          0,
           16,
           16
         ]

@@ -385,11 +385,19 @@ let assets = [|
     ("pixelart/teiri/hijack/front/2.png", ((64, 96, 32, 32)));
     ("pixelart/teiri/hijack/front/3.png", ((96, 96, 32, 32)))
   |]);
+  (*
   ("pixelart/maptip/archimedes.png", [|
     ("pixelart/maptip/archimedes/0-0.png", ((0, 0, 16, 16)));
     ("pixelart/maptip/archimedes/1-0.png", ((16, 0, 16, 16)));
     ("pixelart/maptip/archimedes/0-1.png", ((0, 16, 16, 16)));
     ("pixelart/maptip/archimedes/1-1.png", ((16, 16, 16, 16)))
+  |]);
+  *)
+  ("pixelart/maptip/archimedes-small.png", [|
+    ("pixelart/maptip/archimedes/0-0.png", ((0, 0, 16, 16)));
+    ("pixelart/maptip/archimedes/1-0.png", ((0, 0, 16, 16)));
+    ("pixelart/maptip/archimedes/0-1.png", ((0, 0, 16, 16)));
+    ("pixelart/maptip/archimedes/1-1.png", ((0, 0, 16, 16)))
   |]);
   ("pixelart/maptip/building.png", [|
     ("pixelart/maptip/building/0-0.png", ((0, 0, 16, 16)));
