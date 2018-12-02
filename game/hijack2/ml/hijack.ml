@@ -127,6 +127,46 @@ module Teiri : Object with type param = int * int = struct
       Js.Promise.resolve views
 end
 
+module Archimedes : Object with type param = int * int * int * int = struct
+  type t = {
+    x : int;
+    y : int;
+    width : int;
+    height : int
+  }
+
+  type param = int * int * int * int
+
+  let intro(x, y, width, height) = Js.Promise.resolve {
+    x = x;
+    y = y;
+    width = width;
+    height = height
+  }
+
+  let step _ archimedes = Js.Promise.resolve archimedes
+
+  let views archimedes =
+    let views =
+      Array.make
+        ((archimedes.width / 16) * (archimedes.height / 16))
+        (`Image (0, 0, ""))
+    in
+      for i = 0 to archimedes.width / 16 - 1 do
+        for j = 0 to archimedes.height / 16 - 1 do
+          let name =
+            "pixelart/maptip/archimedes/" ^
+              string_of_int (i mod 2) ^
+              "-" ^
+              string_of_int (j mod 2) ^
+              ".png"
+          in views.(j * (archimedes.width / 16) + i) <-
+            `Image (archimedes.x + i * 16, archimedes.y + j * 16, name)
+        done
+      done;
+      Js.Promise.resolve views
+end
+
 module Building : Object with type param = int * int * int * int * int = struct
   type t = {
     x : int;
@@ -196,10 +236,12 @@ end
 
 type object_t =
   Teiri of Teiri.t
+| Archimedes of Archimedes.t
 | Building of Building.t
 
 type object_param =
   TeiriParam of Teiri.param
+| ArchimedesParam of Archimedes.param
 | BuildingParam of Building.param
 
 module Object : Object with type t = object_t and type param = object_param = struct
@@ -211,6 +253,10 @@ module Object : Object with type t = object_t and type param = object_param = st
       Js.Promise.then_
         (fun teiri -> Js.Promise.resolve (Teiri teiri))
         (Teiri.intro param)
+  | ArchimedesParam param ->
+      Js.Promise.then_
+        (fun archimedes -> Js.Promise.resolve (Archimedes archimedes))
+        (Archimedes.intro param)
   | BuildingParam param ->
       Js.Promise.then_
         (fun building -> Js.Promise.resolve (Building building))
@@ -221,6 +267,10 @@ module Object : Object with type t = object_t and type param = object_param = st
       Js.Promise.then_
         (fun teiri -> Js.Promise.resolve (Teiri teiri))
         (Teiri.step inputs teiri)
+  | Archimedes archimedes ->
+      Js.Promise.then_
+        (fun building -> Js.Promise.resolve (Archimedes archimedes))
+        (Archimedes.step inputs archimedes)
   | Building building ->
       Js.Promise.then_
         (fun building -> Js.Promise.resolve (Building building))
@@ -228,6 +278,7 @@ module Object : Object with type t = object_t and type param = object_param = st
 
   let views = function
     Teiri teiri -> Teiri.views teiri
+  | Archimedes archimedes -> Archimedes.views archimedes
   | Building building -> Building.views building
 end
 
@@ -272,9 +323,8 @@ end = struct
 
   let test = {
     params = [|
-      TeiriParam (32, 32);
-      BuildingParam (64, 16, 80, 128, 80);
-      BuildingParam (160, 16, 80, 128, 80)
+      ArchimedesParam (0, 0, 320, 240);
+      TeiriParam (32, 32)
     |]
   }
 end
@@ -334,6 +384,12 @@ let assets = [|
     ("pixelart/teiri/hijack/front/1.png", ((32, 96, 32, 32)));
     ("pixelart/teiri/hijack/front/2.png", ((64, 96, 32, 32)));
     ("pixelart/teiri/hijack/front/3.png", ((96, 96, 32, 32)))
+  |]);
+  ("pixelart/maptip/archimedes.png", [|
+    ("pixelart/maptip/archimedes/0-0.png", ((0, 0, 16, 16)));
+    ("pixelart/maptip/archimedes/1-0.png", ((16, 0, 16, 16)));
+    ("pixelart/maptip/archimedes/0-1.png", ((0, 16, 16, 16)));
+    ("pixelart/maptip/archimedes/1-1.png", ((16, 16, 16, 16)))
   |]);
   ("pixelart/maptip/building.png", [|
     ("pixelart/maptip/building/0-0.png", ((0, 0, 16, 16)));

@@ -17,14 +17,17 @@ module type Object = sig
 end
 
 module Teiri : Object with type param = int * int
+module Archimedes : Object with type param = int * int * int * int
 module Building : Object with type param = int * int * int * int * int
 
 type object_t =
   Teiri of Teiri.t
+| Archimedes of Archimedes.t
 | Building of Building.t
 
 type object_param =
   TeiriParam of Teiri.param
+| ArchimedesParam of Archimedes.param
 | BuildingParam of Building.param
 
 module Object : Object with type t = object_t and type param = object_param

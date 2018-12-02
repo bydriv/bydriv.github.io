@@ -98,17 +98,61 @@ function intro$1(param) {
               /* x */param[0],
               /* y */param[1],
               /* width */param[2],
+              /* height */param[3]
+            ]);
+}
+
+function step$1(param, archimedes) {
+  return Promise.resolve(archimedes);
+}
+
+function views$1(archimedes) {
+  var views$2 = Caml_array.caml_make_vect(Caml_int32.imul(archimedes[/* width */2] / 16 | 0, archimedes[/* height */3] / 16 | 0), /* `Image */[
+        -795439301,
+        /* tuple */[
+          0,
+          0,
+          ""
+        ]
+      ]);
+  for(var i = 0 ,i_finish = (archimedes[/* width */2] / 16 | 0) - 1 | 0; i <= i_finish; ++i){
+    for(var j = 0 ,j_finish = (archimedes[/* height */3] / 16 | 0) - 1 | 0; j <= j_finish; ++j){
+      var name = "pixelart/maptip/archimedes/" + (String(i % 2) + ("-" + (String(j % 2) + ".png")));
+      Caml_array.caml_array_set(views$2, Caml_int32.imul(j, archimedes[/* width */2] / 16 | 0) + i | 0, /* `Image */[
+            -795439301,
+            /* tuple */[
+              archimedes[/* x */0] + (i << 4) | 0,
+              archimedes[/* y */1] + (j << 4) | 0,
+              name
+            ]
+          ]);
+    }
+  }
+  return Promise.resolve(views$2);
+}
+
+var Archimedes = /* module */[
+  /* intro */intro$1,
+  /* step */step$1,
+  /* views */views$1
+];
+
+function intro$2(param) {
+  return Promise.resolve(/* record */[
+              /* x */param[0],
+              /* y */param[1],
+              /* width */param[2],
               /* height */param[3],
               /* depth */param[4]
             ]);
 }
 
-function step$1(param, building) {
+function step$2(param, building) {
   return Promise.resolve(building);
 }
 
-function views$1(building) {
-  var views$2 = Caml_array.caml_make_vect(Caml_int32.imul(building[/* width */2] / 16 | 0, (building[/* depth */4] + building[/* height */3] | 0) / 16 | 0), /* `Image */[
+function views$2(building) {
+  var views$3 = Caml_array.caml_make_vect(Caml_int32.imul(building[/* width */2] / 16 | 0, (building[/* depth */4] + building[/* height */3] | 0) / 16 | 0), /* `Image */[
         -795439301,
         /* tuple */[
           0,
@@ -145,7 +189,7 @@ function views$1(building) {
                 )
             )
         );
-      Caml_array.caml_array_set(views$2, Caml_int32.imul(j, building[/* width */2] / 16 | 0) + i | 0, /* `Image */[
+      Caml_array.caml_array_set(views$3, Caml_int32.imul(j, building[/* width */2] / 16 | 0) + i | 0, /* `Image */[
             -795439301,
             /* tuple */[
               building[/* x */0] + (i << 4) | 0,
@@ -155,103 +199,112 @@ function views$1(building) {
           ]);
     }
   }
-  return Promise.resolve(views$2);
+  return Promise.resolve(views$3);
 }
 
 var Building = /* module */[
-  /* intro */intro$1,
-  /* step */step$1,
-  /* views */views$1
-];
-
-function intro$2(param) {
-  if (param.tag) {
-    return intro$1(param[0]).then((function (building) {
-                  return Promise.resolve(/* Building */Block.__(1, [building]));
-                }));
-  } else {
-    return intro(param[0]).then((function (teiri) {
-                  return Promise.resolve(/* Teiri */Block.__(0, [teiri]));
-                }));
-  }
-}
-
-function step$2(inputs, param) {
-  if (param.tag) {
-    return Promise.resolve(param[0]).then((function (building) {
-                  return Promise.resolve(/* Building */Block.__(1, [building]));
-                }));
-  } else {
-    return step(inputs, param[0]).then((function (teiri) {
-                  return Promise.resolve(/* Teiri */Block.__(0, [teiri]));
-                }));
-  }
-}
-
-function views$2(param) {
-  if (param.tag) {
-    return views$1(param[0]);
-  } else {
-    return views(param[0]);
-  }
-}
-
-var $$Object = /* module */[
   /* intro */intro$2,
   /* step */step$2,
   /* views */views$2
 ];
 
 function intro$3(param) {
-  return Promise.all($$Array.map(intro$2, param[/* params */0])).then((function (objects) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return intro(param[0]).then((function (teiri) {
+                      return Promise.resolve(/* Teiri */Block.__(0, [teiri]));
+                    }));
+    case 1 : 
+        return intro$1(param[0]).then((function (archimedes) {
+                      return Promise.resolve(/* Archimedes */Block.__(1, [archimedes]));
+                    }));
+    case 2 : 
+        return intro$2(param[0]).then((function (building) {
+                      return Promise.resolve(/* Building */Block.__(2, [building]));
+                    }));
+    
+  }
+}
+
+function step$3(inputs, param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return step(inputs, param[0]).then((function (teiri) {
+                      return Promise.resolve(/* Teiri */Block.__(0, [teiri]));
+                    }));
+    case 1 : 
+        var archimedes = param[0];
+        return Promise.resolve(archimedes).then((function (building) {
+                      return Promise.resolve(/* Archimedes */Block.__(1, [archimedes]));
+                    }));
+    case 2 : 
+        return Promise.resolve(param[0]).then((function (building) {
+                      return Promise.resolve(/* Building */Block.__(2, [building]));
+                    }));
+    
+  }
+}
+
+function views$3(param) {
+  switch (param.tag | 0) {
+    case 0 : 
+        return views(param[0]);
+    case 1 : 
+        return views$1(param[0]);
+    case 2 : 
+        return views$2(param[0]);
+    
+  }
+}
+
+var $$Object = /* module */[
+  /* intro */intro$3,
+  /* step */step$3,
+  /* views */views$3
+];
+
+function intro$4(param) {
+  return Promise.all($$Array.map(intro$3, param[/* params */0])).then((function (objects) {
                 return Promise.resolve(/* record */[/* objects */objects]);
               }));
 }
 
-function step$3(inputs, map) {
+function step$4(inputs, map) {
   return Promise.all($$Array.map((function (obj) {
-                      return step$2(inputs, obj);
+                      return step$3(inputs, obj);
                     }), map[/* objects */0])).then((function (objects) {
                 return Promise.resolve(/* record */[/* objects */objects]);
               }));
 }
 
-function views$3(map) {
-  return Promise.all($$Array.map(views$2, map[/* objects */0])).then((function (views) {
+function views$4(map) {
+  return Promise.all($$Array.map(views$3, map[/* objects */0])).then((function (views) {
                 return Promise.resolve($$Array.concat($$Array.to_list(views)));
               }));
 }
 
 var test = /* record */[/* params : array */[
+    /* ArchimedesParam */Block.__(1, [/* tuple */[
+          0,
+          0,
+          320,
+          240
+        ]]),
     /* TeiriParam */Block.__(0, [/* tuple */[
           32,
           32
-        ]]),
-    /* BuildingParam */Block.__(1, [/* tuple */[
-          64,
-          16,
-          80,
-          128,
-          80
-        ]]),
-    /* BuildingParam */Block.__(1, [/* tuple */[
-          160,
-          16,
-          80,
-          128,
-          80
         ]])
   ]];
 
 var $$Map = /* module */[
-  /* intro */intro$3,
-  /* step */step$3,
-  /* views */views$3,
+  /* intro */intro$4,
+  /* step */step$4,
+  /* views */views$4,
   /* test */test
 ];
 
-function intro$4(param) {
-  return intro$3(test);
+function intro$5(param) {
+  return intro$4(test);
 }
 
 var width = 320;
@@ -558,6 +611,47 @@ var assets = /* array */[
     ]
   ],
   /* tuple */[
+    "pixelart/maptip/archimedes.png",
+    /* array */[
+      /* tuple */[
+        "pixelart/maptip/archimedes/0-0.png",
+        /* tuple */[
+          0,
+          0,
+          16,
+          16
+        ]
+      ],
+      /* tuple */[
+        "pixelart/maptip/archimedes/1-0.png",
+        /* tuple */[
+          16,
+          0,
+          16,
+          16
+        ]
+      ],
+      /* tuple */[
+        "pixelart/maptip/archimedes/0-1.png",
+        /* tuple */[
+          0,
+          16,
+          16,
+          16
+        ]
+      ],
+      /* tuple */[
+        "pixelart/maptip/archimedes/1-1.png",
+        /* tuple */[
+          16,
+          16,
+          16,
+          16
+        ]
+      ]
+    ]
+  ],
+  /* tuple */[
     "pixelart/maptip/building.png",
     /* array */[
       /* tuple */[
@@ -702,12 +796,13 @@ var assets = /* array */[
 var scale = 2;
 
 exports.Teiri = Teiri;
+exports.Archimedes = Archimedes;
 exports.Building = Building;
 exports.$$Object = $$Object;
 exports.$$Map = $$Map;
-exports.intro = intro$4;
-exports.step = step$3;
-exports.views = views$3;
+exports.intro = intro$5;
+exports.step = step$4;
+exports.views = views$4;
 exports.scale = scale;
 exports.width = width;
 exports.height = height;
