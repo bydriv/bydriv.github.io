@@ -132,18 +132,18 @@ module Building : Object with type param = int * int * int * int * int = struct
     x : int;
     y : int;
     width : int;
-    top_height : int;
-    bot_height : int
+    height : int;
+    depth : int
   }
 
   type param = int * int * int * int * int
 
-  let intro(x, y, width, top_height, bot_height) = Js.Promise.resolve {
+  let intro(x, y, width, height, depth) = Js.Promise.resolve {
     x = x;
     y = y;
     width = width;
-    top_height = top_height;
-    bot_height = bot_height
+    height = height;
+    depth = depth
   }
 
   let step _ building = Js.Promise.resolve building
@@ -151,39 +151,39 @@ module Building : Object with type param = int * int * int * int * int = struct
   let views building =
     let views =
       Array.make
-        (building.width / 16 * ((building.top_height + building.bot_height) / 16))
+        (building.width / 16 * ((building.depth + building.height) / 16))
         (`Image (0, 0, ""))
     in
       for i = 0 to building.width / 16 - 1 do
-        for j = 0 to (building.top_height + building.bot_height) / 16 - 1 do
+        for j = 0 to (building.depth + building.height) / 16 - 1 do
           let name =
             if i = 0 && j = 0 then
               "pixelart/maptip/building/0-0.png"
             else if i = building.width / 16 - 1 && j = 0 then
               "pixelart/maptip/building/2-0.png"
-            else if i = 0 && j = building.top_height / 16 - 1 then
+            else if i = 0 && j = building.depth / 16 - 1 then
               "pixelart/maptip/building/0-2.png"
-            else if i = building.width / 16 - 1 && j = building.top_height / 16 - 1 then
+            else if i = building.width / 16 - 1 && j = building.depth / 16 - 1 then
               "pixelart/maptip/building/2-2.png"
-            else if i = 0 && j = (building.top_height + building.bot_height) / 16 - 1 then
+            else if i = 0 && j = (building.depth + building.height) / 16 - 1 then
               "pixelart/maptip/building/0-4.png"
-            else if i = building.width / 16 - 1 && j = (building.top_height + building.bot_height) / 16 - 1 then
+            else if i = building.width / 16 - 1 && j = (building.depth + building.height) / 16 - 1 then
               "pixelart/maptip/building/2-4.png"
-            else if i = 0 && j < building.top_height / 16 then
+            else if i = 0 && j < building.depth / 16 then
               "pixelart/maptip/building/0-1.png"
             else if i = 0 then
               "pixelart/maptip/building/0-3.png"
-            else if i = (building.width / 16) - 1 && j < building.top_height / 16 then
+            else if i = (building.width / 16) - 1 && j < building.depth / 16 then
               "pixelart/maptip/building/2-1.png"
             else if i = (building.width / 16) - 1 then
               "pixelart/maptip/building/2-3.png"
             else if j = 0 then
               "pixelart/maptip/building/1-0.png"
-            else if j = (building.top_height + building.bot_height) / 16 - 1 then
+            else if j = (building.depth + building.height) / 16 - 1 then
               "pixelart/maptip/building/1-4.png"
-            else if j = (building.top_height / 16) - 1 then
+            else if j = (building.depth / 16) - 1 then
               "pixelart/maptip/building/1-2.png"
-            else if j < building.top_height / 16 then
+            else if j < building.depth / 16 then
               "pixelart/maptip/building/1-1.png"
             else
               "pixelart/maptip/building/1-3.png"
@@ -273,8 +273,8 @@ end = struct
   let test = {
     params = [|
       TeiriParam (32, 32);
-      BuildingParam (64, 16, 80, 80, 128);
-      BuildingParam (160, 16, 80, 80, 128)
+      BuildingParam (64, 16, 80, 128, 80);
+      BuildingParam (160, 16, 80, 128, 80)
     |]
   }
 end

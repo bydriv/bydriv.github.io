@@ -99,8 +99,8 @@ function intro$1(param) {
               /* x */param[0],
               /* y */param[1],
               /* width */param[2],
-              /* top_height */param[3],
-              /* bot_height */param[4]
+              /* height */param[3],
+              /* depth */param[4]
             ]);
 }
 
@@ -109,7 +109,7 @@ function step$1(param, building) {
 }
 
 function views$1(building) {
-  var views$2 = Caml_array.caml_make_vect(Caml_int32.imul(building[/* width */2] / 16 | 0, (building[/* top_height */3] + building[/* bot_height */4] | 0) / 16 | 0), /* `Image */[
+  var views$2 = Caml_array.caml_make_vect(Caml_int32.imul(building[/* width */2] / 16 | 0, (building[/* depth */4] + building[/* height */3] | 0) / 16 | 0), /* `Image */[
         -795439301,
         /* tuple */[
           0,
@@ -118,21 +118,21 @@ function views$1(building) {
         ]
       ]);
   for(var i = 0 ,i_finish = (building[/* width */2] / 16 | 0) - 1 | 0; i <= i_finish; ++i){
-    for(var j = 0 ,j_finish = ((building[/* top_height */3] + building[/* bot_height */4] | 0) / 16 | 0) - 1 | 0; j <= j_finish; ++j){
+    for(var j = 0 ,j_finish = ((building[/* depth */4] + building[/* height */3] | 0) / 16 | 0) - 1 | 0; j <= j_finish; ++j){
       var name = i === 0 && j === 0 ? "pixelart/maptip/building/0-0.png" : (
           i === ((building[/* width */2] / 16 | 0) - 1 | 0) && j === 0 ? "pixelart/maptip/building/2-0.png" : (
-              i === 0 && j === ((building[/* top_height */3] / 16 | 0) - 1 | 0) ? "pixelart/maptip/building/0-2.png" : (
-                  i === ((building[/* width */2] / 16 | 0) - 1 | 0) && j === ((building[/* top_height */3] / 16 | 0) - 1 | 0) ? "pixelart/maptip/building/2-2.png" : (
-                      i === 0 && j === (((building[/* top_height */3] + building[/* bot_height */4] | 0) / 16 | 0) - 1 | 0) ? "pixelart/maptip/building/0-4.png" : (
-                          i === ((building[/* width */2] / 16 | 0) - 1 | 0) && j === (((building[/* top_height */3] + building[/* bot_height */4] | 0) / 16 | 0) - 1 | 0) ? "pixelart/maptip/building/2-4.png" : (
-                              i === 0 && j < (building[/* top_height */3] / 16 | 0) ? "pixelart/maptip/building/0-1.png" : (
+              i === 0 && j === ((building[/* depth */4] / 16 | 0) - 1 | 0) ? "pixelart/maptip/building/0-2.png" : (
+                  i === ((building[/* width */2] / 16 | 0) - 1 | 0) && j === ((building[/* depth */4] / 16 | 0) - 1 | 0) ? "pixelart/maptip/building/2-2.png" : (
+                      i === 0 && j === (((building[/* depth */4] + building[/* height */3] | 0) / 16 | 0) - 1 | 0) ? "pixelart/maptip/building/0-4.png" : (
+                          i === ((building[/* width */2] / 16 | 0) - 1 | 0) && j === (((building[/* depth */4] + building[/* height */3] | 0) / 16 | 0) - 1 | 0) ? "pixelart/maptip/building/2-4.png" : (
+                              i === 0 && j < (building[/* depth */4] / 16 | 0) ? "pixelart/maptip/building/0-1.png" : (
                                   i === 0 ? "pixelart/maptip/building/0-3.png" : (
-                                      i === ((building[/* width */2] / 16 | 0) - 1 | 0) && j < (building[/* top_height */3] / 16 | 0) ? "pixelart/maptip/building/2-1.png" : (
+                                      i === ((building[/* width */2] / 16 | 0) - 1 | 0) && j < (building[/* depth */4] / 16 | 0) ? "pixelart/maptip/building/2-1.png" : (
                                           i === ((building[/* width */2] / 16 | 0) - 1 | 0) ? "pixelart/maptip/building/2-3.png" : (
                                               j === 0 ? "pixelart/maptip/building/1-0.png" : (
-                                                  j === (((building[/* top_height */3] + building[/* bot_height */4] | 0) / 16 | 0) - 1 | 0) ? "pixelart/maptip/building/1-4.png" : (
-                                                      j === ((building[/* top_height */3] / 16 | 0) - 1 | 0) ? "pixelart/maptip/building/1-2.png" : (
-                                                          j < (building[/* top_height */3] / 16 | 0) ? "pixelart/maptip/building/1-1.png" : "pixelart/maptip/building/1-3.png"
+                                                  j === (((building[/* depth */4] + building[/* height */3] | 0) / 16 | 0) - 1 | 0) ? "pixelart/maptip/building/1-4.png" : (
+                                                      j === ((building[/* depth */4] / 16 | 0) - 1 | 0) ? "pixelart/maptip/building/1-2.png" : (
+                                                          j < (building[/* depth */4] / 16 | 0) ? "pixelart/maptip/building/1-1.png" : "pixelart/maptip/building/1-3.png"
                                                         )
                                                     )
                                                 )
@@ -232,15 +232,15 @@ var test = /* record */[/* params : array */[
           64,
           16,
           80,
-          80,
-          128
+          128,
+          80
         ]]),
     /* BuildingParam */Block.__(1, [/* tuple */[
           160,
           16,
           80,
-          80,
-          128
+          128,
+          80
         ]])
   ]];
 
