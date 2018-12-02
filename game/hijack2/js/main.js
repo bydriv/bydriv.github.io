@@ -1,64 +1,79 @@
 const Game = require("./hijack.js");
 
-function initSystem(k) {
-  PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
-
-  const assets = new Map();
-
-  PIXI.loader.add(Game.assets.map(function(asset) { return asset[0]; })).load(function() {
-    for (var i = 0; i < Game.assets.length; ++i) {
-      const asset = Game.assets[i];
-      const src = asset[0];
-
-      for (var j = 0; j < asset[1].length; ++j) {
-        const name = asset[1][j][0];
-        const sx = asset[1][j][1][0];
-        const sy = asset[1][j][1][1];
-        const sw = asset[1][j][1][2];
-        const sh = asset[1][j][1][3];
-
-        assets.set(name, new PIXI.Texture(PIXI.loader.resources[src].texture, new PIXI.Rectangle(sx, sy, sw, sh)));
-      }
-    }
-
-    const app = new PIXI.Application({autoStart: false, width: Game.width * Game.scale, height: Game.height * Game.scale});
-    document.getElementById("game").appendChild(app.view);
-    app.stage.scale.set(Game.scale, Game.scale);
-    app.renderer.backgroundColor = 0x404040;
-
-    k(app, assets);
+function loadImage(src) {
+  return new Promise(function (resolve, reject) {
+    const img = new Image();
+    img.onload = function () {
+      resolve(img);
+    };
+    img.onerror = function (e) {
+        reject(e);
+    };
+    img.src = src;
   });
 }
 
-var FREE_SPRITES = [];
-var USED_SPRITES = [];
+function initSystem() {
+  const assets = new Map();
+  const promises = Game.assets.map(function (asset) {
+    const src = asset[0];
 
-function getSprite(texture, x, y) {
-  if (FREE_SPRITES.length === 0) {
-    const sprite = new PIXI.Sprite(texture, x, y);
-    USED_SPRITES.push(sprite);
+    return loadImage(src).then(function (img) {
+      for (var i = 0; i < asset[1].length; ++i) {
+        const name = asset[1][i][0];
+        const sx = asset[1][i][1][0];
+        const sy = asset[1][i][1][1];
+        const sw = asset[1][i][1][2];
+        const sh = asset[1][i][1][3];
 
-    return sprite;
-  } else {
-    const sprite = FREE_SPRITES.pop();
-    USED_SPRITES.push(sprite);
+        assets.set(name, {
+          img: img,
+          sx: sx,
+          sy: sy,
+          sw: sw,
+          sh: sh
+        });
+      }
 
-    sprite.texture = texture;
-    sprite.x = x;
-    sprite.y = y;
+      return Promise.resolve();
+    });
+  });
 
-    return sprite;
-  }
+  return Promise.all(promises).then(function () {
+    const canvas = document.createElement("canvas");
+    canvas.width = Game.width * Game.scale;
+    canvas.height = Game.height * Game.scale;
+    document.getElementById("game").appendChild(canvas);
+
+    const context = canvas.getContext("2d");
+    context.imageSmoothingEnabled = false;
+
+    return Promise.resolve({
+      canvas: canvas,
+      context: context,
+      assets: assets
+    });
+  });
 }
 
-function drawView(app, assets, view) {
+function drawView(canvas, context, assets, view) {
   switch (view[0]) {
   case -795439301 /* `Image */:
     const dx = view[1][0];
     const dy = view[1][1];
     const src = view[1][2];
-    const sprite = getSprite(assets.get(src), dx, dy);
-    app.stage.addChild(sprite);
+    const sprite = assets.get(src);
+    context.drawImage(
+      sprite.img,
+      sprite.sx,
+      sprite.sy,
+      sprite.sw,
+      sprite.sh,
+      dx * Game.scale,
+      dy * Game.scale,
+      sprite.sw * Game.scale,
+      sprite.sh * Game.scale
+    );
     break;
   default:
     console.warn("unrecognized view: %o", view);
@@ -179,18 +194,18 @@ window.addEventListener("keyup", e => {
 });
 
 window.addEventListener("load", function() {
-  initSystem(function(app, assets) {
+  initSystem().then(function(ret) {
+    const canvas = ret.canvas;
+    const context = ret.context;
+    const assets = ret.assets;
+
     Game.intro().then(function(game) {
       requestAnimationFrame(function step() {
         Game.views(game).then(function (views) {
+          context.clearRect(0, 0, canvas.width, canvas.height);
+
           for (var i = 0; i < views.length; ++i)
-            drawView(app, assets, views[i]);
-
-          app.renderer.render(app.stage);
-          app.stage.removeChildren();
-
-          FREE_SPRITES = FREE_SPRITES.concat(USED_SPRITES);
-          USED_SPRITES = [];
+            drawView(canvas, context, assets, views[i]);
 
           const inputs = navigator.getGamepads().map(function(gamepad, i) {
             const input = {
