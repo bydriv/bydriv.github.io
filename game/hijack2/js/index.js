@@ -540,6 +540,118 @@ function drawView(app, assets, view) {
   }
 }
 
+const keyboardInput = {
+    x: 0,
+    y: 0,
+    buttons: [false, false, false, false, false, false, false, false]
+};
+
+window.addEventListener("keydown", e => {
+    if (e.ctrlKey) {
+        switch (e.key) {
+        case "b":
+            keyboardInput.x = -1;
+            return e.preventDefault();
+        case "p":
+            keyboardInput.y = -1;
+            return e.preventDefault();
+        case "f":
+            keyboardInput.x = 1;
+            return e.preventDefault();
+        case "n":
+            keyboardInput.y = 1;
+            return e.preventDefault();
+        };
+    } else {
+        switch (e.key) {
+        case "z":
+            keyboardInput.buttons[0] = true;
+            return e.preventDefault();
+        case "x":
+            keyboardInput.buttons[1] = true;
+            return e.preventDefault();
+        case "c":
+            keyboardInput.buttons[2] = true;
+            return e.preventDefault();
+        case "v":
+            keyboardInput.buttons[3] = true;
+            return e.preventDefault();
+        case "h":
+        case "a":
+        case "Left":
+        case "ArrowLeft":
+            keyboardInput.x = -1;
+            return e.preventDefault();
+        case "k":
+        case "w":
+        case "Up":
+        case "ArrowUp":
+            keyboardInput.y = -1;
+            return e.preventDefault();
+        case "l":
+        case "d":
+        case "Right":
+        case "ArrowRight":
+            keyboardInput.x = 1;
+            return e.preventDefault();
+        case "j":
+        case "s":
+        case "Down":
+        case "ArrowDown":
+            keyboardInput.y = 1;
+            return e.preventDefault();
+        };
+    }
+});
+
+window.addEventListener("keyup", e => {
+    if (e.ctrlKey) {
+        switch (e.key) {
+        case "b":
+        case "p":
+        case "f":
+        case "n":
+            keyboardInput.x = 0;
+            keyboardInput.y = 0;
+            return e.preventDefault();
+        };
+    } else {
+        switch (e.key) {
+        case "z":
+        case "x":
+        case "c":
+        case "v":
+        case "h":
+        case "k":
+        case "l":
+        case "j":
+        case "a":
+        case "w":
+        case "d":
+        case "s":
+        case "Left":
+        case "Up":
+        case "Right":
+        case "Down":
+        case "ArrowLeft":
+        case "ArrowUp":
+        case "ArrowRight":
+        case "ArrowDown":
+            keyboardInput.x = 0;
+            keyboardInput.y = 0;
+            keyboardInput.buttons[0] = false;
+            keyboardInput.buttons[1] = false;
+            keyboardInput.buttons[2] = false;
+            keyboardInput.buttons[3] = false;
+            keyboardInput.buttons[4] = false;
+            keyboardInput.buttons[5] = false;
+            keyboardInput.buttons[6] = false;
+            keyboardInput.buttons[7] = false;
+            return e.preventDefault();
+        };
+    }
+});
+
 window.addEventListener("load", function() {
   initSystem(function(app, assets) {
     Game.intro().then(function(game) {
@@ -554,11 +666,14 @@ window.addEventListener("load", function() {
           FREE_SPRITES = FREE_SPRITES.concat(USED_SPRITES);
           USED_SPRITES = [];
 
-          const inputs = navigator.getGamepads().map(function(gamepad) {
+          const inputs = navigator.getGamepads().map(function(gamepad, i) {
             const input = {
-              x: 0,
-              y: 0,
-              buttons: [false, false, false, false, false, false, false, false]
+              x: i === 0 ? keyboardInput.x : 0,
+              y: i === 0 ? keyboardInput.y : 0,
+              buttons:
+                i === 0
+                  ? keyboardInput.buttons.concat()
+                  : [false, false, false, false, false, false, false, false]
             };
 
             if (gamepad) {
@@ -572,10 +687,19 @@ window.addEventListener("load", function() {
                 input.buttons[5] = gamepad.buttons[5].pressed;
                 input.buttons[6] = gamepad.buttons[6].pressed;
                 input.buttons[7] = gamepad.buttons[7].pressed;
+                input.buttons[8] = gamepad.buttons[8].pressed;
+                input.buttons[9] = gamepad.buttons[9].pressed;
             }
 
             return input;
           });
+
+          if (inputs.length === 0)
+            inputs[0] = {
+              x: keyboardInput.x,
+              y: keyboardInput.y,
+              buttons: keyboardInput.buttons.concat()
+            };
 
           Game.step(inputs, game).then(function(next_game) {
             game = next_game;
