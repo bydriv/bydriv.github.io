@@ -127,11 +127,80 @@ module Teiri : Object with type param = int * int = struct
       Js.Promise.resolve views
 end
 
+module Building : Object with type param = int * int * int * int * int = struct
+  type t = {
+    x : int;
+    y : int;
+    width : int;
+    top_height : int;
+    bot_height : int
+  }
+
+  type param = int * int * int * int * int
+
+  let intro(x, y, width, top_height, bot_height) = Js.Promise.resolve {
+    x = x;
+    y = y;
+    width = width;
+    top_height = top_height;
+    bot_height = bot_height
+  }
+
+  let step _ building = Js.Promise.resolve building
+
+  let views building =
+    let views =
+      Array.make
+        (building.width / 16 * ((building.top_height + building.bot_height) / 16))
+        (`Image (0, 0, ""))
+    in
+      for i = 0 to building.width / 16 - 1 do
+        for j = 0 to (building.top_height + building.bot_height) / 16 - 1 do
+          let name =
+            if i = 0 && j = 0 then
+              "pixelart/maptip/building/0-0.png"
+            else if i = building.width / 16 - 1 && j = 0 then
+              "pixelart/maptip/building/2-0.png"
+            else if i = 0 && j = building.top_height / 16 - 1 then
+              "pixelart/maptip/building/0-2.png"
+            else if i = building.width / 16 - 1 && j = building.top_height / 16 - 1 then
+              "pixelart/maptip/building/2-2.png"
+            else if i = 0 && j = (building.top_height + building.bot_height) / 16 - 1 then
+              "pixelart/maptip/building/0-4.png"
+            else if i = building.width / 16 - 1 && j = (building.top_height + building.bot_height) / 16 - 1 then
+              "pixelart/maptip/building/2-4.png"
+            else if i = 0 && j < building.top_height / 16 then
+              "pixelart/maptip/building/0-1.png"
+            else if i = 0 then
+              "pixelart/maptip/building/0-3.png"
+            else if i = (building.width / 16) - 1 && j < building.top_height / 16 then
+              "pixelart/maptip/building/2-1.png"
+            else if i = (building.width / 16) - 1 then
+              "pixelart/maptip/building/2-3.png"
+            else if j = 0 then
+              "pixelart/maptip/building/1-0.png"
+            else if j = (building.top_height + building.bot_height) / 16 - 1 then
+              "pixelart/maptip/building/1-4.png"
+            else if j = (building.top_height / 16) - 1 then
+              "pixelart/maptip/building/1-2.png"
+            else if j < building.top_height / 16 then
+              "pixelart/maptip/building/1-1.png"
+            else
+              "pixelart/maptip/building/1-3.png"
+          in views.(j * (building.width / 16) + i) <-
+            `Image (building.x + i * 16, building.y + j * 16, name)
+        done
+      done;
+      Js.Promise.resolve views
+end
+
 type object_t =
   Teiri of Teiri.t
+| Building of Building.t
 
 type object_param =
   TeiriParam of Teiri.param
+| BuildingParam of Building.param
 
 module Object : Object with type t = object_t and type param = object_param = struct
   type t = object_t
@@ -142,15 +211,24 @@ module Object : Object with type t = object_t and type param = object_param = st
       Js.Promise.then_
         (fun teiri -> Js.Promise.resolve (Teiri teiri))
         (Teiri.intro param)
+  | BuildingParam param ->
+      Js.Promise.then_
+        (fun building -> Js.Promise.resolve (Building building))
+        (Building.intro param)
 
   let step inputs = function
     Teiri teiri ->
       Js.Promise.then_
         (fun teiri -> Js.Promise.resolve (Teiri teiri))
         (Teiri.step inputs teiri)
+  | Building building ->
+      Js.Promise.then_
+        (fun building -> Js.Promise.resolve (Building building))
+        (Building.step inputs building)
 
   let views = function
     Teiri teiri -> Teiri.views teiri
+  | Building building -> Building.views building
 end
 
 module Map : sig
@@ -194,7 +272,9 @@ end = struct
 
   let test = {
     params = [|
-      TeiriParam (32, 32)
+      TeiriParam (32, 32);
+      BuildingParam (64, 16, 80, 80, 128);
+      BuildingParam (160, 16, 80, 80, 128)
     |]
   }
 end
@@ -254,5 +334,22 @@ let assets = [|
     ("pixelart/teiri/hijack/front/1.png", ((32, 96, 32, 32)));
     ("pixelart/teiri/hijack/front/2.png", ((64, 96, 32, 32)));
     ("pixelart/teiri/hijack/front/3.png", ((96, 96, 32, 32)))
+  |]);
+  ("pixelart/maptip/building.png", [|
+    ("pixelart/maptip/building/0-0.png", ((0, 0, 16, 16)));
+    ("pixelart/maptip/building/1-0.png", ((16, 0, 16, 16)));
+    ("pixelart/maptip/building/2-0.png", ((32, 0, 16, 16)));
+    ("pixelart/maptip/building/0-1.png", ((0, 16, 16, 16)));
+    ("pixelart/maptip/building/1-1.png", ((16, 16, 16, 16)));
+    ("pixelart/maptip/building/2-1.png", ((32, 16, 16, 16)));
+    ("pixelart/maptip/building/0-2.png", ((0, 32, 16, 16)));
+    ("pixelart/maptip/building/1-2.png", ((16, 32, 16, 16)));
+    ("pixelart/maptip/building/2-2.png", ((32, 32, 16, 16)));
+    ("pixelart/maptip/building/0-3.png", ((0, 48, 16, 16)));
+    ("pixelart/maptip/building/1-3.png", ((16, 48, 16, 16)));
+    ("pixelart/maptip/building/2-3.png", ((32, 48, 16, 16)));
+    ("pixelart/maptip/building/0-4.png", ((0, 64, 16, 16)));
+    ("pixelart/maptip/building/1-4.png", ((16, 64, 16, 16)));
+    ("pixelart/maptip/building/2-4.png", ((32, 64, 16, 16)))
   |])
 |]

@@ -3,7 +3,9 @@
 'use strict';
 
 var $$Array = require("bs-platform/lib/js/array.js");
+var Block = require("bs-platform/lib/js/block.js");
 var Caml_array = require("bs-platform/lib/js/caml_array.js");
+var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
 
 function intro(param) {
   return Promise.resolve(/* record */[
@@ -93,63 +95,164 @@ var Teiri = /* module */[
 ];
 
 function intro$1(param) {
-  return intro(param[0]).then((function (teiri) {
-                return Promise.resolve(/* Teiri */[teiri]);
-              }));
+  return Promise.resolve(/* record */[
+              /* x */param[0],
+              /* y */param[1],
+              /* width */param[2],
+              /* top_height */param[3],
+              /* bot_height */param[4]
+            ]);
 }
 
-function step$1(inputs, param) {
-  return step(inputs, param[0]).then((function (teiri) {
-                return Promise.resolve(/* Teiri */[teiri]);
-              }));
+function step$1(param, building) {
+  return Promise.resolve(building);
 }
 
-function views$1(param) {
-  return views(param[0]);
+function views$1(building) {
+  var views$2 = Caml_array.caml_make_vect(Caml_int32.imul(building[/* width */2] / 16 | 0, (building[/* top_height */3] + building[/* bot_height */4] | 0) / 16 | 0), /* `Image */[
+        -795439301,
+        /* tuple */[
+          0,
+          0,
+          ""
+        ]
+      ]);
+  for(var i = 0 ,i_finish = (building[/* width */2] / 16 | 0) - 1 | 0; i <= i_finish; ++i){
+    for(var j = 0 ,j_finish = ((building[/* top_height */3] + building[/* bot_height */4] | 0) / 16 | 0) - 1 | 0; j <= j_finish; ++j){
+      var name = i === 0 && j === 0 ? "pixelart/maptip/building/0-0.png" : (
+          i === ((building[/* width */2] / 16 | 0) - 1 | 0) && j === 0 ? "pixelart/maptip/building/2-0.png" : (
+              i === 0 && j === ((building[/* top_height */3] / 16 | 0) - 1 | 0) ? "pixelart/maptip/building/0-2.png" : (
+                  i === ((building[/* width */2] / 16 | 0) - 1 | 0) && j === ((building[/* top_height */3] / 16 | 0) - 1 | 0) ? "pixelart/maptip/building/2-2.png" : (
+                      i === 0 && j === (((building[/* top_height */3] + building[/* bot_height */4] | 0) / 16 | 0) - 1 | 0) ? "pixelart/maptip/building/0-4.png" : (
+                          i === ((building[/* width */2] / 16 | 0) - 1 | 0) && j === (((building[/* top_height */3] + building[/* bot_height */4] | 0) / 16 | 0) - 1 | 0) ? "pixelart/maptip/building/2-4.png" : (
+                              i === 0 && j < (building[/* top_height */3] / 16 | 0) ? "pixelart/maptip/building/0-1.png" : (
+                                  i === 0 ? "pixelart/maptip/building/0-3.png" : (
+                                      i === ((building[/* width */2] / 16 | 0) - 1 | 0) && j < (building[/* top_height */3] / 16 | 0) ? "pixelart/maptip/building/2-1.png" : (
+                                          i === ((building[/* width */2] / 16 | 0) - 1 | 0) ? "pixelart/maptip/building/2-3.png" : (
+                                              j === 0 ? "pixelart/maptip/building/1-0.png" : (
+                                                  j === (((building[/* top_height */3] + building[/* bot_height */4] | 0) / 16 | 0) - 1 | 0) ? "pixelart/maptip/building/1-4.png" : (
+                                                      j === ((building[/* top_height */3] / 16 | 0) - 1 | 0) ? "pixelart/maptip/building/1-2.png" : (
+                                                          j < (building[/* top_height */3] / 16 | 0) ? "pixelart/maptip/building/1-1.png" : "pixelart/maptip/building/1-3.png"
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        );
+      Caml_array.caml_array_set(views$2, Caml_int32.imul(j, building[/* width */2] / 16 | 0) + i | 0, /* `Image */[
+            -795439301,
+            /* tuple */[
+              building[/* x */0] + (i << 4) | 0,
+              building[/* y */1] + (j << 4) | 0,
+              name
+            ]
+          ]);
+    }
+  }
+  return Promise.resolve(views$2);
 }
 
-var $$Object = /* module */[
+var Building = /* module */[
   /* intro */intro$1,
   /* step */step$1,
   /* views */views$1
 ];
 
 function intro$2(param) {
-  return Promise.all($$Array.map(intro$1, param[/* params */0])).then((function (objects) {
+  if (param.tag) {
+    return intro$1(param[0]).then((function (building) {
+                  return Promise.resolve(/* Building */Block.__(1, [building]));
+                }));
+  } else {
+    return intro(param[0]).then((function (teiri) {
+                  return Promise.resolve(/* Teiri */Block.__(0, [teiri]));
+                }));
+  }
+}
+
+function step$2(inputs, param) {
+  if (param.tag) {
+    return Promise.resolve(param[0]).then((function (building) {
+                  return Promise.resolve(/* Building */Block.__(1, [building]));
+                }));
+  } else {
+    return step(inputs, param[0]).then((function (teiri) {
+                  return Promise.resolve(/* Teiri */Block.__(0, [teiri]));
+                }));
+  }
+}
+
+function views$2(param) {
+  if (param.tag) {
+    return views$1(param[0]);
+  } else {
+    return views(param[0]);
+  }
+}
+
+var $$Object = /* module */[
+  /* intro */intro$2,
+  /* step */step$2,
+  /* views */views$2
+];
+
+function intro$3(param) {
+  return Promise.all($$Array.map(intro$2, param[/* params */0])).then((function (objects) {
                 return Promise.resolve(/* record */[/* objects */objects]);
               }));
 }
 
-function step$2(inputs, map) {
+function step$3(inputs, map) {
   return Promise.all($$Array.map((function (obj) {
-                      return step$1(inputs, obj);
+                      return step$2(inputs, obj);
                     }), map[/* objects */0])).then((function (objects) {
                 return Promise.resolve(/* record */[/* objects */objects]);
               }));
 }
 
-function views$2(map) {
-  return Promise.all($$Array.map((function (obj) {
-                      return views(obj[0]);
-                    }), map[/* objects */0])).then((function (views) {
+function views$3(map) {
+  return Promise.all($$Array.map(views$2, map[/* objects */0])).then((function (views) {
                 return Promise.resolve($$Array.concat($$Array.to_list(views)));
               }));
 }
 
-var test = /* record */[/* params : array */[/* TeiriParam */[/* tuple */[
-        32,
-        32
-      ]]]];
+var test = /* record */[/* params : array */[
+    /* TeiriParam */Block.__(0, [/* tuple */[
+          32,
+          32
+        ]]),
+    /* BuildingParam */Block.__(1, [/* tuple */[
+          64,
+          16,
+          80,
+          80,
+          128
+        ]]),
+    /* BuildingParam */Block.__(1, [/* tuple */[
+          160,
+          16,
+          80,
+          80,
+          128
+        ]])
+  ]];
 
 var $$Map = /* module */[
-  /* intro */intro$2,
-  /* step */step$2,
-  /* views */views$2,
+  /* intro */intro$3,
+  /* step */step$3,
+  /* views */views$3,
   /* test */test
 ];
 
-function intro$3(param) {
-  return intro$2(test);
+function intro$4(param) {
+  return intro$3(test);
 }
 
 var width = 320;
@@ -454,24 +557,165 @@ var assets = /* array */[
         ]
       ]
     ]
+  ],
+  /* tuple */[
+    "pixelart/maptip/building.png",
+    /* array */[
+      /* tuple */[
+        "pixelart/maptip/building/0-0.png",
+        /* tuple */[
+          0,
+          0,
+          16,
+          16
+        ]
+      ],
+      /* tuple */[
+        "pixelart/maptip/building/1-0.png",
+        /* tuple */[
+          16,
+          0,
+          16,
+          16
+        ]
+      ],
+      /* tuple */[
+        "pixelart/maptip/building/2-0.png",
+        /* tuple */[
+          32,
+          0,
+          16,
+          16
+        ]
+      ],
+      /* tuple */[
+        "pixelart/maptip/building/0-1.png",
+        /* tuple */[
+          0,
+          16,
+          16,
+          16
+        ]
+      ],
+      /* tuple */[
+        "pixelart/maptip/building/1-1.png",
+        /* tuple */[
+          16,
+          16,
+          16,
+          16
+        ]
+      ],
+      /* tuple */[
+        "pixelart/maptip/building/2-1.png",
+        /* tuple */[
+          32,
+          16,
+          16,
+          16
+        ]
+      ],
+      /* tuple */[
+        "pixelart/maptip/building/0-2.png",
+        /* tuple */[
+          0,
+          32,
+          16,
+          16
+        ]
+      ],
+      /* tuple */[
+        "pixelart/maptip/building/1-2.png",
+        /* tuple */[
+          16,
+          32,
+          16,
+          16
+        ]
+      ],
+      /* tuple */[
+        "pixelart/maptip/building/2-2.png",
+        /* tuple */[
+          32,
+          32,
+          16,
+          16
+        ]
+      ],
+      /* tuple */[
+        "pixelart/maptip/building/0-3.png",
+        /* tuple */[
+          0,
+          48,
+          16,
+          16
+        ]
+      ],
+      /* tuple */[
+        "pixelart/maptip/building/1-3.png",
+        /* tuple */[
+          16,
+          48,
+          16,
+          16
+        ]
+      ],
+      /* tuple */[
+        "pixelart/maptip/building/2-3.png",
+        /* tuple */[
+          32,
+          48,
+          16,
+          16
+        ]
+      ],
+      /* tuple */[
+        "pixelart/maptip/building/0-4.png",
+        /* tuple */[
+          0,
+          64,
+          16,
+          16
+        ]
+      ],
+      /* tuple */[
+        "pixelart/maptip/building/1-4.png",
+        /* tuple */[
+          16,
+          64,
+          16,
+          16
+        ]
+      ],
+      /* tuple */[
+        "pixelart/maptip/building/2-4.png",
+        /* tuple */[
+          32,
+          64,
+          16,
+          16
+        ]
+      ]
+    ]
   ]
 ];
 
 var scale = 2;
 
 exports.Teiri = Teiri;
+exports.Building = Building;
 exports.$$Object = $$Object;
 exports.$$Map = $$Map;
-exports.intro = intro$3;
-exports.step = step$2;
-exports.views = views$2;
+exports.intro = intro$4;
+exports.step = step$3;
+exports.views = views$3;
 exports.scale = scale;
 exports.width = width;
 exports.height = height;
 exports.assets = assets;
 /* No side effect */
 
-},{"bs-platform/lib/js/array.js":3,"bs-platform/lib/js/caml_array.js":4}],2:[function(require,module,exports){
+},{"bs-platform/lib/js/array.js":3,"bs-platform/lib/js/block.js":4,"bs-platform/lib/js/caml_array.js":5,"bs-platform/lib/js/caml_int32.js":8}],2:[function(require,module,exports){
 const Game = require("./hijack.js");
 
 function loadImage(src) {
@@ -1171,7 +1415,55 @@ exports.stable_sort = stable_sort;
 exports.fast_sort = fast_sort;
 /* No side effect */
 
-},{"./caml_array.js":4,"./caml_builtin_exceptions.js":5,"./caml_exceptions.js":6,"./curry.js":7,"./js_exn.js":8}],4:[function(require,module,exports){
+},{"./caml_array.js":5,"./caml_builtin_exceptions.js":6,"./caml_exceptions.js":7,"./curry.js":9,"./js_exn.js":10}],4:[function(require,module,exports){
+'use strict';
+
+
+function __(tag, block) {
+  block.tag = tag;
+  return block;
+}
+
+function record(meta, xs) {
+  return Object.defineProperty(xs, Symbol.for("BsRecord"), {
+              value: meta
+            });
+}
+
+function variant(meta, tag, xs) {
+  xs.tag = tag;
+  return Object.defineProperty(xs, Symbol.for("BsVariant"), {
+              value: meta
+            });
+}
+
+function simpleVariant(meta, xs) {
+  return Object.defineProperty(xs, Symbol.for("BsVariant"), {
+              value: meta
+            });
+}
+
+function localModule(meta, xs) {
+  return Object.defineProperty(xs, Symbol.for("BsLocalModule"), {
+              value: meta
+            });
+}
+
+function polyVar(meta, xs) {
+  return Object.defineProperty(xs, Symbol.for("BsPolyVar"), {
+              value: meta
+            });
+}
+
+exports.__ = __;
+exports.record = record;
+exports.variant = variant;
+exports.simpleVariant = simpleVariant;
+exports.localModule = localModule;
+exports.polyVar = polyVar;
+/* No side effect */
+
+},{}],5:[function(require,module,exports){
 'use strict';
 
 var Caml_builtin_exceptions = require("./caml_builtin_exceptions.js");
@@ -1299,7 +1591,7 @@ exports.caml_array_get = caml_array_get;
 exports.caml_array_set = caml_array_set;
 /* No side effect */
 
-},{"./caml_builtin_exceptions.js":5}],5:[function(require,module,exports){
+},{"./caml_builtin_exceptions.js":6}],6:[function(require,module,exports){
 'use strict';
 
 
@@ -1401,7 +1693,7 @@ exports.assert_failure = assert_failure;
 exports.undefined_recursive_module = undefined_recursive_module;
 /*  Not a pure module */
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 'use strict';
 
 
@@ -1449,7 +1741,51 @@ exports.create = create;
 exports.isCamlExceptionOrOpenVariant = isCamlExceptionOrOpenVariant;
 /* No side effect */
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
+'use strict';
+
+var Caml_builtin_exceptions = require("./caml_builtin_exceptions.js");
+
+function div(x, y) {
+  if (y === 0) {
+    throw Caml_builtin_exceptions.division_by_zero;
+  } else {
+    return x / y | 0;
+  }
+}
+
+function mod_(x, y) {
+  if (y === 0) {
+    throw Caml_builtin_exceptions.division_by_zero;
+  } else {
+    return x % y;
+  }
+}
+
+function caml_bswap16(x) {
+  return ((x & 255) << 8) | ((x & 65280) >>> 8);
+}
+
+function caml_int32_bswap(x) {
+  return ((x & 255) << 24) | ((x & 65280) << 8) | ((x & 16711680) >>> 8) | ((x & 4278190080) >>> 24);
+}
+
+var imul = ( Math.imul || function (x,y) {
+  y |= 0; return ((((x >> 16) * y) << 16) + (x & 0xffff) * y)|0; 
+}
+);
+
+var caml_nativeint_bswap = caml_int32_bswap;
+
+exports.div = div;
+exports.mod_ = mod_;
+exports.caml_bswap16 = caml_bswap16;
+exports.caml_int32_bswap = caml_int32_bswap;
+exports.caml_nativeint_bswap = caml_nativeint_bswap;
+exports.imul = imul;
+/* imul Not a pure module */
+
+},{"./caml_builtin_exceptions.js":6}],9:[function(require,module,exports){
 'use strict';
 
 var Caml_array = require("./caml_array.js");
@@ -2014,7 +2350,7 @@ exports._8 = _8;
 exports.__8 = __8;
 /* No side effect */
 
-},{"./caml_array.js":4}],8:[function(require,module,exports){
+},{"./caml_array.js":5}],10:[function(require,module,exports){
 'use strict';
 
 var Caml_exceptions = require("./caml_exceptions.js");
@@ -2071,4 +2407,4 @@ exports.raiseTypeError = raiseTypeError;
 exports.raiseUriError = raiseUriError;
 /* No side effect */
 
-},{"./caml_exceptions.js":6}]},{},[2]);
+},{"./caml_exceptions.js":7}]},{},[2]);
