@@ -10,7 +10,7 @@ created at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-11-01">2018-11-01</time>@@
+updated at @@html:<time datetime="2018-12-03">2018-12-03</time>@@
 #+END_UPDATED_AT
 
 * Index
@@ -45,6 +45,7 @@ updated at @@html:<time datetime="2018-11-01">2018-11-01</time>@@
 - [[./tbf5.org][技術書典5にサークル参加した]]
 - [[./2018-10.org][2018-9, 2018-10 の進捗まとめ]]
 - [[./2018-11-01.org][2019年の準備]]
+- [[./wsl-docker-2018-12.org][WSL で Docker する話 (2018-12 時点)]]
 
 * License
 
