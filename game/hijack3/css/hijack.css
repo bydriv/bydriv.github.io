@@ -1,0 +1,17 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+div#game, div#game canvas {
+    width: 640px;
+    height: 480px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+div#man {
+    width: 640px;
+    margin: 0 auto;
+    padding: 0;
+}
