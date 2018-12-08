@@ -1,14 +1,22 @@
 extern crate wasm_bindgen;
+
+mod object;
+
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
 extern "C" {
     pub type Inputs;
-    pub type Input;
+    fn inputs_length(inputs: &Inputs) -> usize;
+    fn input_x(i: usize, inputs: &Inputs) -> Option<f32>;
+    fn input_y(i: usize, inputs: &Inputs) -> Option<f32>;
+    fn input_button(i: usize, j: usize, inputs: &Inputs) -> Option<bool>;
 }
 
 #[wasm_bindgen]
-pub struct Game {}
+pub struct Game {
+    objects: Vec<object::Object>,
+}
 
 #[wasm_bindgen]
 pub struct Views {
@@ -55,21 +63,29 @@ pub fn view_image_y(i: usize, views: &Views) -> Option<i32> {
 
 #[wasm_bindgen(js_name = new_)]
 pub fn new() -> Game {
-    Game {}
+    Game {
+        objects: vec![object::Object::Teiri(object::teiri::new(0, 0))],
+    }
 }
 
 #[wasm_bindgen]
-pub fn step(_inputs: &Inputs, _game: &Game) -> Game {
-    Game {}
+pub fn step(inputs: &Inputs, game: &Game) -> Game {
+    Game {
+        objects: game
+            .objects
+            .iter()
+            .map(|object| object::step(inputs, object))
+            .collect(),
+    }
 }
 
 #[wasm_bindgen]
-pub fn views(_game: &Game) -> Views {
+pub fn views(game: &Game) -> Views {
     Views {
-        views: vec![View::Image(
-            "pixelart/teiri/walk/front/0.png".to_string(),
-            0,
-            0,
-        )],
+        views: game
+            .objects
+            .iter()
+            .flat_map(|object| object::views(object).views)
+            .collect(),
     }
 }

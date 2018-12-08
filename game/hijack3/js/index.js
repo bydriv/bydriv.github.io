@@ -1,3 +1,21 @@
+function inputs_length(inputs) {
+    return inputs.length;
+}
+
+function inputs_x(i, inputs) {
+    return i < inputs.length ? inputs[i].x : null;
+}
+
+function inputs_y(i, inputs) {
+    return i < inputs.length ? inputs[i].y : null;
+}
+
+function inputs_button(i, j, inputs) {
+    return (i < inputs.length && j < inputs[i].buttons.length)
+        ? inputs[i].buttons[j]
+        : null;
+}
+
 window.addEventListener("load", function() {
     /**************************************************************************/
     /*                          GAME  CONFIGURATIONS                          */
