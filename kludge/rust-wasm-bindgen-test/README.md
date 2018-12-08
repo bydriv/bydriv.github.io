@@ -25,5 +25,5 @@ $ make server
 
 4. Firefox で `localhost:8000` にアクセス、開発ツールでログを見る
 
-**Note**: Firefox 以外のブラウザでも動くかもしれないけどテストはしてない。
+*Note*: Firefox 以外のブラウザでも動くかもしれないけどテストはしてない。
 TextEncoder とかの Polyfill が必要かも。
