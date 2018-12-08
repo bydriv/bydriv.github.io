@@ -260,7 +260,7 @@ window.addEventListener("load", function() {
           const onscreen = ret.onscreen;
           const assets = ret.assets;
 
-          var game = Game.intro();
+          var game = Game.new_();
 
           requestAnimationFrame(function step() {
             const views = Game.views(game);

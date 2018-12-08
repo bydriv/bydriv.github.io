@@ -53,8 +53,8 @@ pub fn view_image_y(i: usize, views: &Views) -> Option<i32> {
     }
 }
 
-#[wasm_bindgen]
-pub fn intro() -> Game {
+#[wasm_bindgen(js_name = new_)]
+pub fn new() -> Game {
     Game {}
 }
 

@@ -105,8 +105,8 @@
     /**
     * @returns {Game}
     */
-    __exports.intro = function() {
-        return Game.__wrap(wasm.intro());
+    __exports.new_ = function() {
+        return Game.__wrap(wasm.new_());
     };
 
     const heap = new Array(32);
