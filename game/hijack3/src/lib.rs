@@ -1,8 +1,11 @@
+extern crate brownfox;
 extern crate wasm_bindgen;
 
 mod object;
 
 use wasm_bindgen::prelude::*;
+
+use brownfox::Moore;
 
 #[wasm_bindgen]
 extern "C" {
@@ -61,31 +64,45 @@ pub fn view_image_y(i: usize, views: &Views) -> Option<i32> {
     }
 }
 
+impl Game {
+    pub fn new() -> Game {
+        Game {
+            objects: vec![object::Object::Teiri(object::teiri::new(0, 0))],
+        }
+    }
+}
+
+impl brownfox::Moore<Inputs, Views> for Game {
+    fn transit(&self, inputs: &Inputs) -> Game {
+        Game {
+            objects: brownfox::Vec::new(self.objects.clone())
+                .transit(&(inputs, self))
+                .machines,
+        }
+    }
+
+    fn output(&self) -> Views {
+        Views {
+            views: self
+                .objects
+                .iter()
+                .flat_map(|object| object.output().views)
+                .collect(),
+        }
+    }
+}
+
 #[wasm_bindgen(js_name = new_)]
 pub fn new() -> Game {
-    Game {
-        objects: vec![object::Object::Teiri(object::teiri::new(0, 0))],
-    }
+    Game::new()
 }
 
 #[wasm_bindgen]
 pub fn step(inputs: &Inputs, game: &Game) -> Game {
-    Game {
-        objects: game
-            .objects
-            .iter()
-            .map(|object| object::step(inputs, object))
-            .collect(),
-    }
+    game.transit(inputs)
 }
 
 #[wasm_bindgen]
 pub fn views(game: &Game) -> Views {
-    Views {
-        views: game
-            .objects
-            .iter()
-            .flat_map(|object| object::views(object).views)
-            .collect(),
-    }
+    game.output()
 }

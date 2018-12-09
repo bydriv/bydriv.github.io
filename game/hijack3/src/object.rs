@@ -2,18 +2,21 @@ pub mod teiri;
 
 use super::*;
 
+#[derive(Clone)]
 pub enum Object {
     Teiri(teiri::Teiri),
 }
 
-pub fn step(inputs: &Inputs, object: &Object) -> Object {
-    match object {
-        Object::Teiri(teiri) => Object::Teiri(teiri::step(inputs, teiri)),
+impl brownfox::Moore<(&Inputs, &Game), Views> for Object {
+    fn transit(&self, input: &(&Inputs, &Game)) -> Object {
+        match self {
+            Object::Teiri(teiri) => Object::Teiri(teiri.transit(input)),
+        }
     }
-}
 
-pub fn views(object: &Object) -> Views {
-    match object {
-        Object::Teiri(teiri) => teiri::views(teiri),
+    fn output(&self) -> Views {
+        match self {
+            Object::Teiri(teiri) => teiri.output(),
+        }
     }
 }

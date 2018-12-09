@@ -14,8 +14,9 @@ enum Direction {
     Front,
 }
 
+#[derive(Clone)]
 pub struct Teiri {
-    i: u32,
+    frame_count: brownfox::FrameCount,
     x: i32,
     y: i32,
     pose: Pose,
@@ -24,7 +25,7 @@ pub struct Teiri {
 
 pub fn new(x: i32, y: i32) -> Teiri {
     Teiri {
-        i: 0,
+        frame_count: brownfox::FrameCount::new(0),
         x: x,
         y: y,
         pose: Pose::Walk,
@@ -32,22 +33,27 @@ pub fn new(x: i32, y: i32) -> Teiri {
     }
 }
 
-pub fn step(inputs: &Inputs, teiri: &Teiri) -> Teiri {
-    Teiri {
-        i: teiri.i + 1,
-        x: teiri.x,
-        y: teiri.y,
-        pose: teiri.pose.clone(),
-        direction: teiri.direction.clone(),
+impl brownfox::Moore<(&Inputs, &Game), Views> for Teiri {
+    fn transit(&self, (inputs, game): &(&Inputs, &Game)) -> Teiri {
+        Teiri {
+            frame_count: self.frame_count.transit(&()),
+            x: self.x,
+            y: self.y,
+            pose: self.pose.clone(),
+            direction: self.direction.clone(),
+        }
     }
-}
 
-pub fn views(teiri: &Teiri) -> Views {
-    Views {
-        views: vec![View::Image(
-            format!("pixelart/teiri/walk/front/{}.png", teiri.i / 8 % 4),
-            teiri.x,
-            teiri.y,
-        )],
+    fn output(&self) -> Views {
+        Views {
+            views: vec![View::Image(
+                format!(
+                    "pixelart/teiri/walk/front/{}.png",
+                    self.frame_count.i / 8 % 4
+                ),
+                self.x,
+                self.y,
+            )],
+        }
     }
 }
