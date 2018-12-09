@@ -69,7 +69,6 @@ pub fn view_image_y(i: usize, views: &Views) -> Option<i32> {
     }
 }
 
-
 #[wasm_bindgen]
 pub fn view_is_pattern(i: usize, views: &Views) -> bool {
     match views.views[i] {

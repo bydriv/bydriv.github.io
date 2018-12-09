@@ -25,12 +25,12 @@ impl brownfox::Moore<(&Inputs, &Game), Views> for Archimedes {
     fn output(&self) -> Views {
         Views {
             views: vec![View::Pattern(
-                            "pixelart/maptip/archimedes.png".to_string(),
-                            self.width,
-                            self.height,
-                            self.x,
-                            self.y,
-                        )],
+                "pixelart/maptip/archimedes.png".to_string(),
+                self.width,
+                self.height,
+                self.x,
+                self.y,
+            )],
         }
     }
 }
