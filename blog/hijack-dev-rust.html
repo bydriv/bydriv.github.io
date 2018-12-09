@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hijack 開発ブログ: Rust 化計画</title>
+<!-- 2018-12-09 Sun 15:26 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/css/prelude.css" />
+<link rel="stylesheet" type="text/css" href="/css/highlight.css" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">Hijack 開発ブログ: Rust 化計画</h1>
+<div class="location">
+<p>
+https://<a href="/">bydriv.github.io</a>/<a href="/blog">blog</a>/<strong>hijack-dev-rust.html</strong>
+</p>
+
+</div>
+
+<div class="created_at">
+<p>
+created at <time datetime="2018-12-09">2018-12-09</time>
+</p>
+
+</div>
+
+<div class="updated_at">
+<p>
+updated at <time datetime="2018-12-09">2018-12-09</time>
+</p>
+
+</div>
+
+<p>
+<a href="./hijack-dev.html">Hijack 開発ブログ</a> に書いたとおり，現在 <a href="../game/hijack.html">Hijack</a> というゲームを開発している（ほんまか）．
+</p>
+
+<p>
+これまでの経緯
+</p>
+
+<ul class="org-ul">
+<li>最初はネイティヴで開発していたんだけど，
+たぶん開発したところでダウンロードして遊んでくれるひとってかなり少ないだろうなァということで，
+ブラウザで動くようにしようとなった．
+</li>
+<li>ブラウザで動かすにしても altJS を使うかどうかなどある．試したものは:
+<ul class="org-ul">
+<li>Haste
+</li>
+<li>BuckleScript
+</li>
+<li>Rust (WASM backend &amp;&amp; wasm-bindgen)
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+など． 個人的には altJS としては(いまのところ) BuckleScript がよい塩梅なんじゃないかと思っているが，
+仕事で Rust を書くことになったので，勉強も兼ねて Rust にすることにした．
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">技術的詳細</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Hijack というゲーム特有の部分と汎用的な部分を分離して再利用できるようにする方針．
+汎用的な部分は Brownfox と命名することにした．
+</p>
+
+<ul class="org-ul">
+<li>Brownfox: <a href="https://github.com/bydriv/bydriv.github.io/tree/master/game/hijack3/brownfox">https://github.com/bydriv/bydriv.github.io/tree/master/game/hijack3/brownfox</a>
+</li>
+<li>Hijack: <a href="https://github.com/bydriv/bydriv.github.io/tree/master/game/hijack3">https://github.com/bydriv/bydriv.github.io/tree/master/game/hijack3</a>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">Brownfox</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+ムーアマシンベースのゲームエンジン (になる予定)．
+ムーアマシンとは: <a href="https://en.wikipedia.org/wiki/Moore_machine">https://en.wikipedia.org/wiki/Moore_machine</a>
+</p>
+
+<p>
+ムーアマシンの定義における遷移関数はゲームにおける 1フレームの処理，
+出力関数は view (状態から実際に表示する画像などを出力する) に相当する．
+</p>
+
+<p>
+<code>brownfox::Moore&lt;I, O&gt;</code> は入力の型を <code>I</code> ，出力の型を <code>O</code> とするムーアマシン．
+</p>
+
+<p>
+<code>I</code> はたとえばゲームパッドの入力， <code>O</code> はたとえば画像になる．
+</p>
+
+<p>
+たとえばつぎのように:
+</p>
+
+<pre class="example">
+impl brownfox::Moore&lt;(&amp;Inputs, &amp;Game), Views&gt; for Teiri {
+    fn transit(&amp;self, (inputs, game): &amp;(&amp;Inputs, &amp;Game)) -&gt; Teiri {
+        Teiri {
+            frame_count: self.frame_count.transit(&amp;()),
+            x: self.x,
+            y: self.y,
+            pose: self.pose.clone(),
+            direction: self.direction.clone(),
+        }
+    }
+
+    fn output(&amp;self) -&gt; Views {
+        Views {
+            views: vec![View::Image(
+                format!(
+                    "pixelart/teiri/walk/front/{}.png",
+                    self.frame_count.i / 8 % 4
+                ),
+                self.x,
+                self.y,
+            )],
+        }
+    }
+}
+</pre>
+
+<p>
+<code>inputs</code> はゲームパッド， <code>game</code> は1フレーム前のゲーム全体の状態
+(これらはまだ使っていないが，ゆくゆくはプレイヤーが操作したり AI が行動を決定するために必要になる)．
+</p>
+
+<p>
+なお Brownfox の設計自体は今日突然できたわけではなく，2年前から Hijack を Haskell で書いていたとき，
+ゲームの状態を1ステップ進める処理が遷移関数に，
+状態から view を得る処理が出力関数になることに気づいたことがきっかけである．
+</p>
+
+<p>
+状態と入力から view を得るようにすればミーリマシンになるが， view を得るという処理にかぎっていえば，
+ムーアマシンのように (入力をとらずに) 状態のみから view を得るほうがきれいなインターフェースになる．
+</p>
+
+<p>
+なお， Brownfox 自体は <code>I</code> がゲームパッドだったり <code>O</code> が view だったりということは仮定せず，
+ジェネリクスで多相に書く予定である．
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">今後の展望</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Hijack を Rust で書く準備はできたのであとは書くだけなんだがそれが大変(当然)．
+</p>
+
+<p>
+目的はふたつあり，
+</p>
+
+<ul class="org-ul">
+<li>Hijack 自体の開発 (自分で遊びたいから)
+</li>
+<li>Rust の勉強 (仕事で使うから)
+</li>
+</ul>
+
+<p>
+両方達成できればよりよいが，最低でも片方は達成したい．
+まあこういう楽しい題材でがりがり書いてればかなり勉強になるんじゃないかな (願望)．
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

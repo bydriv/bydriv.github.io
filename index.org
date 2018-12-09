@@ -19,13 +19,14 @@ created at @@html:<time datetime="2018-01-16">2018-01-16</time>@@
 #+END_CREATED_AT
 
 #+BEGIN_UPDATED_AT
-updated at @@html:<time datetime="2018-10-03">2018-12-03</time>@@
+updated at @@html:<time datetime="2018-12-09">2018-12-09</time>@@
 #+END_UPDATED_AT
 
 * News
 
 ** 2018-12
 
+- 2018-12-09: Created [[./blog/hijack-dev-rust.org][Hijack 開発ブログ: Rust 化計画]] in @@html:<a href="/blog">blog</a>@@.
 - 2018-12-03: Created [[./blog/wsl-docker-2018-12.org][WSL で Docker する話 (2018-12 時点)]] in @@html:<a href="/blog">blog</a>@@.
 
 ** 2018-10
