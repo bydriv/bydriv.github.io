@@ -24,17 +24,13 @@ impl brownfox::Moore<(&Inputs, &Game), Views> for Archimedes {
 
     fn output(&self) -> Views {
         Views {
-            views: (0..self.width)
-                .flat_map(|x| {
-                    (0..self.height).map(move |y| {
-                        View::Image(
-                            format!("pixelart/maptip/archimedes/{}-{}.png", x % 2, y % 2),
-                            self.x + (x as i32) * 16,
-                            self.y + (y as i32) * 16,
-                        )
-                    })
-                })
-                .collect(),
+            views: vec![View::Pattern(
+                            "pixelart/maptip/archimedes.png".to_string(),
+                            self.width,
+                            self.height,
+                            self.x,
+                            self.y,
+                        )],
         }
     }
 }

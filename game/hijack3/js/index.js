@@ -62,10 +62,7 @@ window.addEventListener("load", function() {
         ["pixelart/teiri/hijack/front/3.png", [96, 96, 32, 32]]
       ]],
       ["pixelart/maptip/archimedes.png", [
-        ["pixelart/maptip/archimedes/0-0.png", [0, 0, 16, 16]],
-        ["pixelart/maptip/archimedes/1-0.png", [0, 0, 16, 16]],
-        ["pixelart/maptip/archimedes/0-1.png", [0, 0, 16, 16]],
-        ["pixelart/maptip/archimedes/1-1.png", [0, 0, 16, 16]]
+        ["pixelart/maptip/archimedes.png", [0, 0, 16, 16]]
       ]]
     ];
 
@@ -91,23 +88,26 @@ window.addEventListener("load", function() {
             const src = asset[0];
 
             return loadImage(src).then(function (img) {
-              for (var i = 0; i < asset[1].length; ++i) {
-                const name = asset[1][i][0];
-                const sx = asset[1][i][1][0];
-                const sy = asset[1][i][1][1];
-                const sw = asset[1][i][1][2];
-                const sh = asset[1][i][1][3];
+              return Promise.all(asset[1].map(function (assetSpec) {
+                const name = assetSpec[0];
+                const sx = assetSpec[1][0];
+                const sy = assetSpec[1][1];
+                const sw = assetSpec[1][2];
+                const sh = assetSpec[1][3];
 
-                assets.set(name, {
-                  img: img,
-                  sx: sx,
-                  sy: sy,
-                  sw: sw,
-                  sh: sh
+                const canvas = document.createElement("canvas");
+                canvas.width = sw;
+                canvas.height = sh;
+
+                const context = canvas.getContext("2d");
+                context.drawImage(img, sx, sy, sw, sh, 0, 0, sw, sh);
+
+                return loadImage(canvas.toDataURL()).then(function (img) {
+                  assets.set(name, {
+                    img: img
+                  });
                 });
-              }
-
-              return Promise.resolve();
+              }));
             });
           });
 
@@ -144,6 +144,12 @@ window.addEventListener("load", function() {
                 return Game.view_image_x(i, views1) === Game.view_image_x(j, views2)
                     && Game.view_image_y(i, views1) === Game.view_image_y(j, views2)
                     && Game.view_image_name(i, views1) === Game.view_image_name(j, views2);
+            } if (Game.view_is_pattern(i, views1) && Game.view_is_pattern(j, views2)) {
+                return Game.view_pattern_x(i, views1) === Game.view_pattern_x(j, views2)
+                    && Game.view_pattern_y(i, views1) === Game.view_pattern_y(j, views2)
+                    && Game.view_pattern_width(i, views1) === Game.view_pattern_width(j, views2)
+                    && Game.view_pattern_height(i, views1) === Game.view_pattern_height(j, views2)
+                    && Game.view_pattern_name(i, views1) === Game.view_pattern_name(j, views2);
             } else {
                 return false;
             }
@@ -153,21 +159,23 @@ window.addEventListener("load", function() {
             if (Game.view_is_image(i, views)) {
               const dx = Game.view_image_x(i, views);
               const dy = Game.view_image_y(i, views);
-              const src = Game.view_image_name(i, views);
-              const sprite = assets.get(src);
-              context.drawImage(
-                sprite.img,
-                sprite.sx,
-                sprite.sy,
-                sprite.sw,
-                sprite.sh,
-                dx,
-                dy,
-                sprite.sw,
-                sprite.sh
-              );
+              const name = Game.view_image_name(i, views);
+              const sprite = assets.get(name);
+              context.drawImage(sprite.img, dx, dy);
+            } else if (Game.view_is_pattern(i, views)) {
+              const dx = Game.view_pattern_x(i, views);
+              const dy = Game.view_pattern_y(i, views);
+              const width = Game.view_pattern_width(i, views);
+              const height = Game.view_pattern_height(i, views);
+              const name = Game.view_pattern_name(i, views);
+              const sprite = assets.get(name);
+              const pattern = context.createPattern(sprite.img, "repeat");
+              const fillStyle = context.fillStyle;
+              context.fillStyle = pattern;
+              context.fillRect(dx, dy, sprite.img.width * width, sprite.img.height * height);
+              context.fillStyle = fillStyle;
             } else {
-                console.warn("unrecognized view: %o", view);
+                console.warn("unrecognized view: %o", i);
             }
         }
 

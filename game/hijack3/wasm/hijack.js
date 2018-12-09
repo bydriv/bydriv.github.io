@@ -140,6 +140,93 @@ __exports.view_image_y = function(arg0, arg1) {
 };
 
 /**
+* @param {number} arg0
+* @param {Views} arg1
+* @returns {boolean}
+*/
+__exports.view_is_pattern = function(arg0, arg1) {
+    return (wasm.view_is_pattern(arg0, arg1.ptr)) !== 0;
+};
+
+/**
+* @param {number} arg0
+* @param {Views} arg1
+* @returns {string}
+*/
+__exports.view_pattern_name = function(arg0, arg1) {
+    const retptr = globalArgumentPtr();
+    wasm.view_pattern_name(retptr, arg0, arg1.ptr);
+    const mem = getUint32Memory();
+    const rustptr = mem[retptr / 4];
+    const rustlen = mem[retptr / 4 + 1];
+    if (rustptr === 0) return;
+    const realRet = getStringFromWasm(rustptr, rustlen).slice();
+    wasm.__wbindgen_free(rustptr, rustlen * 1);
+    return realRet;
+
+};
+
+/**
+* @param {number} arg0
+* @param {Views} arg1
+* @returns {number | undefined}
+*/
+__exports.view_pattern_width = function(arg0, arg1) {
+    const retptr = globalArgumentPtr();
+
+    wasm.view_pattern_width(retptr, arg0, arg1.ptr);
+    const present = getUint32Memory()[retptr / 4];
+    const value = getUint32Memory()[retptr / 4 + 1];
+    return present === 0 ? undefined : value;
+
+};
+
+/**
+* @param {number} arg0
+* @param {Views} arg1
+* @returns {number | undefined}
+*/
+__exports.view_pattern_height = function(arg0, arg1) {
+    const retptr = globalArgumentPtr();
+
+    wasm.view_pattern_height(retptr, arg0, arg1.ptr);
+    const present = getUint32Memory()[retptr / 4];
+    const value = getUint32Memory()[retptr / 4 + 1];
+    return present === 0 ? undefined : value;
+
+};
+
+/**
+* @param {number} arg0
+* @param {Views} arg1
+* @returns {number | undefined}
+*/
+__exports.view_pattern_x = function(arg0, arg1) {
+    const retptr = globalArgumentPtr();
+
+    wasm.view_pattern_x(retptr, arg0, arg1.ptr);
+    const present = getUint32Memory()[retptr / 4];
+    const value = getInt32Memory()[retptr / 4 + 1];
+    return present === 0 ? undefined : value;
+
+};
+
+/**
+* @param {number} arg0
+* @param {Views} arg1
+* @returns {number | undefined}
+*/
+__exports.view_pattern_y = function(arg0, arg1) {
+    const retptr = globalArgumentPtr();
+
+    wasm.view_pattern_y(retptr, arg0, arg1.ptr);
+    const present = getUint32Memory()[retptr / 4];
+    const value = getInt32Memory()[retptr / 4 + 1];
+    return present === 0 ? undefined : value;
+
+};
+
+/**
 * @returns {Game}
 */
 __exports.new_ = function() {
