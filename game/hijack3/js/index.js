@@ -139,6 +139,16 @@ window.addEventListener("load", function() {
           });
         }
 
+        function eqView(views1, i, views2, j) {
+            if (Game.view_is_image(i, views1) && Game.view_is_image(j, views2)) {
+                return Game.view_image_x(i, views1) === Game.view_image_x(j, views2)
+                    && Game.view_image_y(i, views1) === Game.view_image_y(j, views2)
+                    && Game.view_image_name(i, views1) === Game.view_image_name(j, views2);
+            } else {
+                return false;
+            }
+        }
+
         function drawView(canvas, context, assets, views, i) {
             if (Game.view_is_image(i, views)) {
               const dx = Game.view_image_x(i, views);
@@ -279,26 +289,42 @@ window.addEventListener("load", function() {
           const assets = ret.assets;
 
           var game = Game.new_();
+          var previousViews = undefined;
 
           requestAnimationFrame(function step() {
             const views = Game.views(game);
 
-            offscreen.context.fillRect(0, 0, offscreen.canvas.width, offscreen.canvas.height);
+            var refresh = false;
 
-            for (var i = 0; i < Game.views_length(views); ++i)
-              drawView(offscreen.canvas, offscreen.context, assets, views, i);
+            if (previousViews && Game.views_length(previousViews) === Game.views_length(views)) {
+              for (var i = 0; i < Game.views_length(views); ++i) {
+                if (!eqView(previousViews, i, views, i)) {
+                  refresh = true;
+                  break;
+                }
+              }
+            } else {
+                refresh = true;
+            }
 
-              onscreen.context.drawImage(
-                offscreen.canvas,
-                0,
-                0,
-                offscreen.canvas.width,
-                offscreen.canvas.height,
-                0,
-                0,
-                onscreen.canvas.width,
-                onscreen.canvas.height
-              );
+            if (refresh) {
+              offscreen.context.fillRect(0, 0, offscreen.canvas.width, offscreen.canvas.height);
+
+              for (var i = 0; i < Game.views_length(views); ++i)
+                drawView(offscreen.canvas, offscreen.context, assets, views, i);
+
+                onscreen.context.drawImage(
+                  offscreen.canvas,
+                  0,
+                  0,
+                  offscreen.canvas.width,
+                  offscreen.canvas.height,
+                  0,
+                  0,
+                  onscreen.canvas.width,
+                  onscreen.canvas.height
+                );
+            }
 
             const inputs = Array.from(navigator.getGamepads()).map(function(gamepad, i) {
               const input = {
@@ -336,6 +362,7 @@ window.addEventListener("load", function() {
               };
 
             game = Game.step(inputs, game);
+            previousViews = views;
             requestAnimationFrame(step);
           });
         });
