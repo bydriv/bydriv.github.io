@@ -67,7 +67,10 @@ pub fn view_image_y(i: usize, views: &Views) -> Option<i32> {
 impl Game {
     pub fn new() -> Game {
         Game {
-            objects: vec![object::Object::Teiri(object::teiri::new(0, 0))],
+            objects: vec![
+                object::Object::Archimedes(object::archimedes::new(0, 0, 40, 30)),
+                object::Object::Teiri(object::teiri::new(0, 0)),
+            ],
         }
     }
 }
