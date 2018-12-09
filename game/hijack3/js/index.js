@@ -300,7 +300,7 @@ window.addEventListener("load", function() {
                 onscreen.canvas.height
               );
 
-            const inputs = navigator.getGamepads().map(function(gamepad, i) {
+            const inputs = Array.from(navigator.getGamepads()).map(function(gamepad, i) {
               const input = {
                 x: i === 0 ? keyboardInput.x : 0,
                 y: i === 0 ? keyboardInput.y : 0,
