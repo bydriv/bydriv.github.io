@@ -61,6 +61,24 @@ window.addEventListener("load", function() {
         ["pixelart/teiri/hijack/front/2.png", [64, 96, 32, 32]],
         ["pixelart/teiri/hijack/front/3.png", [96, 96, 32, 32]]
       ]],
+      ["pixelart/verity/walk.png", [
+        ["pixelart/verity/walk/left/0.png", [0, 0, 16, 16]],
+        ["pixelart/verity/walk/left/1.png", [16, 0, 16, 16]],
+        ["pixelart/verity/walk/left/2.png", [32, 0, 16, 16]],
+        ["pixelart/verity/walk/left/3.png", [48, 0, 16, 16]],
+        ["pixelart/verity/walk/back/0.png", [0, 16, 16, 16]],
+        ["pixelart/verity/walk/back/1.png", [16, 16, 16, 16]],
+        ["pixelart/verity/walk/back/2.png", [32, 16, 16, 16]],
+        ["pixelart/verity/walk/back/3.png", [48, 16, 16, 16]],
+        ["pixelart/verity/walk/right/0.png", [0, 32, 16, 16]],
+        ["pixelart/verity/walk/right/1.png", [16, 32, 16, 16]],
+        ["pixelart/verity/walk/right/2.png", [32, 32, 16, 16]],
+        ["pixelart/verity/walk/right/3.png", [48, 32, 16, 16]],
+        ["pixelart/verity/walk/front/0.png", [0, 48, 16, 16]],
+        ["pixelart/verity/walk/front/1.png", [16, 48, 16, 16]],
+        ["pixelart/verity/walk/front/2.png", [32, 48, 16, 16]],
+        ["pixelart/verity/walk/front/3.png", [48, 48, 16, 16]]
+      ]],
       ["pixelart/maptip/archimedes.png", [
         ["pixelart/maptip/archimedes.png", [0, 0, 16, 16]]
       ]]

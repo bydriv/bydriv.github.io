@@ -123,6 +123,7 @@ impl Game {
             objects: vec![
                 object::Object::Archimedes(object::archimedes::new(0, 0, 40, 30)),
                 object::Object::Teiri(object::teiri::new(0, 0)),
+                object::Object::Verity(object::verity::new(16, 16)),
             ],
         }
     }
