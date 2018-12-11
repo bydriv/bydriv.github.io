@@ -1,0 +1,8 @@
+* pixelart
+
+| path                           | image                            |
+|--------------------------------+----------------------------------|
+| pixelart/teiri/walk.png        | [[./pixelart/teiri/walk.png]]        |
+| pixelart/teiri/hijack.png      | [[./pixelart/teiri/hijack.png]]      |
+| pixelart/verity/walk.png       | [[./pixelart/verity/walk.png]]       |
+| pixelart/maptip/archimedes.png | [[./pixelart/maptip/archimedes.png]] |
