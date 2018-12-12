@@ -60,3 +60,38 @@ impl<M: Moore<I, O>, I, O> Moore<I, std::vec::Vec<O>> for Vec<M, I, O> {
             .collect()
     }
 }
+
+pub trait Shape {
+    fn collision(&self, other: Self) -> bool;
+}
+
+#[derive(Clone)]
+pub struct Rectangle {
+    pub x: i64,
+    pub y: i64,
+    pub width: i64,
+    pub height: i64,
+}
+
+impl Rectangle {
+    pub fn new(x: i64, y: i64, width: i64, height: i64) -> Rectangle {
+        Rectangle {
+            x: x,
+            y: y,
+            width: width,
+            height: height,
+        }
+    }
+}
+
+impl Shape for Rectangle {
+    fn collision(&self, other: Self) -> bool {
+        let left = std::cmp::max(self.x, other.x);
+        let top = std::cmp::max(self.y, other.y);
+        let right = std::cmp::max(self.x + self.width, other.x + other.width);
+        let bottom = std::cmp::max(self.y + self.height, other.y + other.height);
+        let width = right - left;
+        let height = bottom - top;
+        width > 0 && height > 0
+    }
+}
