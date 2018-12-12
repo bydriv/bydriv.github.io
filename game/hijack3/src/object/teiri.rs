@@ -33,7 +33,7 @@ pub fn new(x: i32, y: i32) -> Teiri {
     }
 }
 
-impl brownfox::Moore<(&Inputs, &Game), Views> for Teiri {
+impl brownfox::Moore<(&Inputs, &Game), Output> for Teiri {
     fn transit(&self, (inputs, game): &(&Inputs, &Game)) -> Teiri {
         let xshift = if let Some(x) = input_x(0, inputs) {
             if x < -0.25 {
@@ -77,18 +77,23 @@ impl brownfox::Moore<(&Inputs, &Game), Views> for Teiri {
         }
     }
 
-    fn output(&self) -> Views {
-        Views {
-            views: vec![View::Image(
-                format!(
-                    "pixelart/teiri/walk/{}/{}.png",
-                    string_of_direction(&self.direction),
-                    self.frame_count.i / 8 % 4
-                ),
-                self.x,
-                self.y,
-            )],
-        }
+    fn output(&self) -> Output {
+        (
+            Events {
+                events: vec![Event::Focus(self.x, self.y, 16, 16)],
+            },
+            Views {
+                views: vec![View::Image(
+                    format!(
+                        "pixelart/teiri/walk/{}/{}.png",
+                        string_of_direction(&self.direction),
+                        self.frame_count.i / 8 % 4
+                    ),
+                    self.x,
+                    self.y,
+                )],
+            },
+        )
     }
 }
 

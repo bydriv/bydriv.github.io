@@ -33,7 +33,7 @@ pub fn new(x: i32, y: i32) -> Verity {
     }
 }
 
-impl brownfox::Moore<(&Inputs, &Game), Views> for Verity {
+impl brownfox::Moore<(&Inputs, &Game), Output> for Verity {
     fn transit(&self, (inputs, game): &(&Inputs, &Game)) -> Verity {
         let xshift = if let Some(x) = input_x(0, inputs) {
             if x < -0.25 {
@@ -77,18 +77,21 @@ impl brownfox::Moore<(&Inputs, &Game), Views> for Verity {
         }
     }
 
-    fn output(&self) -> Views {
-        Views {
-            views: vec![View::Image(
-                format!(
-                    "pixelart/verity/walk/{}/{}.png",
-                    string_of_direction(&self.direction),
-                    self.frame_count.i / 8 % 4
-                ),
-                self.x,
-                self.y,
-            )],
-        }
+    fn output(&self) -> Output {
+        (
+            Events { events: vec![] },
+            Views {
+                views: vec![View::Image(
+                    format!(
+                        "pixelart/verity/walk/{}/{}.png",
+                        string_of_direction(&self.direction),
+                        self.frame_count.i / 8 % 4
+                    ),
+                    self.x,
+                    self.y,
+                )],
+            },
+        )
     }
 }
 

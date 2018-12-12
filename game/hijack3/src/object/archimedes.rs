@@ -17,20 +17,23 @@ pub fn new(x: i32, y: i32, width: u32, height: u32) -> Archimedes {
     }
 }
 
-impl brownfox::Moore<(&Inputs, &Game), Views> for Archimedes {
+impl brownfox::Moore<(&Inputs, &Game), Output> for Archimedes {
     fn transit(&self, (inputs, game): &(&Inputs, &Game)) -> Archimedes {
         self.clone()
     }
 
-    fn output(&self) -> Views {
-        Views {
-            views: vec![View::Pattern(
-                "pixelart/maptip/archimedes.png".to_string(),
-                self.width,
-                self.height,
-                self.x,
-                self.y,
-            )],
-        }
+    fn output(&self) -> Output {
+        (
+            Events { events: vec![] },
+            Views {
+                views: vec![View::Pattern(
+                    "pixelart/maptip/archimedes.png".to_string(),
+                    self.width,
+                    self.height,
+                    self.x,
+                    self.y,
+                )],
+            },
+        )
     }
 }

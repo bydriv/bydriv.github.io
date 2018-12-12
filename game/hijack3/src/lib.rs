@@ -21,6 +21,14 @@ pub struct Game {
     objects: Vec<object::Object>,
 }
 
+pub struct Events {
+    events: Vec<Event>,
+}
+
+pub enum Event {
+    Focus(i32, i32, i32, i32),
+}
+
 #[wasm_bindgen]
 pub struct Views {
     views: Vec<View>,
@@ -129,7 +137,7 @@ impl Game {
     }
 }
 
-impl brownfox::Moore<Inputs, Views> for Game {
+impl brownfox::Moore<Inputs, object::Output> for Game {
     fn transit(&self, inputs: &Inputs) -> Game {
         Game {
             objects: brownfox::Vec::new(self.objects.clone())
@@ -138,14 +146,23 @@ impl brownfox::Moore<Inputs, Views> for Game {
         }
     }
 
-    fn output(&self) -> Views {
-        Views {
-            views: self
-                .objects
-                .iter()
-                .flat_map(|object| object.output().views)
-                .collect(),
-        }
+    fn output(&self) -> object::Output {
+        (
+            Events {
+                events: self
+                    .objects
+                    .iter()
+                    .flat_map(|object| object.output().0.events)
+                    .collect(),
+            },
+            Views {
+                views: self
+                    .objects
+                    .iter()
+                    .flat_map(|object| object.output().1.views)
+                    .collect(),
+            },
+        )
     }
 }
 
@@ -159,7 +176,38 @@ pub fn step(inputs: &Inputs, game: &Game) -> Game {
     game.transit(inputs)
 }
 
+const SCALE: i32 = 2;
+const WIDTH: i32 = 320;
+const HEIGHT: i32 = 240;
+
 #[wasm_bindgen]
 pub fn views(game: &Game) -> Views {
-    game.output()
+    let mut central_x = 0;
+    let mut central_y = 0;
+    let (events, views) = game.output();
+
+    for event in events.events {
+        match event {
+            Event::Focus(x, y, width, height) => {
+                central_x = x + width / 2;
+                central_y = y + height / 2;
+            }
+        }
+    }
+
+    let left = central_x - WIDTH / 2;
+    let top = central_y - HEIGHT / 2;
+
+    Views {
+        views: views
+            .views
+            .iter()
+            .map(|view| match view {
+                View::Image(name, x, y) => View::Image(name.to_string(), x - left, y - top),
+                View::Pattern(name, width, height, x, y) => {
+                    View::Pattern(name.to_string(), *width, *height, x - left, y - top)
+                }
+            })
+            .collect(),
+    }
 }

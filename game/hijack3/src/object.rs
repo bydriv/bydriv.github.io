@@ -4,6 +4,8 @@ pub mod verity;
 
 use super::*;
 
+pub type Output = (Events, Views);
+
 #[derive(Clone)]
 pub enum Object {
     Teiri(teiri::Teiri),
@@ -11,7 +13,7 @@ pub enum Object {
     Archimedes(archimedes::Archimedes),
 }
 
-impl brownfox::Moore<(&Inputs, &Game), Views> for Object {
+impl brownfox::Moore<(&Inputs, &Game), Output> for Object {
     fn transit(&self, input: &(&Inputs, &Game)) -> Object {
         match self {
             Object::Teiri(teiri) => Object::Teiri(teiri.transit(input)),
@@ -20,7 +22,7 @@ impl brownfox::Moore<(&Inputs, &Game), Views> for Object {
         }
     }
 
-    fn output(&self) -> Views {
+    fn output(&self) -> Output {
         match self {
             Object::Teiri(teiri) => teiri.output(),
             Object::Verity(verity) => verity.output(),
