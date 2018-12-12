@@ -19,6 +19,7 @@ extern "C" {
 #[wasm_bindgen]
 pub struct Game {
     objects: Vec<object::Object>,
+    events: Events,
 }
 
 pub struct Events {
@@ -133,6 +134,7 @@ impl Game {
                 object::Object::Teiri(object::teiri::new(0, 0)),
                 object::Object::Verity(object::verity::new(16, 16)),
             ],
+            events: Events { events: vec![] },
         }
     }
 }
@@ -143,6 +145,7 @@ impl brownfox::Moore<Inputs, object::Output> for Game {
             objects: brownfox::Vec::new(self.objects.clone())
                 .transit(&(inputs, self))
                 .machines,
+            events: self.output().0,
         }
     }
 
