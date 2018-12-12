@@ -47,16 +47,21 @@ async function initSystem(config) {
 
     const offscreenCanvas = document.createElement("canvas");
     const onscreenCanvas = document.createElement("canvas");
+    const patternCanvas = document.createElement("canvas");
     offscreenCanvas.width = config.width;
     offscreenCanvas.height = config.height;
     onscreenCanvas.width = config.width * config.scale;
     onscreenCanvas.height = config.height * config.scale;
+    patternCanvas.width = config.width;
+    patternCanvas.height = config.height;
     document.getElementById("game").appendChild(onscreenCanvas);
 
     const offscreenContext = offscreenCanvas.getContext("2d");
 
     const onscreenContext = onscreenCanvas.getContext("2d");
     onscreenContext.imageSmoothingEnabled = false;
+
+    const patternContext = patternCanvas.getContext("2d");
 
     return {
         offscreen: {
@@ -66,6 +71,10 @@ async function initSystem(config) {
         onscreen: {
             canvas: onscreenCanvas,
             context: onscreenContext
+        },
+        pattern: {
+            canvas: patternCanvas,
+            context: patternContext
         },
         assets: assets
     };
@@ -87,7 +96,7 @@ function eqView(Game, views1, i, views2, j) {
     }
 }
 
-function drawView(Game, canvas, context, assets, views, i) {
+function drawView(Game, canvas, context, assets, views, i, patternCanvas, patternContext) {
     if (Game.view_is_image(i, views)) {
         const dx = Game.view_image_x(i, views);
         const dy = Game.view_image_y(i, views);
@@ -101,11 +110,11 @@ function drawView(Game, canvas, context, assets, views, i) {
         const height = Game.view_pattern_height(i, views);
         const name = Game.view_pattern_name(i, views);
         const sprite = assets.get(name);
-        const pattern = context.createPattern(sprite.img, "repeat");
-        const fillStyle = context.fillStyle;
-        context.fillStyle = pattern;
-        context.fillRect(dx, dy, sprite.img.width * width, sprite.img.height * height);
-        context.fillStyle = fillStyle;
+        const pattern = patternContext.createPattern(sprite.img, "repeat");
+        patternContext.clearRect(0, 0, patternCanvas.width, patternCanvas.height);
+        patternContext.fillStyle = pattern;
+        patternContext.fillRect(0, 0, sprite.img.width * width, sprite.img.height * height);
+        context.drawImage(patternCanvas, 0, 0, sprite.img.width * width, sprite.img.height * height, dx, dy, sprite.img.width * width, sprite.img.height * height);
     } else {
         console.warn("unrecognized view: %o", i);
     }
@@ -262,6 +271,7 @@ window.addEventListener("load", async function() {
 
     const offscreen = ret.offscreen;
     const onscreen = ret.onscreen;
+    const pattern = ret.pattern;
     const assets = ret.assets;
 
     var game = Game.new_();
@@ -287,7 +297,7 @@ window.addEventListener("load", async function() {
             offscreen.context.fillRect(0, 0, offscreen.canvas.width, offscreen.canvas.height);
 
             for (var i = 0; i < Game.views_length(views); ++i)
-                drawView(Game, offscreen.canvas, offscreen.context, assets, views, i);
+                drawView(Game, offscreen.canvas, offscreen.context, assets, views, i, pattern.canvas, pattern.context);
 
             onscreen.context.drawImage(
                 offscreen.canvas,
