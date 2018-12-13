@@ -23,41 +23,13 @@ impl Moore<(), ()> for FrameCount {
     }
 }
 
-#[derive(Clone)]
-pub struct Vec<M: Moore<I, O>, I, O> {
-    input_type: std::marker::PhantomData<I>,
-    output_type: std::marker::PhantomData<O>,
-    pub machines: std::vec::Vec<M>,
-}
-
-impl<M: Moore<I, O>, I, O> Vec<M, I, O> {
-    pub fn new(machines: std::vec::Vec<M>) -> Vec<M, I, O> {
-        Vec {
-            input_type: std::marker::PhantomData,
-            output_type: std::marker::PhantomData,
-            machines: machines,
-        }
-    }
-}
-
-impl<M: Moore<I, O>, I, O> Moore<I, std::vec::Vec<O>> for Vec<M, I, O> {
-    fn transit(&self, input: &I) -> Vec<M, I, O> {
-        Vec {
-            input_type: self.input_type,
-            output_type: self.output_type,
-            machines: self
-                .machines
-                .iter()
-                .map(|machine| machine.transit(input))
-                .collect(),
-        }
+impl<M: Moore<I, O>, I, O> Moore<I, Vec<O>> for Vec<M> {
+    fn transit(&self, input: &I) -> Vec<M> {
+        self.iter().map(|machine| machine.transit(input)).collect()
     }
 
-    fn output(&self) -> std::vec::Vec<O> {
-        self.machines
-            .iter()
-            .map(|machine| machine.output())
-            .collect()
+    fn output(&self) -> Vec<O> {
+        self.iter().map(|machine| machine.output()).collect()
     }
 }
 
@@ -100,15 +72,106 @@ impl Shape for Rectangle {
 pub struct Input {
     pub x: f64,
     pub y: f64,
-    pub buttons: std::vec::Vec<bool>,
+    pub buttons: Vec<bool>,
 }
 
 impl Input {
-    pub fn new(x: f64, y: f64, buttons: &std::vec::Vec<bool>) -> Input {
+    pub fn new(x: f64, y: f64, buttons: &Vec<bool>) -> Input {
         Input {
             x: x,
             y: y,
             buttons: buttons.clone(),
         }
+    }
+
+    pub fn empty() -> Input {
+        Input {
+            x: 0.0,
+            y: 0.0,
+            buttons: vec![
+                false, false, false, false, false, false, false, false, false, false, false, false,
+                false, false, false, false, false, false, false, false, false, false, false, false,
+                false, false, false, false, false, false, false, false,
+            ],
+        }
+    }
+}
+
+#[derive(Clone)]
+pub struct Player {
+    pub i: usize,
+    pub input: Input,
+}
+
+impl Player {
+    pub fn new(i: usize) -> Player {
+        Player {
+            i: i,
+            input: Input::empty(),
+        }
+    }
+}
+
+#[derive(Clone)]
+pub struct Immovable {}
+
+impl Immovable {
+    pub fn new() -> Immovable {
+        Immovable {}
+    }
+}
+
+#[derive(Clone)]
+pub enum Control {
+    Player(Player),
+    Immovable(Immovable),
+}
+
+impl Moore<Vec<Input>, Input> for Control {
+    fn transit(&self, inputs: &Vec<Input>) -> Control {
+        match self {
+            Control::Player(player) => Control::Player(player.transit(inputs)),
+            Control::Immovable(immovable) => Control::Immovable(immovable.transit(inputs)),
+        }
+    }
+
+    fn output(&self) -> Input {
+        match self {
+            Control::Player(player) => player.output(),
+            Control::Immovable(immovable) => immovable.output(),
+        }
+    }
+}
+
+impl Moore<Vec<Input>, Input> for Player {
+    fn transit(&self, inputs: &Vec<Input>) -> Player {
+        Player {
+            i: self.i,
+            input: inputs[self.i].clone(),
+        }
+    }
+
+    fn output(&self) -> Input {
+        self.input.clone()
+    }
+}
+
+impl Moore<Vec<Input>, Input> for Immovable {
+    fn transit(&self, _input: &Vec<Input>) -> Immovable {
+        self.clone()
+    }
+
+    fn output(&self) -> Input {
+        Input::empty()
+    }
+}
+
+impl<M: Moore<A, C>, N: Moore<B, D>, A, B, C, D> Moore<(A, B), (C, D)> for (M, N) {
+    fn transit(&self, input: &(A, B)) -> (M, N) {
+        (self.0.transit(&input.0), self.1.transit(&input.1))
+    }
+
+    fn output(&self) -> (C, D) {
+        (self.0.output(), self.1.output())
     }
 }

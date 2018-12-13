@@ -23,7 +23,7 @@ pub struct Game {
 
 #[derive(Clone)]
 pub struct Hijack {
-    objects: Vec<object::Object>,
+    objects: Vec<(brownfox::Control, object::Object)>,
     events: Events,
 }
 
@@ -145,9 +145,18 @@ impl Hijack {
     pub fn new() -> Hijack {
         Hijack {
             objects: vec![
-                object::Object::Archimedes(object::archimedes::new(0, 0, 40, 30)),
-                object::Object::Teiri(object::teiri::new(0, 0)),
-                object::Object::Verity(object::verity::new(16, 16)),
+                (
+                    brownfox::Control::Immovable(brownfox::Immovable::new()),
+                    object::Object::Archimedes(object::archimedes::new(0, 0, 40, 30)),
+                ),
+                (
+                    brownfox::Control::Player(brownfox::Player::new(0)),
+                    object::Object::Teiri(object::teiri::new(0, 0)),
+                ),
+                (
+                    brownfox::Control::Immovable(brownfox::Immovable::new()),
+                    object::Object::Verity(object::verity::new(16, 16)),
+                ),
             ],
             events: Events { events: vec![] },
         }
@@ -191,9 +200,15 @@ impl brownfox::Moore<Inputs, object::Output> for Game {
 impl brownfox::Moore<Vec<brownfox::Input>, object::Output> for Hijack {
     fn transit(&self, inputs: &Vec<brownfox::Input>) -> Hijack {
         Hijack {
-            objects: brownfox::Vec::new(self.objects.clone())
-                .transit(&((*inputs).clone(), (*self).clone()))
-                .machines,
+            objects: self
+                .objects
+                .iter()
+                .map(|object| {
+                    let control = object.0.transit(inputs);
+                    let input = control.output();
+                    (control, object.1.transit(&(vec![input], self.clone())))
+                })
+                .collect(),
             events: self.output().0,
         }
     }
@@ -204,14 +219,14 @@ impl brownfox::Moore<Vec<brownfox::Input>, object::Output> for Hijack {
                 events: self
                     .objects
                     .iter()
-                    .flat_map(|object| object.output().0.events)
+                    .flat_map(|object| object.1.output().0.events)
                     .collect(),
             },
             Views {
                 views: self
                     .objects
                     .iter()
-                    .flat_map(|object| object.output().1.views)
+                    .flat_map(|object| object.1.output().1.views)
                     .collect(),
             },
         )
