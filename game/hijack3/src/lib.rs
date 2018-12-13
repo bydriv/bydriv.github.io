@@ -206,7 +206,7 @@ impl brownfox::Moore<Vec<brownfox::Input>, object::Output> for Hijack {
                 .map(|object| {
                     let control = object.0.transit(inputs);
                     let input = control.output();
-                    (control, object.1.transit(&(vec![input], self.clone())))
+                    (control, object.1.transit(&(&vec![input], self)))
                 })
                 .collect(),
             events: self.output().0,

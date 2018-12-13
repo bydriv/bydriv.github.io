@@ -33,7 +33,7 @@ pub fn new(x: i32, y: i32) -> Teiri {
     }
 }
 
-impl brownfox::Moore<Input, Output> for Teiri {
+impl<'a> brownfox::Moore<Input<'a>, Output> for Teiri {
     fn transit(&self, input: &Input) -> Teiri {
         let xshift = if input.0.len() > 0 {
             if input.0[0].x < -0.25 {
