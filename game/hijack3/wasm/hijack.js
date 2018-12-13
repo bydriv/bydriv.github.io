@@ -11,6 +11,10 @@
 
 function getObject(idx) { return heap[idx]; }
 
+__exports.__wbg_inputslength_23dbc73757e2089d = function(arg0) {
+    return inputs_length(getObject(arg0));
+};
+
 function isLikeNone(x) {
     return x === undefined || x === null;
 }
@@ -44,6 +48,13 @@ __exports.__wbg_inputy_ffcf138ab7962934 = function(ret, arg0, arg1) {
     const val = input_y(arg0, getObject(arg1));
     getUint32Memory()[ret / 4] = !isLikeNone(val);
     getFloat32Memory()[ret / 4 + 1] = isLikeNone(val) ? 0 : val;
+
+};
+
+__exports.__wbg_inputbutton_fad1e810cd8153db = function(arg0, arg1, arg2) {
+
+    const val = input_button(arg0, arg1, getObject(arg2));
+    return isLikeNone(val) ? 0xFFFFFF : val ? 1 : 0;
 
 };
 /**

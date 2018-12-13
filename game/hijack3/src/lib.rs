@@ -18,14 +18,21 @@ extern "C" {
 
 #[wasm_bindgen]
 pub struct Game {
+    hijack: Hijack,
+}
+
+#[derive(Clone)]
+pub struct Hijack {
     objects: Vec<object::Object>,
     events: Events,
 }
 
+#[derive(Clone)]
 pub struct Events {
     events: Vec<Event>,
 }
 
+#[derive(Clone)]
 pub enum Event {
     Focus(i32, i32, i32, i32),
 }
@@ -129,6 +136,14 @@ pub fn view_pattern_y(i: usize, views: &Views) -> Option<i32> {
 impl Game {
     pub fn new() -> Game {
         Game {
+            hijack: Hijack::new(),
+        }
+    }
+}
+
+impl Hijack {
+    pub fn new() -> Hijack {
+        Hijack {
             objects: vec![
                 object::Object::Archimedes(object::archimedes::new(0, 0, 40, 30)),
                 object::Object::Teiri(object::teiri::new(0, 0)),
@@ -141,9 +156,43 @@ impl Game {
 
 impl brownfox::Moore<Inputs, object::Output> for Game {
     fn transit(&self, inputs: &Inputs) -> Game {
+        let inputs = &(0..inputs_length(inputs))
+            .map(|i| {
+                if let Some(x) = input_x(i, inputs) {
+                    if let Some(y) = input_y(i, inputs) {
+                        let buttons = &(0..32)
+                            .map(|j| {
+                                if let Some(b) = input_button(i, j, inputs) {
+                                    b
+                                } else {
+                                    false
+                                }
+                            })
+                            .collect();
+                        brownfox::Input::new(x.into(), y.into(), buttons)
+                    } else {
+                        brownfox::Input::new(0.0, 0.0, &(0..32).map(|_| false).collect())
+                    }
+                } else {
+                    brownfox::Input::new(0.0, 0.0, &(0..32).map(|_| false).collect())
+                }
+            })
+            .collect();
         Game {
+            hijack: self.hijack.transit(inputs),
+        }
+    }
+
+    fn output(&self) -> object::Output {
+        self.hijack.output()
+    }
+}
+
+impl brownfox::Moore<Vec<brownfox::Input>, object::Output> for Hijack {
+    fn transit(&self, inputs: &Vec<brownfox::Input>) -> Hijack {
+        Hijack {
             objects: brownfox::Vec::new(self.objects.clone())
-                .transit(&(inputs, self))
+                .transit(&((*inputs).clone(), (*self).clone()))
                 .machines,
             events: self.output().0,
         }
@@ -176,7 +225,7 @@ pub fn new() -> Game {
 
 #[wasm_bindgen]
 pub fn step(inputs: &Inputs, game: &Game) -> Game {
-    game.transit(inputs)
+    game.transit(&inputs)
 }
 
 const SCALE: i32 = 2;

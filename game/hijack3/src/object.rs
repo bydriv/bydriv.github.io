@@ -4,6 +4,7 @@ pub mod verity;
 
 use super::*;
 
+pub type Input = (Vec<brownfox::Input>, Hijack);
 pub type Output = (Events, Views);
 
 #[derive(Clone)]
@@ -13,8 +14,8 @@ pub enum Object {
     Archimedes(archimedes::Archimedes),
 }
 
-impl brownfox::Moore<(&Inputs, &Game), Output> for Object {
-    fn transit(&self, input: &(&Inputs, &Game)) -> Object {
+impl brownfox::Moore<Input, Output> for Object {
+    fn transit(&self, input: &Input) -> Object {
         match self {
             Object::Teiri(teiri) => Object::Teiri(teiri.transit(input)),
             Object::Verity(verity) => Object::Verity(verity.transit(input)),

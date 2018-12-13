@@ -95,3 +95,20 @@ impl Shape for Rectangle {
         width > 0 && height > 0
     }
 }
+
+#[derive(Clone)]
+pub struct Input {
+    pub x: f64,
+    pub y: f64,
+    pub buttons: std::vec::Vec<bool>,
+}
+
+impl Input {
+    pub fn new(x: f64, y: f64, buttons: &std::vec::Vec<bool>) -> Input {
+        Input {
+            x: x,
+            y: y,
+            buttons: buttons.clone(),
+        }
+    }
+}

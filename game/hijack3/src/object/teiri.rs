@@ -33,12 +33,12 @@ pub fn new(x: i32, y: i32) -> Teiri {
     }
 }
 
-impl brownfox::Moore<(&Inputs, &Game), Output> for Teiri {
-    fn transit(&self, (inputs, game): &(&Inputs, &Game)) -> Teiri {
-        let xshift = if let Some(x) = input_x(0, inputs) {
-            if x < -0.25 {
+impl brownfox::Moore<Input, Output> for Teiri {
+    fn transit(&self, input: &Input) -> Teiri {
+        let xshift = if input.0.len() > 0 {
+            if input.0[0].x < -0.25 {
                 -1
-            } else if x > 0.25 {
+            } else if input.0[0].x > 0.25 {
                 1
             } else {
                 0
@@ -46,10 +46,10 @@ impl brownfox::Moore<(&Inputs, &Game), Output> for Teiri {
         } else {
             0
         };
-        let yshift = if let Some(y) = input_y(0, inputs) {
-            if y < -0.25 {
+        let yshift = if input.0.len() > 0 {
+            if input.0[0].y < -0.25 {
                 -1
-            } else if y > 0.25 {
+            } else if input.0[0].y > 0.25 {
                 1
             } else {
                 0
