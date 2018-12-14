@@ -11,7 +11,7 @@
 
 function getObject(idx) { return heap[idx]; }
 
-__exports.__wbg_inputslength_23dbc73757e2089d = function(arg0) {
+__exports.__wbg_inputslength_c48062f37cfc16c5 = function(arg0) {
     return inputs_length(getObject(arg0));
 };
 
@@ -35,7 +35,7 @@ function getFloat32Memory() {
     return cachegetFloat32Memory;
 }
 
-__exports.__wbg_inputx_d5187600733b5bee = function(ret, arg0, arg1) {
+__exports.__wbg_inputx_0e0646c6d86e002e = function(ret, arg0, arg1) {
 
     const val = input_x(arg0, getObject(arg1));
     getUint32Memory()[ret / 4] = !isLikeNone(val);
@@ -43,7 +43,7 @@ __exports.__wbg_inputx_d5187600733b5bee = function(ret, arg0, arg1) {
 
 };
 
-__exports.__wbg_inputy_ffcf138ab7962934 = function(ret, arg0, arg1) {
+__exports.__wbg_inputy_40578a6b3f3a52d5 = function(ret, arg0, arg1) {
 
     const val = input_y(arg0, getObject(arg1));
     getUint32Memory()[ret / 4] = !isLikeNone(val);
@@ -51,7 +51,7 @@ __exports.__wbg_inputy_ffcf138ab7962934 = function(ret, arg0, arg1) {
 
 };
 
-__exports.__wbg_inputbutton_fad1e810cd8153db = function(arg0, arg1, arg2) {
+__exports.__wbg_inputbutton_15839f0335a14ddc = function(arg0, arg1, arg2) {
 
     const val = input_button(arg0, arg1, getObject(arg2));
     return isLikeNone(val) ? 0xFFFFFF : val ? 1 : 0;
@@ -275,30 +275,6 @@ __exports.views = function(arg0) {
     return Views.__wrap(wasm.views(arg0.ptr));
 };
 
-function freeGame(ptr) {
-
-    wasm.__wbg_game_free(ptr);
-}
-/**
-*/
-class Game {
-
-    static __wrap(ptr) {
-        const obj = Object.create(Game.prototype);
-        obj.ptr = ptr;
-
-        return obj;
-    }
-
-    free() {
-        const ptr = this.ptr;
-        this.ptr = 0;
-        freeGame(ptr);
-    }
-
-}
-__exports.Game = Game;
-
 function freeViews(ptr) {
 
     wasm.__wbg_views_free(ptr);
@@ -323,13 +299,37 @@ class Views {
 }
 __exports.Views = Views;
 
+function freeGame(ptr) {
+
+    wasm.__wbg_game_free(ptr);
+}
+/**
+*/
+class Game {
+
+    static __wrap(ptr) {
+        const obj = Object.create(Game.prototype);
+        obj.ptr = ptr;
+
+        return obj;
+    }
+
+    free() {
+        const ptr = this.ptr;
+        this.ptr = 0;
+        freeGame(ptr);
+    }
+
+}
+__exports.Game = Game;
+
 __exports.__wbindgen_throw = function(ptr, len) {
     throw new Error(getStringFromWasm(ptr, len));
 };
 
 function init(path_or_module) {
     let instantiation;
-    const imports = { './hijack': __exports };
+    const imports = { './hijackjs': __exports };
     if (path_or_module instanceof WebAssembly.Module) {
         instantiation = WebAssembly.instantiate(path_or_module, imports)
         .then(instance => {

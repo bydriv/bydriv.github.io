@@ -5,7 +5,7 @@ pub mod verity;
 use super::*;
 
 pub type Input = (Vec<brownfox::Input>, Hijack);
-pub type Output = (Events, Views);
+pub type Output = (Vec<Event>, Vec<View>);
 
 #[derive(Clone)]
 pub enum Object {

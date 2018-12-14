@@ -151,7 +151,7 @@ window.addEventListener("load", async function() {
     /**************************************************************************/
     /*                               INIT  WASM                               */
     /**************************************************************************/
-    await wasm_bindgen("./wasm/hijack_bg.wasm");
+    await wasm_bindgen("./wasm/hijackjs_bg.wasm");
 
     const Game = wasm_bindgen;
 

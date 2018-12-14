@@ -1,11 +1,10 @@
-extern crate brownfox;
 extern crate wasm_bindgen;
-
-mod object;
+extern crate brownfox;
+extern crate hijack;
 
 use wasm_bindgen::prelude::*;
-
 use brownfox::Moore;
+use hijack::*;
 
 #[wasm_bindgen]
 extern "C" {
@@ -21,31 +20,9 @@ pub struct Game {
     hijack: Hijack,
 }
 
-#[derive(Clone)]
-pub struct Hijack {
-    objects: Vec<(brownfox::Control, object::Object)>,
-    events: Events,
-}
-
-#[derive(Clone)]
-pub struct Events {
-    events: Vec<Event>,
-}
-
-#[derive(Clone)]
-pub enum Event {
-    Focus(i32, i32, i32, i32),
-}
-
 #[wasm_bindgen]
 pub struct Views {
     views: Vec<View>,
-}
-
-#[derive(Clone)]
-pub enum View {
-    Image(String, i32, i32),
-    Pattern(String, u32, u32, i32, i32),
 }
 
 #[wasm_bindgen]
@@ -141,28 +118,6 @@ impl Game {
     }
 }
 
-impl Hijack {
-    pub fn new() -> Hijack {
-        Hijack {
-            objects: vec![
-                (
-                    brownfox::Control::Immovable(brownfox::Immovable::new()),
-                    object::Object::Archimedes(object::archimedes::new(0, 0, 40, 30)),
-                ),
-                (
-                    brownfox::Control::Player(brownfox::Player::new(0)),
-                    object::Object::Teiri(object::teiri::new(0, 0)),
-                ),
-                (
-                    brownfox::Control::Immovable(brownfox::Immovable::new()),
-                    object::Object::Verity(object::verity::new(16, 16)),
-                ),
-            ],
-            events: Events { events: vec![] },
-        }
-    }
-}
-
 impl brownfox::Moore<Inputs, object::Output> for Game {
     fn transit(&self, inputs: &Inputs) -> Game {
         let inputs = &(0..inputs_length(inputs))
@@ -197,42 +152,6 @@ impl brownfox::Moore<Inputs, object::Output> for Game {
     }
 }
 
-impl brownfox::Moore<Vec<brownfox::Input>, object::Output> for Hijack {
-    fn transit(&self, inputs: &Vec<brownfox::Input>) -> Hijack {
-        Hijack {
-            objects: self
-                .objects
-                .iter()
-                .map(|object| {
-                    let control = object.0.transit(inputs);
-                    let input = control.output();
-                    (control, object.1.transit(&(vec![input], self.clone())))
-                })
-                .collect(),
-            events: self.output().0,
-        }
-    }
-
-    fn output(&self) -> object::Output {
-        (
-            Events {
-                events: self
-                    .objects
-                    .iter()
-                    .flat_map(|object| object.1.output().0.events)
-                    .collect(),
-            },
-            Views {
-                views: self
-                    .objects
-                    .iter()
-                    .flat_map(|object| object.1.output().1.views)
-                    .collect(),
-            },
-        )
-    }
-}
-
 #[wasm_bindgen(js_name = new_)]
 pub fn new() -> Game {
     Game::new()
@@ -243,17 +162,13 @@ pub fn step(inputs: &Inputs, game: &Game) -> Game {
     game.transit(&inputs)
 }
 
-const SCALE: i32 = 2;
-const WIDTH: i32 = 320;
-const HEIGHT: i32 = 240;
-
 #[wasm_bindgen]
 pub fn views(game: &Game) -> Views {
     let mut central_x = 0;
     let mut central_y = 0;
     let (events, views) = game.output();
 
-    for event in events.events {
+    for event in events {
         match event {
             Event::Focus(x, y, width, height) => {
                 central_x = x + width / 2;
@@ -267,7 +182,6 @@ pub fn views(game: &Game) -> Views {
 
     Views {
         views: views
-            .views
             .iter()
             .map(|view| match view {
                 View::Image(name, x, y) => View::Image(name.to_string(), x - left, y - top),

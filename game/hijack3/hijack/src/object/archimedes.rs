@@ -24,16 +24,14 @@ impl brownfox::Moore<Input, Output> for Archimedes {
 
     fn output(&self) -> Output {
         (
-            Events { events: vec![] },
-            Views {
-                views: vec![View::Pattern(
-                    "pixelart/maptip/archimedes.png".to_string(),
-                    self.width,
-                    self.height,
-                    self.x,
-                    self.y,
-                )],
-            },
+            vec![],
+            vec![View::Pattern(
+                "pixelart/maptip/archimedes.png".to_string(),
+                self.width,
+                self.height,
+                self.x,
+                self.y,
+            )],
         )
     }
 }

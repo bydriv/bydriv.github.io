@@ -15,7 +15,7 @@ enum Direction {
 }
 
 #[derive(Clone)]
-pub struct Verity {
+pub struct Teiri {
     frame_count: brownfox::FrameCount,
     x: i32,
     y: i32,
@@ -23,8 +23,8 @@ pub struct Verity {
     direction: Direction,
 }
 
-pub fn new(x: i32, y: i32) -> Verity {
-    Verity {
+pub fn new(x: i32, y: i32) -> Teiri {
+    Teiri {
         frame_count: brownfox::FrameCount::new(0),
         x: x,
         y: y,
@@ -33,8 +33,8 @@ pub fn new(x: i32, y: i32) -> Verity {
     }
 }
 
-impl brownfox::Moore<Input, Output> for Verity {
-    fn transit(&self, input: &Input) -> Verity {
+impl brownfox::Moore<Input, Output> for Teiri {
+    fn transit(&self, input: &Input) -> Teiri {
         let xshift = if input.0.len() > 0 {
             if input.0[0].x < -0.25 {
                 -1
@@ -68,7 +68,7 @@ impl brownfox::Moore<Input, Output> for Verity {
         } else {
             self.direction.clone()
         };
-        Verity {
+        Teiri {
             frame_count: self.frame_count.transit(&()),
             x: self.x + xshift,
             y: self.y + yshift,
@@ -79,18 +79,16 @@ impl brownfox::Moore<Input, Output> for Verity {
 
     fn output(&self) -> Output {
         (
-            Events { events: vec![] },
-            Views {
-                views: vec![View::Image(
-                    format!(
-                        "pixelart/verity/walk/{}/{}.png",
-                        string_of_direction(&self.direction),
-                        self.frame_count.i / 8 % 4
-                    ),
-                    self.x,
-                    self.y,
-                )],
-            },
+            vec![Event::Focus(self.x, self.y, 16, 16)],
+            vec![View::Image(
+                format!(
+                    "pixelart/teiri/walk/{}/{}.png",
+                    string_of_direction(&self.direction),
+                    self.frame_count.i / 8 % 4
+                ),
+                self.x,
+                self.y,
+            )],
         )
     }
 }
