@@ -33,7 +33,7 @@ pub fn new(x: i32, y: i32) -> Verity {
     }
 }
 
-impl<'a> brownfox::Moore<Input<'a>, Output> for Verity {
+impl brownfox::Moore<Input, Output> for Verity {
     fn transit(&self, input: &Input) -> Verity {
         let xshift = if input.0.len() > 0 {
             if input.0[0].x < -0.25 {
