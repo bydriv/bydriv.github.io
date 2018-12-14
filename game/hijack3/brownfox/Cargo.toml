@@ -4,4 +4,4 @@ version = "0.1.0"
 authors = ["bydriv <bydriv@gmail.com>"]
 
 [lib]
-crate-type = ["lib"]
+crate-type = ["lib", "staticlib"]
