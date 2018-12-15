@@ -164,31 +164,7 @@ pub fn step(inputs: &Inputs, game: &Game) -> Game {
 
 #[wasm_bindgen]
 pub fn views(game: &Game) -> Views {
-    let mut central_x = 0;
-    let mut central_y = 0;
-    let (events, views) = game.output();
-
-    for event in events {
-        match event {
-            Event::Focus(x, y, width, height) => {
-                central_x = x + width / 2;
-                central_y = y + height / 2;
-            }
-        }
-    }
-
-    let left = central_x - WIDTH / 2;
-    let top = central_y - HEIGHT / 2;
-
     Views {
-        views: views
-            .iter()
-            .map(|view| match view {
-                View::Image(name, x, y) => View::Image(name.to_string(), x - left, y - top),
-                View::Pattern(name, width, height, x, y) => {
-                    View::Pattern(name.to_string(), *width, *height, x - left, y - top)
-                }
-            })
-            .collect(),
+        views: game.output().1,
     }
 }
