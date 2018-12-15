@@ -1,10 +1,10 @@
-extern crate wasm_bindgen;
 extern crate brownfox;
 extern crate hijack;
+extern crate wasm_bindgen;
 
-use wasm_bindgen::prelude::*;
 use brownfox::Moore;
 use hijack::*;
+use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
 extern "C" {

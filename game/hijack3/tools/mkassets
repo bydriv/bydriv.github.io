@@ -1,0 +1,32 @@
+#!/bin/sh
+
+for asset in "$@"; do
+    test ! -f "$asset" && printf "%s: %s: No such file or directory\n" "$0" "$asset"
+done
+
+for asset in "$@"; do
+    test ! -f "$asset" && exit 1
+done
+
+printf 'struct asset {\n'
+printf '  const char *path;\n'
+printf '  unsigned int len;\n'
+printf '  const char *data;\n'
+printf '};\n'
+printf '\n'
+printf 'unsigned int assets_len = %d;\n' "$#"
+printf '\n'
+printf 'struct asset assets[%d] = {\n' "$#"
+
+for asset in "$@"; do
+    printf "{"
+    printf '"%s", ' "$asset"
+    wc -c "$asset" | awk '{print $1}'
+    printf ', '
+    printf '"'
+    xxd -p "$asset" | perl -pe 's/\s//g;s/(.{2})/\\x$1/g'
+    printf '"'
+    printf "},\n"
+done
+
+printf '};\n'

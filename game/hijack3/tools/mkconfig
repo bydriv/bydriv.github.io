@@ -1,0 +1,40 @@
+#!/usr/bin/ruby
+
+require "json"
+
+config = JSON.parse ARGF.read
+
+printf "struct asset_defn {\n"
+printf "  const char *path;\n"
+printf "  const char *name;\n"
+printf "  unsigned int x;\n"
+printf "  unsigned int y;\n"
+printf "  unsigned int width;\n"
+printf "  unsigned int height;\n"
+printf "};\n"
+printf "\n"
+printf "const unsigned int SCALE = %d;\n", config["scale"]
+printf "const unsigned int WIDTH = %d;\n", config["width"]
+printf "const unsigned int HEIGHT = %d;\n", config["height"]
+
+asset_defns_len = config["assets"].map {|asset| asset[1].length }.inject(:+)
+
+printf "const unsigned int ASSET_DEFNS_LEN = %d;\n", asset_defns_len
+printf "\n"
+printf "const struct asset_defn ASSET_DEFNS[%d] = {\n", asset_defns_len
+
+config["assets"].each do |asset|
+  path = asset[0]
+
+  asset[1].each do |defn|
+    name = defn[0]
+    x = defn[1][0]
+    y = defn[1][1]
+    width = defn[1][2]
+    height = defn[1][3]
+
+    printf "    {\"%s\", \"%s\", %d, %d, %d, %d},\n", path, name, x, y, width, height
+  end
+end
+
+printf "};\n"
