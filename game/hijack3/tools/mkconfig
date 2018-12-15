@@ -13,15 +13,15 @@ printf "  unsigned int width;\n"
 printf "  unsigned int height;\n"
 printf "};\n"
 printf "\n"
-printf "const unsigned int SCALE = %d;\n", config["scale"]
-printf "const unsigned int WIDTH = %d;\n", config["width"]
-printf "const unsigned int HEIGHT = %d;\n", config["height"]
+printf "unsigned int SCALE = %d;\n", config["scale"]
+printf "unsigned int WIDTH = %d;\n", config["width"]
+printf "unsigned int HEIGHT = %d;\n", config["height"]
 
 asset_defns_len = config["assets"].map {|asset| asset[1].length }.inject(:+)
 
-printf "const unsigned int ASSET_DEFNS_LEN = %d;\n", asset_defns_len
+printf "unsigned int ASSET_DEFNS_LEN = %d;\n", asset_defns_len
 printf "\n"
-printf "const struct asset_defn ASSET_DEFNS[%d] = {\n", asset_defns_len
+printf "struct asset_defn ASSET_DEFNS[%d] = {\n", asset_defns_len
 
 config["assets"].each do |asset|
   path = asset[0]
