@@ -626,6 +626,16 @@ pub fn text(x: i32, y: i32, msg: String) -> Vec<View> {
                     x + i * 8,
                     y,
                 )],
+                '「' => vec![View::Image(
+                    "pixelart/font/hiragana/left-corner-bracket.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                '」' => vec![View::Image(
+                    "pixelart/font/hiragana/right-corner-bracket.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
                 'ア' => vec![View::Image(
                     "pixelart/font/katakana/a.png".to_string(),
                     x + i * 8,
@@ -1106,21 +1116,6 @@ pub fn text(x: i32, y: i32, msg: String) -> Vec<View> {
                 )],
                 'ョ' => vec![View::Image(
                     "pixelart/font/katakana/xyo.png".to_string(),
-                    x + i * 8,
-                    y,
-                )],
-                '、' => vec![View::Image(
-                    "pixelart/font/katakana/touten.png".to_string(),
-                    x + i * 8,
-                    y,
-                )],
-                '。' => vec![View::Image(
-                    "pixelart/font/katakana/kuten.png".to_string(),
-                    x + i * 8,
-                    y,
-                )],
-                'ー' => vec![View::Image(
-                    "pixelart/font/katakana/choonpu.png".to_string(),
                     x + i * 8,
                     y,
                 )],

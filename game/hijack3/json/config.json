@@ -90,6 +90,8 @@
       ["pixelart/font/hiragana/touten.png", [0, 40, 8, 8]],
       ["pixelart/font/hiragana/kuten.png", [8, 40, 8, 8]],
       ["pixelart/font/hiragana/choonpu.png", [16, 40, 8, 8]],
+      ["pixelart/font/hiragana/left-corner-bracket.png", [32, 40, 8, 8]],
+      ["pixelart/font/hiragana/right-corner-bracket.png", [40, 40, 8, 8]],
       ["pixelart/font/hiragana/dakuten.png", [80, 40, 8, 8]],
       ["pixelart/font/hiragana/handakuten.png", [88, 40, 8, 8]]
     ]],
@@ -152,6 +154,8 @@
       ["pixelart/font/katakana/touten.png", [0, 40, 8, 8]],
       ["pixelart/font/katakana/kuten.png", [8, 40, 8, 8]],
       ["pixelart/font/katakana/choonpu.png", [16, 40, 8, 8]],
+      ["pixelart/font/katakana/left-corner-bracket.png", [32, 40, 8, 8]],
+      ["pixelart/font/katakana/right-corner-bracket.png", [40, 40, 8, 8]],
       ["pixelart/font/katakana/dakuten.png", [80, 40, 8, 8]],
       ["pixelart/font/katakana/handakuten.png", [88, 40, 8, 8]]
     ]],

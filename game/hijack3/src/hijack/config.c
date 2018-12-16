@@ -10,9 +10,9 @@ struct asset_defn {
 unsigned int SCALE = 2;
 unsigned int WIDTH = 320;
 unsigned int HEIGHT = 240;
-unsigned int ASSET_DEFNS_LEN = 195;
+unsigned int ASSET_DEFNS_LEN = 199;
 
-struct asset_defn ASSET_DEFNS[195] = {
+struct asset_defn ASSET_DEFNS[199] = {
     {"pixelart/font/alpha.png", "pixelart/font/alpha/a.png", 0, 16, 8, 8},
     {"pixelart/font/alpha.png", "pixelart/font/alpha/b.png", 8, 16, 8, 8},
     {"pixelart/font/alpha.png", "pixelart/font/alpha/c.png", 16, 16, 8, 8},
@@ -97,6 +97,8 @@ struct asset_defn ASSET_DEFNS[195] = {
     {"pixelart/font/hiragana.png", "pixelart/font/hiragana/touten.png", 0, 40, 8, 8},
     {"pixelart/font/hiragana.png", "pixelart/font/hiragana/kuten.png", 8, 40, 8, 8},
     {"pixelart/font/hiragana.png", "pixelart/font/hiragana/choonpu.png", 16, 40, 8, 8},
+    {"pixelart/font/hiragana.png", "pixelart/font/hiragana/left-corner-bracket.png", 32, 40, 8, 8},
+    {"pixelart/font/hiragana.png", "pixelart/font/hiragana/right-corner-bracket.png", 40, 40, 8, 8},
     {"pixelart/font/hiragana.png", "pixelart/font/hiragana/dakuten.png", 80, 40, 8, 8},
     {"pixelart/font/hiragana.png", "pixelart/font/hiragana/handakuten.png", 88, 40, 8, 8},
     {"pixelart/font/katakana.png", "pixelart/font/katakana/a.png", 0, 0, 8, 8},
@@ -157,6 +159,8 @@ struct asset_defn ASSET_DEFNS[195] = {
     {"pixelart/font/katakana.png", "pixelart/font/katakana/touten.png", 0, 40, 8, 8},
     {"pixelart/font/katakana.png", "pixelart/font/katakana/kuten.png", 8, 40, 8, 8},
     {"pixelart/font/katakana.png", "pixelart/font/katakana/choonpu.png", 16, 40, 8, 8},
+    {"pixelart/font/katakana.png", "pixelart/font/katakana/left-corner-bracket.png", 32, 40, 8, 8},
+    {"pixelart/font/katakana.png", "pixelart/font/katakana/right-corner-bracket.png", 40, 40, 8, 8},
     {"pixelart/font/katakana.png", "pixelart/font/katakana/dakuten.png", 80, 40, 8, 8},
     {"pixelart/font/katakana.png", "pixelart/font/katakana/handakuten.png", 88, 40, 8, 8},
     {"pixelart/teiri/walk.png", "pixelart/teiri/walk/left/0.png", 0, 0, 16, 16},

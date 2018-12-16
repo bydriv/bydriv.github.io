@@ -90,7 +90,7 @@ impl brownfox::Moore<Input, Output> for Teiri {
         views.append(&mut text::text(
             0,
             -8,
-            "こんにちは、せかい。ヴェリティ".to_string(),
+            "ヴェリティ「こんにちは、せかい。」".to_string(),
         ));
         (vec![Event::Focus(self.x, self.y, 16, 16)], views)
     }
