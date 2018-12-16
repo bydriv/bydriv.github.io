@@ -86,11 +86,11 @@ impl brownfox::Moore<Input, Output> for Teiri {
             self.x,
             self.y,
         )];
-        views.append(&mut text::text(0, -16, "hello world".to_string()));
+        views.append(&mut text::text(0, -24, "hello world".to_string()));
         views.append(&mut text::text(
             0,
             -8,
-            "こんにちは　せかい".to_string(),
+            "こんにちは、せかい。".to_string(),
         ));
         (vec![Event::Focus(self.x, self.y, 16, 16)], views)
     }

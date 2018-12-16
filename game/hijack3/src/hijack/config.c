@@ -10,9 +10,9 @@ struct asset_defn {
 unsigned int SCALE = 2;
 unsigned int WIDTH = 320;
 unsigned int HEIGHT = 240;
-unsigned int ASSET_DEFNS_LEN = 121;
+unsigned int ASSET_DEFNS_LEN = 135;
 
-struct asset_defn ASSET_DEFNS[121] = {
+struct asset_defn ASSET_DEFNS[135] = {
     {"pixelart/font/alpha.png", "pixelart/font/alpha/a.png", 0, 16, 8, 8},
     {"pixelart/font/alpha.png", "pixelart/font/alpha/b.png", 8, 16, 8, 8},
     {"pixelart/font/alpha.png", "pixelart/font/alpha/c.png", 16, 16, 8, 8},
@@ -59,6 +59,7 @@ struct asset_defn ASSET_DEFNS[121] = {
     {"pixelart/font/hiragana.png", "pixelart/font/hiragana/tu.png", 24, 16, 8, 8},
     {"pixelart/font/hiragana.png", "pixelart/font/hiragana/te.png", 24, 24, 8, 8},
     {"pixelart/font/hiragana.png", "pixelart/font/hiragana/to.png", 24, 32, 8, 8},
+    {"pixelart/font/hiragana.png", "pixelart/font/hiragana/xtu.png", 24, 40, 8, 8},
     {"pixelart/font/hiragana.png", "pixelart/font/hiragana/na.png", 32, 0, 8, 8},
     {"pixelart/font/hiragana.png", "pixelart/font/hiragana/ni.png", 32, 8, 8, 8},
     {"pixelart/font/hiragana.png", "pixelart/font/hiragana/nu.png", 32, 16, 8, 8},
@@ -83,8 +84,21 @@ struct asset_defn ASSET_DEFNS[121] = {
     {"pixelart/font/hiragana.png", "pixelart/font/hiragana/re.png", 64, 24, 8, 8},
     {"pixelart/font/hiragana.png", "pixelart/font/hiragana/ro.png", 64, 32, 8, 8},
     {"pixelart/font/hiragana.png", "pixelart/font/hiragana/wa.png", 72, 0, 8, 8},
-    {"pixelart/font/hiragana.png", "pixelart/font/hiragana/wo.png", 72, 16, 8, 8},
-    {"pixelart/font/hiragana.png", "pixelart/font/hiragana/n.png", 72, 32, 8, 8},
+    {"pixelart/font/hiragana.png", "pixelart/font/hiragana/wo.png", 72, 32, 8, 8},
+    {"pixelart/font/hiragana.png", "pixelart/font/hiragana/n.png", 72, 40, 8, 8},
+    {"pixelart/font/hiragana.png", "pixelart/font/hiragana/xa.png", 80, 0, 8, 8},
+    {"pixelart/font/hiragana.png", "pixelart/font/hiragana/xi.png", 80, 8, 8, 8},
+    {"pixelart/font/hiragana.png", "pixelart/font/hiragana/xu.png", 80, 16, 8, 8},
+    {"pixelart/font/hiragana.png", "pixelart/font/hiragana/xe.png", 80, 24, 8, 8},
+    {"pixelart/font/hiragana.png", "pixelart/font/hiragana/xo.png", 80, 32, 8, 8},
+    {"pixelart/font/hiragana.png", "pixelart/font/hiragana/xya.png", 88, 0, 8, 8},
+    {"pixelart/font/hiragana.png", "pixelart/font/hiragana/xyu.png", 88, 16, 8, 8},
+    {"pixelart/font/hiragana.png", "pixelart/font/hiragana/xyo.png", 88, 32, 8, 8},
+    {"pixelart/font/hiragana.png", "pixelart/font/hiragana/touten.png", 0, 40, 8, 8},
+    {"pixelart/font/hiragana.png", "pixelart/font/hiragana/kuten.png", 8, 40, 8, 8},
+    {"pixelart/font/hiragana.png", "pixelart/font/hiragana/choonpu.png", 16, 40, 8, 8},
+    {"pixelart/font/hiragana.png", "pixelart/font/hiragana/dakuten.png", 80, 40, 8, 8},
+    {"pixelart/font/hiragana.png", "pixelart/font/hiragana/handakuten.png", 88, 40, 8, 8},
     {"pixelart/teiri/walk.png", "pixelart/teiri/walk/left/0.png", 0, 0, 16, 16},
     {"pixelart/teiri/walk.png", "pixelart/teiri/walk/left/1.png", 16, 0, 16, 16},
     {"pixelart/teiri/walk.png", "pixelart/teiri/walk/left/2.png", 32, 0, 16, 16},
