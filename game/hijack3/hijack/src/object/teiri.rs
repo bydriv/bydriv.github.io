@@ -76,20 +76,23 @@ impl brownfox::Moore<Input, Output> for Teiri {
             direction: direction,
         }
     }
-
     fn output(&self) -> Output {
-        (
-            vec![Event::Focus(self.x, self.y, 16, 16)],
-            vec![View::Image(
-                format!(
-                    "pixelart/teiri/walk/{}/{}.png",
-                    string_of_direction(&self.direction),
-                    self.frame_count.i / 8 % 4
-                ),
-                self.x,
-                self.y,
-            )],
-        )
+        let mut views = vec![View::Image(
+            format!(
+                "pixelart/teiri/walk/{}/{}.png",
+                string_of_direction(&self.direction),
+                self.frame_count.i / 8 % 4
+            ),
+            self.x,
+            self.y,
+        )];
+        views.append(&mut text::text(0, -16, "hello world".to_string()));
+        views.append(&mut text::text(
+            0,
+            -8,
+            "こんにちは　せかい".to_string(),
+        ));
+        (vec![Event::Focus(self.x, self.y, 16, 16)], views)
     }
 }
 
