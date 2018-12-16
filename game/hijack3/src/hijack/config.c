@@ -10,9 +10,22 @@ struct asset_defn {
 unsigned int SCALE = 2;
 unsigned int WIDTH = 320;
 unsigned int HEIGHT = 240;
-unsigned int ASSET_DEFNS_LEN = 199;
+unsigned int ASSET_DEFNS_LEN = 212;
 
-struct asset_defn ASSET_DEFNS[199] = {
+struct asset_defn ASSET_DEFNS[212] = {
+    {"pixelart/system/window.png", "pixelart/system/window/top-left.png", 0, 0, 8, 8},
+    {"pixelart/system/window.png", "pixelart/system/window/top.png", 8, 0, 8, 8},
+    {"pixelart/system/window.png", "pixelart/system/window/top-arrow.png", 16, 0, 8, 8},
+    {"pixelart/system/window.png", "pixelart/system/window/top-right.png", 24, 0, 8, 8},
+    {"pixelart/system/window.png", "pixelart/system/window/left-arrow.png", 0, 8, 8, 8},
+    {"pixelart/system/window.png", "pixelart/system/window/center.png", 8, 8, 8, 8},
+    {"pixelart/system/window.png", "pixelart/system/window/right.png", 24, 8, 8, 8},
+    {"pixelart/system/window.png", "pixelart/system/window/left.png", 0, 16, 8, 8},
+    {"pixelart/system/window.png", "pixelart/system/window/right-arrow.png", 24, 16, 8, 8},
+    {"pixelart/system/window.png", "pixelart/system/window/bottom-left.png", 0, 24, 8, 8},
+    {"pixelart/system/window.png", "pixelart/system/window/bottom-arrow.png", 8, 24, 8, 8},
+    {"pixelart/system/window.png", "pixelart/system/window/bottom.png", 16, 24, 8, 8},
+    {"pixelart/system/window.png", "pixelart/system/window/bottom-right.png", 24, 24, 8, 8},
     {"pixelart/font/alpha.png", "pixelart/font/alpha/a.png", 0, 16, 8, 8},
     {"pixelart/font/alpha.png", "pixelart/font/alpha/b.png", 8, 16, 8, 8},
     {"pixelart/font/alpha.png", "pixelart/font/alpha/c.png", 16, 16, 8, 8},

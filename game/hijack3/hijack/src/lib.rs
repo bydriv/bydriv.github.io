@@ -1,6 +1,7 @@
 extern crate brownfox;
 
 pub mod object;
+pub mod system;
 pub mod text;
 
 use brownfox::Moore;

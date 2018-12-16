@@ -75,7 +75,8 @@ impl brownfox::Moore<Input, Output> for Verity {
         for event in &input.1.events {
             match event {
                 &Event::Check(x, y, width, height) => {
-                    let rect1 = brownfox::Rectangle::new(x as i64, y as i64, width as i64, height as i64);
+                    let rect1 =
+                        brownfox::Rectangle::new(x as i64, y as i64, width as i64, height as i64);
                     let rect2 = brownfox::Rectangle::new(self.x as i64, self.y as i64, 16, 16);
                     checked = checked || rect1.collision(rect2);
                 }
@@ -94,21 +95,28 @@ impl brownfox::Moore<Input, Output> for Verity {
 
     fn output(&self) -> Output {
         let mut views = vec![View::Image(
-                format!(
-                    "pixelart/verity/walk/{}/{}.png",
-                    string_of_direction(&self.direction),
-                    self.frame_count.i / 8 % 4
-                ),
-                self.x,
-                self.y,
-            )];
-            if self.checked {
-                views.append(&mut text::text(0, -8, "ヴェリティ「ようもないのに、はなしかけないで。」".to_string()))
-            }
-        (
-            vec![],
-            views,
-        )
+            format!(
+                "pixelart/verity/walk/{}/{}.png",
+                string_of_direction(&self.direction),
+                self.frame_count.i / 8 % 4
+            ),
+            self.x,
+            self.y,
+        )];
+        if self.checked {
+            views.append(&mut system::window(self.x - 36, self.y - 32, 11, 4, 5, 3));
+            views.append(&mut text::text(
+                self.x - 28,
+                self.y - 24,
+                "ようもないのに、".to_string(),
+            ));
+            views.append(&mut text::text(
+                self.x - 28,
+                self.y - 16,
+                "はなしかけないで。".to_string(),
+            ));
+        }
+        (vec![], views)
     }
 }
 
