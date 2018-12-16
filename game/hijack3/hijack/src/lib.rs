@@ -14,6 +14,7 @@ pub struct Hijack {
 #[derive(Clone)]
 pub enum Event {
     Focus(i32, i32, i32, i32),
+    Check(i32, i32, i32, i32),
 }
 
 #[derive(Clone)]
@@ -75,6 +76,7 @@ impl brownfox::Moore<Vec<brownfox::Input>, object::Output> for Hijack {
                     central_x = x + width / 2;
                     central_y = y + height / 2;
                 }
+                _ => (),
             }
         }
 

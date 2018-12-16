@@ -21,6 +21,7 @@ pub struct Teiri {
     y: i32,
     pose: Pose,
     direction: Direction,
+    check: bool,
 }
 
 pub fn new(x: i32, y: i32) -> Teiri {
@@ -30,6 +31,7 @@ pub fn new(x: i32, y: i32) -> Teiri {
         y: y,
         pose: Pose::Walk,
         direction: Direction::Front,
+        check: false,
     }
 }
 
@@ -74,10 +76,27 @@ impl brownfox::Moore<Input, Output> for Teiri {
             y: self.y + yshift,
             pose: self.pose.clone(),
             direction: direction,
+            check: input.0.len() > 0 && input.0[0].buttons.len() > 0 && input.0[0].buttons[0],
         }
     }
     fn output(&self) -> Output {
-        let mut views = vec![View::Image(
+        let mut events = vec![Event::Focus(self.x, self.y, 16, 16)];
+
+        if self.check {
+            let x = match self.direction {
+                Direction::Left => self.x - 16,
+                Direction::Right => self.x + 16,
+                _ => self.x,
+            };
+            let y = match self.direction {
+                Direction::Back => self.y - 16,
+                Direction::Front => self.y + 16,
+                _ => self.y,
+            };
+            events.push(Event::Check(x, y, 16, 16));
+        }
+
+        let views = vec![View::Image(
             format!(
                 "pixelart/teiri/walk/{}/{}.png",
                 string_of_direction(&self.direction),
@@ -86,13 +105,8 @@ impl brownfox::Moore<Input, Output> for Teiri {
             self.x,
             self.y,
         )];
-        views.append(&mut text::text(0, -24, "hello world".to_string()));
-        views.append(&mut text::text(
-            0,
-            -8,
-            "ヴェリティ「こんにちは、せかい。」".to_string(),
-        ));
-        (vec![Event::Focus(self.x, self.y, 16, 16)], views)
+
+        (events, views)
     }
 }
 

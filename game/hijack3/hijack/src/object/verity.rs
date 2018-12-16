@@ -1,4 +1,5 @@
 use super::*;
+use brownfox::Shape;
 
 #[derive(Clone)]
 enum Pose {
@@ -21,6 +22,7 @@ pub struct Verity {
     y: i32,
     pose: Pose,
     direction: Direction,
+    checked: bool,
 }
 
 pub fn new(x: i32, y: i32) -> Verity {
@@ -30,6 +32,7 @@ pub fn new(x: i32, y: i32) -> Verity {
         y: y,
         pose: Pose::Walk,
         direction: Direction::Front,
+        checked: false,
     }
 }
 
@@ -68,19 +71,29 @@ impl brownfox::Moore<Input, Output> for Verity {
         } else {
             self.direction.clone()
         };
+        let mut checked = false;
+        for event in &input.1.events {
+            match event {
+                &Event::Check(x, y, width, height) => {
+                    let rect1 = brownfox::Rectangle::new(x as i64, y as i64, width as i64, height as i64);
+                    let rect2 = brownfox::Rectangle::new(self.x as i64, self.y as i64, 16, 16);
+                    checked = checked || rect1.collision(rect2);
+                }
+                _ => (),
+            }
+        }
         Verity {
             frame_count: self.frame_count.transit(&()),
             x: self.x + xshift,
             y: self.y + yshift,
             pose: self.pose.clone(),
             direction: direction,
+            checked: checked,
         }
     }
 
     fn output(&self) -> Output {
-        (
-            vec![],
-            vec![View::Image(
+        let mut views = vec![View::Image(
                 format!(
                     "pixelart/verity/walk/{}/{}.png",
                     string_of_direction(&self.direction),
@@ -88,7 +101,13 @@ impl brownfox::Moore<Input, Output> for Verity {
                 ),
                 self.x,
                 self.y,
-            )],
+            )];
+            if self.checked {
+                views.append(&mut text::text(0, -8, "ヴェリティ「ようもないのに、はなしかけないで。」".to_string()))
+            }
+        (
+            vec![],
+            views,
         )
     }
 }
