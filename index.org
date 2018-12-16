@@ -68,7 +68,6 @@ updated at @@html:<time datetime="2018-12-09">2018-12-09</time>@@
 - 2018-06-23: Created [[./blog/modeling-first-impression.org][モデリングをしてみた]] in  @@html:<a href="/blog">blog</a>@@.
 - 2018-06-16: Created [[./blog/naming.org][ディーサの名前，あるいはネーミングの難しさについて]] in @@html:<a href="/blog">blog</a>@@.
 - 2018-06-14: Created [[./novel/absurd.org][不合理/Absurd]] in @@html:<a href="/novel">novel</a>@@.
-- 2018-06-14: Created [[./novel/past.org][過去/Past]] in @@html:<a href="/novel">novel</a>@@.
 - 2018-06-13: Created [[./novel/reverent-eugenist.org][敬虔な優生学者/Reverent Eugenist]] in @@html:<a href="/novel">novel</a>@@.
 - 2018-06-10: Created [[./blog/progress.org][進捗報告会について]] in @@html:<a href="/blog">blog</a>@@.
 - 2018-06-04: Created [[./novel/golden-record.org][黄金録/Golden Record]] in @@html:<a href="/novel">novel</a>@@.
