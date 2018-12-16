@@ -251,6 +251,46 @@ pub fn text(x: i32, y: i32, msg: String) -> Vec<View> {
                     x + i * 8,
                     y,
                 )],
+                'ざ' => vec![
+                    View::Image("pixelart/font/hiragana/sa.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/hiragana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'じ' => vec![
+                    View::Image("pixelart/font/hiragana/si.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/hiragana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ず' => vec![
+                    View::Image("pixelart/font/hiragana/su.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/hiragana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ぜ' => vec![
+                    View::Image("pixelart/font/hiragana/se.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/hiragana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ぞ' => vec![
+                    View::Image("pixelart/font/hiragana/so.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/hiragana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
                 'た' => vec![View::Image(
                     "pixelart/font/hiragana/ta.png".to_string(),
                     x + i * 8,
@@ -281,6 +321,46 @@ pub fn text(x: i32, y: i32, msg: String) -> Vec<View> {
                     x + i * 8,
                     y,
                 )],
+                'だ' => vec![
+                    View::Image("pixelart/font/hiragana/ta.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/hiragana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ぢ' => vec![
+                    View::Image("pixelart/font/hiragana/ti.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/hiragana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'づ' => vec![
+                    View::Image("pixelart/font/hiragana/tu.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/hiragana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'で' => vec![
+                    View::Image("pixelart/font/hiragana/te.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/hiragana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ど' => vec![
+                    View::Image("pixelart/font/hiragana/to.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/hiragana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
                 'な' => vec![View::Image(
                     "pixelart/font/hiragana/na.png".to_string(),
                     x + i * 8,
@@ -331,6 +411,86 @@ pub fn text(x: i32, y: i32, msg: String) -> Vec<View> {
                     x + i * 8,
                     y,
                 )],
+                'ば' => vec![
+                    View::Image("pixelart/font/hiragana/ha.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/hiragana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'び' => vec![
+                    View::Image("pixelart/font/hiragana/hi.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/hiragana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ぶ' => vec![
+                    View::Image("pixelart/font/hiragana/hu.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/hiragana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'べ' => vec![
+                    View::Image("pixelart/font/hiragana/he.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/hiragana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ぼ' => vec![
+                    View::Image("pixelart/font/hiragana/ho.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/hiragana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ぱ' => vec![
+                    View::Image("pixelart/font/hiragana/ha.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/hiragana/handakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ぴ' => vec![
+                    View::Image("pixelart/font/hiragana/hi.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/hiragana/handakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ぷ' => vec![
+                    View::Image("pixelart/font/hiragana/hu.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/hiragana/handakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ぺ' => vec![
+                    View::Image("pixelart/font/hiragana/he.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/hiragana/handakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ぽ' => vec![
+                    View::Image("pixelart/font/hiragana/ho.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/hiragana/handakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
                 'ま' => vec![View::Image(
                     "pixelart/font/hiragana/ma.png".to_string(),
                     x + i * 8,
@@ -463,6 +623,504 @@ pub fn text(x: i32, y: i32, msg: String) -> Vec<View> {
                 )],
                 'ー' => vec![View::Image(
                     "pixelart/font/hiragana/choonpu.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ア' => vec![View::Image(
+                    "pixelart/font/katakana/a.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'イ' => vec![View::Image(
+                    "pixelart/font/katakana/i.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ウ' => vec![View::Image(
+                    "pixelart/font/katakana/u.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ヴ' => vec![
+                    View::Image("pixelart/font/katakana/u.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'エ' => vec![View::Image(
+                    "pixelart/font/katakana/e.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'オ' => vec![View::Image(
+                    "pixelart/font/katakana/o.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'カ' => vec![View::Image(
+                    "pixelart/font/katakana/ka.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'キ' => vec![View::Image(
+                    "pixelart/font/katakana/ki.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ク' => vec![View::Image(
+                    "pixelart/font/katakana/ku.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ケ' => vec![View::Image(
+                    "pixelart/font/katakana/ke.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'コ' => vec![View::Image(
+                    "pixelart/font/katakana/ko.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ガ' => vec![
+                    View::Image("pixelart/font/katakana/ka.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ギ' => vec![
+                    View::Image("pixelart/font/katakana/ki.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'グ' => vec![
+                    View::Image("pixelart/font/katakana/ku.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ゲ' => vec![
+                    View::Image("pixelart/font/katakana/ke.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ゴ' => vec![
+                    View::Image("pixelart/font/katakana/ko.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'サ' => vec![View::Image(
+                    "pixelart/font/katakana/sa.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'シ' => vec![View::Image(
+                    "pixelart/font/katakana/si.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ス' => vec![View::Image(
+                    "pixelart/font/katakana/su.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'セ' => vec![View::Image(
+                    "pixelart/font/katakana/se.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ソ' => vec![View::Image(
+                    "pixelart/font/katakana/so.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ザ' => vec![
+                    View::Image("pixelart/font/katakana/sa.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ジ' => vec![
+                    View::Image("pixelart/font/katakana/si.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ズ' => vec![
+                    View::Image("pixelart/font/katakana/su.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ゼ' => vec![
+                    View::Image("pixelart/font/katakana/se.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ゾ' => vec![
+                    View::Image("pixelart/font/katakana/so.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'タ' => vec![View::Image(
+                    "pixelart/font/katakana/ta.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'チ' => vec![View::Image(
+                    "pixelart/font/katakana/ti.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ツ' => vec![View::Image(
+                    "pixelart/font/katakana/tu.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'テ' => vec![View::Image(
+                    "pixelart/font/katakana/te.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ト' => vec![View::Image(
+                    "pixelart/font/katakana/to.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ッ' => vec![View::Image(
+                    "pixelart/font/katakana/xtu.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ダ' => vec![
+                    View::Image("pixelart/font/katakana/ta.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ヂ' => vec![
+                    View::Image("pixelart/font/katakana/ti.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ヅ' => vec![
+                    View::Image("pixelart/font/katakana/tu.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'デ' => vec![
+                    View::Image("pixelart/font/katakana/te.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ド' => vec![
+                    View::Image("pixelart/font/katakana/to.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ナ' => vec![View::Image(
+                    "pixelart/font/katakana/na.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ニ' => vec![View::Image(
+                    "pixelart/font/katakana/ni.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ヌ' => vec![View::Image(
+                    "pixelart/font/katakana/nu.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ネ' => vec![View::Image(
+                    "pixelart/font/katakana/ne.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ノ' => vec![View::Image(
+                    "pixelart/font/katakana/no.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ハ' => vec![View::Image(
+                    "pixelart/font/katakana/ha.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ヒ' => vec![View::Image(
+                    "pixelart/font/katakana/hi.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'フ' => vec![View::Image(
+                    "pixelart/font/katakana/hu.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ヘ' => vec![View::Image(
+                    "pixelart/font/katakana/he.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ホ' => vec![View::Image(
+                    "pixelart/font/katakana/ho.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'バ' => vec![
+                    View::Image("pixelart/font/katakana/ha.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ビ' => vec![
+                    View::Image("pixelart/font/katakana/hi.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ブ' => vec![
+                    View::Image("pixelart/font/katakana/hu.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ベ' => vec![
+                    View::Image("pixelart/font/katakana/he.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ボ' => vec![
+                    View::Image("pixelart/font/katakana/ho.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/dakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'パ' => vec![
+                    View::Image("pixelart/font/katakana/ha.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/handakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ピ' => vec![
+                    View::Image("pixelart/font/katakana/hi.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/handakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'プ' => vec![
+                    View::Image("pixelart/font/katakana/hu.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/handakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ペ' => vec![
+                    View::Image("pixelart/font/katakana/he.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/handakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'ポ' => vec![
+                    View::Image("pixelart/font/katakana/ho.png".to_string(), x + i * 8, y),
+                    View::Image(
+                        "pixelart/font/katakana/handakuten.png".to_string(),
+                        x + i * 8,
+                        y - 6,
+                    ),
+                ],
+                'マ' => vec![View::Image(
+                    "pixelart/font/katakana/ma.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ミ' => vec![View::Image(
+                    "pixelart/font/katakana/mi.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ム' => vec![View::Image(
+                    "pixelart/font/katakana/mu.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'メ' => vec![View::Image(
+                    "pixelart/font/katakana/me.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'モ' => vec![View::Image(
+                    "pixelart/font/katakana/mo.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ヤ' => vec![View::Image(
+                    "pixelart/font/katakana/ya.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ユ' => vec![View::Image(
+                    "pixelart/font/katakana/yu.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ヨ' => vec![View::Image(
+                    "pixelart/font/katakana/yo.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ラ' => vec![View::Image(
+                    "pixelart/font/katakana/ra.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'リ' => vec![View::Image(
+                    "pixelart/font/katakana/ri.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ル' => vec![View::Image(
+                    "pixelart/font/katakana/ru.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'レ' => vec![View::Image(
+                    "pixelart/font/katakana/re.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ロ' => vec![View::Image(
+                    "pixelart/font/katakana/ro.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ワ' => vec![View::Image(
+                    "pixelart/font/katakana/wa.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ヲ' => vec![View::Image(
+                    "pixelart/font/katakana/wo.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ン' => vec![View::Image(
+                    "pixelart/font/katakana/n.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ァ' => vec![View::Image(
+                    "pixelart/font/katakana/xa.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ィ' => vec![View::Image(
+                    "pixelart/font/katakana/xi.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ゥ' => vec![View::Image(
+                    "pixelart/font/katakana/xu.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ェ' => vec![View::Image(
+                    "pixelart/font/katakana/xe.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ォ' => vec![View::Image(
+                    "pixelart/font/katakana/xo.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ャ' => vec![View::Image(
+                    "pixelart/font/katakana/xya.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ュ' => vec![View::Image(
+                    "pixelart/font/katakana/xyu.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ョ' => vec![View::Image(
+                    "pixelart/font/katakana/xyo.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                '、' => vec![View::Image(
+                    "pixelart/font/katakana/touten.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                '。' => vec![View::Image(
+                    "pixelart/font/katakana/kuten.png".to_string(),
+                    x + i * 8,
+                    y,
+                )],
+                'ー' => vec![View::Image(
+                    "pixelart/font/katakana/choonpu.png".to_string(),
                     x + i * 8,
                     y,
                 )],
