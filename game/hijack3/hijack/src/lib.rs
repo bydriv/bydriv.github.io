@@ -40,6 +40,10 @@ impl Hijack {
                     brownfox::Control::Immovable(brownfox::Immovable::new()),
                     object::Object::Verity(object::verity::new(16, 16)),
                 ),
+                (
+                    brownfox::Control::Immovable(brownfox::Immovable::new()),
+                    object::Object::Emily(object::emily::new(48, 16)),
+                ),
             ],
             events: vec![],
         }

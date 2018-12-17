@@ -10,9 +10,9 @@ struct asset_defn {
 unsigned int SCALE = 2;
 unsigned int WIDTH = 320;
 unsigned int HEIGHT = 240;
-unsigned int ASSET_DEFNS_LEN = 212;
+unsigned int ASSET_DEFNS_LEN = 228;
 
-struct asset_defn ASSET_DEFNS[212] = {
+struct asset_defn ASSET_DEFNS[228] = {
     {"pixelart/system/window.png", "pixelart/system/window/top-left.png", 0, 0, 8, 8},
     {"pixelart/system/window.png", "pixelart/system/window/top.png", 8, 0, 8, 8},
     {"pixelart/system/window.png", "pixelart/system/window/top-arrow.png", 16, 0, 8, 8},
@@ -224,5 +224,21 @@ struct asset_defn ASSET_DEFNS[212] = {
     {"pixelart/verity/walk.png", "pixelart/verity/walk/front/1.png", 16, 48, 16, 16},
     {"pixelart/verity/walk.png", "pixelart/verity/walk/front/2.png", 32, 48, 16, 16},
     {"pixelart/verity/walk.png", "pixelart/verity/walk/front/3.png", 48, 48, 16, 16},
+    {"pixelart/emily/walk.png", "pixelart/emily/walk/left/0.png", 0, 0, 16, 16},
+    {"pixelart/emily/walk.png", "pixelart/emily/walk/left/1.png", 16, 0, 16, 16},
+    {"pixelart/emily/walk.png", "pixelart/emily/walk/left/2.png", 32, 0, 16, 16},
+    {"pixelart/emily/walk.png", "pixelart/emily/walk/left/3.png", 48, 0, 16, 16},
+    {"pixelart/emily/walk.png", "pixelart/emily/walk/back/0.png", 0, 16, 16, 16},
+    {"pixelart/emily/walk.png", "pixelart/emily/walk/back/1.png", 16, 16, 16, 16},
+    {"pixelart/emily/walk.png", "pixelart/emily/walk/back/2.png", 32, 16, 16, 16},
+    {"pixelart/emily/walk.png", "pixelart/emily/walk/back/3.png", 48, 16, 16, 16},
+    {"pixelart/emily/walk.png", "pixelart/emily/walk/right/0.png", 0, 32, 16, 16},
+    {"pixelart/emily/walk.png", "pixelart/emily/walk/right/1.png", 16, 32, 16, 16},
+    {"pixelart/emily/walk.png", "pixelart/emily/walk/right/2.png", 32, 32, 16, 16},
+    {"pixelart/emily/walk.png", "pixelart/emily/walk/right/3.png", 48, 32, 16, 16},
+    {"pixelart/emily/walk.png", "pixelart/emily/walk/front/0.png", 0, 48, 16, 16},
+    {"pixelart/emily/walk.png", "pixelart/emily/walk/front/1.png", 16, 48, 16, 16},
+    {"pixelart/emily/walk.png", "pixelart/emily/walk/front/2.png", 32, 48, 16, 16},
+    {"pixelart/emily/walk.png", "pixelart/emily/walk/front/3.png", 48, 48, 16, 16},
     {"pixelart/maptip/archimedes.png", "pixelart/maptip/archimedes.png", 0, 0, 16, 16},
 };
