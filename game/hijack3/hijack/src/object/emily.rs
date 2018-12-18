@@ -108,7 +108,7 @@ impl brownfox::Moore<Input, Output> for Emily {
             views.append(&mut text::text(
                 self.x - 28,
                 self.y - 24,
-                "わたしには　ゆめが".to_string(),
+                "わたしには、ゆめが".to_string(),
             ));
             views.append(&mut text::text(
                 self.x - 28,
