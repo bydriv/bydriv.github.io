@@ -80,22 +80,6 @@ async function initSystem(config) {
     };
 }
 
-function eqView(Game, views1, i, views2, j) {
-    if (Game.view_is_image(i, views1) && Game.view_is_image(j, views2)) {
-        return Game.view_image_x(i, views1) === Game.view_image_x(j, views2)
-            && Game.view_image_y(i, views1) === Game.view_image_y(j, views2)
-            && Game.view_image_name(i, views1) === Game.view_image_name(j, views2);
-    } if (Game.view_is_pattern(i, views1) && Game.view_is_pattern(j, views2)) {
-        return Game.view_pattern_x(i, views1) === Game.view_pattern_x(j, views2)
-            && Game.view_pattern_y(i, views1) === Game.view_pattern_y(j, views2)
-            && Game.view_pattern_width(i, views1) === Game.view_pattern_width(j, views2)
-            && Game.view_pattern_height(i, views1) === Game.view_pattern_height(j, views2)
-            && Game.view_pattern_name(i, views1) === Game.view_pattern_name(j, views2);
-    } else {
-        return false;
-    }
-}
-
 function drawView(Game, canvas, context, assets, views, i, patternCanvas, patternContext) {
     if (Game.view_is_image(i, views)) {
         const dx = Game.view_image_x(i, views);
@@ -275,42 +259,26 @@ window.addEventListener("load", async function() {
     const assets = ret.assets;
 
     var game = Game.new_();
-    var previousViews = undefined;
 
     requestAnimationFrame(function step() {
         const views = Game.views(game);
 
-        var refresh = false;
+        offscreen.context.fillRect(0, 0, offscreen.canvas.width, offscreen.canvas.height);
 
-        if (previousViews && Game.views_length(previousViews) === Game.views_length(views)) {
-            for (var i = 0; i < Game.views_length(views); ++i) {
-                if (!eqView(Game, previousViews, i, views, i)) {
-                    refresh = true;
-                    break;
-                }
-            }
-        } else {
-            refresh = true;
-        }
+        for (var i = 0; i < Game.views_length(views); ++i)
+            drawView(Game, offscreen.canvas, offscreen.context, assets, views, i, pattern.canvas, pattern.context);
 
-        if (refresh) {
-            offscreen.context.fillRect(0, 0, offscreen.canvas.width, offscreen.canvas.height);
-
-            for (var i = 0; i < Game.views_length(views); ++i)
-                drawView(Game, offscreen.canvas, offscreen.context, assets, views, i, pattern.canvas, pattern.context);
-
-            onscreen.context.drawImage(
-                offscreen.canvas,
-                0,
-                0,
-                offscreen.canvas.width,
-                offscreen.canvas.height,
-                0,
-                0,
-                onscreen.canvas.width,
-                onscreen.canvas.height
-            );
-        }
+        onscreen.context.drawImage(
+            offscreen.canvas,
+            0,
+            0,
+            offscreen.canvas.width,
+            offscreen.canvas.height,
+            0,
+            0,
+            onscreen.canvas.width,
+            onscreen.canvas.height
+        );
 
         const inputs = Array.from(navigator.getGamepads()).map(function(gamepad, i) {
             const input = {
@@ -348,7 +316,6 @@ window.addEventListener("load", async function() {
             };
 
         game = Game.step(inputs, game);
-        previousViews = views;
         requestAnimationFrame(step);
     });
 });
