@@ -44,6 +44,14 @@ impl Hijack {
                     brownfox::Control::Immovable(brownfox::Immovable::new()),
                     object::Object::Emily(object::emily::new(48, 16)),
                 ),
+                (
+                    brownfox::Control::Immovable(brownfox::Immovable::new()),
+                    object::Object::Mathprobe(object::mathprobe::new(80, 16)),
+                ),
+                (
+                    brownfox::Control::Immovable(brownfox::Immovable::new()),
+                    object::Object::SecurityDrone(object::security_drone::new(80, 48)),
+                ),
             ],
             events: vec![],
         }
