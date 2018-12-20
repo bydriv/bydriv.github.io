@@ -1,9 +1,14 @@
 * pixelart
 
-| path                           | image                            |
-|--------------------------------+----------------------------------|
-| pixelart/teiri/walk.png        | [[./pixelart/teiri/walk.png]]        |
-| pixelart/teiri/hijack.png      | [[./pixelart/teiri/hijack.png]]      |
-| pixelart/verity/walk.png       | [[./pixelart/verity/walk.png]]       |
-| pixelart/emily/walk.png        | [[./pixelart/emily/walk.png]]        |
-| pixelart/maptip/archimedes.png | [[./pixelart/maptip/archimedes.png]] |
+| path                            | image                             |
+|---------------------------------+-----------------------------------|
+| pixelart/teiri/walk.png         | [[./pixelart/teiri/walk.png]]         |
+| pixelart/teiri/hijack.png       | [[./pixelart/teiri/hijack.png]]       |
+| pixelart/verity/walk.png        | [[./pixelart/verity/walk.png]]        |
+| pixelart/emily/walk.png         | [[./pixelart/emily/walk.png]]         |
+| pixelart/mathprobe/fly.png      | [[./pixelart/mathprobe/fly.png]]      |
+| pixelart/security-drone/fly.png | [[./pixelart/security-drone/fly.png]] |
+| pixelart/maptip/archimedes.png  | [[./pixelart/maptip/archimedes.png]]  |
+| pixelart/font/alpha.png         | [[./pixelart/font/alpha.png]]         |
+| pixelart/font/hiragana.png      | [[./pixelart/font/hiragana.png]]      |
+| pixelart/font/katakana.png      | [[./pixelart/font/katakana.png]]      |
