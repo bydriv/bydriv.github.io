@@ -129,7 +129,7 @@ window.addEventListener("load", async function() {
     /**************************************************************************/
     /*                          GAME  CONFIGURATIONS                          */
     /**************************************************************************/
-    const response = await fetch("./json/config.json");
+    const response = await fetch("./json/config.json", {cache: "no-cache"});
     const config = await response.json();
 
     /**************************************************************************/
