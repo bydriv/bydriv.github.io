@@ -7,6 +7,7 @@
 | pixelart/verity/walk.png        | [[./pixelart/verity/walk.png]]        |
 | pixelart/emily/walk.png         | [[./pixelart/emily/walk.png]]         |
 | pixelart/mathprobe/fly.png      | [[./pixelart/mathprobe/fly.png]]      |
+| pixelart/lonelygem/fly.png      | [[./pixelart/lonelygem/fly.png]]      |
 | pixelart/security-drone/fly.png | [[./pixelart/security-drone/fly.png]] |
 | pixelart/maptip/archimedes.png  | [[./pixelart/maptip/archimedes.png]]  |
 | pixelart/font/alpha.png         | [[./pixelart/font/alpha.png]]         |
