@@ -1,4 +1,4 @@
-pub mod archimedes;
+pub mod maptip;
 pub mod teiri;
 pub mod verity;
 pub mod emily;
@@ -19,7 +19,7 @@ pub enum Object {
     Mathprobe(mathprobe::Mathprobe),
     Lonelygem(lonelygem::Lonelygem),
     SecurityDrone(security_drone::SecurityDrone),
-    Archimedes(archimedes::Archimedes),
+    Maptip(maptip::Maptip),
 }
 
 impl brownfox::Moore<Input, Output> for Object {
@@ -31,7 +31,7 @@ impl brownfox::Moore<Input, Output> for Object {
             Object::Mathprobe(mathprobe) => Object::Mathprobe(mathprobe.transit(input)),
             Object::Lonelygem(lonelygem) => Object::Lonelygem(lonelygem.transit(input)),
             Object::SecurityDrone(security_drone) => Object::SecurityDrone(security_drone.transit(input)),
-            Object::Archimedes(archimedes) => Object::Archimedes(archimedes.transit(input)),
+            Object::Maptip(maptip) => Object::Maptip(maptip.transit(input)),
         }
     }
 
@@ -43,7 +43,7 @@ impl brownfox::Moore<Input, Output> for Object {
             Object::Mathprobe(mathprobe) => mathprobe.output(),
             Object::Lonelygem(lonelygem) => lonelygem.output(),
             Object::SecurityDrone(security_drone) => security_drone.output(),
-            Object::Archimedes(archimedes) => archimedes.output(),
+            Object::Maptip(maptip) => maptip.output(),
         }
     }
 }

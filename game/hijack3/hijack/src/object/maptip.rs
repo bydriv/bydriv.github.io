@@ -1,24 +1,26 @@
 use super::*;
 
 #[derive(Clone)]
-pub struct Archimedes {
+pub struct Maptip {
     x: i32,
     y: i32,
     width: u32,
     height: u32,
+    name: String,
 }
 
-pub fn new(x: i32, y: i32, width: u32, height: u32) -> Archimedes {
-    Archimedes {
+pub fn new(x: i32, y: i32, width: u32, height: u32, name: &String) -> Maptip {
+    Maptip {
         x: x,
         y: y,
         width: width,
         height: height,
+        name: name.clone()
     }
 }
 
-impl brownfox::Moore<Input, Output> for Archimedes {
-    fn transit(&self, _input: &Input) -> Archimedes {
+impl brownfox::Moore<Input, Output> for Maptip {
+    fn transit(&self, _input: &Input) -> Maptip {
         self.clone()
     }
 
@@ -26,7 +28,7 @@ impl brownfox::Moore<Input, Output> for Archimedes {
         (
             vec![],
             vec![View::Pattern(
-                "pixelart/maptip/archimedes.png".to_string(),
+                self.name.clone(),
                 self.width,
                 self.height,
                 self.x,

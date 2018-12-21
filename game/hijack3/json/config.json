@@ -302,6 +302,9 @@
     ]],
     ["pixelart/maptip/archimedes.png", [
       ["pixelart/maptip/archimedes.png", [0, 0, 16, 16]]
+    ]],
+    ["pixelart/maptip/tree.png", [
+      ["pixelart/maptip/tree.png", [0, 0, 32, 32]]
     ]]
   ]
 }
