@@ -10,9 +10,9 @@ struct asset_defn {
 unsigned int SCALE = 2;
 unsigned int WIDTH = 320;
 unsigned int HEIGHT = 240;
-unsigned int ASSET_DEFNS_LEN = 260;
+unsigned int ASSET_DEFNS_LEN = 276;
 
-struct asset_defn ASSET_DEFNS[260] = {
+struct asset_defn ASSET_DEFNS[276] = {
     {"pixelart/system/window.png", "pixelart/system/window/top-left.png", 0, 0, 8, 8},
     {"pixelart/system/window.png", "pixelart/system/window/top.png", 8, 0, 8, 8},
     {"pixelart/system/window.png", "pixelart/system/window/top-arrow.png", 16, 0, 8, 8},
@@ -256,6 +256,22 @@ struct asset_defn ASSET_DEFNS[260] = {
     {"pixelart/mathprobe/fly.png", "pixelart/mathprobe/fly/front/1.png", 16, 48, 16, 16},
     {"pixelart/mathprobe/fly.png", "pixelart/mathprobe/fly/front/2.png", 32, 48, 16, 16},
     {"pixelart/mathprobe/fly.png", "pixelart/mathprobe/fly/front/3.png", 48, 48, 16, 16},
+    {"pixelart/lonelygem/fly.png", "pixelart/lonelygem/fly/left/0.png", 0, 0, 16, 16},
+    {"pixelart/lonelygem/fly.png", "pixelart/lonelygem/fly/left/1.png", 16, 0, 16, 16},
+    {"pixelart/lonelygem/fly.png", "pixelart/lonelygem/fly/left/2.png", 32, 0, 16, 16},
+    {"pixelart/lonelygem/fly.png", "pixelart/lonelygem/fly/left/3.png", 48, 0, 16, 16},
+    {"pixelart/lonelygem/fly.png", "pixelart/lonelygem/fly/back/0.png", 0, 16, 16, 16},
+    {"pixelart/lonelygem/fly.png", "pixelart/lonelygem/fly/back/1.png", 16, 16, 16, 16},
+    {"pixelart/lonelygem/fly.png", "pixelart/lonelygem/fly/back/2.png", 32, 16, 16, 16},
+    {"pixelart/lonelygem/fly.png", "pixelart/lonelygem/fly/back/3.png", 48, 16, 16, 16},
+    {"pixelart/lonelygem/fly.png", "pixelart/lonelygem/fly/right/0.png", 0, 32, 16, 16},
+    {"pixelart/lonelygem/fly.png", "pixelart/lonelygem/fly/right/1.png", 16, 32, 16, 16},
+    {"pixelart/lonelygem/fly.png", "pixelart/lonelygem/fly/right/2.png", 32, 32, 16, 16},
+    {"pixelart/lonelygem/fly.png", "pixelart/lonelygem/fly/right/3.png", 48, 32, 16, 16},
+    {"pixelart/lonelygem/fly.png", "pixelart/lonelygem/fly/front/0.png", 0, 48, 16, 16},
+    {"pixelart/lonelygem/fly.png", "pixelart/lonelygem/fly/front/1.png", 16, 48, 16, 16},
+    {"pixelart/lonelygem/fly.png", "pixelart/lonelygem/fly/front/2.png", 32, 48, 16, 16},
+    {"pixelart/lonelygem/fly.png", "pixelart/lonelygem/fly/front/3.png", 48, 48, 16, 16},
     {"pixelart/security-drone/fly.png", "pixelart/security-drone/fly/left/0.png", 0, 0, 16, 16},
     {"pixelart/security-drone/fly.png", "pixelart/security-drone/fly/left/1.png", 16, 0, 16, 16},
     {"pixelart/security-drone/fly.png", "pixelart/security-drone/fly/left/2.png", 32, 0, 16, 16},

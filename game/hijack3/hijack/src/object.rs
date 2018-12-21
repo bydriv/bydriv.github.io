@@ -3,6 +3,7 @@ pub mod teiri;
 pub mod verity;
 pub mod emily;
 pub mod mathprobe;
+pub mod lonelygem;
 pub mod security_drone;
 
 use super::*;
@@ -16,6 +17,7 @@ pub enum Object {
     Verity(verity::Verity),
     Emily(emily::Emily),
     Mathprobe(mathprobe::Mathprobe),
+    Lonelygem(lonelygem::Lonelygem),
     SecurityDrone(security_drone::SecurityDrone),
     Archimedes(archimedes::Archimedes),
 }
@@ -27,6 +29,7 @@ impl brownfox::Moore<Input, Output> for Object {
             Object::Verity(verity) => Object::Verity(verity.transit(input)),
             Object::Emily(emily) => Object::Emily(emily.transit(input)),
             Object::Mathprobe(mathprobe) => Object::Mathprobe(mathprobe.transit(input)),
+            Object::Lonelygem(lonelygem) => Object::Lonelygem(lonelygem.transit(input)),
             Object::SecurityDrone(security_drone) => Object::SecurityDrone(security_drone.transit(input)),
             Object::Archimedes(archimedes) => Object::Archimedes(archimedes.transit(input)),
         }
@@ -38,6 +41,7 @@ impl brownfox::Moore<Input, Output> for Object {
             Object::Verity(verity) => verity.output(),
             Object::Emily(emily) => emily.output(),
             Object::Mathprobe(mathprobe) => mathprobe.output(),
+            Object::Lonelygem(lonelygem) => lonelygem.output(),
             Object::SecurityDrone(security_drone) => security_drone.output(),
             Object::Archimedes(archimedes) => archimedes.output(),
         }

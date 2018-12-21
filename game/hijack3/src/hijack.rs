@@ -80,13 +80,13 @@ extern "C" {
     static WIDTH: u32;
     static HEIGHT: u32;
     static ASSET_DEFNS_LEN: usize;
-    static ASSET_DEFNS: [AssetDefn; 260];
+    static ASSET_DEFNS: [AssetDefn; 276];
 }
 
 // src/hijack/assets.c
 extern "C" {
     static assets_len: usize;
-    static assets: [Asset; 11];
+    static assets: [Asset; 12];
 }
 
 #[no_mangle]
