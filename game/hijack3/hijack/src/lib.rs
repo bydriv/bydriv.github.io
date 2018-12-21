@@ -41,23 +41,23 @@ impl Hijack {
                     object::Object::Teiri(object::teiri::new(16, 16)),
                 ),
                 (
-                    brownfox::Control::Player(brownfox::Player::new(0)),
+                    brownfox::Control::Immovable(brownfox::Immovable::new()),
                     object::Object::Verity(object::verity::new(64, 16)),
                 ),
                 (
-                    brownfox::Control::Player(brownfox::Player::new(0)),
+                    brownfox::Control::Immovable(brownfox::Immovable::new()),
                     object::Object::Emily(object::emily::new(96, 16)),
                 ),
                 (
-                    brownfox::Control::Player(brownfox::Player::new(0)),
+                    brownfox::Control::Immovable(brownfox::Immovable::new()),
                     object::Object::Mathprobe(object::mathprobe::new(32, 16)),
                 ),
                 (
-                    brownfox::Control::Player(brownfox::Player::new(0)),
+                    brownfox::Control::Immovable(brownfox::Immovable::new()),
                     object::Object::Lonelygem(object::lonelygem::new(112, 16)),
                 ),
                 (
-                    brownfox::Control::Player(brownfox::Player::new(0)),
+                    brownfox::Control::Immovable(brownfox::Immovable::new()),
                     object::Object::SecurityDrone(object::security_drone::new(80, 48)),
                 ),
             ],
