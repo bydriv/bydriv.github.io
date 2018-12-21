@@ -34,7 +34,7 @@ impl Hijack {
                 ),
                 (
                     brownfox::Control::Immovable(brownfox::Immovable::new()),
-                    object::Object::Maptip(object::maptip::new(0, 64, 4, 1, &"pixelart/maptip/tree.png".to_string())),
+                    object::Object::Tree(object::tree::new(0, 64, 8, 4)),
                 ),
                 (
                     brownfox::Control::Player(brownfox::Player::new(0)),

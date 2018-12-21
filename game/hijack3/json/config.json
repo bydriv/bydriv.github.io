@@ -304,7 +304,15 @@
       ["pixelart/maptip/archimedes.png", [0, 0, 16, 16]]
     ]],
     ["pixelart/maptip/tree.png", [
-      ["pixelart/maptip/tree.png", [0, 0, 32, 32]]
+      ["pixelart/maptip/tree/top-left.png", [0, 0, 32, 32]],
+      ["pixelart/maptip/tree/top.png", [32, 0, 32, 32]],
+      ["pixelart/maptip/tree/top-right.png", [64, 0, 32, 32]],
+      ["pixelart/maptip/tree/left.png", [0, 32, 32, 32]],
+      ["pixelart/maptip/tree/center.png", [32, 32, 32, 32]],
+      ["pixelart/maptip/tree/right.png", [64, 32, 32, 32]],
+      ["pixelart/maptip/tree/bottom-left.png", [0, 64, 32, 32]],
+      ["pixelart/maptip/tree/bottom.png", [32, 64, 32, 32]],
+      ["pixelart/maptip/tree/bottom-right.png", [64, 64, 32, 32]]
     ]]
   ]
 }

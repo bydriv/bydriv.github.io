@@ -1,4 +1,5 @@
 pub mod maptip;
+pub mod tree;
 pub mod teiri;
 pub mod verity;
 pub mod emily;
@@ -20,6 +21,7 @@ pub enum Object {
     Lonelygem(lonelygem::Lonelygem),
     SecurityDrone(security_drone::SecurityDrone),
     Maptip(maptip::Maptip),
+    Tree(tree::Tree),
 }
 
 impl brownfox::Moore<Input, Output> for Object {
@@ -32,6 +34,7 @@ impl brownfox::Moore<Input, Output> for Object {
             Object::Lonelygem(lonelygem) => Object::Lonelygem(lonelygem.transit(input)),
             Object::SecurityDrone(security_drone) => Object::SecurityDrone(security_drone.transit(input)),
             Object::Maptip(maptip) => Object::Maptip(maptip.transit(input)),
+            Object::Tree(tree) => Object::Tree(tree.transit(input)),
         }
     }
 
@@ -44,6 +47,7 @@ impl brownfox::Moore<Input, Output> for Object {
             Object::Lonelygem(lonelygem) => lonelygem.output(),
             Object::SecurityDrone(security_drone) => security_drone.output(),
             Object::Maptip(maptip) => maptip.output(),
+            Object::Tree(tree) => tree.output(),
         }
     }
 }

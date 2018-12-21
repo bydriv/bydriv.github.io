@@ -10,9 +10,9 @@ struct asset_defn {
 unsigned int SCALE = 2;
 unsigned int WIDTH = 320;
 unsigned int HEIGHT = 240;
-unsigned int ASSET_DEFNS_LEN = 277;
+unsigned int ASSET_DEFNS_LEN = 285;
 
-struct asset_defn ASSET_DEFNS[277] = {
+struct asset_defn ASSET_DEFNS[285] = {
     {"pixelart/system/window.png", "pixelart/system/window/top-left.png", 0, 0, 8, 8},
     {"pixelart/system/window.png", "pixelart/system/window/top.png", 8, 0, 8, 8},
     {"pixelart/system/window.png", "pixelart/system/window/top-arrow.png", 16, 0, 8, 8},
@@ -289,5 +289,13 @@ struct asset_defn ASSET_DEFNS[277] = {
     {"pixelart/security-drone/fly.png", "pixelart/security-drone/fly/front/2.png", 32, 48, 16, 16},
     {"pixelart/security-drone/fly.png", "pixelart/security-drone/fly/front/3.png", 48, 48, 16, 16},
     {"pixelart/maptip/archimedes.png", "pixelart/maptip/archimedes.png", 0, 0, 16, 16},
-    {"pixelart/maptip/tree.png", "pixelart/maptip/tree.png", 0, 0, 32, 32},
+    {"pixelart/maptip/tree.png", "pixelart/maptip/tree/top-left.png", 0, 0, 32, 32},
+    {"pixelart/maptip/tree.png", "pixelart/maptip/tree/top.png", 32, 0, 32, 32},
+    {"pixelart/maptip/tree.png", "pixelart/maptip/tree/top-right.png", 64, 0, 32, 32},
+    {"pixelart/maptip/tree.png", "pixelart/maptip/tree/left.png", 0, 32, 32, 32},
+    {"pixelart/maptip/tree.png", "pixelart/maptip/tree/center.png", 32, 32, 32, 32},
+    {"pixelart/maptip/tree.png", "pixelart/maptip/tree/right.png", 64, 32, 32, 32},
+    {"pixelart/maptip/tree.png", "pixelart/maptip/tree/bottom-left.png", 0, 64, 32, 32},
+    {"pixelart/maptip/tree.png", "pixelart/maptip/tree/bottom.png", 32, 64, 32, 32},
+    {"pixelart/maptip/tree.png", "pixelart/maptip/tree/bottom-right.png", 64, 64, 32, 32},
 };
