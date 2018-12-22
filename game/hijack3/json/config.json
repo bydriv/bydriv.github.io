@@ -303,9 +303,6 @@
     ["pixelart/maptip/archimedes.png", [
       ["pixelart/maptip/archimedes.png", [0, 0, 16, 16]]
     ]],
-    ["pixelart/maptip/archimedes_20x15.png", [
-      ["pixelart/maptip/archimedes_20x15.png", [0, 0, 320, 240]]
-    ]],
     ["pixelart/maptip/ground.png", [
       ["pixelart/maptip/ground/top-left.png", [0, 0, 16, 16]],
       ["pixelart/maptip/ground/top.png", [16, 0, 16, 16]],

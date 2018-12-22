@@ -13,7 +13,7 @@ pub fn new(x: i32, y: i32, width: i32, height: i32) -> Ground {
         x: x,
         y: y,
         width: width,
-        height: height
+        height: height,
     }
 }
 
@@ -33,10 +33,18 @@ impl brownfox::Moore<Input, Output> for Ground {
             })
         });
         let views = views.chain((1..self.width - 1).map(|i| {
-            View::Image("pixelart/maptip/ground/top.png".to_string(), self.x + i * 16, self.y)
+            View::Image(
+                "pixelart/maptip/ground/top.png".to_string(),
+                self.x + i * 16,
+                self.y,
+            )
         }));
         let views = views.chain((1..self.height - 1).map(|j| {
-            View::Image("pixelart/maptip/ground/left.png".to_string(), self.x, self.y + j * 16)
+            View::Image(
+                "pixelart/maptip/ground/left.png".to_string(),
+                self.x,
+                self.y + j * 16,
+            )
         }));
         let views = views.chain((1..self.width - 1).map(|i| {
             View::Image(
@@ -53,7 +61,11 @@ impl brownfox::Moore<Input, Output> for Ground {
             )
         }));
         let views = views.chain(vec![
-            View::Image("pixelart/maptip/ground/top-left.png".to_string(), self.x, self.y),
+            View::Image(
+                "pixelart/maptip/ground/top-left.png".to_string(),
+                self.x,
+                self.y,
+            ),
             View::Image(
                 "pixelart/maptip/ground/bottom-left.png".to_string(),
                 self.x,
@@ -71,9 +83,6 @@ impl brownfox::Moore<Input, Output> for Ground {
             ),
         ]);
 
-        (
-            vec![],
-            views.collect(),
-        )
+        (vec![], views.collect())
     }
 }

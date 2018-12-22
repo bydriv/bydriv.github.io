@@ -32,9 +32,11 @@ impl Hijack {
                     object::Object::Maptip(object::maptip::new(
                         0,
                         0,
-                        1,
-                        1,
-                        &"pixelart/maptip/archimedes_20x15.png".to_string(),
+                        16,
+                        16,
+                        20,
+                        15,
+                        &"pixelart/maptip/archimedes.png".to_string(),
                     )),
                 ),
                 (
