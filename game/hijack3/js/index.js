@@ -293,7 +293,10 @@ window.addEventListener("load", async function() {
                 buttons: keyboardInput.buttons.concat()
             };
 
-        game = Game.step(inputs, game);
+        const next_game = Game.step(inputs, game);
+        views.free();
+        game.free();
+        game = next_game;
         requestAnimationFrame(step);
     });
 });
