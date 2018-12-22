@@ -12,6 +12,7 @@
 | pixelart/maptip/archimedes.png  | [[./pixelart/maptip/archimedes.png]]  |
 | pixelart/maptip/tree.png        | [[./pixelart/maptip/tree.png]]        |
 | pixelart/maptip/ground.png      | [[./pixelart/maptip/ground.png]]      |
+| pixelart/maptip/asphalt.png     | [[./pixelart/maptip/asphalt.png]]     |
 | pixelart/font/alpha.png         | [[./pixelart/font/alpha.png]]         |
 | pixelart/font/hiragana.png      | [[./pixelart/font/hiragana.png]]      |
 | pixelart/font/katakana.png      | [[./pixelart/font/katakana.png]]      |
