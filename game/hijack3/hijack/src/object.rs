@@ -1,11 +1,11 @@
-pub mod maptip;
-pub mod tree;
-pub mod teiri;
-pub mod verity;
 pub mod emily;
-pub mod mathprobe;
 pub mod lonelygem;
+pub mod maptip;
+pub mod mathprobe;
 pub mod security_drone;
+pub mod teiri;
+pub mod tree;
+pub mod verity;
 
 use super::*;
 
@@ -32,7 +32,9 @@ impl brownfox::Moore<Input, Output> for Object {
             Object::Emily(emily) => Object::Emily(emily.transit(input)),
             Object::Mathprobe(mathprobe) => Object::Mathprobe(mathprobe.transit(input)),
             Object::Lonelygem(lonelygem) => Object::Lonelygem(lonelygem.transit(input)),
-            Object::SecurityDrone(security_drone) => Object::SecurityDrone(security_drone.transit(input)),
+            Object::SecurityDrone(security_drone) => {
+                Object::SecurityDrone(security_drone.transit(input))
+            }
             Object::Maptip(maptip) => Object::Maptip(maptip.transit(input)),
             Object::Tree(tree) => Object::Tree(tree.transit(input)),
         }

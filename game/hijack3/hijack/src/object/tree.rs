@@ -13,7 +13,7 @@ pub fn new(x: i32, y: i32, width: i32, height: i32) -> Tree {
         x: x,
         y: y,
         width: width,
-        height: height
+        height: height,
     }
 }
 
@@ -23,37 +23,47 @@ impl brownfox::Moore<Input, Output> for Tree {
     }
 
     fn output(&self) -> Output {
-        let views = (1..self.width - 1).flat_map(|i| {
-            (1..self.height - 1).map(move |j| {
-                View::Image(
-                    "pixelart/maptip/tree/center.png".to_string(),
-                    self.x + i * 32,
-                    self.y + j * 32,
-                )
-            })
-        });
-        let views = views.chain((1..self.width - 1).map(|i| {
-            View::Image("pixelart/maptip/tree/top.png".to_string(), self.x + i * 32, self.y)
-        }));
-        let views = views.chain((1..self.height - 1).map(|j| {
-            View::Image("pixelart/maptip/tree/left.png".to_string(), self.x, self.y + j * 32)
-        }));
-        let views = views.chain((1..self.width - 1).map(|i| {
-            View::Image(
+        let views = vec![
+            View::Pattern(
+                "pixelart/maptip/tree/center.png".to_string(),
+                self.width as u32 - 2,
+                self.height as u32 - 2,
+                self.x + 32,
+                self.y + 32,
+            ),
+            View::Pattern(
+                "pixelart/maptip/tree/top.png".to_string(),
+                self.width as u32 - 2,
+                1,
+                self.x + 32,
+                self.y,
+            ),
+            View::Pattern(
+                "pixelart/maptip/tree/left.png".to_string(),
+                1,
+                self.height as u32 - 2,
+                self.x,
+                self.y + 32,
+            ),
+            View::Pattern(
                 "pixelart/maptip/tree/bottom.png".to_string(),
-                self.x + i * 32,
+                self.width as u32 - 2,
+                1,
+                self.x + 32,
                 self.y + (self.height - 1) * 32,
-            )
-        }));
-        let views = views.chain((1..self.height - 1).map(|j| {
-            View::Image(
+            ),
+            View::Pattern(
                 "pixelart/maptip/tree/right.png".to_string(),
+                1,
+                self.height as u32 - 2,
                 self.x + (self.width - 1) * 32,
-                self.y + j * 32,
-            )
-        }));
-        let views = views.chain(vec![
-            View::Image("pixelart/maptip/tree/top-left.png".to_string(), self.x, self.y),
+                self.y + 32,
+            ),
+            View::Image(
+                "pixelart/maptip/tree/top-left.png".to_string(),
+                self.x,
+                self.y,
+            ),
             View::Image(
                 "pixelart/maptip/tree/bottom-left.png".to_string(),
                 self.x,
@@ -69,11 +79,8 @@ impl brownfox::Moore<Input, Output> for Tree {
                 self.x + (self.width - 1) * 32,
                 self.y + (self.height - 1) * 32,
             ),
-        ]);
+        ];
 
-        (
-            vec![],
-            views.collect(),
-        )
+        (vec![], views)
     }
 }

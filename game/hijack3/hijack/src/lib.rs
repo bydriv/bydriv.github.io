@@ -30,7 +30,13 @@ impl Hijack {
             objects: vec![
                 (
                     brownfox::Control::Immovable(brownfox::Immovable::new()),
-                    object::Object::Maptip(object::maptip::new(0, 0, 40, 30, &"pixelart/maptip/archimedes.png".to_string())),
+                    object::Object::Maptip(object::maptip::new(
+                        0,
+                        0,
+                        40,
+                        30,
+                        &"pixelart/maptip/archimedes.png".to_string(),
+                    )),
                 ),
                 (
                     brownfox::Control::Immovable(brownfox::Immovable::new()),

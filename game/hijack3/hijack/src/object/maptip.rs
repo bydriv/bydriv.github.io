@@ -15,7 +15,7 @@ pub fn new(x: i32, y: i32, width: u32, height: u32, name: &String) -> Maptip {
         y: y,
         width: width,
         height: height,
-        name: name.clone()
+        name: name.clone(),
     }
 }
 
