@@ -1,11 +1,9 @@
 pub mod emily;
-pub mod ground;
 pub mod lonelygem;
 pub mod maptip;
 pub mod mathprobe;
 pub mod security_drone;
 pub mod teiri;
-pub mod tree;
 pub mod verity;
 
 use super::*;
@@ -22,8 +20,6 @@ pub enum Object {
     Lonelygem(lonelygem::Lonelygem),
     SecurityDrone(security_drone::SecurityDrone),
     Maptip(maptip::Maptip),
-    Tree(tree::Tree),
-    Ground(ground::Ground),
 }
 
 impl brownfox::Moore<Input, Output> for Object {
@@ -38,8 +34,6 @@ impl brownfox::Moore<Input, Output> for Object {
                 Object::SecurityDrone(security_drone.transit(input))
             }
             Object::Maptip(maptip) => Object::Maptip(maptip.transit(input)),
-            Object::Tree(tree) => Object::Tree(tree.transit(input)),
-            Object::Ground(ground) => Object::Ground(ground.transit(input)),
         }
     }
 
@@ -52,8 +46,6 @@ impl brownfox::Moore<Input, Output> for Object {
             Object::Lonelygem(lonelygem) => lonelygem.output(),
             Object::SecurityDrone(security_drone) => security_drone.output(),
             Object::Maptip(maptip) => maptip.output(),
-            Object::Tree(tree) => tree.output(),
-            Object::Ground(ground) => ground.output(),
         }
     }
 }

@@ -10,9 +10,9 @@ struct asset_defn {
 unsigned int SCALE = 2;
 unsigned int WIDTH = 320;
 unsigned int HEIGHT = 240;
-unsigned int ASSET_DEFNS_LEN = 298;
+unsigned int ASSET_DEFNS_LEN = 311;
 
-struct asset_defn ASSET_DEFNS[298] = {
+struct asset_defn ASSET_DEFNS[311] = {
     {"pixelart/system/window.png", "pixelart/system/window/top-left.png", 0, 0, 8, 8},
     {"pixelart/system/window.png", "pixelart/system/window/top.png", 8, 0, 8, 8},
     {"pixelart/system/window.png", "pixelart/system/window/top-arrow.png", 16, 0, 8, 8},
@@ -302,6 +302,19 @@ struct asset_defn ASSET_DEFNS[298] = {
     {"pixelart/maptip/ground.png", "pixelart/maptip/ground/top-right_inv.png", 80, 0, 16, 16},
     {"pixelart/maptip/ground.png", "pixelart/maptip/ground/bottom-left_inv.png", 48, 32, 16, 16},
     {"pixelart/maptip/ground.png", "pixelart/maptip/ground/bottom-right_inv.png", 80, 32, 16, 16},
+    {"pixelart/maptip/asphalt.png", "pixelart/maptip/asphalt/top-left.png", 0, 0, 16, 16},
+    {"pixelart/maptip/asphalt.png", "pixelart/maptip/asphalt/top.png", 16, 0, 16, 16},
+    {"pixelart/maptip/asphalt.png", "pixelart/maptip/asphalt/top-right.png", 32, 0, 16, 16},
+    {"pixelart/maptip/asphalt.png", "pixelart/maptip/asphalt/left.png", 0, 16, 16, 16},
+    {"pixelart/maptip/asphalt.png", "pixelart/maptip/asphalt/center.png", 16, 16, 16, 16},
+    {"pixelart/maptip/asphalt.png", "pixelart/maptip/asphalt/right.png", 32, 16, 16, 16},
+    {"pixelart/maptip/asphalt.png", "pixelart/maptip/asphalt/bottom-left.png", 0, 32, 16, 16},
+    {"pixelart/maptip/asphalt.png", "pixelart/maptip/asphalt/bottom.png", 16, 32, 16, 16},
+    {"pixelart/maptip/asphalt.png", "pixelart/maptip/asphalt/bottom-right.png", 32, 32, 16, 16},
+    {"pixelart/maptip/asphalt.png", "pixelart/maptip/asphalt/top-left_inv.png", 48, 0, 16, 16},
+    {"pixelart/maptip/asphalt.png", "pixelart/maptip/asphalt/top-right_inv.png", 80, 0, 16, 16},
+    {"pixelart/maptip/asphalt.png", "pixelart/maptip/asphalt/bottom-left_inv.png", 48, 32, 16, 16},
+    {"pixelart/maptip/asphalt.png", "pixelart/maptip/asphalt/bottom-right_inv.png", 80, 32, 16, 16},
     {"pixelart/maptip/tree.png", "pixelart/maptip/tree/top-left.png", 0, 0, 32, 32},
     {"pixelart/maptip/tree.png", "pixelart/maptip/tree/top.png", 32, 0, 32, 32},
     {"pixelart/maptip/tree.png", "pixelart/maptip/tree/top-right.png", 64, 0, 32, 32},
