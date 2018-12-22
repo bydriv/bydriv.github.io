@@ -47,21 +47,16 @@ async function initSystem(config) {
 
     const offscreenCanvas = document.createElement("canvas");
     const onscreenCanvas = document.createElement("canvas");
-    const patternCanvas = document.createElement("canvas");
     offscreenCanvas.width = config.width;
     offscreenCanvas.height = config.height;
     onscreenCanvas.width = config.width * config.scale;
     onscreenCanvas.height = config.height * config.scale;
-    patternCanvas.width = config.width;
-    patternCanvas.height = config.height;
     document.getElementById("game").appendChild(onscreenCanvas);
 
     const offscreenContext = offscreenCanvas.getContext("2d");
 
     const onscreenContext = onscreenCanvas.getContext("2d");
     onscreenContext.imageSmoothingEnabled = false;
-
-    const patternContext = patternCanvas.getContext("2d");
 
     return {
         offscreen: {
@@ -72,148 +67,17 @@ async function initSystem(config) {
             canvas: onscreenCanvas,
             context: onscreenContext
         },
-        pattern: {
-            canvas: patternCanvas,
-            context: patternContext
-        },
         assets: assets
     };
 }
 
-function eqView(Game, views1, i, views2, j) {
-    if (Game.view_is_image(i, views1) && Game.view_is_image(j, views2)) {
-        return Game.view_image_x(i, views1) === Game.view_image_x(j, views2)
-            && Game.view_image_y(i, views1) === Game.view_image_y(j, views2)
-            && Game.view_image_name(i, views1) === Game.view_image_name(j, views2);
-    } if (Game.view_is_pattern(i, views1) && Game.view_is_pattern(j, views2)) {
-        return Game.view_pattern_x(i, views1) === Game.view_pattern_x(j, views2)
-            && Game.view_pattern_y(i, views1) === Game.view_pattern_y(j, views2)
-            && Game.view_pattern_width(i, views1) === Game.view_pattern_width(j, views2)
-            && Game.view_pattern_height(i, views1) === Game.view_pattern_height(j, views2)
-            && Game.view_pattern_name(i, views1) === Game.view_pattern_name(j, views2);
-    } else {
-        return false;
-    }
-}
-
-function collision(rect1, rect2) {
-    const left = Math.max(rect1.x, rect2.x);
-    const top = Math.max(rect1.y, rect2.y);
-    const right = Math.min(rect1.x + rect1.width, rect2.x + rect2.width);
-    const bottom = Math.min(rect1.y + rect1.height, rect2.y + rect2.height);
-    const width = right - left;
-    const height = bottom - top;
-
-    return width > 0 && height > 0;
-}
-
-function splitViews(Game, assets, views) {
-    const rectangles = [];
-
-    for (var i = 0; i < Game.views_length(views); ++i) {
-        if (Game.view_is_image(i, views)) {
-            const dx = Game.view_image_x(i, views);
-            const dy = Game.view_image_y(i, views);
-            const name = Game.view_image_name(i, views);
-            const sprite = assets.get(name);
-            const width = sprite.img.width;
-            const height = sprite.img.height;
-
-            rectangles.push({
-                x: dx,
-                y: dy,
-                width: width,
-                height: height
-            });
-        } else if (Game.view_is_pattern(i, views)) {
-            const dx = Game.view_pattern_x(i, views);
-            const dy = Game.view_pattern_y(i, views);
-            const width = Game.view_pattern_width(i, views);
-            const height = Game.view_pattern_height(i, views);
-            const name = Game.view_pattern_name(i, views);
-            const sprite = assets.get(name);
-            const w = sprite.img.width * width;
-            const h = sprite.img.height * height;
-
-            rectangles.push({
-                x: dx,
-                y: dy,
-                width: w,
-                height: h
-            });
-        } else {
-            console.warn("unrecognized view: %o", i);
-        }
-    }
-
-    const groups = [];
-
-    for (var i = 0; i < rectangles.length; ++i) {
-        const merge = [];
-
-        loop:
-        for (var j = 0; j < groups.length; ++j) {
-            const group = groups[j];
-
-            for (var k = 0; k < group.length; ++k) {
-                const rect1 = rectangles[i];
-                const rect2 = rectangles[group[k]];
-
-                if (collision(rect1, rect2)) {
-                    merge.push(j);
-                    continue loop;
-                }
-            }
-        }
-
-        if (merge.length > 0) {
-            const group = merge.map(j => groups[j]).flat();
-            group.push(i);
-
-            for (var j = 0; j < merge.length; ++j) {
-                groups[merge[j]] = [];
-            }
-
-            groups.push(group);
-
-            continue;
-        }
-
-        groups.push([i]);
-    }
-
-    return groups.filter(g => g.length > 0);
-}
-
-function drawView(Game, canvas, context, assets, views, i, patternCanvas, patternContext) {
+function drawView(Game, canvas, context, assets, views, i) {
     if (Game.view_is_image(i, views)) {
         const dx = Game.view_image_x(i, views);
         const dy = Game.view_image_y(i, views);
         const name = Game.view_image_name(i, views);
         const sprite = assets.get(name);
-
-        if (dx >= canvas.width || dy >= canvas.height || dx + sprite.img.width < 0 || dy + sprite.img.height < 0)
-            return;
-
         context.drawImage(sprite.img, dx, dy);
-    } else if (Game.view_is_pattern(i, views)) {
-        const dx = Game.view_pattern_x(i, views);
-        const dy = Game.view_pattern_y(i, views);
-        const width = Game.view_pattern_width(i, views);
-        const height = Game.view_pattern_height(i, views);
-        const name = Game.view_pattern_name(i, views);
-        const sprite = assets.get(name);
-        const w = sprite.img.width * width;
-        const h = sprite.img.height * height;
-
-        if (dx >= canvas.width || dy >= canvas.height || dx + w < 0 || dy + h < 0)
-            return;
-
-        const pattern = patternContext.createPattern(sprite.img, "repeat");
-        patternContext.clearRect(0, 0, patternCanvas.width, patternCanvas.height);
-        patternContext.fillStyle = pattern;
-        patternContext.fillRect(0, 0, w, h);
-        context.drawImage(patternCanvas, 0, 0, w, h, dx, dy, w, h);
     } else {
         console.warn("unrecognized view: %o", i);
     }
@@ -370,53 +234,17 @@ window.addEventListener("load", async function() {
 
     const offscreen = ret.offscreen;
     const onscreen = ret.onscreen;
-    const pattern = ret.pattern;
     const assets = ret.assets;
 
     var game = Game.new_();
-    var previousViews = undefined;
-    var previousSplitViews = undefined;
 
     requestAnimationFrame(function step() {
         const views = Game.views(game);
-        var currentSplitViews = splitViews(Game, assets, views);
 
-        const refreshes = [];
+        offscreen.context.fillRect(0, 0, offscreen.canvas.width, offscreen.canvas.height);
 
-        if (!previousViews) {
-            for (var i = 0; i < currentSplitViews.length; ++i)
-                refreshes.push(true);
-        } else {
-            for (var i = 0; i < currentSplitViews.length; ++i) {
-                refreshes.push(false);
-
-                const group = previousSplitViews.find(g => g.length === currentSplitViews[i].length && g.every((k, j) => k === currentSplitViews[i][j]));
-
-                if (!group) {
-                    refreshes[i] = true;
-                    continue;
-                }
-
-                for (var j = 0; j < group.length; ++j) {
-                    const k = group[j];
-
-                    if (!eqView(Game, previousViews, k, views, k)) {
-                        refreshes[i] = true;
-                        break;
-                    }
-                }
-            }
-        }
-
-        //offscreen.context.fillRect(0, 0, offscreen.canvas.width, offscreen.canvas.height);
-
-        for (var i = 0; i < currentSplitViews.length; ++i) {
-            if (!refreshes[i])
-                continue;
-
-            for (var j = 0; j < currentSplitViews[i].length; ++j)
-                drawView(Game, offscreen.canvas, offscreen.context, assets, views, currentSplitViews[i][j], pattern.canvas, pattern.context);
-        }
+        for (var i = 0; i < Game.views_length(views); ++i)
+            drawView(Game, offscreen.canvas, offscreen.context, assets, views, i);
 
         onscreen.context.drawImage(
             offscreen.canvas,
@@ -466,8 +294,6 @@ window.addEventListener("load", async function() {
             };
 
         game = Game.step(inputs, game);
-        previousViews = views;
-        previousSplitViews = currentSplitViews;
         requestAnimationFrame(step);
     });
 });

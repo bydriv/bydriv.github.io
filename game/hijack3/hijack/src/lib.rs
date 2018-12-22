@@ -21,7 +21,6 @@ pub enum Event {
 #[derive(Clone)]
 pub enum View {
     Image(String, i32, i32),
-    Pattern(String, u32, u32, i32, i32),
 }
 
 impl Hijack {
@@ -33,14 +32,18 @@ impl Hijack {
                     object::Object::Maptip(object::maptip::new(
                         0,
                         0,
-                        40,
-                        30,
-                        &"pixelart/maptip/archimedes.png".to_string(),
+                        1,
+                        1,
+                        &"pixelart/maptip/archimedes_20x15.png".to_string(),
                     )),
                 ),
                 (
                     brownfox::Control::Immovable(brownfox::Immovable::new()),
                     object::Object::Tree(object::tree::new(0, 64, 8, 4)),
+                ),
+                (
+                    brownfox::Control::Immovable(brownfox::Immovable::new()),
+                    object::Object::Ground(object::ground::new(0, 192, 8, 4)),
                 ),
                 (
                     brownfox::Control::Player(brownfox::Player::new(0)),
@@ -117,9 +120,6 @@ impl brownfox::Moore<Vec<brownfox::Input>, object::Output> for Hijack {
                 .flat_map(|object| object.1.output().1)
                 .map(|view| match view {
                     View::Image(name, x, y) => View::Image(name.to_string(), x - left, y - top),
-                    View::Pattern(name, width, height, x, y) => {
-                        View::Pattern(name.to_string(), width, height, x - left, y - top)
-                    }
                 })
                 .collect(),
         )

@@ -27,10 +27,8 @@ impl brownfox::Moore<Input, Output> for Maptip {
     fn output(&self) -> Output {
         (
             vec![],
-            vec![View::Pattern(
+            vec![View::Image(
                 self.name.clone(),
-                self.width,
-                self.height,
                 self.x,
                 self.y,
             )],

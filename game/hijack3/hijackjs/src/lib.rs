@@ -62,54 +62,6 @@ pub fn view_image_y(i: usize, views: &Views) -> Option<i32> {
     }
 }
 
-#[wasm_bindgen]
-pub fn view_is_pattern(i: usize, views: &Views) -> bool {
-    match views.views[i] {
-        View::Pattern(_, _, _, _, _) => true,
-        _ => false,
-    }
-}
-
-#[wasm_bindgen]
-pub fn view_pattern_name(i: usize, views: &Views) -> Option<String> {
-    match views.views[i].clone() {
-        View::Pattern(name, _, _, _, _) => Some(name),
-        _ => None,
-    }
-}
-
-#[wasm_bindgen]
-pub fn view_pattern_width(i: usize, views: &Views) -> Option<u32> {
-    match views.views[i] {
-        View::Pattern(_, width, _, _, _) => Some(width),
-        _ => None,
-    }
-}
-
-#[wasm_bindgen]
-pub fn view_pattern_height(i: usize, views: &Views) -> Option<u32> {
-    match views.views[i] {
-        View::Pattern(_, _, height, _, _) => Some(height),
-        _ => None,
-    }
-}
-
-#[wasm_bindgen]
-pub fn view_pattern_x(i: usize, views: &Views) -> Option<i32> {
-    match views.views[i] {
-        View::Pattern(_, _, _, x, _) => Some(x),
-        _ => None,
-    }
-}
-
-#[wasm_bindgen]
-pub fn view_pattern_y(i: usize, views: &Views) -> Option<i32> {
-    match views.views[i] {
-        View::Pattern(_, _, _, _, y) => Some(y),
-        _ => None,
-    }
-}
-
 impl Game {
     pub fn new() -> Game {
         Game {

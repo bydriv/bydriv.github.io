@@ -80,13 +80,13 @@ extern "C" {
     static WIDTH: u32;
     static HEIGHT: u32;
     static ASSET_DEFNS_LEN: usize;
-    static ASSET_DEFNS: [AssetDefn; 285];
+    static ASSET_DEFNS: [AssetDefn; 299];
 }
 
 // src/hijack/assets.c
 extern "C" {
     static assets_len: usize;
-    static assets: [Asset; 13];
+    static assets: [Asset; 15];
 }
 
 #[no_mangle]
@@ -151,33 +151,6 @@ pub extern "C" fn WinMain() -> i32 {
                                 (SCALE as i32 * y).into(),
                                 *image,
                             );
-                        }
-                    },
-                    hijack::View::Pattern(name, width, height, x, y) => match defns.get(&name) {
-                        None => (),
-                        Some(image) => {
-                            for i in 0..width {
-                                for j in 0..height {
-                                    hijack_platform_windows_image_draw(
-                                        session,
-                                        (SCALE as i32 * x
-                                            + (i as i32
-                                                * (hijack_platform_windows_image_width(
-                                                    session, *image,
-                                                )
-                                                    as i32)))
-                                            .into(),
-                                        (SCALE as i32 * y
-                                            + (j as i32
-                                                * (hijack_platform_windows_image_height(
-                                                    session, *image,
-                                                )
-                                                    as i32)))
-                                            .into(),
-                                        *image,
-                                    );
-                                }
-                            }
                         }
                     },
                 }

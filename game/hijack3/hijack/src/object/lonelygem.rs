@@ -82,7 +82,7 @@ impl brownfox::Moore<Input, Output> for Lonelygem {
             format!(
                 "pixelart/lonelygem/fly/{}/{}.png",
                 string_of_direction(&self.direction),
-                self.frame_count.i / 2 % 4
+                self.frame_count.i % 4
             ),
             self.x,
             self.y,
