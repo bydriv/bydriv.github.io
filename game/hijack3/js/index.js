@@ -15,6 +15,10 @@ function loadImage(src) {
 }
 
 async function initSystem(config) {
+    const stats = new Stats();
+    stats.showPanel(0); // 0: fps
+    document.body.appendChild(stats.dom);
+
     const assets = new Map();
     const promises = config.assets.map(async function (asset) {
         const src = asset[0];
@@ -59,6 +63,7 @@ async function initSystem(config) {
     onscreenContext.imageSmoothingEnabled = false;
 
     return {
+        stats: stats,
         offscreen: {
             canvas: offscreenCanvas,
             context: offscreenContext
@@ -232,6 +237,7 @@ window.addEventListener("load", async function() {
 
     const ret = await initSystem(config);
 
+    const stats = ret.stats;
     const offscreen = ret.offscreen;
     const onscreen = ret.onscreen;
     const assets = ret.assets;
@@ -239,6 +245,8 @@ window.addEventListener("load", async function() {
     var game = Game.new_();
 
     requestAnimationFrame(function step() {
+        stats.begin();
+
         const views = Game.views(game);
 
         offscreen.context.fillRect(0, 0, offscreen.canvas.width, offscreen.canvas.height);
@@ -297,6 +305,9 @@ window.addEventListener("load", async function() {
         views.free();
         game.free();
         game = next_game;
+
+        stats.end();
+
         requestAnimationFrame(step);
     });
 });
