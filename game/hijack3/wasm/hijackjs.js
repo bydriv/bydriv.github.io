@@ -151,6 +151,21 @@ __exports.view_image_y = function(arg0, arg1) {
 };
 
 /**
+* @param {number} arg0
+* @param {Views} arg1
+* @returns {number | undefined}
+*/
+__exports.view_image_z = function(arg0, arg1) {
+    const retptr = globalArgumentPtr();
+
+    wasm.view_image_z(retptr, arg0, arg1.ptr);
+    const present = getUint32Memory()[retptr / 4];
+    const value = getInt32Memory()[retptr / 4 + 1];
+    return present === 0 ? undefined : value;
+
+};
+
+/**
 * @returns {Game}
 */
 __exports.new_ = function() {
@@ -188,30 +203,6 @@ __exports.views = function(arg0) {
     return Views.__wrap(wasm.views(arg0.ptr));
 };
 
-function freeViews(ptr) {
-
-    wasm.__wbg_views_free(ptr);
-}
-/**
-*/
-class Views {
-
-    static __wrap(ptr) {
-        const obj = Object.create(Views.prototype);
-        obj.ptr = ptr;
-
-        return obj;
-    }
-
-    free() {
-        const ptr = this.ptr;
-        this.ptr = 0;
-        freeViews(ptr);
-    }
-
-}
-__exports.Views = Views;
-
 function freeGame(ptr) {
 
     wasm.__wbg_game_free(ptr);
@@ -235,6 +226,30 @@ class Game {
 
 }
 __exports.Game = Game;
+
+function freeViews(ptr) {
+
+    wasm.__wbg_views_free(ptr);
+}
+/**
+*/
+class Views {
+
+    static __wrap(ptr) {
+        const obj = Object.create(Views.prototype);
+        obj.ptr = ptr;
+
+        return obj;
+    }
+
+    free() {
+        const ptr = this.ptr;
+        this.ptr = 0;
+        freeViews(ptr);
+    }
+
+}
+__exports.Views = Views;
 
 __exports.__wbindgen_throw = function(ptr, len) {
     throw new Error(getStringFromWasm(ptr, len));

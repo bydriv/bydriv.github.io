@@ -9,17 +9,19 @@ export function view_image_x(arg0: number, arg1: Views): number | undefined;
 
 export function view_image_y(arg0: number, arg1: Views): number | undefined;
 
+export function view_image_z(arg0: number, arg1: Views): number | undefined;
+
 export function new_(): Game;
 
 export function step(arg0: any, arg1: Game): Game;
 
 export function views(arg0: Game): Views;
 
-export class Views {
+export class Game {
 free(): void;
 
 }
-export class Game {
+export class Views {
 free(): void;
 
 }

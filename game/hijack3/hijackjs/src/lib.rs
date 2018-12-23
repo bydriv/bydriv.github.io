@@ -33,7 +33,7 @@ pub fn views_length(views: &Views) -> usize {
 #[wasm_bindgen]
 pub fn view_is_image(i: usize, views: &Views) -> bool {
     match views.views[i] {
-        View::Image(_, _, _) => true,
+        View::Image(_, _, _, _) => true,
         _ => false,
     }
 }
@@ -41,7 +41,7 @@ pub fn view_is_image(i: usize, views: &Views) -> bool {
 #[wasm_bindgen]
 pub fn view_image_name(i: usize, views: &Views) -> Option<String> {
     match views.views[i].clone() {
-        View::Image(name, _, _) => Some(name),
+        View::Image(name, _, _, _) => Some(name),
         _ => None,
     }
 }
@@ -49,7 +49,7 @@ pub fn view_image_name(i: usize, views: &Views) -> Option<String> {
 #[wasm_bindgen]
 pub fn view_image_x(i: usize, views: &Views) -> Option<i32> {
     match views.views[i] {
-        View::Image(_, x, _) => Some(x),
+        View::Image(_, x, _, _) => Some(x),
         _ => None,
     }
 }
@@ -57,7 +57,15 @@ pub fn view_image_x(i: usize, views: &Views) -> Option<i32> {
 #[wasm_bindgen]
 pub fn view_image_y(i: usize, views: &Views) -> Option<i32> {
     match views.views[i] {
-        View::Image(_, _, y) => Some(y),
+        View::Image(_, _, y, _) => Some(y),
+        _ => None,
+    }
+}
+
+#[wasm_bindgen]
+pub fn view_image_z(i: usize, views: &Views) -> Option<i32> {
+    match views.views[i] {
+        View::Image(_, _, _, z) => Some(z),
         _ => None,
     }
 }

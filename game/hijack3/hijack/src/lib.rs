@@ -21,7 +21,7 @@ pub enum Event {
 
 #[derive(Clone)]
 pub enum View {
-    Image(String, i32, i32),
+    Image(String, i32, i32, i32),
 }
 
 impl Hijack {
@@ -74,7 +74,9 @@ impl brownfox::Moore<Vec<brownfox::Input>, object::Output> for Hijack {
                 .iter()
                 .flat_map(|object| object.1.output().1)
                 .map(|view| match view {
-                    View::Image(name, x, y) => View::Image(name.to_string(), x - left, y - top),
+                    View::Image(name, x, y, z) => {
+                        View::Image(name.to_string(), x - left, y - top, z)
+                    }
                 })
                 .collect(),
         )

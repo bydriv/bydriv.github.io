@@ -138,11 +138,18 @@ pub extern "C" fn WinMain() -> i32 {
         }
 
         while hijack_platform_windows_step(session) {
-            let (_, views) = hijack.output();
+            let (_, mut views) = hijack.output();
+
+            views.sort_by(|v, w| {
+                let hijack::View::Image(_, _, _, vz) = v;
+                let hijack::View::Image(_, _, _, wz) = w;
+
+                vz.cmp(wz)
+            });
 
             for view in views {
                 match view {
-                    hijack::View::Image(name, x, y) => match defns.get(&name) {
+                    hijack::View::Image(name, x, y, _) => match defns.get(&name) {
                         None => (),
                         Some(image) => {
                             hijack_platform_windows_image_draw(

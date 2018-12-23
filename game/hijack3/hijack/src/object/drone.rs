@@ -19,16 +19,18 @@ pub struct Drone {
     frame_count: brownfox::FrameCount,
     x: i32,
     y: i32,
+    z: i32,
     pose: Pose,
     direction: Direction,
     name: String,
 }
 
-pub fn new(x: i32, y: i32, name: String) -> Drone {
+pub fn new(x: i32, y: i32, z: i32, name: String) -> Drone {
     Drone {
         frame_count: brownfox::FrameCount::new(0),
         x: x,
         y: y,
+        z: z,
         pose: Pose::Fly,
         direction: Direction::Front,
         name: name,
@@ -41,6 +43,7 @@ impl brownfox::Moore<Input, Output> for Drone {
             frame_count: self.frame_count.transit(&()),
             x: self.x,
             y: self.y,
+            z: self.z,
             pose: self.pose.clone(),
             direction: self.direction.clone(),
             name: self.name.clone(),
@@ -57,6 +60,7 @@ impl brownfox::Moore<Input, Output> for Drone {
             ),
             self.x,
             self.y,
+            self.z,
         )];
         (vec![], views)
     }

@@ -8,6 +8,7 @@
                 "type": "maptip",
                 "x": 0,
                 "y": 0,
+                "z": 0,
                 "width": 16,
                 "height": 16,
                 "rectangles": [
@@ -41,6 +42,7 @@
                 "type": "maptip",
                 "x": 0,
                 "y": 0,
+                "z": 0,
                 "width": 16,
                 "height": 16,
                 "rectangles": [
@@ -80,6 +82,7 @@
                 "type": "maptip",
                 "x": 0,
                 "y": 0,
+                "z": 0,
                 "width": 32,
                 "height": 32,
                 "rectangles": [
@@ -125,7 +128,8 @@
             "object": {
                 "type": "teiri",
                 "x": 152,
-                "y": 112
+                "y": 112,
+                "z": 0
             }
         },
         {
@@ -136,6 +140,7 @@
                 "type": "npc",
                 "x": 144,
                 "y": 96,
+                "z": 0,
                 "name": "pixelart/verity"
             }
         },
@@ -147,6 +152,7 @@
                 "type": "npc",
                 "x": 175,
                 "y": 96,
+                "z": 0,
                 "name": "pixelart/emily"
             }
         },
@@ -158,6 +164,7 @@
                 "type": "drone",
                 "x": 192,
                 "y": 112,
+                "z": 0,
                 "name": "pixelart/mathprobe"
             }
         },
@@ -169,6 +176,7 @@
                 "type": "drone",
                 "x": 192,
                 "y": 128,
+                "z": 0,
                 "name": "pixelart/lonelygem"
             }
         },
@@ -180,6 +188,7 @@
                 "type": "drone",
                 "x": 176,
                 "y": 128,
+                "z": 0,
                 "name": "pixelart/security-drone"
             }
         }

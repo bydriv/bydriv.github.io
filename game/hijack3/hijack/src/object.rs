@@ -1,6 +1,6 @@
-pub mod npc;
 pub mod drone;
 pub mod maptip;
+pub mod npc;
 pub mod teiri;
 
 use super::*;

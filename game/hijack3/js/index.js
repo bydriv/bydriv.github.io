@@ -241,8 +241,18 @@ window.addEventListener("load", async function() {
 
         offscreen.context.fillRect(0, 0, offscreen.canvas.width, offscreen.canvas.height);
 
+        const zs = [];
+
         for (var i = 0; i < Game.views_length(views); ++i)
-            drawView(Game, offscreen.canvas, offscreen.context, assets, views, i);
+            zs.push({
+                i: i,
+                z: Game.view_image_z(i, views)
+            });
+
+        zs.sort((v, w) => v.z - w.z);
+
+        for (var i = 0; i < zs.length; ++i)
+            drawView(Game, offscreen.canvas, offscreen.context, assets, views, zs[i].i);
 
         onscreen.context.drawImage(
             offscreen.canvas,

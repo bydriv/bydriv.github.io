@@ -6,6 +6,7 @@ use brownfox::Shape;
 pub struct Maptip {
     x: i32,
     y: i32,
+    z: i32,
     width: i32,
     height: i32,
     rectangles: Vec<brownfox::Rectangle>,
@@ -27,6 +28,7 @@ pub struct Maptip {
 pub fn new(
     x: i32,
     y: i32,
+    z: i32,
     width: i32,
     height: i32,
     rectangles: Vec<brownfox::Rectangle>,
@@ -47,6 +49,7 @@ pub fn new(
     Maptip {
         x: x,
         y: y,
+        z: z,
         width: width,
         height: height,
         rectangles: rectangles,
@@ -142,6 +145,7 @@ impl brownfox::Moore<Input, Output> for Maptip {
                         name,
                         self.x + (rectangle.x + i) as i32 * self.width,
                         self.y + (rectangle.y + j) as i32 * self.height,
+                        self.z,
                     ))
                 }
             }

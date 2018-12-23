@@ -20,16 +20,18 @@ pub struct NPC {
     frame_count: brownfox::FrameCount,
     x: i32,
     y: i32,
+    z: i32,
     pose: Pose,
     direction: Direction,
     name: String,
 }
 
-pub fn new(x: i32, y: i32, name: String) -> NPC {
+pub fn new(x: i32, y: i32, z: i32, name: String) -> NPC {
     NPC {
         frame_count: brownfox::FrameCount::new(0),
         x: x,
         y: y,
+        z: z,
         pose: Pose::Walk,
         direction: Direction::Front,
         name: name,
@@ -42,6 +44,7 @@ impl brownfox::Moore<Input, Output> for NPC {
             frame_count: self.frame_count.transit(&()),
             x: self.x,
             y: self.y,
+            z: self.z,
             pose: self.pose.clone(),
             direction: self.direction.clone(),
             name: self.name.clone(),
@@ -58,6 +61,7 @@ impl brownfox::Moore<Input, Output> for NPC {
             ),
             self.x,
             self.y,
+            self.z,
         )];
         (vec![], views)
     }

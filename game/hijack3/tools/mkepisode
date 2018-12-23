@@ -25,6 +25,7 @@ episode["objects"].each do |object|
     printf "        object::Object::Maptip(object::maptip::new(\n"
     printf "          %d,\n", object["object"]["x"]
     printf "          %d,\n", object["object"]["y"]
+    printf "          %d,\n", object["object"]["z"]
     printf "          %d,\n", object["object"]["width"]
     printf "          %d,\n", object["object"]["height"]
     printf "          vec![\n"
@@ -47,11 +48,11 @@ episode["objects"].each do |object|
     printf "          \"%s\".to_string(),\n", object["object"]["bottom_right_inv"]
     printf "        )),\n"
   when "teiri"
-    printf "        object::Object::Teiri(object::teiri::new(%d, %d)),\n", object["object"]["x"], object["object"]["y"]
+    printf "        object::Object::Teiri(object::teiri::new(%d, %d, %d)),\n", object["object"]["x"], object["object"]["y"], object["object"]["z"]
   when "npc"
-    printf "        object::Object::NPC(object::npc::new(%d, %d, \"%s\".to_string())),\n", object["object"]["x"], object["object"]["y"], object["object"]["name"]
+    printf "        object::Object::NPC(object::npc::new(%d, %d, %d, \"%s\".to_string())),\n", object["object"]["x"], object["object"]["y"], object["object"]["z"], object["object"]["name"]
   when "drone"
-    printf "        object::Object::Drone(object::drone::new(%d, %d, \"%s\".to_string())),\n", object["object"]["x"], object["object"]["y"], object["object"]["name"]
+    printf "        object::Object::Drone(object::drone::new(%d, %d, %d, \"%s\".to_string())),\n", object["object"]["x"], object["object"]["y"], object["object"]["z"], object["object"]["name"]
   end
 
   printf "      ),\n"

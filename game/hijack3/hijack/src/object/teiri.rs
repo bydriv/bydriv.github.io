@@ -19,16 +19,18 @@ pub struct Teiri {
     frame_count: brownfox::FrameCount,
     x: i32,
     y: i32,
+    z: i32,
     pose: Pose,
     direction: Direction,
     check: bool,
 }
 
-pub fn new(x: i32, y: i32) -> Teiri {
+pub fn new(x: i32, y: i32, z: i32) -> Teiri {
     Teiri {
         frame_count: brownfox::FrameCount::new(0),
         x: x,
         y: y,
+        z: z,
         pose: Pose::Walk,
         direction: Direction::Front,
         check: false,
@@ -74,6 +76,7 @@ impl brownfox::Moore<Input, Output> for Teiri {
             frame_count: self.frame_count.transit(&()),
             x: self.x + xshift,
             y: self.y + yshift,
+            z: self.z,
             pose: self.pose.clone(),
             direction: direction,
             check: input.0.len() > 0 && input.0[0].buttons.len() > 0 && input.0[0].buttons[0],
@@ -104,6 +107,7 @@ impl brownfox::Moore<Input, Output> for Teiri {
             ),
             self.x,
             self.y,
+            self.z,
         )];
 
         (events, views)
