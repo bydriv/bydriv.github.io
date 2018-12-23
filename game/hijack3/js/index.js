@@ -126,7 +126,7 @@ window.addEventListener("load", async function() {
     const keyboardInput = {
         x: 0,
         y: 0,
-        buttons: [false, false, false, false, false, false, false, false]
+        buttons: [false, false, false, false, false, false, false, false, false, false]
     };
 
     window.addEventListener("keydown", e => {
@@ -230,17 +230,14 @@ window.addEventListener("load", async function() {
                 keyboardInput.buttons[5] = false;
                 keyboardInput.buttons[6] = false;
                 keyboardInput.buttons[7] = false;
+                keyboardInput.buttons[8] = false;
+                keyboardInput.buttons[9] = false;
                 return e.preventDefault();
             };
         }
     });
 
-    const ret = await initSystem(config);
-
-    const stats = ret.stats;
-    const offscreen = ret.offscreen;
-    const onscreen = ret.onscreen;
-    const assets = ret.assets;
+    const {stats, offscreen, onscreen, assets} = await initSystem(config);
 
     var game = Game.new_();
 
@@ -273,7 +270,7 @@ window.addEventListener("load", async function() {
                 buttons:
                 i === 0
                     ? keyboardInput.buttons.concat()
-                    : [false, false, false, false, false, false, false, false]
+                    : [false, false, false, false, false, false, false, false, false, false]
             };
 
             if (gamepad) {
@@ -295,11 +292,11 @@ window.addEventListener("load", async function() {
         });
 
         if (inputs.length === 0)
-            inputs[0] = {
+            inputs.push({
                 x: keyboardInput.x,
                 y: keyboardInput.y,
                 buttons: keyboardInput.buttons.concat()
-            };
+            });
 
         const next_game = Game.step(inputs, game);
         views.free();
