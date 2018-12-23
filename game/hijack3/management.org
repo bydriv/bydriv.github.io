@@ -1,4 +1,4 @@
-* pixelart
+* Pixelart
 
 | path                            | image                             |
 |---------------------------------+-----------------------------------|
@@ -16,3 +16,18 @@
 | pixelart/font/alpha.png         | [[./pixelart/font/alpha.png]]         |
 | pixelart/font/hiragana.png      | [[./pixelart/font/hiragana.png]]      |
 | pixelart/font/katakana.png      | [[./pixelart/font/katakana.png]]      |
+
+* Management
+
+*Progress* ::=
+
+- *Pending(Proposal)* (採用するかどうかを検討中、不要な機能かもしれない)
+- *Pending(Accept)* (機能として採用すること自体は決まっているが作業にはとりかかれていない)
+- *Blocking* (依存する作業が完了していないためとりかかることができない)
+
+| ID                | Progress          | Depends upon  | Description                | Notes                                                                                                                                                                                                                                                                                  |
+|-------------------+-------------------+---------------+----------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| basic-system      | Blocking          | general-drone | ハイジャックの基本システム |                                                                                                                                                                                                                                                                                        |
+| general-drone     | Pending(Accept)   |               | 汎用ドローンモジュール     | `mathprobe`, `lonelygem`, `security_drone` などモジュールを細かく分けていたら追加するたびにプログラムを書くことになり面倒。汎用モジュールを作成しパラメタで個性を表現する。 `hijack::object::drone::new(toughness, power, assets, ..)` のように呼びだせるようにする。                  |
+| general-npc       | Pending(Accept)   |               | 汎用NPCモジュール          | `emily`, `verity` などモジュールを用意するのは general-drone と同様面倒。                                                                                                                                                                                                              |
+| player-characters | Pending(Proposal) |               | PCモジュール               | NPC と PC では必要なルーチンがまったく違うので(セリフがあるかどうかなど)、 NPC と PC はべつのモジュールとして用意する。たとえば、テーリが NPC として登場する場合、 `hijack::object::teiri` モジュールではなく `hijack::object::npc` モジュールを使う。ドット絵は同じものを使ってよい。 |
