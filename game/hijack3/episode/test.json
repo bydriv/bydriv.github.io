@@ -133,9 +133,10 @@
                 "type": "immovable"
             },
             "object": {
-                "type": "verity",
+                "type": "npc",
                 "x": 144,
-                "y": 96
+                "y": 96,
+                "name": "pixelart/verity"
             }
         },
         {
@@ -143,9 +144,10 @@
                 "type": "immovable"
             },
             "object": {
-                "type": "emily",
+                "type": "npc",
                 "x": 175,
-                "y": 96
+                "y": 96,
+                "name": "pixelart/emily"
             }
         },
         {
@@ -153,9 +155,10 @@
                 "type": "immovable"
             },
             "object": {
-                "type": "mathprobe",
+                "type": "drone",
                 "x": 192,
-                "y": 112
+                "y": 112,
+                "name": "pixelart/mathprobe"
             }
         },
         {
@@ -163,9 +166,10 @@
                 "type": "immovable"
             },
             "object": {
-                "type": "lonelygem",
+                "type": "drone",
                 "x": 192,
-                "y": 128
+                "y": 128,
+                "name": "pixelart/lonelygem"
             }
         },
         {
@@ -173,9 +177,10 @@
                 "type": "immovable"
             },
             "object": {
-                "type": "security_drone",
+                "type": "drone",
                 "x": 176,
-                "y": 128
+                "y": 128,
+                "name": "pixelart/security-drone"
             }
         }
     ],

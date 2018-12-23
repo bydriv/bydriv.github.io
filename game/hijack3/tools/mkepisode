@@ -48,16 +48,10 @@ episode["objects"].each do |object|
     printf "        )),\n"
   when "teiri"
     printf "        object::Object::Teiri(object::teiri::new(%d, %d)),\n", object["object"]["x"], object["object"]["y"]
-  when "verity"
-    printf "        object::Object::Verity(object::verity::new(%d, %d)),\n", object["object"]["x"], object["object"]["y"]
-  when "emily"
-    printf "        object::Object::Emily(object::emily::new(%d, %d)),\n", object["object"]["x"], object["object"]["y"]
-  when "mathprobe"
-    printf "        object::Object::Mathprobe(object::mathprobe::new(%d, %d)),\n", object["object"]["x"], object["object"]["y"]
-  when "lonelygem"
-    printf "        object::Object::Lonelygem(object::lonelygem::new(%d, %d)),\n", object["object"]["x"], object["object"]["y"]
-  when "security_drone"
-    printf "        object::Object::SecurityDrone(object::security_drone::new(%d, %d)),\n", object["object"]["x"], object["object"]["y"]
+  when "npc"
+    printf "        object::Object::NPC(object::npc::new(%d, %d, \"%s\".to_string())),\n", object["object"]["x"], object["object"]["y"], object["object"]["name"]
+  when "drone"
+    printf "        object::Object::Drone(object::drone::new(%d, %d, \"%s\".to_string())),\n", object["object"]["x"], object["object"]["y"], object["object"]["name"]
   end
 
   printf "      ),\n"

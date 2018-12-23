@@ -3,8 +3,7 @@ use brownfox::Shape;
 
 #[derive(Clone)]
 enum Pose {
-    Walk,
-    Hijack,
+    Fly,
 }
 
 #[derive(Clone)]
@@ -16,28 +15,28 @@ enum Direction {
 }
 
 #[derive(Clone)]
-pub struct Emily {
+pub struct Drone {
     frame_count: brownfox::FrameCount,
     x: i32,
     y: i32,
     pose: Pose,
     direction: Direction,
-    checked: bool,
+    name: String,
 }
 
-pub fn new(x: i32, y: i32) -> Emily {
-    Emily {
+pub fn new(x: i32, y: i32, name: String) -> Drone {
+    Drone {
         frame_count: brownfox::FrameCount::new(0),
         x: x,
         y: y,
-        pose: Pose::Walk,
+        pose: Pose::Fly,
         direction: Direction::Front,
-        checked: false,
+        name: name,
     }
 }
 
-impl brownfox::Moore<Input, Output> for Emily {
-    fn transit(&self, input: &Input) -> Emily {
+impl brownfox::Moore<Input, Output> for Drone {
+    fn transit(&self, input: &Input) -> Drone {
         let xshift = if input.0.len() > 0 {
             if input.0[0].x < -0.25 {
                 -1
@@ -71,51 +70,27 @@ impl brownfox::Moore<Input, Output> for Emily {
         } else {
             self.direction.clone()
         };
-        let mut checked = false;
-        for event in &input.1.events {
-            match event {
-                &Event::Check(x, y, width, height) => {
-                    let rect1 =
-                        brownfox::Rectangle::new(x as i64, y as i64, width as i64, height as i64);
-                    let rect2 = brownfox::Rectangle::new(self.x as i64, self.y as i64, 16, 16);
-                    checked = checked || rect1.collision(rect2);
-                }
-                _ => (),
-            }
-        }
-        Emily {
+        Drone {
             frame_count: self.frame_count.transit(&()),
             x: self.x + xshift,
             y: self.y + yshift,
             pose: self.pose.clone(),
             direction: direction,
-            checked: checked,
+            name: self.name.clone(),
         }
     }
 
     fn output(&self) -> Output {
-        let mut views = vec![View::Image(
+        let views = vec![View::Image(
             format!(
-                "pixelart/emily/walk/{}/{}.png",
+                "{}/fly/{}/{}.png",
+                self.name,
                 string_of_direction(&self.direction),
-                self.frame_count.i / 8 % 4
+                self.frame_count.i % 4
             ),
             self.x,
             self.y,
         )];
-        if self.checked {
-            views.append(&mut system::window(self.x - 36, self.y - 32, 11, 4, 5, 3));
-            views.append(&mut text::text(
-                self.x - 28,
-                self.y - 24,
-                "わたしには、ゆめが".to_string(),
-            ));
-            views.append(&mut text::text(
-                self.x - 28,
-                self.y - 16,
-                "あるの。".to_string(),
-            ));
-        }
         (vec![], views)
     }
 }

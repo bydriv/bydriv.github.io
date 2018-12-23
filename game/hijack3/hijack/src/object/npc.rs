@@ -3,7 +3,8 @@ use brownfox::Shape;
 
 #[derive(Clone)]
 enum Pose {
-    Fly,
+    Walk,
+    Hijack,
 }
 
 #[derive(Clone)]
@@ -15,26 +16,28 @@ enum Direction {
 }
 
 #[derive(Clone)]
-pub struct SecurityDrone {
+pub struct NPC {
     frame_count: brownfox::FrameCount,
     x: i32,
     y: i32,
     pose: Pose,
     direction: Direction,
+    name: String,
 }
 
-pub fn new(x: i32, y: i32) -> SecurityDrone {
-    SecurityDrone {
+pub fn new(x: i32, y: i32, name: String) -> NPC {
+    NPC {
         frame_count: brownfox::FrameCount::new(0),
         x: x,
         y: y,
-        pose: Pose::Fly,
+        pose: Pose::Walk,
         direction: Direction::Front,
+        name: name,
     }
 }
 
-impl brownfox::Moore<Input, Output> for SecurityDrone {
-    fn transit(&self, input: &Input) -> SecurityDrone {
+impl brownfox::Moore<Input, Output> for NPC {
+    fn transit(&self, input: &Input) -> NPC {
         let xshift = if input.0.len() > 0 {
             if input.0[0].x < -0.25 {
                 -1
@@ -68,21 +71,23 @@ impl brownfox::Moore<Input, Output> for SecurityDrone {
         } else {
             self.direction.clone()
         };
-        SecurityDrone {
+        NPC {
             frame_count: self.frame_count.transit(&()),
             x: self.x + xshift,
             y: self.y + yshift,
             pose: self.pose.clone(),
             direction: direction,
+            name: self.name.clone(),
         }
     }
 
     fn output(&self) -> Output {
-        let views = vec![View::Image(
+        let mut views = vec![View::Image(
             format!(
-                "pixelart/security-drone/fly/{}/{}.png",
+                "{}/walk/{}/{}.png",
+                self.name,
                 string_of_direction(&self.direction),
-                self.frame_count.i % 4
+                self.frame_count.i / 8 % 4
             ),
             self.x,
             self.y,
