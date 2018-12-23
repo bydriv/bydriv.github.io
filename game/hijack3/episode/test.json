@@ -1,0 +1,183 @@
+{
+    "objects": [
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": 0,
+                "y": 0,
+                "width": 16,
+                "height": 16,
+                "rectangles": [
+                    {
+                        "x": 0,
+                        "y": 0,
+                        "width": 20,
+                        "height": 15
+                    }
+                ],
+                "center": "pixelart/maptip/ground/center.png",
+                "left": "pixelart/maptip/ground/left.png",
+                "top": "pixelart/maptip/ground/top.png",
+                "right": "pixelart/maptip/ground/right.png",
+                "bottom": "pixelart/maptip/ground/bottom.png",
+                "top_left": "pixelart/maptip/ground/top-left.png",
+                "top_right": "pixelart/maptip/ground/top-right.png",
+                "bottom_left": "pixelart/maptip/ground/bottom-left.png",
+                "bottom_right": "pixelart/maptip/ground/bottom-right.png",
+                "top_left_inv": "pixelart/maptip/ground/top-left_inv.png",
+                "top_right_inv": "pixelart/maptip/ground/top-right_inv.png",
+                "bottom_left_inv": "pixelart/maptip/ground/bottom-left_inv.png",
+                "bottom_right_inv": "pixelart/maptip/ground/bottom-right_inv.png"
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": 0,
+                "y": 0,
+                "width": 16,
+                "height": 16,
+                "rectangles": [
+                    {
+                        "x": 0,
+                        "y": 7,
+                        "width": 20,
+                        "height": 4
+                    },
+                    {
+                        "x": 8,
+                        "y": 0,
+                        "width": 4,
+                        "height": 10
+                    }
+                ],
+                "center": "pixelart/maptip/asphalt/center.png",
+                "left": "pixelart/maptip/asphalt/left.png",
+                "top": "pixelart/maptip/asphalt/top.png",
+                "right": "pixelart/maptip/asphalt/right.png",
+                "bottom": "pixelart/maptip/asphalt/bottom.png",
+                "top_left": "pixelart/maptip/asphalt/top-left.png",
+                "top_right": "pixelart/maptip/asphalt/top-right.png",
+                "bottom_left": "pixelart/maptip/asphalt/bottom-left.png",
+                "bottom_right": "pixelart/maptip/asphalt/bottom-right.png",
+                "top_left_inv": "pixelart/maptip/asphalt/top-left_inv.png",
+                "top_right_inv": "pixelart/maptip/asphalt/top-right_inv.png",
+                "bottom_left_inv": "pixelart/maptip/asphalt/bottom-left_inv.png",
+                "bottom_right_inv": "pixelart/maptip/asphalt/bottom-right_inv.png"
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": 0,
+                "y": 0,
+                "width": 32,
+                "height": 32,
+                "rectangles": [
+                    {
+                        "x": 0,
+                        "y": 0,
+                        "width": 4,
+                        "height": 4
+                    },
+                    {
+                        "x": 6,
+                        "y": 0,
+                        "width": 4,
+                        "height": 4
+                    },
+                    {
+                        "x": 0,
+                        "y": 5,
+                        "width": 10,
+                        "height": 3
+                    }
+                ],
+                "center": "pixelart/maptip/tree/center.png",
+                "left": "pixelart/maptip/tree/left.png",
+                "top": "pixelart/maptip/tree/top.png",
+                "right": "pixelart/maptip/tree/right.png",
+                "bottom": "pixelart/maptip/tree/bottom.png",
+                "top_left": "pixelart/maptip/tree/top-left.png",
+                "top_right": "pixelart/maptip/tree/top-right.png",
+                "bottom_left": "pixelart/maptip/tree/bottom-left.png",
+                "bottom_right": "pixelart/maptip/tree/bottom-right.png",
+                "top_left_inv": "pixelart/maptip/tree/top-left.png",
+                "top_right_inv": "pixelart/maptip/tree/top-right.png",
+                "bottom_left_inv": "pixelart/maptip/tree/bottom-left.png",
+                "bottom_right_inv": "pixelart/maptip/tree/bottom-right.png"
+            }
+        },
+        {
+            "control": {
+                "type": "player",
+                "i": 0
+            },
+            "object": {
+                "type": "teiri",
+                "x": 152,
+                "y": 112
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "verity",
+                "x": 144,
+                "y": 96
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "emily",
+                "x": 175,
+                "y": 96
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "mathprobe",
+                "x": 192,
+                "y": 112
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "lonelygem",
+                "x": 192,
+                "y": 128
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "security_drone",
+                "x": 176,
+                "y": 128
+            }
+        }
+    ],
+    "events": []
+}

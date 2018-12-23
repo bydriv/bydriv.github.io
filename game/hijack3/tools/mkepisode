@@ -1,0 +1,69 @@
+#!/usr/bin/ruby
+
+require "json"
+
+episode = JSON.parse ARGF.read
+
+printf "use super::*;\n"
+printf "\n"
+printf "pub fn new() -> Hijack {\n"
+printf "  Hijack {\n"
+printf "    objects: vec![\n"
+
+episode["objects"].each do |object|
+  printf "      (\n"
+
+  case object["control"]["type"]
+  when "player"
+    printf "        brownfox::Control::Player(brownfox::Player::new(%d)),\n", object["control"]["i"]
+  when "immovable"
+    printf "        brownfox::Control::Immovable(brownfox::Immovable::new()),\n"
+  end
+
+  case object["object"]["type"]
+  when "maptip"
+    printf "        object::Object::Maptip(object::maptip::new(\n"
+    printf "          %d,\n", object["object"]["x"]
+    printf "          %d,\n", object["object"]["y"]
+    printf "          %d,\n", object["object"]["width"]
+    printf "          %d,\n", object["object"]["height"]
+    printf "          vec![\n"
+    object["object"]["rectangles"].each do |rectangle|
+      printf "            brownfox::Rectangle::new(%d, %d, %d, %d),\n", rectangle["x"], rectangle["y"], rectangle["width"], rectangle["height"]
+    end
+    printf "          ],\n"
+    printf "          \"%s\".to_string(),\n", object["object"]["center"]
+    printf "          \"%s\".to_string(),\n", object["object"]["left"]
+    printf "          \"%s\".to_string(),\n", object["object"]["top"]
+    printf "          \"%s\".to_string(),\n", object["object"]["right"]
+    printf "          \"%s\".to_string(),\n", object["object"]["bottom"]
+    printf "          \"%s\".to_string(),\n", object["object"]["top_left"]
+    printf "          \"%s\".to_string(),\n", object["object"]["top_right"]
+    printf "          \"%s\".to_string(),\n", object["object"]["bottom_left"]
+    printf "          \"%s\".to_string(),\n", object["object"]["bottom_right"]
+    printf "          \"%s\".to_string(),\n", object["object"]["top_left_inv"]
+    printf "          \"%s\".to_string(),\n", object["object"]["top_right_inv"]
+    printf "          \"%s\".to_string(),\n", object["object"]["bottom_left_inv"]
+    printf "          \"%s\".to_string(),\n", object["object"]["bottom_right_inv"]
+    printf "        )),\n"
+  when "teiri"
+    printf "        object::Object::Teiri(object::teiri::new(%d, %d)),\n", object["object"]["x"], object["object"]["y"]
+  when "verity"
+    printf "        object::Object::Verity(object::verity::new(%d, %d)),\n", object["object"]["x"], object["object"]["y"]
+  when "emily"
+    printf "        object::Object::Emily(object::emily::new(%d, %d)),\n", object["object"]["x"], object["object"]["y"]
+  when "mathprobe"
+    printf "        object::Object::Mathprobe(object::mathprobe::new(%d, %d)),\n", object["object"]["x"], object["object"]["y"]
+  when "lonelygem"
+    printf "        object::Object::Lonelygem(object::lonelygem::new(%d, %d)),\n", object["object"]["x"], object["object"]["y"]
+  when "security_drone"
+    printf "        object::Object::SecurityDrone(object::security_drone::new(%d, %d)),\n", object["object"]["x"], object["object"]["y"]
+  end
+
+  printf "      ),\n"
+end
+
+printf "    ],\n"
+printf "    events: vec![],\n"
+printf "  }\n"
+printf "}\n"
