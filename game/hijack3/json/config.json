@@ -343,6 +343,9 @@
       ["pixelart/maptip/tree/bottom-left.png", [0, 64, 32, 32]],
       ["pixelart/maptip/tree/bottom.png", [32, 64, 32, 32]],
       ["pixelart/maptip/tree/bottom-right.png", [64, 64, 32, 32]]
+    ]],
+    ["pixelart/effect/dark.png", [
+      ["pixelart/effect/dark.png", [0, 0, 320, 240]]
     ]]
   ]
 }

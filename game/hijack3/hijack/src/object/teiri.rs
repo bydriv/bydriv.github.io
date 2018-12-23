@@ -109,17 +109,39 @@ impl brownfox::Moore<Input, Output> for Teiri {
             events.push(Event::Check(x, y, 16, 16));
         }
 
-        let views = vec![View::Image(
-            format!(
-                "pixelart/teiri/{}/{}/{}.png",
-                string_of_pose(&self.pose),
-                string_of_direction(&self.direction),
-                self.frame_count.i / 8 % 4
-            ),
-            self.x(),
-            self.y(),
-            self.z,
-        )];
+        let views = if let Pose::Hijack = self.pose {
+            vec![
+                View::Image(
+                    format!(
+                        "pixelart/teiri/{}/{}/{}.png",
+                        string_of_pose(&self.pose),
+                        string_of_direction(&self.direction),
+                        self.frame_count.i / 8 % 4
+                    ),
+                    self.x(),
+                    self.y(),
+                    1100,
+                ),
+                View::Image(
+                    "pixelart/effect/dark.png".to_string(),
+                    self.x() - 160 + 16,
+                    self.y() - 120 + 16,
+                    1000,
+                ),
+            ]
+        } else {
+            vec![View::Image(
+                format!(
+                    "pixelart/teiri/{}/{}/{}.png",
+                    string_of_pose(&self.pose),
+                    string_of_direction(&self.direction),
+                    self.frame_count.i / 8 % 4
+                ),
+                self.x(),
+                self.y(),
+                self.z,
+            )]
+        };
 
         (events, views)
     }
