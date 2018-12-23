@@ -50,6 +50,7 @@ impl brownfox::Moore<Input, Output> for Teiri {
         } else {
             0
         };
+
         let yshift = if input.0.len() > 0 {
             if input.0[0].y < -0.25 {
                 -1
@@ -61,6 +62,13 @@ impl brownfox::Moore<Input, Output> for Teiri {
         } else {
             0
         };
+
+        let pose = if input.0.len() > 0 && input.0[0].buttons.len() > 4 && input.0[0].buttons[4] {
+            Pose::Hijack
+        } else {
+            Pose::Walk
+        };
+
         let direction = if yshift < 0 {
             Direction::Back
         } else if yshift > 0 {
@@ -72,16 +80,18 @@ impl brownfox::Moore<Input, Output> for Teiri {
         } else {
             self.direction.clone()
         };
+
         Teiri {
             frame_count: self.frame_count.transit(&()),
             x: self.x + xshift,
             y: self.y + yshift,
             z: self.z,
-            pose: self.pose.clone(),
+            pose: pose,
             direction: direction,
             check: input.0.len() > 0 && input.0[0].buttons.len() > 0 && input.0[0].buttons[0],
         }
     }
+
     fn output(&self) -> Output {
         let mut events = vec![Event::Focus(self.x, self.y, 16, 16)];
 
@@ -101,16 +111,40 @@ impl brownfox::Moore<Input, Output> for Teiri {
 
         let views = vec![View::Image(
             format!(
-                "pixelart/teiri/walk/{}/{}.png",
+                "pixelart/teiri/{}/{}/{}.png",
+                string_of_pose(&self.pose),
                 string_of_direction(&self.direction),
                 self.frame_count.i / 8 % 4
             ),
-            self.x,
-            self.y,
+            self.x(),
+            self.y(),
             self.z,
         )];
 
         (events, views)
+    }
+}
+
+impl Teiri {
+    fn x(&self) -> i32 {
+        match self.pose {
+            Pose::Walk => self.x,
+            Pose::Hijack => self.x - 8,
+        }
+    }
+
+    fn y(&self) -> i32 {
+        match self.pose {
+            Pose::Walk => self.y,
+            Pose::Hijack => self.y - 8,
+        }
+    }
+}
+
+fn string_of_pose(pose: &Pose) -> String {
+    match pose {
+        Pose::Walk => "walk".to_string(),
+        Pose::Hijack => "hijack".to_string(),
     }
 }
 
