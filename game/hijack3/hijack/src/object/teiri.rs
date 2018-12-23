@@ -15,6 +15,12 @@ enum Direction {
 }
 
 #[derive(Clone)]
+struct Cursor {
+    x: i32,
+    y: i32,
+}
+
+#[derive(Clone)]
 pub struct Teiri {
     frame_count: brownfox::FrameCount,
     x: i32,
@@ -23,6 +29,7 @@ pub struct Teiri {
     pose: Pose,
     direction: Direction,
     check: bool,
+    cursor: Option<Cursor>,
 }
 
 pub fn new(x: i32, y: i32, z: i32) -> Teiri {
@@ -34,6 +41,7 @@ pub fn new(x: i32, y: i32, z: i32) -> Teiri {
         pose: Pose::Walk,
         direction: Direction::Front,
         check: false,
+        cursor: None,
     }
 }
 
@@ -69,26 +77,85 @@ impl brownfox::Moore<Input, Output> for Teiri {
             Pose::Walk
         };
 
-        let direction = if yshift < 0 {
-            Direction::Back
-        } else if yshift > 0 {
-            Direction::Front
-        } else if xshift < 0 {
-            Direction::Left
-        } else if xshift > 0 {
-            Direction::Right
-        } else {
-            self.direction.clone()
-        };
+        match pose {
+            Pose::Hijack => {
+                let cursor = if let Some(cursor) = self.cursor.clone() {
+                    Cursor {
+                        x: cursor.x + xshift * 8,
+                        y: cursor.y + yshift * 8,
+                    }
+                } else {
+                    match self.direction {
+                        Direction::Left => Cursor {
+                            x: self.x + xshift * 8 - 16,
+                            y: self.y + yshift * 8,
+                        },
+                        Direction::Back => Cursor {
+                            x: self.x + xshift * 8,
+                            y: self.y + yshift * 8 - 16,
+                        },
+                        Direction::Right => Cursor {
+                            x: self.x + xshift * 8 + 16,
+                            y: self.y + yshift * 8,
+                        },
+                        Direction::Front => Cursor {
+                            x: self.x + xshift * 8,
+                            y: self.y + yshift * 8 + 16,
+                        },
+                    }
+                };
 
-        Teiri {
-            frame_count: self.frame_count.transit(&()),
-            x: self.x + xshift,
-            y: self.y + yshift,
-            z: self.z,
-            pose: pose,
-            direction: direction,
-            check: input.0.len() > 0 && input.0[0].buttons.len() > 0 && input.0[0].buttons[0],
+                let direction = if cursor.x - self.x < 0 {
+                    Direction::Left
+                } else if cursor.x - self.x > 0 {
+                    Direction::Right
+                } else if cursor.y - self.y < 0 {
+                    Direction::Back
+                } else if cursor.y - self.y > 0 {
+                    Direction::Front
+                } else {
+                    self.direction.clone()
+                };
+
+                Teiri {
+                    frame_count: self.frame_count.transit(&()),
+                    x: self.x,
+                    y: self.y,
+                    z: self.z,
+                    pose: pose,
+                    direction: direction,
+                    check: input.0.len() > 0
+                        && input.0[0].buttons.len() > 0
+                        && input.0[0].buttons[0],
+                    cursor: Some(cursor),
+                }
+            }
+            Pose::Walk => {
+                let direction = if yshift < 0 {
+                    Direction::Back
+                } else if yshift > 0 {
+                    Direction::Front
+                } else if xshift < 0 {
+                    Direction::Left
+                } else if xshift > 0 {
+                    Direction::Right
+                } else {
+                    self.direction.clone()
+                };
+
+                Teiri {
+                    frame_count: self.frame_count.transit(&()),
+                    x: self.x + xshift,
+                    y: self.y + yshift,
+                    z: self.z,
+                    pose: pose,
+                    direction: direction,
+                    check: input.0.len() > 0
+                        && input.0[0].buttons.len() > 0
+                        && input.0[0].buttons[0],
+                    cursor: None,
+                }
+            }
         }
     }
 
@@ -109,7 +176,7 @@ impl brownfox::Moore<Input, Output> for Teiri {
             events.push(Event::Check(x, y, 16, 16));
         }
 
-        let views = if let Pose::Hijack = self.pose {
+        let mut views = if let Pose::Hijack = self.pose {
             vec![
                 View::Image(
                     format!(
@@ -142,6 +209,15 @@ impl brownfox::Moore<Input, Output> for Teiri {
                 self.z,
             )]
         };
+
+        if let Some(cursor) = self.cursor.clone() {
+            views.push(View::Image(
+                "pixelart/effect/cursor.png".to_string(),
+                cursor.x,
+                cursor.y,
+                1200,
+            ));
+        }
 
         (events, views)
     }
