@@ -10,8 +10,21 @@ div#game, div#game canvas {
     padding: 0;
 }
 
-div#man {
+div#ctrl {
+    position: relative;
+    top: -480px;
     width: 640px;
+    height: 480px;
     margin: 0 auto;
     padding: 0;
+    user-select: none;
+    -moz-user-select: none;
+}
+
+div#ctrl img {
+    width: 640px;
+    height: 480px;
+    opacity: 0.5;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
 }

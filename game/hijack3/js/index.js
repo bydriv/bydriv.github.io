@@ -232,6 +232,56 @@ window.addEventListener("load", async function() {
         }
     });
 
+    const ctrl = document.getElementById("ctrl");
+
+    window.addEventListener("touchstart", e => {
+        for (var i = 0; i < e.touches.length; ++i) {
+            const touch = e.touches[i];
+            const rect = ctrl.getBoundingClientRect();
+            const x = (touch.clientX - rect.left) / config.scale;
+            const y = (touch.clientY - rect.top) / config.scale;
+
+            if (16 <= x && x < 48 && 160 <= y && y < 192) {
+                keyboardInput.x = -1;
+            } else if (80 <= x && x < 112 && 160 <= y && y < 192) {
+                keyboardInput.x = 1;
+            } else if (48 <= x && x < 80 && 128 <= y && y < 160) {
+                keyboardInput.y = -1;
+            } else if (48 <= x && x < 80 && 192 <= y && y < 224) {
+                keyboardInput.y = 1;
+            } else if (208 <= x && x < 240 && 160 <= y && y < 192) {
+                keyboardInput.buttons[3] = true;
+            } else if (272 <= x && x < 304 && 160 <= y && y < 192) {
+                keyboardInput.buttons[0] = true;
+            } else if (240 <= x && x < 272 && 128 <= y && y < 160) {
+                keyboardInput.buttons[2] = true;
+            } else if (240 <= x && x < 272 && 192 <= y && y < 224) {
+                keyboardInput.buttons[1] = true;
+            }
+        }
+    });
+
+    window.addEventListener("touchend", e => {
+        keyboardInput.x = 0;
+        keyboardInput.y = 0;
+        keyboardInput.buttons[0] = false;
+        keyboardInput.buttons[1] = false;
+        keyboardInput.buttons[2] = false;
+        keyboardInput.buttons[3] = false;
+        keyboardInput.buttons[4] = false;
+        keyboardInput.buttons[5] = false;
+        keyboardInput.buttons[6] = false;
+        keyboardInput.buttons[7] = false;
+        keyboardInput.buttons[8] = false;
+        keyboardInput.buttons[9] = false;
+    });
+
+    window.addEventListener("touchcancel", e => {
+    });
+
+    window.addEventListener("touchmove", e => {
+    });
+
     const {offscreen, onscreen, assets} = await initSystem(config);
 
     var game = Game.new_();
