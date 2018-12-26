@@ -18,6 +18,8 @@
 | pixelart/font/alpha.png          | [[./pixelart/font/alpha.png]]          |
 | pixelart/font/hiragana.png       | [[./pixelart/font/hiragana.png]]       |
 | pixelart/font/katakana.png       | [[./pixelart/font/katakana.png]]       |
+| pixelart/effect/cursor.png       | [[./pixelart/effect/cursor.png]]       |
+| pixelart/effect/dark.png         | [[./pixelart/effect/dark.png]]         |
 
 * Management
 
