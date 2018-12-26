@@ -20,6 +20,7 @@
 | pixelart/font/katakana.png       | [[./pixelart/font/katakana.png]]       |
 | pixelart/effect/cursor.png       | [[./pixelart/effect/cursor.png]]       |
 | pixelart/effect/dark.png         | [[./pixelart/effect/dark.png]]         |
+| js/ctrl.png                      | [[./js/ctrl.png]]                      |
 
 * Management
 
@@ -30,7 +31,7 @@
 - *Blocking* (依存する作業が完了していないためとりかかることができない)
 - *OK* (完了)
 
-| ID                      | Progress          | Depends upon  | Description                | Notes                                                                                                                                                                                                                                                                                  |
+ | ID                      | Progress          | Depends upon  | Description                | Notes                                                                                                                                                                                                                                                                                  |
 |-------------------------+-------------------+---------------+----------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | basic-system            | Pending(Accept)   | general-drone | ハイジャックの基本システム |                                                                                                                                                                                                                                                                                        |
 | general-drone           | OK                |               | 汎用ドローンモジュール     | ~mathprobe~, ~lonelygem~, ~security_drone~ などモジュールを細かく分けていたら追加するたびにプログラムを書くことになり面倒。汎用モジュールを作成しパラメタで個性を表現する。 ~hijack::object::drone::new(toughness, power, assets, ..)~ のように呼びだせるようにする。                  |
