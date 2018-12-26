@@ -1,21 +1,23 @@
 * Pixelart
 
-| path                            | image                             |
-|---------------------------------+-----------------------------------|
-| pixelart/teiri/walk.png         | [[./pixelart/teiri/walk.png]]         |
-| pixelart/teiri/hijack.png       | [[./pixelart/teiri/hijack.png]]       |
-| pixelart/verity/walk.png        | [[./pixelart/verity/walk.png]]        |
-| pixelart/emily/walk.png         | [[./pixelart/emily/walk.png]]         |
-| pixelart/mathprobe/fly.png      | [[./pixelart/mathprobe/fly.png]]      |
-| pixelart/lonelygem/fly.png      | [[./pixelart/lonelygem/fly.png]]      |
-| pixelart/security-drone/fly.png | [[./pixelart/security-drone/fly.png]] |
-| pixelart/maptip/archimedes.png  | [[./pixelart/maptip/archimedes.png]]  |
-| pixelart/maptip/tree.png        | [[./pixelart/maptip/tree.png]]        |
-| pixelart/maptip/ground.png      | [[./pixelart/maptip/ground.png]]      |
-| pixelart/maptip/asphalt.png     | [[./pixelart/maptip/asphalt.png]]     |
-| pixelart/font/alpha.png         | [[./pixelart/font/alpha.png]]         |
-| pixelart/font/hiragana.png      | [[./pixelart/font/hiragana.png]]      |
-| pixelart/font/katakana.png      | [[./pixelart/font/katakana.png]]      |
+| path                             | image                              |
+|----------------------------------+------------------------------------|
+| pixelart/teiri/walk.png          | [[./pixelart/teiri/walk.png]]          |
+| pixelart/teiri/hijack.png        | [[./pixelart/teiri/hijack.png]]        |
+| pixelart/verity/walk.png         | [[./pixelart/verity/walk.png]]         |
+| pixelart/emily/walk.png          | [[./pixelart/emily/walk.png]]          |
+| pixelart/mathprobe/fly.png       | [[./pixelart/mathprobe/fly.png]]       |
+| pixelart/lonelygem/fly.png       | [[./pixelart/lonelygem/fly.png]]       |
+| pixelart/security-drone/fly.png  | [[./pixelart/security-drone/fly.png]]  |
+| pixelart/maptip/archimedes.png   | [[./pixelart/maptip/archimedes.png]]   |
+| pixelart/maptip/tree.png         | [[./pixelart/maptip/tree.png]]         |
+| pixelart/maptip/ground.png       | [[./pixelart/maptip/ground.png]]       |
+| pixelart/maptip/asphalt.png      | [[./pixelart/maptip/asphalt.png]]      |
+| pixelart/maptip/building.png     | [[./pixelart/maptip/building.png]]     |
+| pixelart/maptip/street-light.png | [[./pixelart/maptip/street-light.png]] |
+| pixelart/font/alpha.png          | [[./pixelart/font/alpha.png]]          |
+| pixelart/font/hiragana.png       | [[./pixelart/font/hiragana.png]]       |
+| pixelart/font/katakana.png       | [[./pixelart/font/katakana.png]]       |
 
 * Management
 
