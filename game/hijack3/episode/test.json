@@ -83,25 +83,185 @@
                 "x": 0,
                 "y": 0,
                 "z": 0,
+                "width": 16,
+                "height": 16,
+                "rectangles": [
+                    {
+                        "x": 2,
+                        "y": -8,
+                        "width": 5,
+                        "height": 5
+                    },
+                    {
+                        "x": 13,
+                        "y": -8,
+                        "width": 5,
+                        "height": 5
+                    }
+                ],
+                "center": "pixelart/maptip/building/top/center.png",
+                "left": "pixelart/maptip/building/top/left.png",
+                "top": "pixelart/maptip/building/top/top.png",
+                "right": "pixelart/maptip/building/top/right.png",
+                "bottom": "pixelart/maptip/building/middle/center.png",
+                "top_left": "pixelart/maptip/building/top/top-left.png",
+                "top_right": "pixelart/maptip/building/top/top-right.png",
+                "bottom_left": "pixelart/maptip/building/middle/left.png",
+                "bottom_right": "pixelart/maptip/building/middle/right.png",
+                "top_left_inv": "pixelart/maptip/building/top/top-left.png",
+                "top_right_inv": "pixelart/maptip/building/top/top-right.png",
+                "bottom_left_inv": "pixelart/maptip/building/middle/left.png",
+                "bottom_right_inv": "pixelart/maptip/building/middle/right.png"
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "width": 16,
+                "height": 16,
+                "rectangles": [
+                    {
+                        "x": 2,
+                        "y": -4,
+                        "width": 5,
+                        "height": 10
+                    },
+                    {
+                        "x": 13,
+                        "y": -4,
+                        "width": 5,
+                        "height": 10
+                    }
+                ],
+                "center": "pixelart/maptip/building/bottom/center.png",
+                "left": "pixelart/maptip/building/bottom/left.png",
+                "top": "pixelart/maptip/building/middle/center.png",
+                "right": "pixelart/maptip/building/bottom/right.png",
+                "bottom": "pixelart/maptip/building/bottom/bottom.png",
+                "top_left": "pixelart/maptip/building/middle/left.png",
+                "top_right": "pixelart/maptip/building/middle/right.png",
+                "bottom_left": "pixelart/maptip/building/bottom/bottom-left.png",
+                "bottom_right": "pixelart/maptip/building/bottom/bottom-right.png",
+                "top_left_inv": "pixelart/maptip/building/middle/left.png",
+                "top_right_inv": "pixelart/maptip/building/middle/right.png",
+                "bottom_left_inv": "pixelart/maptip/building/bottom/bottom-left.png",
+                "bottom_right_inv": "pixelart/maptip/building/bottom/bottom-right.png"
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": -8,
+                "y": 0,
+                "z": 0,
                 "width": 32,
                 "height": 32,
                 "rectangles": [
                     {
                         "x": 0,
                         "y": 0,
-                        "width": 4,
-                        "height": 4
-                    },
-                    {
-                        "x": 6,
-                        "y": 0,
-                        "width": 4,
+                        "width": 2,
                         "height": 4
                     },
                     {
                         "x": 0,
+                        "y": 2,
+                        "width": 5,
+                        "height": 2
+                    },
+                    {
+                        "x": 3,
+                        "y": 0,
+                        "width": 2,
+                        "height": 4
+                    }
+                ],
+                "center": "pixelart/maptip/tree/center.png",
+                "left": "pixelart/maptip/tree/left.png",
+                "top": "pixelart/maptip/tree/top.png",
+                "right": "pixelart/maptip/tree/right.png",
+                "bottom": "pixelart/maptip/tree/bottom.png",
+                "top_left": "pixelart/maptip/tree/top-left.png",
+                "top_right": "pixelart/maptip/tree/top-right.png",
+                "bottom_left": "pixelart/maptip/tree/bottom-left.png",
+                "bottom_right": "pixelart/maptip/tree/bottom-right.png",
+                "top_left_inv": "pixelart/maptip/tree/top-left_inv.png",
+                "top_right_inv": "pixelart/maptip/tree/top-right_inv.png",
+                "bottom_left_inv": "pixelart/maptip/tree/bottom-left_inv.png",
+                "bottom_right_inv": "pixelart/maptip/tree/bottom-right_inv.png"
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": 8,
+                "y": 0,
+                "z": 0,
+                "width": 32,
+                "height": 32,
+                "rectangles": [
+                    {
+                        "x": 5,
+                        "y": 0,
+                        "width": 2,
+                        "height": 4
+                    },
+                    {
+                        "x": 5,
+                        "y": 2,
+                        "width": 5,
+                        "height": 2
+                    },
+                    {
+                        "x": 8,
+                        "y": 0,
+                        "width": 2,
+                        "height": 4
+                    }
+                ],
+                "center": "pixelart/maptip/tree/center.png",
+                "left": "pixelart/maptip/tree/left.png",
+                "top": "pixelart/maptip/tree/top.png",
+                "right": "pixelart/maptip/tree/right.png",
+                "bottom": "pixelart/maptip/tree/bottom.png",
+                "top_left": "pixelart/maptip/tree/top-left.png",
+                "top_right": "pixelart/maptip/tree/top-right.png",
+                "bottom_left": "pixelart/maptip/tree/bottom-left.png",
+                "bottom_right": "pixelart/maptip/tree/bottom-right.png",
+                "top_left_inv": "pixelart/maptip/tree/top-left_inv.png",
+                "top_right_inv": "pixelart/maptip/tree/top-right_inv.png",
+                "bottom_left_inv": "pixelart/maptip/tree/bottom-left_inv.png",
+                "bottom_right_inv": "pixelart/maptip/tree/bottom-right_inv.png"
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": -16,
+                "y": 0,
+                "z": 0,
+                "width": 32,
+                "height": 32,
+                "rectangles": [
+                    {
+                        "x": 0,
                         "y": 5,
-                        "width": 10,
+                        "width": 11,
                         "height": 3
                     }
                 ],
@@ -114,10 +274,254 @@
                 "top_right": "pixelart/maptip/tree/top-right.png",
                 "bottom_left": "pixelart/maptip/tree/bottom-left.png",
                 "bottom_right": "pixelart/maptip/tree/bottom-right.png",
-                "top_left_inv": "pixelart/maptip/tree/top-left.png",
-                "top_right_inv": "pixelart/maptip/tree/top-right.png",
-                "bottom_left_inv": "pixelart/maptip/tree/bottom-left.png",
-                "bottom_right_inv": "pixelart/maptip/tree/bottom-right.png"
+                "top_left_inv": "pixelart/maptip/tree/top-left_inv.png",
+                "top_right_inv": "pixelart/maptip/tree/top-right_inv.png",
+                "bottom_left_inv": "pixelart/maptip/tree/bottom-left_inv.png",
+                "bottom_right_inv": "pixelart/maptip/tree/bottom-right_inv.png"
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": 0,
+                "y": -8,
+                "z": 0,
+                "width": 32,
+                "height": 32,
+                "rectangles": [
+                    {
+                        "x": 0,
+                        "y": 3,
+                        "width": 1,
+                        "height": 1
+                    },
+                    {
+                        "x": 1,
+                        "y": 3,
+                        "width": 1,
+                        "height": 1
+                    },
+                    {
+                        "x": 2,
+                        "y": 3,
+                        "width": 1,
+                        "height": 1
+                    },
+                    {
+                        "x": 3,
+                        "y": 3,
+                        "width": 1,
+                        "height": 1
+                    },
+                    {
+                        "x": 6,
+                        "y": 3,
+                        "width": 1,
+                        "height": 1
+                    },
+                    {
+                        "x": 7,
+                        "y": 3,
+                        "width": 1,
+                        "height": 1
+                    },
+                    {
+                        "x": 8,
+                        "y": 3,
+                        "width": 1,
+                        "height": 1
+                    },
+                    {
+                        "x": 9,
+                        "y": 3,
+                        "width": 1,
+                        "height": 1
+                    }
+                ],
+                "center": "pixelart/maptip/street-light/front.png",
+                "left": "pixelart/maptip/street-light/front.png",
+                "top": "pixelart/maptip/street-light/front.png",
+                "right": "pixelart/maptip/street-light/front.png",
+                "bottom": "pixelart/maptip/street-light/front.png",
+                "top_left": "pixelart/maptip/street-light/front.png",
+                "top_right": "pixelart/maptip/street-light/front.png",
+                "bottom_left": "pixelart/maptip/street-light/front.png",
+                "bottom_right": "pixelart/maptip/street-light/front.png",
+                "top_left_inv": "pixelart/maptip/street-light/front.png",
+                "top_right_inv": "pixelart/maptip/street-light/front.png",
+                "bottom_left_inv": "pixelart/maptip/street-light/front.png",
+                "bottom_right_inv": "pixelart/maptip/street-light/front.png"
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": 0,
+                "y": 8,
+                "z": 0,
+                "width": 32,
+                "height": 32,
+                "rectangles": [
+                    {
+                        "x": 0,
+                        "y": 4,
+                        "width": 1,
+                        "height": 1
+                    },
+                    {
+                        "x": 1,
+                        "y": 4,
+                        "width": 1,
+                        "height": 1
+                    },
+                    {
+                        "x": 2,
+                        "y": 4,
+                        "width": 1,
+                        "height": 1
+                    },
+                    {
+                        "x": 3,
+                        "y": 4,
+                        "width": 1,
+                        "height": 1
+                    },
+                    {
+                        "x": 6,
+                        "y": 4,
+                        "width": 1,
+                        "height": 1
+                    },
+                    {
+                        "x": 7,
+                        "y": 4,
+                        "width": 1,
+                        "height": 1
+                    },
+                    {
+                        "x": 8,
+                        "y": 4,
+                        "width": 1,
+                        "height": 1
+                    },
+                    {
+                        "x": 9,
+                        "y": 4,
+                        "width": 1,
+                        "height": 1
+                    }
+                ],
+                "center": "pixelart/maptip/street-light/back.png",
+                "left": "pixelart/maptip/street-light/back.png",
+                "top": "pixelart/maptip/street-light/back.png",
+                "right": "pixelart/maptip/street-light/back.png",
+                "bottom": "pixelart/maptip/street-light/back.png",
+                "top_left": "pixelart/maptip/street-light/back.png",
+                "top_right": "pixelart/maptip/street-light/back.png",
+                "bottom_left": "pixelart/maptip/street-light/back.png",
+                "bottom_right": "pixelart/maptip/street-light/back.png",
+                "top_left_inv": "pixelart/maptip/street-light/back.png",
+                "top_right_inv": "pixelart/maptip/street-light/back.png",
+                "bottom_left_inv": "pixelart/maptip/street-light/back.png",
+                "bottom_right_inv": "pixelart/maptip/street-light/back.png"
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": -8,
+                "y": 0,
+                "z": 0,
+                "width": 32,
+                "height": 32,
+                "rectangles": [
+                    {
+                        "x": 4,
+                        "y": 0,
+                        "width": 1,
+                        "height": 1
+                    },
+                    {
+                        "x": 4,
+                        "y": 1,
+                        "width": 1,
+                        "height": 1
+                    },
+                    {
+                        "x": 4,
+                        "y": 2,
+                        "width": 1,
+                        "height": 1
+                    }
+                ],
+                "center": "pixelart/maptip/street-light/right.png",
+                "left": "pixelart/maptip/street-light/right.png",
+                "top": "pixelart/maptip/street-light/right.png",
+                "right": "pixelart/maptip/street-light/right.png",
+                "bottom": "pixelart/maptip/street-light/right.png",
+                "top_left": "pixelart/maptip/street-light/right.png",
+                "top_right": "pixelart/maptip/street-light/right.png",
+                "bottom_left": "pixelart/maptip/street-light/right.png",
+                "bottom_right": "pixelart/maptip/street-light/right.png",
+                "top_left_inv": "pixelart/maptip/street-light/right.png",
+                "top_right_inv": "pixelart/maptip/street-light/right.png",
+                "bottom_left_inv": "pixelart/maptip/street-light/right.png",
+                "bottom_right_inv": "pixelart/maptip/street-light/right.png"
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": 8,
+                "y": 0,
+                "z": 0,
+                "width": 32,
+                "height": 32,
+                "rectangles": [
+                    {
+                        "x": 5,
+                        "y": 0,
+                        "width": 1,
+                        "height": 1
+                    },
+                    {
+                        "x": 5,
+                        "y": 1,
+                        "width": 1,
+                        "height": 1
+                    },
+                    {
+                        "x": 5,
+                        "y": 2,
+                        "width": 1,
+                        "height": 1
+                    }
+                ],
+                "center": "pixelart/maptip/street-light/left.png",
+                "left": "pixelart/maptip/street-light/left.png",
+                "top": "pixelart/maptip/street-light/left.png",
+                "right": "pixelart/maptip/street-light/left.png",
+                "bottom": "pixelart/maptip/street-light/left.png",
+                "top_left": "pixelart/maptip/street-light/left.png",
+                "top_right": "pixelart/maptip/street-light/left.png",
+                "bottom_left": "pixelart/maptip/street-light/left.png",
+                "bottom_right": "pixelart/maptip/street-light/left.png",
+                "top_left_inv": "pixelart/maptip/street-light/left.png",
+                "top_right_inv": "pixelart/maptip/street-light/left.png",
+                "bottom_left_inv": "pixelart/maptip/street-light/left.png",
+                "bottom_right_inv": "pixelart/maptip/street-light/left.png"
             }
         },
         {

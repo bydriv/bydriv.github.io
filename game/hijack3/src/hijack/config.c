@@ -10,9 +10,9 @@ struct asset_defn {
 unsigned int SCALE = 2;
 unsigned int WIDTH = 320;
 unsigned int HEIGHT = 240;
-unsigned int ASSET_DEFNS_LEN = 313;
+unsigned int ASSET_DEFNS_LEN = 336;
 
-struct asset_defn ASSET_DEFNS[313] = {
+struct asset_defn ASSET_DEFNS[336] = {
     {"pixelart/system/window.png", "pixelart/system/window/top-left.png", 0, 0, 8, 8},
     {"pixelart/system/window.png", "pixelart/system/window/top.png", 8, 0, 8, 8},
     {"pixelart/system/window.png", "pixelart/system/window/top-arrow.png", 16, 0, 8, 8},
@@ -324,6 +324,29 @@ struct asset_defn ASSET_DEFNS[313] = {
     {"pixelart/maptip/tree.png", "pixelart/maptip/tree/bottom-left.png", 0, 64, 32, 32},
     {"pixelart/maptip/tree.png", "pixelart/maptip/tree/bottom.png", 32, 64, 32, 32},
     {"pixelart/maptip/tree.png", "pixelart/maptip/tree/bottom-right.png", 64, 64, 32, 32},
+    {"pixelart/maptip/tree.png", "pixelart/maptip/tree/top-left_inv.png", 96, 0, 32, 32},
+    {"pixelart/maptip/tree.png", "pixelart/maptip/tree/top-right_inv.png", 160, 0, 32, 32},
+    {"pixelart/maptip/tree.png", "pixelart/maptip/tree/bottom-left_inv.png", 96, 64, 32, 32},
+    {"pixelart/maptip/tree.png", "pixelart/maptip/tree/bottom-right_inv.png", 160, 64, 32, 32},
+    {"pixelart/maptip/building.png", "pixelart/maptip/building/top/top-left.png", 0, 0, 16, 16},
+    {"pixelart/maptip/building.png", "pixelart/maptip/building/top/top.png", 16, 0, 16, 16},
+    {"pixelart/maptip/building.png", "pixelart/maptip/building/top/top-right.png", 32, 0, 16, 16},
+    {"pixelart/maptip/building.png", "pixelart/maptip/building/top/left.png", 0, 16, 16, 16},
+    {"pixelart/maptip/building.png", "pixelart/maptip/building/top/center.png", 16, 16, 16, 16},
+    {"pixelart/maptip/building.png", "pixelart/maptip/building/top/right.png", 32, 16, 16, 16},
+    {"pixelart/maptip/building.png", "pixelart/maptip/building/middle/left.png", 0, 32, 16, 16},
+    {"pixelart/maptip/building.png", "pixelart/maptip/building/middle/center.png", 16, 32, 16, 16},
+    {"pixelart/maptip/building.png", "pixelart/maptip/building/middle/right.png", 32, 32, 16, 16},
+    {"pixelart/maptip/building.png", "pixelart/maptip/building/bottom/left.png", 0, 48, 16, 16},
+    {"pixelart/maptip/building.png", "pixelart/maptip/building/bottom/center.png", 16, 48, 16, 16},
+    {"pixelart/maptip/building.png", "pixelart/maptip/building/bottom/right.png", 32, 48, 16, 16},
+    {"pixelart/maptip/building.png", "pixelart/maptip/building/bottom/bottom-left.png", 0, 64, 16, 16},
+    {"pixelart/maptip/building.png", "pixelart/maptip/building/bottom/bottom.png", 16, 64, 16, 16},
+    {"pixelart/maptip/building.png", "pixelart/maptip/building/bottom/bottom-right.png", 32, 64, 16, 16},
+    {"pixelart/maptip/street-light.png", "pixelart/maptip/street-light/left.png", 0, 0, 32, 32},
+    {"pixelart/maptip/street-light.png", "pixelart/maptip/street-light/back.png", 0, 32, 32, 32},
+    {"pixelart/maptip/street-light.png", "pixelart/maptip/street-light/right.png", 0, 64, 32, 32},
+    {"pixelart/maptip/street-light.png", "pixelart/maptip/street-light/front.png", 0, 96, 32, 32},
     {"pixelart/effect/dark.png", "pixelart/effect/dark.png", 0, 0, 320, 240},
     {"pixelart/effect/cursor.png", "pixelart/effect/cursor.png", 0, 0, 16, 16},
 };

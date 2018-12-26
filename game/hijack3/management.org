@@ -34,14 +34,14 @@
 | player-characters       | Pending(Proposal) |               | PCモジュール               | NPC と PC では必要なルーチンがまったく違うので(セリフがあるかどうかなど)、 NPC と PC はべつのモジュールとして用意する。たとえば、テーリが NPC として登場する場合、 ~hijack::object::teiri~ モジュールではなく ~hijack::object::npc~ モジュールを使う。ドット絵は同じものを使ってよい。 |
 | pixelarts-common-maptip | Pending(Accept)   |               | 汎用マップチップ           | ビル、標識、道路、看板など。                                                                                                                                                                                                                                                           |
 
-** pixelarts-common-maptip [0/8]
+** pixelarts-common-maptip [2/8]
 
-- [ ] ビル
+- [X] ビル
 - [ ] 仙丹製薬ロゴ
 - [ ] 桃山不動産ロゴ
 - [ ] 道路
 - [ ] 標識
-- [ ] 街灯
+- [X] 街灯
 - [ ] 看板
 - [ ] 民家
 - etc. なんかほしいものあったら追記する
