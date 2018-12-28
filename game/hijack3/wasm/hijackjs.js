@@ -58,11 +58,46 @@ __exports.__wbg_inputbutton_15839f0335a14ddc = function(arg0, arg1, arg2) {
 
 };
 /**
+* @param {ViewMap} arg0
+* @returns {number}
+*/
+__exports.view_map_length = function(arg0) {
+    return wasm.view_map_length(arg0.ptr);
+};
+
+/**
+* @param {number} arg0
+* @param {ViewMap} arg1
+* @returns {number}
+*/
+__exports.view_map_z = function(arg0, arg1) {
+    return wasm.view_map_z(arg0, arg1.ptr);
+};
+
+/**
+* @param {number} arg0
+* @param {ViewMap} arg1
+* @returns {Views}
+*/
+__exports.view_map_views = function(arg0, arg1) {
+    return Views.__wrap(wasm.view_map_views(arg0, arg1.ptr));
+};
+
+/**
 * @param {Views} arg0
 * @returns {number}
 */
 __exports.views_length = function(arg0) {
     return wasm.views_length(arg0.ptr);
+};
+
+/**
+* @param {Views} arg0
+* @param {Views} arg1
+* @returns {boolean}
+*/
+__exports.views_eq = function(arg0, arg1) {
+    return (wasm.views_eq(arg0.ptr, arg1.ptr)) !== 0;
 };
 
 /**
@@ -197,35 +232,11 @@ __exports.step = function(arg0, arg1) {
 
 /**
 * @param {Game} arg0
-* @returns {Views}
+* @returns {ViewMap}
 */
-__exports.views = function(arg0) {
-    return Views.__wrap(wasm.views(arg0.ptr));
+__exports.view_map = function(arg0) {
+    return ViewMap.__wrap(wasm.view_map(arg0.ptr));
 };
-
-function freeGame(ptr) {
-
-    wasm.__wbg_game_free(ptr);
-}
-/**
-*/
-class Game {
-
-    static __wrap(ptr) {
-        const obj = Object.create(Game.prototype);
-        obj.ptr = ptr;
-
-        return obj;
-    }
-
-    free() {
-        const ptr = this.ptr;
-        this.ptr = 0;
-        freeGame(ptr);
-    }
-
-}
-__exports.Game = Game;
 
 function freeViews(ptr) {
 
@@ -250,6 +261,54 @@ class Views {
 
 }
 __exports.Views = Views;
+
+function freeViewMap(ptr) {
+
+    wasm.__wbg_viewmap_free(ptr);
+}
+/**
+*/
+class ViewMap {
+
+    static __wrap(ptr) {
+        const obj = Object.create(ViewMap.prototype);
+        obj.ptr = ptr;
+
+        return obj;
+    }
+
+    free() {
+        const ptr = this.ptr;
+        this.ptr = 0;
+        freeViewMap(ptr);
+    }
+
+}
+__exports.ViewMap = ViewMap;
+
+function freeGame(ptr) {
+
+    wasm.__wbg_game_free(ptr);
+}
+/**
+*/
+class Game {
+
+    static __wrap(ptr) {
+        const obj = Object.create(Game.prototype);
+        obj.ptr = ptr;
+
+        return obj;
+    }
+
+    free() {
+        const ptr = this.ptr;
+        this.ptr = 0;
+        freeGame(ptr);
+    }
+
+}
+__exports.Game = Game;
 
 __exports.__wbindgen_throw = function(ptr, len) {
     throw new Error(getStringFromWasm(ptr, len));

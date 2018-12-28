@@ -8,7 +8,7 @@
                 "type": "maptip",
                 "x": 0,
                 "y": 0,
-                "z": 0,
+                "z": -1000,
                 "width": 16,
                 "height": 16,
                 "rectangles": [
@@ -42,7 +42,7 @@
                 "type": "maptip",
                 "x": 0,
                 "y": 0,
-                "z": 0,
+                "z": -1000,
                 "width": 16,
                 "height": 16,
                 "rectangles": [
@@ -82,7 +82,7 @@
                 "type": "maptip",
                 "x": 0,
                 "y": 0,
-                "z": 0,
+                "z": -1000,
                 "width": 16,
                 "height": 16,
                 "rectangles": [
@@ -122,7 +122,7 @@
                 "type": "maptip",
                 "x": 0,
                 "y": 0,
-                "z": 0,
+                "z": -1000,
                 "width": 16,
                 "height": 16,
                 "rectangles": [
@@ -162,7 +162,7 @@
                 "type": "maptip",
                 "x": 24,
                 "y": -72,
-                "z": 0,
+                "z": -1000,
                 "width": 96,
                 "height": 16,
                 "rectangles": [
@@ -196,7 +196,7 @@
                 "type": "maptip",
                 "x": -8,
                 "y": 0,
-                "z": 0,
+                "z": -1000,
                 "width": 32,
                 "height": 32,
                 "rectangles": [
@@ -230,7 +230,7 @@
                 "type": "maptip",
                 "x": 8,
                 "y": 0,
-                "z": 0,
+                "z": -1000,
                 "width": 32,
                 "height": 32,
                 "rectangles": [
@@ -276,7 +276,7 @@
                 "type": "maptip",
                 "x": -16,
                 "y": 0,
-                "z": 0,
+                "z": -1000,
                 "width": 32,
                 "height": 32,
                 "rectangles": [
@@ -310,7 +310,7 @@
                 "type": "maptip",
                 "x": 0,
                 "y": -8,
-                "z": 0,
+                "z": -1000,
                 "width": 32,
                 "height": 32,
                 "rectangles": [
@@ -386,7 +386,7 @@
                 "type": "maptip",
                 "x": 0,
                 "y": 8,
-                "z": 0,
+                "z": -1000,
                 "width": 32,
                 "height": 32,
                 "rectangles": [
@@ -462,7 +462,7 @@
                 "type": "maptip",
                 "x": -8,
                 "y": 0,
-                "z": 0,
+                "z": -1000,
                 "width": 32,
                 "height": 32,
                 "rectangles": [
@@ -508,7 +508,7 @@
                 "type": "maptip",
                 "x": 8,
                 "y": 0,
-                "z": 0,
+                "z": -1000,
                 "width": 32,
                 "height": 32,
                 "rectangles": [

@@ -290,26 +290,55 @@ window.addEventListener("load", async function() {
     const {stats, offscreen, onscreen, assets} = await initSystem(config);
 
     var game = Game.new_();
+    var previousViewMap = new Map();
+    const caches = new Map();
 
     requestAnimationFrame(function step() {
         stats.begin();
 
-        const views = Game.views(game);
+        const viewMap = Game.view_map(game);
 
         offscreen.context.fillRect(0, 0, offscreen.canvas.width, offscreen.canvas.height);
 
-        const zs = [];
+        for (var i = 0; i < Game.view_map_length(viewMap); ++i) {
+            const z = Game.view_map_z(i, viewMap);
+            const views = Game.view_map_views(i, viewMap);
+            const refresh = !previousViewMap.has(z) || !Game.views_eq(views, previousViewMap.get(z));
 
-        for (var i = 0; i < Game.views_length(views); ++i)
-            zs.push({
-                i: i,
-                z: Game.view_image_z(i, views)
-            });
+            if (!caches.has(z)) {
+                const cacheCanvas = document.createElement("canvas");
+                cacheCanvas.width = offscreen.canvas.width;
+                cacheCanvas.height= offscreen.canvas.height;
 
-        zs.sort((v, w) => v.z - w.z);
+                const cacheContext = cacheCanvas.getContext("2d");
 
-        for (var i = 0; i < zs.length; ++i)
-            drawView(Game, offscreen.canvas, offscreen.context, assets, views, zs[i].i);
+                caches.set(z, {
+                    canvas: cacheCanvas,
+                    context: cacheContext
+                });
+            }
+
+            const cache = caches.get(z);
+
+            if (previousViewMap.has(z)) {
+                previousViewMap.get(z).free();
+                previousViewMap.delete(z);
+            }
+
+            previousViewMap.set(z, views);
+
+            if (!refresh) {
+                offscreen.context.drawImage(cache.canvas, 0, 0);
+                continue;
+            }
+
+            cache.context.clearRect(0, 0, cache.canvas.width, cache.canvas.height);
+
+            for (var j = 0; j < Game.views_length(views); ++j) {
+                drawView(Game, cache.canvas, cache.context, assets, views, j);
+                drawView(Game, offscreen.canvas, offscreen.context, assets, views, j);
+            }
+        }
 
         onscreen.context.drawImage(
             offscreen.canvas,
@@ -359,7 +388,6 @@ window.addEventListener("load", async function() {
             });
 
         const next_game = Game.step(inputs, game);
-        views.free();
         game.free();
         game = next_game;
 

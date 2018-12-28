@@ -1,5 +1,13 @@
 /* tslint:disable */
+export function view_map_length(arg0: ViewMap): number;
+
+export function view_map_z(arg0: number, arg1: ViewMap): number;
+
+export function view_map_views(arg0: number, arg1: ViewMap): Views;
+
 export function views_length(arg0: Views): number;
+
+export function views_eq(arg0: Views, arg1: Views): boolean;
 
 export function view_is_image(arg0: number, arg1: Views): boolean;
 
@@ -15,13 +23,17 @@ export function new_(): Game;
 
 export function step(arg0: any, arg1: Game): Game;
 
-export function views(arg0: Game): Views;
+export function view_map(arg0: Game): ViewMap;
 
-export class Game {
+export class Views {
 free(): void;
 
 }
-export class Views {
+export class ViewMap {
+free(): void;
+
+}
+export class Game {
 free(): void;
 
 }

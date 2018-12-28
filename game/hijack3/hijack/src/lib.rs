@@ -19,7 +19,7 @@ pub enum Event {
     Check(i32, i32, i32, i32),
 }
 
-#[derive(Clone)]
+#[derive(Clone, PartialEq)]
 pub enum View {
     Image(String, i32, i32, i32),
 }

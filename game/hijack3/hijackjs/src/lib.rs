@@ -4,6 +4,7 @@ extern crate wasm_bindgen;
 
 use brownfox::Moore;
 use hijack::*;
+use std::collections::HashMap;
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
@@ -21,13 +22,41 @@ pub struct Game {
 }
 
 #[wasm_bindgen]
+pub struct ViewMap {
+    view_map: Vec<(i32, Vec<View>)>,
+}
+
+#[wasm_bindgen]
+#[derive(PartialEq)]
 pub struct Views {
     views: Vec<View>,
 }
 
 #[wasm_bindgen]
+pub fn view_map_length(view_map: &ViewMap) -> usize {
+    view_map.view_map.len()
+}
+
+#[wasm_bindgen]
+pub fn view_map_z(i: usize, view_map: &ViewMap) -> i32 {
+    view_map.view_map[i].0
+}
+
+#[wasm_bindgen]
+pub fn view_map_views(i: usize, view_map: &ViewMap) -> Views {
+    Views {
+        views: view_map.view_map[i].1.clone(),
+    }
+}
+
+#[wasm_bindgen]
 pub fn views_length(views: &Views) -> usize {
     views.views.len()
+}
+
+#[wasm_bindgen]
+pub fn views_eq(views1: &Views, views2: &Views) -> bool {
+    views1 == views2
 }
 
 #[wasm_bindgen]
@@ -123,8 +152,19 @@ pub fn step(inputs: &Inputs, game: &Game) -> Game {
 }
 
 #[wasm_bindgen]
-pub fn views(game: &Game) -> Views {
-    Views {
-        views: game.output().1,
+pub fn view_map(game: &Game) -> ViewMap {
+    let mut view_map = HashMap::new();
+
+    for view in game.output().1 {
+        let z = match view {
+            View::Image(_, _, _, z) => z,
+        };
+        let mut views = view_map.entry(z).or_insert(vec![]);
+        views.push(view);
     }
+
+    let mut view_map: Vec<(i32, Vec<View>)> = view_map.into_iter().collect();
+    view_map.sort_by(|(z1, _), (z2, _)| z1.cmp(z2));
+
+    ViewMap { view_map: view_map }
 }
