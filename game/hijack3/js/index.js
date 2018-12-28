@@ -353,6 +353,8 @@ window.addEventListener("load", async function() {
                 drawView(Game, offscreen.canvas, offscreen.context, assets, views, j, -offsetX, -offsetY);
         }
 
+        viewMap.free();
+
         onscreen.context.drawImage(
             offscreen.canvas,
             0,
