@@ -305,21 +305,6 @@ window.addEventListener("load", async function() {
             const views = Game.view_map_views(i, viewMap);
             const refresh = !previousViewMap.has(z) || !Game.views_eq(views, previousViewMap.get(z));
 
-            if (!caches.has(z)) {
-                const cacheCanvas = document.createElement("canvas");
-                cacheCanvas.width = offscreen.canvas.width;
-                cacheCanvas.height= offscreen.canvas.height;
-
-                const cacheContext = cacheCanvas.getContext("2d");
-
-                caches.set(z, {
-                    canvas: cacheCanvas,
-                    context: cacheContext
-                });
-            }
-
-            const cache = caches.get(z);
-
             if (previousViewMap.has(z)) {
                 previousViewMap.get(z).free();
                 previousViewMap.delete(z);
@@ -328,16 +313,38 @@ window.addEventListener("load", async function() {
             previousViewMap.set(z, views);
 
             if (!refresh) {
+                if (!caches.has(z)) {
+                    const cacheCanvas = document.createElement("canvas");
+                    cacheCanvas.width = offscreen.canvas.width;
+                    cacheCanvas.height= offscreen.canvas.height;
+
+                    const cacheContext = cacheCanvas.getContext("2d");
+
+                    const cache = {
+                        canvas: cacheCanvas,
+                        context: cacheContext
+                    };
+
+                    caches.set(z, cache);
+
+                    cache.context.clearRect(0, 0, cache.canvas.width, cache.canvas.height);
+
+                    for (var j = 0; j < Game.views_length(views); ++j) {
+                        drawView(Game, cache.canvas, cache.context, assets, views, j);
+                        drawView(Game, offscreen.canvas, offscreen.context, assets, views, j);
+                    }
+                }
+
+                const cache = caches.get(z);
+
                 offscreen.context.drawImage(cache.canvas, 0, 0);
                 continue;
             }
 
-            cache.context.clearRect(0, 0, cache.canvas.width, cache.canvas.height);
+            caches.delete(z);
 
-            for (var j = 0; j < Game.views_length(views); ++j) {
-                drawView(Game, cache.canvas, cache.context, assets, views, j);
+            for (var j = 0; j < Game.views_length(views); ++j)
                 drawView(Game, offscreen.canvas, offscreen.context, assets, views, j);
-            }
         }
 
         onscreen.context.drawImage(
