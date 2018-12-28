@@ -15,6 +15,7 @@
 | pixelart/maptip/asphalt.png      | [[./pixelart/maptip/asphalt.png]]      |
 | pixelart/maptip/building.png     | [[./pixelart/maptip/building.png]]     |
 | pixelart/maptip/street-light.png | [[./pixelart/maptip/street-light.png]] |
+| pixelart/maptip/momoyama.png     | [[./pixelart/maptip/momoyama.png]]     |
 | pixelart/font/alpha.png          | [[./pixelart/font/alpha.png]]          |
 | pixelart/font/hiragana.png       | [[./pixelart/font/hiragana.png]]       |
 | pixelart/font/katakana.png       | [[./pixelart/font/katakana.png]]       |
@@ -39,11 +40,11 @@
 | player-characters       | Pending(Proposal) |               | PCモジュール               | NPC と PC では必要なルーチンがまったく違うので(セリフがあるかどうかなど)、 NPC と PC はべつのモジュールとして用意する。たとえば、テーリが NPC として登場する場合、 ~hijack::object::teiri~ モジュールではなく ~hijack::object::npc~ モジュールを使う。ドット絵は同じものを使ってよい。 |
 | pixelarts-common-maptip | Pending(Accept)   |               | 汎用マップチップ           | ビル、標識、道路、看板など。                                                                                                                                                                                                                                                           |
 
-** pixelarts-common-maptip [2/8]
+** pixelarts-common-maptip [3/8]
 
 - [X] ビル
 - [ ] 仙丹製薬ロゴ
-- [ ] 桃山不動産ロゴ
+- [X] 桃山不動産ロゴ
 - [ ] 道路
 - [ ] 標識
 - [X] 街灯

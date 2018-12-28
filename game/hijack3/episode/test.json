@@ -87,9 +87,9 @@
                 "height": 16,
                 "rectangles": [
                     {
-                        "x": 2,
+                        "x": 1,
                         "y": -8,
-                        "width": 5,
+                        "width": 7,
                         "height": 5
                     },
                     {
@@ -127,9 +127,9 @@
                 "height": 16,
                 "rectangles": [
                     {
-                        "x": 2,
+                        "x": 1,
                         "y": -4,
-                        "width": 5,
+                        "width": 7,
                         "height": 10
                     },
                     {
@@ -160,6 +160,40 @@
             },
             "object": {
                 "type": "maptip",
+                "x": 24,
+                "y": -72,
+                "z": 0,
+                "width": 96,
+                "height": 16,
+                "rectangles": [
+                    {
+                        "x": 0,
+                        "y": 0,
+                        "width": 1,
+                        "height": 1
+                    }
+                ],
+                "center": "pixelart/maptip/momoyama.png",
+                "left": "pixelart/maptip/momoyama.png",
+                "top": "pixelart/maptip/momoyama.png",
+                "right": "pixelart/maptip/momoyama.png",
+                "bottom": "pixelart/maptip/momoyama.png",
+                "top_left": "pixelart/maptip/momoyama.png",
+                "top_right": "pixelart/maptip/momoyama.png",
+                "bottom_left": "pixelart/maptip/momoyama.png",
+                "bottom_right": "pixelart/maptip/momoyama.png",
+                "top_left_inv": "pixelart/maptip/momoyama.png",
+                "top_right_inv": "pixelart/maptip/momoyama.png",
+                "bottom_left_inv": "pixelart/maptip/momoyama.png",
+                "bottom_right_inv": "pixelart/maptip/momoyama.png"
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
                 "x": -8,
                 "y": 0,
                 "z": 0,
@@ -168,21 +202,9 @@
                 "rectangles": [
                     {
                         "x": 0,
-                        "y": 0,
-                        "width": 2,
-                        "height": 4
-                    },
-                    {
-                        "x": 0,
                         "y": 2,
                         "width": 5,
                         "height": 2
-                    },
-                    {
-                        "x": 3,
-                        "y": 0,
-                        "width": 2,
-                        "height": 4
                     }
                 ],
                 "center": "pixelart/maptip/tree/center.png",
