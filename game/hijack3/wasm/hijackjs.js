@@ -66,6 +66,22 @@ __exports.view_map_length = function(arg0) {
 };
 
 /**
+* @param {ViewMap} arg0
+* @returns {number}
+*/
+__exports.view_map_x = function(arg0) {
+    return wasm.view_map_x(arg0.ptr);
+};
+
+/**
+* @param {ViewMap} arg0
+* @returns {number}
+*/
+__exports.view_map_y = function(arg0) {
+    return wasm.view_map_y(arg0.ptr);
+};
+
+/**
 * @param {number} arg0
 * @param {ViewMap} arg1
 * @returns {number}
@@ -238,30 +254,6 @@ __exports.view_map = function(arg0) {
     return ViewMap.__wrap(wasm.view_map(arg0.ptr));
 };
 
-function freeViews(ptr) {
-
-    wasm.__wbg_views_free(ptr);
-}
-/**
-*/
-class Views {
-
-    static __wrap(ptr) {
-        const obj = Object.create(Views.prototype);
-        obj.ptr = ptr;
-
-        return obj;
-    }
-
-    free() {
-        const ptr = this.ptr;
-        this.ptr = 0;
-        freeViews(ptr);
-    }
-
-}
-__exports.Views = Views;
-
 function freeViewMap(ptr) {
 
     wasm.__wbg_viewmap_free(ptr);
@@ -309,6 +301,30 @@ class Game {
 
 }
 __exports.Game = Game;
+
+function freeViews(ptr) {
+
+    wasm.__wbg_views_free(ptr);
+}
+/**
+*/
+class Views {
+
+    static __wrap(ptr) {
+        const obj = Object.create(Views.prototype);
+        obj.ptr = ptr;
+
+        return obj;
+    }
+
+    free() {
+        const ptr = this.ptr;
+        this.ptr = 0;
+        freeViews(ptr);
+    }
+
+}
+__exports.Views = Views;
 
 __exports.__wbindgen_throw = function(ptr, len) {
     throw new Error(getStringFromWasm(ptr, len));

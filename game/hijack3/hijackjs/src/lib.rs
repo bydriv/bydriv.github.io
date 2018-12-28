@@ -23,6 +23,8 @@ pub struct Game {
 
 #[wasm_bindgen]
 pub struct ViewMap {
+    x: i32,
+    y: i32,
     view_map: Vec<(i32, Vec<View>)>,
 }
 
@@ -35,6 +37,16 @@ pub struct Views {
 #[wasm_bindgen]
 pub fn view_map_length(view_map: &ViewMap) -> usize {
     view_map.view_map.len()
+}
+
+#[wasm_bindgen]
+pub fn view_map_x(view_map: &ViewMap) -> i32 {
+    view_map.x
+}
+
+#[wasm_bindgen]
+pub fn view_map_y(view_map: &ViewMap) -> i32 {
+    view_map.y
 }
 
 #[wasm_bindgen]
@@ -153,9 +165,27 @@ pub fn step(inputs: &Inputs, game: &Game) -> Game {
 
 #[wasm_bindgen]
 pub fn view_map(game: &Game) -> ViewMap {
+    let (events, views) = game.output();
+
+    let mut central_x = 0;
+    let mut central_y = 0;
+
+    for event in &events {
+        match event {
+            &Event::Focus(x, y, width, height) => {
+                central_x = x + width / 2;
+                central_y = y + height / 2;
+            }
+            _ => (),
+        }
+    }
+
+    let left = central_x - WIDTH / 2;
+    let top = central_y - HEIGHT / 2;
+
     let mut view_map = HashMap::new();
 
-    for view in game.output().1 {
+    for view in views {
         let z = match view {
             View::Image(_, _, _, z) => z,
         };
@@ -166,5 +196,9 @@ pub fn view_map(game: &Game) -> ViewMap {
     let mut view_map: Vec<(i32, Vec<View>)> = view_map.into_iter().collect();
     view_map.sort_by(|(z1, _), (z2, _)| z1.cmp(z2));
 
-    ViewMap { view_map: view_map }
+    ViewMap {
+        x: left,
+        y: top,
+        view_map: view_map,
+    }
 }

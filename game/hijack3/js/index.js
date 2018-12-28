@@ -76,13 +76,13 @@ async function initSystem(config) {
     };
 }
 
-function drawView(Game, canvas, context, assets, views, i) {
+function drawView(Game, canvas, context, assets, views, i, x, y) {
     if (Game.view_is_image(i, views)) {
         const dx = Game.view_image_x(i, views);
         const dy = Game.view_image_y(i, views);
         const name = Game.view_image_name(i, views);
         const sprite = assets.get(name);
-        context.drawImage(sprite.img, dx, dy);
+        context.drawImage(sprite.img, dx + x, dy + y);
     } else {
         console.warn("unrecognized view: %o", i);
     }
@@ -288,8 +288,11 @@ window.addEventListener("load", async function() {
     });
 
     const {stats, offscreen, onscreen, assets} = await initSystem(config);
+    const CACHE_OFFSET = 64;
 
     var game = Game.new_();
+    var previousOffsetX = 0;
+    var previousOffsetY = 0;
     var previousViewMap = new Map();
     const caches = new Map();
 
@@ -297,13 +300,15 @@ window.addEventListener("load", async function() {
         stats.begin();
 
         const viewMap = Game.view_map(game);
+        const offsetX = Game.view_map_x(viewMap);
+        const offsetY = Game.view_map_y(viewMap);
 
         offscreen.context.fillRect(0, 0, offscreen.canvas.width, offscreen.canvas.height);
 
         for (var i = 0; i < Game.view_map_length(viewMap); ++i) {
             const z = Game.view_map_z(i, viewMap);
             const views = Game.view_map_views(i, viewMap);
-            const refresh = !previousViewMap.has(z) || !Game.views_eq(views, previousViewMap.get(z));
+            const refresh = !previousViewMap.has(z) || !Game.views_eq(views, previousViewMap.get(z)) || Math.floor(offsetX / CACHE_OFFSET) !== Math.floor(previousOffsetX / CACHE_OFFSET) || Math.floor(offsetY / CACHE_OFFSET) !== Math.floor(previousOffsetY / CACHE_OFFSET);
 
             if (previousViewMap.has(z)) {
                 previousViewMap.get(z).free();
@@ -315,8 +320,8 @@ window.addEventListener("load", async function() {
             if (!refresh) {
                 if (!caches.has(z)) {
                     const cacheCanvas = document.createElement("canvas");
-                    cacheCanvas.width = offscreen.canvas.width;
-                    cacheCanvas.height= offscreen.canvas.height;
+                    cacheCanvas.width = offscreen.canvas.width + CACHE_OFFSET * 2;
+                    cacheCanvas.height = offscreen.canvas.height + CACHE_OFFSET * 2;
 
                     const cacheContext = cacheCanvas.getContext("2d");
 
@@ -330,21 +335,22 @@ window.addEventListener("load", async function() {
                     cache.context.clearRect(0, 0, cache.canvas.width, cache.canvas.height);
 
                     for (var j = 0; j < Game.views_length(views); ++j) {
-                        drawView(Game, cache.canvas, cache.context, assets, views, j);
-                        drawView(Game, offscreen.canvas, offscreen.context, assets, views, j);
+                        drawView(Game, cache.canvas, cache.context, assets, views, j, -offsetX + (offsetX - Math.floor(offsetX / CACHE_OFFSET) * CACHE_OFFSET), -offsetY + (offsetY - Math.floor(offsetY / CACHE_OFFSET) * CACHE_OFFSET));
+                        drawView(Game, offscreen.canvas, offscreen.context, assets, views, j, -offsetX, -offsetY);
                     }
                 }
 
                 const cache = caches.get(z);
 
-                offscreen.context.drawImage(cache.canvas, 0, 0);
+                offscreen.context.drawImage(cache.canvas, -(offsetX - Math.floor(offsetX / CACHE_OFFSET) * CACHE_OFFSET), -(offsetY - Math.floor(offsetY / CACHE_OFFSET) * CACHE_OFFSET));
+
                 continue;
             }
 
             caches.delete(z);
 
             for (var j = 0; j < Game.views_length(views); ++j)
-                drawView(Game, offscreen.canvas, offscreen.context, assets, views, j);
+                drawView(Game, offscreen.canvas, offscreen.context, assets, views, j, -offsetX, -offsetY);
         }
 
         onscreen.context.drawImage(
@@ -397,6 +403,9 @@ window.addEventListener("load", async function() {
         const next_game = Game.step(inputs, game);
         game.free();
         game = next_game;
+
+        previousOffsetX = offsetX;
+        previousOffsetY = offsetY;
 
         stats.end();
 

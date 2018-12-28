@@ -47,26 +47,11 @@ impl brownfox::Moore<Vec<brownfox::Input>, object::Output> for Hijack {
     }
 
     fn output(&self) -> object::Output {
-        let mut central_x = 0;
-        let mut central_y = 0;
         let events: Vec<Event> = self
             .objects
             .iter()
             .flat_map(|object| object.1.output().0)
             .collect();
-
-        for event in &events {
-            match event {
-                &Event::Focus(x, y, width, height) => {
-                    central_x = x + width / 2;
-                    central_y = y + height / 2;
-                }
-                _ => (),
-            }
-        }
-
-        let left = central_x - WIDTH / 2;
-        let top = central_y - HEIGHT / 2;
 
         (
             events,
@@ -74,9 +59,7 @@ impl brownfox::Moore<Vec<brownfox::Input>, object::Output> for Hijack {
                 .iter()
                 .flat_map(|object| object.1.output().1)
                 .map(|view| match view {
-                    View::Image(name, x, y, z) => {
-                        View::Image(name.to_string(), x - left, y - top, z)
-                    }
+                    View::Image(name, x, y, z) => View::Image(name.to_string(), x, y, z),
                 })
                 .collect(),
         )

@@ -138,7 +138,23 @@ pub extern "C" fn WinMain() -> i32 {
         }
 
         while hijack_platform_windows_step(session) {
-            let (_, mut views) = hijack.output();
+            let (events, mut views) = hijack.output();
+
+            let mut central_x = 0;
+            let mut central_y = 0;
+
+            for event in &events {
+                match event {
+                    &hijack::Event::Focus(x, y, width, height) => {
+                        central_x = x + width / 2;
+                        central_y = y + height / 2;
+                    }
+                    _ => (),
+                }
+            }
+
+            let left = central_x - hijack::WIDTH / 2;
+            let top = central_y - hijack::HEIGHT / 2;
 
             views.sort_by(|v, w| {
                 let hijack::View::Image(_, _, _, vz) = v;
@@ -154,8 +170,8 @@ pub extern "C" fn WinMain() -> i32 {
                         Some(image) => {
                             hijack_platform_windows_image_draw(
                                 session,
-                                (SCALE as i32 * x).into(),
-                                (SCALE as i32 * y).into(),
+                                (SCALE as i32 * (x - left as i32)).into(),
+                                (SCALE as i32 * (y - top as i32)).into(),
                                 *image,
                             );
                         }
