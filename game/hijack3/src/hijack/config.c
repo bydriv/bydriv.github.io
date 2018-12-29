@@ -10,9 +10,9 @@ struct asset_defn {
 unsigned int SCALE = 2;
 unsigned int WIDTH = 320;
 unsigned int HEIGHT = 240;
-unsigned int ASSET_DEFNS_LEN = 337;
+unsigned int ASSET_DEFNS_LEN = 339;
 
-struct asset_defn ASSET_DEFNS[337] = {
+struct asset_defn ASSET_DEFNS[339] = {
     {"pixelart/system/window.png", "pixelart/system/window/top-left.png", 0, 0, 8, 8},
     {"pixelart/system/window.png", "pixelart/system/window/top.png", 8, 0, 8, 8},
     {"pixelart/system/window.png", "pixelart/system/window/top-arrow.png", 16, 0, 8, 8},
@@ -348,6 +348,8 @@ struct asset_defn ASSET_DEFNS[337] = {
     {"pixelart/maptip/street-light.png", "pixelart/maptip/street-light/right.png", 0, 64, 32, 32},
     {"pixelart/maptip/street-light.png", "pixelart/maptip/street-light/front.png", 0, 96, 32, 32},
     {"pixelart/maptip/momoyama.png", "pixelart/maptip/momoyama.png", 0, 0, 96, 16},
+    {"pixelart/maptip/halfway-to-hell.png", "pixelart/maptip/halfway-to-hell/left.png", 0, 0, 32, 128},
+    {"pixelart/maptip/halfway-to-hell.png", "pixelart/maptip/halfway-to-hell/right.png", 32, 0, 32, 128},
     {"pixelart/effect/dark.png", "pixelart/effect/dark.png", 0, 0, 320, 240},
     {"pixelart/effect/cursor.png", "pixelart/effect/cursor.png", 0, 0, 16, 16},
 };

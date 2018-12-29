@@ -47,10 +47,10 @@ pub fn new(x: i32, y: i32, z: i32) -> Teiri {
 
 impl brownfox::Moore<Input, Output> for Teiri {
     fn transit(&self, input: &Input) -> Teiri {
-        let xshift = if input.0.len() > 0 {
-            if input.0[0].x < -0.25 {
+        let xshift = if input.inputs.len() > 0 {
+            if input.inputs[0].x < -0.25 {
                 -1
-            } else if input.0[0].x > 0.25 {
+            } else if input.inputs[0].x > 0.25 {
                 1
             } else {
                 0
@@ -59,10 +59,10 @@ impl brownfox::Moore<Input, Output> for Teiri {
             0
         };
 
-        let yshift = if input.0.len() > 0 {
-            if input.0[0].y < -0.25 {
+        let yshift = if input.inputs.len() > 0 {
+            if input.inputs[0].y < -0.25 {
                 -1
-            } else if input.0[0].y > 0.25 {
+            } else if input.inputs[0].y > 0.25 {
                 1
             } else {
                 0
@@ -71,7 +71,10 @@ impl brownfox::Moore<Input, Output> for Teiri {
             0
         };
 
-        let pose = if input.0.len() > 0 && input.0[0].buttons.len() > 4 && input.0[0].buttons[4] {
+        let pose = if input.inputs.len() > 0
+            && input.inputs[0].buttons.len() > 4
+            && input.inputs[0].buttons[4]
+        {
             Pose::Hijack
         } else {
             Pose::Walk
@@ -124,9 +127,9 @@ impl brownfox::Moore<Input, Output> for Teiri {
                     z: self.z,
                     pose: pose,
                     direction: direction,
-                    check: input.0.len() > 0
-                        && input.0[0].buttons.len() > 0
-                        && input.0[0].buttons[0],
+                    check: input.inputs.len() > 0
+                        && input.inputs[0].buttons.len() > 0
+                        && input.inputs[0].buttons[0],
                     cursor: Some(cursor),
                 }
             }
@@ -150,9 +153,9 @@ impl brownfox::Moore<Input, Output> for Teiri {
                     z: self.z,
                     pose: pose,
                     direction: direction,
-                    check: input.0.len() > 0
-                        && input.0[0].buttons.len() > 0
-                        && input.0[0].buttons[0],
+                    check: input.inputs.len() > 0
+                        && input.inputs[0].buttons.len() > 0
+                        && input.inputs[0].buttons[0],
                     cursor: None,
                 }
             }
@@ -219,7 +222,10 @@ impl brownfox::Moore<Input, Output> for Teiri {
             ));
         }
 
-        (events, views)
+        Output {
+            events: events,
+            views: views,
+        }
     }
 }
 

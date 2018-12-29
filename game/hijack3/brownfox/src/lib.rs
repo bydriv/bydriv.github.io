@@ -54,17 +54,23 @@ impl Rectangle {
             height: height,
         }
     }
-}
 
-impl Shape for Rectangle {
-    fn collision(&self, other: Self) -> bool {
+    pub fn intersection(&self, other: Rectangle) -> Rectangle {
         let left = std::cmp::max(self.x, other.x);
         let top = std::cmp::max(self.y, other.y);
         let right = std::cmp::min(self.x + self.width, other.x + other.width);
         let bottom = std::cmp::min(self.y + self.height, other.y + other.height);
         let width = right - left;
         let height = bottom - top;
-        width > 0 && height > 0
+
+        Rectangle::new(left, top, width, height)
+    }
+}
+
+impl Shape for Rectangle {
+    fn collision(&self, other: Self) -> bool {
+        let inter = self.intersection(other);
+        inter.width > 0 && inter.height > 0
     }
 }
 

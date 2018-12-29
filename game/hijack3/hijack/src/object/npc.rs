@@ -63,7 +63,11 @@ impl brownfox::Moore<Input, Output> for NPC {
             self.y,
             self.z,
         )];
-        (vec![], views)
+
+        Output {
+            events: vec![],
+            views: views,
+        }
     }
 }
 

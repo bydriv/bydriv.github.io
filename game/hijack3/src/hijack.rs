@@ -80,13 +80,13 @@ extern "C" {
     static WIDTH: u32;
     static HEIGHT: u32;
     static ASSET_DEFNS_LEN: usize;
-    static ASSET_DEFNS: [AssetDefn; 337];
+    static ASSET_DEFNS: [AssetDefn; 339];
 }
 
 // src/hijack/assets.c
 extern "C" {
     static assets_len: usize;
-    static assets: [Asset; 20];
+    static assets: [Asset; 21];
 }
 
 #[no_mangle]
@@ -138,23 +138,7 @@ pub extern "C" fn WinMain() -> i32 {
         }
 
         while hijack_platform_windows_step(session) {
-            let (events, mut views) = hijack.output();
-
-            let mut central_x = 0;
-            let mut central_y = 0;
-
-            for event in &events {
-                match event {
-                    &hijack::Event::Focus(x, y, width, height) => {
-                        central_x = x + width / 2;
-                        central_y = y + height / 2;
-                    }
-                    _ => (),
-                }
-            }
-
-            let left = central_x - hijack::WIDTH / 2;
-            let top = central_y - hijack::HEIGHT / 2;
+            let mut views = hijack.output().views;
 
             views.sort_by(|v, w| {
                 let hijack::View::Image(_, _, _, vz) = v;
@@ -170,8 +154,8 @@ pub extern "C" fn WinMain() -> i32 {
                         Some(image) => {
                             hijack_platform_windows_image_draw(
                                 session,
-                                (SCALE as i32 * (x - left as i32)).into(),
-                                (SCALE as i32 * (y - top as i32)).into(),
+                                (SCALE as i32 * (x - hijack.x)).into(),
+                                (SCALE as i32 * (y - hijack.y)).into(),
                                 *image,
                             );
                         }

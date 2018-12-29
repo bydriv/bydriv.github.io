@@ -165,24 +165,7 @@ pub fn step(inputs: &Inputs, game: &Game) -> Game {
 
 #[wasm_bindgen]
 pub fn view_map(game: &Game) -> ViewMap {
-    let (events, views) = game.output();
-
-    let mut central_x = 0;
-    let mut central_y = 0;
-
-    for event in &events {
-        match event {
-            &Event::Focus(x, y, width, height) => {
-                central_x = x + width / 2;
-                central_y = y + height / 2;
-            }
-            _ => (),
-        }
-    }
-
-    let left = central_x - WIDTH / 2;
-    let top = central_y - HEIGHT / 2;
-
+    let views = game.output().views;
     let mut view_map = HashMap::new();
 
     for view in views {
@@ -197,8 +180,8 @@ pub fn view_map(game: &Game) -> ViewMap {
     view_map.sort_by(|(z1, _), (z2, _)| z1.cmp(z2));
 
     ViewMap {
-        x: left,
-        y: top,
+        x: game.hijack.x,
+        y: game.hijack.y,
         view_map: view_map,
     }
 }

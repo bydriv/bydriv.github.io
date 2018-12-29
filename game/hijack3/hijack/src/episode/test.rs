@@ -2,6 +2,10 @@ use super::*;
 
 pub fn new() -> Hijack {
     Hijack {
+        x: 0,
+        y: 0,
+        width: 320,
+        height: 240,
         objects: vec![
             (
                 brownfox::Control::Immovable(brownfox::Immovable::new()),

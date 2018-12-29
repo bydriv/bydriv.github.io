@@ -1,0 +1,55 @@
+{
+    "x": 0,
+    "y": 0,
+    "width": 320,
+    "height": 240,
+    "objects": [
+        {
+            "control": {
+                "type": "player",
+                "i": 0
+            },
+            "object": {
+                "type": "teiri",
+                "x": 0,
+                "y": 0,
+                "z": 0
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": 0,
+                "y": 0,
+                "z": -1000,
+                "width": 16,
+                "height": 16,
+                "rectangles": [
+                    {
+                        "x": 0,
+                        "y": 0,
+                        "width": 200,
+                        "height": 150
+                    }
+                ],
+                "center": "pixelart/maptip/ground/center.png",
+                "left": "pixelart/maptip/ground/left.png",
+                "top": "pixelart/maptip/ground/top.png",
+                "right": "pixelart/maptip/ground/right.png",
+                "bottom": "pixelart/maptip/ground/bottom.png",
+                "top_left": "pixelart/maptip/ground/top-left.png",
+                "top_right": "pixelart/maptip/ground/top-right.png",
+                "bottom_left": "pixelart/maptip/ground/bottom-left.png",
+                "bottom_right": "pixelart/maptip/ground/bottom-right.png",
+                "top_left_inv": "pixelart/maptip/ground/top-left_inv.png",
+                "top_right_inv": "pixelart/maptip/ground/top-right_inv.png",
+                "bottom_left_inv": "pixelart/maptip/ground/bottom-left_inv.png",
+                "bottom_right_inv": "pixelart/maptip/ground/bottom-right_inv.png"
+            }
+        }
+    ],
+    "events": []
+}

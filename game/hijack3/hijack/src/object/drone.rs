@@ -62,7 +62,11 @@ impl brownfox::Moore<Input, Output> for Drone {
             self.y,
             self.z,
         )];
-        (vec![], views)
+
+        Output {
+            events: vec![],
+            views: views,
+        }
     }
 }
 

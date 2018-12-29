@@ -374,6 +374,10 @@
     ["pixelart/maptip/momoyama.png", [
       ["pixelart/maptip/momoyama.png", [0, 0, 96, 16]]
     ]],
+    ["pixelart/maptip/halfway-to-hell.png", [
+      ["pixelart/maptip/halfway-to-hell/left.png", [0, 0, 32, 128]],
+      ["pixelart/maptip/halfway-to-hell/right.png", [32, 0, 32, 128]]
+    ]],
     ["pixelart/effect/dark.png", [
       ["pixelart/effect/dark.png", [0, 0, 320, 240]]
     ]],

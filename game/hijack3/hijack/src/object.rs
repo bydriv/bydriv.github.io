@@ -5,8 +5,15 @@ pub mod teiri;
 
 use super::*;
 
-pub type Input = (Vec<brownfox::Input>, Hijack);
-pub type Output = (Vec<Event>, Vec<View>);
+pub struct Input {
+    pub inputs: Vec<brownfox::Input>,
+    pub previous: Hijack,
+}
+
+pub struct Output {
+    pub events: Vec<Event>,
+    pub views: Vec<View>,
+}
 
 #[derive(Clone)]
 pub enum Object {

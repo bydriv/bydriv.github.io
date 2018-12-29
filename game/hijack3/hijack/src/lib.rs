@@ -9,6 +9,10 @@ use brownfox::Moore;
 
 #[derive(Clone)]
 pub struct Hijack {
+    pub x: i32,
+    pub y: i32,
+    pub width: i32,
+    pub height: i32,
     objects: Vec<(brownfox::Control, object::Object)>,
     events: Vec<Event>,
 }
@@ -32,17 +36,44 @@ impl Hijack {
 
 impl brownfox::Moore<Vec<brownfox::Input>, object::Output> for Hijack {
     fn transit(&self, inputs: &Vec<brownfox::Input>) -> Hijack {
+        let events = self.output().events;
+        let mut central_x = 0;
+        let mut central_y = 0;
+
+        for event in &events {
+            match event {
+                &Event::Focus(x, y, width, height) => {
+                    central_x = x + width / 2;
+                    central_y = y + height / 2;
+                }
+                _ => (),
+            }
+        }
+
+        let left = central_x - self.width / 2;
+        let top = central_y - self.height / 2;
+
         Hijack {
+            x: left,
+            y: top,
+            width: self.width,
+            height: self.height,
             objects: self
                 .objects
                 .iter()
                 .map(|object| {
                     let control = object.0.transit(inputs);
                     let input = control.output();
-                    (control, object.1.transit(&(vec![input], self.clone())))
+                    (
+                        control,
+                        object.1.transit(&object::Input {
+                            inputs: vec![input],
+                            previous: self.clone(),
+                        }),
+                    )
                 })
                 .collect(),
-            events: self.output().0,
+            events: events,
         }
     }
 
@@ -50,22 +81,16 @@ impl brownfox::Moore<Vec<brownfox::Input>, object::Output> for Hijack {
         let events: Vec<Event> = self
             .objects
             .iter()
-            .flat_map(|object| object.1.output().0)
+            .flat_map(|object| object.1.output().events)
             .collect();
 
-        (
-            events,
-            self.objects
+        object::Output {
+            events: events,
+            views: self
+                .objects
                 .iter()
-                .flat_map(|object| object.1.output().1)
-                .map(|view| match view {
-                    View::Image(name, x, y, z) => View::Image(name.to_string(), x, y, z),
-                })
+                .flat_map(|object| object.1.output().views)
                 .collect(),
-        )
+        }
     }
 }
-
-pub const SCALE: i32 = 2;
-pub const WIDTH: i32 = 320;
-pub const HEIGHT: i32 = 240;

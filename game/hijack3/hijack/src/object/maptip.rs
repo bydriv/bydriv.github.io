@@ -23,6 +23,7 @@ pub struct Maptip {
     top_right_inv: String,
     bottom_left_inv: String,
     bottom_right_inv: String,
+    rectangle: brownfox::Rectangle,
 }
 
 pub fn new(
@@ -66,18 +67,28 @@ pub fn new(
         top_right_inv: top_right_inv,
         bottom_left_inv: bottom_left_inv,
         bottom_right_inv: bottom_right_inv,
+        rectangle: brownfox::Rectangle::new(0, 0, 0, 0),
     }
 }
 
 impl brownfox::Moore<Input, Output> for Maptip {
-    fn transit(&self, _input: &Input) -> Maptip {
-        self.clone()
+    fn transit(&self, input: &Input) -> Maptip {
+        let mut other = self.clone();
+        other.rectangle = brownfox::Rectangle::new(
+            (input.previous.x / self.width - 1).into(),
+            (input.previous.y / self.height - 1).into(),
+            (input.previous.width / self.width + 2).into(),
+            (input.previous.height / self.height + 2).into(),
+        );
+        other
     }
 
     fn output(&self) -> Output {
         let mut views = vec![];
 
         for rectangle in self.rectangles.clone() {
+            let rectangle = self.rectangle.intersection(rectangle);
+
             for i in 0..rectangle.width {
                 for j in 0..rectangle.height {
                     let left = brownfox::Rectangle::new(rectangle.x + i - 1, rectangle.y + j, 1, 1);
@@ -141,16 +152,17 @@ impl brownfox::Moore<Input, Output> for Maptip {
                         _ => self.center.clone(),
                     };
 
-                    views.push(View::Image(
-                        name,
-                        self.x + (rectangle.x + i) as i32 * self.width,
-                        self.y + (rectangle.y + j) as i32 * self.height,
-                        self.z,
-                    ))
+                    let x = self.x + (rectangle.x + i) as i32 * self.width;
+                    let y = self.y + (rectangle.y + j) as i32 * self.height;
+
+                    views.push(View::Image(name, x, y, self.z));
                 }
             }
         }
 
-        (vec![], views)
+        Output {
+            events: vec![],
+            views: views,
+        }
     }
 }

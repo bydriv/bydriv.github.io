@@ -8,6 +8,10 @@ printf "use super::*;\n"
 printf "\n"
 printf "pub fn new() -> Hijack {\n"
 printf "  Hijack {\n"
+printf "    x: %d,\n", episode["x"]
+printf "    y: %d,\n", episode["y"]
+printf "    width: %d,\n", episode["width"]
+printf "    height: %d,\n", episode["height"]
 printf "    objects: vec![\n"
 
 episode["objects"].each do |object|
