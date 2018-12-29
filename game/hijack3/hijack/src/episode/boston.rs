@@ -19,7 +19,7 @@ pub fn new() -> Hijack {
                         object::Object::Maptip(object::maptip::new(
                             160,
                             -480,
-                            -1000,
+                            -1500,
                             16,
                             16,
                             vec![brownfox::Rectangle::new(0, 0, 30, 30)],
