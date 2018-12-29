@@ -47,6 +47,7 @@ updated at @@html:<time datetime="2018-12-09">2018-12-09</time>@@
 - [[./2018-11-01.org][2019年の準備]]
 - [[./wsl-docker-2018-12.org][WSL で Docker する話 (2018-12 時点)]]
 - [[./hijack-dev-rust.org][Hijack 開発ブログ: Rust 化計画]]
+- [[./2018.org][2018年の進捗まとめ]]
 
 * License
 
