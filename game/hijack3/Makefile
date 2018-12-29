@@ -21,7 +21,7 @@ js:
 
 .PHONY: server
 server:
-	python3 server.py
+	(cd ../.. && python3 game/hijack3/server.py)
 
 src/hijack/config.c: json/config.json
 	$(MKCONFIG) $^ > $@

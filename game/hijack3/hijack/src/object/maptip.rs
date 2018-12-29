@@ -75,10 +75,10 @@ impl brownfox::Moore<Input, Output> for Maptip {
     fn transit(&self, input: &Input) -> Maptip {
         let mut other = self.clone();
         other.rectangle = brownfox::Rectangle::new(
-            (input.previous.x / self.width - 1).into(),
-            (input.previous.y / self.height - 1).into(),
-            (input.previous.width / self.width + 2).into(),
-            (input.previous.height / self.height + 2).into(),
+            ((input.previous.x - self.x) / self.width - 1).into(),
+            ((input.previous.y - self.y) / self.height - 1).into(),
+            (input.previous.width / self.width + 3).into(),
+            (input.previous.height / self.height + 3).into(),
         );
         other
     }

@@ -11,9 +11,252 @@
             },
             "object": {
                 "type": "teiri",
-                "x": 0,
-                "y": 0,
+                "x": 192,
+                "y": -128,
                 "z": 0
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "animated",
+                "i": 8,
+                "objects": [
+                    {
+                        "type": "maptip",
+                        "x": 160,
+                        "y": -480,
+                        "z": -1000,
+                        "width": 16,
+                        "height": 16,
+                        "rectangles": [
+                            {
+                                "x": 0,
+                                "y": 0,
+                                "width": 30,
+                                "height": 30
+                            }
+                        ],
+                        "center": "pixelart/maptip/water/center/0.png",
+                        "left": "pixelart/maptip/water/left/0.png",
+                        "top": "pixelart/maptip/water/top/0.png",
+                        "right": "pixelart/maptip/water/right/0.png",
+                        "bottom": "pixelart/maptip/water/bottom/0.png",
+                        "top_left": "pixelart/maptip/water/top-left/0.png",
+                        "top_right": "pixelart/maptip/water/top-right/0.png",
+                        "bottom_left": "pixelart/maptip/water/bottom-left/0.png",
+                        "bottom_right": "pixelart/maptip/water/bottom-right/0.png",
+                        "top_left_inv": "pixelart/maptip/water/top-left_inv/0.png",
+                        "top_right_inv": "pixelart/maptip/water/top-right_inv/0.png",
+                        "bottom_left_inv": "pixelart/maptip/water/bottom-left_inv/0.png",
+                        "bottom_right_inv": "pixelart/maptip/water/bottom-right_inv/0.png"
+                    },
+                    {
+                        "type": "maptip",
+                        "x": 160,
+                        "y": -480,
+                        "z": -1000,
+                        "width": 16,
+                        "height": 16,
+                        "rectangles": [
+                            {
+                                "x": 0,
+                                "y": 0,
+                                "width": 30,
+                                "height": 30
+                            }
+                        ],
+                        "center": "pixelart/maptip/water/center/1.png",
+                        "left": "pixelart/maptip/water/left/1.png",
+                        "top": "pixelart/maptip/water/top/1.png",
+                        "right": "pixelart/maptip/water/right/1.png",
+                        "bottom": "pixelart/maptip/water/bottom/1.png",
+                        "top_left": "pixelart/maptip/water/top-left/1.png",
+                        "top_right": "pixelart/maptip/water/top-right/1.png",
+                        "bottom_left": "pixelart/maptip/water/bottom-left/1.png",
+                        "bottom_right": "pixelart/maptip/water/bottom-right/1.png",
+                        "top_left_inv": "pixelart/maptip/water/top-left_inv/1.png",
+                        "top_right_inv": "pixelart/maptip/water/top-right_inv/1.png",
+                        "bottom_left_inv": "pixelart/maptip/water/bottom-left_inv/1.png",
+                        "bottom_right_inv": "pixelart/maptip/water/bottom-right_inv/1.png"
+                    },
+                    {
+                        "type": "maptip",
+                        "x": 160,
+                        "y": -480,
+                        "z": -1000,
+                        "width": 16,
+                        "height": 16,
+                        "rectangles": [
+                            {
+                                "x": 0,
+                                "y": 0,
+                                "width": 30,
+                                "height": 30
+                            }
+                        ],
+                        "center": "pixelart/maptip/water/center/2.png",
+                        "left": "pixelart/maptip/water/left/2.png",
+                        "top": "pixelart/maptip/water/top/2.png",
+                        "right": "pixelart/maptip/water/right/2.png",
+                        "bottom": "pixelart/maptip/water/bottom/2.png",
+                        "top_left": "pixelart/maptip/water/top-left/2.png",
+                        "top_right": "pixelart/maptip/water/top-right/2.png",
+                        "bottom_left": "pixelart/maptip/water/bottom-left/2.png",
+                        "bottom_right": "pixelart/maptip/water/bottom-right/2.png",
+                        "top_left_inv": "pixelart/maptip/water/top-left_inv/2.png",
+                        "top_right_inv": "pixelart/maptip/water/top-right_inv/2.png",
+                        "bottom_left_inv": "pixelart/maptip/water/bottom-left_inv/2.png",
+                        "bottom_right_inv": "pixelart/maptip/water/bottom-right_inv/2.png"
+                    },
+                    {
+                        "type": "maptip",
+                        "x": 160,
+                        "y": -480,
+                        "z": -1000,
+                        "width": 16,
+                        "height": 16,
+                        "rectangles": [
+                            {
+                                "x": 0,
+                                "y": 0,
+                                "width": 30,
+                                "height": 30
+                            }
+                        ],
+                        "center": "pixelart/maptip/water/center/3.png",
+                        "left": "pixelart/maptip/water/left/3.png",
+                        "top": "pixelart/maptip/water/top/3.png",
+                        "right": "pixelart/maptip/water/right/3.png",
+                        "bottom": "pixelart/maptip/water/bottom/3.png",
+                        "top_left": "pixelart/maptip/water/top-left/3.png",
+                        "top_right": "pixelart/maptip/water/top-right/3.png",
+                        "bottom_left": "pixelart/maptip/water/bottom-left/3.png",
+                        "bottom_right": "pixelart/maptip/water/bottom-right/3.png",
+                        "top_left_inv": "pixelart/maptip/water/top-left_inv/3.png",
+                        "top_right_inv": "pixelart/maptip/water/top-right_inv/3.png",
+                        "bottom_left_inv": "pixelart/maptip/water/bottom-left_inv/3.png",
+                        "bottom_right_inv": "pixelart/maptip/water/bottom-right_inv/3.png"
+                    },
+                    {
+                        "type": "maptip",
+                        "x": 160,
+                        "y": -480,
+                        "z": -1000,
+                        "width": 16,
+                        "height": 16,
+                        "rectangles": [
+                            {
+                                "x": 0,
+                                "y": 0,
+                                "width": 30,
+                                "height": 30
+                            }
+                        ],
+                        "center": "pixelart/maptip/water/center/4.png",
+                        "left": "pixelart/maptip/water/left/4.png",
+                        "top": "pixelart/maptip/water/top/4.png",
+                        "right": "pixelart/maptip/water/right/4.png",
+                        "bottom": "pixelart/maptip/water/bottom/4.png",
+                        "top_left": "pixelart/maptip/water/top-left/4.png",
+                        "top_right": "pixelart/maptip/water/top-right/4.png",
+                        "bottom_left": "pixelart/maptip/water/bottom-left/4.png",
+                        "bottom_right": "pixelart/maptip/water/bottom-right/4.png",
+                        "top_left_inv": "pixelart/maptip/water/top-left_inv/4.png",
+                        "top_right_inv": "pixelart/maptip/water/top-right_inv/4.png",
+                        "bottom_left_inv": "pixelart/maptip/water/bottom-left_inv/4.png",
+                        "bottom_right_inv": "pixelart/maptip/water/bottom-right_inv/4.png"
+                    },
+                    {
+                        "type": "maptip",
+                        "x": 160,
+                        "y": -480,
+                        "z": -1000,
+                        "width": 16,
+                        "height": 16,
+                        "rectangles": [
+                            {
+                                "x": 0,
+                                "y": 0,
+                                "width": 30,
+                                "height": 30
+                            }
+                        ],
+                        "center": "pixelart/maptip/water/center/5.png",
+                        "left": "pixelart/maptip/water/left/5.png",
+                        "top": "pixelart/maptip/water/top/5.png",
+                        "right": "pixelart/maptip/water/right/5.png",
+                        "bottom": "pixelart/maptip/water/bottom/5.png",
+                        "top_left": "pixelart/maptip/water/top-left/5.png",
+                        "top_right": "pixelart/maptip/water/top-right/5.png",
+                        "bottom_left": "pixelart/maptip/water/bottom-left/5.png",
+                        "bottom_right": "pixelart/maptip/water/bottom-right/5.png",
+                        "top_left_inv": "pixelart/maptip/water/top-left_inv/5.png",
+                        "top_right_inv": "pixelart/maptip/water/top-right_inv/5.png",
+                        "bottom_left_inv": "pixelart/maptip/water/bottom-left_inv/5.png",
+                        "bottom_right_inv": "pixelart/maptip/water/bottom-right_inv/5.png"
+                    },
+                    {
+                        "type": "maptip",
+                        "x": 160,
+                        "y": -480,
+                        "z": -1000,
+                        "width": 16,
+                        "height": 16,
+                        "rectangles": [
+                            {
+                                "x": 0,
+                                "y": 0,
+                                "width": 30,
+                                "height": 30
+                            }
+                        ],
+                        "center": "pixelart/maptip/water/center/6.png",
+                        "left": "pixelart/maptip/water/left/6.png",
+                        "top": "pixelart/maptip/water/top/6.png",
+                        "right": "pixelart/maptip/water/right/6.png",
+                        "bottom": "pixelart/maptip/water/bottom/6.png",
+                        "top_left": "pixelart/maptip/water/top-left/6.png",
+                        "top_right": "pixelart/maptip/water/top-right/6.png",
+                        "bottom_left": "pixelart/maptip/water/bottom-left/6.png",
+                        "bottom_right": "pixelart/maptip/water/bottom-right/6.png",
+                        "top_left_inv": "pixelart/maptip/water/top-left_inv/6.png",
+                        "top_right_inv": "pixelart/maptip/water/top-right_inv/6.png",
+                        "bottom_left_inv": "pixelart/maptip/water/bottom-left_inv/6.png",
+                        "bottom_right_inv": "pixelart/maptip/water/bottom-right_inv/6.png"
+                    },
+                    {
+                        "type": "maptip",
+                        "x": 160,
+                        "y": -480,
+                        "z": -1000,
+                        "width": 16,
+                        "height": 16,
+                        "rectangles": [
+                            {
+                                "x": 0,
+                                "y": 0,
+                                "width": 30,
+                                "height": 30
+                            }
+                        ],
+                        "center": "pixelart/maptip/water/center/7.png",
+                        "left": "pixelart/maptip/water/left/7.png",
+                        "top": "pixelart/maptip/water/top/7.png",
+                        "right": "pixelart/maptip/water/right/7.png",
+                        "bottom": "pixelart/maptip/water/bottom/7.png",
+                        "top_left": "pixelart/maptip/water/top-left/7.png",
+                        "top_right": "pixelart/maptip/water/top-right/7.png",
+                        "bottom_left": "pixelart/maptip/water/bottom-left/7.png",
+                        "bottom_right": "pixelart/maptip/water/bottom-right/7.png",
+                        "top_left_inv": "pixelart/maptip/water/top-left_inv/7.png",
+                        "top_right_inv": "pixelart/maptip/water/top-right_inv/7.png",
+                        "bottom_left_inv": "pixelart/maptip/water/bottom-left_inv/7.png",
+                        "bottom_right_inv": "pixelart/maptip/water/bottom-right_inv/7.png"
+                    }
+                ]
             }
         },
         {
@@ -23,7 +266,7 @@
             "object": {
                 "type": "maptip",
                 "x": 0,
-                "y": 0,
+                "y": -32,
                 "z": -1000,
                 "width": 16,
                 "height": 16,
@@ -32,7 +275,7 @@
                         "x": 0,
                         "y": 0,
                         "width": 200,
-                        "height": 150
+                        "height": 152
                     }
                 ],
                 "center": "pixelart/maptip/ground/center.png",
@@ -48,6 +291,330 @@
                 "top_right_inv": "pixelart/maptip/ground/top-right_inv.png",
                 "bottom_left_inv": "pixelart/maptip/ground/bottom-left_inv.png",
                 "bottom_right_inv": "pixelart/maptip/ground/bottom-right_inv.png"
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": 0,
+                "y": -480,
+                "z": -1000,
+                "width": 16,
+                "height": 16,
+                "rectangles": [
+                    {
+                        "x": 3,
+                        "y": 0,
+                        "width": 8,
+                        "height": 33
+                    },
+                    {
+                        "x": 3,
+                        "y": 33,
+                        "width": 30,
+                        "height": 8
+                    }
+                ],
+                "center": "pixelart/maptip/asphalt/center.png",
+                "left": "pixelart/maptip/asphalt/left.png",
+                "top": "pixelart/maptip/asphalt/top.png",
+                "right": "pixelart/maptip/asphalt/right.png",
+                "bottom": "pixelart/maptip/asphalt/bottom.png",
+                "top_left": "pixelart/maptip/asphalt/top-left.png",
+                "top_right": "pixelart/maptip/asphalt/top-right.png",
+                "bottom_left": "pixelart/maptip/asphalt/bottom-left.png",
+                "bottom_right": "pixelart/maptip/asphalt/bottom-right.png",
+                "top_left_inv": "pixelart/maptip/asphalt/top-left_inv.png",
+                "top_right_inv": "pixelart/maptip/asphalt/top-right_inv.png",
+                "bottom_left_inv": "pixelart/maptip/asphalt/bottom-left_inv.png",
+                "bottom_right_inv": "pixelart/maptip/asphalt/bottom-right_inv.png"
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": 0,
+                "y": -480,
+                "z": -1000,
+                "width": 16,
+                "height": 16,
+                "rectangles": [
+                    {
+                        "x": 0,
+                        "y": 0,
+                        "width": 4,
+                        "height": 30
+                    },
+                    {
+                        "x": 10,
+                        "y": 0,
+                        "width": 4,
+                        "height": 30
+                    },
+                    {
+                        "x": 10,
+                        "y": 30,
+                        "width": 30,
+                        "height": 4
+                    }
+                ],
+                "center": "pixelart/maptip/mortar/center.png",
+                "left": "pixelart/maptip/mortar/left.png",
+                "top": "pixelart/maptip/mortar/top.png",
+                "right": "pixelart/maptip/mortar/right.png",
+                "bottom": "pixelart/maptip/mortar/bottom.png",
+                "top_left": "pixelart/maptip/mortar/top-left.png",
+                "top_right": "pixelart/maptip/mortar/top-right.png",
+                "bottom_left": "pixelart/maptip/mortar/bottom-left.png",
+                "bottom_right": "pixelart/maptip/mortar/bottom-right.png",
+                "top_left_inv": "pixelart/maptip/mortar/top-left_inv.png",
+                "top_right_inv": "pixelart/maptip/mortar/top-right_inv.png",
+                "bottom_left_inv": "pixelart/maptip/mortar/bottom-left_inv.png",
+                "bottom_right_inv": "pixelart/maptip/mortar/bottom-right_inv.png"
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": 16,
+                "y": -304,
+                "z": -1000,
+                "width": 32,
+                "height": 128,
+                "rectangles": [
+                    {
+                        "x": 0,
+                        "y": 0,
+                        "width": 1,
+                        "height": 1
+                    }
+                ],
+                "center": "pixelart/maptip/halfway-to-hell/left.png",
+                "left": "pixelart/maptip/halfway-to-hell/left.png",
+                "top": "pixelart/maptip/halfway-to-hell/left.png",
+                "right": "pixelart/maptip/halfway-to-hell/left.png",
+                "bottom": "pixelart/maptip/halfway-to-hell/left.png",
+                "top_left": "pixelart/maptip/halfway-to-hell/left.png",
+                "top_right": "pixelart/maptip/halfway-to-hell/left.png",
+                "bottom_left": "pixelart/maptip/halfway-to-hell/left.png",
+                "bottom_right": "pixelart/maptip/halfway-to-hell/left.png",
+                "top_left_inv": "pixelart/maptip/halfway-to-hell/left.png",
+                "top_right_inv": "pixelart/maptip/halfway-to-hell/left.png",
+                "bottom_left_inv": "pixelart/maptip/halfway-to-hell/left.png",
+                "bottom_right_inv": "pixelart/maptip/halfway-to-hell/left.png"
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": 176,
+                "y": -304,
+                "z": -1000,
+                "width": 32,
+                "height": 128,
+                "rectangles": [
+                    {
+                        "x": 0,
+                        "y": 0,
+                        "width": 1,
+                        "height": 1
+                    }
+                ],
+                "center": "pixelart/maptip/halfway-to-hell/right.png",
+                "left": "pixelart/maptip/halfway-to-hell/right.png",
+                "top": "pixelart/maptip/halfway-to-hell/right.png",
+                "right": "pixelart/maptip/halfway-to-hell/right.png",
+                "bottom": "pixelart/maptip/halfway-to-hell/right.png",
+                "top_left": "pixelart/maptip/halfway-to-hell/right.png",
+                "top_right": "pixelart/maptip/halfway-to-hell/right.png",
+                "bottom_left": "pixelart/maptip/halfway-to-hell/right.png",
+                "bottom_right": "pixelart/maptip/halfway-to-hell/right.png",
+                "top_left_inv": "pixelart/maptip/halfway-to-hell/right.png",
+                "top_right_inv": "pixelart/maptip/halfway-to-hell/right.png",
+                "bottom_left_inv": "pixelart/maptip/halfway-to-hell/right.png",
+                "bottom_right_inv": "pixelart/maptip/halfway-to-hell/right.png"
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": 44,
+                "y": -480,
+                "z": -1000,
+                "width": 32,
+                "height": 32,
+                "rectangles": [
+                    {
+                        "x": 0,
+                        "y": 0,
+                        "width": 1,
+                        "height": 15
+                    }
+                ],
+                "center": "pixelart/maptip/street-light/right.png",
+                "left": "pixelart/maptip/street-light/right.png",
+                "top": "pixelart/maptip/street-light/right.png",
+                "right": "pixelart/maptip/street-light/right.png",
+                "bottom": "pixelart/maptip/street-light/right.png",
+                "top_left": "pixelart/maptip/street-light/right.png",
+                "top_right": "pixelart/maptip/street-light/right.png",
+                "bottom_left": "pixelart/maptip/street-light/right.png",
+                "bottom_right": "pixelart/maptip/street-light/right.png",
+                "top_left_inv": "pixelart/maptip/street-light/right.png",
+                "top_right_inv": "pixelart/maptip/street-light/right.png",
+                "bottom_left_inv": "pixelart/maptip/street-light/right.png",
+                "bottom_right_inv": "pixelart/maptip/street-light/right.png"
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": 148,
+                "y": -480,
+                "z": -1000,
+                "width": 32,
+                "height": 32,
+                "rectangles": [
+                    {
+                        "x": 0,
+                        "y": 0,
+                        "width": 1,
+                        "height": 15
+                    }
+                ],
+                "center": "pixelart/maptip/street-light/left.png",
+                "left": "pixelart/maptip/street-light/left.png",
+                "top": "pixelart/maptip/street-light/left.png",
+                "right": "pixelart/maptip/street-light/left.png",
+                "bottom": "pixelart/maptip/street-light/left.png",
+                "top_left": "pixelart/maptip/street-light/left.png",
+                "top_right": "pixelart/maptip/street-light/left.png",
+                "bottom_left": "pixelart/maptip/street-light/left.png",
+                "bottom_right": "pixelart/maptip/street-light/left.png",
+                "top_left_inv": "pixelart/maptip/street-light/left.png",
+                "top_right_inv": "pixelart/maptip/street-light/left.png",
+                "bottom_left_inv": "pixelart/maptip/street-light/left.png",
+                "bottom_right_inv": "pixelart/maptip/street-light/left.png"
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": 192,
+                "y": -64,
+                "z": -1000,
+                "width": 32,
+                "height": 32,
+                "rectangles": [
+                    {
+                        "x": 0,
+                        "y": 0,
+                        "width": 70,
+                        "height": 3
+                    }
+                ],
+                "center": "pixelart/maptip/tree/center.png",
+                "left": "pixelart/maptip/tree/left.png",
+                "top": "pixelart/maptip/tree/top.png",
+                "right": "pixelart/maptip/tree/right.png",
+                "bottom": "pixelart/maptip/tree/bottom.png",
+                "top_left": "pixelart/maptip/tree/top-left.png",
+                "top_right": "pixelart/maptip/tree/top-right.png",
+                "bottom_left": "pixelart/maptip/tree/bottom-left.png",
+                "bottom_right": "pixelart/maptip/tree/bottom-right.png",
+                "top_left_inv": "pixelart/maptip/tree/top-left_inv.png",
+                "top_right_inv": "pixelart/maptip/tree/top-right_inv.png",
+                "bottom_left_inv": "pixelart/maptip/tree/bottom-left_inv.png",
+                "bottom_right_inv": "pixelart/maptip/tree/bottom-right_inv.png"
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": 256,
+                "y": -128,
+                "z": 1000,
+                "width": 16,
+                "height": 16,
+                "rectangles": [
+                    {
+                        "x": 0,
+                        "y": 0,
+                        "width": 8,
+                        "height": 6
+                    }
+                ],
+                "center": "pixelart/maptip/building/top/center.png",
+                "left": "pixelart/maptip/building/top/left.png",
+                "top": "pixelart/maptip/building/top/top.png",
+                "right": "pixelart/maptip/building/top/right.png",
+                "bottom": "pixelart/maptip/building/middle/center.png",
+                "top_left": "pixelart/maptip/building/top/top-left.png",
+                "top_right": "pixelart/maptip/building/top/top-right.png",
+                "bottom_left": "pixelart/maptip/building/middle/left.png",
+                "bottom_right": "pixelart/maptip/building/middle/right.png",
+                "top_left_inv": "pixelart/maptip/building/top/top-left.png",
+                "top_right_inv": "pixelart/maptip/building/top/top-right.png",
+                "bottom_left_inv": "pixelart/maptip/building/middle/left.png",
+                "bottom_right_inv": "pixelart/maptip/building/middle/right.png"
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": 256,
+                "y": -128,
+                "z": 1000,
+                "width": 16,
+                "height": 16,
+                "rectangles": [
+                    {
+                        "x": 0,
+                        "y": 5,
+                        "width": 8,
+                        "height": 20
+                    }
+                ],
+                "center": "pixelart/maptip/building/bottom/center.png",
+                "left": "pixelart/maptip/building/bottom/left.png",
+                "top": "pixelart/maptip/building/middle/center.png",
+                "right": "pixelart/maptip/building/bottom/right.png",
+                "bottom": "pixelart/maptip/building/bottom/bottom.png",
+                "top_left": "pixelart/maptip/building/middle/left.png",
+                "top_right": "pixelart/maptip/building/middle/right.png",
+                "bottom_left": "pixelart/maptip/building/bottom/bottom-left.png",
+                "bottom_right": "pixelart/maptip/building/bottom/bottom-right.png",
+                "top_left_inv": "pixelart/maptip/building/middle/left.png",
+                "top_right_inv": "pixelart/maptip/building/middle/right.png",
+                "bottom_left_inv": "pixelart/maptip/building/bottom/bottom-left.png",
+                "bottom_right_inv": "pixelart/maptip/building/bottom/bottom-right.png"
             }
         }
     ],

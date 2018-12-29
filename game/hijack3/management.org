@@ -13,6 +13,8 @@
 | pixelart/maptip/tree.png         | [[./pixelart/maptip/tree.png]]         |
 | pixelart/maptip/ground.png       | [[./pixelart/maptip/ground.png]]       |
 | pixelart/maptip/asphalt.png      | [[./pixelart/maptip/asphalt.png]]      |
+| pixelart/maptip/mortar.png       | [[./pixelart/maptip/mortar.png]]       |
+| pixelart/maptip/water.png        | [[./pixelart/maptip/water.png]]        |
 | pixelart/maptip/building.png     | [[./pixelart/maptip/building.png]]     |
 | pixelart/maptip/street-light.png | [[./pixelart/maptip/street-light.png]] |
 | pixelart/maptip/momoyama.png     | [[./pixelart/maptip/momoyama.png]]     |

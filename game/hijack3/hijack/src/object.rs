@@ -1,3 +1,4 @@
+pub mod animated;
 pub mod drone;
 pub mod maptip;
 pub mod npc;
@@ -21,6 +22,7 @@ pub enum Object {
     NPC(npc::NPC),
     Drone(drone::Drone),
     Maptip(maptip::Maptip),
+    Animated(animated::Animated),
 }
 
 impl brownfox::Moore<Input, Output> for Object {
@@ -30,6 +32,7 @@ impl brownfox::Moore<Input, Output> for Object {
             Object::NPC(npc) => Object::NPC(npc.transit(input)),
             Object::Drone(drone) => Object::Drone(drone.transit(input)),
             Object::Maptip(maptip) => Object::Maptip(maptip.transit(input)),
+            Object::Animated(animated) => Object::Animated(animated.transit(input)),
         }
     }
 
@@ -39,6 +42,7 @@ impl brownfox::Moore<Input, Output> for Object {
             Object::NPC(npc) => npc.output(),
             Object::Drone(drone) => drone.output(),
             Object::Maptip(maptip) => maptip.output(),
+            Object::Animated(animated) => animated.output(),
         }
     }
 }

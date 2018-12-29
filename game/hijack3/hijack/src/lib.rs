@@ -30,7 +30,7 @@ pub enum View {
 
 impl Hijack {
     pub fn new() -> Hijack {
-        episode::test::new()
+        episode::boston::new()
     }
 }
 

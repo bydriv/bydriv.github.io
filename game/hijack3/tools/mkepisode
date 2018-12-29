@@ -14,6 +14,52 @@ printf "    width: %d,\n", episode["width"]
 printf "    height: %d,\n", episode["height"]
 printf "    objects: vec![\n"
 
+def generate_object object
+  case object["type"]
+  when "maptip"
+    printf "        object::Object::Maptip(object::maptip::new(\n"
+    printf "          %d,\n", object["x"]
+    printf "          %d,\n", object["y"]
+    printf "          %d,\n", object["z"]
+    printf "          %d,\n", object["width"]
+    printf "          %d,\n", object["height"]
+    printf "          vec![\n"
+    object["rectangles"].each do |rectangle|
+      printf "            brownfox::Rectangle::new(%d, %d, %d, %d),\n", rectangle["x"], rectangle["y"], rectangle["width"], rectangle["height"]
+    end
+    printf "          ],\n"
+    printf "          \"%s\".to_string(),\n", object["center"]
+    printf "          \"%s\".to_string(),\n", object["left"]
+    printf "          \"%s\".to_string(),\n", object["top"]
+    printf "          \"%s\".to_string(),\n", object["right"]
+    printf "          \"%s\".to_string(),\n", object["bottom"]
+    printf "          \"%s\".to_string(),\n", object["top_left"]
+    printf "          \"%s\".to_string(),\n", object["top_right"]
+    printf "          \"%s\".to_string(),\n", object["bottom_left"]
+    printf "          \"%s\".to_string(),\n", object["bottom_right"]
+    printf "          \"%s\".to_string(),\n", object["top_left_inv"]
+    printf "          \"%s\".to_string(),\n", object["top_right_inv"]
+    printf "          \"%s\".to_string(),\n", object["bottom_left_inv"]
+    printf "          \"%s\".to_string(),\n", object["bottom_right_inv"]
+    printf "        ))\n"
+  when "teiri"
+    printf "        object::Object::Teiri(object::teiri::new(%d, %d, %d))\n", object["x"], object["y"], object["z"]
+  when "npc"
+    printf "        object::Object::NPC(object::npc::new(%d, %d, %d, \"%s\".to_string()))\n", object["x"], object["y"], object["z"], object["name"]
+  when "drone"
+    printf "        object::Object::Drone(object::drone::new(%d, %d, %d, \"%s\".to_string()))\n", object["x"], object["y"], object["z"], object["name"]
+  when "animated"
+    printf "        object::Object::Animated(object::animated::new(\n"
+    printf "          %d,\n", object["i"]
+    printf "          vec![\n", object["i"]
+    object["objects"].each do |obj|
+      generate_object obj
+      printf "        ,\n"
+    end
+    printf "        ])),\n"
+  end
+end
+
 episode["objects"].each do |object|
   printf "      (\n"
 
@@ -24,40 +70,7 @@ episode["objects"].each do |object|
     printf "        brownfox::Control::Immovable(brownfox::Immovable::new()),\n"
   end
 
-  case object["object"]["type"]
-  when "maptip"
-    printf "        object::Object::Maptip(object::maptip::new(\n"
-    printf "          %d,\n", object["object"]["x"]
-    printf "          %d,\n", object["object"]["y"]
-    printf "          %d,\n", object["object"]["z"]
-    printf "          %d,\n", object["object"]["width"]
-    printf "          %d,\n", object["object"]["height"]
-    printf "          vec![\n"
-    object["object"]["rectangles"].each do |rectangle|
-      printf "            brownfox::Rectangle::new(%d, %d, %d, %d),\n", rectangle["x"], rectangle["y"], rectangle["width"], rectangle["height"]
-    end
-    printf "          ],\n"
-    printf "          \"%s\".to_string(),\n", object["object"]["center"]
-    printf "          \"%s\".to_string(),\n", object["object"]["left"]
-    printf "          \"%s\".to_string(),\n", object["object"]["top"]
-    printf "          \"%s\".to_string(),\n", object["object"]["right"]
-    printf "          \"%s\".to_string(),\n", object["object"]["bottom"]
-    printf "          \"%s\".to_string(),\n", object["object"]["top_left"]
-    printf "          \"%s\".to_string(),\n", object["object"]["top_right"]
-    printf "          \"%s\".to_string(),\n", object["object"]["bottom_left"]
-    printf "          \"%s\".to_string(),\n", object["object"]["bottom_right"]
-    printf "          \"%s\".to_string(),\n", object["object"]["top_left_inv"]
-    printf "          \"%s\".to_string(),\n", object["object"]["top_right_inv"]
-    printf "          \"%s\".to_string(),\n", object["object"]["bottom_left_inv"]
-    printf "          \"%s\".to_string(),\n", object["object"]["bottom_right_inv"]
-    printf "        )),\n"
-  when "teiri"
-    printf "        object::Object::Teiri(object::teiri::new(%d, %d, %d)),\n", object["object"]["x"], object["object"]["y"], object["object"]["z"]
-  when "npc"
-    printf "        object::Object::NPC(object::npc::new(%d, %d, %d, \"%s\".to_string())),\n", object["object"]["x"], object["object"]["y"], object["object"]["z"], object["object"]["name"]
-  when "drone"
-    printf "        object::Object::Drone(object::drone::new(%d, %d, %d, \"%s\".to_string())),\n", object["object"]["x"], object["object"]["y"], object["object"]["z"], object["object"]["name"]
-  end
+  generate_object object["object"]
 
   printf "      ),\n"
 end
