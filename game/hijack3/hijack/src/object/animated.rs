@@ -28,3 +28,15 @@ impl brownfox::Moore<Input, Output> for Animated {
         self.objects[self.frame_count.i as usize / self.i as usize % self.objects.len()].output()
     }
 }
+
+impl Animated {
+    pub fn transport(&self, from_x: i32, from_y: i32, to_x: i32, to_y: i32) -> Animated {
+        let mut other = self.clone();
+        other.objects = other
+            .objects
+            .iter()
+            .map(|object| object.transport(from_x, from_y, to_x, to_y))
+            .collect();
+        other
+    }
+}

@@ -1,8 +1,5 @@
 {
-    "x": 0,
-    "y": 0,
-    "width": 320,
-    "height": 240,
+    "map": "map/boston/1000-1000.json",
     "objects": [
         {
             "control": {
@@ -15,30 +12,6 @@
                 "y": 0,
                 "z": 0
             }
-        },
-        {
-            "control": {
-                "type": "immovable"
-            },
-            "object": {
-                "type": "maptip",
-                "x": 0,
-                "y": 0,
-                "z": -1000,
-                "width": 16,
-                "height": 16,
-                "rectangles": [
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "width": 20,
-                        "height": 15
-                    }
-                ],
-                "prefix": "pixelart/maptip/ground/",
-                "suffix": ".png"
-            }
         }
-    ],
-    "events": []
+    ]
 }

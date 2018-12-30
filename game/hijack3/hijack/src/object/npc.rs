@@ -79,3 +79,12 @@ fn string_of_direction(direction: &Direction) -> String {
         Direction::Front => "front".to_string(),
     }
 }
+
+impl NPC {
+    pub fn transport(&self, from_x: i32, from_y: i32, to_x: i32, to_y: i32) -> NPC {
+        let mut other = self.clone();
+        other.x = other.x - from_x + to_x;
+        other.y = other.y - from_y + to_y;
+        other
+    }
+}

@@ -163,21 +163,9 @@ impl brownfox::Moore<Input, Output> for Teiri {
     }
 
     fn output(&self) -> Output {
-        let mut events = vec![Event::Focus(self.x, self.y, 16, 16)];
+        let mut events = vec![];
 
-        if self.check {
-            let x = match self.direction {
-                Direction::Left => self.x - 16,
-                Direction::Right => self.x + 16,
-                _ => self.x,
-            };
-            let y = match self.direction {
-                Direction::Back => self.y - 16,
-                Direction::Front => self.y + 16,
-                _ => self.y,
-            };
-            events.push(Event::Check(x, y, 16, 16));
-        }
+        events.push(Event::Trigger(self.x, self.y, 16, 16));
 
         let mut views = if let Pose::Hijack = self.pose {
             vec![
@@ -242,6 +230,13 @@ impl Teiri {
             Pose::Walk => self.y,
             Pose::Hijack => self.y - 8,
         }
+    }
+
+    pub fn transport(&self, from_x: i32, from_y: i32, to_x: i32, to_y: i32) -> Teiri {
+        let mut other = self.clone();
+        other.x = other.x - from_x + to_x;
+        other.y = other.y - from_y + to_y;
+        other
     }
 }
 

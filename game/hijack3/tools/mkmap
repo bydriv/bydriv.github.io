@@ -2,14 +2,10 @@
 
 require "json"
 
-episode = JSON.parse ARGF.read
+map = JSON.parse ARGF.read
 
 printf "use super::*;\n"
 printf "\n"
-printf "pub fn new() -> Episode {\n"
-printf "  Episode {\n"
-printf "    map: \"%s\".to_string(),\n", episode["map"]
-printf "    objects: vec![\n"
 
 def generate_object object
   case object["type"]
@@ -56,7 +52,18 @@ def generate_object object
   end
 end
 
-episode["objects"].each do |object|
+printf "pub fn new() -> Map { Map {\n"
+printf "  templates: vec![\n"
+
+map.each do |name, template|
+printf "  (\"%s\".to_string(), MapTemplate {\n", name
+printf "    x: %d,\n", template["x"]
+printf "    y: %d,\n", template["y"]
+printf "    width: %d,\n", template["width"]
+printf "    height: %d,\n", template["height"]
+printf "    objects: vec![\n"
+
+template["objects"].each do |object|
   printf "      (\n"
 
   case object["control"]["type"]
@@ -72,5 +79,9 @@ episode["objects"].each do |object|
 end
 
 printf "    ],\n"
+printf "  }),\n", name
+end
+
+printf "].into_iter().collect(),\n"
 printf "  }\n"
 printf "}\n"
