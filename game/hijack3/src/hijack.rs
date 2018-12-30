@@ -178,10 +178,12 @@ pub extern "C" fn WinMain() -> i32 {
                 vec![brownfox::Input::empty()]
             };
 
-            hijack = hijack.transit(&inputs);
+            hijack = hijack.transit(&(FPS, inputs));
         }
 
         hijack_platform_windows_session_free(session);
     }
     0
 }
+
+const FPS: i32 = 60;

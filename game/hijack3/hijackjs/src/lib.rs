@@ -119,9 +119,9 @@ impl Game {
     }
 }
 
-impl brownfox::Moore<Inputs, object::Output> for Game {
-    fn transit(&self, inputs: &Inputs) -> Game {
-        let inputs = &(0..inputs_length(inputs))
+impl brownfox::Moore<(i32, Inputs), object::Output> for Game {
+    fn transit(&self, (fps, inputs): &(i32, Inputs)) -> Game {
+        let inputs = (0..inputs_length(inputs))
             .map(|i| {
                 if let Some(x) = input_x(i, inputs) {
                     if let Some(y) = input_y(i, inputs) {
@@ -144,7 +144,7 @@ impl brownfox::Moore<Inputs, object::Output> for Game {
             })
             .collect();
         Game {
-            hijack: self.hijack.transit(inputs),
+            hijack: self.hijack.transit(&(*fps, inputs)),
         }
     }
 
@@ -159,8 +159,8 @@ pub fn new() -> Game {
 }
 
 #[wasm_bindgen]
-pub fn step(inputs: &Inputs, game: &Game) -> Game {
-    game.transit(&inputs)
+pub fn step(fps: i32, inputs: Inputs, game: &Game) -> Game {
+    game.transit(&(fps, inputs))
 }
 
 #[wasm_bindgen]

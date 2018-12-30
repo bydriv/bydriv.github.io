@@ -223,27 +223,24 @@ __exports.new_ = function() {
     return Game.__wrap(wasm.new_());
 };
 
-let stack_pointer = 32;
+let heap_next = heap.length;
 
-function addBorrowedObject(obj) {
-    if (stack_pointer == 1) throw new Error('out of js stack');
-    heap[--stack_pointer] = obj;
-    return stack_pointer;
+function addHeapObject(obj) {
+    if (heap_next === heap.length) heap.push(heap.length + 1);
+    const idx = heap_next;
+    heap_next = heap[idx];
+
+    heap[idx] = obj;
+    return idx;
 }
 /**
-* @param {any} arg0
-* @param {Game} arg1
+* @param {number} arg0
+* @param {any} arg1
+* @param {Game} arg2
 * @returns {Game}
 */
-__exports.step = function(arg0, arg1) {
-    try {
-        return Game.__wrap(wasm.step(addBorrowedObject(arg0), arg1.ptr));
-
-    } finally {
-        heap[stack_pointer++] = undefined;
-
-    }
-
+__exports.step = function(arg0, arg1, arg2) {
+    return Game.__wrap(wasm.step(arg0, addHeapObject(arg1), arg2.ptr));
 };
 
 /**
@@ -325,6 +322,14 @@ class Views {
 
 }
 __exports.Views = Views;
+
+function dropObject(idx) {
+    if (idx < 36) return;
+    heap[idx] = heap_next;
+    heap_next = idx;
+}
+
+__exports.__wbindgen_object_drop_ref = function(i) { dropObject(i); };
 
 __exports.__wbindgen_throw = function(ptr, len) {
     throw new Error(getStringFromWasm(ptr, len));

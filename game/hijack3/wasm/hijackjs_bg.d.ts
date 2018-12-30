@@ -17,6 +17,6 @@ export function view_image_x(a: number, b: number, c: number): void;
 export function view_image_y(a: number, b: number, c: number): void;
 export function view_image_z(a: number, b: number, c: number): void;
 export function new_(): number;
-export function step(a: number, b: number): number;
+export function step(a: number, b: number, c: number): number;
 export function view_map(a: number): number;
 export function __wbindgen_free(a: number, b: number): void;

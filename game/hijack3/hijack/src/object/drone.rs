@@ -40,7 +40,11 @@ pub fn new(x: i32, y: i32, z: i32, name: String) -> Drone {
 impl brownfox::Moore<Input, Output> for Drone {
     fn transit(&self, input: &Input) -> Drone {
         Drone {
-            frame_count: self.frame_count.transit(&()),
+            frame_count: if input.previous.fps == 30 {
+                self.frame_count.transit(&()).transit(&())
+            } else {
+                self.frame_count.transit(&())
+            },
             x: self.x,
             y: self.y,
             z: self.z,

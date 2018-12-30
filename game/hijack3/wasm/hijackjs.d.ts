@@ -25,7 +25,7 @@ export function view_image_z(arg0: number, arg1: Views): number | undefined;
 
 export function new_(): Game;
 
-export function step(arg0: any, arg1: Game): Game;
+export function step(arg0: number, arg1: any, arg2: Game): Game;
 
 export function view_map(arg0: Game): ViewMap;
 

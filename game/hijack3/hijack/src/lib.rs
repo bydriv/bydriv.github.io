@@ -10,6 +10,7 @@ use brownfox::Moore;
 
 #[derive(Clone)]
 pub struct Hijack {
+    pub fps: i32,
     pub x: i32,
     pub y: i32,
     pub width: i32,
@@ -38,6 +39,7 @@ impl Hijack {
         let template = map.templates.get(&episode.map).unwrap();
 
         Hijack {
+            fps: 60,
             x: template.x,
             y: template.y,
             width: template.width,
@@ -49,8 +51,8 @@ impl Hijack {
     }
 }
 
-impl brownfox::Moore<Vec<brownfox::Input>, object::Output> for Hijack {
-    fn transit(&self, inputs: &Vec<brownfox::Input>) -> Hijack {
+impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
+    fn transit(&self, (fps, inputs): &(i32, Vec<brownfox::Input>)) -> Hijack {
         let mut objects = self.episode_objects.clone();
         objects.append(&mut self.map_objects.clone());
 
@@ -66,6 +68,7 @@ impl brownfox::Moore<Vec<brownfox::Input>, object::Output> for Hijack {
                     let template = map.templates.get(to_map).unwrap();
 
                     return Hijack {
+                        fps: *fps,
                         x: template.x,
                         y: template.y,
                         width: template.width,
@@ -89,6 +92,7 @@ impl brownfox::Moore<Vec<brownfox::Input>, object::Output> for Hijack {
         }
 
         Hijack {
+            fps: *fps,
             x: self.x,
             y: self.y,
             width: self.width,

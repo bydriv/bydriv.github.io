@@ -49,9 +49,17 @@ impl brownfox::Moore<Input, Output> for Teiri {
     fn transit(&self, input: &Input) -> Teiri {
         let xshift = if input.inputs.len() > 0 {
             if input.inputs[0].x < -0.25 {
-                -1
+                if input.previous.fps == 30 {
+                    -2
+                } else {
+                    -1
+                }
             } else if input.inputs[0].x > 0.25 {
-                1
+                if input.previous.fps == 30 {
+                    2
+                } else {
+                    1
+                }
             } else {
                 0
             }
@@ -61,9 +69,17 @@ impl brownfox::Moore<Input, Output> for Teiri {
 
         let yshift = if input.inputs.len() > 0 {
             if input.inputs[0].y < -0.25 {
-                -1
+                if input.previous.fps == 30 {
+                    -2
+                } else {
+                    -1
+                }
             } else if input.inputs[0].y > 0.25 {
-                1
+                if input.previous.fps == 30 {
+                    2
+                } else {
+                    1
+                }
             } else {
                 0
             }
@@ -121,7 +137,11 @@ impl brownfox::Moore<Input, Output> for Teiri {
                 };
 
                 Teiri {
-                    frame_count: self.frame_count.transit(&()),
+                    frame_count: if input.previous.fps == 30 {
+                        self.frame_count.transit(&()).transit(&())
+                    } else {
+                        self.frame_count.transit(&())
+                    },
                     x: self.x,
                     y: self.y,
                     z: self.z,
@@ -147,7 +167,11 @@ impl brownfox::Moore<Input, Output> for Teiri {
                 };
 
                 Teiri {
-                    frame_count: self.frame_count.transit(&()),
+                    frame_count: if input.previous.fps == 30 {
+                        self.frame_count.transit(&()).transit(&())
+                    } else {
+                        self.frame_count.transit(&())
+                    },
                     x: self.x + xshift,
                     y: self.y + yshift,
                     z: self.z,

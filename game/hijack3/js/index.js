@@ -245,24 +245,116 @@ window.addEventListener("load", async function() {
 
     const ctrl = document.getElementById("ctrl");
 
-    ctrl.addEventListener("click", e => e.preventDefault());
-    ctrl.addEventListener("dblclick", e => e.preventDefault());
-    ctrl.addEventListener("contextmenu", e => e.preventDefault());
-    ctrl.addEventListener("mousedown", e => e.preventDefault());
-    ctrl.addEventListener("mouseup", e => e.preventDefault());
-    ctrl.addEventListener("mouseover", e => e.preventDefault());
-    ctrl.addEventListener("mouseenter", e => e.preventDefault());
-    ctrl.addEventListener("mouseout", e => e.preventDefault());
-    ctrl.addEventListener("mouseleave", e => e.preventDefault());
-    ctrl.addEventListener("mousemove", e => e.preventDefault());
-    ctrl.addEventListener("wheel", e => e.preventDefault());
+    window.addEventListener("click", e => {
+        const rect = ctrl.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / config.scale;
+        const y = (e.clientY - rect.top) / config.scale;
+
+        if (0 <= x && x < config.width && 0 <= y && y < config.height)
+            return e.preventDefault();
+    });
+
+    window.addEventListener("dblclick", e => {
+        const rect = ctrl.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / config.scale;
+        const y = (e.clientY - rect.top) / config.scale;
+
+        if (0 <= x && x < config.width && 0 <= y && y < config.height)
+            return e.preventDefault();
+    });
+
+    window.addEventListener("contextmenu", e => {
+        const rect = ctrl.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / config.scale;
+        const y = (e.clientY - rect.top) / config.scale;
+
+        if (0 <= x && x < config.width && 0 <= y && y < config.height)
+            return e.preventDefault();
+    });
+
+    window.addEventListener("mousedown", e => {
+        const rect = ctrl.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / config.scale;
+        const y = (e.clientY - rect.top) / config.scale;
+
+        if (0 <= x && x < config.width && 0 <= y && y < config.height)
+            return e.preventDefault();
+    });
+
+    window.addEventListener("mouseup", e => {
+        const rect = ctrl.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / config.scale;
+        const y = (e.clientY - rect.top) / config.scale;
+
+        if (0 <= x && x < config.width && 0 <= y && y < config.height)
+            return e.preventDefault();
+    });
+
+    window.addEventListener("mouseover", e => {
+        const rect = ctrl.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / config.scale;
+        const y = (e.clientY - rect.top) / config.scale;
+
+        if (0 <= x && x < config.width && 0 <= y && y < config.height)
+            return e.preventDefault();
+    });
+
+    window.addEventListener("mouseenter", e => {
+        const rect = ctrl.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / config.scale;
+        const y = (e.clientY - rect.top) / config.scale;
+
+        if (0 <= x && x < config.width && 0 <= y && y < config.height)
+            return e.preventDefault();
+    });
+
+    window.addEventListener("mouseout", e => {
+        const rect = ctrl.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / config.scale;
+        const y = (e.clientY - rect.top) / config.scale;
+
+        if (0 <= x && x < config.width && 0 <= y && y < config.height)
+            return e.preventDefault();
+    });
+
+    window.addEventListener("mouseleave", e => {
+        const rect = ctrl.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / config.scale;
+        const y = (e.clientY - rect.top) / config.scale;
+
+        if (0 <= x && x < config.width && 0 <= y && y < config.height)
+            return e.preventDefault();
+    });
+
+    window.addEventListener("mousemove", e => {
+        const rect = ctrl.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / config.scale;
+        const y = (e.clientY - rect.top) / config.scale;
+
+        if (0 <= x && x < config.width && 0 <= y && y < config.height)
+            return e.preventDefault();
+    });
+
+    window.addEventListener("wheel", e => {
+        const rect = ctrl.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / config.scale;
+        const y = (e.clientY - rect.top) / config.scale;
+
+        if (0 <= x && x < config.width && 0 <= y && y < config.height)
+            return e.preventDefault();
+    });
 
     window.addEventListener("touchstart", e => {
+        const rect = ctrl.getBoundingClientRect();
+        const xs = [];
+        const ys = [];
+
         for (var i = 0; i < e.touches.length; ++i) {
             const touch = e.touches[i];
-            const rect = ctrl.getBoundingClientRect();
             const x = (touch.clientX - rect.left) / config.scale;
             const y = (touch.clientY - rect.top) / config.scale;
+            xs.push(x);
+            ys.push(y);
 
             if (16 <= x && x < 48 && 160 <= y && y < 192) {
                 keyboardInput.x = -1;
@@ -282,9 +374,10 @@ window.addEventListener("load", async function() {
                 keyboardInput.buttons[1] = true;
             }
 
-            //if (0 <= x && x < config.width && 0 <= y && y < config.height)
-            //    return e.preventDefault();
         }
+
+        if (0 <= Math.min(...xs) && Math.max(...xs) < config.width && 0 <= Math.min(...ys) && Math.max(...ys) < config.height)
+            return e.preventDefault();
     });
 
     window.addEventListener("touchend", e => {
@@ -300,15 +393,31 @@ window.addEventListener("load", async function() {
         keyboardInput.buttons[7] = false;
         keyboardInput.buttons[8] = false;
         keyboardInput.buttons[9] = false;
-        return e.preventDefault();
+
+        const rect = ctrl.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / config.scale;
+        const y = (e.clientY - rect.top) / config.scale;
+
+        if (0 <= x && x < config.width && 0 <= y && y < config.height)
+            return e.preventDefault();
     });
 
     window.addEventListener("touchcancel", e => {
-        return e.preventDefault();
+        const rect = ctrl.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / config.scale;
+        const y = (e.clientY - rect.top) / config.scale;
+
+        if (0 <= x && x < config.width && 0 <= y && y < config.height)
+            return e.preventDefault();
     });
 
     window.addEventListener("touchmove", e => {
-        return e.preventDefault();
+        const rect = ctrl.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / config.scale;
+        const y = (e.clientY - rect.top) / config.scale;
+
+        if (0 <= x && x < config.width && 0 <= y && y < config.height)
+            return e.preventDefault();
     });
 
     const {stats, offscreen, onscreen, assets} = await initSystem(config);
@@ -320,8 +429,66 @@ window.addEventListener("load", async function() {
     var previousViewMap = new Map();
     const caches = new Map();
 
-    requestAnimationFrame(function step() {
+    const mode = document.getElementById("mode");
+    var previousTimestamp = 0;
+
+    requestAnimationFrame(function step(timestamp) {
         stats.begin();
+
+        var fpsMode = 60;
+
+        if (mode["fps-mode"].value === "30") {
+            fpsMode = 30;
+        }
+
+        if (previousTimestamp === 0)
+            previousTimestamp = timestamp;
+
+        const elapsed = timestamp - previousTimestamp;
+
+        if (fpsMode === 30 && elapsed < 17) {
+            requestAnimationFrame(step);
+            return;
+        }
+
+        const inputs = Array.from(navigator.getGamepads()).map(function(gamepad, i) {
+            const input = {
+                x: i === 0 ? keyboardInput.x : 0,
+                y: i === 0 ? keyboardInput.y : 0,
+                buttons:
+                i === 0
+                    ? keyboardInput.buttons.concat()
+                    : [false, false, false, false, false, false, false, false, false, false]
+            };
+
+            if (gamepad) {
+                input.x = gamepad.axes[0];
+                input.y = gamepad.axes[1];
+                input.buttons[0] = gamepad.buttons[0].pressed;
+                input.buttons[1] = gamepad.buttons[1].pressed;
+                input.buttons[2] = gamepad.buttons[2].pressed;
+                input.buttons[3] = gamepad.buttons[3].pressed;
+                input.buttons[4] = gamepad.buttons[4].pressed;
+                input.buttons[5] = gamepad.buttons[5].pressed;
+                input.buttons[6] = gamepad.buttons[6].pressed;
+                input.buttons[7] = gamepad.buttons[7].pressed;
+                input.buttons[8] = gamepad.buttons[8].pressed;
+                input.buttons[9] = gamepad.buttons[9].pressed;
+            }
+
+            return input;
+        });
+
+        if (inputs.length === 0)
+            inputs.push({
+                x: keyboardInput.x,
+                y: keyboardInput.y,
+                buttons: keyboardInput.buttons.concat()
+            });
+
+        const next_game = Game.step(fpsMode, inputs, game);
+        game.free();
+        game = next_game;
 
         const viewMap = Game.view_map(game);
         const offsetX = Game.view_map_x(viewMap);
@@ -391,47 +558,10 @@ window.addEventListener("load", async function() {
             onscreen.canvas.height
         );
 
-        const inputs = Array.from(navigator.getGamepads()).map(function(gamepad, i) {
-            const input = {
-                x: i === 0 ? keyboardInput.x : 0,
-                y: i === 0 ? keyboardInput.y : 0,
-                buttons:
-                i === 0
-                    ? keyboardInput.buttons.concat()
-                    : [false, false, false, false, false, false, false, false, false, false]
-            };
-
-            if (gamepad) {
-                input.x = gamepad.axes[0];
-                input.y = gamepad.axes[1];
-                input.buttons[0] = gamepad.buttons[0].pressed;
-                input.buttons[1] = gamepad.buttons[1].pressed;
-                input.buttons[2] = gamepad.buttons[2].pressed;
-                input.buttons[3] = gamepad.buttons[3].pressed;
-                input.buttons[4] = gamepad.buttons[4].pressed;
-                input.buttons[5] = gamepad.buttons[5].pressed;
-                input.buttons[6] = gamepad.buttons[6].pressed;
-                input.buttons[7] = gamepad.buttons[7].pressed;
-                input.buttons[8] = gamepad.buttons[8].pressed;
-                input.buttons[9] = gamepad.buttons[9].pressed;
-            }
-
-            return input;
-        });
-
-        if (inputs.length === 0)
-            inputs.push({
-                x: keyboardInput.x,
-                y: keyboardInput.y,
-                buttons: keyboardInput.buttons.concat()
-            });
-
-        const next_game = Game.step(inputs, game);
-        game.free();
-        game = next_game;
-
         previousOffsetX = offsetX;
         previousOffsetY = offsetY;
+
+        previousTimestamp = timestamp;
 
         stats.end();
 
