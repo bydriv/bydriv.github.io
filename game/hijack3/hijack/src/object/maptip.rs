@@ -12,7 +12,7 @@ pub struct Maptip {
     rectangles: Vec<brownfox::Rectangle>,
     prefix: String,
     suffix: String,
-    rectangle: brownfox::Rectangle,
+    names: Vec<(i32, i32, String)>,
 }
 
 pub fn new(
@@ -25,7 +25,7 @@ pub fn new(
     prefix: String,
     suffix: String,
 ) -> Maptip {
-    Maptip {
+    let mut maptip = Maptip {
         x: x,
         y: y,
         z: z,
@@ -34,28 +34,46 @@ pub fn new(
         rectangles: rectangles,
         prefix: prefix,
         suffix: suffix,
-        rectangle: brownfox::Rectangle::new(0, 0, 0, 0),
-    }
+        names: vec![],
+    };
+    maptip.names = maptip.names();
+    maptip
 }
 
 impl brownfox::Moore<Input, Output> for Maptip {
     fn transit(&self, input: &Input) -> Maptip {
-        let mut other = self.clone();
-        other.rectangle = brownfox::Rectangle::new(
-            ((input.previous.x - self.x) / self.width - 1).into(),
-            ((input.previous.y - self.y) / self.height - 1).into(),
-            (input.previous.width / self.width + 3).into(),
-            (input.previous.height / self.height + 3).into(),
-        );
-        other
+        self.clone()
     }
 
     fn output(&self) -> Output {
         let mut views = vec![];
 
-        for rectangle in self.rectangles.clone() {
-            let rectangle = self.rectangle.intersection(rectangle);
+        for (i, j, name) in self.names.clone() {
+            let x = self.x + i * self.width;
+            let y = self.y + j * self.height;
 
+            views.push(View::Image(name, x, y, self.z));
+        }
+
+        Output {
+            events: vec![],
+            views: views,
+        }
+    }
+}
+
+impl Maptip {
+    pub fn transport(&self, from_x: i32, from_y: i32, to_x: i32, to_y: i32) -> Maptip {
+        let mut other = self.clone();
+        other.x = other.x - from_x + to_x;
+        other.y = other.y - from_y + to_y;
+        other
+    }
+
+    fn names(&self) -> Vec<(i32, i32, String)> {
+        let mut names = vec![];
+
+        for rectangle in self.rectangles.clone() {
             for i in 0..rectangle.width {
                 for j in 0..rectangle.height {
                     let left = brownfox::Rectangle::new(rectangle.x + i - 1, rectangle.y + j, 1, 1);
@@ -137,26 +155,11 @@ impl brownfox::Moore<Input, Output> for Maptip {
                         _ => format!("{}center{}", self.prefix, self.suffix),
                     };
 
-                    let x = self.x + (rectangle.x + i) as i32 * self.width;
-                    let y = self.y + (rectangle.y + j) as i32 * self.height;
-
-                    views.push(View::Image(name, x, y, self.z));
+                    names.push(((rectangle.x + i) as i32, (rectangle.y + j) as i32, name));
                 }
             }
         }
 
-        Output {
-            events: vec![],
-            views: views,
-        }
-    }
-}
-
-impl Maptip {
-    pub fn transport(&self, from_x: i32, from_y: i32, to_x: i32, to_y: i32) -> Maptip {
-        let mut other = self.clone();
-        other.x = other.x - from_x + to_x;
-        other.y = other.y - from_y + to_y;
-        other
+        names
     }
 }
