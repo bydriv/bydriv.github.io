@@ -31,7 +31,7 @@ pub fn new() -> Map {
                                     object::Object::Maptip(object::maptip::new(
                                         -16,
                                         -16,
-                                        -1000,
+                                        -1500,
                                         16,
                                         16,
                                         vec![brownfox::Rectangle::new(0, 0, 22, 3)],
@@ -41,7 +41,7 @@ pub fn new() -> Map {
                                     object::Object::Maptip(object::maptip::new(
                                         -16,
                                         -16,
-                                        -1000,
+                                        -1500,
                                         16,
                                         16,
                                         vec![brownfox::Rectangle::new(0, 0, 22, 3)],
@@ -51,7 +51,7 @@ pub fn new() -> Map {
                                     object::Object::Maptip(object::maptip::new(
                                         -16,
                                         -16,
-                                        -1000,
+                                        -1500,
                                         16,
                                         16,
                                         vec![brownfox::Rectangle::new(0, 0, 22, 3)],
@@ -61,7 +61,7 @@ pub fn new() -> Map {
                                     object::Object::Maptip(object::maptip::new(
                                         -16,
                                         -16,
-                                        -1000,
+                                        -1500,
                                         16,
                                         16,
                                         vec![brownfox::Rectangle::new(0, 0, 22, 3)],
@@ -71,7 +71,7 @@ pub fn new() -> Map {
                                     object::Object::Maptip(object::maptip::new(
                                         -16,
                                         -16,
-                                        -1000,
+                                        -1500,
                                         16,
                                         16,
                                         vec![brownfox::Rectangle::new(0, 0, 22, 3)],
@@ -81,7 +81,7 @@ pub fn new() -> Map {
                                     object::Object::Maptip(object::maptip::new(
                                         -16,
                                         -16,
-                                        -1000,
+                                        -1500,
                                         16,
                                         16,
                                         vec![brownfox::Rectangle::new(0, 0, 22, 3)],
@@ -91,7 +91,7 @@ pub fn new() -> Map {
                                     object::Object::Maptip(object::maptip::new(
                                         -16,
                                         -16,
-                                        -1000,
+                                        -1500,
                                         16,
                                         16,
                                         vec![brownfox::Rectangle::new(0, 0, 22, 3)],
@@ -101,7 +101,7 @@ pub fn new() -> Map {
                                     object::Object::Maptip(object::maptip::new(
                                         -16,
                                         -16,
-                                        -1000,
+                                        -1500,
                                         16,
                                         16,
                                         vec![brownfox::Rectangle::new(0, 0, 22, 3)],
