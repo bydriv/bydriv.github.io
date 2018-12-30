@@ -245,6 +245,18 @@ window.addEventListener("load", async function() {
 
     const ctrl = document.getElementById("ctrl");
 
+    ctrl.addEventListener("click", e => e.preventDefault());
+    ctrl.addEventListener("dblclick", e => e.preventDefault());
+    ctrl.addEventListener("contextmenu", e => e.preventDefault());
+    ctrl.addEventListener("mousedown", e => e.preventDefault());
+    ctrl.addEventListener("mouseup", e => e.preventDefault());
+    ctrl.addEventListener("mouseover", e => e.preventDefault());
+    ctrl.addEventListener("mouseenter", e => e.preventDefault());
+    ctrl.addEventListener("mouseout", e => e.preventDefault());
+    ctrl.addEventListener("mouseleave", e => e.preventDefault());
+    ctrl.addEventListener("mousemove", e => e.preventDefault());
+    ctrl.addEventListener("wheel", e => e.preventDefault());
+
     window.addEventListener("touchstart", e => {
         for (var i = 0; i < e.touches.length; ++i) {
             const touch = e.touches[i];
@@ -269,6 +281,9 @@ window.addEventListener("load", async function() {
             } else if (240 <= x && x < 272 && 192 <= y && y < 224) {
                 keyboardInput.buttons[1] = true;
             }
+
+            if (0 <= x && x < config.width && 0 <= y && y < config.height)
+                return e.preventDefault();
         }
     });
 
@@ -285,12 +300,15 @@ window.addEventListener("load", async function() {
         keyboardInput.buttons[7] = false;
         keyboardInput.buttons[8] = false;
         keyboardInput.buttons[9] = false;
+        return e.preventDefault();
     });
 
     window.addEventListener("touchcancel", e => {
+        return e.preventDefault();
     });
 
     window.addEventListener("touchmove", e => {
+        return e.preventDefault();
     });
 
     const {stats, offscreen, onscreen, assets} = await initSystem(config);
