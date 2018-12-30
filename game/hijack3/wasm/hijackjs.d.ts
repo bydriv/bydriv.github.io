@@ -29,15 +29,15 @@ export function step(arg0: any, arg1: Game): Game;
 
 export function view_map(arg0: Game): ViewMap;
 
-export class ViewMap {
-free(): void;
-
-}
 export class Views {
 free(): void;
 
 }
 export class Game {
+free(): void;
+
+}
+export class ViewMap {
 free(): void;
 
 }
