@@ -783,7 +783,7 @@
                             "x": 0,
                             "y": 0,
                             "width": 1,
-                            "height": 7
+                            "height": 8
                         }
                     ],
                     "prefix": "pixelart/maptip/street-light/right/",
@@ -806,7 +806,7 @@
                             "x": 0,
                             "y": 0,
                             "width": 1,
-                            "height": 7
+                            "height": 8
                         }
                     ],
                     "prefix": "pixelart/maptip/street-light/left/",
