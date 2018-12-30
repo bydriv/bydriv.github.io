@@ -282,8 +282,8 @@ window.addEventListener("load", async function() {
                 keyboardInput.buttons[1] = true;
             }
 
-            if (0 <= x && x < config.width && 0 <= y && y < config.height)
-                return e.preventDefault();
+            //if (0 <= x && x < config.width && 0 <= y && y < config.height)
+            //    return e.preventDefault();
         }
     });
 

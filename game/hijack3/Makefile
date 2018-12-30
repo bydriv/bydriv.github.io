@@ -9,7 +9,7 @@ all:
 	make js
 
 .PHONY: exe
-exe: src/hijack/config.c src/hijack/assets.c hijack/src/episode/test.rs hijack/src/episode/boston.rs
+exe: src/hijack/config.c src/hijack/assets.c hijack/src/episode/boston.rs
 	cargo +nightly build --target x86_64-pc-windows-gnu
 	rustc src/hijack.rs --emit obj --target=x86_64-pc-windows-gnu -L target/x86_64-pc-windows-gnu/debug
 	x86_64-w64-mingw32-gcc -UUNICODE -std=c11 -pedantic-errors -Wall -Werror -Iinclude -mwindows ./hijack.o src/hijack/assets.c src/hijack/config.c src/hijack/platform/windows.c target/x86_64-pc-windows-gnu/debug/hijack.lib -lopengl32 -lgdiplus -lole32 -lwinmm -lws2_32 -luserenv
