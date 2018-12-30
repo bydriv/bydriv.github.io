@@ -11,8 +11,8 @@
             },
             "object": {
                 "type": "teiri",
-                "x": 192,
-                "y": -128,
+                "x": 0,
+                "y": 0,
                 "z": 0
             }
         },
@@ -23,7 +23,7 @@
             "object": {
                 "type": "maptip",
                 "x": 0,
-                "y": -32,
+                "y": 0,
                 "z": -1000,
                 "width": 16,
                 "height": 16,
@@ -32,235 +32,10 @@
                         "x": 0,
                         "y": 0,
                         "width": 200,
-                        "height": 152
+                        "height": 150
                     }
                 ],
                 "prefix": "pixelart/maptip/ground/",
-                "suffix": ".png"
-            }
-        },
-        {
-            "control": {
-                "type": "immovable"
-            },
-            "object": {
-                "type": "maptip",
-                "x": 0,
-                "y": -480,
-                "z": -1000,
-                "width": 16,
-                "height": 16,
-                "rectangles": [
-                    {
-                        "x": 3,
-                        "y": 0,
-                        "width": 8,
-                        "height": 33
-                    },
-                    {
-                        "x": 3,
-                        "y": 33,
-                        "width": 30,
-                        "height": 8
-                    }
-                ],
-                "prefix": "pixelart/maptip/asphalt/",
-                "suffix": ".png"
-            }
-        },
-        {
-            "control": {
-                "type": "immovable"
-            },
-            "object": {
-                "type": "maptip",
-                "x": 0,
-                "y": -480,
-                "z": -1000,
-                "width": 16,
-                "height": 16,
-                "rectangles": [
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "width": 4,
-                        "height": 30
-                    },
-                    {
-                        "x": 10,
-                        "y": 0,
-                        "width": 4,
-                        "height": 30
-                    },
-                    {
-                        "x": 10,
-                        "y": 30,
-                        "width": 30,
-                        "height": 4
-                    }
-                ],
-                "prefix": "pixelart/maptip/mortar/",
-                "suffix": ".png"
-            }
-        },
-        {
-            "control": {
-                "type": "immovable"
-            },
-            "object": {
-                "type": "maptip",
-                "x": 16,
-                "y": -304,
-                "z": -1000,
-                "width": 32,
-                "height": 128,
-                "rectangles": [
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "width": 1,
-                        "height": 1
-                    }
-                ],
-                "prefix": "pixelart/maptip/halfway-to-hell/left/",
-                "suffix": ".png"
-            }
-        },
-        {
-            "control": {
-                "type": "immovable"
-            },
-            "object": {
-                "type": "maptip",
-                "x": 176,
-                "y": -304,
-                "z": -1000,
-                "width": 32,
-                "height": 128,
-                "rectangles": [
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "width": 1,
-                        "height": 1
-                    }
-                ],
-                "prefix": "pixelart/maptip/halfway-to-hell/right/",
-                "suffix": ".png"
-            }
-        },
-        {
-            "control": {
-                "type": "immovable"
-            },
-            "object": {
-                "type": "maptip",
-                "x": 44,
-                "y": -480,
-                "z": -1000,
-                "width": 32,
-                "height": 32,
-                "rectangles": [
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "width": 1,
-                        "height": 15
-                    }
-                ],
-                "prefix": "pixelart/maptip/street-light/right/",
-                "suffix": ".png"
-            }
-        },
-        {
-            "control": {
-                "type": "immovable"
-            },
-            "object": {
-                "type": "maptip",
-                "x": 148,
-                "y": -480,
-                "z": -1000,
-                "width": 32,
-                "height": 32,
-                "rectangles": [
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "width": 1,
-                        "height": 15
-                    }
-                ],
-                "prefix": "pixelart/maptip/street-light/left/",
-                "suffix": ".png"
-            }
-        },
-        {
-            "control": {
-                "type": "immovable"
-            },
-            "object": {
-                "type": "maptip",
-                "x": 192,
-                "y": -64,
-                "z": -1000,
-                "width": 32,
-                "height": 32,
-                "rectangles": [
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "width": 70,
-                        "height": 3
-                    }
-                ],
-                "prefix": "pixelart/maptip/tree/",
-                "suffix": ".png"
-            }
-        },
-        {
-            "control": {
-                "type": "immovable"
-            },
-            "object": {
-                "type": "maptip",
-                "x": 256,
-                "y": -128,
-                "z": 1000,
-                "width": 16,
-                "height": 16,
-                "rectangles": [
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "width": 8,
-                        "height": 6
-                    }
-                ],
-                "prefix": "pixelart/maptip/building/top/",
-                "suffix": ".png"
-            }
-        },
-        {
-            "control": {
-                "type": "immovable"
-            },
-            "object": {
-                "type": "maptip",
-                "x": 256,
-                "y": -128,
-                "z": 1000,
-                "width": 16,
-                "height": 16,
-                "rectangles": [
-                    {
-                        "x": 0,
-                        "y": 5,
-                        "width": 8,
-                        "height": 20
-                    }
-                ],
-                "prefix": "pixelart/maptip/building/bottom/",
                 "suffix": ".png"
             }
         }
