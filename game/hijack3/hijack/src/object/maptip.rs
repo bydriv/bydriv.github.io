@@ -10,19 +10,8 @@ pub struct Maptip {
     width: i32,
     height: i32,
     rectangles: Vec<brownfox::Rectangle>,
-    center: String,
-    left: String,
-    top: String,
-    right: String,
-    bottom: String,
-    top_left: String,
-    top_right: String,
-    bottom_left: String,
-    bottom_right: String,
-    top_left_inv: String,
-    top_right_inv: String,
-    bottom_left_inv: String,
-    bottom_right_inv: String,
+    prefix: String,
+    suffix: String,
     rectangle: brownfox::Rectangle,
 }
 
@@ -33,19 +22,8 @@ pub fn new(
     width: i32,
     height: i32,
     rectangles: Vec<brownfox::Rectangle>,
-    center: String,
-    left: String,
-    top: String,
-    right: String,
-    bottom: String,
-    top_left: String,
-    top_right: String,
-    bottom_left: String,
-    bottom_right: String,
-    top_left_inv: String,
-    top_right_inv: String,
-    bottom_left_inv: String,
-    bottom_right_inv: String,
+    prefix: String,
+    suffix: String,
 ) -> Maptip {
     Maptip {
         x: x,
@@ -54,19 +32,8 @@ pub fn new(
         width: width,
         height: height,
         rectangles: rectangles,
-        center: center,
-        left: left,
-        top: top,
-        right: right,
-        bottom: bottom,
-        top_left: top_left,
-        top_right: top_right,
-        bottom_left: bottom_left,
-        bottom_right: bottom_right,
-        top_left_inv: top_left_inv,
-        top_right_inv: top_right_inv,
-        bottom_left_inv: bottom_left_inv,
-        bottom_right_inv: bottom_right_inv,
+        prefix: prefix,
+        suffix: suffix,
         rectangle: brownfox::Rectangle::new(0, 0, 0, 0),
     }
 }
@@ -128,28 +95,46 @@ impl brownfox::Moore<Input, Output> for Maptip {
                         .any(|r| r.collision(bottom_right.clone()));
 
                     let name = match (l, t, r, b, tl, tr, bl, br) {
-                        (true, true, true, true, true, true, true, true) => self.center.clone(),
-                        (false, true, true, true, _, _, _, _) => self.left.clone(),
-                        (true, false, true, true, _, _, _, _) => self.top.clone(),
-                        (true, true, false, true, _, _, _, _) => self.right.clone(),
-                        (true, true, true, false, _, _, _, _) => self.bottom.clone(),
-                        (false, false, true, true, _, _, _, _) => self.top_left.clone(),
-                        (true, false, false, true, _, _, _, _) => self.top_right.clone(),
-                        (false, true, true, false, _, _, _, _) => self.bottom_left.clone(),
-                        (true, true, false, false, _, _, _, _) => self.bottom_right.clone(),
+                        (true, true, true, true, true, true, true, true) => {
+                            format!("{}center{}", self.prefix, self.suffix)
+                        }
+                        (false, true, true, true, _, _, _, _) => {
+                            format!("{}left{}", self.prefix, self.suffix)
+                        }
+                        (true, false, true, true, _, _, _, _) => {
+                            format!("{}top{}", self.prefix, self.suffix)
+                        }
+                        (true, true, false, true, _, _, _, _) => {
+                            format!("{}right{}", self.prefix, self.suffix)
+                        }
+                        (true, true, true, false, _, _, _, _) => {
+                            format!("{}bottom{}", self.prefix, self.suffix)
+                        }
+                        (false, false, true, true, _, _, _, _) => {
+                            format!("{}top-left{}", self.prefix, self.suffix)
+                        }
+                        (true, false, false, true, _, _, _, _) => {
+                            format!("{}top-right{}", self.prefix, self.suffix)
+                        }
+                        (false, true, true, false, _, _, _, _) => {
+                            format!("{}bottom-left{}", self.prefix, self.suffix)
+                        }
+                        (true, true, false, false, _, _, _, _) => {
+                            format!("{}bottom-right{}", self.prefix, self.suffix)
+                        }
                         (true, true, true, true, true, true, true, false) => {
-                            self.top_left_inv.clone()
+                            format!("{}top-left_inv{}", self.prefix, self.suffix)
                         }
                         (true, true, true, true, true, true, false, true) => {
-                            self.top_right_inv.clone()
+                            format!("{}top-right_inv{}", self.prefix, self.suffix)
                         }
                         (true, true, true, true, true, false, true, true) => {
-                            self.bottom_left_inv.clone()
+                            format!("{}bottom-left_inv{}", self.prefix, self.suffix)
                         }
                         (true, true, true, true, false, true, true, true) => {
-                            self.bottom_right_inv.clone()
+                            format!("{}bottom-right_inv{}", self.prefix, self.suffix)
                         }
-                        _ => self.center.clone(),
+                        _ => format!("{}center{}", self.prefix, self.suffix),
                     };
 
                     let x = self.x + (rectangle.x + i) as i32 * self.width;

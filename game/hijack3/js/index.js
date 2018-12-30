@@ -81,6 +81,12 @@ function drawView(Game, canvas, context, assets, views, i, x, y) {
         const dx = Game.view_image_x(i, views);
         const dy = Game.view_image_y(i, views);
         const name = Game.view_image_name(i, views);
+
+        if (!assets.has(name)) {
+            console.warn("unrecognized view name: %o", name);
+            return;
+        }
+
         const sprite = assets.get(name);
         context.drawImage(sprite.img, dx + x, dy + y);
     } else {

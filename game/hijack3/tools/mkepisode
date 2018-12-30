@@ -28,19 +28,8 @@ def generate_object object
       printf "            brownfox::Rectangle::new(%d, %d, %d, %d),\n", rectangle["x"], rectangle["y"], rectangle["width"], rectangle["height"]
     end
     printf "          ],\n"
-    printf "          \"%s\".to_string(),\n", object["center"]
-    printf "          \"%s\".to_string(),\n", object["left"]
-    printf "          \"%s\".to_string(),\n", object["top"]
-    printf "          \"%s\".to_string(),\n", object["right"]
-    printf "          \"%s\".to_string(),\n", object["bottom"]
-    printf "          \"%s\".to_string(),\n", object["top_left"]
-    printf "          \"%s\".to_string(),\n", object["top_right"]
-    printf "          \"%s\".to_string(),\n", object["bottom_left"]
-    printf "          \"%s\".to_string(),\n", object["bottom_right"]
-    printf "          \"%s\".to_string(),\n", object["top_left_inv"]
-    printf "          \"%s\".to_string(),\n", object["top_right_inv"]
-    printf "          \"%s\".to_string(),\n", object["bottom_left_inv"]
-    printf "          \"%s\".to_string(),\n", object["bottom_right_inv"]
+    printf "          \"%s\".to_string(),\n", object["prefix"]
+    printf "          \"%s\".to_string(),\n", object["suffix"]
     printf "        ))\n"
   when "teiri"
     printf "        object::Object::Teiri(object::teiri::new(%d, %d, %d))\n", object["x"], object["y"], object["z"]
