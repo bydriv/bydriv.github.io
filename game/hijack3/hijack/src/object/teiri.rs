@@ -226,12 +226,7 @@ impl brownfox::Moore<Input, Output> for Teiri {
                     self.y(),
                     1100,
                 ),
-                View::Image(
-                    "pixelart/effect/dark.png".to_string(),
-                    self.x() - 160 + 16,
-                    self.y() - 120 + 16,
-                    1000,
-                ),
+                View::Image("pixelart/effect/dark.png".to_string(), 0, 0, 1000),
             ]
         } else {
             vec![View::Image(
