@@ -29,7 +29,7 @@ export function step(arg0: number, arg1: any, arg2: Game): Game;
 
 export function view_map(arg0: Game): ViewMap;
 
-export class Game {
+export class Views {
 free(): void;
 
 }
@@ -37,7 +37,7 @@ export class ViewMap {
 free(): void;
 
 }
-export class Views {
+export class Game {
 free(): void;
 
 }
