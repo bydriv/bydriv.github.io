@@ -10,9 +10,10 @@ struct asset_defn {
 unsigned int SCALE = 2;
 unsigned int WIDTH = 320;
 unsigned int HEIGHT = 240;
-unsigned int ASSET_DEFNS_LEN = 539;
+unsigned int ASSET_DEFNS_LEN = 540;
 
-struct asset_defn ASSET_DEFNS[539] = {
+struct asset_defn ASSET_DEFNS[540] = {
+    {"illust/teiri/neutral.png", "illust/teiri/neutral/middle.png", 0, 120, 192, 240},
     {"pixelart/system/window.png", "pixelart/system/window/top-left.png", 0, 0, 8, 8},
     {"pixelart/system/window.png", "pixelart/system/window/top.png", 8, 0, 8, 8},
     {"pixelart/system/window.png", "pixelart/system/window/top-arrow.png", 16, 0, 8, 8},

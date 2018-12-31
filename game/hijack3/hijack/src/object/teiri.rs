@@ -29,6 +29,7 @@ pub struct Teiri {
     pose: Pose,
     direction: Direction,
     check: bool,
+    status: bool,
     cursor: Option<Cursor>,
 }
 
@@ -41,6 +42,7 @@ pub fn new(x: i32, y: i32, z: i32) -> Teiri {
         pose: Pose::Walk,
         direction: Direction::Front,
         check: false,
+        status: false,
         cursor: None,
     }
 }
@@ -150,6 +152,15 @@ impl brownfox::Moore<Input, Output> for Teiri {
                     check: input.inputs.len() > 0
                         && input.inputs[0].buttons.len() > 0
                         && input.inputs[0].buttons[0],
+                    status: if input.inputs.len() > 0
+                        && input.inputs[0].buttons.len() > 0
+                        && input.inputs[0].buttons[0]
+                        && (self.frame_count.i % 8 == 0 || (input.previous.fps == 30 && self.frame_count.i % 8 <= 1))
+                    {
+                        !self.status
+                    } else {
+                        self.status
+                    },
                     cursor: Some(cursor),
                 }
             }
@@ -180,6 +191,15 @@ impl brownfox::Moore<Input, Output> for Teiri {
                     check: input.inputs.len() > 0
                         && input.inputs[0].buttons.len() > 0
                         && input.inputs[0].buttons[0],
+                    status: if input.inputs.len() > 0
+                        && input.inputs[0].buttons.len() > 0
+                        && input.inputs[0].buttons[0]
+                        && (self.frame_count.i % 8 == 0 || (input.previous.fps == 30 && self.frame_count.i % 8 <= 1))
+                    {
+                        !self.status
+                    } else {
+                        self.status
+                    },
                     cursor: None,
                 }
             }
@@ -232,6 +252,22 @@ impl brownfox::Moore<Input, Output> for Teiri {
                 cursor.y,
                 1200,
             ));
+        }
+
+        if self.status {
+            views.push(View::Image(
+                "illust/teiri/neutral/middle.png".to_string(),
+                0,
+                0,
+                2000,
+            ));
+            views.push(View::Image(
+                "pixelart/effect/dark.png".to_string(),
+                0,
+                0,
+                1900,
+            ));
+            views.append(&mut text::text(176, 32, 2100, "ミナガワ・テーリ".to_string()));
         }
 
         Output {
