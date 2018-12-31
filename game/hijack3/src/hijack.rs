@@ -7,6 +7,12 @@ extern crate hijack;
 use brownfox::Moore;
 use std::collections::HashMap;
 
+mod assets;
+mod config;
+
+use assets::*;
+use config::*;
+
 // src/hijack/platform/windows.c
 extern "C" {
     type session;
@@ -27,7 +33,7 @@ extern "C" {
     fn hijack_platform_windows_image_load(
         session: *mut session,
         len: usize,
-        data: *const i8,
+        data: *const u8,
     ) -> *mut image;
 
     fn hijack_platform_windows_image_width(session: *mut session, image: *mut image) -> u64;
@@ -57,38 +63,6 @@ extern "C" {
     fn hijack_platform_windows_joypad_buttons(session: *mut session, i: u64) -> u64;
 }
 
-#[repr(C)]
-struct AssetDefn {
-    path: *const i8,
-    name: *const i8,
-    x: u32,
-    y: u32,
-    width: u32,
-    height: u32,
-}
-
-#[repr(C)]
-struct Asset {
-    path: *const i8,
-    len: usize,
-    data: *const i8,
-}
-
-// src/hijack/config.c
-extern "C" {
-    static SCALE: u32;
-    static WIDTH: u32;
-    static HEIGHT: u32;
-    static ASSET_DEFNS_LEN: usize;
-    static ASSET_DEFNS: [AssetDefn; 540];
-}
-
-// src/hijack/assets.c
-extern "C" {
-    static assets_len: usize;
-    static assets: [Asset; 23];
-}
-
 #[no_mangle]
 pub extern "C" fn WinMain() -> i32 {
     let name = std::ffi::CString::new("Hijack").unwrap();
@@ -105,25 +79,20 @@ pub extern "C" fn WinMain() -> i32 {
 
         for i in 0..assets_len {
             let asset = &assets[i];
-            let path = std::ffi::CStr::from_ptr(asset.path)
-                .to_string_lossy()
-                .into_owned();
-            let mut image = hijack_platform_windows_image_load(session, asset.len, asset.data);
+            let path = asset.path.to_string();
+            let mut image =
+                hijack_platform_windows_image_load(session, asset.len, asset.data.as_ptr());
             image = hijack_platform_windows_image_scale(session, SCALE.into(), image);
             ASSETS.insert(path, image);
         }
 
         for i in 0..ASSET_DEFNS_LEN {
             let defn = &ASSET_DEFNS[i];
-            let path = std::ffi::CStr::from_ptr(defn.path)
-                .to_string_lossy()
-                .into_owned();
+            let path = defn.path.to_string();
             match ASSETS.get(&path) {
                 None => (),
                 Some(image) => {
-                    let name = std::ffi::CStr::from_ptr(defn.name)
-                        .to_string_lossy()
-                        .into_owned();
+                    let name = defn.name.to_string();
                     let image = hijack_platform_windows_image_crop(
                         session,
                         (SCALE * defn.x).into(),

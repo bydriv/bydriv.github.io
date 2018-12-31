@@ -3,6 +3,7 @@ MKASSETS := tools/mkassets
 MKEPISODE := tools/mkepisode
 MKMAP := tools/mkmap
 PIXELARTS := $(shell find pixelart -name '*.png')
+ILLUST := $(shell find illust -name '*.png')
 
 .PHONY: all
 all:
@@ -10,10 +11,10 @@ all:
 	make js
 
 .PHONY: exe
-exe: src/hijack/config.c src/hijack/assets.c hijack/src/map/boston.rs hijack/src/episode/boston.rs
+exe: src/config.rs src/assets.rs hijack/src/map/boston.rs hijack/src/episode/boston.rs
 	cargo +nightly build --target x86_64-pc-windows-gnu
 	rustc src/hijack.rs --emit obj --target=x86_64-pc-windows-gnu -L target/x86_64-pc-windows-gnu/debug
-	x86_64-w64-mingw32-gcc -UUNICODE -std=c11 -pedantic-errors -Wall -Werror -Iinclude -mwindows ./hijack.o src/hijack/assets.c src/hijack/config.c src/hijack/platform/windows.c target/x86_64-pc-windows-gnu/debug/hijack.lib -lopengl32 -lgdiplus -lole32 -lwinmm -lws2_32 -luserenv
+	x86_64-w64-mingw32-gcc -UUNICODE -std=c11 -pedantic-errors -Wall -Werror -Iinclude -mwindows ./hijack.o src/hijack/platform/windows.c target/x86_64-pc-windows-gnu/debug/hijack.lib -lopengl32 -lgdiplus -lole32 -lwinmm -lws2_32 -luserenv
 
 .PHONY: js
 js:
@@ -24,10 +25,10 @@ js:
 server:
 	(cd ../.. && python3 game/hijack3/server.py)
 
-src/hijack/config.c: json/config.json
+src/config.rs: json/config.json
 	$(MKCONFIG) $^ > $@
 
-src/hijack/assets.c: $(PIXELARTS)
+src/assets.rs: $(PIXELARTS) $(ILLUST)
 	$(MKASSETS) $^ > $@
 
 hijack/src/episode/%.rs: episode/%.json

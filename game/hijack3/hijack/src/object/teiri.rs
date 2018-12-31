@@ -155,7 +155,8 @@ impl brownfox::Moore<Input, Output> for Teiri {
                     status: if input.inputs.len() > 0
                         && input.inputs[0].buttons.len() > 0
                         && input.inputs[0].buttons[0]
-                        && (self.frame_count.i % 8 == 0 || (input.previous.fps == 30 && self.frame_count.i % 8 <= 1))
+                        && (self.frame_count.i % 8 == 0
+                            || (input.previous.fps == 30 && self.frame_count.i % 8 <= 1))
                     {
                         !self.status
                     } else {
@@ -194,7 +195,8 @@ impl brownfox::Moore<Input, Output> for Teiri {
                     status: if input.inputs.len() > 0
                         && input.inputs[0].buttons.len() > 0
                         && input.inputs[0].buttons[0]
-                        && (self.frame_count.i % 8 == 0 || (input.previous.fps == 30 && self.frame_count.i % 8 <= 1))
+                        && (self.frame_count.i % 8 == 0
+                            || (input.previous.fps == 30 && self.frame_count.i % 8 <= 1))
                     {
                         !self.status
                     } else {
@@ -267,7 +269,12 @@ impl brownfox::Moore<Input, Output> for Teiri {
                 0,
                 1900,
             ));
-            views.append(&mut text::text(176, 32, 2100, "ミナガワ・テーリ".to_string()));
+            views.append(&mut text::text(
+                176,
+                32,
+                2100,
+                "ミナガワ・テーリ".to_string(),
+            ));
         }
 
         Output {

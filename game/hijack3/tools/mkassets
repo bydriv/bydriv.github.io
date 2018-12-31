@@ -8,25 +8,23 @@ for asset in "$@"; do
     test ! -f "$asset" && exit 1
 done
 
-printf 'struct asset {\n'
-printf '  const char *path;\n'
-printf '  unsigned int len;\n'
-printf '  const char *data;\n'
-printf '};\n'
-printf '\n'
-printf 'unsigned int assets_len = %d;\n' "$#"
-printf '\n'
-printf 'struct asset assets[%d] = {\n' "$#"
+printf "#[repr(C)]\n"
+printf "pub struct Asset<'a> {\n"
+printf "    pub path: &'a str,\n"
+printf "    pub len: usize,\n"
+printf "    pub data: &'a [u8],\n"
+printf "}\n"
+printf "\n"
+printf "pub static assets_len: usize = %d;\n" "$#"
+printf "\n"
+printf "pub static assets: [Asset; %d] = [\n" "$#"
 
 for asset in "$@"; do
-    printf "{"
-    printf '"%s", ' "$asset"
-    wc -c "$asset" | awk '{print $1}'
-    printf ', '
-    printf '"'
-    xxd -p "$asset" | perl -pe 's/\s//g;s/(.{2})/\\x$1/g'
-    printf '"'
+    printf "Asset {"
+    printf '  path: "%s", ' "$asset"
+    printf '  len: %d,' "$(wc -c "$asset" | awk '{print $1}')"
+    printf '  data: &[%s],' "$(xxd -p "$asset" | perl -pe 's/\s//g;s/(.{2})/0x$1,/g')"
     printf "},\n"
 done
 
-printf '};\n'
+printf '];\n'
