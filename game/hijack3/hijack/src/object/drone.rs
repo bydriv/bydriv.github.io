@@ -39,17 +39,68 @@ pub fn new(x: i32, y: i32, z: i32, name: String) -> Drone {
 
 impl brownfox::Moore<Input, Output> for Drone {
     fn transit(&self, input: &Input) -> Drone {
+        let xshift = if input.inputs.len() > 0 {
+            if input.inputs[0].x < -0.25 {
+                if input.previous.fps == 30 {
+                    -2
+                } else {
+                    -1
+                }
+            } else if input.inputs[0].x > 0.25 {
+                if input.previous.fps == 30 {
+                    2
+                } else {
+                    1
+                }
+            } else {
+                0
+            }
+        } else {
+            0
+        };
+
+        let yshift = if input.inputs.len() > 0 {
+            if input.inputs[0].y < -0.25 {
+                if input.previous.fps == 30 {
+                    -2
+                } else {
+                    -1
+                }
+            } else if input.inputs[0].y > 0.25 {
+                if input.previous.fps == 30 {
+                    2
+                } else {
+                    1
+                }
+            } else {
+                0
+            }
+        } else {
+            0
+        };
+        let direction = if yshift < 0 {
+            Direction::Back
+        } else if yshift > 0 {
+            Direction::Front
+        } else if xshift < 0 {
+            Direction::Left
+        } else if xshift > 0 {
+            Direction::Right
+        } else {
+            self.direction.clone()
+        };
+
         Drone {
             frame_count: if input.previous.fps == 30 {
                 self.frame_count.transit(&()).transit(&())
             } else {
                 self.frame_count.transit(&())
             },
-            x: self.x,
-            y: self.y,
+            x: self.x + xshift,
+            y: self.y + yshift,
             z: self.z,
             pose: self.pose.clone(),
-            direction: self.direction.clone(),
+            direction: direction,
             name: self.name.clone(),
         }
     }

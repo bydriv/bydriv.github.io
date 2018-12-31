@@ -71,6 +71,16 @@ template["objects"].each do |object|
     printf "        brownfox::Control::Player(brownfox::Player::new(%d)),\n", object["control"]["i"]
   when "immovable"
     printf "        brownfox::Control::Immovable(brownfox::Immovable::new()),\n"
+  when "repeat"
+    printf "        brownfox::Control::Repeat(brownfox::Repeat::new(%d, vec![\n", object["control"]["step"]
+    object["control"]["inputs"].each do |input|
+      printf "        brownfox::Input::new(%f, %f, &vec![\n", input["x"], input["y"]
+      input["buttons"].each do |button|
+        printf "%s,", button.to_s
+      end
+      printf "        ]),\n"
+    end
+    printf "        ])),\n"
   end
 
   generate_object object["object"]

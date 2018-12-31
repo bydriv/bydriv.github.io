@@ -5,11 +5,11 @@ pub trait Moore<I, O> {
 
 #[derive(Clone)]
 pub struct FrameCount {
-    pub i: u64,
+    pub i: usize,
 }
 
 impl FrameCount {
-    pub fn new(i: u64) -> FrameCount {
+    pub fn new(i: usize) -> FrameCount {
         FrameCount { i: i }
     }
 }
@@ -128,9 +128,27 @@ impl Immovable {
 }
 
 #[derive(Clone)]
+pub struct Repeat {
+    frame_count: FrameCount,
+    step: usize,
+    inputs: Vec<Input>,
+}
+
+impl Repeat {
+    pub fn new(step: usize, inputs: Vec<Input>) -> Repeat {
+        Repeat {
+            frame_count: FrameCount::new(0),
+            step: step,
+            inputs: inputs,
+        }
+    }
+}
+
+#[derive(Clone)]
 pub enum Control {
     Player(Player),
     Immovable(Immovable),
+    Repeat(Repeat),
 }
 
 impl Moore<Vec<Input>, Input> for Control {
@@ -138,6 +156,7 @@ impl Moore<Vec<Input>, Input> for Control {
         match self {
             Control::Player(player) => Control::Player(player.transit(inputs)),
             Control::Immovable(immovable) => Control::Immovable(immovable.transit(inputs)),
+            Control::Repeat(repeat) => Control::Repeat(repeat.transit(inputs)),
         }
     }
 
@@ -145,6 +164,7 @@ impl Moore<Vec<Input>, Input> for Control {
         match self {
             Control::Player(player) => player.output(),
             Control::Immovable(immovable) => immovable.output(),
+            Control::Repeat(repeat) => repeat.output(),
         }
     }
 }
@@ -169,6 +189,18 @@ impl Moore<Vec<Input>, Input> for Immovable {
 
     fn output(&self) -> Input {
         Input::empty()
+    }
+}
+
+impl Moore<Vec<Input>, Input> for Repeat {
+    fn transit(&self, _input: &Vec<Input>) -> Repeat {
+        let mut other = self.clone();
+        other.frame_count = other.frame_count.transit(&());
+        other
+    }
+
+    fn output(&self) -> Input {
+        self.inputs[self.frame_count.i / self.step % self.inputs.len()].clone()
     }
 }
 

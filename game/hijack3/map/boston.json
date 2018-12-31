@@ -7,6 +7,146 @@
         "objects": [
             {
                 "control": {
+                    "type": "repeat",
+                    "step": 64,
+                    "inputs": [
+                        {
+                            "x": 1,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 1,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": -1,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": -1,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        }
+                    ]
+                },
+                "object": {
+                    "type": "drone",
+                    "x": 120,
+                    "y": 90,
+                    "z": 0,
+                    "name": "pixelart/security-drone"
+                }
+            },
+            {
+                "control": {
+                    "type": "repeat",
+                    "step": 64,
+                    "inputs": [
+                        {
+                            "x": 0,
+                            "y": 1,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": -1,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": -1,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 1,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        }
+                    ]
+                },
+                "object": {
+                    "type": "drone",
+                    "x": 200,
+                    "y": 90,
+                    "z": 0,
+                    "name": "pixelart/security-drone"
+                }
+            },
+            {
+                "control": {
+                    "type": "repeat",
+                    "step": 64,
+                    "inputs": [
+                        {
+                            "x": -1,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": -1,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 1,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 1,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        }
+                    ]
+                },
+                "object": {
+                    "type": "drone",
+                    "x": 120,
+                    "y": 150,
+                    "z": 0,
+                    "name": "pixelart/security-drone"
+                }
+            },
+            {
+                "control": {
+                    "type": "repeat",
+                    "step": 64,
+                    "inputs": [
+                        {
+                            "x": 0,
+                            "y": -1,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 1,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 1,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": -1,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        }
+                    ]
+                },
+                "object": {
+                    "type": "drone",
+                    "x": 200,
+                    "y": 150,
+                    "z": 0,
+                    "name": "pixelart/security-drone"
+                }
+            },
+            {
+                "control": {
                     "type": "immovable"
                 },
                 "object": {

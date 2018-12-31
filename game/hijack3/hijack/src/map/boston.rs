@@ -12,6 +12,218 @@ pub fn new() -> Map {
                     height: 240,
                     objects: vec![
                         (
+                            brownfox::Control::Repeat(brownfox::Repeat::new(
+                                64,
+                                vec![
+                                    brownfox::Input::new(
+                                        1.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        1.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        -1.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        -1.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                ],
+                            )),
+                            object::Object::Drone(object::drone::new(
+                                120,
+                                90,
+                                0,
+                                "pixelart/security-drone".to_string(),
+                            )),
+                        ),
+                        (
+                            brownfox::Control::Repeat(brownfox::Repeat::new(
+                                64,
+                                vec![
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        1.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        -1.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        -1.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        1.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                ],
+                            )),
+                            object::Object::Drone(object::drone::new(
+                                200,
+                                90,
+                                0,
+                                "pixelart/security-drone".to_string(),
+                            )),
+                        ),
+                        (
+                            brownfox::Control::Repeat(brownfox::Repeat::new(
+                                64,
+                                vec![
+                                    brownfox::Input::new(
+                                        -1.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        -1.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        1.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        1.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                ],
+                            )),
+                            object::Object::Drone(object::drone::new(
+                                120,
+                                150,
+                                0,
+                                "pixelart/security-drone".to_string(),
+                            )),
+                        ),
+                        (
+                            brownfox::Control::Repeat(brownfox::Repeat::new(
+                                64,
+                                vec![
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        -1.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        1.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        1.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        -1.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                ],
+                            )),
+                            object::Object::Drone(object::drone::new(
+                                200,
+                                150,
+                                0,
+                                "pixelart/security-drone".to_string(),
+                            )),
+                        ),
+                        (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Transport(object::transport::new(
                                 0,
