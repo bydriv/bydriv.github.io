@@ -95,3 +95,9 @@
 | pixelart/effect/cursor.png       | [[./pixelart/effect/cursor.png]]       |
 | pixelart/effect/dark.png         | [[./pixelart/effect/dark.png]]         |
 | js/ctrl.png                      | [[./js/ctrl.png]]                      |
+
+* Illust
+
+| path                     | image                      |
+|--------------------------+----------------------------|
+| illust/teiri/neutral.png | [[./illust/teiri/neutral.png]] |
