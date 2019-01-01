@@ -20,7 +20,7 @@ div#ctrl {
     position: relative;
     top: -480px;
     width: 640px;
-    height: 480px;
+    height: 0;
     margin: 0 auto;
     padding: 0;
     user-select: none;
@@ -33,4 +33,10 @@ div#ctrl img {
     opacity: 0.5;
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
+}
+
+div#man {
+    width: 640px;
+    margin: 0 auto;
+    padding: 0;
 }
