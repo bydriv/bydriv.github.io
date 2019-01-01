@@ -101,7 +101,11 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
                 .episode_objects
                 .iter()
                 .map(|object| {
-                    let control = object.0.transit(inputs);
+                    let control = if self.fps == 30 {
+                        object.0.transit(inputs).transit(inputs)
+                    } else {
+                        object.0.transit(inputs)
+                    };
                     let input = control.output();
                     (
                         control,
@@ -116,7 +120,11 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
                 .map_objects
                 .iter()
                 .map(|object| {
-                    let control = object.0.transit(inputs);
+                    let control = if self.fps == 30 {
+                        object.0.transit(inputs).transit(inputs)
+                    } else {
+                        object.0.transit(inputs)
+                    };
                     let input = control.output();
                     (
                         control,
