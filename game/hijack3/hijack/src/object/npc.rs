@@ -41,11 +41,8 @@ pub fn new(x: i32, y: i32, z: i32, name: String) -> NPC {
 impl brownfox::Moore<Input, Output> for NPC {
     fn transit(&self, input: &Input) -> NPC {
         NPC {
-            frame_count: if input.previous.fps == 30 {
-                self.frame_count.transit(&()).transit(&())
-            } else {
-                self.frame_count.transit(&())
-            },
+            frame_count: (0..60 / input.previous.fps)
+                .fold(self.frame_count.clone(), |control, _| control.transit(&())),
             x: self.x,
             y: self.y,
             z: self.z,

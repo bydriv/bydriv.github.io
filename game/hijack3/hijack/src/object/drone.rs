@@ -41,17 +41,9 @@ impl brownfox::Moore<Input, Output> for Drone {
     fn transit(&self, input: &Input) -> Drone {
         let xshift = if input.inputs.len() > 0 {
             if input.inputs[0].x < -0.25 {
-                if input.previous.fps == 30 {
-                    -2
-                } else {
-                    -1
-                }
+                -(60 / input.previous.fps)
             } else if input.inputs[0].x > 0.25 {
-                if input.previous.fps == 30 {
-                    2
-                } else {
-                    1
-                }
+                60 / input.previous.fps
             } else {
                 0
             }
@@ -61,17 +53,9 @@ impl brownfox::Moore<Input, Output> for Drone {
 
         let yshift = if input.inputs.len() > 0 {
             if input.inputs[0].y < -0.25 {
-                if input.previous.fps == 30 {
-                    -2
-                } else {
-                    -1
-                }
+                -(60 / input.previous.fps)
             } else if input.inputs[0].y > 0.25 {
-                if input.previous.fps == 30 {
-                    2
-                } else {
-                    1
-                }
+                60 / input.previous.fps
             } else {
                 0
             }
@@ -91,11 +75,8 @@ impl brownfox::Moore<Input, Output> for Drone {
         };
 
         Drone {
-            frame_count: if input.previous.fps == 30 {
-                self.frame_count.transit(&()).transit(&())
-            } else {
-                self.frame_count.transit(&())
-            },
+            frame_count: (0..60 / input.previous.fps)
+                .fold(self.frame_count.clone(), |control, _| control.transit(&())),
             x: self.x + xshift,
             y: self.y + yshift,
             z: self.z,

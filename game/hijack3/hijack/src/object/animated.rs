@@ -20,11 +20,8 @@ impl brownfox::Moore<Input, Output> for Animated {
         Animated {
             objects: self.objects.transit(input),
             i: self.i,
-            frame_count: if input.previous.fps == 30 {
-                self.frame_count.transit(&()).transit(&())
-            } else {
-                self.frame_count.transit(&())
-            },
+            frame_count: (0..60 / input.previous.fps)
+                .fold(self.frame_count.clone(), |control, _| control.transit(&())),
         }
     }
 
