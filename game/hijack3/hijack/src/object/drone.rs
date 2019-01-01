@@ -16,7 +16,7 @@ enum Direction {
 
 #[derive(Clone)]
 pub struct Drone {
-    frame_count: brownfox::FrameCount,
+    frame_count: brownfox::FrameCount<i32>,
     x: i32,
     y: i32,
     z: i32,
@@ -111,7 +111,7 @@ impl brownfox::Moore<Input, Output> for Drone {
                 "{}/fly/{}/{}.png",
                 self.name,
                 string_of_direction(&self.direction),
-                self.frame_count.i % 4
+                self.frame_count.output() % 4
             ),
             self.x,
             self.y,

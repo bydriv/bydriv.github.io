@@ -41,13 +41,12 @@ impl brownfox::Moore<Input, Output> for Transport {
         for event in &input.previous.events {
             match event {
                 &Event::Trigger(x, y, width, height) => {
-                    let rect1 =
-                        brownfox::Rectangle::new(x.into(), y.into(), width.into(), height.into());
+                    let rect1 = brownfox::Rectangle::new(x, y, width, height);
                     let rect2 = brownfox::Rectangle::new(
-                        self.from_x.into(),
-                        self.from_y.into(),
-                        self.from_width.into(),
-                        self.from_height.into(),
+                        self.from_x,
+                        self.from_y,
+                        self.from_width,
+                        self.from_height,
                     );
                     if rect1.collision(rect2) {
                         triggered = true;

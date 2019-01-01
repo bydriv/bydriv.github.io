@@ -5,3 +5,6 @@ authors = ["bydriv <bydriv@gmail.com>"]
 
 [lib]
 crate-type = ["lib", "staticlib"]
+
+[dependencies]
+num = "0.2.0"

@@ -14,5 +14,5 @@ pub struct MapTemplate {
     pub y: i32,
     pub width: i32,
     pub height: i32,
-    pub objects: Vec<(brownfox::Control, object::Object)>,
+    pub objects: Vec<(brownfox::Control<i32>, object::Object)>,
 }

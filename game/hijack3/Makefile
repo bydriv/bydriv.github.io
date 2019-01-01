@@ -13,7 +13,7 @@ all:
 .PHONY: exe
 exe: src/config.rs src/assets.rs hijack/src/map/boston.rs hijack/src/episode/boston.rs
 	cargo +nightly build --target x86_64-pc-windows-gnu
-	rustc src/hijack.rs --emit obj --target=x86_64-pc-windows-gnu -L target/x86_64-pc-windows-gnu/debug
+	rustc src/hijack.rs --emit obj --target=x86_64-pc-windows-gnu -L target/x86_64-pc-windows-gnu/debug/deps
 	x86_64-w64-mingw32-gcc -UUNICODE -std=c11 -pedantic-errors -Wall -Werror -Iinclude -mwindows ./hijack.o src/hijack/platform/windows.c target/x86_64-pc-windows-gnu/debug/hijack.lib -lopengl32 -lgdiplus -lole32 -lwinmm -lws2_32 -luserenv
 
 .PHONY: js

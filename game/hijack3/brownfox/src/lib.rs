@@ -1,25 +1,30 @@
+extern crate num;
+
 pub trait Moore<I, O> {
     fn transit(&self, input: &I) -> Self;
     fn output(&self) -> O;
 }
 
 #[derive(Clone)]
-pub struct FrameCount {
-    pub i: u64,
+pub struct FrameCount<N: num::PrimInt> {
+    i: N,
 }
 
-impl FrameCount {
-    pub fn new(i: u64) -> FrameCount {
+impl<N: num::PrimInt> FrameCount<N> {
+    pub fn new(i: N) -> FrameCount<N> {
         FrameCount { i: i }
     }
 }
 
-impl Moore<(), ()> for FrameCount {
-    fn transit(&self, _input: &()) -> FrameCount {
-        FrameCount { i: self.i + 1 }
+impl<N: num::PrimInt> Moore<(), N> for FrameCount<N> {
+    fn transit(&self, _input: &()) -> FrameCount<N> {
+        FrameCount {
+            i: self.i + N::one(),
+        }
     }
-    fn output(&self) -> () {
-        ()
+
+    fn output(&self) -> N {
+        self.i
     }
 }
 
@@ -38,15 +43,15 @@ pub trait Shape {
 }
 
 #[derive(Clone)]
-pub struct Rectangle {
-    pub x: i64,
-    pub y: i64,
-    pub width: i64,
-    pub height: i64,
+pub struct Rectangle<N: num::PrimInt> {
+    pub x: N,
+    pub y: N,
+    pub width: N,
+    pub height: N,
 }
 
-impl Rectangle {
-    pub fn new(x: i64, y: i64, width: i64, height: i64) -> Rectangle {
+impl<N: num::PrimInt> Rectangle<N> {
+    pub fn new(x: N, y: N, width: N, height: N) -> Rectangle<N> {
         Rectangle {
             x: x,
             y: y,
@@ -55,7 +60,7 @@ impl Rectangle {
         }
     }
 
-    pub fn intersection(&self, other: Rectangle) -> Rectangle {
+    pub fn intersection(&self, other: Rectangle<N>) -> Rectangle<N> {
         let left = std::cmp::max(self.x, other.x);
         let top = std::cmp::max(self.y, other.y);
         let right = std::cmp::min(self.x + self.width, other.x + other.width);
@@ -67,10 +72,10 @@ impl Rectangle {
     }
 }
 
-impl Shape for Rectangle {
+impl<N: num::PrimInt> Shape for Rectangle<N> {
     fn collision(&self, other: Self) -> bool {
         let inter = self.intersection(other);
-        inter.width > 0 && inter.height > 0
+        inter.width > N::zero() && inter.height > N::zero()
     }
 }
 
@@ -128,16 +133,16 @@ impl Immovable {
 }
 
 #[derive(Clone)]
-pub struct Repeat {
-    frame_count: FrameCount,
-    step: u64,
+pub struct Repeat<N: num::PrimInt> {
+    frame_count: FrameCount<N>,
+    step: N,
     inputs: Vec<Input>,
 }
 
-impl Repeat {
-    pub fn new(step: u64, inputs: Vec<Input>) -> Repeat {
+impl<N: num::PrimInt> Repeat<N> {
+    pub fn new(step: N, inputs: Vec<Input>) -> Repeat<N> {
         Repeat {
-            frame_count: FrameCount::new(0),
+            frame_count: FrameCount::new(N::zero()),
             step: step,
             inputs: inputs,
         }
@@ -145,14 +150,14 @@ impl Repeat {
 }
 
 #[derive(Clone)]
-pub enum Control {
+pub enum Control<N: num::PrimInt> {
     Player(Player),
     Immovable(Immovable),
-    Repeat(Repeat),
+    Repeat(Repeat<N>),
 }
 
-impl Moore<Vec<Input>, Input> for Control {
-    fn transit(&self, inputs: &Vec<Input>) -> Control {
+impl<N: num::PrimInt> Moore<Vec<Input>, Input> for Control<N> {
+    fn transit(&self, inputs: &Vec<Input>) -> Control<N> {
         match self {
             Control::Player(player) => Control::Player(player.transit(inputs)),
             Control::Immovable(immovable) => Control::Immovable(immovable.transit(inputs)),
@@ -192,15 +197,23 @@ impl Moore<Vec<Input>, Input> for Immovable {
     }
 }
 
-impl Moore<Vec<Input>, Input> for Repeat {
-    fn transit(&self, _input: &Vec<Input>) -> Repeat {
+impl<N: num::PrimInt> Moore<Vec<Input>, Input> for Repeat<N> {
+    fn transit(&self, _input: &Vec<Input>) -> Repeat<N> {
         let mut other = self.clone();
         other.frame_count = other.frame_count.transit(&());
         other
     }
 
     fn output(&self) -> Input {
-        self.inputs[(self.frame_count.i / self.step % self.inputs.len() as u64) as usize].clone()
+        if let Some(len) = N::from(self.inputs.len()) {
+            if let Some(i) = N::to_usize(&(self.frame_count.output() / self.step % len)) {
+                self.inputs[i].clone()
+            } else {
+                panic!("???")
+            }
+        } else {
+            panic!("???")
+        }
     }
 }
 

@@ -4,7 +4,7 @@ use super::*;
 pub struct Animated {
     objects: Vec<Object>,
     i: i32,
-    frame_count: brownfox::FrameCount,
+    frame_count: brownfox::FrameCount<i32>,
 }
 
 pub fn new(i: i32, objects: Vec<Object>) -> Animated {
@@ -29,7 +29,8 @@ impl brownfox::Moore<Input, Output> for Animated {
     }
 
     fn output(&self) -> Output {
-        self.objects[self.frame_count.i as usize / self.i as usize % self.objects.len()].output()
+        self.objects[(self.frame_count.output() / self.i % self.objects.len() as i32) as usize]
+            .output()
     }
 }
 

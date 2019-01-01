@@ -22,7 +22,7 @@ struct Cursor {
 
 #[derive(Clone)]
 pub struct Teiri {
-    frame_count: brownfox::FrameCount,
+    frame_count: brownfox::FrameCount<i32>,
     x: i32,
     y: i32,
     z: i32,
@@ -155,8 +155,8 @@ impl brownfox::Moore<Input, Output> for Teiri {
                     status: if input.inputs.len() > 0
                         && input.inputs[0].buttons.len() > 0
                         && input.inputs[0].buttons[0]
-                        && (self.frame_count.i % 8 == 0
-                            || (input.previous.fps == 30 && self.frame_count.i % 8 <= 1))
+                        && (self.frame_count.output() % 8 == 0
+                            || (input.previous.fps == 30 && self.frame_count.output() % 8 <= 1))
                     {
                         !self.status
                     } else {
@@ -195,8 +195,8 @@ impl brownfox::Moore<Input, Output> for Teiri {
                     status: if input.inputs.len() > 0
                         && input.inputs[0].buttons.len() > 0
                         && input.inputs[0].buttons[0]
-                        && (self.frame_count.i % 8 == 0
-                            || (input.previous.fps == 30 && self.frame_count.i % 8 <= 1))
+                        && (self.frame_count.output() % 8 == 0
+                            || (input.previous.fps == 30 && self.frame_count.output() % 8 <= 1))
                     {
                         !self.status
                     } else {
@@ -220,7 +220,7 @@ impl brownfox::Moore<Input, Output> for Teiri {
                         "pixelart/teiri/{}/{}/{}.png",
                         string_of_pose(&self.pose),
                         string_of_direction(&self.direction),
-                        self.frame_count.i / 8 % 4
+                        self.frame_count.output() / 8 % 4
                     ),
                     self.x(),
                     self.y(),
@@ -234,7 +234,7 @@ impl brownfox::Moore<Input, Output> for Teiri {
                     "pixelart/teiri/{}/{}/{}.png",
                     string_of_pose(&self.pose),
                     string_of_direction(&self.direction),
-                    self.frame_count.i / 8 % 4
+                    self.frame_count.output() / 8 % 4
                 ),
                 self.x(),
                 self.y(),

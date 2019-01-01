@@ -17,7 +17,7 @@ enum Direction {
 
 #[derive(Clone)]
 pub struct NPC {
-    frame_count: brownfox::FrameCount,
+    frame_count: brownfox::FrameCount<i32>,
     x: i32,
     y: i32,
     z: i32,
@@ -61,7 +61,7 @@ impl brownfox::Moore<Input, Output> for NPC {
                 "{}/walk/{}/{}.png",
                 self.name,
                 string_of_direction(&self.direction),
-                self.frame_count.i / 8 % 4
+                self.frame_count.output() / 8 % 4
             ),
             self.x,
             self.y,

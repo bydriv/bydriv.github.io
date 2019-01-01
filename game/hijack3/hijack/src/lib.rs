@@ -15,8 +15,8 @@ pub struct Hijack {
     pub y: i32,
     pub width: i32,
     pub height: i32,
-    episode_objects: Vec<(brownfox::Control, object::Object)>,
-    map_objects: Vec<(brownfox::Control, object::Object)>,
+    episode_objects: Vec<(brownfox::Control<i32>, object::Object)>,
+    map_objects: Vec<(brownfox::Control<i32>, object::Object)>,
     events: Vec<Event>,
 }
 

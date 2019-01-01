@@ -9,7 +9,7 @@ pub struct Maptip {
     z: i32,
     width: i32,
     height: i32,
-    rectangles: Vec<brownfox::Rectangle>,
+    rectangles: Vec<brownfox::Rectangle<i32>>,
     prefix: String,
     suffix: String,
     names: Vec<(i32, i32, String)>,
@@ -21,7 +21,7 @@ pub fn new(
     z: i32,
     width: i32,
     height: i32,
-    rectangles: Vec<brownfox::Rectangle>,
+    rectangles: Vec<brownfox::Rectangle<i32>>,
     prefix: String,
     suffix: String,
 ) -> Maptip {
@@ -155,7 +155,7 @@ impl Maptip {
                         _ => format!("{}center{}", self.prefix, self.suffix),
                     };
 
-                    names.push(((rectangle.x + i) as i32, (rectangle.y + j) as i32, name));
+                    names.push((rectangle.x + i, rectangle.y + j, name));
                 }
             }
         }
