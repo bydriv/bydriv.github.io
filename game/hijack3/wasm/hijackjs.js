@@ -251,6 +251,30 @@ __exports.view_map = function(arg0) {
     return ViewMap.__wrap(wasm.view_map(arg0.ptr));
 };
 
+function freeGame(ptr) {
+
+    wasm.__wbg_game_free(ptr);
+}
+/**
+*/
+class Game {
+
+    static __wrap(ptr) {
+        const obj = Object.create(Game.prototype);
+        obj.ptr = ptr;
+
+        return obj;
+    }
+
+    free() {
+        const ptr = this.ptr;
+        this.ptr = 0;
+        freeGame(ptr);
+    }
+
+}
+__exports.Game = Game;
+
 function freeViewMap(ptr) {
 
     wasm.__wbg_viewmap_free(ptr);
@@ -298,30 +322,6 @@ class Views {
 
 }
 __exports.Views = Views;
-
-function freeGame(ptr) {
-
-    wasm.__wbg_game_free(ptr);
-}
-/**
-*/
-class Game {
-
-    static __wrap(ptr) {
-        const obj = Object.create(Game.prototype);
-        obj.ptr = ptr;
-
-        return obj;
-    }
-
-    free() {
-        const ptr = this.ptr;
-        this.ptr = 0;
-        freeGame(ptr);
-    }
-
-}
-__exports.Game = Game;
 
 function dropObject(idx) {
     if (idx < 36) return;

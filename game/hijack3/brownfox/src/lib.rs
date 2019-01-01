@@ -5,11 +5,11 @@ pub trait Moore<I, O> {
 
 #[derive(Clone)]
 pub struct FrameCount {
-    pub i: usize,
+    pub i: u64,
 }
 
 impl FrameCount {
-    pub fn new(i: usize) -> FrameCount {
+    pub fn new(i: u64) -> FrameCount {
         FrameCount { i: i }
     }
 }
@@ -130,12 +130,12 @@ impl Immovable {
 #[derive(Clone)]
 pub struct Repeat {
     frame_count: FrameCount,
-    step: usize,
+    step: u64,
     inputs: Vec<Input>,
 }
 
 impl Repeat {
-    pub fn new(step: usize, inputs: Vec<Input>) -> Repeat {
+    pub fn new(step: u64, inputs: Vec<Input>) -> Repeat {
         Repeat {
             frame_count: FrameCount::new(0),
             step: step,
@@ -200,7 +200,7 @@ impl Moore<Vec<Input>, Input> for Repeat {
     }
 
     fn output(&self) -> Input {
-        self.inputs[self.frame_count.i / self.step % self.inputs.len()].clone()
+        self.inputs[(self.frame_count.i / self.step % self.inputs.len() as u64) as usize].clone()
     }
 }
 
