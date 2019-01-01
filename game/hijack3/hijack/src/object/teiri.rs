@@ -134,8 +134,8 @@ impl brownfox::Moore<Input, Output> for Teiri {
                         && input.inputs[0].buttons.len() > 0
                         && input.inputs[0].buttons[0],
                     status: if input.inputs.len() > 0
-                        && input.inputs[0].buttons.len() > 0
-                        && input.inputs[0].buttons[0]
+                        && input.inputs[0].buttons.len() > 7
+                        && input.inputs[0].buttons[7]
                         && self.frame_count.output() % 8 < (60 / input.previous.fps)
                     {
                         !self.status
@@ -170,8 +170,8 @@ impl brownfox::Moore<Input, Output> for Teiri {
                         && input.inputs[0].buttons.len() > 0
                         && input.inputs[0].buttons[0],
                     status: if input.inputs.len() > 0
-                        && input.inputs[0].buttons.len() > 0
-                        && input.inputs[0].buttons[0]
+                        && input.inputs[0].buttons.len() > 7
+                        && input.inputs[0].buttons[7]
                         && self.frame_count.output() % 8 < (60 / input.previous.fps)
                     {
                         !self.status

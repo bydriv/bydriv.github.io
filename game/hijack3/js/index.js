@@ -365,13 +365,21 @@ window.addEventListener("load", async function() {
             } else if (48 <= x && x < 80 && 192 <= y && y < 224) {
                 keyboardInput.y = 1;
             } else if (208 <= x && x < 240 && 160 <= y && y < 192) {
-                keyboardInput.buttons[3] = true;
-            } else if (272 <= x && x < 304 && 160 <= y && y < 192) {
-                keyboardInput.buttons[0] = true;
-            } else if (240 <= x && x < 272 && 128 <= y && y < 160) {
                 keyboardInput.buttons[2] = true;
-            } else if (240 <= x && x < 272 && 192 <= y && y < 224) {
+            } else if (272 <= x && x < 304 && 160 <= y && y < 192) {
                 keyboardInput.buttons[1] = true;
+            } else if (240 <= x && x < 272 && 128 <= y && y < 160) {
+                keyboardInput.buttons[3] = true;
+            } else if (240 <= x && x < 272 && 192 <= y && y < 224) {
+                keyboardInput.buttons[0] = true;
+            } else if (0 <= x && x < 64 && 0 <= y && y < 32) {
+                keyboardInput.buttons[4] = true;
+            } else if (256 <= x && x < 320 && 0 <= y && y < 32) {
+                keyboardInput.buttons[5] = true;
+            } else if (112 <= x && x < 144 && 224 <= y && y < 240) {
+                keyboardInput.buttons[6] = true;
+            } else if (176 <= x && x < 208 && 224 <= y && y < 240) {
+                keyboardInput.buttons[7] = true;
             }
 
         }
