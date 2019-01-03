@@ -112,6 +112,23 @@ impl brownfox::Moore<Input, Output> for Teiri {
                 .collect();
         }
 
+        let (combat, pose) = if input.inputs.len() > 0
+            && input.inputs[0].buttons.len() > 5
+            && input.inputs[0].buttons[5]
+            && self.frame_count.output() % 8 < (60 / input.previous.fps)
+        {
+            if !self.combat {
+                (true, Pose::Walk)
+            } else {
+                (false, pose)
+            }
+        } else {
+            match pose {
+                Pose::Hijack => (false, pose),
+                _ => (self.combat, pose),
+            }
+        };
+
         match pose {
             Pose::Hijack => {
                 let cursor = if let Some(cursor) = self.cursor.clone() {
@@ -169,15 +186,7 @@ impl brownfox::Moore<Input, Output> for Teiri {
                     } else {
                         self.status
                     },
-                    combat: if input.inputs.len() > 0
-                        && input.inputs[0].buttons.len() > 5
-                        && input.inputs[0].buttons[5]
-                        && self.frame_count.output() % 8 < (60 / input.previous.fps)
-                    {
-                        !self.combat
-                    } else {
-                        self.combat
-                    },
+                    combat: combat,
                     cursor: Some(cursor),
                     hijacking: hijacking,
                     hijacked: hijacked,
@@ -213,15 +222,7 @@ impl brownfox::Moore<Input, Output> for Teiri {
                     } else {
                         self.status
                     },
-                    combat: if input.inputs.len() > 0
-                        && input.inputs[0].buttons.len() > 5
-                        && input.inputs[0].buttons[5]
-                        && self.frame_count.output() % 8 < (60 / input.previous.fps)
-                    {
-                        !self.combat
-                    } else {
-                        self.combat
-                    },
+                    combat: combat,
                     cursor: None,
                     hijacking: hijacking,
                     hijacked: hijacked,
