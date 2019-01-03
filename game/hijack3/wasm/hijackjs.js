@@ -344,7 +344,7 @@ function init(path_or_module) {
         return { instance, module: path_or_module }
     });
 } else {
-    const data = fetch(path_or_module);
+    const data = fetch(path_or_module, {cache: "no-cache"});
     if (typeof WebAssembly.instantiateStreaming === 'function') {
         instantiation = WebAssembly.instantiateStreaming(data, imports);
     } else {
