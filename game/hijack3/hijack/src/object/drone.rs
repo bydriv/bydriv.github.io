@@ -25,6 +25,7 @@ pub struct Drone {
     name: String,
     security: i32,
     security_damage: i32,
+    hijacked: bool,
 }
 
 pub fn new(x: i32, y: i32, z: i32, name: String) -> Drone {
@@ -36,13 +37,20 @@ pub fn new(x: i32, y: i32, z: i32, name: String) -> Drone {
         pose: Pose::Fly,
         direction: Direction::Front,
         name: name,
-        security: 60,
+        security: 20,
         security_damage: 0,
+        hijacked: false,
     }
 }
 
 impl brownfox::Moore<Input, Output> for Drone {
     fn transit(&self, input: &Input) -> Drone {
+        if self.security <= self.security_damage {
+            let mut other = self.clone();
+            other.hijacked = true;
+            return other;
+        }
+
         let mut hijacked = false;
 
         for event in &input.previous.events {
@@ -108,18 +116,36 @@ impl brownfox::Moore<Input, Output> for Drone {
             } else {
                 0
             },
+            hijacked: self.hijacked,
         }
     }
 
     fn output(&self) -> Output {
+        if self.hijacked {
+            return Output {
+                events: vec![],
+                views: vec![],
+            };
+        }
+
         let mut events = vec![];
 
         if self.security_damage > 0 {
+            let mut drone = self.clone();
+            drone.hijacked = false;
+            drone.security_damage = 0;
             events.push(Event::Hijacked(
                 self.security,
                 self.security_damage,
-                Object::Drone(self.clone()),
+                Object::Drone(drone),
             ));
+        }
+
+        if self.security <= self.security_damage {
+            return Output {
+                events: events,
+                views: vec![],
+            };
         }
 
         let views = vec![View::Image(
