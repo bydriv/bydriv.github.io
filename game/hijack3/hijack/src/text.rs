@@ -1171,3 +1171,24 @@ pub fn text(x: i32, y: i32, z: i32, msg: String) -> Vec<View> {
         })
         .collect()
 }
+
+pub fn text_green(x: i32, y: i32, z: i32, msg: String) -> Vec<View> {
+    msg.chars()
+        .enumerate()
+        .flat_map(|(i, c)| {
+            let i = i as i32;
+
+            if 0x20 as char <= c && c < 0x7F as char {
+                let c = c as u8;
+                vec![View::Image(
+                    format!("pixelart/font/ascii_green/{:X?}.png", c),
+                    x + i * 8,
+                    y,
+                    z,
+                )]
+            } else {
+                vec![]
+            }
+        })
+        .collect()
+}

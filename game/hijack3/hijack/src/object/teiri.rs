@@ -231,11 +231,16 @@ impl brownfox::Moore<Input, Output> for Teiri {
 
         for (i, (security, security_damage, _)) in self.hijacking.iter().enumerate() {
             let progress = (*security_damage as f64 / *security as f64) * 100.0;
-            views.append(&mut text::text(
+            views.append(&mut text::text_green(
                 0,
                 (i * 8) as i32,
                 1300,
-                format!("[{} of {}] Hijacking {}%", (i + 1), self.hijacking.len(), progress as u32),
+                format!(
+                    "[{} of {}] Hijacking {}%",
+                    (i + 1),
+                    self.hijacking.len(),
+                    progress as u32
+                ),
             ));
         }
 
