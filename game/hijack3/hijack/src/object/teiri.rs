@@ -312,12 +312,6 @@ impl brownfox::Moore<Input, Output> for Teiri {
         }
 
         if self.combat {
-            views.push(View::Image(
-                "pixelart/effect/dark.png".to_string(),
-                0,
-                0,
-                1000,
-            ));
             for object in &self.hijacked {
                 let mut out = object.output();
                 events.append(&mut out.events);
