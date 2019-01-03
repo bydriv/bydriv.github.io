@@ -25,6 +25,8 @@ pub enum Event {
     Check(i32, i32, i32, i32),
     Trigger(i32, i32, i32, i32),
     Transport(i32, i32, String, i32, i32),
+    Hijack(i32, i32, i32, i32),
+    Hijacked(i32, i32, object::Object),
 }
 
 #[derive(Clone, PartialEq)]

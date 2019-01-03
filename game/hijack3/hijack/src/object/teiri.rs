@@ -28,9 +28,9 @@ pub struct Teiri {
     z: i32,
     pose: Pose,
     direction: Direction,
-    check: bool,
     status: bool,
     cursor: Option<Cursor>,
+    hijacking: Vec<(i32, i32, Object)>,
 }
 
 pub fn new(x: i32, y: i32, z: i32) -> Teiri {
@@ -41,14 +41,25 @@ pub fn new(x: i32, y: i32, z: i32) -> Teiri {
         z: z,
         pose: Pose::Walk,
         direction: Direction::Front,
-        check: false,
         status: false,
         cursor: None,
+        hijacking: vec![],
     }
 }
 
 impl brownfox::Moore<Input, Output> for Teiri {
     fn transit(&self, input: &Input) -> Teiri {
+        let mut hijacking = vec![];
+
+        for event in &input.previous.events {
+            match event {
+                Event::Hijacked(security, security_damage, object) => {
+                    hijacking.push((*security, *security_damage, object.clone()));
+                }
+                _ => {}
+            }
+        }
+
         let xshift = if input.inputs.len() > 0 {
             if input.inputs[0].x < -0.25 {
                 -(60 / input.previous.fps)
@@ -76,10 +87,14 @@ impl brownfox::Moore<Input, Output> for Teiri {
         let pose = if input.inputs.len() > 0
             && input.inputs[0].buttons.len() > 4
             && input.inputs[0].buttons[4]
+            && self.frame_count.output() % 8 < (60 / input.previous.fps)
         {
-            Pose::Hijack
+            match self.pose {
+                Pose::Hijack => Pose::Walk,
+                _ => Pose::Hijack,
+            }
         } else {
-            Pose::Walk
+            self.pose.clone()
         };
 
         match pose {
@@ -130,9 +145,6 @@ impl brownfox::Moore<Input, Output> for Teiri {
                     z: self.z,
                     pose: pose,
                     direction: direction,
-                    check: input.inputs.len() > 0
-                        && input.inputs[0].buttons.len() > 0
-                        && input.inputs[0].buttons[0],
                     status: if input.inputs.len() > 0
                         && input.inputs[0].buttons.len() > 7
                         && input.inputs[0].buttons[7]
@@ -143,6 +155,7 @@ impl brownfox::Moore<Input, Output> for Teiri {
                         self.status
                     },
                     cursor: Some(cursor),
+                    hijacking: hijacking,
                 }
             }
             Pose::Walk => {
@@ -166,9 +179,6 @@ impl brownfox::Moore<Input, Output> for Teiri {
                     z: self.z,
                     pose: pose,
                     direction: direction,
-                    check: input.inputs.len() > 0
-                        && input.inputs[0].buttons.len() > 0
-                        && input.inputs[0].buttons[0],
                     status: if input.inputs.len() > 0
                         && input.inputs[0].buttons.len() > 7
                         && input.inputs[0].buttons[7]
@@ -179,6 +189,7 @@ impl brownfox::Moore<Input, Output> for Teiri {
                         self.status
                     },
                     cursor: None,
+                    hijacking: hijacking,
                 }
             }
         }
@@ -218,7 +229,19 @@ impl brownfox::Moore<Input, Output> for Teiri {
             )]
         };
 
+        for (i, (security, security_damage, _)) in self.hijacking.iter().enumerate() {
+            let progress = (*security_damage as f64 / *security as f64) * 100.0;
+            views.append(&mut text::text(
+                0,
+                (i * 8) as i32,
+                1300,
+                format!("[{} of {}] Hijacking {}%", (i + 1), self.hijacking.len(), progress as u32),
+            ));
+        }
+
         if let Some(cursor) = self.cursor.clone() {
+            events.push(Event::Hijack(cursor.x, cursor.y, 16, 16));
+
             views.push(View::Image(
                 "pixelart/effect/cursor.png".to_string(),
                 cursor.x,

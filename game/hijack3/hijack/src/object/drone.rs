@@ -23,6 +23,8 @@ pub struct Drone {
     pose: Pose,
     direction: Direction,
     name: String,
+    security: i32,
+    security_damage: i32,
 }
 
 pub fn new(x: i32, y: i32, z: i32, name: String) -> Drone {
@@ -34,11 +36,28 @@ pub fn new(x: i32, y: i32, z: i32, name: String) -> Drone {
         pose: Pose::Fly,
         direction: Direction::Front,
         name: name,
+        security: 60,
+        security_damage: 0,
     }
 }
 
 impl brownfox::Moore<Input, Output> for Drone {
     fn transit(&self, input: &Input) -> Drone {
+        let mut hijacked = false;
+
+        for event in &input.previous.events {
+            match event {
+                Event::Hijack(x, y, width, height) => {
+                    if brownfox::Rectangle::new(*x, *y, *width, *height)
+                        .collision(brownfox::Rectangle::new(self.x, self.y, 16, 16))
+                    {
+                        hijacked = true;
+                    }
+                }
+                _ => {}
+            }
+        }
+
         let xshift = if input.inputs.len() > 0 {
             if input.inputs[0].x < -0.25 {
                 -(60 / input.previous.fps)
@@ -83,10 +102,26 @@ impl brownfox::Moore<Input, Output> for Drone {
             pose: self.pose.clone(),
             direction: direction,
             name: self.name.clone(),
+            security: self.security,
+            security_damage: if hijacked {
+                self.security_damage + 60 / input.previous.fps
+            } else {
+                0
+            },
         }
     }
 
     fn output(&self) -> Output {
+        let mut events = vec![];
+
+        if self.security_damage > 0 {
+            events.push(Event::Hijacked(
+                self.security,
+                self.security_damage,
+                Object::Drone(self.clone()),
+            ));
+        }
+
         let views = vec![View::Image(
             format!(
                 "{}/fly/{}/{}.png",
@@ -100,7 +135,7 @@ impl brownfox::Moore<Input, Output> for Drone {
         )];
 
         Output {
-            events: vec![],
+            events: events,
             views: views,
         }
     }
