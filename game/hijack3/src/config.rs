@@ -11,9 +11,9 @@ pub struct AssetDefn<'a> {
 pub static SCALE: u32 = 2;
 pub static WIDTH: u32 = 320;
 pub static HEIGHT: u32 = 240;
-pub static ASSET_DEFNS_LEN: usize = 635;
+pub static ASSET_DEFNS_LEN: usize = 609;
 
-pub static ASSET_DEFNS: [AssetDefn; 635] = [
+pub static ASSET_DEFNS: [AssetDefn; 609] = [
     AssetDefn {path: "illust/teiri/neutral.png", name: "illust/teiri/neutral/middle.png", x: 0, y: 120, width: 192, height: 240},
     AssetDefn {path: "pixelart/system/window.png", name: "pixelart/system/window/top-left.png", x: 0, y: 0, width: 8, height: 8},
     AssetDefn {path: "pixelart/system/window.png", name: "pixelart/system/window/top.png", x: 8, y: 0, width: 8, height: 8},
@@ -123,32 +123,6 @@ pub static ASSET_DEFNS: [AssetDefn; 635] = [
     AssetDefn {path: "pixelart/font/ascii.png", name: "pixelart/font/ascii/7C.png", x: 96, y: 40, width: 8, height: 8},
     AssetDefn {path: "pixelart/font/ascii.png", name: "pixelart/font/ascii/7D.png", x: 104, y: 40, width: 8, height: 8},
     AssetDefn {path: "pixelart/font/ascii.png", name: "pixelart/font/ascii/7E.png", x: 112, y: 40, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/a.png", x: 0, y: 16, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/b.png", x: 8, y: 16, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/c.png", x: 16, y: 16, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/d.png", x: 24, y: 16, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/e.png", x: 32, y: 16, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/f.png", x: 40, y: 16, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/g.png", x: 48, y: 16, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/h.png", x: 56, y: 16, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/i.png", x: 64, y: 16, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/j.png", x: 72, y: 16, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/k.png", x: 80, y: 16, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/l.png", x: 88, y: 16, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/m.png", x: 96, y: 16, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/n.png", x: 0, y: 24, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/o.png", x: 8, y: 24, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/p.png", x: 16, y: 24, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/q.png", x: 24, y: 24, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/r.png", x: 32, y: 24, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/s.png", x: 40, y: 24, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/t.png", x: 48, y: 24, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/u.png", x: 56, y: 24, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/v.png", x: 64, y: 24, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/w.png", x: 72, y: 24, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/x.png", x: 80, y: 24, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/y.png", x: 88, y: 24, width: 8, height: 8},
-    AssetDefn {path: "pixelart/font/alpha.png", name: "pixelart/font/alpha/z.png", x: 96, y: 24, width: 8, height: 8},
     AssetDefn {path: "pixelart/font/hiragana.png", name: "pixelart/font/hiragana/a.png", x: 0, y: 0, width: 8, height: 8},
     AssetDefn {path: "pixelart/font/hiragana.png", name: "pixelart/font/hiragana/i.png", x: 0, y: 8, width: 8, height: 8},
     AssetDefn {path: "pixelart/font/hiragana.png", name: "pixelart/font/hiragana/u.png", x: 0, y: 16, width: 8, height: 8},
