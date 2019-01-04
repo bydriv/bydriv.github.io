@@ -53,6 +53,50 @@ impl brownfox::Moore<Input, Output> for Object {
 }
 
 impl Object {
+    pub fn x(&self) -> i32 {
+        match self {
+            Object::Teiri(teiri) => teiri.x(),
+            Object::NPC(npc) => npc.x(),
+            Object::Drone(drone) => drone.x(),
+            Object::Maptip(maptip) => maptip.x(),
+            Object::Animated(animated) => animated.x(),
+            Object::Transport(transport) => transport.x(),
+        }
+    }
+
+    pub fn y(&self) -> i32 {
+        match self {
+            Object::Teiri(teiri) => teiri.y(),
+            Object::NPC(npc) => npc.y(),
+            Object::Drone(drone) => drone.y(),
+            Object::Maptip(maptip) => maptip.y(),
+            Object::Animated(animated) => animated.y(),
+            Object::Transport(transport) => transport.y(),
+        }
+    }
+
+    pub fn z(&self) -> i32 {
+        match self {
+            Object::Teiri(teiri) => teiri.z(),
+            Object::NPC(npc) => npc.z(),
+            Object::Drone(drone) => drone.z(),
+            Object::Maptip(maptip) => maptip.z(),
+            Object::Animated(animated) => animated.z(),
+            Object::Transport(transport) => transport.z(),
+        }
+    }
+
+    pub fn on(&self, event: &Event) -> Object {
+        match self {
+            Object::Teiri(teiri) => Object::Teiri(teiri.on(event)),
+            Object::NPC(npc) => Object::NPC(npc.on(event)),
+            Object::Drone(drone) => Object::Drone(drone.on(event)),
+            Object::Maptip(maptip) => Object::Maptip(maptip.on(event)),
+            Object::Animated(animated) => Object::Animated(animated.on(event)),
+            Object::Transport(transport) => Object::Transport(transport.on(event)),
+        }
+    }
+
     pub fn transport(&self, from_x: i32, from_y: i32, to_x: i32, to_y: i32) -> Object {
         match self {
             Object::Teiri(teiri) => Object::Teiri(teiri.transport(from_x, from_y, to_x, to_y)),
@@ -65,17 +109,6 @@ impl Object {
             Object::Transport(transport) => {
                 Object::Transport(transport.transport(from_x, from_y, to_x, to_y))
             }
-        }
-    }
-
-    pub fn on(&self, event: &Event) -> Object {
-        match self {
-            Object::Teiri(teiri) => Object::Teiri(teiri.on(event)),
-            Object::NPC(npc) => Object::NPC(npc.on(event)),
-            Object::Drone(drone) => Object::Drone(drone.on(event)),
-            Object::Maptip(maptip) => Object::Maptip(maptip.on(event)),
-            Object::Animated(animated) => Object::Animated(animated.on(event)),
-            Object::Transport(transport) => Object::Transport(transport.on(event)),
         }
     }
 }

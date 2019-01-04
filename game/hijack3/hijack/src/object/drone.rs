@@ -191,6 +191,17 @@ fn string_of_direction(direction: &Direction) -> String {
 }
 
 impl Drone {
+    pub fn x(&self) -> i32 {
+        self.x
+    }
+
+    pub fn y(&self) -> i32 {
+        self.y
+    }
+    pub fn z(&self) -> i32 {
+        self.z
+    }
+
     pub fn on(&self, event: &Event) -> Drone {
         let mut other = self.clone();
 

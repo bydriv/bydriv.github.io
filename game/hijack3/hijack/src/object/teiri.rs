@@ -103,6 +103,23 @@ impl brownfox::Moore<Input, Output> for Teiri {
             if other.combat {
                 other.pose = Pose::Walk;
                 other.cursor = None;
+                other.drones = other
+                    .drones
+                    .iter()
+                    .enumerate()
+                    .map(|(i, drone)| {
+                        drone.transport(
+                            drone.x(),
+                            drone.y(),
+                            other.x()
+                                + ((other.frame_count.output() + i as i32 ^ 0x55555555) % 5 - 2)
+                                    * 16,
+                            other.y()
+                                + ((other.frame_count.output() + i as i32 ^ 0x33333333) % 5 - 2)
+                                    * 16,
+                        )
+                    })
+                    .collect();
             }
         }
 
@@ -196,8 +213,8 @@ impl brownfox::Moore<Input, Output> for Teiri {
                         string_of_direction(&self.direction),
                         self.frame_count.output() / 8 % 4
                     ),
-                    self.x(),
-                    self.y(),
+                    self.image_x(),
+                    self.image_y(),
                     1100,
                 ),
                 View::Image("pixelart/effect/dark.png".to_string(), 0, 0, 1000),
@@ -210,8 +227,8 @@ impl brownfox::Moore<Input, Output> for Teiri {
                     string_of_direction(&self.direction),
                     self.frame_count.output() / 8 % 4
                 ),
-                self.x(),
-                self.y(),
+                self.image_x(),
+                self.image_y(),
                 self.z,
             )]
         };
@@ -281,18 +298,30 @@ impl brownfox::Moore<Input, Output> for Teiri {
 }
 
 impl Teiri {
-    fn x(&self) -> i32 {
+    pub fn image_x(&self) -> i32 {
         match self.pose {
             Pose::Walk => self.x,
             Pose::Hijack => self.x - 8,
         }
     }
 
-    fn y(&self) -> i32 {
+    pub fn image_y(&self) -> i32 {
         match self.pose {
             Pose::Walk => self.y,
             Pose::Hijack => self.y - 8,
         }
+    }
+
+    pub fn x(&self) -> i32 {
+        self.x
+    }
+
+    pub fn y(&self) -> i32 {
+        self.y
+    }
+
+    pub fn z(&self) -> i32 {
+        self.z
     }
 
     pub fn on(&self, event: &Event) -> Teiri {
@@ -307,7 +336,12 @@ impl Teiri {
                 if *security > *security_damage {
                     other.hijacking.push((*security, *security_damage));
                 } else {
-                    other.drones.push(object.clone());
+                    other.drones.push(object.transport(
+                        object.x(),
+                        object.y(),
+                        self.x() + ((self.frame_count.output() ^ 0x55555555) % 5 - 2) * 16,
+                        self.y() + ((self.frame_count.output() ^ 0x33333333) % 5 - 2) * 16,
+                    ));
                 }
             }
             _ => {}

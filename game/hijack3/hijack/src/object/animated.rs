@@ -32,6 +32,17 @@ impl brownfox::Moore<Input, Output> for Animated {
 }
 
 impl Animated {
+    pub fn x(&self) -> i32 {
+        self.objects[(self.frame_count.output() / self.i % self.objects.len() as i32) as usize].x()
+    }
+
+    pub fn y(&self) -> i32 {
+        self.objects[(self.frame_count.output() / self.i % self.objects.len() as i32) as usize].y()
+    }
+    pub fn z(&self) -> i32 {
+        self.objects[(self.frame_count.output() / self.i % self.objects.len() as i32) as usize].z()
+    }
+
     pub fn on(&self, event: &Event) -> Animated {
         let mut other = self.clone();
         other.objects = other
