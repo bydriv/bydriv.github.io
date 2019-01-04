@@ -63,6 +63,10 @@ impl brownfox::Moore<Input, Output> for Maptip {
 }
 
 impl Maptip {
+    pub fn on(&self, event: &Event) -> Maptip {
+        self.clone()
+    }
+
     pub fn transport(&self, from_x: i32, from_y: i32, to_x: i32, to_y: i32) -> Maptip {
         let mut other = self.clone();
         other.x = other.x - from_x + to_x;

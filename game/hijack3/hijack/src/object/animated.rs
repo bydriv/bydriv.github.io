@@ -32,6 +32,16 @@ impl brownfox::Moore<Input, Output> for Animated {
 }
 
 impl Animated {
+    pub fn on(&self, event: &Event) -> Animated {
+        let mut other = self.clone();
+        other.objects = other
+            .objects
+            .iter()
+            .map(|object| object.on(event))
+            .collect();
+        other
+    }
+
     pub fn transport(&self, from_x: i32, from_y: i32, to_x: i32, to_y: i32) -> Animated {
         let mut other = self.clone();
         other.objects = other

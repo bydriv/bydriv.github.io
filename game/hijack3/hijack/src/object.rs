@@ -67,4 +67,15 @@ impl Object {
             }
         }
     }
+
+    pub fn on(&self, event: &Event) -> Object {
+        match self {
+            Object::Teiri(teiri) => Object::Teiri(teiri.on(event)),
+            Object::NPC(npc) => Object::NPC(npc.on(event)),
+            Object::Drone(drone) => Object::Drone(drone.on(event)),
+            Object::Maptip(maptip) => Object::Maptip(maptip.on(event)),
+            Object::Animated(animated) => Object::Animated(animated.on(event)),
+            Object::Transport(transport) => Object::Transport(transport.on(event)),
+        }
+    }
 }

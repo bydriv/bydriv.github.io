@@ -82,6 +82,10 @@ fn string_of_direction(direction: &Direction) -> String {
 }
 
 impl NPC {
+    pub fn on(&self, event: &Event) -> NPC {
+        self.clone()
+    }
+
     pub fn transport(&self, from_x: i32, from_y: i32, to_x: i32, to_y: i32) -> NPC {
         let mut other = self.clone();
         other.x = other.x - from_x + to_x;

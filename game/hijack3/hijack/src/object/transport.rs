@@ -83,6 +83,10 @@ impl brownfox::Moore<Input, Output> for Transport {
 }
 
 impl Transport {
+    pub fn on(&self, event: &Event) -> Transport {
+        self.clone()
+    }
+
     pub fn transport(&self, from_x: i32, from_y: i32, to_x: i32, to_y: i32) -> Transport {
         let mut other = self.clone();
         other.from_x = other.from_x - from_x + to_x;

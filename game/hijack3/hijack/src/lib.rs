@@ -25,8 +25,8 @@ pub enum Event {
     Check(brownfox::Rectangle<i32>),
     Trigger(brownfox::Rectangle<i32>),
     Transport(i32, i32, String, i32, i32),
-    Hijack(object::Object, brownfox::Rectangle<i32>),
-    Hijacked(object::Object, i32, i32, object::Object),
+    Hijack(brownfox::Rectangle<i32>),
+    Hijacked(i32, i32, object::Object),
     Attack(brownfox::Rectangle<i32>),
 }
 
@@ -59,10 +59,38 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
         let mut objects = self.episode_objects.clone();
         objects.append(&mut self.map_objects.clone());
 
-        let events = objects
+        let events: Vec<Event> = objects
             .iter()
             .flat_map(|object| object.1.output().events)
             .collect();
+
+        let mut episode_objects = Box::new(self.episode_objects.iter().map(|object| {
+            let control =
+                (0..60 / self.fps).fold(object.0.clone(), |control, _| control.transit(inputs));
+            let input = control.output();
+            (
+                control,
+                object.1.transit(&object::Input {
+                    inputs: vec![input],
+                    previous: self.clone(),
+                }),
+            )
+        }))
+            as Box<Iterator<Item = (brownfox::Control<i32>, object::Object)>>;
+
+        let mut map_objects = Box::new(self.map_objects.iter().map(|object| {
+            let control =
+                (0..60 / self.fps).fold(object.0.clone(), |control, _| control.transit(inputs));
+            let input = control.output();
+            (
+                control,
+                object.1.transit(&object::Input {
+                    inputs: vec![input],
+                    previous: self.clone(),
+                }),
+            )
+        }))
+            as Box<Iterator<Item = (brownfox::Control<i32>, object::Object)>>;
 
         for event in &events {
             match event {
@@ -76,21 +104,21 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
                         y: template.y,
                         width: template.width,
                         height: template.height,
-                        episode_objects: self
-                            .episode_objects
-                            .iter()
-                            .map(|object| {
-                                (
-                                    object.0.clone(),
-                                    object.1.transport(from_x, from_y, to_x, to_y),
-                                )
-                            })
-                            .collect(),
+                        episode_objects: episode_objects.collect(),
                         map_objects: template.objects.clone(),
                         events: vec![],
                     };
                 }
-                _ => {}
+                _ => {
+                    episode_objects = Box::new(
+                        episode_objects.map(move |object| (object.0.clone(), object.1.on(event))),
+                    )
+                        as Box<Iterator<Item = (brownfox::Control<i32>, object::Object)>>;
+                    map_objects = Box::new(
+                        map_objects.map(move |object| (object.0.clone(), object.1.on(event))),
+                    )
+                        as Box<Iterator<Item = (brownfox::Control<i32>, object::Object)>>;
+                }
             }
         }
 
@@ -100,39 +128,9 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
             y: self.y,
             width: self.width,
             height: self.height,
-            episode_objects: self
-                .episode_objects
-                .iter()
-                .map(|object| {
-                    let control = (0..60 / self.fps)
-                        .fold(object.0.clone(), |control, _| control.transit(inputs));
-                    let input = control.output();
-                    (
-                        control,
-                        object.1.transit(&object::Input {
-                            inputs: vec![input],
-                            previous: self.clone(),
-                        }),
-                    )
-                })
-                .collect(),
-            map_objects: self
-                .map_objects
-                .iter()
-                .map(|object| {
-                    let control = (0..60 / self.fps)
-                        .fold(object.0.clone(), |control, _| control.transit(inputs));
-                    let input = control.output();
-                    (
-                        control,
-                        object.1.transit(&object::Input {
-                            inputs: vec![input],
-                            previous: self.clone(),
-                        }),
-                    )
-                })
-                .collect(),
-            events: events,
+            episode_objects: episode_objects.collect(),
+            map_objects: map_objects.collect(),
+            events: events.clone(),
         }
     }
 

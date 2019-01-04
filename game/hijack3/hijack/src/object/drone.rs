@@ -26,8 +26,8 @@ pub struct Drone {
     security: i32,
     security_damage: i32,
     hijacked: bool,
-    hijacked_by: Option<Box<Object>>,
     shots: Vec<shot::Shot>,
+    fps: i32,
 }
 
 pub fn new(x: i32, y: i32, z: i32, name: String) -> Drone {
@@ -42,8 +42,8 @@ pub fn new(x: i32, y: i32, z: i32, name: String) -> Drone {
         security: 20,
         security_damage: 0,
         hijacked: false,
-        hijacked_by: None,
         shots: vec![],
+        fps: 60,
     }
 }
 
@@ -53,19 +53,6 @@ impl brownfox::Moore<Input, Output> for Drone {
             let mut other = self.clone();
             other.hijacked = true;
             return other;
-        }
-
-        let mut hijacked = None;
-
-        for event in &input.previous.events {
-            match event {
-                Event::Hijack(hijacker, rect) => {
-                    if rect.collision(brownfox::Rectangle::new(self.x, self.y, 16, 16)) {
-                        hijacked = Some(Box::new(hijacker.clone()));
-                    }
-                }
-                _ => {}
-            }
         }
 
         let xshift = if input.inputs.len() > 0 {
@@ -91,6 +78,7 @@ impl brownfox::Moore<Input, Output> for Drone {
         } else {
             0
         };
+
         let direction = if yshift < 0 {
             Direction::Back
         } else if yshift > 0 {
@@ -136,14 +124,10 @@ impl brownfox::Moore<Input, Output> for Drone {
             direction: direction,
             name: self.name.clone(),
             security: self.security,
-            security_damage: if hijacked.is_some() {
-                self.security_damage + 60 / input.previous.fps
-            } else {
-                0
-            },
+            security_damage: self.security_damage,
             hijacked: self.hijacked,
-            hijacked_by: hijacked,
             shots: shots,
+            fps: input.previous.fps,
         }
     }
 
@@ -161,14 +145,11 @@ impl brownfox::Moore<Input, Output> for Drone {
             let mut drone = self.clone();
             drone.hijacked = false;
             drone.security_damage = 0;
-            if let Some(ref hijacker) = self.hijacked_by {
-                events.push(Event::Hijacked(
-                    *hijacker.clone(),
-                    self.security,
-                    self.security_damage,
-                    Object::Drone(drone),
-                ));
-            }
+            events.push(Event::Hijacked(
+                self.security,
+                self.security_damage,
+                Object::Drone(drone),
+            ));
         }
 
         if self.security <= self.security_damage {
@@ -214,6 +195,24 @@ fn string_of_direction(direction: &Direction) -> String {
 }
 
 impl Drone {
+    pub fn on(&self, event: &Event) -> Drone {
+        let mut other = self.clone();
+
+        if self.hijacked {
+            return other;
+        }
+
+        match event {
+            Event::Hijack(rect) => {
+                if rect.collision(brownfox::Rectangle::new(self.x, self.y, 16, 16)) {
+                    other.security_damage += 60 / other.fps;
+                }
+            }
+            _ => {}
+        }
+        other
+    }
+
     pub fn transport(&self, from_x: i32, from_y: i32, to_x: i32, to_y: i32) -> Drone {
         let mut other = self.clone();
         other.x = other.x - from_x + to_x;

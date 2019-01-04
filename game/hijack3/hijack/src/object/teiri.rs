@@ -32,7 +32,7 @@ pub struct Teiri {
     status: bool,
     combat: bool,
     cursor: Option<Cursor>,
-    hijacking: Vec<(i32, i32, Object)>,
+    hijacking: Vec<(i32, i32)>,
     hijacked: Vec<Object>,
 }
 
@@ -55,25 +55,6 @@ pub fn new(x: i32, y: i32, z: i32) -> Teiri {
 
 impl brownfox::Moore<Input, Output> for Teiri {
     fn transit(&self, input: &Input) -> Teiri {
-        let mut hijacking = vec![];
-        let mut hijacked = self.hijacked.clone();
-
-        for event in &input.previous.events {
-            match event {
-                Event::Hijacked(hijacker, security, security_damage, object) => {
-                    if let Object::Teiri(teiri) = hijacker {
-                        if teiri.id == self.id {
-                            hijacking.push((*security, *security_damage, object.clone()));
-                            if *security <= *security_damage {
-                                hijacked.push(object.clone());
-                            }
-                        }
-                    }
-                }
-                _ => {}
-            }
-        }
-
         let xshift = if input.inputs.len() > 0 {
             if input.inputs[0].x < -0.25 {
                 -(60 / input.previous.fps)
@@ -110,6 +91,8 @@ impl brownfox::Moore<Input, Output> for Teiri {
         } else {
             self.pose.clone()
         };
+
+        let mut hijacked = self.hijacked.clone();
 
         if self.combat {
             hijacked = hijacked
@@ -195,7 +178,7 @@ impl brownfox::Moore<Input, Output> for Teiri {
                     },
                     combat: combat,
                     cursor: Some(cursor),
-                    hijacking: hijacking,
+                    hijacking: vec![],
                     hijacked: hijacked,
                 }
             }
@@ -232,7 +215,7 @@ impl brownfox::Moore<Input, Output> for Teiri {
                     },
                     combat: combat,
                     cursor: None,
-                    hijacking: hijacking,
+                    hijacking: vec![],
                     hijacked: hijacked,
                 }
             }
@@ -275,7 +258,7 @@ impl brownfox::Moore<Input, Output> for Teiri {
             )]
         };
 
-        for (i, (security, security_damage, _)) in self.hijacking.iter().enumerate() {
+        for (i, (security, security_damage)) in self.hijacking.iter().enumerate() {
             let progress = (*security_damage as f64 / *security as f64) * 100.0;
             views.append(&mut text::text_green(
                 0,
@@ -291,10 +274,9 @@ impl brownfox::Moore<Input, Output> for Teiri {
         }
 
         if let Some(cursor) = self.cursor.clone() {
-            events.push(Event::Hijack(
-                Object::Teiri(self.clone()),
-                brownfox::Rectangle::new(cursor.x, cursor.y, 16, 16),
-            ));
+            events.push(Event::Hijack(brownfox::Rectangle::new(
+                cursor.x, cursor.y, 16, 16,
+            )));
 
             views.push(View::Image(
                 "pixelart/effect/cursor.png".to_string(),
@@ -353,6 +335,29 @@ impl Teiri {
             Pose::Walk => self.y,
             Pose::Hijack => self.y - 8,
         }
+    }
+
+    pub fn on(&self, event: &Event) -> Teiri {
+        let mut other = self.clone();
+
+        other.hijacked = other
+            .hijacked
+            .iter()
+            .map(|object| object.on(event))
+            .collect();
+
+        match event {
+            Event::Hijacked(security, security_damage, object) => {
+                if *security > *security_damage {
+                    other.hijacking.push((*security, *security_damage));
+                } else {
+                    other.hijacked.push(object.clone());
+                }
+            }
+            _ => {}
+        }
+
+        other
     }
 
     pub fn transport(&self, from_x: i32, from_y: i32, to_x: i32, to_y: i32) -> Teiri {
