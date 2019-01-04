@@ -11,9 +11,9 @@ pub struct AssetDefn<'a> {
 pub static SCALE: u32 = 2;
 pub static WIDTH: u32 = 320;
 pub static HEIGHT: u32 = 240;
-pub static ASSET_DEFNS_LEN: usize = 704;
+pub static ASSET_DEFNS_LEN: usize = 705;
 
-pub static ASSET_DEFNS: [AssetDefn; 704] = [
+pub static ASSET_DEFNS: [AssetDefn; 705] = [
     AssetDefn {path: "illust/teiri/neutral.png", name: "illust/teiri/neutral/middle.png", x: 0, y: 120, width: 192, height: 240},
     AssetDefn {path: "pixelart/system/window.png", name: "pixelart/system/window/top-left.png", x: 0, y: 0, width: 8, height: 8},
     AssetDefn {path: "pixelart/system/window.png", name: "pixelart/system/window/top.png", x: 8, y: 0, width: 8, height: 8},
@@ -718,4 +718,5 @@ pub static ASSET_DEFNS: [AssetDefn; 704] = [
     AssetDefn {path: "pixelart/maptip/halfway-to-hell.png", name: "pixelart/maptip/halfway-to-hell/right/bottom-right_inv.png", x: 32, y: 0, width: 32, height: 128},
     AssetDefn {path: "pixelart/effect/dark.png", name: "pixelart/effect/dark.png", x: 0, y: 0, width: 320, height: 240},
     AssetDefn {path: "pixelart/effect/cursor.png", name: "pixelart/effect/cursor.png", x: 0, y: 0, width: 16, height: 16},
+    AssetDefn {path: "pixelart/effect/shot.png", name: "pixelart/effect/shot.png", x: 0, y: 0, width: 16, height: 16},
 ];

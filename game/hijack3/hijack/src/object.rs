@@ -2,6 +2,7 @@ pub mod animated;
 pub mod drone;
 pub mod maptip;
 pub mod npc;
+pub mod shot;
 pub mod teiri;
 pub mod transport;
 

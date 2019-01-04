@@ -27,6 +27,7 @@ pub enum Event {
     Transport(i32, i32, String, i32, i32),
     Hijack(object::Object, brownfox::Rectangle<i32>),
     Hijacked(object::Object, i32, i32, object::Object),
+    Attack(brownfox::Rectangle<i32>),
 }
 
 #[derive(Clone, PartialEq)]

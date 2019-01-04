@@ -27,6 +27,7 @@ pub struct Drone {
     security_damage: i32,
     hijacked: bool,
     hijacked_by: Option<Box<Object>>,
+    shots: Vec<shot::Shot>,
 }
 
 pub fn new(x: i32, y: i32, z: i32, name: String) -> Drone {
@@ -42,6 +43,7 @@ pub fn new(x: i32, y: i32, z: i32, name: String) -> Drone {
         security_damage: 0,
         hijacked: false,
         hijacked_by: None,
+        shots: vec![],
     }
 }
 
@@ -101,6 +103,29 @@ impl brownfox::Moore<Input, Output> for Drone {
             self.direction.clone()
         };
 
+        let shot = input.inputs.len() > 0
+            && input.inputs[0].buttons.len() > 0
+            && input.inputs[0].buttons[0]
+            && self.frame_count.output() % 8 < (60 / input.previous.fps);
+
+        let mut shots = self.shots.clone();
+
+        if shot {
+            shots.push(shot::new(
+                self.x + 7,
+                self.y + 7,
+                self.z,
+                match self.direction {
+                    Direction::Left => shot::Direction::Left,
+                    Direction::Back => shot::Direction::Back,
+                    Direction::Right => shot::Direction::Right,
+                    Direction::Front => shot::Direction::Front,
+                },
+            ));
+        }
+
+        shots = shots.iter().map(|shot| shot.transit(input)).collect();
+
         Drone {
             frame_count: (0..60 / input.previous.fps)
                 .fold(self.frame_count.clone(), |control, _| control.transit(&())),
@@ -118,6 +143,7 @@ impl brownfox::Moore<Input, Output> for Drone {
             },
             hijacked: self.hijacked,
             hijacked_by: hijacked,
+            shots: shots,
         }
     }
 
@@ -152,7 +178,7 @@ impl brownfox::Moore<Input, Output> for Drone {
             };
         }
 
-        let views = vec![View::Image(
+        let mut views = vec![View::Image(
             format!(
                 "{}/fly/{}/{}.png",
                 self.name,
@@ -163,6 +189,13 @@ impl brownfox::Moore<Input, Output> for Drone {
             self.y,
             self.z,
         )];
+
+        for shot in &self.shots {
+            let mut out = shot.output();
+
+            events.append(&mut out.events);
+            views.append(&mut out.views);
+        }
 
         Output {
             events: events,

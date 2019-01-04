@@ -756,6 +756,9 @@
     ]],
     ["pixelart/effect/cursor.png", [
       ["pixelart/effect/cursor.png", [0, 0, 16, 16]]
+    ]],
+    ["pixelart/effect/shot.png", [
+      ["pixelart/effect/shot.png", [0, 0, 16, 16]]
     ]]
   ]
 }
