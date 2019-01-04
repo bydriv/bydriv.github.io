@@ -104,7 +104,14 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
                         y: template.y,
                         width: template.width,
                         height: template.height,
-                        episode_objects: episode_objects.collect(),
+                        episode_objects: episode_objects
+                            .map(|object| {
+                                (
+                                    object.0.clone(),
+                                    object.1.transport(from_x, from_y, to_x, to_y),
+                                )
+                            })
+                            .collect(),
                         map_objects: template.objects.clone(),
                         events: vec![],
                     };
