@@ -99,7 +99,12 @@ impl brownfox::Moore<Input, Output> for Drone {
             ));
         }
 
-        other.shots = other.shots.iter().map(|shot| shot.transit(input)).collect();
+        other.shots = other
+            .shots
+            .iter()
+            .filter(|shot| !shot.disabled)
+            .map(|shot| shot.transit(input))
+            .collect();
 
         other.frame_count = (0..60 / input.previous.fps)
             .fold(self.frame_count.clone(), |control, _| control.transit(&()));

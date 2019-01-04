@@ -16,6 +16,7 @@ pub struct Shot {
     y: i32,
     z: i32,
     direction: Direction,
+    pub disabled: bool,
 }
 
 pub fn new(x: i32, y: i32, z: i32, direction: Direction) -> Shot {
@@ -25,13 +26,26 @@ pub fn new(x: i32, y: i32, z: i32, direction: Direction) -> Shot {
         y: y,
         z: z,
         direction: direction,
+        disabled: false,
     }
 }
 
 impl brownfox::Moore<Input, Output> for Shot {
     fn transit(&self, input: &Input) -> Shot {
         let mut other = self.clone();
-        other.frame_count = other.frame_count.transit(&());
+
+        if other.disabled {
+            return other;
+        }
+
+        if other.frame_count.output() >= 40 {
+            other.disabled = true;
+            return other;
+        }
+
+        other.frame_count =
+            (0..60 / input.previous.fps).fold(other.frame_count, |control, _| control.transit(&()));
+
         match self.direction {
             Direction::Left => {
                 other.x -= 60 / input.previous.fps * 8;
@@ -50,6 +64,13 @@ impl brownfox::Moore<Input, Output> for Shot {
     }
 
     fn output(&self) -> Output {
+        if self.disabled {
+            return Output {
+                events: vec![],
+                views: vec![],
+            };
+        }
+
         Output {
             events: vec![Event::Attack(brownfox::Rectangle::new(
                 self.x, self.y, 2, 2,
