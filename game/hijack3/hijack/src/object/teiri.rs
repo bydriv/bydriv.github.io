@@ -22,7 +22,6 @@ struct Cursor {
 
 #[derive(Clone)]
 pub struct Teiri {
-    id: String,
     frame_count: brownfox::FrameCount<i32>,
     x: i32,
     y: i32,
@@ -33,12 +32,11 @@ pub struct Teiri {
     combat: bool,
     cursor: Option<Cursor>,
     hijacking: Vec<(i32, i32)>,
-    hijacked: Vec<Object>,
+    drones: Vec<Object>,
 }
 
 pub fn new(x: i32, y: i32, z: i32) -> Teiri {
     Teiri {
-        id: "teiri".to_string(),
         frame_count: brownfox::FrameCount::new(0),
         x: x,
         y: y,
@@ -49,177 +47,137 @@ pub fn new(x: i32, y: i32, z: i32) -> Teiri {
         combat: false,
         cursor: None,
         hijacking: vec![],
-        hijacked: vec![],
+        drones: vec![],
     }
 }
 
 impl brownfox::Moore<Input, Output> for Teiri {
     fn transit(&self, input: &Input) -> Teiri {
-        let xshift = if input.inputs.len() > 0 {
-            if input.inputs[0].x < -0.25 {
-                -(60 / input.previous.fps)
-            } else if input.inputs[0].x > 0.25 {
-                60 / input.previous.fps
-            } else {
-                0
-            }
-        } else {
-            0
-        };
+        let mut other = self.clone();
+        other.hijacking = vec![];
 
-        let yshift = if input.inputs.len() > 0 {
-            if input.inputs[0].y < -0.25 {
-                -(60 / input.previous.fps)
-            } else if input.inputs[0].y > 0.25 {
-                60 / input.previous.fps
-            } else {
-                0
-            }
-        } else {
-            0
-        };
-
-        let pose = if input.inputs.len() > 0
+        let button5 = input.inputs.len() > 0
             && input.inputs[0].buttons.len() > 4
             && input.inputs[0].buttons[4]
-            && self.frame_count.output() % 8 < (60 / input.previous.fps)
-        {
-            match self.pose {
-                Pose::Hijack => Pose::Walk,
-                _ => Pose::Hijack,
+            && self.frame_count.output() % 8 < (60 / input.previous.fps);
+
+        let button6 = input.inputs.len() > 0
+            && input.inputs[0].buttons.len() > 5
+            && input.inputs[0].buttons[5]
+            && self.frame_count.output() % 8 < (60 / input.previous.fps);
+
+        if button5 {
+            other.combat = false;
+
+            match other.pose {
+                Pose::Hijack => {
+                    other.pose = Pose::Walk;
+                    other.cursor = None;
+                }
+                _ => {
+                    other.pose = Pose::Hijack;
+                    let cursor = match self.direction {
+                        Direction::Left => Cursor {
+                            x: self.x - 16,
+                            y: self.y,
+                        },
+                        Direction::Back => Cursor {
+                            x: self.x,
+                            y: self.y - 16,
+                        },
+                        Direction::Right => Cursor {
+                            x: self.x + 16,
+                            y: self.y,
+                        },
+                        Direction::Front => Cursor {
+                            x: self.x,
+                            y: self.y + 16,
+                        },
+                    };
+                    other.cursor = Some(cursor);
+                }
             }
-        } else {
-            self.pose.clone()
-        };
+        } else if button6 {
+            other.combat = !other.combat;
 
-        let mut hijacked = self.hijacked.clone();
+            if other.combat {
+                other.pose = Pose::Walk;
+                other.cursor = None;
+            }
+        }
 
-        if self.combat {
-            hijacked = hijacked
+        if other.combat {
+            other.drones = other
+                .drones
                 .iter()
                 .map(|object| object.transit(input))
                 .collect();
         }
 
-        let (combat, pose) = if input.inputs.len() > 0
-            && input.inputs[0].buttons.len() > 5
-            && input.inputs[0].buttons[5]
-            && self.frame_count.output() % 8 < (60 / input.previous.fps)
-        {
-            if !self.combat {
-                (true, Pose::Walk)
-            } else {
-                (false, pose)
-            }
-        } else {
-            match pose {
-                Pose::Hijack => (false, pose),
-                _ => (self.combat, pose),
-            }
-        };
+        if let Some(cursor) = other.cursor {
+            let mut cursor = cursor.clone();
 
-        match pose {
-            Pose::Hijack => {
-                let cursor = if let Some(cursor) = self.cursor.clone() {
-                    Cursor {
-                        x: cursor.x + xshift * 8,
-                        y: cursor.y + yshift * 8,
-                    }
-                } else {
-                    match self.direction {
-                        Direction::Left => Cursor {
-                            x: self.x + xshift * 8 - 16,
-                            y: self.y + yshift * 8,
-                        },
-                        Direction::Back => Cursor {
-                            x: self.x + xshift * 8,
-                            y: self.y + yshift * 8 - 16,
-                        },
-                        Direction::Right => Cursor {
-                            x: self.x + xshift * 8 + 16,
-                            y: self.y + yshift * 8,
-                        },
-                        Direction::Front => Cursor {
-                            x: self.x + xshift * 8,
-                            y: self.y + yshift * 8 + 16,
-                        },
-                    }
-                };
-
-                let direction = if cursor.x - self.x < 0 {
-                    Direction::Left
-                } else if cursor.x - self.x > 0 {
-                    Direction::Right
-                } else if cursor.y - self.y < 0 {
-                    Direction::Back
-                } else if cursor.y - self.y > 0 {
-                    Direction::Front
-                } else {
-                    self.direction.clone()
-                };
-
-                Teiri {
-                    id: self.id.clone(),
-                    frame_count: (0..60 / input.previous.fps)
-                        .fold(self.frame_count.clone(), |control, _| control.transit(&())),
-                    x: self.x,
-                    y: self.y,
-                    z: self.z,
-                    pose: pose,
-                    direction: direction,
-                    status: if input.inputs.len() > 0
-                        && input.inputs[0].buttons.len() > 7
-                        && input.inputs[0].buttons[7]
-                        && self.frame_count.output() % 8 < (60 / input.previous.fps)
-                    {
-                        !self.status
-                    } else {
-                        self.status
-                    },
-                    combat: combat,
-                    cursor: Some(cursor),
-                    hijacking: vec![],
-                    hijacked: hijacked,
+            if input.inputs.len() > 0 {
+                if input.inputs[0].x < -0.25 {
+                    cursor.x -= 60 / input.previous.fps * 4;
+                } else if input.inputs[0].x > 0.25 {
+                    cursor.x += 60 / input.previous.fps * 4
                 }
             }
-            Pose::Walk => {
-                let direction = if yshift < 0 {
-                    Direction::Back
-                } else if yshift > 0 {
-                    Direction::Front
-                } else if xshift < 0 {
-                    Direction::Left
-                } else if xshift > 0 {
-                    Direction::Right
-                } else {
-                    self.direction.clone()
-                };
 
-                Teiri {
-                    id: self.id.clone(),
-                    frame_count: (0..60 / input.previous.fps)
-                        .fold(self.frame_count.clone(), |control, _| control.transit(&())),
-                    x: self.x + xshift,
-                    y: self.y + yshift,
-                    z: self.z,
-                    pose: pose,
-                    direction: direction,
-                    status: if input.inputs.len() > 0
-                        && input.inputs[0].buttons.len() > 7
-                        && input.inputs[0].buttons[7]
-                        && self.frame_count.output() % 8 < (60 / input.previous.fps)
-                    {
-                        !self.status
-                    } else {
-                        self.status
-                    },
-                    combat: combat,
-                    cursor: None,
-                    hijacking: vec![],
-                    hijacked: hijacked,
+            if input.inputs.len() > 0 {
+                if input.inputs[0].y < -0.25 {
+                    cursor.y -= 60 / input.previous.fps * 4;
+                } else if input.inputs[0].y > 0.25 {
+                    cursor.y += 60 / input.previous.fps * 4;
+                }
+            }
+
+            if cursor.x - other.x < 0 {
+                other.direction = Direction::Left;
+            } else if cursor.x - other.x > 0 {
+                other.direction = Direction::Right;
+            } else if cursor.y - other.y < 0 {
+                other.direction = Direction::Back;
+            } else if cursor.y - other.y > 0 {
+                other.direction = Direction::Front;
+            }
+
+            other.cursor = Some(cursor);
+        } else {
+            if input.inputs.len() > 0 {
+                if input.inputs[0].x < -0.25 {
+                    other.x -= 60 / input.previous.fps;
+                    other.direction = Direction::Left;
+                } else if input.inputs[0].x > 0.25 {
+                    other.x += 60 / input.previous.fps;
+                    other.direction = Direction::Right;
+                }
+            }
+
+            if input.inputs.len() > 0 {
+                if input.inputs[0].y < -0.25 {
+                    other.y -= 60 / input.previous.fps;
+                    other.direction = Direction::Back;
+                } else if input.inputs[0].y > 0.25 {
+                    other.y += 60 / input.previous.fps;
+                    other.direction = Direction::Front;
                 }
             }
         }
+
+        other.frame_count =
+            (0..60 / input.previous.fps).fold(other.frame_count, |control, _| control.transit(&()));
+
+        if input.inputs.len() > 0
+            && input.inputs[0].buttons.len() > 7
+            && input.inputs[0].buttons[7]
+            && self.frame_count.output() % 8 < (60 / input.previous.fps)
+        {
+            other.status = !other.status;
+        }
+
+        other
     }
 
     fn output(&self) -> Output {
@@ -308,7 +266,7 @@ impl brownfox::Moore<Input, Output> for Teiri {
         }
 
         if self.combat {
-            for object in &self.hijacked {
+            for object in &self.drones {
                 let mut out = object.output();
                 events.append(&mut out.events);
                 views.append(&mut out.views);
@@ -340,18 +298,16 @@ impl Teiri {
     pub fn on(&self, event: &Event) -> Teiri {
         let mut other = self.clone();
 
-        other.hijacked = other
-            .hijacked
-            .iter()
-            .map(|object| object.on(event))
-            .collect();
+        if other.combat {
+            other.drones = other.drones.iter().map(|object| object.on(event)).collect();
+        }
 
         match event {
             Event::Hijacked(security, security_damage, object) => {
                 if *security > *security_damage {
                     other.hijacking.push((*security, *security_damage));
                 } else {
-                    other.hijacked.push(object.clone());
+                    other.drones.push(object.clone());
                 }
             }
             _ => {}

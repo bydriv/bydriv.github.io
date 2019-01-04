@@ -25,9 +25,9 @@ pub struct Drone {
     name: String,
     security: i32,
     security_damage: i32,
-    hijacked: bool,
     shots: Vec<shot::Shot>,
     fps: i32,
+    disabled: bool,
 }
 
 pub fn new(x: i32, y: i32, z: i32, name: String) -> Drone {
@@ -41,69 +41,56 @@ pub fn new(x: i32, y: i32, z: i32, name: String) -> Drone {
         name: name,
         security: 20,
         security_damage: 0,
-        hijacked: false,
         shots: vec![],
         fps: 60,
+        disabled: false,
     }
 }
 
 impl brownfox::Moore<Input, Output> for Drone {
     fn transit(&self, input: &Input) -> Drone {
-        if self.security <= self.security_damage {
-            let mut other = self.clone();
-            other.hijacked = true;
+        let mut other = self.clone();
+
+        if other.disabled {
             return other;
         }
 
-        let xshift = if input.inputs.len() > 0 {
+        if other.security_damage >= other.security {
+            other.disabled = true;
+            return other;
+        }
+
+        if input.inputs.len() > 0 {
             if input.inputs[0].x < -0.25 {
-                -(60 / input.previous.fps)
+                other.x -= 60 / input.previous.fps;
+                other.direction = Direction::Left;
             } else if input.inputs[0].x > 0.25 {
-                60 / input.previous.fps
-            } else {
-                0
+                other.x += 60 / input.previous.fps;
+                other.direction = Direction::Right;
             }
-        } else {
-            0
-        };
+        }
 
-        let yshift = if input.inputs.len() > 0 {
+        if input.inputs.len() > 0 {
             if input.inputs[0].y < -0.25 {
-                -(60 / input.previous.fps)
+                other.y -= 60 / input.previous.fps;
+                other.direction = Direction::Back;
             } else if input.inputs[0].y > 0.25 {
-                60 / input.previous.fps
-            } else {
-                0
+                other.y += 60 / input.previous.fps;
+                other.direction = Direction::Front;
             }
-        } else {
-            0
-        };
+        }
 
-        let direction = if yshift < 0 {
-            Direction::Back
-        } else if yshift > 0 {
-            Direction::Front
-        } else if xshift < 0 {
-            Direction::Left
-        } else if xshift > 0 {
-            Direction::Right
-        } else {
-            self.direction.clone()
-        };
-
-        let shot = input.inputs.len() > 0
+        let button1 = input.inputs.len() > 0
             && input.inputs[0].buttons.len() > 0
             && input.inputs[0].buttons[0]
             && self.frame_count.output() % 8 < (60 / input.previous.fps);
 
-        let mut shots = self.shots.clone();
-
-        if shot {
-            shots.push(shot::new(
-                self.x + 7,
-                self.y + 7,
-                self.z,
-                match self.direction {
+        if button1 {
+            other.shots.push(shot::new(
+                other.x + 7,
+                other.y + 7,
+                other.z,
+                match other.direction {
                     Direction::Left => shot::Direction::Left,
                     Direction::Back => shot::Direction::Back,
                     Direction::Right => shot::Direction::Right,
@@ -112,27 +99,16 @@ impl brownfox::Moore<Input, Output> for Drone {
             ));
         }
 
-        shots = shots.iter().map(|shot| shot.transit(input)).collect();
+        other.shots = other.shots.iter().map(|shot| shot.transit(input)).collect();
 
-        Drone {
-            frame_count: (0..60 / input.previous.fps)
-                .fold(self.frame_count.clone(), |control, _| control.transit(&())),
-            x: self.x + xshift,
-            y: self.y + yshift,
-            z: self.z,
-            pose: self.pose.clone(),
-            direction: direction,
-            name: self.name.clone(),
-            security: self.security,
-            security_damage: self.security_damage,
-            hijacked: self.hijacked,
-            shots: shots,
-            fps: input.previous.fps,
-        }
+        other.frame_count = (0..60 / input.previous.fps)
+            .fold(self.frame_count.clone(), |control, _| control.transit(&()));
+
+        other
     }
 
     fn output(&self) -> Output {
-        if self.hijacked {
+        if self.disabled {
             return Output {
                 events: vec![],
                 views: vec![],
@@ -142,21 +118,15 @@ impl brownfox::Moore<Input, Output> for Drone {
         let mut events = vec![];
 
         if self.security_damage > 0 {
-            let mut drone = self.clone();
-            drone.hijacked = false;
-            drone.security_damage = 0;
+            let mut other = self.clone();
+            other.security_damage = 0;
+            other.disabled = false;
+
             events.push(Event::Hijacked(
                 self.security,
                 self.security_damage,
-                Object::Drone(drone),
+                Object::Drone(other),
             ));
-        }
-
-        if self.security <= self.security_damage {
-            return Output {
-                events: events,
-                views: vec![],
-            };
         }
 
         let mut views = vec![View::Image(
@@ -198,7 +168,7 @@ impl Drone {
     pub fn on(&self, event: &Event) -> Drone {
         let mut other = self.clone();
 
-        if self.hijacked {
+        if self.disabled {
             return other;
         }
 
@@ -210,6 +180,7 @@ impl Drone {
             }
             _ => {}
         }
+
         other
     }
 
