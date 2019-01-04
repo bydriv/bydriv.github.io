@@ -162,29 +162,37 @@ window.addEventListener("load", async function() {
             case "c":
                 keyboardInput.buttons[2] = true;
                 return e.preventDefault();
-            case "v":
+            case "a":
                 keyboardInput.buttons[3] = true;
                 return e.preventDefault();
+            case "s":
+                keyboardInput.buttons[4] = true;
+                return e.preventDefault();
+            case "d":
+                keyboardInput.buttons[5] = true;
+                return e.preventDefault();
+            case "q":
+                keyboardInput.buttons[6] = true;
+                return e.preventDefault();
+            case "w":
+                keyboardInput.buttons[7] = true;
+                return e.preventDefault();
             case "h":
-            case "a":
             case "Left":
             case "ArrowLeft":
                 keyboardInput.x = -1;
                 return e.preventDefault();
             case "k":
-            case "w":
             case "Up":
             case "ArrowUp":
                 keyboardInput.y = -1;
                 return e.preventDefault();
             case "l":
-            case "d":
             case "Right":
             case "ArrowRight":
                 keyboardInput.x = 1;
                 return e.preventDefault();
             case "j":
-            case "s":
             case "Down":
             case "ArrowDown":
                 keyboardInput.y = 1;
