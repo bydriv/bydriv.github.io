@@ -106,7 +106,7 @@ impl brownfox::Moore<Input, Output> for Drone {
                 other.y
                     + 7
                     + match other.direction {
-                        Direction::Back => 16,
+                        Direction::Back => -16,
                         Direction::Front => 16,
                         _ => 0,
                     },
