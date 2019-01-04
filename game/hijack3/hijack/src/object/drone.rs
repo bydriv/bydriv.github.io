@@ -23,6 +23,8 @@ pub struct Drone {
     pose: Pose,
     direction: Direction,
     name: String,
+    durability: i32,
+    durability_damage: i32,
     security: i32,
     security_damage: i32,
     shots: Vec<shot::Shot>,
@@ -39,6 +41,8 @@ pub fn new(x: i32, y: i32, z: i32, name: String) -> Drone {
         pose: Pose::Fly,
         direction: Direction::Front,
         name: name,
+        durability: 4,
+        durability_damage: 0,
         security: 20,
         security_damage: 0,
         shots: vec![],
@@ -52,6 +56,11 @@ impl brownfox::Moore<Input, Output> for Drone {
         let mut other = self.clone();
 
         if other.disabled {
+            return other;
+        }
+
+        if other.durability_damage >= other.durability {
+            other.disabled = true;
             return other;
         }
 
@@ -87,8 +96,20 @@ impl brownfox::Moore<Input, Output> for Drone {
 
         if button1 {
             other.shots.push(shot::new(
-                other.x + 7,
-                other.y + 7,
+                other.x
+                    + 7
+                    + match other.direction {
+                        Direction::Left => -16,
+                        Direction::Right => 16,
+                        _ => 0,
+                    },
+                other.y
+                    + 7
+                    + match other.direction {
+                        Direction::Back => 16,
+                        Direction::Front => 16,
+                        _ => 0,
+                    },
                 other.z,
                 match other.direction {
                     Direction::Left => shot::Direction::Left,
@@ -178,6 +199,11 @@ impl Drone {
         }
 
         match event {
+            Event::Attack(rect) => {
+                if rect.collision(brownfox::Rectangle::new(self.x, self.y, 16, 16)) {
+                    other.durability_damage += 60 / other.fps;
+                }
+            }
             Event::Hijack(rect) => {
                 if rect.collision(brownfox::Rectangle::new(self.x, self.y, 16, 16)) {
                     other.security_damage += 60 / other.fps;
