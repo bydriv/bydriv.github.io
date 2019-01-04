@@ -22,6 +22,7 @@ struct Cursor {
 
 #[derive(Clone)]
 pub struct Teiri {
+    id: String,
     frame_count: brownfox::FrameCount<i32>,
     x: i32,
     y: i32,
@@ -37,6 +38,7 @@ pub struct Teiri {
 
 pub fn new(x: i32, y: i32, z: i32) -> Teiri {
     Teiri {
+        id: "teiri".to_string(),
         frame_count: brownfox::FrameCount::new(0),
         x: x,
         y: y,
@@ -58,10 +60,14 @@ impl brownfox::Moore<Input, Output> for Teiri {
 
         for event in &input.previous.events {
             match event {
-                Event::Hijacked(security, security_damage, object) => {
-                    hijacking.push((*security, *security_damage, object.clone()));
-                    if *security <= *security_damage {
-                        hijacked.push(object.clone());
+                Event::Hijacked(hijacker, security, security_damage, object) => {
+                    if let Object::Teiri(teiri) = hijacker {
+                        if teiri.id == self.id {
+                            hijacking.push((*security, *security_damage, object.clone()));
+                            if *security <= *security_damage {
+                                hijacked.push(object.clone());
+                            }
+                        }
                     }
                 }
                 _ => {}
@@ -170,6 +176,7 @@ impl brownfox::Moore<Input, Output> for Teiri {
                 };
 
                 Teiri {
+                    id: self.id.clone(),
                     frame_count: (0..60 / input.previous.fps)
                         .fold(self.frame_count.clone(), |control, _| control.transit(&())),
                     x: self.x,
@@ -206,6 +213,7 @@ impl brownfox::Moore<Input, Output> for Teiri {
                 };
 
                 Teiri {
+                    id: self.id.clone(),
                     frame_count: (0..60 / input.previous.fps)
                         .fold(self.frame_count.clone(), |control, _| control.transit(&())),
                     x: self.x + xshift,
@@ -234,7 +242,9 @@ impl brownfox::Moore<Input, Output> for Teiri {
     fn output(&self) -> Output {
         let mut events = vec![];
 
-        events.push(Event::Trigger(self.x, self.y, 16, 16));
+        events.push(Event::Trigger(brownfox::Rectangle::new(
+            self.x, self.y, 16, 16,
+        )));
 
         let mut views = if let Pose::Hijack = self.pose {
             vec![
@@ -281,7 +291,10 @@ impl brownfox::Moore<Input, Output> for Teiri {
         }
 
         if let Some(cursor) = self.cursor.clone() {
-            events.push(Event::Hijack(cursor.x, cursor.y, 16, 16));
+            events.push(Event::Hijack(
+                Object::Teiri(self.clone()),
+                brownfox::Rectangle::new(cursor.x, cursor.y, 16, 16),
+            ));
 
             views.push(View::Image(
                 "pixelart/effect/cursor.png".to_string(),

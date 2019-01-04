@@ -22,11 +22,11 @@ pub struct Hijack {
 
 #[derive(Clone)]
 pub enum Event {
-    Check(i32, i32, i32, i32),
-    Trigger(i32, i32, i32, i32),
+    Check(brownfox::Rectangle<i32>),
+    Trigger(brownfox::Rectangle<i32>),
     Transport(i32, i32, String, i32, i32),
-    Hijack(i32, i32, i32, i32),
-    Hijacked(i32, i32, object::Object),
+    Hijack(object::Object, brownfox::Rectangle<i32>),
+    Hijacked(object::Object, i32, i32, object::Object),
 }
 
 #[derive(Clone, PartialEq)]

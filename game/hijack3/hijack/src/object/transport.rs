@@ -40,8 +40,7 @@ impl brownfox::Moore<Input, Output> for Transport {
 
         for event in &input.previous.events {
             match event {
-                &Event::Trigger(x, y, width, height) => {
-                    let rect1 = brownfox::Rectangle::new(x, y, width, height);
+                &Event::Trigger(ref rect1) => {
                     let rect2 = brownfox::Rectangle::new(
                         self.from_x,
                         self.from_y,
