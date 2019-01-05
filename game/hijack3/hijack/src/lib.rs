@@ -9,6 +9,12 @@ pub mod text;
 use brownfox::Moore;
 
 #[derive(Clone)]
+pub enum Mode {
+    Title,
+    Main,
+}
+
+#[derive(Clone)]
 pub struct Hijack {
     pub fps: i32,
     pub x: i32,
@@ -18,6 +24,7 @@ pub struct Hijack {
     episode_objects: Vec<(brownfox::Control<i32>, object::Object)>,
     map_objects: Vec<(brownfox::Control<i32>, object::Object)>,
     events: Vec<Event>,
+    mode: Mode,
 }
 
 #[derive(Clone)]
@@ -50,107 +57,148 @@ impl Hijack {
             episode_objects: episode.objects.clone(),
             map_objects: template.objects.clone(),
             events: vec![],
+            mode: Mode::Title,
         }
     }
 }
 
 impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
     fn transit(&self, (fps, inputs): &(i32, Vec<brownfox::Input>)) -> Hijack {
-        let mut objects = self.episode_objects.clone();
-        objects.append(&mut self.map_objects.clone());
-
-        let events: Vec<Event> = objects
-            .iter()
-            .flat_map(|object| object.1.output().events)
-            .collect();
-
-        let mut episode_objects = Box::new(self.episode_objects.iter().map(|object| {
-            let control =
-                (0..60 / self.fps).fold(object.0.clone(), |control, _| control.transit(inputs));
-            let input = control.output();
-            (
-                control,
-                object.1.transit(&object::Input {
-                    inputs: vec![input],
-                    previous: self.clone(),
-                }),
-            )
-        }))
-            as Box<Iterator<Item = (brownfox::Control<i32>, object::Object)>>;
-
-        let mut map_objects = Box::new(self.map_objects.iter().map(|object| {
-            let control =
-                (0..60 / self.fps).fold(object.0.clone(), |control, _| control.transit(inputs));
-            let input = control.output();
-            (
-                control,
-                object.1.transit(&object::Input {
-                    inputs: vec![input],
-                    previous: self.clone(),
-                }),
-            )
-        }))
-            as Box<Iterator<Item = (brownfox::Control<i32>, object::Object)>>;
-
-        for event in &events {
-            match event {
-                &Event::Transport(from_x, from_y, ref to_map, to_x, to_y) => {
-                    let map = map::boston::new();
-                    let template = map.templates.get(to_map).unwrap();
-
-                    return Hijack {
-                        fps: *fps,
-                        x: template.x,
-                        y: template.y,
-                        width: template.width,
-                        height: template.height,
-                        episode_objects: episode_objects
-                            .map(|object| {
-                                (
-                                    object.0.clone(),
-                                    object.1.transport(from_x, from_y, to_x, to_y),
-                                )
-                            })
-                            .collect(),
-                        map_objects: template.objects.clone(),
-                        events: vec![],
-                    };
-                }
-                _ => {
-                    episode_objects = Box::new(
-                        episode_objects.map(move |object| (object.0.clone(), object.1.on(event))),
-                    )
-                        as Box<Iterator<Item = (brownfox::Control<i32>, object::Object)>>;
-                    map_objects = Box::new(
-                        map_objects.map(move |object| (object.0.clone(), object.1.on(event))),
-                    )
-                        as Box<Iterator<Item = (brownfox::Control<i32>, object::Object)>>;
+        match self.mode {
+            Mode::Title => {
+                let any_button = inputs.len() > 0 && inputs[0].buttons.iter().any(|button| *button);
+                if any_button {
+                    let mut other = self.clone();
+                    other.mode = Mode::Main;
+                    other
+                } else {
+                    self.clone()
                 }
             }
-        }
+            Mode::Main => {
+                let mut objects = self.episode_objects.clone();
+                objects.append(&mut self.map_objects.clone());
 
-        Hijack {
-            fps: *fps,
-            x: self.x,
-            y: self.y,
-            width: self.width,
-            height: self.height,
-            episode_objects: episode_objects.collect(),
-            map_objects: map_objects.collect(),
-            events: events.clone(),
+                let events: Vec<Event> = objects
+                    .iter()
+                    .flat_map(|object| object.1.output().events)
+                    .collect();
+
+                let mut episode_objects = Box::new(self.episode_objects.iter().map(|object| {
+                    let control = (0..60 / self.fps)
+                        .fold(object.0.clone(), |control, _| control.transit(inputs));
+                    let input = control.output();
+                    (
+                        control,
+                        object.1.transit(&object::Input {
+                            inputs: vec![input],
+                            previous: self.clone(),
+                        }),
+                    )
+                }))
+                    as Box<Iterator<Item = (brownfox::Control<i32>, object::Object)>>;
+
+                let mut map_objects = Box::new(self.map_objects.iter().map(|object| {
+                    let control = (0..60 / self.fps)
+                        .fold(object.0.clone(), |control, _| control.transit(inputs));
+                    let input = control.output();
+                    (
+                        control,
+                        object.1.transit(&object::Input {
+                            inputs: vec![input],
+                            previous: self.clone(),
+                        }),
+                    )
+                }))
+                    as Box<Iterator<Item = (brownfox::Control<i32>, object::Object)>>;
+
+                for event in &events {
+                    match event {
+                        &Event::Transport(from_x, from_y, ref to_map, to_x, to_y) => {
+                            let map = map::boston::new();
+                            let template = map.templates.get(to_map).unwrap();
+
+                            return Hijack {
+                                fps: *fps,
+                                x: template.x,
+                                y: template.y,
+                                width: template.width,
+                                height: template.height,
+                                episode_objects: episode_objects
+                                    .map(|object| {
+                                        (
+                                            object.0.clone(),
+                                            object.1.transport(from_x, from_y, to_x, to_y),
+                                        )
+                                    })
+                                    .collect(),
+                                map_objects: template.objects.clone(),
+                                events: vec![],
+                                mode: Mode::Main,
+                            };
+                        }
+                        _ => {
+                            episode_objects = Box::new(
+                                episode_objects
+                                    .map(move |object| (object.0.clone(), object.1.on(event))),
+                            )
+                                as Box<Iterator<Item = (brownfox::Control<i32>, object::Object)>>;
+                            map_objects = Box::new(
+                                map_objects
+                                    .map(move |object| (object.0.clone(), object.1.on(event))),
+                            )
+                                as Box<Iterator<Item = (brownfox::Control<i32>, object::Object)>>;
+                        }
+                    }
+                }
+
+                Hijack {
+                    fps: *fps,
+                    x: self.x,
+                    y: self.y,
+                    width: self.width,
+                    height: self.height,
+                    episode_objects: episode_objects.collect(),
+                    map_objects: map_objects.collect(),
+                    events: events.clone(),
+                    mode: Mode::Main,
+                }
+            }
         }
     }
 
     fn output(&self) -> object::Output {
-        let mut objects = self.episode_objects.clone();
-        objects.append(&mut self.map_objects.clone());
+        match self.mode {
+            Mode::Title => {
+                let mut views = vec![View::Image(
+                    "pixelart/system/logo.png".to_string(),
+                    32,
+                    64,
+                    0,
+                )];
+                views.append(&mut text::text_green(
+                    96,
+                    144,
+                    0,
+                    "press any button".to_string(),
+                ));
+                object::Output {
+                    events: vec![],
+                    views: views,
+                }
+            }
+            Mode::Main => {
+                let mut objects = self.episode_objects.clone();
+                objects.append(&mut self.map_objects.clone());
 
-        object::Output {
-            events: self.events.clone(),
-            views: objects
-                .iter()
-                .flat_map(|object| object.1.output().views)
-                .collect(),
+                object::Output {
+                    events: self.events.clone(),
+                    views: objects
+                        .iter()
+                        .flat_map(|object| object.1.output().views)
+                        .collect(),
+                }
+            }
         }
     }
 }

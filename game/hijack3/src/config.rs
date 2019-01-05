@@ -11,10 +11,11 @@ pub struct AssetDefn<'a> {
 pub static SCALE: u32 = 2;
 pub static WIDTH: u32 = 320;
 pub static HEIGHT: u32 = 240;
-pub static ASSET_DEFNS_LEN: usize = 705;
+pub static ASSET_DEFNS_LEN: usize = 706;
 
-pub static ASSET_DEFNS: [AssetDefn; 705] = [
+pub static ASSET_DEFNS: [AssetDefn; 706] = [
     AssetDefn {path: "illust/teiri/neutral.png", name: "illust/teiri/neutral/middle.png", x: 0, y: 120, width: 192, height: 240},
+    AssetDefn {path: "pixelart/system/logo.png", name: "pixelart/system/logo.png", x: 0, y: 0, width: 256, height: 64},
     AssetDefn {path: "pixelart/system/window.png", name: "pixelart/system/window/top-left.png", x: 0, y: 0, width: 8, height: 8},
     AssetDefn {path: "pixelart/system/window.png", name: "pixelart/system/window/top.png", x: 8, y: 0, width: 8, height: 8},
     AssetDefn {path: "pixelart/system/window.png", name: "pixelart/system/window/top-arrow.png", x: 16, y: 0, width: 8, height: 8},
