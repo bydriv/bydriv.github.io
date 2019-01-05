@@ -13,7 +13,7 @@ created at @@html:<time datetime="2018-12-09">2018-12-09</time>@@
 updated at @@html:<time datetime="2018-12-09">2018-12-09</time>@@
 #+END_UPDATED_AT
 
-[[./hijack-dev.org][Hijack 開発ブログ]] に書いたとおり，現在 [[../game/hijack.org][Hijack]] というゲームを開発している（ほんまか）．
+[[./hijack-dev.org][Hijack 開発ブログ]] に書いたとおり，現在 [[../game/hijack/index.org][Hijack]] というゲームを開発している（ほんまか）．
 
 これまでの経緯
 
@@ -33,8 +33,8 @@ updated at @@html:<time datetime="2018-12-09">2018-12-09</time>@@
 Hijack というゲーム特有の部分と汎用的な部分を分離して再利用できるようにする方針．
 汎用的な部分は Brownfox と命名することにした．
 
-- Brownfox: https://github.com/bydriv/bydriv.github.io/tree/master/game/hijack3/brownfox
-- Hijack: https://github.com/bydriv/bydriv.github.io/tree/master/game/hijack3
+- Brownfox: https://github.com/bydriv/bydriv.github.io/tree/master/game/hijack/brownfox
+- Hijack: https://github.com/bydriv/bydriv.github.io/tree/master/game/hijack
 
 ** Brownfox
 

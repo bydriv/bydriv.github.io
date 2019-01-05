@@ -47,7 +47,7 @@ updated at @@html:<time datetime="2018-12-29">2018-12-29</time>@@
 
 ゲーム開発のために必要になりそうな OpenGL の勉強をしていた．
 
-そのときの成果物は， (いまのところ) [[https://github.com/bydriv/bydriv.github.io/blob/master/game/hijack3/src/hijack/platform/windows.c]] に置いてある．
+そのときの成果物は， (いまのところ) [[https://github.com/bydriv/bydriv.github.io/blob/master/game/hijack/src/hijack/platform/windows.c]] に置いてある．
 
 これは3月に書いていたものを12月になって公開したもの．
 
@@ -102,7 +102,7 @@ updated at @@html:<time datetime="2018-12-29">2018-12-29</time>@@
 
 ひたすら仕事をしていた気がする．
 
-あと，休日や電車内で [[https://bydriv.github.io/game/hijack3/][Hijack]] の開発を進めることができた．
+あと，休日や電車内で [[https://bydriv.github.io/game/hijack/][Hijack]] の開発を進めることができた．
 かなり進捗あったと思う．
 
 * 2019年の抱負

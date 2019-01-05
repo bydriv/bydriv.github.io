@@ -13,7 +13,7 @@ created at @@html:<time datetime="2018-10-03">2018-10-03</time>@@
 updated at @@html:<time datetime="2018-10-03">2018-10-03</time>@@
 #+END_UPDATED_AT
 
-[[../game/hijack.org][Hijack]] というゲームを開発している．
+[[../game/hijack/index.org][Hijack]] というゲームを開発している．
 ひと段落ついたので，ブログを書く．
 
 #+BEGIN_CENTER

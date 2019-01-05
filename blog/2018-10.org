@@ -17,7 +17,7 @@ updated at @@html:<time datetime="2018-10-27">2018-10-27</time>@@
 
 * 2018-09-19 .. 2018-10-04
 
-[[../game/hijack.org][Hijack]] を開発した．
+[[../game/hijack/index.org][Hijack]] を開発した．
 
 * 2018-10-08
 
