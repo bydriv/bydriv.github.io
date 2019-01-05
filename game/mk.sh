@@ -1,6 +1,0 @@
-montage -tile 4x4 -geometry 16x16 -background none hijack/pixelart/teiri/walk/left/*.png hijack/pixelart/teiri/walk/back/*.png hijack/pixelart/teiri/walk/right/*.png hijack/pixelart/teiri/walk/front/*.png hijack/pixelart/teiri/walk.png
-montage -tile 4x4 -geometry 32x32 -background none hijack/pixelart/teiri/truncheon/left/*.png hijack/pixelart/teiri/truncheon/back/*.png hijack/pixelart/teiri/truncheon/right/*.png hijack/pixelart/teiri/truncheon/front/*.png hijack/pixelart/teiri/truncheon.png
-montage -tile 4x4 -geometry 32x32 -background none hijack/pixelart/teiri/hijack/left/*.png hijack/pixelart/teiri/hijack/back/*.png hijack/pixelart/teiri/hijack/right/*.png hijack/pixelart/teiri/hijack/front/*.png hijack/pixelart/teiri/hijack.png
-montage -tile 4x4 -geometry 16x16 -background none hijack/pixelart/security-drone/left/*.png hijack/pixelart/security-drone/back/*.png hijack/pixelart/security-drone/right/*.png hijack/pixelart/security-drone/front/*.png hijack/pixelart/security-drone.png
-montage -tile 8x1 -geometry 16x16 -background none hijack/pixelart/maptip/water/*.png hijack/pixelart/maptip/water.png
-montage -tile 8x1 -geometry 16x16 -background none hijack/pixelart/maptip/water-mid/*.png hijack/pixelart/maptip/water-mid.png
