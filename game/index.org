@@ -15,7 +15,7 @@ updated at @@html:<time datetime="2018-10-03">2018-10-03</time>@@
 
 * Index
 
-- @@html:<a href="hijack.html">Hijack</a>@@
+- @@html:<a href="hijack">Hijack</a>@@
 
 * License
 
