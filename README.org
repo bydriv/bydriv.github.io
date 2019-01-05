@@ -1,8 +1,0 @@
-* About
-
-My personal site.
-
-* License
-
-- GPLv3 (Almost).
-- Dual license of GPLv3 and CC BY-SA 4.0. (novel/* and worldview/*).
