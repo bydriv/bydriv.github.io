@@ -334,6 +334,11 @@ impl Teiri {
         match event {
             Event::Hijacked(security, security_damage, object) => {
                 if *security > *security_damage {
+                    other.cursor = Some(Cursor {
+                        x: object.x(),
+                        y: object.y(),
+                    });
+
                     other.hijacking.push((*security, *security_damage));
                 } else {
                     other.drones.push(object.transport(
