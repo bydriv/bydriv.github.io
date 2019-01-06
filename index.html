@@ -125,48 +125,41 @@
     left: 0;
     top: 0;
 
-    margin: 0;
-    padding: 0;
-  }
-
-  div.contents-container {
-    position: relative;
-    left: 0;
-
+    max-height: 1280px;
     margin: 0;
     padding: 0;
 
     background-color: #FFFFFF;
   }
 
-  div.contents:not(.default) > div.contents-container {
-    top: -100%;
+  div.contents:not(.default) {
+    top: -1280px;
     z-index: -2000;
     opacity: 0;
     transition: top 0.5s ease 0s, opacity 0.25s ease 0.25s;
   }
 
-  div.default.contents > div.contents-container {
+  div.default.contents {
     top: 0;
     z-index: -1000;
     opacity: 1;
     transition: top 0.5s ease 0s, opacity 0.25s ease 0.25s;
   }
 
-  div#game:target ~ div#contents > div#default-contents > div.contents-container,
-  div#gallery:target ~ div#contents > div#default-contents > div.contents-container {
-    top: -100%;
+  div#game:target ~ div#contents > div#default-contents,
+  div#gallery:target ~ div#contents > div#default-contents {
+    top: -1280px;
     z-index: -2000;
     opacity: 0;
   }
 
-  div#game:target ~ div#contents > div#game-contents > div.contents-container {
+  div#game:target ~ div#contents > div#game-contents {
     top: 0;
     z-index: -1000;
     opacity: 1;
   }
 
-  div#gallery:target ~ div#contents > div#gallery-contents > div.contents-container {
+  div#gallery:target ~ div#contents > div#gallery-contents {
     top: 0;
     z-index: -1000;
     opacity: 1;
@@ -194,23 +187,15 @@
 
   <div id="contents">
     <div id="default-contents" class="default contents">
-      <div class="contents-container">
-        <h2>ようこそ</h2>
-        <p>なんか書く</p>
-      </div>
+      <h2>ようこそ</h2>
+      <p>なんか書く</p>
     </div>
     <div id="game-contents" class="contents">
-      <div class="contents-container">
-        <img src="img/hijack-logo.png">
-        開発中のゲームです。
-        (いまのところ) ネイティヴとブラウザの両方で動きます。
-        ブラウザ版は<a href="game/hijack">ここ</a>から遊べます。
-      </div>
+      <img src="img/hijack-logo.png">
+      開発中のゲームです。
+      (いまのところ) ネイティヴとブラウザの両方で動きます。
+      ブラウザ版は<a href="game/hijack">ここ</a>から遊べます。
     </div>
-    <div id="gallery-contents" class="contents">
-      <div class="contents-container">
-        <img src="img/apple-bobbing.png">
-      </div>
-    </div>
+    <div id="gallery-contents" class="contents"><img src="img/apple-bobbing.png"></div>
   </div>
 </div>
