@@ -17,6 +17,7 @@
     }
     img {
       max-width: 100%;
+      vertical-align: bottom;
     }
   }
 
@@ -26,6 +27,7 @@
     }
     img {
       max-width: 960px;
+      vertical-align: bottom;
     }
   }
 
@@ -125,7 +127,7 @@
     left: 0;
     top: 0;
 
-    max-height: 1280px;
+    max-height: 2560px;
     margin: 0;
     padding: 0;
 
@@ -133,7 +135,7 @@
   }
 
   div.contents:not(.default) {
-    top: -1280px;
+    top: -2560px;
     z-index: -2000;
     opacity: 0;
     transition: top 0.5s ease 0s, opacity 0.25s ease 0.25s;
@@ -148,7 +150,7 @@
 
   div#game:target ~ div#contents > div#default-contents,
   div#gallery:target ~ div#contents > div#default-contents {
-    top: -1280px;
+    top: -2560px;
     z-index: -2000;
     opacity: 0;
   }
@@ -196,6 +198,9 @@
       (いまのところ) ネイティヴとブラウザの両方で動きます。
       ブラウザ版は<a href="game/hijack">ここ</a>から遊べます。
     </div>
-    <div id="gallery-contents" class="contents"><img src="img/apple-bobbing.png"></div>
+    <div id="gallery-contents" class="contents">
+      <img src="img/apple-bobbing.png">
+      <img src="img/just-a-board.png">
+    </div>
   </div>
 </div>
