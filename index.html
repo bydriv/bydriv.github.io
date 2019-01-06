@@ -12,11 +12,8 @@
   }
 
   @media (max-width: 959px) {
-    div#container, div#hd, h1, div#contents, div.contents {
+    div#container, div#hd, h1, div#index, div.index, div#contents, div.contents {
       width: 100%;
-    }
-    div#index {
-      width: auto;
     }
     img {
       max-width: 100%;
@@ -24,11 +21,8 @@
   }
 
   @media (min-width: 960px) {
-    div#container, div#hd, h1, div#contents, div.contents {
+    div#container, div#hd, h1, div#index, div.index, div#contents, div.contents {
       width: 960px;
-    }
-    div#index {
-      width: 640px;
     }
     img {
       max-width: 960px;
@@ -39,8 +33,6 @@
     height: auto;
     margin: 0 auto;
     padding: 0;
-
-    background-color: #FFFFFF;
   }
 
   div#home, div#game, div#gallery {
@@ -73,40 +65,50 @@
   }
 
   div#index {
-    height: auto;
+    height: 60px;
     margin: 0;
-    padding: 0 160px;
+    padding: 0;
 
     color: #FFFFFF;
     background-color: #000000;
 
     font-size: 16px;
     font-family: Consolas, "Courier New";
-    text-align: justify;
-    text-align-last: justify;
   }
 
-  a.index:not(.default) {
+  div.index {
+    height: 20px;
+    margin: 0;
+    padding: 0;
+
+    text-align: center;
+  }
+
+  div.index:not(.default) {
     color: #00FFFF;
   }
 
-  a.default.index {
+  div.default.index {
     color: #000000;
     background-color: #00FFFF;
   }
 
-  div#game:target ~ div#index > a#default-index,
-  div#gallery:target ~ div#index > a#default-index {
+  div.index a {
+    color: inherit;
+  }
+
+  div#game:target ~ div#index > div#default-index,
+  div#gallery:target ~ div#index > div#default-index {
     color: #00FFFF;
     background-color: #000000;
   }
 
-  div#game:target ~ div#index > a#game-index {
+  div#game:target ~ div#index > div#game-index {
     color: #000000;
     background-color: #00FFFF;
   }
 
-  div#gallery:target ~ div#index > a#gallery-index {
+  div#gallery:target ~ div#index > div#gallery-index {
     color: #000000;
     background-color: #00FFFF;
   }
@@ -118,52 +120,61 @@
     padding: 0;
   }
 
-  div.contents:not(:default) {
+  div.contents {
     position: absolute;
     left: 0;
-    z-index: -1000;
+    top: 0;
 
-    min-height: 380px;
+    margin: 0;
+    padding: 0;
+  }
+
+  div.contents-container {
+    position: relative;
+    left: 0;
+
     margin: 0;
     padding: 0;
 
-    background-color: white;
-
-    top: -1280px;
-    opacity: 0;
-    transition: top 0.5s linear 0s, opacity 0.25s linear 0.25s;
+    background-color: #FFFFFF;
   }
 
-  div.default.contents {
-    position: absolute;
-    left: 0;
-    z-index: -1000;
+  div.contents:not(.default) > div.contents-container {
+    top: -100%;
+    z-index: -2000;
+    opacity: 0;
+    transition: top 0.5s ease 0s, opacity 0.25s ease 0.25s;
+  }
 
-    min-height: 380px;
+  div.default.contents > div.contents-container {
+    top: 0;
+    z-index: -1000;
+    opacity: 1;
+    transition: top 0.5s ease 0s, opacity 0.25s ease 0.25s;
+  }
+
+  div#game:target ~ div#contents > div#default-contents > div.contents-container,
+  div#gallery:target ~ div#contents > div#default-contents > div.contents-container {
+    top: -100%;
+    z-index: -2000;
+    opacity: 0;
+  }
+
+  div#game:target ~ div#contents > div#game-contents > div.contents-container {
+    top: 0;
+    z-index: -1000;
+    opacity: 1;
+  }
+
+  div#gallery:target ~ div#contents > div#gallery-contents > div.contents-container {
+    top: 0;
+    z-index: -1000;
+    opacity: 1;
+  }
+
+  h2, p {
     margin: 0;
     padding: 0;
-
-    background-color: white;
-
-    top: 0;
-    opacity: 1;
-    transition: top 0.5s linear 0s, opacity 0.25s linear 0.25s;
-  }
-
-  div#game:target ~ div#contents > div#default-contents,
-  div#gallery:target ~ div#contents > div#default-contents {
-    top: -1280px;
-    opacity: 0;
-  }
-
-  div#game:target ~ div#contents > div#game-contents {
-    top: 0;
-    opacity: 1;
-  }
-
-  div#gallery:target ~ div#contents > div#gallery-contents {
-    top: 0;
-    opacity: 1;
   }
 </style>
 
@@ -176,24 +187,30 @@
   <h1>bydriv.github.io</h1>
 
   <div id="index">
-    <a id="default-index" class="default index" href="#home">HOME</a>
-    <a id="game-index" class="index" href="#game">GAME</a>
-    <a id="gallery-index" class="index" href="#gallery">GALLERY</a>
+    <div id="default-index" class="default index"><a href="#home">HOME</a></div>
+    <div id="game-index" class="index"><a href="#game">GAME</a></div>
+    <div id="gallery-index" class="index"><a href="#gallery">GALLERY</a></div>
   </div>
 
   <div id="contents">
     <div id="default-contents" class="default contents">
-      <h2>ようこそ</h2>
-      <p>なんか書く</p>
+      <div class="contents-container">
+        <h2>ようこそ</h2>
+        <p>なんか書く</p>
+      </div>
     </div>
     <div id="game-contents" class="contents">
-      <img src="img/hijack-logo.png">
-      開発中のゲームです。
-      (いまのところ) ネイティヴとブラウザの両方で動きます。
-      ブラウザ版は<a href="game/hijack">ここ</a>から遊べます。
+      <div class="contents-container">
+        <img src="img/hijack-logo.png">
+        開発中のゲームです。
+        (いまのところ) ネイティヴとブラウザの両方で動きます。
+        ブラウザ版は<a href="game/hijack">ここ</a>から遊べます。
+      </div>
     </div>
     <div id="gallery-contents" class="contents">
-      <img src="img/apple-bobbing.png">
+      <div class="contents-container">
+        <img src="img/apple-bobbing.png">
+      </div>
     </div>
   </div>
 </div>
