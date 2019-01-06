@@ -130,21 +130,25 @@
     left: 0;
     top: 0;
 
-    max-height: 2560px;
     margin: 0;
     padding: 0;
 
     background-color: #FFFFFF;
+    overflow: hidden;
   }
 
   div.contents:not(.default) {
-    top: -2560px;
+    max-height: 1280px;
+
+    top: -1280px;
     z-index: -2000;
     opacity: 0;
     transition: top 0.5s ease 0s, opacity 0.25s ease 0.25s;
   }
 
   div.default.contents {
+    max-height: none;
+
     top: 0;
     z-index: -1000;
     opacity: 1;
@@ -153,18 +157,24 @@
 
   div#game:target ~ div#contents > div#default-contents,
   div#gallery:target ~ div#contents > div#default-contents {
-    top: -2560px;
+    max-height: 1280px;
+
+    top: -1280px;
     z-index: -2000;
     opacity: 0;
   }
 
   div#game:target ~ div#contents > div#game-contents {
+    max-height: none;
+
     top: 0;
     z-index: -1000;
     opacity: 1;
   }
 
   div#gallery:target ~ div#contents > div#gallery-contents {
+    max-height: none;
+
     top: 0;
     z-index: -1000;
     opacity: 1;
