@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>bydriv.github.io</title>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-image: url("/img/check.png");
+  }
+
+  div#container {
+    width: 960px;
+    height: auto;
+    margin: 0 auto;
+    padding: 0;
+
+    background-color: #FFFFFF;
+  }
+
+  div#home, div#game, div#gallery {
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  div#hd {
+    width: 960px;
+    height: 160px;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1 {
+    width: 960px;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+
+    color: #000000;
+    background-color: #FFFFFF;
+
+    font-size: 32px;
+    font-family: Consolas, "Courier New";
+    text-align: center;
+  }
+
+  div#index {
+    width: 640px;
+    height: 20px;
+    margin: 0;
+    padding: 0 160px;
+
+    color: #FFFFFF;
+    background-color: #000000;
+
+    font-size: 16px;
+    font-family: Consolas, "Courier New";
+    text-align: justify;
+    text-align-last: justify;
+  }
+
+  a.index:not(.default) {
+    color: #00FFFF;
+  }
+
+  a.default.index {
+    color: #000000;
+    background-color: #00FFFF;
+  }
+
+  div#game:target ~ div#index > a#default-index,
+  div#gallery:target ~ div#index > a#default-index {
+    color: #00FFFF;
+    background-color: #000000;
+  }
+
+  div#game:target ~ div#index > a#game-index {
+    color: #000000;
+    background-color: #00FFFF;
+  }
+
+  div#gallery:target ~ div#index > a#gallery-index {
+    color: #000000;
+    background-color: #00FFFF;
+  }
+
+  div#contents {
+    position: relative;
+
+    margin: 0;
+    padding: 0;
+  }
+
+  div.contents:not(:default) {
+    position: absolute;
+    left: 0;
+    z-index: -1000;
+
+    width: 960px;
+    min-height: 380px;
+    margin: 0;
+    padding: 0;
+
+    background-color: white;
+
+    top: -1280px;
+    opacity: 0;
+    transition: top 0.5s linear 0s, opacity 0.25s linear 0.25s;
+  }
+
+  div.default.contents {
+    position: absolute;
+    left: 0;
+    z-index: -1000;
+
+    width: 960px;
+    min-height: 380px;
+    margin: 0;
+    padding: 0;
+
+    background-color: white;
+
+    top: 0;
+    opacity: 1;
+    transition: top 0.5s linear 0s, opacity 0.25s linear 0.25s;
+  }
+
+  div#game:target ~ div#contents > div#default-contents,
+  div#gallery:target ~ div#contents > div#default-contents {
+    top: -1280px;
+    opacity: 0;
+  }
+
+  div#game:target ~ div#contents > div#game-contents {
+    top: 0;
+    opacity: 1;
+  }
+
+  div#gallery:target ~ div#contents > div#gallery-contents {
+    top: 0;
+    opacity: 1;
+  }
+</style>
+
+<div id="container">
+  <div id="home"></div>
+  <div id="game"></div>
+  <div id="gallery"></div>
+
+  <div id="hd"><img src="/img/hd.png"></div>
+  <h1>bydriv.github.io</h1>
+
+  <div id="index">
+    <a id="default-index" class="default index" href="#home">HOME</a>
+    <a id="game-index" class="index" href="#game">GAME</a>
+    <a id="gallery-index" class="index" href="#gallery">GALLERY</a>
+  </div>
+
+  <div id="contents">
+    <div id="default-contents" class="default contents">
+      <h2>ようこそ</h2>
+      <p>なんか書く</p>
+    </div>
+    <div id="game-contents" class="contents">
+      <img src="img/hijack-logo.png">
+      開発中のゲームです。
+      (いまのところ) ネイティヴとブラウザの両方で動きます。
+      ブラウザ版は<a href="game/hijack">ここ</a>から遊べます。
+    </div>
+    <div id="gallery-contents" class="contents">
+      <img src="img/apple-bobbing.png">
+    </div>
+  </div>
+</div>
