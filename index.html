@@ -148,6 +148,8 @@
     z-index: -2000;
     opacity: 0;
     transition: top 0.5s ease 0s, opacity 0.25s ease 0.25s;
+
+    pointer-events: none;
   }
 
   div.default.contents {
@@ -157,6 +159,8 @@
     z-index: -1000;
     opacity: 1;
     transition: top 0.5s ease 0s, opacity 0.25s ease 0.25s;
+
+    pointer-events: auto;
   }
 
   div#game:target ~ div#contents > div#default-contents,
@@ -166,6 +170,8 @@
     top: -1280px;
     z-index: -2000;
     opacity: 0;
+
+    pointer-events: none;
   }
 
   div#game:target ~ div#contents > div#game-contents {
@@ -174,6 +180,8 @@
     top: 0;
     z-index: -1000;
     opacity: 1;
+
+    pointer-events: auto;
   }
 
   div#gallery:target ~ div#contents > div#gallery-contents {
@@ -182,6 +190,8 @@
     top: 0;
     z-index: -1000;
     opacity: 1;
+
+    pointer-events: auto;
   }
 
   h2, p {
