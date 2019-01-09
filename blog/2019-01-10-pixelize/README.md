@@ -92,32 +92,32 @@ convert -depth 2 just-a-board/pixelized.png just-a-board/pixelized_6bit.png
 
 # その他の例
 
-## gradient-hue-polar.png
+## apple-bobbing.png
 
-**gradient-hue-polar.png** (350KB):
+**apple-bobbing.png**:
 
-![gradient-hue-polar.png](gradient-hue-polar.png)
+![apple-bobbing.png](apple-bobbing.png)
 
-**gradient-hue-polar/15bit.png** (32KB):
+**apple-bobbing/15bit.png**:
 
-![gradient-hue-polar/15bit.png](gradient-hue-polar/15bit.png)
+![apple-bobbing/15bit.png](apple-bobbing/15bit.png)
 
-**gradient-hue-polar/12bit.png** (22KB):
+**apple-bobbing/12bit.png**:
 
-![gradient-hue-polar/12bit.png](gradient-hue-polar/12bit.png)
+![apple-bobbing/12bit.png](apple-bobbing/12bit.png)
 
-**gradient-hue-polar/9bit.png** (17KB):
+**apple-bobbing/9bit.png**:
 
-![gradient-hue-polar/9bit.png](gradient-hue-polar/9bit.png)
+![apple-bobbing/9bit.png](apple-bobbing/9bit.png)
 
-**gradient-hue-polar/6bit.png* *(6.8KB):
+**apple-bobbing/6bit.png**:
 
-![gradient-hue-polar/6bit.png](gradient-hue-polar/6bit.png)
+![apple-bobbing/6bit.png](apple-bobbing/6bit.png)
 
-**gradient-hue-polar/pixelized.png** (37KB):
+**apple-bobbing/pixelized.png**:
 
-![gradient-hue-polar/pixelized.png](gradient-hue-polar/pixelized.png)
+![apple-bobbing/pixelized.png](apple-bobbing/pixelized.png)
 
-**gradient-hue-polar/pixelized_6bit.png** (12KB):
+**apple-bobbing/pixelized_6bit.png**:
 
-![gradient-hue-polar/pixelized_6bit.png](gradient-hue-polar/pixelized_6bit.png)
+![apple-bobbing/pixelized_6bit.png](apple-bobbing/pixelized_6bit.png)
