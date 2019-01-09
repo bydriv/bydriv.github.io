@@ -9,17 +9,17 @@ printf "\n"
 
 printf "<style>"
 cat ./template.css
-perl ./mkstyle.pl < "$2"
+./mkstyle < "$2"
 printf "</style>"
 
 printf "<div id=\"container\">\n"
 
-perl ./mkanchors.pl < "$2"
+./mkanchors < "$2"
 
 printf "  <div id=\"hd\"></div>\n"
 printf "  <h1>%s</h1>\n" "$1"
 
-perl ./mkindex.pl < "$2"
-perl ./mkcontents.pl < "$2"
+./mkindex < "$2"
+./mkcontents < "$2"
 
 printf "</div>\n"

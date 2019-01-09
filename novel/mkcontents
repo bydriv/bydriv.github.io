@@ -1,3 +1,5 @@
+#!/usr/bin/perl
+
 my $chap = 0;
 my $par = 1;
 
