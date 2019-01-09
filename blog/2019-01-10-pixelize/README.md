@@ -61,7 +61,7 @@ convert -depth 3 just-a-board.png just-a-board/9bit.png
 convert -depth 2 just-a-board.png just-a-board/6bit.png
 ```
 
-**just-a-board/9bit.png** (39KB):
+**just-a-board/6bit.png** (39KB):
 
 ![just-a-board/6bit.png](just-a-board/6bit.png)
 
