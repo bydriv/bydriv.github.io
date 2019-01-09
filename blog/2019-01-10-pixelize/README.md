@@ -4,6 +4,10 @@ pixelize という減色ツールを開発したので紹介する。
 
 ![just-a-board/pixelized_6bit.png](just-a-board/pixelized_6bit.png)
 
+## 概要
+
+pixelize はグラデーション部分を網かけで表現することにより、イラストの品質を保ちつつ 8-bit color (R: 3-bit, G: 3-bit, B: 2-bit) にまで減色するツールである。
+
 ## 動機
 
 ドット絵ゲームは現在でも人気の高いジャンルである。
