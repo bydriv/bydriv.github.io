@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>worldview</title>
+
+<link rel="stylesheet" type="text/css" href="/css/prelude.css">
+<style>
+  div#hd {
+    height: 160px;
+    margin: 0;
+    padding: 0;
+
+    background-image: url("/img/hd.png");
+    background-position: center;
+  }
+
+  div#character:target ~ div#index > div#default-index-group > div#character-index,
+  div[id^="character/"]:target ~ div#index > div#default-index-group > div#character-index {
+    color: #000000;
+    background-color: #00FFFF;
+  }
+
+  div[id="character/teiri"]:target ~ div#index > div#character-index-group > div[id="character/teiri-index"] {
+    color: #000000;
+    background-color: #FF00FF;
+  }
+
+  div[id="character/verity"]:target ~ div#index > div#character-index-group > div[id="character/verity-index"] {
+    color: #000000;
+    background-color: #FF00FF;
+  }
+
+  div[id="character/emily"]:target ~ div#index > div#character-index-group > div[id="character/emily-index"] {
+    color: #000000;
+    background-color: #FF00FF;
+  }
+
+  div#character:target ~ div#index > div#character-index-group,
+  div[id^="character/"]:target ~ div#index > div#character-index-group {
+    display: block;
+  }
+
+  div#character:target ~ div#contents > div#character-contents {
+    max-height: none;
+
+    top: 0;
+    z-index: -1000;
+    opacity: 1;
+  }
+
+  div[id="character/teiri"]:target ~ div#contents > div[id="character/teiri-contents"] {
+    max-height: none;
+
+    top: 0;
+    z-index: -1000;
+    opacity: 1;
+  }
+
+  div[id="character/verity"]:target ~ div#contents > div[id="character/verity-contents"] {
+    max-height: none;
+
+    top: 0;
+    z-index: -1000;
+    opacity: 1;
+  }
+
+  div[id="character/emily"]:target ~ div#contents > div[id="character/emily-contents"] {
+    max-height: none;
+
+    top: 0;
+    z-index: -1000;
+    opacity: 1;
+  }
+</style>
+
+<div id="container">
+  <div id="home" class="default anchor"></div>
+  <div id="character" class="anchor"></div>
+  <div id="character/teiri" class="anchor"></div>
+  <div id="character/verity" class="anchor"></div>
+  <div id="character/emily" class="anchor"></div>
+
+  <div id="hd"></div>
+  <h1>worldview</h1>
+
+  <div id="index">
+    <div id="default-index-group" class="default level-0 index-group">
+      <div id="default-index" class="default index"><a href="#home">HOME</a></div>
+      <div id="character-index" class="index"><a href="#character">CHARACTER</a></div>
+    </div>
+    <div id="character-index-group" class="level-1 index-group">
+      <div id="character/teiri-index" class="index"><a href="#character/teiri">Teiri</a></div>
+      <div id="character/verity-index" class="index"><a href="#character/verity">Verity</a></div>
+      <div id="character/emily-index" class="index"><a href="#character/emily">Emily</a></div>
+    </div>
+  </div>
+
+  <div id="contents">
+    <div id="default-contents" class="default contents">
+    </div>
+    <div id="character-contents" class="contents">
+    </div>
+    <div id="character/teiri-contents" class="contents">
+      <img src="/img/teiri.png">
+      <div style="display: inline-block;">
+        <h2>水無川定理</h2>
+      </div>
+    </div>
+    <div id="character/verity-contents" class="contents">
+      <img src="/img/verity.png">
+      <div style="display: inline-block;">
+        <h2>Verity A. Valley</h2>
+      </div>
+    </div>
+    <div id="character/emily-contents" class="contents">
+      <img src="/img/emily.png">
+      <div style="display: inline-block;">
+        <h2>Emily &quot;Emma&quot; Rivers</h2>
+      </div>
+    </div>
+  </div>
+</div>

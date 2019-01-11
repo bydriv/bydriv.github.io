@@ -4,52 +4,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>bydriv.github.io</title>
 
+<link rel="stylesheet" type="text/css" href="/css/prelude.css">
 <style>
-  body {
-    margin: 0;
-    padding: 0;
-    background-image: url("/img/check.png");
-  }
-
-  @media (max-width: 959px) {
-    div#container, div#hd, h1, div#index, div.index, div#contents, div.contents {
-      width: 100%;
-    }
-    img {
-      max-width: 100%;
-      vertical-align: bottom;
-    }
-  }
-
-  @media (min-width: 960px) {
-    div#container, div#hd, h1, div#index, div.index, div#contents, div.contents {
-      width: 960px;
-    }
-    img {
-      max-width: 960px;
-      vertical-align: bottom;
-    }
-    div#index {
-      display: table;
-    }
-    div.index {
-      display: table-cell;
-    }
-  }
-
-  div#container {
-    height: auto;
-    margin: 0 auto;
-    padding: 0;
-  }
-
-  div#home, div#game, div#gallery {
-    width: 0;
-    height: 0;
-    margin: 0;
-    padding: 0;
-  }
-
   div#hd {
     height: 160px;
     margin: 0;
@@ -59,122 +15,19 @@
     background-position: center;
   }
 
-  h1 {
-    margin: 0;
-    padding: 0;
-
-    color: #000000;
-    background-color: #FFFFFF;
-
-    font-size: 32px;
-    font-family: Consolas, "Courier New";
-    text-align: center;
-  }
-
-  div#index {
-    margin: 0;
-    padding: 0;
-
-    color: #FFFFFF;
-    background-color: #000000;
-
-    font-size: 16px;
-    font-family: Consolas, "Courier New";
-  }
-
-  div.index {
-    height: 20px;
-    margin: 0;
-    padding: 0;
-
-    text-align: center;
-  }
-
-  div.index:not(.default) {
-    color: #00FFFF;
-    background-color: #000000;
-    transition: color 0.5s ease 0s, background-color 0.25s ease 0.25s;
-  }
-
-  div.default.index {
-    color: #000000;
-    background-color: #00FFFF;
-    transition: color 0.5s ease 0s, background-color 0.25s ease 0.25s;
-  }
-
-  div.index a {
-    display: block;
-    width: 100%;
-    height: 100%;
-    color: inherit;
-  }
-
-  div#game:target ~ div#index > div#default-index,
-  div#gallery:target ~ div#index > div#default-index,
-  div#novel:target ~ div#index > div#default-index {
-    color: #00FFFF;
-    background-color: #000000;
-  }
-
-  div#game:target ~ div#index > div#game-index {
+  div#game:target ~ div#index > div#default-index-group > div#game-index {
     color: #000000;
     background-color: #00FFFF;
   }
 
-  div#gallery:target ~ div#index > div#gallery-index {
+  div#gallery:target ~ div#index > div#default-index-group > div#gallery-index {
     color: #000000;
     background-color: #00FFFF;
   }
 
-  div#novel:target ~ div#index > div#novel-index {
+  div#novel:target ~ div#index > div#default-index-group > div#novel-index {
     color: #000000;
     background-color: #00FFFF;
-  }
-
-  div#contents {
-    position: relative;
-
-    margin: 0;
-    padding: 0;
-  }
-
-  div.contents {
-    position: absolute;
-    left: 0;
-
-    margin: 0;
-    padding: 0;
-
-    background-color: #FFFFFF;
-    overflow: hidden;
-  }
-
-  div.contents:not(.default) {
-    max-height: 1280px;
-
-    top: -1280px;
-    z-index: -2000;
-    opacity: 0;
-    transition: top 0.5s ease 0s, opacity 0.25s ease 0.25s;
-  }
-
-  div.default.contents {
-    max-height: none;
-
-    top: 0;
-    z-index: -1000;
-    opacity: 1;
-    transition: top 0.5s ease 0s, opacity 0.25s ease 0.25s;
-  }
-
-  div#game:target ~ div#contents > div#default-contents,
-  div#gallery:target ~ div#contents > div#default-contents,
-  div#novel:target ~ div#contents > div#default-contents {
-    max-height: 1280px;
-
-    top: -1280px;
-    z-index: -2000;
-    opacity: 0;
   }
 
   div#game:target ~ div#contents > div#game-contents {
@@ -200,44 +53,30 @@
     z-index: -1000;
     opacity: 1;
   }
-
-  h2, p {
-    margin: 1em;
-    padding: 0;
-  }
-
-  a[href] {
-      color: #0080FF;
-      text-decoration: none;
-  }
-
-  a:hover {
-      text-decoration: underline;
-  }
 </style>
 
 <div id="container">
-  <div id="home"></div>
-  <div id="game"></div>
-  <div id="gallery"></div>
-  <div id="novel"></div>
+  <div id="home" class="default anchor"></div>
+  <div id="game" class="anchor"></div>
+  <div id="gallery" class="anchor"></div>
+  <div id="novel" class="anchor"></div>
 
   <div id="hd"></div>
   <h1>bydriv.github.io</h1>
 
   <div id="index">
-    <div id="default-index" class="default index"><a href="#home">HOME</a></div>
-    <div id="game-index" class="index"><a href="#game">GAME</a></div>
-    <div id="gallery-index" class="index"><a href="#gallery">GALLERY</a></div>
-    <div id="novel-index" class="index"><a href="#novel">NOVEL</a></div>
+    <div id="default-index-group" class="default level-0 index-group">
+      <div id="default-index" class="default index"><a href="#home">HOME</a></div>
+      <div id="blog-index" class="index"><a href="https://github.com/bydriv/bydriv.github.io/tree/master/blog">BLOG</a></div>
+      <div id="game-index" class="index"><a href="#game">GAME</a></div>
+      <div id="gallery-index" class="index"><a href="#gallery">GALLERY</a></div>
+      <div id="novel-index" class="index"><a href="#novel">NOVEL</a></div>
+      <div id="worldview-index" class="index"><a href="worldview">WORLDVIEW</a></div>
+    </div>
   </div>
 
   <div id="contents">
     <div id="default-contents" class="default contents">
-      <h2>Links</h2>
-      <ul>
-        <li><a href="https://github.com/bydriv/bydriv.github.io/tree/master/blog">Blog</a></li>
-      </ul>
     </div>
     <div id="game-contents" class="contents">
       <img src="img/hijack-logo.png">

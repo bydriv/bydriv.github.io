@@ -7,19 +7,29 @@ printf "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
 printf "<title>%s</title>\n" "$1"
 printf "\n"
 
+printf "<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/prelude.css\">\n"
 printf "<style>"
-cat ./template.css
-./mkstyle < "$2"
+printf "div#hd {\n"
+printf "  height: 160px;\n"
+printf "  margin: 0;\n"
+printf "  padding: 0;\n"
+printf "\n"
+printf "  background-image: url(\"$2\");\n"
+printf "  background-position: center;\n"
+printf "}\n"
+
+./mkstyle < "$3"
 printf "</style>"
 
 printf "<div id=\"container\">\n"
 
-./mkanchors < "$2"
+printf "  <div id=\"home\" class=\"default anchor\"></div>\n"
+./mkanchors < "$3"
 
 printf "  <div id=\"hd\"></div>\n"
 printf "  <h1>%s</h1>\n" "$1"
 
-./mkindex < "$2"
-./mkcontents < "$2"
+./mkindex < "$3"
+./mkcontents < "$3"
 
 printf "</div>\n"

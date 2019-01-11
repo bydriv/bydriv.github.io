@@ -4,7 +4,7 @@ my $chap = 0;
 my $par = 1;
 
 foreach my $line (<>) {
-    if ($line =~ s/\[(\d+)\].*/<div id="$chap:\1"><\/div>/) {
+    if ($line =~ s/\[(\d+)\].*/<div id="$chap:\1" class="anchor"><\/div>/) {
         print $line;
     }
 
@@ -12,7 +12,7 @@ foreach my $line (<>) {
         $chap = $1;
     }
 
-    if ($line =~ s/\[\$(.*?)\].*/<div id="\1"><\/div>/g) {
+    if ($line =~ s/\[\$(.*?)\].*/<div id="\1" class="anchor"><\/div>/g) {
         print $line;
     }
 

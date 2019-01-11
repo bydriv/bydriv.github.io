@@ -4,6 +4,7 @@ my $chap = 0;
 my $par = 1;
 
 print "<div id=\"index\">\n";
+print "<div id=\"default-index-group\" class=\"default level-0 index-group\">\n";
 print "<div id=\"default-index\" class=\"default index\"><a href=\"#home\">HOME</a></div>\n";
 
 foreach my $line (<>) {
@@ -25,4 +26,5 @@ foreach my $line (<>) {
     }
 }
 
+print "</div>\n";
 print "</div>\n";
