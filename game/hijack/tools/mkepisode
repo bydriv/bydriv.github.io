@@ -10,6 +10,7 @@ printf "use super::*;\n"
 printf "\n"
 printf "pub fn new() -> Episode {\n"
 printf "  Episode {\n"
+printf "    title: \"%s\".to_string(),\n", episode["title"]
 printf "    map: \"%s\".to_string(),\n", episode["map"]
 printf "    objects: vec![\n"
 

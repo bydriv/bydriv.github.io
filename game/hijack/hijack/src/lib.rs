@@ -8,8 +8,8 @@ pub mod system;
 pub mod text;
 
 use brownfox::Moore;
-use std::rc::Rc;
 use std::collections::HashMap;
+use std::rc::Rc;
 
 #[derive(Clone)]
 pub enum Mode {
@@ -56,7 +56,10 @@ pub enum View {
 }
 
 impl Hijack {
-    pub fn new(maps: HashMap<String, map::Map>, episodes: HashMap<String, episode::Episode>) -> Hijack {
+    pub fn new(
+        maps: HashMap<String, map::Map>,
+        episodes: HashMap<String, episode::Episode>,
+    ) -> Hijack {
         let map = maps.get("map/boston/0000-0000.json").unwrap();
         let episode = episodes.get("episode/boston.json").unwrap();
 
@@ -95,7 +98,11 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
             }
             Mode::Base => {
                 let mut other = self.clone();
-                other.mode = Mode::Main;
+                let button1 =
+                    inputs.len() > 0 && inputs[0].buttons.len() > 0 && inputs[0].buttons[0];
+                if button1 {
+                    other.mode = Mode::Main;
+                }
                 other
             }
             Mode::Main => {
@@ -227,11 +234,19 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
                     views: views,
                 }
             }
-            Mode::Base => object::Output {
-                instrs: vec![],
-                events: vec![],
-                views: vec![],
-            },
+            Mode::Base => {
+                let views = self
+                    .episodes
+                    .values()
+                    .enumerate()
+                    .flat_map(|(i, episode)| text::text(0, i as i32 * 8, 0, episode.title.clone()))
+                    .collect();
+                object::Output {
+                    instrs: vec![],
+                    events: vec![],
+                    views: views,
+                }
+            }
             Mode::Main => {
                 let mut objects = self.episode_objects.clone();
                 objects.append(&mut self.map_objects.clone());

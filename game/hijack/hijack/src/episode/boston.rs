@@ -2,6 +2,7 @@ use super::*;
 
 pub fn new() -> Episode {
     Episode {
+        title: "test episode".to_string(),
         map: "map/boston/0000-0000.json".to_string(),
         objects: vec![(
             brownfox::Control::Player(brownfox::Player::new(0)),
