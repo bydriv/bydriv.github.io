@@ -40,16 +40,32 @@ pub fn new(x: i32, y: i32, z: i32, name: String) -> NPC {
 
 impl brownfox::Moore<Input, Output> for NPC {
     fn transit(&self, input: &Input) -> NPC {
-        NPC {
-            frame_count: (0..60 / input.previous.fps)
-                .fold(self.frame_count.clone(), |control, _| control.transit(&())),
-            x: self.x,
-            y: self.y,
-            z: self.z,
-            pose: self.pose.clone(),
-            direction: self.direction.clone(),
-            name: self.name.clone(),
+        let mut other = self.clone();
+
+        if input.inputs.len() > 0 {
+            if input.inputs[0].x < -0.25 {
+                other.x -= 60 / input.previous.fps;
+                other.direction = Direction::Left;
+            } else if input.inputs[0].x > 0.25 {
+                other.x += 60 / input.previous.fps;
+                other.direction = Direction::Right;
+            }
         }
+
+        if input.inputs.len() > 0 {
+            if input.inputs[0].y < -0.25 {
+                other.y -= 60 / input.previous.fps;
+                other.direction = Direction::Back;
+            } else if input.inputs[0].y > 0.25 {
+                other.y += 60 / input.previous.fps;
+                other.direction = Direction::Front;
+            }
+        }
+
+        other.frame_count =
+            (0..60 / input.previous.fps).fold(other.frame_count, |control, _| control.transit(&()));
+
+        other
     }
 
     fn output(&self) -> Output {

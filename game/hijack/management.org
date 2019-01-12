@@ -77,6 +77,9 @@
 | pixelart/teiri/hijack.png           | [[./pixelart/teiri/hijack.png]]           |
 | pixelart/verity/walk.png            | [[./pixelart/verity/walk.png]]            |
 | pixelart/emily/walk.png             | [[./pixelart/emily/walk.png]]             |
+| pixelart/mob/0000.png               | [[./pixelart/mob/0000.png]]               |
+| pixelart/mob/0001.png               | [[./pixelart/mob/0001.png]]               |
+| pixelart/mob/0002.png               | [[./pixelart/mob/0002.png]]               |
 | pixelart/mathprobe/fly.png          | [[./pixelart/mathprobe/fly.png]]          |
 | pixelart/lonelygem/fly.png          | [[./pixelart/lonelygem/fly.png]]          |
 | pixelart/security-drone/fly.png     | [[./pixelart/security-drone/fly.png]]     |

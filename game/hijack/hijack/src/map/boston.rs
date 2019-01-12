@@ -13,6 +13,645 @@ pub fn new() -> Map {
                     objects: vec![
                         (
                             brownfox::Control::Repeat(brownfox::Repeat::new(
+                                16,
+                                vec![
+                                    brownfox::Input::new(
+                                        1.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        1.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        -1.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        -1.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                ],
+                            )),
+                            object::Object::NPC(object::npc::new(
+                                40,
+                                60,
+                                0,
+                                "pixelart/mob/0000".to_string(),
+                            )),
+                        ),
+                        (
+                            brownfox::Control::Repeat(brownfox::Repeat::new(
+                                16,
+                                vec![
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        -1.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        1.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        1.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        -1.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                ],
+                            )),
+                            object::Object::NPC(object::npc::new(
+                                220,
+                                60,
+                                0,
+                                "pixelart/mob/0001".to_string(),
+                            )),
+                        ),
+                        (
+                            brownfox::Control::Repeat(brownfox::Repeat::new(
+                                16,
+                                vec![
+                                    brownfox::Input::new(
+                                        -1.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        -1.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        1.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        1.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                    brownfox::Input::new(
+                                        0.000000,
+                                        0.000000,
+                                        &vec![
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                            false, false, false, false, false, false, false, false,
+                                        ],
+                                    ),
+                                ],
+                            )),
+                            object::Object::NPC(object::npc::new(
+                                60,
+                                220,
+                                0,
+                                "pixelart/mob/0002".to_string(),
+                            )),
+                        ),
+                        (
+                            brownfox::Control::Repeat(brownfox::Repeat::new(
                                 64,
                                 vec![
                                     brownfox::Input::new(

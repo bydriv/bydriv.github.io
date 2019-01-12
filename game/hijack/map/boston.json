@@ -8,6 +8,351 @@
             {
                 "control": {
                     "type": "repeat",
+                    "step": 16,
+                    "inputs": [
+                        {
+                            "x": 1,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 1,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": -1,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": -1,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        }
+                    ]
+                },
+                "object": {
+                    "type": "npc",
+                    "x": 40,
+                    "y": 60,
+                    "z": 0,
+                    "name": "pixelart/mob/0000"
+                }
+            },
+            {
+                "control": {
+                    "type": "repeat",
+                    "step": 16,
+                    "inputs": [
+                        {
+                            "x": 0,
+                            "y": -1,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 1,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 1,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": -1,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        }
+                    ]
+                },
+                "object": {
+                    "type": "npc",
+                    "x": 220,
+                    "y": 60,
+                    "z": 0,
+                    "name": "pixelart/mob/0001"
+                }
+            },
+            {
+                "control": {
+                    "type": "repeat",
+                    "step": 16,
+                    "inputs": [
+                        {
+                            "x": -1,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": -1,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 1,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 1,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        },
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                        }
+                    ]
+                },
+                "object": {
+                    "type": "npc",
+                    "x": 60,
+                    "y": 220,
+                    "z": 0,
+                    "name": "pixelart/mob/0002"
+                }
+            },
+            {
+                "control": {
+                    "type": "repeat",
                     "step": 64,
                     "inputs": [
                         {
