@@ -29,6 +29,14 @@ pub fn new(episode: ::episode::Episode, map: ::map::Map) -> Episode {
 
 impl brownfox::Moore<object::Input, object::Output> for Episode {
     fn transit(&self, input: &object::Input) -> Episode {
+        let mut input1 = object::Input {
+            inputs: vec![],
+            previous: input.previous.clone(),
+        };
+        let mut input2 = object::Input {
+            inputs: vec![],
+            previous: input.previous.clone(),
+        };
         let cleared = self.clear_condition.satisfy(&input.previous);
 
         let mut objects = self.episode_objects.clone();
@@ -43,14 +51,8 @@ impl brownfox::Moore<object::Input, object::Output> for Episode {
             let control = (0..60 / input.previous.fps).fold(object.0.clone(), |control, _| {
                 control.transit(&input.inputs)
             });
-            let input0 = control.output();
-            (
-                control,
-                object.1.transit(&object::Input {
-                    inputs: vec![input0],
-                    previous: input.previous.clone(),
-                }),
-            )
+            input1.inputs = vec![control.output()];
+            (control, object.1.transit(&input1))
         }))
             as Box<Iterator<Item = (brownfox::Control<i32>, object::Object)>>;
 
@@ -58,14 +60,8 @@ impl brownfox::Moore<object::Input, object::Output> for Episode {
             let control = (0..60 / input.previous.fps).fold(object.0.clone(), |control, _| {
                 control.transit(&input.inputs)
             });
-            let input0 = control.output();
-            (
-                control,
-                object.1.transit(&object::Input {
-                    inputs: vec![input0],
-                    previous: input.previous.clone(),
-                }),
-            )
+            input2.inputs = vec![control.output()];
+            (control, object.1.transit(&input2))
         }))
             as Box<Iterator<Item = (brownfox::Control<i32>, object::Object)>>;
         for event in &events {
