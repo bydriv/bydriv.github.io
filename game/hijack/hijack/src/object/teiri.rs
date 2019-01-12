@@ -293,6 +293,7 @@ impl brownfox::Moore<Input, Output> for Teiri {
         }
 
         Output {
+            instrs: vec![],
             events: events,
             views: views,
         }

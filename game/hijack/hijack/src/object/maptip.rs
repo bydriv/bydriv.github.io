@@ -59,6 +59,7 @@ impl brownfox::Moore<Input, Output> for Maptip {
         }
 
         Output {
+            instrs: vec![],
             events: vec![],
             views: views,
         }

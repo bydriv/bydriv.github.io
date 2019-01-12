@@ -68,12 +68,14 @@ impl brownfox::Moore<Input, Output> for Shot {
     fn output(&self) -> Output {
         if self.disabled {
             return Output {
+                instrs: vec![],
                 events: vec![],
                 views: vec![],
             };
         }
 
         Output {
+            instrs: vec![],
             events: vec![Event::Attack(brownfox::Rectangle::new(
                 self.x, self.y, 2, 2,
             ))],

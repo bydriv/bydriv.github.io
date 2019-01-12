@@ -39,45 +39,25 @@ pub fn new(
 
 impl brownfox::Moore<Input, Output> for Transport {
     fn transit(&self, input: &Input) -> Transport {
-        let mut triggered = false;
-
-        for event in &input.previous.events {
-            match event {
-                &Event::Trigger(ref rect1) => {
-                    let rect2 = brownfox::Rectangle::new(
-                        self.from_x,
-                        self.from_y,
-                        self.from_width,
-                        self.from_height,
-                    );
-                    if rect1.collision(rect2) {
-                        triggered = true;
-                        break;
-                    }
-                }
-                _ => {}
-            }
-        }
-
-        let mut other = self.clone();
-        other.triggered = triggered;
-        other
+        self.clone()
     }
 
     fn output(&self) -> Output {
         if self.triggered {
             Output {
-                events: vec![Event::Transport(
+                instrs: vec![Instr::Transport(
                     self.from_x,
                     self.from_y,
                     self.to_map.clone(),
                     self.to_x,
                     self.to_y,
                 )],
+                events: vec![],
                 views: vec![],
             }
         } else {
             Output {
+                instrs: vec![],
                 events: vec![],
                 views: vec![],
             }
@@ -102,7 +82,26 @@ impl Transport {
     }
 
     pub fn on(&self, event: &Event) -> Transport {
-        self.clone()
+        let mut triggered = false;
+
+        match event {
+            &Event::Trigger(ref rect1) => {
+                let rect2 = brownfox::Rectangle::new(
+                    self.from_x,
+                    self.from_y,
+                    self.from_width,
+                    self.from_height,
+                );
+                if rect1.collision(rect2) {
+                    triggered = true;
+                }
+            }
+            _ => {}
+        }
+
+        let mut other = self.clone();
+        other.triggered = triggered;
+        other
     }
 
     pub fn transport(&self, from_x: i32, from_y: i32, to_x: i32, to_y: i32) -> Transport {

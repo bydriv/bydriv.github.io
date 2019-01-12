@@ -144,11 +144,13 @@ impl brownfox::Moore<Input, Output> for Drone {
     fn output(&self) -> Output {
         if self.disabled {
             return Output {
-                events: vec![Event::Flag(format!("{}/disabled", self.id), true)],
+                instrs: vec![Instr::Flag(format!("{}/disabled", self.id), true)],
+                events: vec![],
                 views: vec![],
             };
         }
 
+        let mut instrs = vec![];
         let mut events = vec![];
 
         if self.security_damage > 0 {
@@ -179,11 +181,13 @@ impl brownfox::Moore<Input, Output> for Drone {
         for shot in &self.shots {
             let mut out = shot.output();
 
+            instrs.append(&mut out.instrs);
             events.append(&mut out.events);
             views.append(&mut out.views);
         }
 
         Output {
+            instrs: instrs,
             events: events,
             views: views,
         }

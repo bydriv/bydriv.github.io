@@ -84,6 +84,7 @@ impl brownfox::Moore<Input, Output> for NPC {
         )];
 
         Output {
+            instrs: vec![],
             events: vec![],
             views: views,
         }

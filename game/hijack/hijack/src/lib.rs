@@ -24,7 +24,6 @@ pub struct Hijack {
     pub height: i32,
     episode_objects: Vec<(brownfox::Control<i32>, object::Object)>,
     map_objects: Vec<(brownfox::Control<i32>, object::Object)>,
-    events: Vec<Event>,
     flags: HashMap<String, bool>,
     mode: Mode,
 }
@@ -33,10 +32,14 @@ pub struct Hijack {
 pub enum Event {
     Check(brownfox::Rectangle<i32>),
     Trigger(brownfox::Rectangle<i32>),
-    Transport(i32, i32, String, i32, i32),
     Hijack(brownfox::Rectangle<i32>),
     Hijacked(i32, i32, object::Object),
     Attack(brownfox::Rectangle<i32>),
+}
+
+#[derive(Clone)]
+pub enum Instr {
+    Transport(i32, i32, String, i32, i32),
     Flag(String, bool),
 }
 
@@ -59,7 +62,6 @@ impl Hijack {
             height: template.height,
             episode_objects: episode.objects.clone(),
             map_objects: template.objects.clone(),
-            events: vec![],
             flags: HashMap::new(),
             mode: Mode::Title,
         }
@@ -82,6 +84,11 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
             Mode::Main => {
                 let mut objects = self.episode_objects.clone();
                 objects.append(&mut self.map_objects.clone());
+
+                let instrs: Vec<Instr> = objects
+                    .iter()
+                    .flat_map(|object| object.1.output().instrs)
+                    .collect();
 
                 let events: Vec<Event> = objects
                     .iter()
@@ -118,9 +125,9 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
 
                 let mut flags = self.flags.clone();
 
-                for event in &events {
-                    match event {
-                        &Event::Transport(from_x, from_y, ref to_map, to_x, to_y) => {
+                for instr in &instrs {
+                    match instr {
+                        &Instr::Transport(from_x, from_y, ref to_map, to_x, to_y) => {
                             let map = map::boston::new();
                             let template = map.templates.get(to_map).unwrap();
 
@@ -139,27 +146,27 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
                                     })
                                     .collect(),
                                 map_objects: template.objects.clone(),
-                                events: vec![],
                                 flags: flags,
                                 mode: Mode::Main,
                             };
                         }
-                        &Event::Flag(ref name, value) => {
+                        &Instr::Flag(ref name, value) => {
                             flags.insert(name.clone(), value);
                         }
-                        _ => {
-                            episode_objects = Box::new(
-                                episode_objects
-                                    .map(move |object| (object.0.clone(), object.1.on(event))),
-                            )
-                                as Box<Iterator<Item = (brownfox::Control<i32>, object::Object)>>;
-                            map_objects = Box::new(
-                                map_objects
-                                    .map(move |object| (object.0.clone(), object.1.on(event))),
-                            )
-                                as Box<Iterator<Item = (brownfox::Control<i32>, object::Object)>>;
-                        }
                     }
+                }
+
+                for event in &events {
+                    episode_objects = Box::new(
+                        episode_objects
+                            .map(move |object| (object.0.clone(), object.1.on(event))),
+                    )
+                        as Box<Iterator<Item = (brownfox::Control<i32>, object::Object)>>;
+                    map_objects = Box::new(
+                        map_objects
+                            .map(move |object| (object.0.clone(), object.1.on(event))),
+                    )
+                        as Box<Iterator<Item = (brownfox::Control<i32>, object::Object)>>;
                 }
 
                 Hijack {
@@ -170,7 +177,6 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
                     height: self.height,
                     episode_objects: episode_objects.collect(),
                     map_objects: map_objects.collect(),
-                    events: events.clone(),
                     flags: flags,
                     mode: Mode::Main,
                 }
@@ -194,6 +200,7 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
                     "press any button".to_string(),
                 ));
                 object::Output {
+                    instrs: vec![],
                     events: vec![],
                     views: views,
                 }
@@ -203,7 +210,8 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
                 objects.append(&mut self.map_objects.clone());
 
                 object::Output {
-                    events: self.events.clone(),
+                    instrs: vec![],
+                    events: vec![],
                     views: objects
                         .iter()
                         .flat_map(|object| object.1.output().views)

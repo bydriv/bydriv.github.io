@@ -14,6 +14,7 @@ pub struct Input {
 }
 
 pub struct Output {
+    pub instrs: Vec<Instr>,
     pub events: Vec<Event>,
     pub views: Vec<View>,
 }
