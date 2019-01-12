@@ -153,6 +153,7 @@ impl brownfox::Moore<Input, Output> for Drone {
 
         if self.security_damage > 0 {
             let mut other = self.clone();
+            other.id = format!("{}/hijacked", other.id);
             other.security_damage = 0;
             other.disabled = false;
 
