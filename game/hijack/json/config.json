@@ -817,5 +817,14 @@
     ["pixelart/effect/shot.png", [
       ["pixelart/effect/shot.png", [0, 0, 16, 16]]
     ]]
+  ],
+  "episodes": [
+    "episode/boston.json"
+  ],
+  "maps": [
+    "map/boston/0000-0000.json",
+    "map/boston/0000-FFFF.json",
+    "map/boston/FFFF-0000.json",
+    "map/boston/0001-0000.json"
   ]
 }

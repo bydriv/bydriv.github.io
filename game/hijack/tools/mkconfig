@@ -4,6 +4,8 @@ require "json"
 
 config = JSON.parse ARGF.read
 
+printf "use std::collections::HashMap;\n"
+printf "\n"
 printf "#[repr(C)]\n"
 printf "pub struct AssetDefn<'a> {\n"
 printf "    pub path: &'a str,\n"
@@ -39,3 +41,31 @@ config["assets"].each do |asset|
 end
 
 printf "];\n"
+
+printf "pub fn MAPS() -> HashMap<String, hijack::map::Map> { vec![\n"
+
+config["maps"].each do |path|
+  m = path.sub(/map\/(.*?)\.json/) do
+    mod = $1.gsub("/", "::").gsub(/(....)-(....)/) { "map#{$1}_#{$2}" }
+    "hijack::map::#{mod}"
+  end
+
+  printf "  (\"%s\".to_string(), %s::new()),", path, m
+end
+
+printf "].into_iter().collect()\n"
+printf "}\n"
+
+printf "pub fn EPISODES() -> HashMap<String, hijack::episode::Episode> { vec![\n"
+
+config["episodes"].each do |path|
+  m = path.sub(/episode\/(.*?)\.json/) do
+    mod = $1.gsub("/", "::").gsub("-", "_")
+    "hijack::episode::#{mod}"
+  end
+
+  printf "  (\"%s\".to_string(), %s::new()),", path, m
+end
+
+printf "].into_iter().collect()\n"
+printf "}\n"

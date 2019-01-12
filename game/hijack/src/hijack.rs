@@ -70,7 +70,7 @@ pub extern "C" fn WinMain() -> i32 {
         let mut session =
             hijack_platform_windows_session_alloc(name.as_ptr(), false, false, 640, 480, 60);
 
-        let mut hijack = hijack::Hijack::new();
+        let mut hijack = hijack::Hijack::new(config::MAPS(), config::EPISODES());
 
         hijack_platform_windows_window_show(session);
 

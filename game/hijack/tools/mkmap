@@ -62,17 +62,13 @@ def generate_object object
 end
 
 printf "pub fn new() -> Map { Map {\n"
-printf "  templates: vec![\n"
-
-map.each do |name, template|
-printf "  (\"%s\".to_string(), MapTemplate {\n", name
-printf "    x: %d,\n", template["x"]
-printf "    y: %d,\n", template["y"]
-printf "    width: %d,\n", template["width"]
-printf "    height: %d,\n", template["height"]
+printf "    x: %d,\n", map["x"]
+printf "    y: %d,\n", map["y"]
+printf "    width: %d,\n", map["width"]
+printf "    height: %d,\n", map["height"]
 printf "    objects: vec![\n"
 
-template["objects"].each do |object|
+map["objects"].each do |object|
   printf "      (\n"
 
   case object["control"]["type"]
@@ -98,9 +94,5 @@ template["objects"].each do |object|
 end
 
 printf "    ],\n"
-printf "  }),\n", name
-end
-
-printf "].into_iter().collect(),\n"
 printf "  }\n"
 printf "}\n"

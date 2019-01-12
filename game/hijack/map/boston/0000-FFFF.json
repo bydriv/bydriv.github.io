@@ -1,0 +1,326 @@
+{
+    "x": 0,
+    "y": 0,
+    "width": 320,
+    "height": 240,
+    "objects": [
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "transport",
+                "from": {
+                    "x": 0,
+                    "y": 240,
+                    "width": 320,
+                    "height": 1
+                },
+                "to": {
+                    "map": "map/boston/0000-0000.json",
+                    "x": 0,
+                    "y": 16
+                }
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "animated",
+                "i": 8,
+                "objects": [
+                    {
+                        "type": "maptip",
+                        "x": -16,
+                        "y": -16,
+                        "z": -1000,
+                        "width": 16,
+                        "height": 16,
+                        "rectangles": [
+                            {
+                                "x": 0,
+                                "y": 0,
+                                "width": 22,
+                                "height": 17
+                            }
+                        ],
+                        "prefix": "pixelart/maptip/water/",
+                        "suffix": "/0.png"
+                    },
+                    {
+                        "type": "maptip",
+                        "x": -16,
+                        "y": -16,
+                        "z": -1000,
+                        "width": 16,
+                        "height": 16,
+                        "rectangles": [
+                            {
+                                "x": 0,
+                                "y": 0,
+                                "width": 22,
+                                "height": 17
+                            }
+                        ],
+                        "prefix": "pixelart/maptip/water/",
+                        "suffix": "/1.png"
+                    },
+                    {
+                        "type": "maptip",
+                        "x": -16,
+                        "y": -16,
+                        "z": -1000,
+                        "width": 16,
+                        "height": 16,
+                        "rectangles": [
+                            {
+                                "x": 0,
+                                "y": 0,
+                                "width": 22,
+                                "height": 17
+                            }
+                        ],
+                        "prefix": "pixelart/maptip/water/",
+                        "suffix": "/2.png"
+                    },
+                    {
+                        "type": "maptip",
+                        "x": -16,
+                        "y": -16,
+                        "z": -1000,
+                        "width": 16,
+                        "height": 16,
+                        "rectangles": [
+                            {
+                                "x": 0,
+                                "y": 0,
+                                "width": 22,
+                                "height": 17
+                            }
+                        ],
+                        "prefix": "pixelart/maptip/water/",
+                        "suffix": "/3.png"
+                    },
+                    {
+                        "type": "maptip",
+                        "x": -16,
+                        "y": -16,
+                        "z": -1000,
+                        "width": 16,
+                        "height": 16,
+                        "rectangles": [
+                            {
+                                "x": 0,
+                                "y": 0,
+                                "width": 22,
+                                "height": 17
+                            }
+                        ],
+                        "prefix": "pixelart/maptip/water/",
+                        "suffix": "/4.png"
+                    },
+                    {
+                        "type": "maptip",
+                        "x": -16,
+                        "y": -16,
+                        "z": -1000,
+                        "width": 16,
+                        "height": 16,
+                        "rectangles": [
+                            {
+                                "x": 0,
+                                "y": 0,
+                                "width": 22,
+                                "height": 17
+                            }
+                        ],
+                        "prefix": "pixelart/maptip/water/",
+                        "suffix": "/5.png"
+                    },
+                    {
+                        "type": "maptip",
+                        "x": -16,
+                        "y": -16,
+                        "z": -1000,
+                        "width": 16,
+                        "height": 16,
+                        "rectangles": [
+                            {
+                                "x": 0,
+                                "y": 0,
+                                "width": 22,
+                                "height": 17
+                            }
+                        ],
+                        "prefix": "pixelart/maptip/water/",
+                        "suffix": "/6.png"
+                    },
+                    {
+                        "type": "maptip",
+                        "x": -16,
+                        "y": -16,
+                        "z": -1000,
+                        "width": 16,
+                        "height": 16,
+                        "rectangles": [
+                            {
+                                "x": 0,
+                                "y": 0,
+                                "width": 22,
+                                "height": 17
+                            }
+                        ],
+                        "prefix": "pixelart/maptip/water/",
+                        "suffix": "/7.png"
+                    }
+                ]
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": 0,
+                "y": 0,
+                "z": -1000,
+                "width": 16,
+                "height": 16,
+                "rectangles": [
+                    {
+                        "x": 6,
+                        "y": -1,
+                        "width": 8,
+                        "height": 17
+                    }
+                ],
+                "prefix": "pixelart/maptip/asphalt/",
+                "suffix": ".png"
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": 0,
+                "y": 0,
+                "z": -1000,
+                "width": 16,
+                "height": 16,
+                "rectangles": [
+                    {
+                        "x": 3,
+                        "y": -1,
+                        "width": 4,
+                        "height": 17
+                    },
+                    {
+                        "x": 13,
+                        "y": -1,
+                        "width": 4,
+                        "height": 17
+                    }
+                ],
+                "prefix": "pixelart/maptip/mortar/",
+                "suffix": ".png"
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": 64,
+                "y": 56,
+                "z": -1000,
+                "width": 32,
+                "height": 128,
+                "rectangles": [
+                    {
+                        "x": 0,
+                        "y": 0,
+                        "width": 1,
+                        "height": 1
+                    }
+                ],
+                "prefix": "pixelart/maptip/halfway-to-hell/left/",
+                "suffix": ".png"
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": 224,
+                "y": 56,
+                "z": -1000,
+                "width": 32,
+                "height": 128,
+                "rectangles": [
+                    {
+                        "x": 0,
+                        "y": 0,
+                        "width": 1,
+                        "height": 1
+                    }
+                ],
+                "prefix": "pixelart/maptip/halfway-to-hell/right/",
+                "suffix": ".png"
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": 92,
+                "y": 0,
+                "z": -1000,
+                "width": 32,
+                "height": 32,
+                "rectangles": [
+                    {
+                        "x": 0,
+                        "y": 0,
+                        "width": 1,
+                        "height": 8
+                    }
+                ],
+                "prefix": "pixelart/maptip/street-light/right/",
+                "suffix": ".png"
+            }
+        },
+        {
+            "control": {
+                "type": "immovable"
+            },
+            "object": {
+                "type": "maptip",
+                "x": 196,
+                "y": 0,
+                "z": -1000,
+                "width": 32,
+                "height": 32,
+                "rectangles": [
+                    {
+                        "x": 0,
+                        "y": 0,
+                        "width": 1,
+                        "height": 8
+                    }
+                ],
+                "prefix": "pixelart/maptip/street-light/left/",
+                "suffix": ".png"
+            }
+        }
+    ]
+}

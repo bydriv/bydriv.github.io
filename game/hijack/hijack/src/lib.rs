@@ -8,11 +8,13 @@ pub mod system;
 pub mod text;
 
 use brownfox::Moore;
+use std::rc::Rc;
 use std::collections::HashMap;
 
 #[derive(Clone)]
 pub enum Mode {
     Title,
+    Base,
     Main,
 }
 
@@ -28,6 +30,8 @@ pub struct Hijack {
     episode_objects: Vec<(brownfox::Control<i32>, object::Object)>,
     map_objects: Vec<(brownfox::Control<i32>, object::Object)>,
     flags: HashMap<String, bool>,
+    maps: Rc<HashMap<String, map::Map>>,
+    episodes: Rc<HashMap<String, episode::Episode>>,
     mode: Mode,
 }
 
@@ -52,23 +56,24 @@ pub enum View {
 }
 
 impl Hijack {
-    pub fn new() -> Hijack {
-        let map = map::boston::new();
-        let episode = episode::boston::new();
-        let template = map.templates.get(&episode.map).unwrap();
+    pub fn new(maps: HashMap<String, map::Map>, episodes: HashMap<String, episode::Episode>) -> Hijack {
+        let map = maps.get("map/boston/0000-0000.json").unwrap();
+        let episode = episodes.get("episode/boston.json").unwrap();
 
         Hijack {
             fps: 60,
-            x: template.x,
-            y: template.y,
-            width: template.width,
-            height: template.height,
+            x: map.x,
+            y: map.y,
+            width: map.width,
+            height: map.height,
             clear_condition: episode.clear_condition.clone(),
             cleared: false,
             episode_objects: episode.objects.clone(),
-            map_objects: template.objects.clone(),
+            map_objects: map.objects.clone(),
             flags: HashMap::new(),
             mode: Mode::Title,
+            maps: Rc::new(maps.clone()),
+            episodes: Rc::new(episodes.clone()),
         }
     }
 }
@@ -82,11 +87,16 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
                 let any_button = inputs.len() > 0 && inputs[0].buttons.iter().any(|button| *button);
                 if any_button {
                     let mut other = self.clone();
-                    other.mode = Mode::Main;
+                    other.mode = Mode::Base;
                     other
                 } else {
                     self.clone()
                 }
+            }
+            Mode::Base => {
+                let mut other = self.clone();
+                other.mode = Mode::Main;
+                other
             }
             Mode::Main => {
                 let mut objects = self.episode_objects.clone();
@@ -135,15 +145,14 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
                 for instr in &instrs {
                     match instr {
                         &Instr::Transport(from_x, from_y, ref to_map, to_x, to_y) => {
-                            let map = map::boston::new();
-                            let template = map.templates.get(to_map).unwrap();
+                            let map = self.maps.get(to_map).unwrap();
 
                             return Hijack {
                                 fps: *fps,
-                                x: template.x,
-                                y: template.y,
-                                width: template.width,
-                                height: template.height,
+                                x: map.x,
+                                y: map.y,
+                                width: map.width,
+                                height: map.height,
                                 clear_condition: self.clear_condition.clone(),
                                 cleared: cleared,
                                 episode_objects: episode_objects
@@ -154,9 +163,11 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
                                         )
                                     })
                                     .collect(),
-                                map_objects: template.objects.clone(),
+                                map_objects: map.objects.clone(),
                                 flags: flags,
                                 mode: Mode::Main,
+                                maps: self.maps.clone(),
+                                episodes: self.episodes.clone(),
                             };
                         }
                         &Instr::Flag(ref name, value) => {
@@ -188,6 +199,8 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
                     map_objects: map_objects.collect(),
                     flags: flags,
                     mode: Mode::Main,
+                    maps: self.maps.clone(),
+                    episodes: self.episodes.clone(),
                 }
             }
         }
@@ -214,6 +227,11 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
                     views: views,
                 }
             }
+            Mode::Base => object::Output {
+                instrs: vec![],
+                events: vec![],
+                views: vec![],
+            },
             Mode::Main => {
                 let mut objects = self.episode_objects.clone();
                 objects.append(&mut self.map_objects.clone());

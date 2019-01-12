@@ -2,6 +2,8 @@ extern crate brownfox;
 extern crate hijack;
 extern crate wasm_bindgen;
 
+mod config;
+
 use brownfox::Moore;
 use hijack::*;
 use std::collections::HashMap;
@@ -114,7 +116,7 @@ pub fn view_image_z(i: usize, views: &Views) -> Option<i32> {
 impl Game {
     pub fn new() -> Game {
         Game {
-            hijack: Hijack::new(),
+            hijack: Hijack::new(config::MAPS(), config::EPISODES()),
         }
     }
 }
