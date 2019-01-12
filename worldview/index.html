@@ -21,6 +21,18 @@
     background-color: #00FFFF;
   }
 
+  div#technology:target ~ div#index > div#default-index-group > div#technology-index,
+  div[id^="technology/"]:target ~ div#index > div#default-index-group > div#technology-index {
+    color: #000000;
+    background-color: #00FFFF;
+  }
+
+  div#organization:target ~ div#index > div#default-index-group > div#organization-index,
+  div[id^="organization/"]:target ~ div#index > div#default-index-group > div#organization-index {
+    color: #000000;
+    background-color: #00FFFF;
+  }
+
   div[id="character/teiri"]:target ~ div#index > div#character-index-group > div[id="character/teiri-index"] {
     color: #000000;
     background-color: #FF00FF;
@@ -36,13 +48,56 @@
     background-color: #FF00FF;
   }
 
+  div[id="technology/holoio"]:target ~ div#index > div#technology-index-group > div[id="technology/holoio-index"] {
+    color: #000000;
+    background-color: #FF00FF;
+  }
+
+  div[id="organization/clockwork"]:target ~ div#index > div#organization-index-group > div[id="organization/clockwork-index"] {
+    color: #000000;
+    background-color: #FF00FF;
+  }
+
+  div[id="organization/xiandan-zhiyao"]:target ~ div#index > div#organization-index-group > div[id="organization/xiandan-zhiyao-index"] {
+    color: #000000;
+    background-color: #FF00FF;
+  }
+
   div#character:target ~ div#index > div#character-index-group,
   div[id^="character/"]:target ~ div#index > div#character-index-group {
     height: auto;
     opacity: 1;
   }
 
+  div#technology:target ~ div#index > div#technology-index-group,
+  div[id^="technology/"]:target ~ div#index > div#technology-index-group {
+    height: auto;
+    opacity: 1;
+  }
+
+  div#organization:target ~ div#index > div#organization-index-group,
+  div[id^="organization/"]:target ~ div#index > div#organization-index-group {
+    height: auto;
+    opacity: 1;
+  }
+
   div#character:target ~ div#contents > div#character-contents {
+    max-height: none;
+
+    top: 0;
+    z-index: -1000;
+    opacity: 1;
+  }
+
+  div#technology:target ~ div#contents > div#technology-contents {
+    max-height: none;
+
+    top: 0;
+    z-index: -1000;
+    opacity: 1;
+  }
+
+  div#organization:target ~ div#contents > div#organization-contents {
     max-height: none;
 
     top: 0;
@@ -73,6 +128,30 @@
     z-index: -1000;
     opacity: 1;
   }
+
+  div[id="technology/holoio"]:target ~ div#contents > div[id="technology/holoio-contents"] {
+    max-height: none;
+
+    top: 0;
+    z-index: -1000;
+    opacity: 1;
+  }
+
+  div[id="organization/clockwork"]:target ~ div#contents > div[id="organization/clockwork-contents"] {
+    max-height: none;
+
+    top: 0;
+    z-index: -1000;
+    opacity: 1;
+  }
+
+  div[id="organization/xiandan-zhiyao"]:target ~ div#contents > div[id="organization/xiandan-zhiyao-contents"] {
+    max-height: none;
+
+    top: 0;
+    z-index: -1000;
+    opacity: 1;
+  }
 </style>
 
 <div id="container">
@@ -81,6 +160,11 @@
   <div id="character/teiri" class="anchor"></div>
   <div id="character/verity" class="anchor"></div>
   <div id="character/emily" class="anchor"></div>
+  <div id="technology" class="anchor"></div>
+  <div id="technology/holoio" class="anchor"></div>
+  <div id="organization" class="anchor"></div>
+  <div id="organization/clockwork" class="anchor"></div>
+  <div id="organization/xiandan-zhiyao" class="anchor"></div>
 
   <div id="hd"></div>
   <h1>worldview</h1>
@@ -89,11 +173,20 @@
     <div id="default-index-group" class="default level-0 index-group">
       <div id="default-index" class="default index"><a href="#home">HOME</a></div>
       <div id="character-index" class="index"><a href="#character">CHARACTER</a></div>
+      <div id="technology-index" class="index"><a href="#technology">TECHNOLOGY</a></div>
+      <div id="organization-index" class="index"><a href="#organization">ORGANIZATION</a></div>
     </div>
     <div id="character-index-group" class="level-1 index-group">
       <div id="character/teiri-index" class="index"><a href="#character/teiri">Teiri</a></div>
       <div id="character/verity-index" class="index"><a href="#character/verity">Verity</a></div>
       <div id="character/emily-index" class="index"><a href="#character/emily">Emily</a></div>
+    </div>
+    <div id="technology-index-group" class="level-1 index-group">
+      <div id="technology/holoio-index" class="index"><a href="#technology/holoio">Holo I/O</a></div>
+    </div>
+    <div id="organization-index-group" class="level-1 index-group">
+      <div id="organization/clockwork-index" class="index"><a href="#organization/clockwork">Clockwork</a></div>
+      <div id="organization/xiandan-zhiyao-index" class="index"><a href="#organization/xiandan-zhiyao">仙丹製藥</a></div>
     </div>
   </div>
 
@@ -118,6 +211,36 @@
       <img src="/img/emily.png">
       <div style="display: inline-block;">
         <h2>Emily &quot;Emma&quot; Rivers</h2>
+      </div>
+    </div>
+    <div id="technology-contents" class="contents">
+    </div>
+    <div id="technology/holoio-contents" class="contents">
+      <img src="teiri0003_384x384.gif">
+      <div style="display: inline-block; max-width: 480px;">
+        <h2>Holo I/O</h2>
+        <p><a href="#organization/clockwork">Clockwork</a>社の製品。</p>
+        <h3>History</h3>
+        <p>当初は<strong>Hands-Free General Input</strong>と仮称され、腕輪型のエッジデバイスで画像処理をして指先の動きを感知することにより、両手が自由になる入力デバイスとして開発が進められていた。つまり当時はキーボードやマウスのような位置づけであり、出力デバイスとしての用途は考慮していなかった。しかし株主総会でホログラムを表示することが決定し、現在のような入出力デバイスに方針転換することとなった。</p>
+      </div>
+    </div>
+    <div id="organization-contents" class="contents">
+    </div>
+    <div id="organization/clockwork-contents" class="contents">
+      <div style="display: inline-block;">
+        <h2>Clockwork</h2>
+        <p>
+          カリフォルニアに本社を置くハードウェアメーカー。
+        </p>
+        <h3>Products</h3>
+        <ul>
+          <li><a href="#technology/holoio">Holo I/O</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="organization/xiandan-zhiyao-contents" class="contents">
+      <div style="display: inline-block;">
+        <h2>仙丹製藥</h2>
       </div>
     </div>
   </div>
