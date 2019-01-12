@@ -2,13 +2,15 @@ use super::*;
 
 #[derive(Clone)]
 pub struct Animated {
+    id: String,
     objects: Vec<Object>,
     i: i32,
     frame_count: brownfox::FrameCount<i32>,
 }
 
-pub fn new(i: i32, objects: Vec<Object>) -> Animated {
+pub fn new(id: String, i: i32, objects: Vec<Object>) -> Animated {
     Animated {
+        id: id,
         objects: objects,
         i: i,
         frame_count: brownfox::FrameCount::new(0),
@@ -17,12 +19,11 @@ pub fn new(i: i32, objects: Vec<Object>) -> Animated {
 
 impl brownfox::Moore<Input, Output> for Animated {
     fn transit(&self, input: &Input) -> Animated {
-        Animated {
-            objects: self.objects.transit(input),
-            i: self.i,
-            frame_count: (0..60 / input.previous.fps)
-                .fold(self.frame_count.clone(), |control, _| control.transit(&())),
-        }
+        let mut other = self.clone();
+        other.objects = other.objects.transit(input);
+        other.frame_count = (0..60 / input.previous.fps)
+            .fold(self.frame_count.clone(), |control, _| control.transit(&()));
+        other
     }
 
     fn output(&self) -> Output {
@@ -32,6 +33,10 @@ impl brownfox::Moore<Input, Output> for Animated {
 }
 
 impl Animated {
+    pub fn id(&self) -> String {
+        self.id.clone()
+    }
+
     pub fn x(&self) -> i32 {
         self.objects[(self.frame_count.output() / self.i % self.objects.len() as i32) as usize].x()
     }

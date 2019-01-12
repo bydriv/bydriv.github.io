@@ -18,6 +18,7 @@ enum Direction {
 #[derive(Clone)]
 pub struct NPC {
     frame_count: brownfox::FrameCount<i32>,
+    id: String,
     x: i32,
     y: i32,
     z: i32,
@@ -26,9 +27,10 @@ pub struct NPC {
     name: String,
 }
 
-pub fn new(x: i32, y: i32, z: i32, name: String) -> NPC {
+pub fn new(id: String, x: i32, y: i32, z: i32, name: String) -> NPC {
     NPC {
         frame_count: brownfox::FrameCount::new(0),
+        id: id,
         x: x,
         y: y,
         z: z,
@@ -98,6 +100,10 @@ fn string_of_direction(direction: &Direction) -> String {
 }
 
 impl NPC {
+    pub fn id(&self) -> String {
+        self.id.clone()
+    }
+
     pub fn x(&self) -> i32 {
         self.x
     }

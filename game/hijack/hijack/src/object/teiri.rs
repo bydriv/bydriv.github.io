@@ -23,6 +23,7 @@ struct Cursor {
 #[derive(Clone)]
 pub struct Teiri {
     frame_count: brownfox::FrameCount<i32>,
+    id: String,
     x: i32,
     y: i32,
     z: i32,
@@ -35,9 +36,10 @@ pub struct Teiri {
     drones: Vec<Object>,
 }
 
-pub fn new(x: i32, y: i32, z: i32) -> Teiri {
+pub fn new(id: String, x: i32, y: i32, z: i32) -> Teiri {
     Teiri {
         frame_count: brownfox::FrameCount::new(0),
+        id: id,
         x: x,
         y: y,
         z: z,
@@ -310,6 +312,10 @@ impl Teiri {
             Pose::Walk => self.y,
             Pose::Hijack => self.y - 8,
         }
+    }
+
+    pub fn id(&self) -> String {
+        self.id.clone()
     }
 
     pub fn x(&self) -> i32 {

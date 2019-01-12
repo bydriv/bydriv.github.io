@@ -11,6 +11,7 @@ pub enum Direction {
 
 #[derive(Clone)]
 pub struct Shot {
+    id: String,
     frame_count: brownfox::FrameCount<i32>,
     x: i32,
     y: i32,
@@ -19,9 +20,10 @@ pub struct Shot {
     pub disabled: bool,
 }
 
-pub fn new(x: i32, y: i32, z: i32, direction: Direction) -> Shot {
+pub fn new(id: String, x: i32, y: i32, z: i32, direction: Direction) -> Shot {
     Shot {
         frame_count: brownfox::FrameCount::new(0),
+        id: id,
         x: x,
         y: y,
         z: z,
@@ -95,6 +97,10 @@ fn string_of_direction(direction: &Direction) -> String {
 }
 
 impl Shot {
+    pub fn id(&self) -> String {
+        self.id.clone()
+    }
+
     pub fn transport(&self, from_x: i32, from_y: i32, to_x: i32, to_y: i32) -> Shot {
         let mut other = self.clone();
         other.x = other.x - from_x + to_x;

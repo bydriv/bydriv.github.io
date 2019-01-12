@@ -218,6 +218,7 @@ pub fn new() -> Map {
                                 ],
                             )),
                             object::Object::NPC(object::npc::new(
+                                "map/boston/0000-0000/mob-0000".to_string(),
                                 40,
                                 60,
                                 0,
@@ -431,6 +432,7 @@ pub fn new() -> Map {
                                 ],
                             )),
                             object::Object::NPC(object::npc::new(
+                                "map/boston/0000-0000/mob-0001".to_string(),
                                 220,
                                 60,
                                 0,
@@ -644,6 +646,7 @@ pub fn new() -> Map {
                                 ],
                             )),
                             object::Object::NPC(object::npc::new(
+                                "map/boston/0000-0000/mob-0002".to_string(),
                                 60,
                                 220,
                                 0,
@@ -697,6 +700,7 @@ pub fn new() -> Map {
                                 ],
                             )),
                             object::Object::Drone(object::drone::new(
+                                "map/boston/0000-0000/drone-0000".to_string(),
                                 120,
                                 90,
                                 0,
@@ -750,6 +754,7 @@ pub fn new() -> Map {
                                 ],
                             )),
                             object::Object::Drone(object::drone::new(
+                                "map/boston/0000-0000/drone-0001".to_string(),
                                 200,
                                 90,
                                 0,
@@ -803,6 +808,7 @@ pub fn new() -> Map {
                                 ],
                             )),
                             object::Object::Drone(object::drone::new(
+                                "map/boston/0000-0000/drone-0002".to_string(),
                                 120,
                                 150,
                                 0,
@@ -856,6 +862,7 @@ pub fn new() -> Map {
                                 ],
                             )),
                             object::Object::Drone(object::drone::new(
+                                "map/boston/0000-0000/drone-0003".to_string(),
                                 200,
                                 150,
                                 0,
@@ -865,6 +872,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Transport(object::transport::new(
+                                "8c7f0aac97c4aa2f".to_string(),
                                 0,
                                 -1,
                                 320,
@@ -877,6 +885,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Transport(object::transport::new(
+                                "b716a675d821ccc0".to_string(),
                                 0,
                                 -1,
                                 1,
@@ -889,6 +898,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Transport(object::transport::new(
+                                "9a4eb343dba252fb".to_string(),
                                 320,
                                 0,
                                 1,
@@ -901,9 +911,11 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Animated(object::animated::new(
+                                "8b7d76c3d8e57d67".to_string(),
                                 8,
                                 vec![
                                     object::Object::Maptip(object::maptip::new(
+                                        "6c74a4099fa1ded3".to_string(),
                                         -16,
                                         -16,
                                         -1500,
@@ -914,6 +926,7 @@ pub fn new() -> Map {
                                         "/0.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "a55951156266d6f2".to_string(),
                                         -16,
                                         -16,
                                         -1500,
@@ -924,6 +937,7 @@ pub fn new() -> Map {
                                         "/1.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "7005b7244c2b3a57".to_string(),
                                         -16,
                                         -16,
                                         -1500,
@@ -934,6 +948,7 @@ pub fn new() -> Map {
                                         "/2.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "e44b3c460e84bdd8".to_string(),
                                         -16,
                                         -16,
                                         -1500,
@@ -944,6 +959,7 @@ pub fn new() -> Map {
                                         "/3.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "f6b29a5845cccd8c".to_string(),
                                         -16,
                                         -16,
                                         -1500,
@@ -954,6 +970,7 @@ pub fn new() -> Map {
                                         "/4.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "6229393a7a4842c1".to_string(),
                                         -16,
                                         -16,
                                         -1500,
@@ -964,6 +981,7 @@ pub fn new() -> Map {
                                         "/5.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "caae7de6cfea4a27".to_string(),
                                         -16,
                                         -16,
                                         -1500,
@@ -974,6 +992,7 @@ pub fn new() -> Map {
                                         "/6.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "8765a8577adfc8ae".to_string(),
                                         -16,
                                         -16,
                                         -1500,
@@ -989,6 +1008,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "916b5e58648d8b51".to_string(),
                                 0,
                                 0,
                                 -1000,
@@ -1002,6 +1022,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "ecf3e6a5d6094219".to_string(),
                                 0,
                                 0,
                                 -1000,
@@ -1018,6 +1039,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "122f6b4d565f9848".to_string(),
                                 0,
                                 0,
                                 -1000,
@@ -1038,6 +1060,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "164e1b09a5ee9794".to_string(),
                                 92,
                                 0,
                                 -1000,
@@ -1054,6 +1077,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "52d08735e4513d0".to_string(),
                                 196,
                                 0,
                                 -1000,
@@ -1070,6 +1094,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "d52692f3f5081ec5".to_string(),
                                 0,
                                 80,
                                 -1000,
@@ -1086,6 +1111,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "c73547fe23ee074f".to_string(),
                                 0,
                                 180,
                                 -1000,
@@ -1102,6 +1128,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "deb91dafdebe09c0".to_string(),
                                 -16,
                                 0,
                                 -1000,
@@ -1120,6 +1147,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "fa86bb52793e6063".to_string(),
                                 256,
                                 64,
                                 1000,
@@ -1133,6 +1161,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "cc95a7d8cd087cb1".to_string(),
                                 256,
                                 64,
                                 1000,
@@ -1157,6 +1186,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Transport(object::transport::new(
+                                "762382f3853e031d".to_string(),
                                 0,
                                 240,
                                 320,
@@ -1169,9 +1199,11 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Animated(object::animated::new(
+                                "c7d0c293adcb0c93".to_string(),
                                 8,
                                 vec![
                                     object::Object::Maptip(object::maptip::new(
+                                        "1e473b8eb87b61a7".to_string(),
                                         -16,
                                         -16,
                                         -1000,
@@ -1182,6 +1214,7 @@ pub fn new() -> Map {
                                         "/0.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "a3d1dd2094ff3fc1".to_string(),
                                         -16,
                                         -16,
                                         -1000,
@@ -1192,6 +1225,7 @@ pub fn new() -> Map {
                                         "/1.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "24b2cd0989914ab9".to_string(),
                                         -16,
                                         -16,
                                         -1000,
@@ -1202,6 +1236,7 @@ pub fn new() -> Map {
                                         "/2.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "f1d5d27fc234a220".to_string(),
                                         -16,
                                         -16,
                                         -1000,
@@ -1212,6 +1247,7 @@ pub fn new() -> Map {
                                         "/3.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "8597da1f1b1cc2ca".to_string(),
                                         -16,
                                         -16,
                                         -1000,
@@ -1222,6 +1258,7 @@ pub fn new() -> Map {
                                         "/4.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "6a2748f4793de097".to_string(),
                                         -16,
                                         -16,
                                         -1000,
@@ -1232,6 +1269,7 @@ pub fn new() -> Map {
                                         "/5.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "43b9eaa32fb379fe".to_string(),
                                         -16,
                                         -16,
                                         -1000,
@@ -1242,6 +1280,7 @@ pub fn new() -> Map {
                                         "/6.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "c6342dcbbca6ab72".to_string(),
                                         -16,
                                         -16,
                                         -1000,
@@ -1257,6 +1296,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "74c644b7376fd81c".to_string(),
                                 0,
                                 0,
                                 -1000,
@@ -1270,6 +1310,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "9184e322229da880".to_string(),
                                 0,
                                 0,
                                 -1000,
@@ -1286,6 +1327,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "4cf688052fae7a4".to_string(),
                                 64,
                                 56,
                                 -1000,
@@ -1299,6 +1341,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "9e1d5c3526511785".to_string(),
                                 224,
                                 56,
                                 -1000,
@@ -1312,6 +1355,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "9cb24e2638ea0de8".to_string(),
                                 92,
                                 0,
                                 -1000,
@@ -1325,6 +1369,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "9def62f462f0f111".to_string(),
                                 196,
                                 0,
                                 -1000,
@@ -1349,6 +1394,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Transport(object::transport::new(
+                                "f199794fe710b184".to_string(),
                                 320,
                                 0,
                                 1,
@@ -1361,9 +1407,11 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Animated(object::animated::new(
+                                "ae8bc669732fec2a".to_string(),
                                 8,
                                 vec![
                                     object::Object::Maptip(object::maptip::new(
+                                        "5c08b5ba9cf1ba1f".to_string(),
                                         -16,
                                         -16,
                                         -1500,
@@ -1374,6 +1422,7 @@ pub fn new() -> Map {
                                         "/0.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "6fe15378e7005101".to_string(),
                                         -16,
                                         -16,
                                         -1500,
@@ -1384,6 +1433,7 @@ pub fn new() -> Map {
                                         "/1.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "b297f541196a6fe7".to_string(),
                                         -16,
                                         -16,
                                         -1500,
@@ -1394,6 +1444,7 @@ pub fn new() -> Map {
                                         "/2.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "f6aefa9f8456839".to_string(),
                                         -16,
                                         -16,
                                         -1500,
@@ -1404,6 +1455,7 @@ pub fn new() -> Map {
                                         "/3.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "aab13923a7342f66".to_string(),
                                         -16,
                                         -16,
                                         -1500,
@@ -1414,6 +1466,7 @@ pub fn new() -> Map {
                                         "/4.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "abaeec772bc0bb0b".to_string(),
                                         -16,
                                         -16,
                                         -1500,
@@ -1424,6 +1477,7 @@ pub fn new() -> Map {
                                         "/5.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "35dba1ae5bafdc52".to_string(),
                                         -16,
                                         -16,
                                         -1500,
@@ -1434,6 +1488,7 @@ pub fn new() -> Map {
                                         "/6.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "2101505bc02cf780".to_string(),
                                         -16,
                                         -16,
                                         -1500,
@@ -1449,6 +1504,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "50bfe98e9b9aca63".to_string(),
                                 0,
                                 0,
                                 -1000,
@@ -1462,6 +1518,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "5d1c263553364b8c".to_string(),
                                 0,
                                 0,
                                 -1000,
@@ -1475,6 +1532,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "91f86a7909d63faa".to_string(),
                                 0,
                                 0,
                                 -1000,
@@ -1491,6 +1549,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "70483054a25fc8cb".to_string(),
                                 0,
                                 80,
                                 -1000,
@@ -1504,6 +1563,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "fd061144f57db306".to_string(),
                                 0,
                                 180,
                                 -1000,
@@ -1517,6 +1577,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "1a1f9bc4a71d442f".to_string(),
                                 -16,
                                 0,
                                 -1000,
@@ -1541,6 +1602,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Transport(object::transport::new(
+                                "3578f27fa29337f4".to_string(),
                                 0,
                                 -1,
                                 1,
@@ -1553,9 +1615,11 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Animated(object::animated::new(
+                                "294b9483fecbf3cc".to_string(),
                                 8,
                                 vec![
                                     object::Object::Maptip(object::maptip::new(
+                                        "a7321b6494f424b4".to_string(),
                                         -16,
                                         -16,
                                         -1500,
@@ -1566,6 +1630,7 @@ pub fn new() -> Map {
                                         "/0.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "40d7b7e86a140f4e".to_string(),
                                         -16,
                                         -16,
                                         -1500,
@@ -1576,6 +1641,7 @@ pub fn new() -> Map {
                                         "/1.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "7760248f7985c694".to_string(),
                                         -16,
                                         -16,
                                         -1500,
@@ -1586,6 +1652,7 @@ pub fn new() -> Map {
                                         "/2.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "3e92ace39f9e5bba".to_string(),
                                         -16,
                                         -16,
                                         -1500,
@@ -1596,6 +1663,7 @@ pub fn new() -> Map {
                                         "/3.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "28b23b175687aacf".to_string(),
                                         -16,
                                         -16,
                                         -1500,
@@ -1606,6 +1674,7 @@ pub fn new() -> Map {
                                         "/4.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "1c418b8dacbc9175".to_string(),
                                         -16,
                                         -16,
                                         -1500,
@@ -1616,6 +1685,7 @@ pub fn new() -> Map {
                                         "/5.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "a805375551342230".to_string(),
                                         -16,
                                         -16,
                                         -1500,
@@ -1626,6 +1696,7 @@ pub fn new() -> Map {
                                         "/6.png".to_string(),
                                     )),
                                     object::Object::Maptip(object::maptip::new(
+                                        "235ff531c741a645".to_string(),
                                         -16,
                                         -16,
                                         -1500,
@@ -1641,6 +1712,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "325338a9f31716a3".to_string(),
                                 0,
                                 0,
                                 -1000,
@@ -1654,6 +1726,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "5e64c5c0a99b5c5f".to_string(),
                                 0,
                                 0,
                                 -1000,
@@ -1667,6 +1740,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "d22c9cc503796e5e".to_string(),
                                 0,
                                 0,
                                 -1000,
@@ -1683,6 +1757,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "18dba1009f72d771".to_string(),
                                 0,
                                 80,
                                 -1000,
@@ -1696,6 +1771,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "d6838eb2ac74f524".to_string(),
                                 0,
                                 180,
                                 -1000,
@@ -1709,6 +1785,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "1899e7a2f8d16330".to_string(),
                                 -16,
                                 0,
                                 -1000,
@@ -1722,6 +1799,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "f9f93f5de0d14983".to_string(),
                                 -64,
                                 64,
                                 1000,
@@ -1735,6 +1813,7 @@ pub fn new() -> Map {
                         (
                             brownfox::Control::Immovable(brownfox::Immovable::new()),
                             object::Object::Maptip(object::maptip::new(
+                                "77f986628276be2a".to_string(),
                                 -64,
                                 64,
                                 1000,

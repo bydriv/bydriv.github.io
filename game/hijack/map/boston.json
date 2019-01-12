@@ -114,6 +114,7 @@
                 },
                 "object": {
                     "type": "npc",
+                    "id": "map/boston/0000-0000/mob-0000",
                     "x": 40,
                     "y": 60,
                     "z": 0,
@@ -229,6 +230,7 @@
                 },
                 "object": {
                     "type": "npc",
+                    "id": "map/boston/0000-0000/mob-0001",
                     "x": 220,
                     "y": 60,
                     "z": 0,
@@ -344,6 +346,7 @@
                 },
                 "object": {
                     "type": "npc",
+                    "id": "map/boston/0000-0000/mob-0002",
                     "x": 60,
                     "y": 220,
                     "z": 0,
@@ -379,6 +382,7 @@
                 },
                 "object": {
                     "type": "drone",
+                    "id": "map/boston/0000-0000/drone-0000",
                     "x": 120,
                     "y": 90,
                     "z": 0,
@@ -414,6 +418,7 @@
                 },
                 "object": {
                     "type": "drone",
+                    "id": "map/boston/0000-0000/drone-0001",
                     "x": 200,
                     "y": 90,
                     "z": 0,
@@ -449,6 +454,7 @@
                 },
                 "object": {
                     "type": "drone",
+                    "id": "map/boston/0000-0000/drone-0002",
                     "x": 120,
                     "y": 150,
                     "z": 0,
@@ -484,6 +490,7 @@
                 },
                 "object": {
                     "type": "drone",
+                    "id": "map/boston/0000-0000/drone-0003",
                     "x": 200,
                     "y": 150,
                     "z": 0,

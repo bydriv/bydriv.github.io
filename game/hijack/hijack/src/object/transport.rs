@@ -3,6 +3,7 @@ use brownfox::Shape;
 
 #[derive(Clone)]
 pub struct Transport {
+    id: String,
     from_x: i32,
     from_y: i32,
     from_width: i32,
@@ -14,6 +15,7 @@ pub struct Transport {
 }
 
 pub fn new(
+    id: String,
     from_x: i32,
     from_y: i32,
     from_width: i32,
@@ -23,6 +25,7 @@ pub fn new(
     to_y: i32,
 ) -> Transport {
     Transport {
+        id: id,
         from_x: from_x,
         from_y: from_y,
         from_width: from_width,
@@ -83,6 +86,10 @@ impl brownfox::Moore<Input, Output> for Transport {
 }
 
 impl Transport {
+    pub fn id(&self) -> String {
+        self.id.clone()
+    }
+
     pub fn x(&self) -> i32 {
         self.from_x
     }

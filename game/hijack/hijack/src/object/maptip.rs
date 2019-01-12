@@ -4,6 +4,7 @@ use brownfox::Shape;
 
 #[derive(Clone)]
 pub struct Maptip {
+    id: String,
     x: i32,
     y: i32,
     z: i32,
@@ -16,6 +17,7 @@ pub struct Maptip {
 }
 
 pub fn new(
+    id: String,
     x: i32,
     y: i32,
     z: i32,
@@ -26,6 +28,7 @@ pub fn new(
     suffix: String,
 ) -> Maptip {
     let mut maptip = Maptip {
+        id: id,
         x: x,
         y: y,
         z: z,
@@ -63,6 +66,10 @@ impl brownfox::Moore<Input, Output> for Maptip {
 }
 
 impl Maptip {
+    pub fn id(&self) -> String {
+        self.id.clone()
+    }
+
     pub fn x(&self) -> i32 {
         self.x
     }

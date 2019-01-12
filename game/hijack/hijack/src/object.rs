@@ -53,6 +53,17 @@ impl brownfox::Moore<Input, Output> for Object {
 }
 
 impl Object {
+    pub fn id(&self) -> String {
+        match self {
+            Object::Teiri(teiri) => teiri.id(),
+            Object::NPC(npc) => npc.id(),
+            Object::Drone(drone) => drone.id(),
+            Object::Maptip(maptip) => maptip.id(),
+            Object::Animated(animated) => animated.id(),
+            Object::Transport(transport) => transport.id(),
+        }
+    }
+
     pub fn x(&self) -> i32 {
         match self {
             Object::Teiri(teiri) => teiri.x(),

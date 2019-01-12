@@ -2,6 +2,8 @@
 
 require "json"
 
+RAND = Random.new(0)
+
 episode = JSON.parse ARGF.read
 
 printf "use super::*;\n"
@@ -11,10 +13,15 @@ printf "  Episode {\n"
 printf "    map: \"%s\".to_string(),\n", episode["map"]
 printf "    objects: vec![\n"
 
+def generate_id
+  "%x" % RAND.rand(0x10000000000000000)
+end
+
 def generate_object object
   case object["type"]
   when "maptip"
     printf "        object::Object::Maptip(object::maptip::new(\n"
+    printf "          \"%s\".to_string(),\n", (object["id"] || generate_id)
     printf "          %d,\n", object["x"]
     printf "          %d,\n", object["y"]
     printf "          %d,\n", object["z"]
@@ -29,13 +36,14 @@ def generate_object object
     printf "          \"%s\".to_string(),\n", object["suffix"]
     printf "        ))\n"
   when "teiri"
-    printf "        object::Object::Teiri(object::teiri::new(%d, %d, %d))\n", object["x"], object["y"], object["z"]
+    printf "        object::Object::Teiri(object::teiri::new(\"%s\".to_string(), %d, %d, %d))\n", (object["id"] || generate_id), object["x"], object["y"], object["z"]
   when "npc"
-    printf "        object::Object::NPC(object::npc::new(%d, %d, %d, \"%s\".to_string()))\n", object["x"], object["y"], object["z"], object["name"]
+    printf "        object::Object::NPC(object::npc::new(\"%s\".to_string(), %d, %d, %d, \"%s\".to_string()))\n", (object["id"] || generate_id), object["x"], object["y"], object["z"], object["name"]
   when "drone"
-    printf "        object::Object::Drone(object::drone::new(%d, %d, %d, \"%s\".to_string()))\n", object["x"], object["y"], object["z"], object["name"]
+    printf "        object::Object::Drone(object::drone::new(\"%s\".to_string(), %d, %d, %d, \"%s\".to_string()))\n", (object["id"] || generate_id), object["x"], object["y"], object["z"], object["name"]
   when "animated"
     printf "        object::Object::Animated(object::animated::new(\n"
+    printf "          \"%s\".to_string(),\n", (object["id"] || generate_id)
     printf "          %d,\n", object["i"]
     printf "          vec![\n", object["i"]
     object["objects"].each do |obj|
@@ -45,6 +53,7 @@ def generate_object object
     printf "        ])),\n"
   when "transport"
     printf "        object::Object::Transport(object::transport::new(\n"
+    printf "          \"%s\".to_string(),\n", (object["id"] || generate_id)
     printf "          %d,\n", object["from"]["x"]
     printf "          %d,\n", object["from"]["y"]
     printf "          %d,\n", object["from"]["width"]

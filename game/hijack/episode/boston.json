@@ -8,6 +8,7 @@
             },
             "object": {
                 "type": "teiri",
+                "id": "teiri",
                 "x": 64,
                 "y": 32,
                 "z": 0

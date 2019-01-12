@@ -17,6 +17,7 @@ enum Direction {
 #[derive(Clone)]
 pub struct Drone {
     frame_count: brownfox::FrameCount<i32>,
+    id: String,
     x: i32,
     y: i32,
     z: i32,
@@ -32,9 +33,10 @@ pub struct Drone {
     disabled: bool,
 }
 
-pub fn new(x: i32, y: i32, z: i32, name: String) -> Drone {
+pub fn new(id: String, x: i32, y: i32, z: i32, name: String) -> Drone {
     Drone {
         frame_count: brownfox::FrameCount::new(0),
+        id: id,
         x: x,
         y: y,
         z: z,
@@ -96,6 +98,7 @@ impl brownfox::Moore<Input, Output> for Drone {
 
         if button1 {
             other.shots.push(shot::new(
+                format!("{}/{}", self.id, self.frame_count.output()),
                 other.x
                     + 7
                     + match other.direction {
@@ -191,6 +194,10 @@ fn string_of_direction(direction: &Direction) -> String {
 }
 
 impl Drone {
+    pub fn id(&self) -> String {
+        self.id.clone()
+    }
+
     pub fn x(&self) -> i32 {
         self.x
     }
