@@ -61,7 +61,7 @@ impl brownfox::Moore<Input, Output> for Drone {
             return other;
         }
 
-        if let Some(true) = input.previous.flags.get(&format!("{}/disabled", self.id)) {
+        if let Some(true) = input.previous.flags().get(&format!("{}/disabled", self.id)) {
             other.disabled = true;
             return other;
         }

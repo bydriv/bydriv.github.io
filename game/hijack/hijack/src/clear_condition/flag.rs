@@ -14,7 +14,7 @@ impl Flag {
 
     pub fn satisfy(&self, hijack: &Hijack) -> bool {
         for (name, value) in self.flags.iter() {
-            if hijack.flags.get(name) != Some(value) {
+            if hijack.flags().get(name) != Some(value) {
                 return false;
             }
         }
