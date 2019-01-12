@@ -61,6 +61,11 @@ impl brownfox::Moore<Input, Output> for Drone {
             return other;
         }
 
+        if let Some(true) = input.previous.flags.get(&format!("{}/disabled", self.id)) {
+            other.disabled = true;
+            return other;
+        }
+
         if other.durability_damage >= other.durability {
             other.disabled = true;
             return other;
@@ -139,7 +144,7 @@ impl brownfox::Moore<Input, Output> for Drone {
     fn output(&self) -> Output {
         if self.disabled {
             return Output {
-                events: vec![],
+                events: vec![Event::Flag(format!("{}/disabled", self.id), true)],
                 views: vec![],
             };
         }

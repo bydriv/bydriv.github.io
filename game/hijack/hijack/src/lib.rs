@@ -6,6 +6,7 @@ pub mod object;
 pub mod system;
 pub mod text;
 
+use std::collections::HashMap;
 use brownfox::Moore;
 
 #[derive(Clone)]
@@ -24,6 +25,7 @@ pub struct Hijack {
     episode_objects: Vec<(brownfox::Control<i32>, object::Object)>,
     map_objects: Vec<(brownfox::Control<i32>, object::Object)>,
     events: Vec<Event>,
+    flags: HashMap<String, bool>,
     mode: Mode,
 }
 
@@ -35,6 +37,7 @@ pub enum Event {
     Hijack(brownfox::Rectangle<i32>),
     Hijacked(i32, i32, object::Object),
     Attack(brownfox::Rectangle<i32>),
+    Flag(String, bool),
 }
 
 #[derive(Clone, PartialEq)]
@@ -57,6 +60,7 @@ impl Hijack {
             episode_objects: episode.objects.clone(),
             map_objects: template.objects.clone(),
             events: vec![],
+            flags: HashMap::new(),
             mode: Mode::Title,
         }
     }
@@ -112,6 +116,8 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
                 }))
                     as Box<Iterator<Item = (brownfox::Control<i32>, object::Object)>>;
 
+                let mut flags = self.flags.clone();
+
                 for event in &events {
                     match event {
                         &Event::Transport(from_x, from_y, ref to_map, to_x, to_y) => {
@@ -134,8 +140,12 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
                                     .collect(),
                                 map_objects: template.objects.clone(),
                                 events: vec![],
+                                flags: flags,
                                 mode: Mode::Main,
                             };
+                        }
+                        &Event::Flag(ref name, value) => {
+                            flags.insert(name.clone(), value);
                         }
                         _ => {
                             episode_objects = Box::new(
@@ -161,6 +171,7 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
                     episode_objects: episode_objects.collect(),
                     map_objects: map_objects.collect(),
                     events: events.clone(),
+                    flags: flags,
                     mode: Mode::Main,
                 }
             }
