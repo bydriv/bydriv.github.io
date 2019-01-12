@@ -1,13 +1,14 @@
 extern crate brownfox;
 
+pub mod clear_condition;
 pub mod episode;
 pub mod map;
 pub mod object;
 pub mod system;
 pub mod text;
 
-use std::collections::HashMap;
 use brownfox::Moore;
+use std::collections::HashMap;
 
 #[derive(Clone)]
 pub enum Mode {
@@ -22,6 +23,8 @@ pub struct Hijack {
     pub y: i32,
     pub width: i32,
     pub height: i32,
+    clear_condition: clear_condition::ClearCondition,
+    cleared: bool,
     episode_objects: Vec<(brownfox::Control<i32>, object::Object)>,
     map_objects: Vec<(brownfox::Control<i32>, object::Object)>,
     flags: HashMap<String, bool>,
@@ -60,6 +63,8 @@ impl Hijack {
             y: template.y,
             width: template.width,
             height: template.height,
+            clear_condition: episode.clear_condition.clone(),
+            cleared: false,
             episode_objects: episode.objects.clone(),
             map_objects: template.objects.clone(),
             flags: HashMap::new(),
@@ -70,6 +75,8 @@ impl Hijack {
 
 impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
     fn transit(&self, (fps, inputs): &(i32, Vec<brownfox::Input>)) -> Hijack {
+        let cleared = self.clear_condition.satisfy(self);
+
         match self.mode {
             Mode::Title => {
                 let any_button = inputs.len() > 0 && inputs[0].buttons.iter().any(|button| *button);
@@ -137,6 +144,8 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
                                 y: template.y,
                                 width: template.width,
                                 height: template.height,
+                                clear_condition: self.clear_condition.clone(),
+                                cleared: cleared,
                                 episode_objects: episode_objects
                                     .map(|object| {
                                         (
@@ -158,13 +167,11 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
 
                 for event in &events {
                     episode_objects = Box::new(
-                        episode_objects
-                            .map(move |object| (object.0.clone(), object.1.on(event))),
+                        episode_objects.map(move |object| (object.0.clone(), object.1.on(event))),
                     )
                         as Box<Iterator<Item = (brownfox::Control<i32>, object::Object)>>;
                     map_objects = Box::new(
-                        map_objects
-                            .map(move |object| (object.0.clone(), object.1.on(event))),
+                        map_objects.map(move |object| (object.0.clone(), object.1.on(event))),
                     )
                         as Box<Iterator<Item = (brownfox::Control<i32>, object::Object)>>;
                 }
@@ -175,6 +182,8 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
                     y: self.y,
                     width: self.width,
                     height: self.height,
+                    clear_condition: self.clear_condition.clone(),
+                    cleared: cleared,
                     episode_objects: episode_objects.collect(),
                     map_objects: map_objects.collect(),
                     flags: flags,
@@ -208,14 +217,17 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
             Mode::Main => {
                 let mut objects = self.episode_objects.clone();
                 objects.append(&mut self.map_objects.clone());
-
+                let mut views: Vec<View> = objects
+                    .iter()
+                    .flat_map(|object| object.1.output().views)
+                    .collect();
+                if self.cleared {
+                    views.append(&mut text::text(0, 0, 3000, "all clear!".to_string()));
+                }
                 object::Output {
                     instrs: vec![],
                     events: vec![],
-                    views: objects
-                        .iter()
-                        .flat_map(|object| object.1.output().views)
-                        .collect(),
+                    views: views,
                 }
             }
         }

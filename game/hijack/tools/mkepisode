@@ -81,5 +81,17 @@ episode["objects"].each do |object|
 end
 
 printf "    ],\n"
+
+printf "    clear_condition: "
+
+case episode["clear_condition"]["type"]
+when "flag"
+  printf "clear_condition::ClearCondition::Flag(clear_condition::flag::Flag::new(vec![\n"
+  episode["clear_condition"]["flags"].each do |name, value|
+    printf "      (\"%s\".to_string(), %s),", name, value
+  end
+  printf "].into_iter().collect()))"
+end
+
 printf "  }\n"
 printf "}\n"

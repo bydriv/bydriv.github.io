@@ -14,5 +14,14 @@
                 "z": 0
             }
         }
-    ]
+    ],
+    "clear_condition": {
+        "type": "flag",
+        "flags": {
+            "map/boston/0000-0000/drone-0000/disabled": true,
+            "map/boston/0000-0000/drone-0001/disabled": true,
+            "map/boston/0000-0000/drone-0002/disabled": true,
+            "map/boston/0000-0000/drone-0003/disabled": true
+        }
+    }
 }
