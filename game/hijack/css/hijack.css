@@ -10,7 +10,7 @@ div#game, div#game canvas {
     padding: 0;
 }
 
-form#mode {
+form#mode, div#downloads {
     width: 640px;
     margin: 0 auto;
     padding: 0;

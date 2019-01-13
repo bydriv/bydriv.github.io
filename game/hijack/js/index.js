@@ -448,8 +448,44 @@ window.addEventListener("load", async function() {
     const mode = document.getElementById("mode");
     var previousTimestamp = 0;
 
+    var recording = false;
+    var recorder = null;
+
     requestAnimationFrame(function step(timestamp) {
         stats.begin();
+
+        if (!recording && mode["record-mode"].checked) {
+            const canvasStream = onscreen.canvas.captureStream();
+            recorder = new MediaRecorder(canvasStream);
+            const chunks = [];
+
+            recorder.addEventListener("dataavailable", function (e) {
+                chunks.push(e.data);
+            });
+
+            recorder.addEventListener("stop", function () {
+              const blob = new Blob(chunks, {"type": "video/mpeg"});
+              const url = URL.createObjectURL(blob);
+              const video = document.createElement("video");
+              video.src = url;
+              video.controls = true;
+              const a = document.createElement("a");
+              const text = document.createTextNode("download");
+              a.href = url;
+              a.appendChild(text);
+              document.querySelector("#downloads").appendChild(video);
+              document.querySelector("#downloads").appendChild(a);
+              recorder = null;
+            });
+
+            recorder.start();
+            recording = true;
+        }
+
+        if (recording && !mode["record-mode"].checked) {
+            recorder.stop();
+            recording = false;
+        }
 
         var fpsMode = 60;
 
