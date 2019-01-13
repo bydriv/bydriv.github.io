@@ -6,110 +6,7 @@
     "objects": [
         {
             "control": {
-                "type": "repeat",
-                "step": 16,
-                "inputs": [
-                    {
-                        "x": 1,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 1,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": -1,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": -1,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    }
-                ]
+                "type": "immovable"
             },
             "object": {
                 "type": "npc",
@@ -135,105 +32,15 @@
         {
             "control": {
                 "type": "repeat",
-                "step": 16,
+                "step": 64,
                 "inputs": [
-                    {
-                        "x": 0,
-                        "y": -1,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
                     {
                         "x": 1,
                         "y": 0,
                         "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
                     },
                     {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 1,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
                         "x": -1,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
                         "y": 0,
                         "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
                     }
@@ -242,126 +49,35 @@
             "object": {
                 "type": "npc",
                 "id": "map/boston/0000-0000/mob-0001",
-                "x": 50,
-                "y": 70,
+                "x": 20,
+                "y": 80,
                 "z": 0,
-                "name": "pixelart/mob/0001"
+                "name": "pixelart/mob/0001",
+                "talk": [
+                    ["*:つねにうごいてないと",
+                     "おちつかないの"]
+                ]
             }
         },
         {
             "control": {
-                "type": "repeat",
-                "step": 16,
-                "inputs": [
-                    {
-                        "x": -1,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": -1,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 1,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 1,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    },
-                    {
-                        "x": 0,
-                        "y": 0,
-                        "buttons": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-                    }
-                ]
+                "type": "immovable"
             },
             "object": {
                 "type": "npc",
                 "id": "map/boston/0000-0000/mob-0002",
-                "x": 30,
-                "y": 80,
+                "x": 220,
+                "y": 60,
                 "z": 0,
-                "name": "pixelart/mob/0002"
+                "name": "pixelart/mob/0002",
+                "talk": [
+                    ["*:ここのところエマはずっと",
+                     "つきできんむしてるからさ"],
+                    ["*:ちきゅうでくらいぐっすり",
+                     "ねむりたいんじゃない?"],
+                    ["テーリ:ぼくはむしろつきで",
+                     "ねむってみたいかも"]
+                ]
             }
         },
         {

@@ -33,11 +33,11 @@ export class ViewMap {
 free(): void;
 
 }
-export class Views {
+export class Game {
 free(): void;
 
 }
-export class Game {
+export class Views {
 free(): void;
 
 }
