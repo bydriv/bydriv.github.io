@@ -226,9 +226,9 @@ impl brownfox::Moore<Input, Output> for Teiri {
                     ),
                     self.image_x(),
                     self.image_y(),
-                    1100,
+                    2100,
                 ),
-                View::Image("pixelart/effect/dark.png".to_string(), 0, 0, 1000),
+                View::Image("pixelart/effect/dark.png".to_string(), 0, 0, 2000),
             ]
         } else {
             vec![View::Image(
@@ -249,7 +249,7 @@ impl brownfox::Moore<Input, Output> for Teiri {
             views.append(&mut text::text_green(
                 0,
                 (i * 8) as i32,
-                1300,
+                2300,
                 format!(
                     "[{} of {}] Hijacking {}%",
                     (i + 1),
@@ -268,7 +268,7 @@ impl brownfox::Moore<Input, Output> for Teiri {
                 "pixelart/effect/cursor.png".to_string(),
                 cursor.x,
                 cursor.y,
-                1200,
+                2200,
             ));
         }
 
