@@ -38,6 +38,7 @@ pub enum Instr {
     Transport(i32, i32, String, i32, i32),
     Flag(String, bool),
     Mode(mode::Mode),
+    Text(Vec<(String, String)>),
 }
 
 #[derive(Clone, PartialEq)]
@@ -107,6 +108,7 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
                                     .collect(),
                                 map_objects: map.objects.clone(),
                                 flags: flags,
+                                mode: mode::episode::Mode::Normal,
                             }),
                             maps: self.maps.clone(),
                             episodes: self.episodes.clone(),
@@ -118,6 +120,11 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
                 }
                 &Instr::Mode(ref mode) => {
                     other.mode = mode.clone();
+                }
+                &Instr::Text(ref texts) => {
+                    if let mode::Mode::Episode(ref mut episode) = other.mode {
+                        episode.mode = mode::episode::Mode::Text(0, 0, texts.clone());
+                    }
                 }
             }
         }

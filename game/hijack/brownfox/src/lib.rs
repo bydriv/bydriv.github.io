@@ -178,7 +178,11 @@ impl Moore<Vec<Input>, Input> for Player {
     fn transit(&self, inputs: &Vec<Input>) -> Player {
         Player {
             i: self.i,
-            input: inputs[self.i].clone(),
+            input: if self.i < inputs.len() {
+                inputs[self.i].clone()
+            } else {
+                Input::empty()
+            },
         }
     }
 
@@ -209,10 +213,10 @@ impl<N: num::PrimInt> Moore<Vec<Input>, Input> for Repeat<N> {
             if let Some(i) = N::to_usize(&(self.frame_count.output() / self.step % len)) {
                 self.inputs[i].clone()
             } else {
-                panic!("???")
+                Input::empty()
             }
         } else {
-            panic!("???")
+            Input::empty()
         }
     }
 }

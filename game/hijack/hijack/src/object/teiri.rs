@@ -34,6 +34,7 @@ pub struct Teiri {
     cursor: Option<Cursor>,
     hijacking: Vec<(i32, i32)>,
     drones: Vec<Object>,
+    check: bool,
 }
 
 pub fn new(id: String, x: i32, y: i32, z: i32) -> Teiri {
@@ -50,6 +51,7 @@ pub fn new(id: String, x: i32, y: i32, z: i32) -> Teiri {
         cursor: None,
         hijacking: vec![],
         drones: vec![],
+        check: false,
     }
 }
 
@@ -57,6 +59,11 @@ impl brownfox::Moore<Input, Output> for Teiri {
     fn transit(&self, input: &Input) -> Teiri {
         let mut other = self.clone();
         other.hijacking = vec![];
+
+        let button1 = input.inputs.len() > 0
+            && input.inputs[0].buttons.len() > 0
+            && input.inputs[0].buttons[0]
+            && self.frame_count.output() % 8 < (60 / input.previous.fps);
 
         let button5 = input.inputs.len() > 0
             && input.inputs[0].buttons.len() > 4
@@ -67,6 +74,8 @@ impl brownfox::Moore<Input, Output> for Teiri {
             && input.inputs[0].buttons.len() > 5
             && input.inputs[0].buttons[5]
             && self.frame_count.output() % 8 < (60 / input.previous.fps);
+
+        other.check = button1;
 
         if button5 {
             other.combat = false;
@@ -290,6 +299,20 @@ impl brownfox::Moore<Input, Output> for Teiri {
                 events.append(&mut out.events);
                 views.append(&mut out.views);
             }
+        }
+
+        if self.check {
+            let x = match self.direction {
+                Direction::Left => self.x - 16,
+                Direction::Right => self.x + 16,
+                _ => self.x,
+            };
+            let y = match self.direction {
+                Direction::Back => self.y - 16,
+                Direction::Front => self.y + 16,
+                _ => self.y,
+            };
+            events.push(Event::Check(brownfox::Rectangle::new(x, y, 16, 16)));
         }
 
         Output {

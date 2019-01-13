@@ -219,6 +219,28 @@ pub fn new() -> Map {
                     60,
                     0,
                     "pixelart/mob/0000".to_string(),
+                    Some(vec![
+                        (
+                            "*:びっくり　テーリじゃない".to_string(),
+                            "ボストンに　かえってきたの?".to_string(),
+                        ),
+                        (
+                            "テーリ:うん　ひさしぶり！".to_string(),
+                            "いろいろ　ひとだんらくしてさ".to_string(),
+                        ),
+                        (
+                            "*:さしずめ　エマにあいさつ".to_string(),
+                            "ってとこじゃない?".to_string(),
+                        ),
+                        (
+                            "テーリ:おおあたり!でも".to_string(),
+                            "かのじょ　ねぼうしたみたいで".to_string(),
+                        ),
+                        (
+                            "テーリ:じかんつぶしてるとこ".to_string(),
+                            "4ねんぶりだしわるくないかな".to_string(),
+                        ),
+                    ]),
                 )),
             ),
             (
@@ -429,10 +451,11 @@ pub fn new() -> Map {
                 )),
                 object::Object::NPC(object::npc::new(
                     "map/boston/0000-0000/mob-0001".to_string(),
-                    220,
-                    60,
+                    50,
+                    70,
                     0,
                     "pixelart/mob/0001".to_string(),
+                    None,
                 )),
             ),
             (
@@ -643,10 +666,11 @@ pub fn new() -> Map {
                 )),
                 object::Object::NPC(object::npc::new(
                     "map/boston/0000-0000/mob-0002".to_string(),
-                    60,
-                    220,
+                    30,
+                    80,
                     0,
                     "pixelart/mob/0002".to_string(),
+                    None,
                 )),
             ),
             (

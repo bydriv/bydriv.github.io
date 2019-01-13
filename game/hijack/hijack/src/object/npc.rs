@@ -25,9 +25,18 @@ pub struct NPC {
     pose: Pose,
     direction: Direction,
     name: String,
+    talk: Option<Vec<(String, String)>>,
+    checked: bool,
 }
 
-pub fn new(id: String, x: i32, y: i32, z: i32, name: String) -> NPC {
+pub fn new(
+    id: String,
+    x: i32,
+    y: i32,
+    z: i32,
+    name: String,
+    talk: Option<Vec<(String, String)>>,
+) -> NPC {
     NPC {
         frame_count: brownfox::FrameCount::new(0),
         id: id,
@@ -37,6 +46,8 @@ pub fn new(id: String, x: i32, y: i32, z: i32, name: String) -> NPC {
         pose: Pose::Walk,
         direction: Direction::Front,
         name: name,
+        talk: talk,
+        checked: false,
     }
 }
 
@@ -64,6 +75,7 @@ impl brownfox::Moore<Input, Output> for NPC {
             }
         }
 
+        other.checked = false;
         other.frame_count =
             (0..60 / input.previous.fps).fold(other.frame_count, |control, _| control.transit(&()));
 
@@ -71,6 +83,12 @@ impl brownfox::Moore<Input, Output> for NPC {
     }
 
     fn output(&self) -> Output {
+        let mut instrs = vec![];
+        if self.checked {
+            if let Some(ref texts) = self.talk {
+                instrs.push(Instr::Text(texts.clone()));
+            }
+        }
         let mut views = vec![View::Image(
             format!(
                 "{}/walk/{}/{}.png",
@@ -84,7 +102,7 @@ impl brownfox::Moore<Input, Output> for NPC {
         )];
 
         Output {
-            instrs: vec![],
+            instrs: instrs,
             events: vec![],
             views: views,
         }
@@ -117,7 +135,18 @@ impl NPC {
     }
 
     pub fn on(&self, event: &Event) -> NPC {
-        self.clone()
+        let mut other = self.clone();
+        match event {
+            Event::Check(rect) => {
+                if rect.collision(brownfox::Rectangle::new(self.x, self.y, 16, 16)) {
+                    other.checked = true;
+                    other
+                } else {
+                    other
+                }
+            }
+            _ => other,
+        }
     }
 
     pub fn transport(&self, from_x: i32, from_y: i32, to_x: i32, to_y: i32) -> NPC {

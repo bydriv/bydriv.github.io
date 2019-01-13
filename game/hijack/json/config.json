@@ -811,6 +811,9 @@
     ["pixelart/effect/dark.png", [
       ["pixelart/effect/dark.png", [0, 0, 320, 240]]
     ]],
+    ["pixelart/effect/mask.png", [
+      ["pixelart/effect/mask.png", [0, 0, 320, 240]]
+    ]],
     ["pixelart/effect/cursor.png", [
       ["pixelart/effect/cursor.png", [0, 0, 16, 16]]
     ]],

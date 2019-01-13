@@ -34,7 +34,17 @@ def generate_object object
   when "teiri"
     printf "        object::Object::Teiri(object::teiri::new(\"%s\".to_string(), %d, %d, %d))\n", (object["id"] || generate_id), object["x"], object["y"], object["z"]
   when "npc"
-    printf "        object::Object::NPC(object::npc::new(\"%s\".to_string(), %d, %d, %d, \"%s\".to_string()))\n", (object["id"] || generate_id), object["x"], object["y"], object["z"], object["name"]
+    if object["talk"]
+      printf "        object::Object::NPC(object::npc::new(\"%s\".to_string(), %d, %d, %d, \"%s\".to_string(), Some(vec![\n", (object["id"] || generate_id), object["x"], object["y"], object["z"], object["name"]
+      object["talk"].each do |tmp|
+        text1 = tmp[0]
+        text2 = tmp[1]
+        printf "(\"%s\".to_string(), \"%s\".to_string()),", text1, text2
+      end
+      printf "])))\n"
+    else
+      printf "        object::Object::NPC(object::npc::new(\"%s\".to_string(), %d, %d, %d, \"%s\".to_string(), None))\n", (object["id"] || generate_id), object["x"], object["y"], object["z"], object["name"]
+    end
   when "drone"
     printf "        object::Object::Drone(object::drone::new(\"%s\".to_string(), %d, %d, %d, \"%s\".to_string()))\n", (object["id"] || generate_id), object["x"], object["y"], object["z"], object["name"]
   when "animated"

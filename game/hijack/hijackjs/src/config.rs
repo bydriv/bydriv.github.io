@@ -13,9 +13,9 @@ pub struct AssetDefn<'a> {
 pub static SCALE: u32 = 2;
 pub static WIDTH: u32 = 320;
 pub static HEIGHT: u32 = 240;
-pub static ASSET_DEFNS_LEN: usize = 754;
+pub static ASSET_DEFNS_LEN: usize = 755;
 
-pub static ASSET_DEFNS: [AssetDefn; 754] = [
+pub static ASSET_DEFNS: [AssetDefn; 755] = [
     AssetDefn {
         path: "illust/teiri/neutral.png",
         name: "illust/teiri/neutral/middle.png",
@@ -6027,6 +6027,14 @@ pub static ASSET_DEFNS: [AssetDefn; 754] = [
     AssetDefn {
         path: "pixelart/effect/dark.png",
         name: "pixelart/effect/dark.png",
+        x: 0,
+        y: 0,
+        width: 320,
+        height: 240,
+    },
+    AssetDefn {
+        path: "pixelart/effect/mask.png",
+        name: "pixelart/effect/mask.png",
         x: 0,
         y: 0,
         width: 320,
