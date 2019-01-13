@@ -39,6 +39,7 @@ pub enum Instr {
     Flag(String, bool),
     Mode(mode::Mode),
     Text(Vec<(String, String)>),
+    Persist(object::Object),
 }
 
 #[derive(Clone, PartialEq)]
@@ -96,17 +97,24 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
                                 height: map.height,
                                 clear_condition: episode.clear_condition.clone(),
                                 cleared: episode.cleared,
-                                episode_objects: episode
-                                    .episode_objects
+                                permanent_objects: episode
+                                    .permanent_objects
                                     .iter()
-                                    .map(|object| {
+                                    .map(|(id, object)| {
                                         (
-                                            object.0.clone(),
-                                            object.1.transport(from_x, from_y, to_x, to_y),
+                                            id.clone(),
+                                            (
+                                                object.0.clone(),
+                                                object.1.transport(from_x, from_y, to_x, to_y),
+                                            ),
                                         )
                                     })
                                     .collect(),
-                                map_objects: map.objects.clone(),
+                                temporary_objects: map
+                                    .objects
+                                    .iter()
+                                    .map(|object| (object.1.id(), object.clone()))
+                                    .collect(),
                                 flags: flags,
                                 mode: mode::episode::Mode::Normal,
                             }),
@@ -126,6 +134,7 @@ impl brownfox::Moore<(i32, Vec<brownfox::Input>), object::Output> for Hijack {
                         episode.mode = mode::episode::Mode::Text(0, 0, texts.clone());
                     }
                 }
+                &Instr::Persist(ref object) => {}
             }
         }
 

@@ -473,7 +473,7 @@ pub fn new() -> Map {
                     "ecf3e6a5d6094219".to_string(),
                     0,
                     0,
-                    -1000,
+                    -999,
                     16,
                     16,
                     vec![
@@ -490,7 +490,7 @@ pub fn new() -> Map {
                     "122f6b4d565f9848".to_string(),
                     0,
                     0,
-                    -1000,
+                    -998,
                     16,
                     16,
                     vec![
@@ -511,7 +511,7 @@ pub fn new() -> Map {
                     "164e1b09a5ee9794".to_string(),
                     92,
                     0,
-                    -1000,
+                    -997,
                     32,
                     32,
                     vec![
@@ -528,7 +528,7 @@ pub fn new() -> Map {
                     "52d08735e4513d0".to_string(),
                     196,
                     0,
-                    -1000,
+                    -996,
                     32,
                     32,
                     vec![
@@ -545,7 +545,7 @@ pub fn new() -> Map {
                     "d52692f3f5081ec5".to_string(),
                     0,
                     80,
-                    -1000,
+                    -995,
                     32,
                     32,
                     vec![
@@ -562,7 +562,7 @@ pub fn new() -> Map {
                     "c73547fe23ee074f".to_string(),
                     0,
                     180,
-                    -1000,
+                    -994,
                     32,
                     32,
                     vec![
@@ -579,7 +579,7 @@ pub fn new() -> Map {
                     "deb91dafdebe09c0".to_string(),
                     -16,
                     0,
-                    -1000,
+                    -993,
                     32,
                     32,
                     vec![
