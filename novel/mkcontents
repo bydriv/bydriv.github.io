@@ -4,7 +4,7 @@ my $chap = 0;
 my $par = 1;
 
 print "<div id=\"contents\">\n";
-print "<div id=\"default-contents\" class=\"default contents\"></div><div><div>\n";
+print "<div id=\"default-contents\" class=\"default contents\"></div><div style=\"display: none;\"><div>\n";
 
 foreach my $line (<>) {
     if ($par && $line =~ /^(\[\d+\])「/) {
