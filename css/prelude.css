@@ -174,11 +174,6 @@ div.anchor:not(.default):target ~ div#contents > div#default-contents {
   opacity: 0;
 }
 
-h2, p {
-  margin: 1em;
-  padding: 0;
-}
-
 a[href] {
     color: #0080FF;
     text-decoration: none;

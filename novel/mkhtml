@@ -8,6 +8,7 @@ printf "<title>%s</title>\n" "$1"
 printf "\n"
 
 printf "<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/prelude.css\">\n"
+printf "<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/github-markdown.css\">\n"
 printf "<style>"
 printf "div#hd {\n"
 printf "  height: 160px;\n"

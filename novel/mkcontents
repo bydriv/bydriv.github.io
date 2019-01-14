@@ -4,7 +4,7 @@ my $chap = 0;
 my $par = 1;
 
 print "<div id=\"contents\">\n";
-print "<div id=\"default-contents\" class=\"default contents\"></div><div>\n";
+print "<div id=\"default-contents\" class=\"default contents\"></div><div><div>\n";
 
 foreach my $line (<>) {
     if ($par && $line =~ /^(\[\d+\])「/) {
@@ -24,7 +24,8 @@ foreach my $line (<>) {
 
     if ($line =~ /\[\$(.*?)\]/) {
         $chap = $1;
-        print "</p></div><div id=\"$chap-contents\" class=\"contents\">";
+        print "</p></div></div><div id=\"$chap-contents\" class=\"contents\">";
+        print "<div class=\"markdown-body\">";
     }
 
     $line =~ s/\[\$(.*?)\]/<h2 id="\1">第\1章<\/h2>\n<span>\n/g;
@@ -47,4 +48,4 @@ foreach my $line (<>) {
     print $line;
 }
 
-print "</div></div>\n";
+print "</div></div></div>\n";
