@@ -95,13 +95,13 @@ for tab in "$@"; do
     if test "$TAB" = "default"
     then
         printf "    <div id=\"default-contents\" class=\"default contents\">\n"
-        printf "      <div class=\"github-markdown\">\n"
+        printf "      <div class=\"markdown-body\">\n"
         pandoc "$tab"
         printf "      </div>\n"
         printf "    </div>\n"
     else
         printf "    <div id=\"%s-contents\" class=\"contents\">\n" "$TAB"
-        printf "      <div class=\"github-markdown\">\n"
+        printf "      <div class=\"markdown-body\">\n"
         pandoc "$tab"
         printf "      </div>\n"
         printf "    </div>\n"
