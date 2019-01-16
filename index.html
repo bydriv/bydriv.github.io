@@ -15,18 +15,7 @@
     background-image: url("/img/hd.png");
     background-position: center;
   }
-
   div#game:target ~ div#index > div#default-index-group > div#game-index {
-    color: #000000;
-    background-color: #00FFFF;
-  }
-
-  div#gallery:target ~ div#index > div#default-index-group > div#gallery-index {
-    color: #000000;
-    background-color: #00FFFF;
-  }
-
-  div#novel:target ~ div#index > div#default-index-group > div#novel-index {
     color: #000000;
     background-color: #00FFFF;
   }
@@ -38,6 +27,10 @@
     z-index: -1000;
     opacity: 1;
   }
+  div#gallery:target ~ div#index > div#default-index-group > div#gallery-index {
+    color: #000000;
+    background-color: #00FFFF;
+  }
 
   div#gallery:target ~ div#contents > div#gallery-contents {
     max-height: none;
@@ -45,6 +38,10 @@
     top: 0;
     z-index: -1000;
     opacity: 1;
+  }
+  div#novel:target ~ div#index > div#default-index-group > div#novel-index {
+    color: #000000;
+    background-color: #00FFFF;
   }
 
   div#novel:target ~ div#contents > div#novel-contents {
@@ -55,16 +52,13 @@
     opacity: 1;
   }
 </style>
-
 <div id="container">
   <div id="home" class="default anchor"></div>
   <div id="game" class="anchor"></div>
   <div id="gallery" class="anchor"></div>
   <div id="novel" class="anchor"></div>
-
   <div id="hd"></div>
   <h1>bydriv.github.io</h1>
-
   <div id="index">
     <div id="default-index-group" class="default level-0 index-group">
       <div id="default-index" class="default index"><a href="#home">HOME</a></div>
@@ -75,51 +69,46 @@
       <div id="worldview-index" class="index"><a href="worldview">WORLDVIEW</a></div>
     </div>
   </div>
-
   <div id="contents">
     <div id="default-contents" class="default contents">
-      <div class="markdown-body">
-        <h2>About</h2>
-        <p>ゲームとかイラストとか載せてます。</p>
-        <h2>License</h2>
-        <ul>
-          <li>イラストや文章作品などの、プログラム以外の創作物は、 <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-Sharealike 4.0ライセンス</a> (CC BY-SA 4.0) で保護されています。</li>
-          <li>ブログや技術文書などは、 <a href="https://creativecommons.org/licenses/by-nd/4.0/legalcode">Creative Commons Attribution-NoDerivs 4.0 ライセンス</a> (CC BY-ND 4.0) で保護されています。</li>
-          <li>プログラム、およびこのサイト自体のソースコードなどは、<a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU一般公衆ライセンスバージョン3</a> (GPLv3) で保護されています。</li>
-          <li>マニュアルなどは、<a href="https://www.gnu.org/licenses/fdl-1.3.html">GNU自由文書ライセンスバージョン1.3</a> (FDLv1.3) で保護されています。</li>
-        </ul>
-        <h2>ライセンスに関する F&amp;Q</h2>
-        <h3>GPLv3 と CC BY-SA 4.0 は両立しますか？</h3>
-        <p>一方向で両立します。つまり、 CC BY-SA 4.0 で保護された画像や文章などをあなたの GPLv3 で保護されたプログラムで使用することは可能ですが、 GPLv3 で保護されたプログラムをあなたの CC BY-SA 4.0 で保護された画像や文章で使用することはできません (参考: <a href="https://www.gnu.org/licenses/license-list.html#ccbysa">https://www.gnu.org/licenses/license-list.html#ccbysa</a>)。</p>
-        <h3>ゲームをキャプチャした画像や動画のライセンスはどうなりますか？</h3>
-        <p>
-          ゲームのソースコードは GPLv3 で保護されていますが、画像や文章などは CC BY-SA 4.0 で保護されています。ゲームのレンダリング結果は画像や文章の集合体と考えられるため、それをキャプチャした画像や動画は CC BY-SA 4.0 を継承することとなります (参考: <a href="https://www.gnu.org/licenses/gpl-faq.ja.html#WhatCaseIsOutputGPL">https://www.gnu.org/licenses/gpl-faq.ja.html#WhatCaseIsOutputGPL</a>)。
-        </p>
-        <h2>Credits</h2>
-        <ul>
-          <li><a href="https://github.com/mrdoob/stats.js">stats.js</a></li>
-          <li><a href="https://github.com/sindresorhus/github-markdown-css">github-markdown-css</a></li>
-        </ul>
+      <div class="github-markdown">
+<h2 id="about">About</h2>
+<p>ゲームとかイラストとか載せてます。</p>
+<h2 id="license">License</h2>
+<ul>
+<li>イラストや文章作品などの、プログラム以外の創作物は、 <a href="Creative%20Commons%20Attribution-Sharealike%204.0ライセンス">https://creativecommons.org/licenses/by-sa/4.0/legalcode</a> (CC BY-SA 4.0) で保護されています。</li>
+<li>ブログや技術文書などは、<a href="Creative%20Commons%20Attribution-NoDerivs%204.0%20ライセンス">https://creativecommons.org/licenses/by-nd/4.0/legalcode</a> (CC BY-ND 4.0) で保護されています。</li>
+<li>プログラム、およびこのサイト自体のソースコードなどは、<a href="GNU一般公衆ライセンスバージョン3">https://www.gnu.org/licenses/gpl-3.0.html</a> (GPLv3) で保護されています。</li>
+<li>マニュアルなどは、<a href="GNU自由文書ライセンスバージョン1.3">https://www.gnu.org/licenses/fdl-1.3.html</a> (FDLv1.3) で保護されています。</li>
+</ul>
+<h2 id="ライセンスに関する-fq">ライセンスに関する F&amp;Q</h2>
+<h3 id="gplv3-と-cc-by-sa-4.0-は両立しますか">GPLv3 と CC BY-SA 4.0 は両立しますか？</h3>
+<p>一方向で両立します。つまり、 CC BY-SA 4.0 で保護された画像や文章などをあなたの GPLv3 で保護されたプログラムで使用することは可能ですが、 GPLv3 で保護されたプログラムをあなたの CC BY-SA 4.0 で保護された画像や文章で使用することはできません (参考: <a href="https://www.gnu.org/licenses/license-list.html#ccbysa" class="uri">https://www.gnu.org/licenses/license-list.html#ccbysa</a>)。</p>
+<h3 id="ゲームをキャプチャした画像や動画のライセンスはどうなりますか">ゲームをキャプチャした画像や動画のライセンスはどうなりますか？</h3>
+<p>ゲームのソースコードは GPLv3 で保護されていますが、画像や文章などは CC BY-SA 4.0 で保護されています。ゲームのレンダリング結果は画像や文章の集合体と考えられるため、それをキャプチャした画像や動画は CC BY-SA 4.0 を継承することとなります (参考: <a href="https://www.gnu.org/licenses/gpl-faq.ja.html#WhatCaseIsOutputGPL" class="uri">https://www.gnu.org/licenses/gpl-faq.ja.html#WhatCaseIsOutputGPL</a>)。</p>
+<h2 id="credits">Credits</h2>
+<ul>
+<li><a href="stats.js">https://github.com/mrdoob/stats.js</a></li>
+<li><a href="github-markdown-css">https://github.com/sindresorhus/github-markdown-css</a></li>
+</ul>
       </div>
     </div>
     <div id="game-contents" class="contents">
-      <div class="markdown-body">
-        <img src="img/hijack-logo.png">
-        開発中のゲームです。
-        (いまのところ) ネイティヴとブラウザの両方で動きます。
-        ブラウザ版は<a href="game/hijack">ここ</a>から遊べます。
+      <div class="github-markdown">
+<p><img src="img/hijack-logo.png" alt="img/hijack-logo.png" /> 開発中のゲームです。 (いまのところ) ネイティヴとブラウザの両方で動きます。 ブラウザ版は<a href="ここ">game/hijack</a>から遊べます。</p>
       </div>
     </div>
     <div id="gallery-contents" class="contents">
-      <img src="img/apple-bobbing.png">
-      <img src="img/just-a-board.png">
+      <div class="github-markdown">
+<p><img src="img/apple-bobbing.png" alt="img/apple-bobbing.png" /> <img src="img/just-a-board.png" alt="img/just-a-board.png" /></p>
+      </div>
     </div>
     <div id="novel-contents" class="contents">
-      <div class="markdown-body">
-        <ul>
-          <li><a href="novel/golden-record.html">黄金録/Golden Record</a></li>
-          <li><a href="novel/vixen-sniper.html">妖狐の狙撃手/Vixen Sniper</a></li>
-        </ul>
+      <div class="github-markdown">
+<ul>
+<li><a href="novel/golden-record.html">黄金録/Golden Record</a></li>
+<li><a href="novel/vixen-sniper.html">妖狐の狙撃手/Vixen Sniper</a></li>
+</ul>
       </div>
     </div>
   </div>

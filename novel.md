@@ -1,0 +1,2 @@
+- [黄金録/Golden Record](novel/golden-record.html)
+- [妖狐の狙撃手/Vixen Sniper](novel/vixen-sniper.html)
