@@ -1,0 +1,1 @@
+PANDOCOPTS=--mathml ./tools/mk Kludge /img/hd.png kludge/default.md kludge/turing-machine.md > kludge/index.html

@@ -96,13 +96,13 @@ for tab in "$@"; do
     then
         printf "    <div id=\"default-contents\" class=\"default contents\">\n"
         printf "      <div class=\"markdown-body\">\n"
-        pandoc "$tab"
+        pandoc $PANDOCOPTS "$tab"
         printf "      </div>\n"
         printf "    </div>\n"
     else
         printf "    <div id=\"%s-contents\" class=\"contents\">\n" "$TAB"
         printf "      <div class=\"markdown-body\">\n"
-        pandoc "$tab"
+        pandoc $PANDOCOPTS "$tab"
         printf "      </div>\n"
         printf "    </div>\n"
     fi
