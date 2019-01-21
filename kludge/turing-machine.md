@@ -26,7 +26,7 @@ $n = |Q|$, $m = |\Gamma|$ として、 **$n$状態$m$記号チューリングマ
 $a_1,\cdots,a_n,b_1,\cdots,b_n$ を記号とし、 $q_i$ を状態とするとき、 $a_1\cdots a_nq_ib_1\cdots b_n$ を M の様相という。
 
 **例**: 様相 $a_1\cdots a_nq_ib_1\cdots b_n$ で $\delta(q_i,b_1)=(q_{i+1},a_{n+1},R)$ ならば、そのつぎの様相は
-$a_1\cdots a_n,a_{n+1}q_ib_2\cdots b_n$ となる。 $\delta$ は $q_i$ のすぐ右隣 (この場合は $b_1$) を第2引数としてとって、
+$a_1\cdots a_na_{n+1}q_ib_2\cdots b_n$ となる。 $\delta$ は $q_i$ のすぐ右隣 (この場合は $b_1$) を第2引数としてとって、
 2番めの戻り値の (この場合は $a_{n+1}$) で置きかえる。
 
 - 様相 $a_1\cdots a_nq_ib_1\cdots b_n$ のとき、 $q_i\in H$ ならば **受理** (*accept*)
