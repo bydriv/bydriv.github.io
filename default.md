@@ -4,10 +4,10 @@
 
 ## License
 
-- イラストや文章作品などの、プログラム以外の創作物は、 [https://creativecommons.org/licenses/by-sa/4.0/legalcode](Creative Commons Attribution-Sharealike 4.0ライセンス) (CC BY-SA 4.0) で保護されています。
-- ブログや技術文書などは、[https://creativecommons.org/licenses/by-nd/4.0/legalcode](Creative Commons Attribution-NoDerivs 4.0 ライセンス) (CC BY-ND 4.0) で保護されています。
-- プログラム、およびこのサイト自体のソースコードなどは、[https://www.gnu.org/licenses/gpl-3.0.html](GNU一般公衆ライセンスバージョン3) (GPLv3) で保護されています。
-- マニュアルなどは、[https://www.gnu.org/licenses/fdl-1.3.html](GNU自由文書ライセンスバージョン1.3) (FDLv1.3) で保護されています。
+- イラストや文章作品などの、プログラム以外の創作物は、 [Creative Commons Attribution-Sharealike 4.0ライセンス](https://creativecommons.org/licenses/by-sa/4.0/legalcode) (CC BY-SA 4.0) で保護されています。
+- ブログや技術文書などは、[Creative Commons Attribution-NoDerivs 4.0 ライセンス](https://creativecommons.org/licenses/by-nd/4.0/legalcode) (CC BY-ND 4.0) で保護されています。
+- プログラム、およびこのサイト自体のソースコードなどは、[GNU一般公衆ライセンスバージョン3](https://www.gnu.org/licenses/gpl-3.0.html) (GPLv3) で保護されています。
+- マニュアルなどは、[GNU自由文書ライセンスバージョン1.3](https://www.gnu.org/licenses/fdl-1.3.html) (FDLv1.3) で保護されています。
 
 ## ライセンスに関する F&Q
 
@@ -21,5 +21,5 @@
 
 ## Credits
 
-- [https://github.com/mrdoob/stats.js](stats.js)
-- [https://github.com/sindresorhus/github-markdown-css](github-markdown-css)
+- [stats.js](https://github.com/mrdoob/stats.js)
+- [github-markdown-css](https://github.com/sindresorhus/github-markdown-css)
