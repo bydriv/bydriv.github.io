@@ -22,13 +22,14 @@ foreach my $line (<>) {
     $line =~ s/\[\*\]/<div class="space"><\/div>\n<span>\n/g;
     $line =~ s/\[\+\]/<div class="space"><\/div>\n<span>\n/g;
 
-    if ($line =~ /\[\$(.*?)\]/) {
+    if ($line =~ /\[\$(\d*?)(:(.*?))?\]/) {
         $chap = $1;
         print "</p></div></div><div id=\"$chap-contents\" class=\"contents\">";
         print "<div class=\"markdown-body\">";
     }
 
-    $line =~ s/\[\$(.*?)\]/<h2 id="\1">第\1章<\/h2>\n<span>\n/g;
+    $line =~ s/\[\$(\d*?):(.*?)\]/<h2 id="\1">第\1章 \2<\/h2>\n<span>\n/g;
+    $line =~ s/\[\$(\d*?)\]/<h2 id="\1">第\1章<\/h2>\n<span>\n/g;
 
     $line =~ s/(……)/<span class="cdots">\1<\/span>/g;
     $line =~ s/(――)/<span class="dashes">\1<\/span>/g;
