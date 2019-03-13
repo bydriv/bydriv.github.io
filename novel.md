@@ -1,2 +1,3 @@
 - [黄金録/Golden Record](novel/golden-record.html)
 - [妖狐の狙撃手/Vixen Sniper](novel/vixen-sniper.html)
+- [逆犯罪課/Reverse Crime Section](novel/rcs.html)

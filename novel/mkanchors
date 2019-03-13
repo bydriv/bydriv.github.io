@@ -8,11 +8,11 @@ foreach my $line (<>) {
         print $line;
     }
 
-    if ($line =~ /\[\$(\d*?)(:(.*?))?\]/) {
+    if ($line =~ /\[\$((\d|\.)*?)(:(.*?))?\]/) {
         $chap = $1;
     }
 
-    if ($line =~ s/\[\$(\d*?)(:(.*?))?\].*/<div id="\1" class="anchor"><\/div>/g) {
+    if ($line =~ s/\[\$((\d|\.)*?)(:(.*?))?\].*/<div id="\1" class="anchor"><\/div>/g) {
         print $line;
     }
 
