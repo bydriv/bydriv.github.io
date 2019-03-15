@@ -1,0 +1,3 @@
+<!ELEMENT seq (token|sep)+>
+<!ELEMENT token (#PCDATA)>
+<!ELEMENT sep (#PCDATA)>
