@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string"
+        },
+        "age": {
+            "type": "number"
+        },
+        "phones": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}
