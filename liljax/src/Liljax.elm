@@ -1,2 +1,3 @@
 import Html exposing (div, text)
-main = div [] [text "hello world"]
+import Html.Attributes exposing (class)
+main = div [class "liljax"] [text "hello world"]
