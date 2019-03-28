@@ -96,7 +96,7 @@ window.addEventListener("load", () => {
 
                 if (popcnt((life.individual.genome[0] >>> 8) ^ 0b110000111100001111000011) >= 12) {
                     // plants
-                    if (Math.floor(Math.random() * 80) === 0)
+                    if (Math.floor(Math.random() * 75) === 0)
                         life.individual.energy = 120;
                     else
                         --life.individual.energy;
