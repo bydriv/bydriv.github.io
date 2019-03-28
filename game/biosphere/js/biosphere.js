@@ -200,8 +200,6 @@ window.addEventListener("load", () => {
         const species = {
             genome: [
                 Math.floor(Math.random() * 0x100000000),
-                Math.floor(Math.random() * 0x100000000),
-                Math.floor(Math.random() * 0x100000000),
                 Math.floor(Math.random() * 0x100000000)
             ]
         };
