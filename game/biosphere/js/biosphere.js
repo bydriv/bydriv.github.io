@@ -20,10 +20,15 @@ function createLife(species, x, y) {
 }
 
 function cloneLife(life) {
+    let genome = mutate(life.individual.genome);
+
+    if ((popcnt((life.individual.genome[0] >>> 8) ^ 0b110000111100001111000011) >= 12) !== (popcnt((genome[0] >>> 8) ^ 0b110000111100001111000011) >= 12))
+        genome = life.individual.genome;
+
     return {
         species: life.species,
         individual: {
-            genome: mutate(life.individual.genome),
+            genome: genome,
             energy: 60,
             vector: [0, 0],
             x: life.individual.x + Math.floor(Math.random() * 25) - 12,
