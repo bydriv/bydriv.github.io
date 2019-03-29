@@ -72,9 +72,11 @@ function drawState(state, canvas) {
         area.lifes.forEach(function (life) {
             const x = life.individual.x;
             const y = life.individual.y;
-            image.data[(y * image.width + x) * 4] = life.individual.genome[0] >> 24 & 0xFF;
-            image.data[(y * image.width + x) * 4 + 1] = life.individual.genome[0] >> 16 & 0xFF;
-            image.data[(y * image.width + x) * 4 + 2] = life.individual.genome[0] >> 8 & 0xFF;
+            if (0 <= x && x < image.width && 0 <= y && y < image.height) {
+                image.data[(y * image.width + x) * 4] = life.individual.genome[0] >> 24 & 0xFF;
+                image.data[(y * image.width + x) * 4 + 1] = life.individual.genome[0] >> 16 & 0xFF;
+                image.data[(y * image.width + x) * 4 + 2] = life.individual.genome[0] >> 8 & 0xFF;
+            }
         });
     });
 
@@ -85,6 +87,19 @@ window.addEventListener("load", () => {
     let state = {
         areas: []
     };
+
+    const canvas = document.getElementById("biosphere");
+
+    for (var i = 0; i < 5000; ++i) {
+        const species = {
+            genome: [
+                Math.floor(Math.random() * 0x100000000),
+                Math.floor(Math.random() * 0x100000000)
+            ]
+        };
+
+        addLife(createLife(species, Math.floor(Math.random() * canvas.width), Math.floor(Math.random() * canvas.height)), state.areas);
+    }
 
     requestAnimationFrame(function step() {
         const canvas = document.getElementById("biosphere");
@@ -204,7 +219,7 @@ window.addEventListener("load", () => {
             ]
         };
 
-        addLife(createLife(species, Math.floor(Math.random() * canvas.width), Math.floor(Math.random() * canvas.height)), newAreas);
+        //addLife(createLife(species, Math.floor(Math.random() * canvas.width), Math.floor(Math.random() * canvas.height)), newAreas);
 
         state.areas = newAreas;
         drawState(state, canvas);
