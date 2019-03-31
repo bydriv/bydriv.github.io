@@ -34,6 +34,12 @@
     background-color: #00FFFF;
   }
 
+  div#report:target ~ div#index > div#default-index-group > div#report-index,
+  div[id^="report/"]:target ~ div#index > div#default-index-group > div#report-index {
+    color: #000000;
+    background-color: #00FFFF;
+  }
+
   div[id="character/teiri"]:target ~ div#index > div#character-index-group > div[id="character/teiri-index"] {
     color: #000000;
     background-color: #FF00FF;
@@ -64,6 +70,11 @@
     background-color: #FF00FF;
   }
 
+  div[id="report/minagawa-v-united-states"]:target ~ div#index > div#report-index-group > div[id="report/minagawa-v-united-states-index"] {
+    color: #000000;
+    background-color: #FF00FF;
+  }
+
   div#character:target ~ div#index > div#character-index-group,
   div[id^="character/"]:target ~ div#index > div#character-index-group {
     height: auto;
@@ -78,6 +89,12 @@
 
   div#organization:target ~ div#index > div#organization-index-group,
   div[id^="organization/"]:target ~ div#index > div#organization-index-group {
+    height: auto;
+    opacity: 1;
+  }
+
+  div#report:target ~ div#index > div#report-index-group,
+  div[id^="report/"]:target ~ div#index > div#report-index-group {
     height: auto;
     opacity: 1;
   }
@@ -99,6 +116,14 @@
   }
 
   div#organization:target ~ div#contents > div#organization-contents {
+    max-height: none;
+
+    top: 0;
+    z-index: -1000;
+    opacity: 1;
+  }
+
+  div#report:target ~ div#contents > div#report-contents {
     max-height: none;
 
     top: 0;
@@ -153,6 +178,14 @@
     z-index: -1000;
     opacity: 1;
   }
+
+  div[id="report/minagawa-v-united-states"]:target ~ div#contents > div[id="report/minagawa-v-united-states-contents"] {
+    max-height: none;
+
+    top: 0;
+    z-index: -1000;
+    opacity: 1;
+  }
 </style>
 
 <div id="container">
@@ -166,6 +199,8 @@
   <div id="organization" class="anchor"></div>
   <div id="organization/clockwork" class="anchor"></div>
   <div id="organization/xiandan-zhiyao" class="anchor"></div>
+  <div id="report" class="anchor"></div>
+  <div id="report/minagawa-v-united-states" class="anchor"></div>
 
   <div id="hd"></div>
   <h1>worldview</h1>
@@ -176,6 +211,7 @@
       <div id="character-index" class="index"><a href="#character">CHARACTER</a></div>
       <div id="technology-index" class="index"><a href="#technology">TECHNOLOGY</a></div>
       <div id="organization-index" class="index"><a href="#organization">ORGANIZATION</a></div>
+      <div id="report-index" class="index"><a href="#report">REPORT</a></div>
     </div>
     <div id="character-index-group" class="level-1 index-group">
       <div id="character/teiri-index" class="index"><a href="#character/teiri">Teiri</a></div>
@@ -188,6 +224,9 @@
     <div id="organization-index-group" class="level-1 index-group">
       <div id="organization/clockwork-index" class="index"><a href="#organization/clockwork">Clockwork</a></div>
       <div id="organization/xiandan-zhiyao-index" class="index"><a href="#organization/xiandan-zhiyao">仙丹製藥</a></div>
+    </div>
+    <div id="report-index-group" class="level-1 index-group">
+      <div id="report/minagawa-v-united-states-index" class="index"><a href="#report/minagawa-v-united-states">Minagawa v. United States</a></div>
     </div>
   </div>
 
@@ -257,6 +296,21 @@
     <div id="organization/xiandan-zhiyao-contents" class="contents">
       <div class="markdown-body" style="display: inline-block; max-width: 480px;">
         <h2>仙丹製藥</h2>
+      </div>
+    </div>
+    <div id="report-contents" class="contents">
+      <div class="markdown-body" style="display: inline-block; max-width: 480px;">
+        <h2>架空判例集</h2>
+      </div>
+    </div>
+    <div id="report/minagawa-v-united-states-contents" class="contents">
+      <div class="markdown-body" style="display: inline-block; max-width: 480px;">
+<h2 id="minagawa-v.-united-states">Minagawa v. United States</h2>
+<p><strong>ミナガワ対合衆国事件</strong> (<strong><em>Minagawa v. United States</em></strong>, 768 U.S. 256 (2076))は、 あるコンピュータ・システムのセキュリティを向上する目的で当該のシステムをリバース・エンジニアリングすることは合衆国法典第18編第1部第47章の第1029条と第1030条に違反するものではないという、 2076年のアメリカ合衆国最高裁判所の判決である。</p>
+<h3 id="歴史">歴史</h3>
+<p>上訴人のミナガワ・テーリは、自己の正義感からコンピュータ・システムのセキュリティを向上する目的でハッキングを繰りかえし、独断で脆弱性の情報を報告していた。 その結果彼女はその行為が合衆国法典第18編第1部第47章の第1029条と第1030条に違反するものとして有罪判決を受けてしまう。 彼女は自己の目的の正しさを証明するために最高裁に判決を求めた。</p>
+<h3 id="判決">判決</h3>
+<p>ミナガワ・テーリの行動は正しかったものとして、アメリカ合衆国最高裁判所は判決を下した。</p>
       </div>
     </div>
   </div>
