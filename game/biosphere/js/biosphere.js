@@ -94,6 +94,8 @@ window.addEventListener("load", () => {
     };
 
     const canvas = document.getElementById("biosphere");
+    const context = canvas.getContext("2d");
+    context.imageSmoothingEnabled = false;
 
     for (var i = 0; i < 5000; ++i) {
         const species = {
@@ -106,9 +108,47 @@ window.addEventListener("load", () => {
         addLife(createLife(species, Math.floor(Math.random() * canvas.width), Math.floor(Math.random() * canvas.height)), state.areas);
     }
 
+    const mode = document.getElementById("mode");
+
+    var recording = false;
+    var recorder = null;
+
     requestAnimationFrame(function step() {
         const canvas = document.getElementById("biosphere");
         const newAreas = [];
+
+        if (!recording && mode["record-mode"].checked) {
+            const canvasStream = canvas.captureStream();
+            recorder = new MediaRecorder(canvasStream);
+            const chunks = [];
+
+            recorder.addEventListener("dataavailable", function (e) {
+                chunks.push(e.data);
+            });
+
+            recorder.addEventListener("stop", function () {
+              const blob = new Blob(chunks, {"type": "video/mpeg"});
+              const url = URL.createObjectURL(blob);
+              const video = document.createElement("video");
+              video.src = url;
+              video.controls = true;
+              const a = document.createElement("a");
+              const text = document.createTextNode("download");
+              a.href = url;
+              a.appendChild(text);
+              document.querySelector("#downloads").appendChild(video);
+              document.querySelector("#downloads").appendChild(a);
+              recorder = null;
+            });
+
+            recorder.start();
+            recording = true;
+        }
+
+        if (recording && !mode["record-mode"].checked) {
+            recorder.stop();
+            recording = false;
+        }
 
         state.areas.forEach(function (area) {
             for (let i = 0; i < area.lifes.length; ++i) {
