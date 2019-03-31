@@ -109,10 +109,10 @@ class Game {
         this.recorder = null;
 
         this.record_mode = document.getElementById("record-mode");
-        this.record_mode.addEventListener("changed", (ev)=>{
-            if (ev.target.checked) {
+        this.record_mode.addEventListener("change", (ev)=>{
+            if (this.record_mode.checked) {
                 const canvasStream = this.canvas.captureStream();
-                this.recorder = new MediaRecorder(canvasStream);
+                this.recorder = new MediaRecorder(canvasStream, {mimeType: "video/webm"});
                 const chunks = [];
 
                 this.recorder.addEventListener("dataavailable", function (e) {
@@ -120,7 +120,7 @@ class Game {
                 });
 
                 this.recorder.addEventListener("stop", function () {
-                    const blob = new Blob(chunks, {"type": "video/mpeg"});
+                    const blob = new Blob(chunks, {"type": "video/webm"});
                     const url = URL.createObjectURL(blob);
                     const video = document.createElement("video");
                     video.src = url;
