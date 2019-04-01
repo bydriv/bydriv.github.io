@@ -32,22 +32,57 @@ printf "    background-position: center;\n"
 printf "  }\n"
 
 for tab in "$@"; do
+    CAT="$(dirname "$tab")"
     TAB="$(basename "$tab" .md)"
+    CATTAB="$CAT/$TAB"
+
+    if test "$CAT" = "."
+    then
+        CAT="default"
+        CATTAB="$TAB"
+    fi
+
+    if test "$TAB" = "default"
+    then
+        if test "$CAT" != "default"
+        then
+            TAB="$CAT"
+            CAT="default"
+            CATTAB="$TAB"
+        fi
+    fi
 
     if test "$TAB" != "default"
     then
-        printf "  div#%s:target ~ div#index > div#default-index-group > div#%s-index {\n" "$TAB" "$TAB"
+        printf "  div[id=\"%s\"]:target ~ div#index > div#%s-index-group > div[id=\"%s-index\"] {\n" "$CATTAB" "$CAT" "$CATTAB"
         printf "    color: #000000;\n"
         printf "    background-color: #00FFFF;\n"
         printf "  }\n"
         printf "\n"
-        printf "  div#%s:target ~ div#contents > div#%s-contents {\n" "$TAB" "$TAB"
+        printf "  div[id=\"%s\"]:target ~ div#contents > div[id=\"%s-contents\"] {\n" "$CATTAB" "$CATTAB"
         printf "    max-height: none;\n"
         printf "\n"
         printf "    top: 0;\n"
         printf "    z-index: -1000;\n"
         printf "    opacity: 1;\n"
         printf "  }\n"
+    fi
+
+    if test "$TAB" != "default"
+    then
+        if test "$CAT" = "default"
+        then
+            printf "  div[id=\"%s\"]:target ~ div#index > div[id=\"%s-index-group\"] > div[id=\"%s-index\"],\n" "$TAB" "default" "$TAB"
+            printf "  div[id^=\"%s/\"]:target ~ div#index > div[id=\"%s-index-group\"] > div[id=\"%s-index\"]{\n" "$TAB" "default" "$TAB"
+            printf "    color: #000000;\n"
+            printf "    background-color: #00FFFF;\n"
+            printf "  }\n"
+            printf "  div[id=\"%s\"]:target ~ div#index > div[id=\"%s-index-group\"],\n" "$TAB" "$TAB"
+            printf "  div[id^=\"%s/\"]:target ~ div#index > div[id=\"%s-index-group\"] {\n" "$TAB" "$TAB"
+            printf "    height: auto;\n"
+            printf "    opacity: 1;\n"
+            printf "  }\n"
+        fi
     fi
 done
 
@@ -57,30 +92,91 @@ printf "<div id=\"container\">\n"
 printf "  <div id=\"home\" class=\"default anchor\"></div>\n"
 
 for tab in "$@"; do
+    CAT="$(dirname "$tab")"
     TAB="$(basename "$tab" .md)"
+    CATTAB="$CAT/$TAB"
+
+    if test "$CAT" = "."
+    then
+        CAT="default"
+        CATTAB="$TAB"
+    fi
+
+    if test "$TAB" = "default"
+    then
+        if test "$CAT" != "default"
+        then
+            TAB="$CAT"
+            CAT="default"
+            CATTAB="$TAB"
+        fi
+    fi
 
     if test "$TAB" != "default"
     then
-        printf "  <div id=\"%s\" class=\"anchor\"></div>\n" "$TAB"
+        printf "  <div id=\"%s\" class=\"anchor\"></div>\n" "$CATTAB"
     fi
 done
 
 printf "  <div id=\"hd\"></div>\n"
 printf "  <h1>%s</h1>\n" "$TITLE"
 printf "  <div id=\"index\">\n"
-printf "    <div id=\"default-index-group\" class=\"default level-0 index-group\">\n"
+
+PREV_CAT=""
 
 for tab in "$@"; do
+    CAT="$(dirname "$tab")"
     TAB="$(basename "$tab" .md)"
+    CATTAB="$CAT/$TAB"
+
+    if test "$CAT" = "."
+    then
+        CAT="default"
+        CATTAB="$TAB"
+    fi
 
     if test "$TAB" = "default"
     then
-        printf "      <div id=\"default-index\" class=\"default index\">"
-        printf "<a href=\"#home\">HOME</a>"
-        printf "</div>\n"
+        if test "$CAT" != "default"
+        then
+            TAB="$CAT"
+            CAT="default"
+            CATTAB="$TAB"
+        fi
+    fi
+
+    if test "$CAT" != "$PREV_CAT"
+    then
+        if test "$PREV_CAT" != ""
+        then
+            printf "    </div>\n"
+        fi
+
+       if test "$CAT" = "default"
+       then
+           printf "    <div id=\"default-index-group\" class=\"default level-0 index-group\">\n"
+       else
+           printf "    <div id=\"%s-index-group\" class=\"level-1 index-group\">\n" "$CAT"
+       fi
+
+       PREV_CAT="$CAT"
+    fi
+
+    if test "$TAB" = "default"
+    then
+        if test "$CAT" = "default"
+        then
+            printf "      <div id=\"default-index\" class=\"default index\">"
+            printf "<a href=\"#home\">HOME</a>"
+            printf "</div>\n"
+        else
+            printf "      <div id=\"%s-index\" class=\"index\">" "$CAT"
+            printf "<a href=\"#%s\">%s</a>" "$CATTAB" "$CAT"
+            printf "</div>\n"
+        fi
     else
-        printf "      <div id=\"%s-index\" class=\"index\">" "$TAB"
-        printf "<a href=\"#%s\">$(echo "$TAB" | tr a-z A-Z)</a>" "$TAB"
+        printf "      <div id=\"%s-index\" class=\"index\">" "$CATTAB"
+        printf "<a href=\"#%s\">%s</a>" "$CATTAB" "$(echo "$TAB" | tr a-z A-Z)"
         printf "</div>\n"
     fi
 done
@@ -90,17 +186,35 @@ printf "  </div>\n"
 printf "  <div id=\"contents\">\n"
 
 for tab in "$@"; do
+    CAT="$(dirname "$tab")"
     TAB="$(basename "$tab" .md)"
+    CATTAB="$CAT/$TAB"
+
+    if test "$CAT" = "."
+    then
+        CAT="default"
+        CATTAB="$TAB"
+    fi
 
     if test "$TAB" = "default"
     then
-        printf "    <div id=\"default-contents\" class=\"default contents\">\n"
+        if test "$CAT" != "default"
+        then
+            TAB="$CAT"
+            CAT="default"
+            CATTAB="$TAB"
+        fi
+    fi
+
+    if test "$TAB" = "default"
+    then
+        printf "    <div id=\"%s-contents\" class=\"default contents\">\n" "$CATTAB"
         printf "      <div class=\"markdown-body\">\n"
         pandoc $PANDOCOPTS "$tab"
         printf "      </div>\n"
         printf "    </div>\n"
     else
-        printf "    <div id=\"%s-contents\" class=\"contents\">\n" "$TAB"
+        printf "    <div id=\"%s-contents\" class=\"contents\">\n" "$CATTAB"
         printf "      <div class=\"markdown-body\">\n"
         pandoc $PANDOCOPTS "$tab"
         printf "      </div>\n"
