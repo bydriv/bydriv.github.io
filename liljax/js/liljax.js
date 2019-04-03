@@ -342,7 +342,7 @@ function liljaxProgramShEval(token) {
         case "echo":
             return liljaxProgramEcho;
         case "error":
-            return liljaxProgramEcho;
+            return liljaxProgramError;
         default:
             return {
                 type: "bottom",
