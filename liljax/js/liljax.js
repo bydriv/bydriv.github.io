@@ -63,7 +63,9 @@ function newLiljax(input, output) {
     var programs = new Map;
     programs.set("sh", liljaxProgramSh);
     programs.set("yes", liljaxProgramYes);
-    programs.set("echo", liljaxProgramEcho);
+    programs.set("puts", liljaxProgramPuts);
+    programs.set("info", liljaxProgramInfo);
+    programs.set("warn", liljaxProgramWarn);
     programs.set("error", liljaxProgramError);
 
     return {
@@ -142,7 +144,7 @@ function executeCommand(state, command) {
     var T = liljaxProgramShInfer(cmd[0]);
 
     if (cmd.length === 1) {
-        return createProcess(state, "echo", {type: "string", value: cmd[0].value + " : " + showType(T) });
+        return createProcess(state, "puts", {type: "string", value: cmd[0].value + " : " + showType(T) });
     }
 
     var U = "int";
@@ -313,7 +315,11 @@ function liljaxProgramShInfer(token) {
             return ["function", "unit", "int"];
         case "yes":
             return ["function", "string", "int"];
-        case "echo":
+        case "puts":
+            return ["function", "string", "int"];
+        case "info":
+            return ["function", "string", "int"];
+        case "warn":
             return ["function", "string", "int"];
         case "error":
             return ["function", "string", "int"];
@@ -339,8 +345,12 @@ function liljaxProgramShEval(token) {
             return liljaxProgramSh;
         case "yes":
             return liljaxProgramYes;
-        case "echo":
-            return liljaxProgramEcho;
+        case "puts":
+            return liljaxProgramPuts;
+        case "info":
+            return liljaxProgramInfo;
+        case "warn":
+            return liljaxProgramWarn;
         case "error":
             return liljaxProgramError;
         default:
@@ -377,7 +387,7 @@ var liljaxProgramSh = {
 
                     if (i < 0)
                         return {
-                            type: "info",
+                            type: "puts",
                             id: process.id,
                             value: {
                                 type: "string",
@@ -415,7 +425,7 @@ var liljaxProgramYes = {
             value: {
                 cont: function cont() {
                     return {
-                        type: "info",
+                        type: "puts",
                         id: gensym(),
                         value: args,
                         process: {
@@ -431,9 +441,34 @@ var liljaxProgramYes = {
     }
 };
 
-var liljaxProgramEcho = {
+var liljaxProgramPuts = {
     type: ["function", "string", "int"],
-    value: function echo(metadata, args) {
+    value: function puts(metadata, args) {
+        return {
+            type: "running",
+            value: {
+                cont: function cont() {
+                    return {
+                        type: "puts",
+                        id: gensym(),
+                        value: args,
+                        process: {
+                            type: "success",
+                            value: {
+                                type: "int",
+                                value: 0
+                            }
+                        }
+                    };
+                }
+            }
+        };
+    }
+};
+
+var liljaxProgramInfo = {
+    type: ["function", "string", "int"],
+    value: function info(metadata, args) {
         return {
             type: "running",
             value: {
@@ -456,10 +491,34 @@ var liljaxProgramEcho = {
     }
 };
 
+var liljaxProgramWarn = {
+    type: ["function", "string", "int"],
+    value: function warn(metadata, args) {
+        return {
+            type: "running",
+            value: {
+                cont: function cont() {
+                    return {
+                        type: "warn",
+                        id: gensym(),
+                        value: args,
+                        process: {
+                            type: "success",
+                            value: {
+                                type: "int",
+                                value: 0
+                            }
+                        }
+                    };
+                }
+            }
+        };
+    }
+};
 
 var liljaxProgramError = {
     type: ["function", "string", "int"],
-    value: function echo(metadata, args) {
+    value: function error(metadata, args) {
         return {
             type: "running",
             value: {
@@ -472,7 +531,7 @@ var liljaxProgramError = {
                             type: "success",
                             value: {
                                 type: "int",
-                                value: 0
+                                value: 1
                             }
                         }
                     };

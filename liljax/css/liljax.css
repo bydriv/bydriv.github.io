@@ -17,7 +17,7 @@ div#liljax {
     height: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
-    background-color: black;
+    background-color: #000000;
 }
 
 textarea.input {
@@ -36,15 +36,19 @@ div.output {
     padding: 8px;
     font-family: "IBM BIOS";
     font-size: 8px;
-    color: white;
-    background-color: black;
+    color: #FFFFFF;
+    background-color: #000000;
     word-break: break-all;
 }
 
 div.output div.info {
-    color: white;
+    color: #00FF00;
+}
+
+div.output div.warn {
+    color: #FFFF00;
 }
 
 div.output div.error {
-    color: red;
+    color: #FF0000;
 }
