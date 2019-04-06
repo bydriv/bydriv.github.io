@@ -64,7 +64,7 @@ A, B, C が構成できればメモリ上で集合演算がおこなえる。
 
 *content table*:
 
-| HashKey | name | tags   |
+| HashKey | Name | Tags   |
 |---------|------|--------|
 | 1       | a    | [A, B] |
 | 2       | b    | [B, C] |
@@ -93,7 +93,7 @@ A, B, C が構成できればメモリ上で集合演算がおこなえる。
 
 *persistent table*: 
 
-| HashKey   | RangeKey | name |
+| HashKey   | RangeKey | Name |
 |-----------|----------|------|
 | content#1 | _        | a    |
 | content#2 | _        | b    |
