@@ -3,3 +3,4 @@
 ./mkhtml "黄金録/Golden Record" "/img/hd_golden-record.png" golden-record.txt > golden-record.html
 ./mkhtml "妖狐の狙撃手/Vixen Sniper" "/img/hd_vixen-sniper.png" vixen-sniper.txt > vixen-sniper.html
 ./mkhtml "逆犯罪課/Reverse Crime Section" "/img/hd_rcs.png" rcs.txt > rcs.html
+./mkhtml "R18" "/img/hd.png" r18.txt > r18.html
