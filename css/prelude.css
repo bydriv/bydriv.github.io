@@ -1,0 +1,80 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+div.desktop {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("/img/desktop.png");
+    background-position: center center;
+    background-size: cover;
+}
+
+div.terminal {
+    position: absolute;
+    bottom: 64px;
+    left: 48px;
+    width: calc(100% - 96px);
+    height: calc(100% - 128px);
+    max-width: 512px;
+    max-height: 384px;
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(0, 0, 0, 0.5);
+    font-family: "Consolas";
+}
+
+div.terminal h1 {
+    margin: 0;
+    padding: 3px 4px 2px 4px;
+    border-radius: 4px 4px 0 0;
+    color: rgba(48, 64, 32, 1);
+    background-color: rgba(255, 255, 240, 1);
+    font-size: 1em;
+}
+
+div.window:not(:target) {
+    display: none;
+}
+
+div.window:target {
+    display: block;
+}
+
+
+div.window {
+    position: absolute;
+    top: 64px;
+    right: 48px;
+    width: calc(100% - 96px);
+    height: calc(100% - 128px);
+    max-width: 512px;
+    max-height: 384px;
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(0, 0, 0, 0.5);
+    font-family: "Consolas";
+}
+
+div.window h2 {
+    margin: 0;
+    padding: 3px 4px 2px 4px;
+    border-radius: 4px 4px 0 0;
+    color: rgba(48, 64, 32, 1);
+    background-color: rgba(255, 255, 240, 1);
+    font-size: 1em;
+}
+
+div.window img {
+    width: 100%;
+}
+
+a {
+    color: rgba(0, 255, 255, 1);
+}
