@@ -1,1 +1,0 @@
-../tools/mk worldview /img/hd.png default.md character.md technology.md organization.md report.md character/*.md technology/*.md organization/*.md report/*.md > index.html
