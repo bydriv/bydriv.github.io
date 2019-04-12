@@ -159,6 +159,7 @@ div.window > div.content > p {
     margin: 0.5em 0;
     padding: 4px;
     font-size: 1em;
+    text-align: justify;
 }
 
 div.window > div.content > p.indent {
