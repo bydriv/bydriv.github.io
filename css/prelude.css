@@ -128,9 +128,13 @@ div.window > div.header > div.right > label.visible {
 }
 
 div.window > div.content > p {
-    margin: 0;
+    margin: 0.5em 0;
     padding: 4px;
     font-size: 1em;
+}
+
+div.window > div.content > p.indent {
+    text-indent: 1em;
 }
 
 div.window > div.content > div.full > img {
@@ -139,9 +143,10 @@ div.window > div.content > div.full > img {
 }
 
 div.window > div.content > h2 {
-    margin: 0;
-    padding: 4px;
-    font-size: 1em;
+    margin: 0.5em 0;
+    padding: 0;
+    font-size: 2em;
+    text-align: center;
 }
 
 div.window > div.content > p > a {
@@ -152,4 +157,24 @@ div.window > div.content > p > a {
 div.window > div.content > p > a:hover {
     color: rgba(0, 255, 255, 1);
     text-decoration: underline;
+}
+
+span.space {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    width: 1em;
+    height: 1em;
+}
+
+div.blank-line {
+    display: block;
+    margin: 0.5em 0;
+    padding: 0;
+    width: auto;
+    height: 1em;
+}
+
+span.dashes {
+    font-family: Meiryo;
 }
