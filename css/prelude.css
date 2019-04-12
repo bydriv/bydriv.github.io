@@ -32,6 +32,14 @@ input#gallery-visible:checked ~ div.taskbar > label.gallery {
     background-color: rgba(0, 255, 0, 0.5);
 }
 
+input#golden-record-visible:not(:checked) ~ div.window#golden-record {
+    display: none;
+}
+
+input#golden-record-visible:checked ~ div.taskbar > label.golden-record {
+    background-color: rgba(0, 255, 0, 0.5);
+}
+
 input#rcs-visible:not(:checked) ~ div.window#rcs {
     display: none;
 }
