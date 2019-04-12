@@ -20,12 +20,20 @@ input#about-visible:not(:checked) ~ div.window#about {
     display: none;
 }
 
+div.window#about:target {
+    display: block !important;
+}
+
 input#about-visible:checked ~ div.taskbar > label.about {
     background-color: rgba(0, 255, 0, 0.5);
 }
 
 input#gallery-visible:not(:checked) ~ div.window#gallery {
     display: none;
+}
+
+div.window#gallery:target {
+    display: block !important;
 }
 
 input#gallery-visible:checked ~ div.taskbar > label.gallery {
@@ -36,6 +44,10 @@ input#golden-record-visible:not(:checked) ~ div.window#golden-record {
     display: none;
 }
 
+div.window#golden-record:target {
+    display: block !important;
+}
+
 input#golden-record-visible:checked ~ div.taskbar > label.golden-record {
     background-color: rgba(0, 255, 0, 0.5);
 }
@@ -44,7 +56,23 @@ input#rcs-visible:not(:checked) ~ div.window#rcs {
     display: none;
 }
 
+div.window#rcs:target {
+    display: block !important;
+}
+
 input#rcs-visible:checked ~ div.taskbar > label.rcs {
+    background-color: rgba(0, 255, 0, 0.5);
+}
+
+input#r18-visible:not(:checked) ~ div.window#r18 {
+    display: none;
+}
+
+div.window#r18:target {
+    display: block !important;
+}
+
+input#r18-visible:checked ~ div.taskbar > label.r18 {
     background-color: rgba(0, 255, 0, 0.5);
 }
 
