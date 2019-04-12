@@ -6,75 +6,119 @@ html, body {
 }
 
 div.desktop {
-    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
     background-image: url("/img/desktop.png");
     background-position: center center;
     background-size: cover;
 }
 
-div.terminal {
-    position: absolute;
-    bottom: 64px;
-    left: 48px;
-    width: calc(100% - 96px);
-    height: calc(100% - 128px);
-    max-width: 512px;
-    max-height: 384px;
-    border-radius: 4px;
-    color: rgba(255, 255, 255, 1);
-    background-color: rgba(0, 0, 0, 0.5);
-    font-family: "Consolas";
-}
-
-div.terminal h1 {
-    margin: 0;
-    padding: 3px 4px 2px 4px;
-    border-radius: 4px 4px 0 0;
-    color: rgba(48, 64, 32, 1);
-    background-color: rgba(255, 255, 240, 1);
-    font-size: 1em;
-}
-
-div.window:not(:target) {
+input#about-visible:not(:checked) ~ div.window#about {
     display: none;
 }
 
-div.window:target {
-    display: block;
+input#about-maximize:checked ~ div.window#about {
+    flex: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
 }
 
+input#about-maximize:checked ~ div.window#about > div.content {
+    height: calc(100% - 24px);
+}
+
+input#gallery-visible:not(:checked) ~ div.window#gallery {
+    display: none;
+}
+
+input#gallery-maximize:checked ~ div.window#gallery {
+    flex: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+input#gallery-maximize:checked ~ div.window#gallery > div.content {
+    height: calc(100% - 24px);
+}
 
 div.window {
-    position: absolute;
-    top: 64px;
-    right: 48px;
-    width: calc(100% - 96px);
-    height: calc(100% - 128px);
-    max-width: 512px;
-    max-height: 384px;
-    border-radius: 4px;
-    color: rgba(255, 255, 255, 1);
-    background-color: rgba(0, 0, 0, 0.5);
-    font-family: "Consolas";
+    flex: 1 1 320px;
+    margin: 1em;
+    padding: 0;
 }
 
-div.window h2 {
-    margin: 0;
-    padding: 3px 4px 2px 4px;
+div.window > div.header {
+    height: 24px;
     border-radius: 4px 4px 0 0;
-    color: rgba(48, 64, 32, 1);
-    background-color: rgba(255, 255, 240, 1);
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+div.window > div.content {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    border-radius: 0 0 4px 4px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+div.window > div.header > div.left {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    width: 70%;
+    height: auto;
+    text-align: left;
+}
+
+div.window > div.header > div.left > h1 {
+    display: inline;
+    color: rgba(0, 0, 0, 1);
     font-size: 1em;
 }
 
-div.window img {
-    width: 100%;
+div.window > div.header > div.right {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    width: 30%;
+    height: auto;
+    text-align: right;
 }
 
-a {
-    color: rgba(0, 255, 255, 1);
+div.window > div.header > div.right > label.maximize {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(0, 0, 0, 1);
+    text-align: center;
+}
+
+div.window > div.header > div.right > label.visible {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(255, 0, 0, 1);
+    text-align: center;
+}
+
+div.window > div.content > p {
+    margin: 0;
+    padding: 0;
+}
+
+div.window > div.content > p > img {
+    width: 100%;
+    vertical-align: bottom;
 }
