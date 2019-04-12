@@ -15,23 +15,6 @@ body {
     background-attachment: fixed;
 }
 
-/*
-div.desktop {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    background-image: url("/img/desktop.png");
-    background-position: center center;
-    background-size: cover;
-}
-*/
-
 input#about-visible:not(:checked) ~ div.window#about {
     display: none;
 }
