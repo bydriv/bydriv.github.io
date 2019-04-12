@@ -1,0 +1,90 @@
+#!/usr/bin/perl
+
+my $prefix = shift @ARGV;
+my $chap = 0;
+my $par = 0;
+
+foreach my $line (<>) {
+    if ($line =~ /^\[\$((?:\d|\.)+)\]$/) {
+        $chap = $1;
+        print "<h2 class=\"chapter\" id=\"$prefix$chap\">第$chap章</h2>\n";
+    } elsif ($line =~ /^\[\$((?:\d|\.)+):(.*?)\]$/) {
+        $chap = $1;
+        print "<h2 class=\"chapter\" id=\"$prefix$chap\">$2</h2>\n";
+    } elsif ($line =~ /^\[\+\]$/) {
+        print "<div class=\"blank-line\"></div>\n";
+    } elsif ($line =~ /^\[\*\]$/) {
+        print "<div class=\"blank-line\"></div>\n";
+    } else {
+        if ($par) {
+            if ($line =~ /^$/) {
+                print "</p>\n";
+                $par = 0;
+            }
+        } else {
+            if ($line =~ /\[\d+\]「/) {
+                print "<p class=\"noindent\">\n";
+            } else {
+                print "<p class=\"indent\">\n";
+            }
+
+            $par = 1;
+        }
+
+        $line =~ s/(……)/<span class="cdots">\1<\/span>/g;
+        $line =~ s/(――)/<span class="dashes">\1<\/span>/g;
+        $line =~ s/！？(?!」)/！？<span class="space"><\/span>/g;
+        $line =~ s/！(?!？|」)/！<span class="space"><\/span>/g;
+        $line =~ s/？(?!」)/？<span class="space"><\/span>/g;
+        $line =~ s/\[(\d+)\]/<sup class="section" id="$prefix$chap:$1">$1<\/sup>/g;
+        print $line;
+    }
+}
+
+if ($par) {
+    print "</p>\n";
+}
+
+exit 0;
+
+foreach my $line (<>) {
+    if ($par && $line =~ /^(\[\d+\])「/) {
+        print "<p class=\"noindent\">\n";
+        print "<span>\n";
+        $line =~ s/\[(\d+)\]/<\/span><span id="$prefix$chap:\1" class="sect"><sup><a href="#$chap:\1">\1<\/a><\/sup>&nbsp;/;
+    } elsif ($par && $line =~ /^(\[\d+\])/) {
+        print "<p class=\"noindent\">\n";
+        print "<span>\n";
+        $line =~ s/\[(\d+)\]/<\/span><span class="indent"><\/span><span id="$prefix$chap:\1" class="sect"><sup><a href="#$chap:\1">\1<\/a><\/sup>/;
+    } elsif ($par) {
+        print "<p class=\"indent\">\n";
+    }
+    $line =~ s/\[(\d+)\]/<\/span><span id="$prefix$chap:\1" class="sect"><sup><a href="#$chap:\1">\1<\/a><\/sup>&nbsp;/g;
+    $line =~ s/\[\*\]/<div class="space"><\/div>\n<span>\n/g;
+    $line =~ s/\[\+\]/<div class="space"><\/div>\n<span>\n/g;
+
+    if ($line =~ /\[\$((\d|\.)*?)(:(.*?))?\]/) {
+        $chap = $1;
+        print "</p>";
+    }
+
+    $line =~ s/\[\$((?:\d|\.)*?):(.*?)\]/<h2 id="$prefix\1">\2<\/h2>\n<span>\n/g;
+    $line =~ s/\[\$((\d|\.)*?)\]/<h2 id="$prefix\1">第\1章<\/h2>\n<span>\n/g;
+
+    $line =~ s/(……)/<span class="cdots">\1<\/span>/g;
+    $line =~ s/(――)/<span class="dashes">\1<\/span>/g;
+
+    $line =~ s/！？(?!」)/！？<span class="indent"><\/span>/g;
+    $line =~ s/！(?!？|」)/！<span class="indent"><\/span>/g;
+    $line =~ s/？(?!」)/？<span class="indent"><\/span>/g;
+
+    if ($line =~ /^$/) {
+        print "</span>\n";
+        print "</p>\n";
+        $par = 1;
+    } else {
+        $par = 0;
+    }
+
+    print $line;
+}

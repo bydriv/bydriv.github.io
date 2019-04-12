@@ -32,30 +32,30 @@ input#gallery-visible:checked ~ div.taskbar > label.gallery {
     background-color: rgba(0, 255, 0, 0.5);
 }
 
+input#rcs-visible:not(:checked) ~ div.window#rcs {
+    display: none;
+}
+
+input#rcs-visible:checked ~ div.taskbar > label.rcs {
+    background-color: rgba(0, 255, 0, 0.5);
+}
+
 div.taskbar {
     flex: 0 0 100%;
     height: 40px;
     background-color: rgba(0, 0, 0, 0.75);
 }
 
+div.taskbar > label {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    font-size: 28px;
+    text-align: center;
+}
+
 div.taskbar > label:hover {
     background-color: rgba(255, 255, 255, 1);
-}
-
-div.taskbar > label.about {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    font-size: 28px;
-    text-align: center;
-}
-
-div.taskbar > label.gallery {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    font-size: 28px;
-    text-align: center;
 }
 
 div.window {
@@ -63,7 +63,7 @@ div.window {
     max-height: calc(100% - 40px - 2em);
     margin: 1em;
     padding: 0;
-    font-family: "Consolas", "Yu Gothic", "YuGothic";
+    font-family: "Yu Gothic", "YuGothic";
 }
 
 div.window > div.header {
@@ -128,4 +128,20 @@ div.window > div.content > p {
 div.window > div.content > div.full > img {
     width: 100%;
     vertical-align: bottom;
+}
+
+div.window > div.content > h2 {
+    margin: 0;
+    padding: 4px;
+    font-size: 1em;
+}
+
+div.window > div.content > p > a {
+    color: rgba(0, 255, 255, 1);
+    text-decoration: none;
+}
+
+div.window > div.content > p > a:hover {
+    color: rgba(0, 255, 255, 1);
+    text-decoration: underline;
 }
