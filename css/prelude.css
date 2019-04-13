@@ -6,18 +6,14 @@ html, body {
 }
 
 body {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    overflow-x: hidden;
-    overflow-y: hidden;
+    overflow: hidden;
     background-image: url("/img/desktop.png");
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;
 }
 
-input#about-visible:not(:checked) ~ div.window#about {
+input#about-visible:not(:checked) ~ div.desktop > div.window#about {
     display: none;
 }
 
@@ -29,7 +25,7 @@ input#about-visible:checked ~ div.taskbar > label.about {
     background-color: rgba(0, 255, 0, 0.5);
 }
 
-input#gallery-visible:not(:checked) ~ div.window#gallery {
+input#gallery-visible:not(:checked) ~ div.desktop > div.window#gallery {
     display: none;
 }
 
@@ -41,7 +37,7 @@ input#gallery-visible:checked ~ div.taskbar > label.gallery {
     background-color: rgba(0, 255, 0, 0.5);
 }
 
-input#golden-record-visible:not(:checked) ~ div.window#golden-record {
+input#golden-record-visible:not(:checked) ~ div.desktop > div.window#golden-record {
     display: none;
 }
 
@@ -53,7 +49,7 @@ input#golden-record-visible:checked ~ div.taskbar > label.golden-record {
     background-color: rgba(0, 255, 0, 0.5);
 }
 
-input#rcs-visible:not(:checked) ~ div.window#rcs {
+input#rcs-visible:not(:checked) ~ div.desktop > div.window#rcs {
     display: none;
 }
 
@@ -65,7 +61,7 @@ input#rcs-visible:checked ~ div.taskbar > label.rcs {
     background-color: rgba(0, 255, 0, 0.5);
 }
 
-input#r18-visible:not(:checked) ~ div.window#r18 {
+input#r18-visible:not(:checked) ~ div.desktop > div.window#r18 {
     display: none;
 }
 
@@ -78,7 +74,7 @@ input#r18-visible:checked ~ div.taskbar > label.r18 {
 }
 
 div.taskbar {
-    flex: 0 0 100%;
+    width: 100%;
     height: 40px;
     background-color: rgba(0, 0, 0, 0.75);
 }
@@ -95,12 +91,20 @@ div.taskbar > label:hover {
     background-color: rgba(255, 255, 255, 1);
 }
 
+div.desktop {
+    display: flex;
+    flex-wrap: wrap;
+    height: calc(100% - 40px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
 div.window {
     position: relative;
     flex: 1 1 320px;
-    max-height: calc(100% - 40px - 2em);
     margin: 1em;
     padding: 0;
+    max-height: calc(100% - 2em);
     font-family: "Yu Gothic", "YuGothic";
 }
 
