@@ -10,7 +10,7 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: hidden;
     background-image: url("/img/desktop.png");
     background-position: center center;
     background-size: cover;
