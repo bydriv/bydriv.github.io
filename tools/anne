@@ -12,20 +12,24 @@ escape ('\r':s) = '\\' : 'r' : escape s
 escape ('\t':s) = '\\' : 't' : escape s
 escape (c:s) = c : escape s
 
+dumpRawText :: Bool -> String -> IO Bool
+dumpRawText k t = do
+  if k then
+    putStr ",\""
+  else
+    putStr "\""
+  putStr (escape (reverse t))
+  putStr "\""
+  return True
+
 dumpText :: Bool -> String -> IO Bool
 dumpText k t = do
   let t' = dropWhile (== '\n') t
 
   if null t' then
     return k
-  else do
-    if k then
-      putStr ",\""
-    else
-      putStr "\""
-    putStr (escape (reverse t'))
-    putStr "\""
-    return True
+  else
+    dumpRawText k t'
 
 text :: Bool -> String -> String -> IO ()
 text k t [] = do
@@ -49,6 +53,11 @@ text k t ('\n':'\n':s) = do
   text k' [] (dropWhile (== '\n') s)
 text k t ('\\':'n':s) = do
   text k ('\n':t) s
+text k t ('`':'`':s) = do
+  dumpRawText k t
+  text True [] s
+text k t ('`':c:s) = do
+  text k (c:t) ('`':s)
 text k t ('\\':c:s) = do
   text k (c:t) s
 text k t (c:s) = do
