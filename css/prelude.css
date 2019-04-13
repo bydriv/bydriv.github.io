@@ -13,60 +13,90 @@ body {
     background-attachment: fixed;
 }
 
-input#about-visible:not(:checked) ~ div.desktop > div.window#about {
-    display: none;
+input#about-visible:not(:checked) ~ div.desktop > div.window#about:not(:target) {
+    flex: 0 0 0;
+    margin: 0;
+    padding: 0;
+    height: 0;
+    opacity: 0;
+    transition: flex 0s ease 0.25s, margin 0s ease 0.25s, padding 0s ease 0.25s, height 0s ease 0.25s, opacity 0.125s ease 0s;
 }
 
+input#about-visible:checked ~ div.desktop > div.window#about,
 div.window#about:target {
-    display: block !important;
+    transition: opacity 0.5s ease 0s;
 }
 
 input#about-visible:checked ~ div.taskbar > label.about {
     background-color: rgba(0, 255, 0, 0.5);
 }
 
-input#gallery-visible:not(:checked) ~ div.desktop > div.window#gallery {
-    display: none;
+input#gallery-visible:not(:checked) ~ div.desktop > div.window#gallery:not(:target) {
+    flex: 0 0 0;
+    margin: 0;
+    padding: 0;
+    height: 0;
+    opacity: 0;
+    transition: flex 0s ease 0.25s, margin 0s ease 0.25s, padding 0s ease 0.25s, height 0s ease 0.25s, opacity 0.125s ease 0s;
 }
 
+input#gallery-visible:checked ~ div.desktop > div.window#gallery,
 div.window#gallery:target {
-    display: block !important;
+    transition: opacity 0.5s ease 0s;
 }
 
 input#gallery-visible:checked ~ div.taskbar > label.gallery {
     background-color: rgba(0, 255, 0, 0.5);
 }
 
-input#golden-record-visible:not(:checked) ~ div.desktop > div.window#golden-record {
-    display: none;
+input#golden-record-visible:not(:checked) ~ div.desktop > div.window#golden-record:not(:target) {
+    flex: 0 0 0;
+    margin: 0;
+    padding: 0;
+    height: 0;
+    opacity: 0;
+    transition: flex 0s ease 0.25s, margin 0s ease 0.25s, padding 0s ease 0.25s, height 0s ease 0.25s, opacity 0.125s ease 0s;
 }
 
+input#golden-record-visible:checked ~ div.desktop > div.window#golden-record,
 div.window#golden-record:target {
-    display: block !important;
+    transition: opacity 0.5s ease 0s;
 }
 
 input#golden-record-visible:checked ~ div.taskbar > label.golden-record {
     background-color: rgba(0, 255, 0, 0.5);
 }
 
-input#rcs-visible:not(:checked) ~ div.desktop > div.window#rcs {
-    display: none;
+input#rcs-visible:not(:checked) ~ div.desktop > div.window#rcs:not(:target) {
+    flex: 0 0 0;
+    margin: 0;
+    padding: 0;
+    height: 0;
+    opacity: 0;
+    transition: flex 0s ease 0.25s, margin 0s ease 0.25s, padding 0s ease 0.25s, height 0s ease 0.25s, opacity 0.125s ease 0s;
 }
 
+input#rcs-visible:checked ~ div.desktop > div.window#rcs,
 div.window#rcs:target {
-    display: block !important;
+    transition: opacity 0.5s ease 0s;
 }
 
 input#rcs-visible:checked ~ div.taskbar > label.rcs {
     background-color: rgba(0, 255, 0, 0.5);
 }
 
-input#r18-visible:not(:checked) ~ div.desktop > div.window#r18 {
-    display: none;
+input#r18-visible:not(:checked) ~ div.desktop > div.window#r18:not(:target) {
+    flex: 0 0 0;
+    margin: 0;
+    padding: 0;
+    height: 0;
+    opacity: 0;
+    transition: flex 0s ease 0.25s, margin 0s ease 0.25s, padding 0s ease 0.25s, height 0s ease 0.25s, opacity 0.125s ease 0s;
 }
 
+input#r18-visible:checked ~ div.desktop > div.window#r18,
 div.window#r18:target {
-    display: block !important;
+    transition: opacity 0.5s ease 0s;
 }
 
 input#r18-visible:checked ~ div.taskbar > label.r18 {
@@ -106,6 +136,7 @@ div.window {
     padding: 0;
     max-height: calc(100% - 2em);
     font-family: "Yu Gothic", "YuGothic";
+    opacity: 1;
 }
 
 @media (orientation: landscape) {
