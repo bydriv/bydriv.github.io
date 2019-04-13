@@ -9,7 +9,8 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
     background-image: url("/img/desktop.png");
     background-position: center center;
     background-size: cover;
@@ -103,10 +104,20 @@ div.window {
     font-family: "Yu Gothic", "YuGothic";
 }
 
+@media (orientation: landscape) {
 div.window:before {
     display: block;
     padding-top: 75%;
     content: "";
+}
+}
+
+@media (orientation: portrait) {
+div.window:before {
+    display: block;
+    padding-top: 133%;
+    content: "";
+}
 }
 
 div.window > div.header {
