@@ -41,7 +41,7 @@ text k t ('[':s) = do
   if k' then
     putStr ",["
   else
-    putStr " ["
+    putStr "["
 
   text False [] s
 text k t (']':s) = do
@@ -50,14 +50,21 @@ text k t (']':s) = do
   text True [] s
 text k t ('\n':'\n':s) = do
   k' <- dumpText k t
-  text k' [] (dropWhile (== '\n') s)
+  if k' then
+    putStr "],["
+  else
+    return ()
+  text False [] (dropWhile (== '\n') s)
 text k t ('\\':'n':s) = do
   text k ('\n':t) s
-text k t ('`':'`':s) = do
-  dumpRawText k t
-  text True [] s
-text k t ('`':c:s) = do
-  text k (c:t) ('`':s)
+text k t ('`':c1:c2:'`':s) =
+  if c1 == c2 then do
+    dumpRawText k t
+    text True [] s
+  else
+    text k ('`':c2:t) ('`':c1:s)
+text k t ('`':c1:c:s) = do
+  text k (c:t) ('`':c1:s)
 text k t ('\\':c:s) = do
   text k (c:t) s
 text k t (c:s) = do
@@ -65,6 +72,6 @@ text k t (c:s) = do
 
 main :: IO ()
 main = do
-  putStr "["
+  putStr "[["
   getContents >>= text False []
-  putStr "]\n"
+  putStr "]]\n"

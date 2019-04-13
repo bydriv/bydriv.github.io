@@ -1,0 +1,29 @@
+#!/usr/bin/ruby
+
+require "json"
+
+def traverse(json)
+  case json
+  when String
+    print json
+  when Array
+    if json[0].is_a?(String)
+      if json[0] =~ /\A#(\S+)\s*(.*)\z/m
+        tag = $1
+        json[0] = $2
+      else
+        tag = "p"
+      end
+
+      print "<#{tag}>"
+    end
+
+    json.each do |child|
+      traverse(child)
+    end
+
+    print "</#{tag}>" if json[0].is_a?(String)
+  end
+end
+
+traverse(JSON.parse($<.read))
