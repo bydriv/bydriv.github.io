@@ -28,6 +28,7 @@ div.window#about:target {
 }
 
 input#about-visible:checked ~ div.taskbar > label.about {
+    color: rgba(0, 0, 0, 1);
     background-color: rgba(0, 255, 0, 0.5);
 }
 
@@ -46,6 +47,7 @@ div.window#gallery:target {
 }
 
 input#gallery-visible:checked ~ div.taskbar > label.gallery {
+    color: rgba(0, 0, 0, 1);
     background-color: rgba(0, 255, 0, 0.5);
 }
 
@@ -64,6 +66,7 @@ div.window#golden-record:target {
 }
 
 input#golden-record-visible:checked ~ div.taskbar > label.golden-record {
+    color: rgba(0, 0, 0, 1);
     background-color: rgba(0, 255, 0, 0.5);
 }
 
@@ -82,6 +85,7 @@ div.window#rcs:target {
 }
 
 input#rcs-visible:checked ~ div.taskbar > label.rcs {
+    color: rgba(0, 0, 0, 1);
     background-color: rgba(0, 255, 0, 0.5);
 }
 
@@ -100,6 +104,7 @@ div.window#r18:target {
 }
 
 input#r18-visible:checked ~ div.taskbar > label.r18 {
+    color: rgba(0, 0, 0, 1);
     background-color: rgba(0, 255, 0, 0.5);
 }
 
@@ -113,11 +118,14 @@ div.taskbar > label {
     display: inline-block;
     width: 40px;
     height: 40px;
+    font-family: Symbola;
     font-size: 28px;
     text-align: center;
+    color: rgba(255, 255, 255, 1);
 }
 
 div.taskbar > label:hover {
+    color: rgba(0, 0, 0, 1);
     background-color: rgba(255, 255, 255, 1);
 }
 
@@ -267,4 +275,8 @@ div.blank-line {
 
 span.dashes {
     font-family: Meiryo;
+}
+
+span.emoji {
+    font-family: Symbola;
 }
