@@ -1,0 +1,22 @@
+[
+    ["document", "\\A(.*)\\z", "[\\1null]"],
+    ["paragraph", "\\A\\$(\\d+):(.*)\\z", "{\"type\":\"chapter\",\"chapter\":\1,\"title\":\"\\2\"},\n"],
+    ["paragraph", "\\A\\$(\\d+)\\z", "{\"type\":\"chapter\",\"chapter\":\1,\"title\":null},\n"],
+    ["paragraph", "\\A\\+\\z", "{\"type\":\"blank-line\"},\n"],
+    ["paragraph", "\\A\\*\\z", "{\"type\":\"blank-line\"},\n"],
+    ["paragraph", "\\A(.*)\\z", "{\"type\":\"paragraph\",\"sections\":[\\1null]},\n"],
+    ["inline", "\\A(\\$\\d+:.*)\\z", "\\1"],
+    ["inline", "\\A(\\$\\d+)\\z", "\\1"],
+    ["inline", "\\A\\+\\z", "\\1"],
+    ["inline", "\\A\\*\\z", "\\1"],
+    ["inline", "\\A(\\d+)\\z", "{\"type\":\"section\",\"section\":\\1,"],
+    ["inline", "\\A(.*)\\z", "\"text\":\"\\1\"},"],
+    ["atom", "\"", "\\\""],
+    ["atom", "\n", "\\n"],
+    ["atom", "/", "\\/"],
+    ["atom", "\b", "\\b"],
+    ["atom", "\f", "\\f"],
+    ["atom", "\n", "\\n"],
+    ["atom", "\r", "\\r"],
+    ["atom", "\t", "\\t"]
+]
