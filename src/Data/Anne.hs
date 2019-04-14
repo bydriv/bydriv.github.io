@@ -61,8 +61,8 @@ lex = lex' 0
           Left e ->
             Left e
           Right t ->
-            let q = p + length t + length k + 1 in
-            let s'' = drop (length t + length k + 1) s' in
+            let q = p + length t + length k in
+            let s'' = drop (length t + length k) s' in
               either Left (Right . (Token TEXT (p, q) (tail t) :)) (lex' q s'')
     lex' p (c:s) =
       let (q, t) = lexText p "" (c:s) in
