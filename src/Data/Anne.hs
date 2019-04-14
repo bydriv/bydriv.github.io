@@ -1,11 +1,12 @@
 module Data.Anne(
   Anne(..), Atom(..), Datum(..)
 , Term(..), Token(..)
-, Cursor, Pos, ParseError(..)
+, Cursor, Pos, Error(..)
 , lex, parse
 ) where
 
-import Prelude hiding (lex)
+import           Prelude   hiding (lex)
+import qualified Data.List              as List
 
 data Anne = Anne [[Datum]]
   deriving (Eq, Ord, Read, Show)
@@ -32,48 +33,72 @@ data Token = Token Term Pos String
 type Cursor = Int
 type Pos = (Cursor, Cursor)
 
-data ParseError = Unexpected Token | UnexpectedEOF
+data Error =
+    UnexpectedEOF
+  | UnexpectedChar (Cursor, Char)
+  | UnexpectedToken Token
   deriving (Eq, Ord, Read, Show)
 
-lex :: String -> [Token]
+lex :: String -> Either Error [Token]
 lex = lex' 0
   where
-    lex' :: Cursor -> String -> [Token]
+    lex' :: Cursor -> String -> Either Error [Token]
     lex' _ [] =
-      []
+      Right []
     lex' p ('[':s) =
       let q = p + 1 in
-        Token LBRACE (p, q) "[" : lex' q s
+        either Left (Right . (Token LBRACE (p, q) "[" :)) (lex' q s)
     lex' p (']':s) =
       let q = p + 1 in
-        Token RBRACE (p, q) "]" : lex' q s
+        either Left (Right . (Token RBRACE (p, q) "]" :)) (lex' q s)
     lex' p ('\n':'\n':s) =
       let (b, s') = span (== '\n') s in
       let q = p + length b + 2 in
-        Token BLANK (p, q) ('\n':'\n':b) : lex' q s'
+        either Left (Right . (Token BLANK (p, q) ('\n':'\n':b) :)) (lex' q s')
+    lex' p ('<':'<':s) =
+      let (k, s') = span (/= '\n') s in
+        case lexHereDoc k "" s' of
+          Left e ->
+            Left e
+          Right t ->
+            let q = p + length t + length k + 1 in
+            let s'' = drop (length t + length k + 1) s' in
+              either Left (Right . (Token TEXT (p, q) (tail t) :)) (lex' q s'')
     lex' p (c:s) =
       let t = lexText "" (c:s) in
       let q = p + length t in
       let s' = drop (length t) (c:s) in
-        Token TEXT (p, q) t : lex' q s'
+        either Left (Right . (Token TEXT (p, q) t :)) (lex' q s')
+
+    lexHereDoc :: String -> String -> String -> Either Error String
+    lexHereDoc k t [] =
+      Left UnexpectedEOF
+    lexHereDoc k t ('\n':s)
+      | List.isPrefixOf k s, let ('\n':s') = drop (length k) s =
+          Right (reverse ('\n':t))
+      | otherwise =
+          lexHereDoc k ('\n':t) s
+    lexHereDoc k t (c:s) =
+      lexHereDoc k (c:t) s
 
     lexText :: String -> String -> String
     lexText t []            = reverse t
     lexText t ('[':_)       = reverse t
     lexText t (']':_)       = reverse t
     lexText t ('\n':'\n':_) = reverse t
+    lexText t ('<':'<':_) = reverse t
     lexText t ('\\':c:s)    = lexText (c:t) s
     lexText t (c:s)         = lexText (c:t) s
 
-parse :: [Token] -> Either ParseError Anne
+parse :: [Token] -> Either Error Anne
 parse = either Left (Right . Anne) . consumed . parseAnne
   where
-    consumed :: Either ParseError (a, [Token]) -> Either ParseError a
+    consumed :: Either Error (a, [Token]) -> Either Error a
     consumed (Left e)           = Left e
-    consumed (Right (_, (t:_))) = Left (Unexpected t)
+    consumed (Right (_, (t:_))) = Left (UnexpectedToken t)
     consumed (Right (x, []))    = Right x
 
-    parseAnne :: [Token] -> Either ParseError ([[Datum]], [Token])
+    parseAnne :: [Token] -> Either Error ([[Datum]], [Token])
     parseAnne [] =
       Right ([], [])
     parseAnne ts =
@@ -89,14 +114,14 @@ parse = either Left (Right . Anne) . consumed . parseAnne
             Right (dat', ts'') ->
               Right (dat:dat', ts'')
         Right (_, t:_) ->
-          Left (Unexpected t)
+          Left (UnexpectedToken t)
 
-    parseAtom :: [Token] -> Either ParseError (Atom, [Token])
+    parseAtom :: [Token] -> Either Error (Atom, [Token])
     parseAtom []                  = Left UnexpectedEOF
     parseAtom (Token TEXT p s:ts) = Right (String p s, ts)
-    parseAtom (t:_)               = Left (Unexpected t)
+    parseAtom (t:_)               = Left (UnexpectedToken t)
 
-    parseList :: [Token] -> Either ParseError ([Datum], [Token])
+    parseList :: [Token] -> Either Error ([Datum], [Token])
     parseList [] =
       Left UnexpectedEOF
     parseList (Token LBRACE _ _:ts) =
@@ -104,11 +129,11 @@ parse = either Left (Right . Anne) . consumed . parseAnne
         Left e -> Left e
         Right (_, []) -> Left UnexpectedEOF
         Right (dat, Token RBRACE _ _:ts') -> Right (dat, ts')
-        Right (_, t:_) -> Left (Unexpected t)
+        Right (_, t:_) -> Left (UnexpectedToken t)
     parseList (t:_) =
-      Left (Unexpected t)
+      Left (UnexpectedToken t)
 
-    parseDatum :: [Token] -> Either ParseError (Datum, [Token])
+    parseDatum :: [Token] -> Either Error (Datum, [Token])
     parseDatum ts =
       case parseAtom ts of
         Right (atom, ts') ->
@@ -120,7 +145,7 @@ parse = either Left (Right . Anne) . consumed . parseAnne
             Left e ->
               Left e
 
-    parseData :: [Token] -> Either ParseError ([Datum], [Token])
+    parseData :: [Token] -> Either Error ([Datum], [Token])
     parseData ts =
       case parseDatum ts of
         Left _ -> Right ([], ts)

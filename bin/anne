@@ -29,12 +29,24 @@ main :: IO ()
 main = do
   s <- getContents
 
-  case Anne.parse (Anne.lex s) of
-    Right a ->
-      putStrLn (toJSON a)
+  case Anne.lex s of
+    Right ts ->
+      case Anne.parse ts of
+        Right a ->
+          putStrLn (toJSON a)
+        Left e ->
+          case e of
+            Anne.UnexpectedEOF ->
+              putStrLn "unexpected eof"
+            Anne.UnexpectedChar (p, c) ->
+              putStrLn "unexpected char"
+            Anne.UnexpectedToken (Anne.Token t p s) ->
+              putStrLn "unexpected token"
     Left e ->
       case e of
-        Anne.Unexpected (Anne.Token t p s) -> do
-          putStrLn "unexpected token"
         Anne.UnexpectedEOF ->
           putStrLn "unexpected eof"
+        Anne.UnexpectedChar (p, c) ->
+          putStrLn "unexpected char"
+        Anne.UnexpectedToken (Anne.Token t p s) ->
+          putStrLn "unexpected token"
