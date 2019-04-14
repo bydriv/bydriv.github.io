@@ -6,6 +6,3 @@ blog/%.html: blog/%.anne
 
 novel/%.html: novel/%.txt
 	cat $< | bin/anne | bin/shirley shirley/novel.json > $@
-
-novel/%.json: novel/%.txt
-	cat $< | bin/anne | bin/shirley shirley/structured-novel.json | jq . > $@
