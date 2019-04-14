@@ -13,13 +13,24 @@ module Shirley
     end
   end
 
+  def fire(rule, s)
+    return s unless rule
+
+    case rule[:replace]
+    when String
+      s.gsub(rule[:regexp], rule[:replace])
+    when Proc
+      s.gsub(rule[:regexp], &rule[:replace])
+    end
+  end
+
   def traverse_inline(cfg, json)
     case json
     when String
       rules = cfg.select { |rule| rule[:type] == "atom" && json =~ rule[:regexp] }
 
       rules.each do |rule|
-        json = json.gsub(rule[:regexp], rule[:replace])
+        json = fire(rule, json)
       end
 
       json
@@ -30,11 +41,7 @@ module Shirley
 
       rule = cfg.find { |rule| rule[:type] == "inline" && s =~ rule[:regexp] }
 
-      if rule
-        s.gsub(rule[:regexp], rule[:replace])
-      else
-        s
-      end
+      fire(rule, s)
     end
   end
 
@@ -45,11 +52,7 @@ module Shirley
 
     rule = cfg.find { |rule| rule[:type] == "paragraph" && s =~ rule[:regexp] }
 
-    if rule
-      s.gsub(rule[:regexp], rule[:replace])
-    else
-      s
-    end
+    fire(rule, s)
   end
 
   def traverse(cfg, json)
@@ -59,10 +62,6 @@ module Shirley
 
     rule = cfg.find { |rule| rule[:type] == "document" && s =~ rule[:regexp] }
 
-    if rule
-      s.gsub(rule[:regexp], rule[:replace])
-    else
-      s
-    end
+    fire(rule, s)
   end
 end
