@@ -15,6 +15,12 @@ end
 def traverse_inline(cfg, json)
   case json
   when String
+    rules = cfg.select { |rule| rule[:type] == "atom" && json =~ rule[:regexp] }
+
+    rules.each do |rule|
+      json = json.gsub(rule[:regexp], rule[:replace])
+    end
+
     rule = cfg.find { |rule| rule[:type] == "inline" && json =~ rule[:regexp] }
 
     if rule
@@ -24,6 +30,12 @@ def traverse_inline(cfg, json)
     end
   when Array
     if json[0].is_a?(String)
+      rules = cfg.select { |rule| rule[:type] == "atom" && json[0] =~ rule[:regexp] }
+
+      rules.each do |rule|
+        json[0] = json[0].gsub(rule[:regexp], rule[:replace])
+      end
+
       s = json[1..-1].map do |child|
         traverse_inline(cfg, child)
       end.join("")
@@ -46,9 +58,23 @@ def traverse_inline(cfg, json)
 end
 
 def traverse_paragraph(cfg, json)
-  s = json.map do |child|
-    traverse_inline(cfg, child)
-  end.join("")
+  if json[0].is_a?(String)
+    rules = cfg.select { |rule| rule[:type] == "atom" && json[0] =~ rule[:regexp] }
+
+    rules.each do |rule|
+      json[0] = json[0].gsub(rule[:regexp], rule[:replace])
+    end
+
+    s = json[1..-1].map do |child|
+      traverse_inline(cfg, child)
+    end.join("")
+
+    s = json[0] + s
+  else
+    s = json.map do |child|
+      traverse_inline(cfg, child)
+    end.join("")
+  end
 
   rule = cfg.find { |rule| rule[:type] == "paragraph" && s =~ rule[:regexp] }
 

@@ -65,9 +65,8 @@ lex = lex' 0
             let s'' = drop (length t + length k + 1) s' in
               either Left (Right . (Token TEXT (p, q) (tail t) :)) (lex' q s'')
     lex' p (c:s) =
-      let t = lexText "" (c:s) in
-      let q = p + length t in
-      let s' = drop (length t) (c:s) in
+      let (q, t) = lexText p "" (c:s) in
+      let s' = drop (q - p) (c:s) in
         either Left (Right . (Token TEXT (p, q) t :)) (lex' q s')
 
     lexHereDoc :: String -> String -> String -> Either Error String
@@ -81,14 +80,14 @@ lex = lex' 0
     lexHereDoc k t (c:s) =
       lexHereDoc k (c:t) s
 
-    lexText :: String -> String -> String
-    lexText t []            = reverse t
-    lexText t ('[':_)       = reverse t
-    lexText t (']':_)       = reverse t
-    lexText t ('\n':'\n':_) = reverse t
-    lexText t ('<':'<':_) = reverse t
-    lexText t ('\\':c:s)    = lexText (c:t) s
-    lexText t (c:s)         = lexText (c:t) s
+    lexText :: Cursor -> String -> String -> (Cursor, String)
+    lexText p t []            = (p, reverse t)
+    lexText p t ('[':_)       = (p, reverse t)
+    lexText p t (']':_)       = (p, reverse t)
+    lexText p t ('\n':'\n':_) = (p, reverse t)
+    lexText p t ('<':'<':_)   = (p, reverse t)
+    lexText p t ('\\':c:s)    = lexText (p + 2) (c:t) s
+    lexText p t (c:s)         = lexText (p + 1) (c:t) s
 
 parse :: [Token] -> Either Error Anne
 parse = either Left (Right . Anne) . consumed . parseAnne
