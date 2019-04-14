@@ -57,6 +57,8 @@ lex = lex' 0
       let (b, s') = span (== '\n') s in
       let q = p + length b + 2 in
         either Left (Right . (Token BLANK (p, q) ('\n':'\n':b) :)) (lex' q s')
+    lex' p ('\n':s) =
+      lex' (p + 1) s
     lex' p ('<':'<':s) =
       let (k, s') = span (/= '\n') s in
         case lexHereDoc k "" s' of
@@ -87,6 +89,7 @@ lex = lex' 0
     lexText p t ('[':_)       = (p, reverse t)
     lexText p t (']':_)       = (p, reverse t)
     lexText p t ('\n':'\n':_) = (p, reverse t)
+    lexText p t ('\n':_)      = (p, reverse t)
     lexText p t ('<':'<':_)   = (p, reverse t)
     lexText p t ('\\':c:s)    = lexText (p + 2) (c:t) s
     lexText p t (c:s)         = lexText (p + 1) (c:t) s
