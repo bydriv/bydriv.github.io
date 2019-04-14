@@ -1,0 +1,8 @@
+[
+    ["paragraph", "\\A\\$(\\d+):(.*)\\z", "<h2>\\2</h2>"],
+    ["paragraph", "\\A\\$(\\d+)\\z", "<h2>第\\1章</h2>"],
+    ["paragraph", "\\A\\+\\z", "<div class=\"blank-line\"></div>"],
+    ["paragraph", "\\A\\*\\z", "<div class=\"blank-line\"></div>"],
+    ["paragraph", "\\A(.*)\\z", "<p>\\1</p>"],
+    ["inline", "\\A(\\d+)\\z", "<sup>\\1</sup>"]
+]
