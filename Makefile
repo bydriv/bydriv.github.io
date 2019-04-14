@@ -1,11 +1,11 @@
-anne/%.html: anne/%.anne
-	cat $< | bin/anne | bin/shirley shirley/html.json > $@
+anne/%.html: anne/%.anne shirley/html.rb
+	cat $< | bin/anne | shirley/html.rb > $@
 
 anne/%.json: anne/%.anne
 	cat $< | bin/anne | jq . > $@
 
-blog/%.html: blog/%.anne
-	cat $< | bin/anne | bin/shirley shirley/html.json > $@
+blog/%.html: blog/%.anne shirley/html.rb
+	cat $< | bin/anne | shirley/html.rb > $@
 
-novel/%.html: novel/%.txt
-	cat $< | bin/anne | bin/shirley shirley/novel.json > $@
+novel/%.html: novel/%.txt shirley/novel.rb
+	cat $< | bin/anne | shirley/novel.rb > $@
