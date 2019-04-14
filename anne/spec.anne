@@ -25,7 +25,7 @@ Anne の字句は4種類であり、すなわち
 他方はすべての K = [#code /\[^\\n\]+/] について [#code /\<<K\\n.*?\\nK\\n/] で指定されるものであり、
 ヒアドキュメントと呼ばれる。 K は一致している必要がある。
 たとえば [#code /\<<CODE\\n.*?\\nCODE\\n/] や [#code /\<<DOC\\n.*?\\nDOC\\n/]
-はヒアドキュメントだが [#code /\<<DOC\\n.*?\\nCOD\\n/] はヒアドキュメントではない。
+はヒアドキュメントだが [#code /\<<DOC\\n.*?\\nCODE\\n/] はヒアドキュメントではない。
 
 #h3 文法
 
@@ -58,6 +58,12 @@ data2-tree:
   [tree
     [leaf]
     [leaf]]
+
+<<DATA
+data3-atom: atom
+data3-list: [list]
+data3-tree: [tree [leaf] [leaf]]
+DATA
 CODE
 
 上記の Anne ファイルは、以下の JSON ファイルと等価である。
@@ -105,6 +111,9 @@ CODE
         "leaf"
       ]
     ]
+  ],
+  [
+    "data3-atom: atom\ndata3-list: [list]\ndata3-tree: [tree [leaf] [leaf]]\n"
   ]
 ]
 CODE

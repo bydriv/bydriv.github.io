@@ -10,3 +10,9 @@ data2-tree:
   [tree
     [leaf]
     [leaf]]
+
+<<DATA
+data3-atom: atom
+data3-list: [list]
+data3-tree: [tree [leaf] [leaf]]
+DATA

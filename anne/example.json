@@ -38,5 +38,8 @@
         "leaf"
       ]
     ]
+  ],
+  [
+    "data3-atom: atom\ndata3-list: [list]\ndata3-tree: [tree [leaf] [leaf]]\n"
   ]
 ]
