@@ -1,0 +1,12 @@
+data1-atom: atom
+data1-list: [list]
+data1-tree: [tree [leaf] [leaf]]
+
+data2-atom:
+  atom
+data2-list:
+  [list]
+data2-tree:
+  [tree
+    [leaf]
+    [leaf]]
