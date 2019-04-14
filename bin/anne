@@ -1,0 +1,40 @@
+#!/usr/bin/runhaskell -isrc
+
+import qualified Data.Anne as Anne
+import qualified Data.List as List
+
+escape :: String -> String
+escape [] = []
+escape ('"':s) = '\\' : '"' : escape s
+escape ('\\':s) = '\\' : '\\' : escape s
+escape ('/':s) = '\\' : '/' : escape s
+escape ('\b':s) = '\\' : 'b' : escape s
+escape ('\f':s) = '\\' : 'f' : escape s
+escape ('\n':s) = '\\' : 'n' : escape s
+escape ('\r':s) = '\\' : 'r' : escape s
+escape ('\t':s) = '\\' : 't' : escape s
+escape (c:s) = c : escape s
+
+list :: [String] -> String
+list ss = concat (["["] ++ List.intersperse "," ss ++ ["]"])
+
+toJSON :: Anne.Anne -> String
+toJSON (Anne.Anne anne) = list (map (list . map datumToJSON) anne)
+
+datumToJSON :: Anne.Datum -> String
+datumToJSON (Anne.Atom (Anne.String _ s)) = "\"" ++ escape s ++ "\""
+datumToJSON (Anne.List dat) = list (map datumToJSON dat)
+
+main :: IO ()
+main = do
+  s <- getContents
+
+  case Anne.parse (Anne.lex s) of
+    Right a ->
+      putStrLn (toJSON a)
+    Left e ->
+      case e of
+        Anne.Unexpected (Anne.Token t p s) -> do
+          putStrLn "unexpected token"
+        Anne.UnexpectedEOF ->
+          putStrLn "unexpected eof"
