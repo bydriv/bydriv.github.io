@@ -4,5 +4,6 @@
     ["paragraph", "\\A\\+\\z", "<div class=\"blank-line\"></div>"],
     ["paragraph", "\\A\\*\\z", "<div class=\"blank-line\"></div>"],
     ["paragraph", "\\A(.*)\\z", "<p>\\1</p>"],
-    ["inline", "\\A(\\d+)\\z", "<sup>\\1</sup>"]
+    ["inline", "\\A(\\d+)\\z", "<sup>\\1</sup>"],
+    ["inline", "\\A#ruby:([^:]+):([^:]+)\\z", "<ruby>\\1<rp>(</rp><rt>\\2</rt><rp>)</rp></ruby>"]
 ]
