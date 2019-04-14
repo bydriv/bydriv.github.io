@@ -111,11 +111,10 @@ CODE1
 
 #pre <<CODE
 [
-    ["paragraph", "\\A\\\\#(.*)\\z", "#\\1"],
     ["paragraph", "\\A#(\\S+)\\s*(.*)\\z", "<\\1>\\2</\\1>"],
     ["paragraph", "\\A(.*)\\z", "<p>\\1</p>"],
-    ["inline", "\\A\\\\#(.*)\\z", "#\\1"],
     ["inline", "\\A#(\\S+)\\s*(.*)\\z", "<\\1>\\2</\\1>"],
+    ["atom", "\\A\\\\#", "&#x23;"],
     ["atom", "&", "&amp;"],
     ["atom", "\\\\", "&bsol;"],
     ["atom", "<", "&lt;"],
@@ -123,12 +122,12 @@ CODE1
 ]
 CODE
 
-この定義ファイルは、 [#code \\#tag] のようなコードでタグを表す Anne の方言を定義することを意味する。
+この定義ファイルは、 [#code #tag] のようなコードでタグを表す Anne の方言を定義することを意味する。
 
 そのうえで shirley で anne を html を変換すると、つぎのようになる。
 
 #pre <<CODE
-<h2>Hello World</h2><p>hello world</p><pre>&bsol;#h2 Hello World
+<h2>Hello World</h2><p>hello world</p><pre>&#x23;h2 Hello World
 
 hello world
 </pre>
