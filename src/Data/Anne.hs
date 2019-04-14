@@ -45,6 +45,8 @@ lex = lex' 0
     lex' :: Cursor -> String -> Either Error [Token]
     lex' _ [] =
       Right []
+    lex' _ ['\n'] =
+      Right []
     lex' p ('[':s) =
       let q = p + 1 in
         either Left (Right . (Token LBRACE (p, q) "[" :)) (lex' q s)
