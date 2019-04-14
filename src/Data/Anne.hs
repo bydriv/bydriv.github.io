@@ -68,6 +68,17 @@ lex = lex' 0
             let q = p + length t + length k in
             let s'' = drop (length t + length k) s' in
               either Left (Right . (Token TEXT (p, q) (tail t) :)) (lex' q s'')
+    lex' p ('<':k:s) =
+      let (t, s') = span (/= k) s in
+        case s' of
+          [] ->
+            Left UnexpectedEOF
+          (c:s'')
+            | c /= k ->
+                Left (UnexpectedChar (p + 2, c))
+            | otherwise ->
+                let q = p + length t + 3 in
+                  either Left (Right . (Token TEXT (p, q) t :)) (lex' q s'')
     lex' p (c:s) =
       let (q, t) = lexText p "" (c:s) in
       let s' = drop (q - p) (c:s) in
@@ -91,6 +102,7 @@ lex = lex' 0
     lexText p t ('\n':'\n':_) = (p, reverse t)
     lexText p t ('\n':_)      = (p, reverse t)
     lexText p t ('<':'<':_)   = (p, reverse t)
+    lexText p t ('<':_)       = (p, reverse t)
     lexText p t ('\\':c:s)    = lexText (p + 2) (c:t) s
     lexText p t (c:s)         = lexText (p + 1) (c:t) s
 
