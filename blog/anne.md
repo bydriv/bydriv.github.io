@@ -40,7 +40,7 @@ ATOM
 たとえば、先述の例なら</p><pre>$ cat tmp.json | anne
 [["段落1&bsol;n段落1"],["段落2"],["段落3&bsol;n段落3&bsol;n段落3"],["アトム&bsol;n[] (1バイトエスケープする)&bsol;n","ヒアドキュメント&bsol;n","&bsol;n",["リスト"],"&bsol;n",["木 ",["枝"]," ",["枝"]]]]
 </pre><p>というふうに変換される。</p><h4>shirley</h4><p>shirley は Anne を JSON に変換したものを HTML に変換する処理系である。
-たとえば、つぎのような Anne を用意したとする。</p><pre>&bsol;#h2 Hello World
+たとえば、つぎのような Anne を用意したとする。</p><pre>&#x23;h2 Hello World
 
 hello world
 
@@ -53,13 +53,13 @@ CODE
     ["paragraph", "&bsol;&bsol;A#(&bsol;&bsol;S+)&bsol;&bsol;s*(.*)&bsol;&bsol;z", "&lt;&bsol;&bsol;1&gt;&bsol;&bsol;2&lt;/&bsol;&bsol;1&gt;"],
     ["paragraph", "&bsol;&bsol;A(.*)&bsol;&bsol;z", "&lt;p&gt;&bsol;&bsol;1&lt;/p&gt;"],
     ["inline", "&bsol;&bsol;A#(&bsol;&bsol;S+)&bsol;&bsol;s*(.*)&bsol;&bsol;z", "&lt;&bsol;&bsol;1&gt;&bsol;&bsol;2&lt;/&bsol;&bsol;1&gt;"],
-    ["atom", "&bsol;&bsol;A&bsol;&bsol;&bsol;&bsol;#&bsol;&bsol;z", "&amp;#x23;"],
+    ["atom", "&bsol;&bsol;A&bsol;&bsol;&bsol;&bsol;#", "&amp;#x23;"],
     ["atom", "&amp;", "&amp;amp;"],
     ["atom", "&bsol;&bsol;&bsol;&bsol;", "&amp;bsol;"],
     ["atom", "&lt;", "&amp;lt;"],
     ["atom", "&gt;", "&amp;gt;"]
 ]
-</pre><p>この定義ファイルは、 <code>#tag</code> のようなコードでタグを表す Anne の方言を定義することを意味する。</p><p>そのうえで shirley で anne を html を変換すると、つぎのようになる。</p><pre>&lt;h2&gt;Hello World&lt;/h2&gt;&lt;p&gt;hello world&lt;/p&gt;&lt;pre&gt;&amp;bsol;#h2 Hello World
+</pre><p>この定義ファイルは、 <code>#tag</code> のようなコードでタグを表す Anne の方言を定義することを意味する。</p><p>そのうえで shirley で anne を html を変換すると、つぎのようになる。</p><pre>&lt;h2&gt;Hello World&lt;/h2&gt;&lt;p&gt;hello world&lt;/p&gt;&lt;pre&gt;&amp;#x23;h2 Hello World
 
 hello world
 &lt;/pre&gt;
