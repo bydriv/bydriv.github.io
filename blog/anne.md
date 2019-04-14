@@ -50,12 +50,12 @@ hello world
 hello world
 CODE
 </pre><p>さらに、これを変換するためのつぎのような定義ファイルを与える。</p><pre>[
-    ["paragraph", "&amp;bsol;&amp;bsol;A&amp;bsol;&amp;bsol;&amp;bsol;&amp;bsol;#(.*)&amp;bsol;&amp;bsol;z", "#&amp;bsol;&amp;bsol;1"],
-    ["paragraph", "&amp;bsol;&amp;bsol;A#(&amp;bsol;&amp;bsol;S+)&amp;bsol;&amp;bsol;s*(.*)&amp;bsol;&amp;bsol;z", "&lt;&amp;bsol;&amp;bsol;1&gt;&amp;bsol;&amp;bsol;2&lt;/&amp;bsol;&amp;bsol;1&gt;"],
-    ["paragraph", "&amp;bsol;&amp;bsol;A(.*)&amp;bsol;&amp;bsol;z", "&lt;p&gt;&amp;bsol;&amp;bsol;1&lt;/p&gt;"],
-    ["inline", "&amp;bsol;&amp;bsol;A&amp;bsol;&amp;bsol;&amp;bsol;&amp;bsol;#(.*)&amp;bsol;&amp;bsol;z", "#&amp;bsol;&amp;bsol;1"],
-    ["inline", "&amp;bsol;&amp;bsol;A#(&amp;bsol;&amp;bsol;S+)&amp;bsol;&amp;bsol;s*(.*)&amp;bsol;&amp;bsol;z", "&lt;&amp;bsol;&amp;bsol;1&gt;&amp;bsol;&amp;bsol;2&lt;/&amp;bsol;&amp;bsol;1&gt;"],
-    ["atom", "&amp;bsol;&amp;bsol;&amp;bsol;&amp;bsol;", "&amp;bsol;"],
+    ["paragraph", "&bsol;&bsol;A&bsol;&bsol;&bsol;&bsol;#(.*)&bsol;&bsol;z", "#&bsol;&bsol;1"],
+    ["paragraph", "&bsol;&bsol;A#(&bsol;&bsol;S+)&bsol;&bsol;s*(.*)&bsol;&bsol;z", "&lt;&bsol;&bsol;1&gt;&bsol;&bsol;2&lt;/&bsol;&bsol;1&gt;"],
+    ["paragraph", "&bsol;&bsol;A(.*)&bsol;&bsol;z", "&lt;p&gt;&bsol;&bsol;1&lt;/p&gt;"],
+    ["inline", "&bsol;&bsol;A&bsol;&bsol;&bsol;&bsol;#(.*)&bsol;&bsol;z", "#&bsol;&bsol;1"],
+    ["inline", "&bsol;&bsol;A#(&bsol;&bsol;S+)&bsol;&bsol;s*(.*)&bsol;&bsol;z", "&lt;&bsol;&bsol;1&gt;&bsol;&bsol;2&lt;/&bsol;&bsol;1&gt;"],
+    ["atom", "&bsol;&bsol;&bsol;&bsol;", "&amp;bsol;"],
     ["atom", "&amp;", "&amp;amp;"],
     ["atom", "&lt;", "&amp;lt;"],
     ["atom", "&gt;", "&amp;gt;"]
