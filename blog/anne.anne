@@ -116,6 +116,7 @@ CODE1
     ["paragraph", "\\A(.*)\\z", "<p>\\1</p>"],
     ["inline", "\\A\\\\#(.*)\\z", "#\\1"],
     ["inline", "\\A#(\\S+)\\s*(.*)\\z", "<\\1>\\2</\\1>"],
+    ["atom", "\\\\", "&bsol;"],
     ["atom", "&", "&amp;"],
     ["atom", "<", "&lt;"],
     ["atom", ">", "&gt;"]
@@ -127,7 +128,7 @@ CODE
 そのうえで shirley で anne を html を変換すると、つぎのようになる。
 
 #pre <<CODE
-<h2>Hello World</h2><p>hello world</p><pre>#h2 Hello World
+<h2>Hello World</h2><p>hello world</p><pre>&bsol;#h2 Hello World
 
 hello world
 </pre>

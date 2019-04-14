@@ -29,7 +29,7 @@ S式はシリアライズフォーマットの一種だといえるし、方向�
 段落3
 </pre><p>段落は <em>datum</em> に分けられる。
 datum はアトム、リストの2種類がある。</p><pre>アトム
-\[\] (1バイトエスケープする)
+&bsol;[&bsol;] (1バイトエスケープする)
 &lt;&lt;ATOM
 ヒアドキュメント
 ATOM
@@ -38,28 +38,29 @@ ATOM
 </pre><p>アトムはヒアドキュメントの記法を使うこともできる。
 リストは untyped なので木をつくることもできる。</p><p>以上ですべてである。</p><h3>処理系</h3><h4>anne</h4><p>anne は Anne を JSON に変換する処理系でである。
 たとえば、先述の例なら</p><pre>$ cat tmp.json | anne
-[["段落1\n段落1"],["段落2"],["段落3\n段落3\n段落3"],["アトム\n[] (1バイトエスケープする)\n","ヒアドキュメント\n","\n",["リスト"],"\n",["木 ",["枝"]," ",["枝"]]]]
+[["段落1&bsol;n段落1"],["段落2"],["段落3&bsol;n段落3&bsol;n段落3"],["アトム&bsol;n[] (1バイトエスケープする)&bsol;n","ヒアドキュメント&bsol;n","&bsol;n",["リスト"],"&bsol;n",["木 ",["枝"]," ",["枝"]]]]
 </pre><p>というふうに変換される。</p><h4>shirley</h4><p>shirley は Anne を JSON に変換したものを HTML に変換する処理系である。
-たとえば、つぎのような Anne を用意したとする。</p><pre>#h2 Hello World
+たとえば、つぎのような Anne を用意したとする。</p><pre>&bsol;#h2 Hello World
 
 hello world
 
 #pre &lt;&lt;CODE
-\#h2 Hello World
+&bsol;#h2 Hello World
 
 hello world
 CODE
 </pre><p>さらに、これを変換するためのつぎのような定義ファイルを与える。</p><pre>[
-    ["paragraph", "\\A\\\\#(.*)\\z", "#\\1"],
-    ["paragraph", "\\A#(\\S+)\\s*(.*)\\z", "&lt;\\1&gt;\\2&lt;/\\1&gt;"],
-    ["paragraph", "\\A(.*)\\z", "&lt;p&gt;\\1&lt;/p&gt;"],
-    ["inline", "\\A\\\\#(.*)\\z", "#\\1"],
-    ["inline", "\\A#(\\S+)\\s*(.*)\\z", "&lt;\\1&gt;\\2&lt;/\\1&gt;"],
+    ["paragraph", "&amp;bsol;&amp;bsol;A&amp;bsol;&amp;bsol;&amp;bsol;&amp;bsol;#(.*)&amp;bsol;&amp;bsol;z", "#&amp;bsol;&amp;bsol;1"],
+    ["paragraph", "&amp;bsol;&amp;bsol;A#(&amp;bsol;&amp;bsol;S+)&amp;bsol;&amp;bsol;s*(.*)&amp;bsol;&amp;bsol;z", "&lt;&amp;bsol;&amp;bsol;1&gt;&amp;bsol;&amp;bsol;2&lt;/&amp;bsol;&amp;bsol;1&gt;"],
+    ["paragraph", "&amp;bsol;&amp;bsol;A(.*)&amp;bsol;&amp;bsol;z", "&lt;p&gt;&amp;bsol;&amp;bsol;1&lt;/p&gt;"],
+    ["inline", "&amp;bsol;&amp;bsol;A&amp;bsol;&amp;bsol;&amp;bsol;&amp;bsol;#(.*)&amp;bsol;&amp;bsol;z", "#&amp;bsol;&amp;bsol;1"],
+    ["inline", "&amp;bsol;&amp;bsol;A#(&amp;bsol;&amp;bsol;S+)&amp;bsol;&amp;bsol;s*(.*)&amp;bsol;&amp;bsol;z", "&lt;&amp;bsol;&amp;bsol;1&gt;&amp;bsol;&amp;bsol;2&lt;/&amp;bsol;&amp;bsol;1&gt;"],
+    ["atom", "&amp;bsol;&amp;bsol;&amp;bsol;&amp;bsol;", "&amp;bsol;"],
     ["atom", "&amp;", "&amp;amp;"],
     ["atom", "&lt;", "&amp;lt;"],
     ["atom", "&gt;", "&amp;gt;"]
 ]
-</pre><p>この定義ファイルは、 <code>\#tag</code> のようなコードでタグを表す Anne の方言を定義することを意味する。</p><p>そのうえで shirley で anne を html を変換すると、つぎのようになる。</p><pre>&lt;h2&gt;Hello World&lt;/h2&gt;&lt;p&gt;hello world&lt;/p&gt;&lt;pre&gt;#h2 Hello World
+</pre><p>この定義ファイルは、 <code>&bsol;#tag</code> のようなコードでタグを表す Anne の方言を定義することを意味する。</p><p>そのうえで shirley で anne を html を変換すると、つぎのようになる。</p><pre>&lt;h2&gt;Hello World&lt;/h2&gt;&lt;p&gt;hello world&lt;/p&gt;&lt;pre&gt;&amp;bsol;#h2 Hello World
 
 hello world
 &lt;/pre&gt;
