@@ -1,0 +1,69 @@
+#!/usr/bin/ruby
+
+require "json"
+
+def config(cfg)
+  cfg.map do |rule|
+    {
+      type: rule[0],
+      regexp: Regexp.new(rule[1], Regexp::MULTILINE),
+      replace: rule[2]
+    }
+  end
+end
+
+def traverse_inline(cfg, json)
+  case json
+  when String
+    rule = cfg.find { |rule| rule[:type] == "inline" && json =~ rule[:regexp] }
+
+    if rule
+      json.gsub(rule[:regexp], rule[:replace])
+    else
+      json
+    end
+  when Array
+    if json[0].is_a?(String)
+      s = json[1..-1].map do |child|
+        traverse_inline(cfg, child)
+      end.join("")
+
+      s = json[0] + s
+
+      rule = cfg.find { |rule| rule[:type] == "inline" && s =~ rule[:regexp] }
+
+      if rule
+        s.gsub(rule[:regexp], rule[:replace])
+      else
+        s
+      end
+    else
+      json.map do |child|
+        traverse_inline(cfg, child)
+      end.join("")
+    end
+  end
+end
+
+def traverse_paragraph(cfg, json)
+  s = json.map do |child|
+    traverse_inline(cfg, child)
+  end.join("")
+
+  rule = cfg.find { |rule| rule[:type] == "paragraph" && s =~ rule[:regexp] }
+
+  if rule
+    s.gsub(rule[:regexp], rule[:replace])
+  else
+    s
+  end
+end
+
+def traverse(cfg, json)
+  json.map do |child|
+    traverse_paragraph(cfg, child)
+  end.join("")
+end
+
+cfg = config(JSON.parse(File.read(ARGV.shift)))
+puts(traverse(cfg, JSON.parse(ARGF.read)))
