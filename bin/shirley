@@ -86,9 +86,17 @@ def traverse_paragraph(cfg, json)
 end
 
 def traverse(cfg, json)
-  json.map do |child|
+  s = json.map do |child|
     traverse_paragraph(cfg, child)
   end.join("")
+
+  rule = cfg.find { |rule| rule[:type] == "document" && s =~ rule[:regexp] }
+
+  if rule
+    s.gsub(rule[:regexp], rule[:replace])
+  else
+    s
+  end
 end
 
 cfg = config(JSON.parse(File.read(ARGV.shift)))
