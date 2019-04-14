@@ -1,10 +1,11 @@
 [
   [
-    "data1-atom: atom",
+    "data1-atom: atom\n",
     "data1-list: ",
     [
       "list"
     ],
+    "\n",
     "data1-tree: ",
     [
       "tree ",
@@ -18,21 +19,23 @@
     ]
   ],
   [
-    "data2-atom:",
-    "  atom",
-    "data2-list:",
+    "data2-atom:\n",
+    "  atom\n",
+    "data2-list:\n",
     "  ",
     [
       "list"
     ],
-    "data2-tree:",
+    "\n",
+    "data2-tree:\n",
     "  ",
     [
-      "tree",
+      "tree\n",
       "    ",
       [
         "leaf"
       ],
+      "\n",
       "    ",
       [
         "leaf"

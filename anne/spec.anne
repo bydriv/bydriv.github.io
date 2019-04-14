@@ -10,10 +10,10 @@ Anne は人間が書くための軽量なデータ構造である。
 Anne の字句は4種類であり、すなわち
 
 #ul
-  [#li [#code \[]]
-  [#li [#code \]]]
-  [#li 空行 ([#b BLANK] と表す)]
-  [#li 文字列 ([#b STRING] と表す)]
+[#li [#code \[]]
+[#li [#code \]]]
+[#li 空行 ([#b BLANK] と表す)]
+[#li 文字列 ([#b STRING] と表す)]
 
 である。
 
@@ -31,14 +31,14 @@ Anne の字句は4種類であり、すなわち
 #h3 文法
 
 #table
-  [#tr [#td [#em anne] ] [#td ::=] [#td [#em data]                      ]]
-  [#tr [#td            ] [#td   |] [#td [#em data] [#b BLANK] [#em anne]]]
-  [#tr [#td [#em data] ] [#td ::=] [#td [#em (* empty *)]               ]]
-  [#tr [#td            ] [#td   |] [#td [#em datum] [#em data]          ]]
-  [#tr [#td [#em datum]] [#td ::=] [#td [#em atom]                      ]]
-  [#tr [#td            ] [#td   |] [#td [#em list]                      ]]
-  [#tr [#td [#em atom] ] [#td ::=] [#td [#b STRING]                     ]]
-  [#tr [#td [#em list] ] [#td ::=] [#td [#code \[] [#em data] [#code \]]]]
+[#tr [#td [#em anne] ] [#td ::=] [#td [#em data]                      ]]
+[#tr [#td            ] [#td   |] [#td [#em data] [#b BLANK] [#em anne]]]
+[#tr [#td [#em data] ] [#td ::=] [#td [#em (* empty *)]               ]]
+[#tr [#td            ] [#td   |] [#td [#em datum] [#em data]          ]]
+[#tr [#td [#em datum]] [#td ::=] [#td [#em atom]                      ]]
+[#tr [#td            ] [#td   |] [#td [#em list]                      ]]
+[#tr [#td [#em atom] ] [#td ::=] [#td [#b STRING]                     ]]
+[#tr [#td [#em list] ] [#td ::=] [#td [#code \[] [#em data] [#code \]]]]
 
 #h3 例
 
@@ -74,11 +74,12 @@ CODE
 #pre <<CODE
 [
   [
-    "data1-atom: atom",
+    "data1-atom: atom\n",
     "data1-list: ",
     [
       "list"
     ],
+    "\n",
     "data1-tree: ",
     [
       "tree ",
@@ -92,21 +93,23 @@ CODE
     ]
   ],
   [
-    "data2-atom:",
-    "  atom",
-    "data2-list:",
+    "data2-atom:\n",
+    "  atom\n",
+    "data2-list:\n",
     "  ",
     [
       "list"
     ],
-    "data2-tree:",
+    "\n",
+    "data2-tree:\n",
     "  ",
     [
-      "tree",
+      "tree\n",
       "    ",
       [
         "leaf"
       ],
+      "\n",
       "    ",
       [
         "leaf"
