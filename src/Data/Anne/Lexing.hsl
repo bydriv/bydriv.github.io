@@ -52,7 +52,12 @@ flushBuffer :: Lexing (State.State S) String
 flushBuffer = do
   (_, _, _, _, buf) <- MonadTrans.lift State.get
   clearBuffer
-  return $ concat buf
+  return $ concat $ reverse buf
+
+unescape :: String -> String
+unescape [] = []
+unescape ('\\':c:s) = c : unescape s
+unescape (c:s) = c : unescape s
 
 semanticActions :: SemanticActions (State.State S) (Maybe Parsing.Token)
 semanticActions = SemanticActions
@@ -74,7 +79,7 @@ semanticActions = SemanticActions
       return $ Just $ Parsing.RBRACKET ((p, p + n), yytext)
   , saText = withPosition $ \p n yytext -> do
       yybegin Initial
-      return $ Just $ Parsing.TEXT ((p, p + n), yytext)
+      return $ Just $ Parsing.TEXT ((p, p + n), unescape yytext)
   , saRaw1Char = withPosition $ \_ n yytext -> do
       (_, bufP, bufN, k, _) <- MonadTrans.lift State.get
 
