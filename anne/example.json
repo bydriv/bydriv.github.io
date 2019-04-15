@@ -16,7 +16,8 @@
       [
         "leaf"
       ]
-    ]
+    ],
+    "\n"
   ],
   [
     "data2-atom:\n",
@@ -40,7 +41,8 @@
       [
         "leaf"
       ]
-    ]
+    ],
+    "\n"
   ],
   [
     "data3-atom: atom\ndata3-list: [list]\ndata3-tree: [tree [leaf] [leaf]]\n"

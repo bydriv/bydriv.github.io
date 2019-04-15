@@ -40,33 +40,37 @@ data Error =
   deriving (Eq, Ord, Read, Show)
 
 lex :: String -> Either Error [Token]
-lex = lex' 0
+lex = lex' True 0
   where
-    lex' :: Cursor -> String -> Either Error [Token]
-    lex' _ [] =
+    lex' :: Bool -> Cursor -> String -> Either Error [Token]
+    lex' _ _ [] =
       Right []
-    lex' _ ['\n'] =
+    lex' _ _ ['\n'] =
       Right []
-    lex' p ('[':s) =
+    lex' _ p ('[':s) =
       let q = p + 1 in
-        either Left (Right . (Token LBRACE (p, q) "[" :)) (lex' q s)
-    lex' p (']':s) =
+        either Left (Right . (Token LBRACE (p, q) "[" :)) (lex' False q s)
+    lex' _ p (']':s) =
       let q = p + 1 in
-        either Left (Right . (Token RBRACE (p, q) "]" :)) (lex' q s)
-    lex' p ('\n':'\n':s) =
+        either Left (Right . (Token RBRACE (p, q) "]" :)) (lex' False q s)
+    lex' True p ('\n':s) =
       let (b, s') = span (== '\n') s in
-      let q = p + length b + 2 in
-        either Left (Right . (Token BLANK (p, q) ('\n':'\n':b) :)) (lex' q s')
-    lex' p ('<':'<':s) =
+      let q = p + length b + 1 in
+        either Left (Right . (Token BLANK (p, q) ('\n':b) :)) (lex' True q s')
+    lex' _ p ('<':'<':s) =
       let (k, s') = span (/= '\n') s in
-        case lexHereDoc k "" s' of
-          Left e ->
-            Left e
-          Right t ->
-            let q = p + length t + length k in
-            let s'' = drop (length t + length k) s' in
-              either Left (Right . (Token TEXT (p, q) (tail t) :)) (lex' q s'')
-    lex' p ('<':k:s) =
+      case s' of
+        [] ->
+          Left UnexpectedEOF
+        ('\n':s'') ->
+          case lexHereDoc k "" s'' of
+            Left e ->
+              Left e
+            Right t ->
+              let q = p + length t + length k * 2 + 4 in
+              let s''' = drop (length t + length k * 2 + 2) s in
+                either Left (Right . (Token TEXT (p, q) t :)) (lex' True q s''')
+    lex' _ p ('<':k:s) =
       let (t, s') = span (/= k) s in
         case s' of
           [] ->
@@ -76,11 +80,11 @@ lex = lex' 0
                 Left (UnexpectedChar (p + 2, c))
             | otherwise ->
                 let q = p + length t + 3 in
-                  either Left (Right . (Token TEXT (p, q) t :)) (lex' q s'')
-    lex' p (c:s) =
+                  either Left (Right . (Token TEXT (p, q) t :)) (lex' (k == '\n') q s'')
+    lex' _ p (c:s) =
       let (q, t) = lexText p "" (c:s) in
       let s' = drop (q - p) (c:s) in
-        either Left (Right . (Token TEXT (p, q) t :)) (lex' q s')
+        either Left (Right . (Token TEXT (p, q) t :)) (lex' True q s')
 
     lexHereDoc :: String -> String -> String -> Either Error String
     lexHereDoc k t [] =
@@ -97,7 +101,6 @@ lex = lex' 0
     lexText p t []            = (p, reverse t)
     lexText p t ('[':_)       = (p, reverse t)
     lexText p t (']':_)       = (p, reverse t)
-    lexText p t ('\n':'\n':_) = (p, reverse t)
     lexText p t ('\n':_)      = (p + 1, reverse ('\n':t))
     lexText p t ('<':'<':_)   = (p, reverse t)
     lexText p t ('<':_)       = (p, reverse t)
