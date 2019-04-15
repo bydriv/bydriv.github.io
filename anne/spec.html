@@ -10,10 +10,9 @@
 <li>文字列 (<b>STRING</b> と表す)</li>
 </ul><p>である。
 </p><p>このうち、 <code>[</code> と <code>]</code> は自明であろう。
-空行は <code>/&bsol;n&bsol;n+/</code> で指定される。
-空でない改行、すなわち <code>&bsol;n</code> は文字列を区切る役目をもつ。
+空行は <code>/^&bsol;n$/</code> で指定される。
 文字列にはいくつか種類がある。
-ひとつめは <code>/([^&bsol;n&bsol;[&bsol;]&lt;]|&bsol;&bsol;[&bsol;n&bsol;[&bsol;]&lt;])+/</code> で指定されるものである。
+ひとつめは <code>/([^&bsol;n&bsol;[&bsol;]&lt;]|&bsol;&bsol;[&bsol;n&bsol;[&bsol;]&lt;])+&bsol;n/</code> で指定されるものである。
 ふたつめはすべての K = <code>/[^&lt;]/</code> について <code>/&lt;K.*?K/</code> で指定されるものである。
 みっつめはすべての K = <code>/[^&bsol;n]+/</code> について <code>/&lt;&lt;K&bsol;n.*?&bsol;nK&bsol;n/</code> で指定されるものであり、
 ヒアドキュメントと呼ばれる。 K は一致している必要がある。
