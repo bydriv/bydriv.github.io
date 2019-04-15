@@ -1,0 +1,66 @@
+%module Data.Anne.Parsing %where
+
+%start anne
+
+%{
+import qualified Data.Anne.Defn as Defn
+
+type Anne = Defn.Anne
+type Data = Defn.Data
+type Datum = Defn.Datum
+type Atom = Defn.Atom
+type List = Defn.List
+
+type LBRACKET = (Defn.Pos, String)
+type RBRACKET = (Defn.Pos, String)
+type BLANK = (Defn.Pos, String)
+type TEXT = (Defn.Pos, String)
+type RAW1 = (Defn.Pos, Char, String)
+type RAWN = (Defn.Pos, String, String)
+%}
+
+%%
+
+def rule anne :=
+  data
+| data BLANK anne
+
+def rule data :=
+| datum data
+
+def rule datum :=
+  atom
+| list
+
+def rule atom :=
+  TEXT
+| RAW1
+| RAWN
+
+def rule list :=
+  LBRACKET data RBRACKET
+
+%%
+
+semanticActions :: Monad m => SemanticActions m
+semanticActions = SemanticActions
+  { anne_implies_data = \ds ->
+      return (Defn.Anne [Right ds])
+  , anne_implies_data_BLANK_anne = \ds (p, s) (Defn.Anne dss) ->
+      return (Defn.Anne (Right ds:Left (Defn.Blank p s):dss))
+  , data_implies =
+      return (Defn.Data [])
+  , data_implies_datum_data = \d (Defn.Data ds) ->
+      return (Defn.Data (d:ds))
+  , datum_implies_atom = \a ->
+      return (Defn.AtomDatum a)
+  , datum_implies_list = \l ->
+      return (Defn.ListDatum l)
+  , atom_implies_TEXT = \(p, s) ->
+      return (Defn.Text p s)
+  , atom_implies_RAW1 = \(p, k, s) ->
+      return (Defn.Raw1 p k s)
+  , atom_implies_RAWN = \(p, k, s) ->
+      return (Defn.RawN p k s)
+  , list_implies_LBRACKET_data_RBRACKET = \((l, _), _) ds ((_, r), _) ->
+      return (Defn.List (l, r) ds) }
