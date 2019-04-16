@@ -18,6 +18,7 @@ data Data =
 data Datum =
     AtomDatum Atom
   | ListDatum List
+  | DocumentDatum Document
   deriving (Eq, Ord, Read, Show)
 
 data Atom =
@@ -28,4 +29,8 @@ data Atom =
 
 data List =
     List Pos Data
+  deriving (Eq, Ord, Read, Show)
+
+data Document =
+    Document Pos Anne
   deriving (Eq, Ord, Read, Show)

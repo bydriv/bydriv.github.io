@@ -7,19 +7,23 @@ import qualified Data.Anne.Parsing   as Parsing
 
 %%
 
-case (Initial,                                                                                ['\n'|'\r']+) => saBlank
-case (Initial, '<' [^'<']                                                                                 ) => saRaw1
-case (Initial, "<<" [^'\n'|'\r']+                                                               '\r'?'\n'?) => saRawN
-case (Initial, '['                                                                                        ) => saLeftBracket
-case (Initial, ']'                                                                                        ) => saRightBracket
-case (Initial, ( [^'\n'|'\r'|'<'|'['|'\\'|']'] | ('\\' (['\n'|'\r'|'<'|'['|'\\'|']']|"\r\n")))* '\r'?'\n'?) => saText
-case (Middle , '<' [^'<']                                                                                 ) => saRaw1
-case (Middle , "<<" [^'\n'|'\r']+                                                               '\r'?'\n'?) => saRawN
-case (Middle , '['                                                                                        ) => saLeftBracket
-case (Middle , ']'                                                                                        ) => saRightBracket
-case (Middle , ( [^'\n'|'\r'|'<'|'['|'\\'|']'] | ('\\' .) )*                                    '\r'?'\n'?) => saText
-case (Raw1   , .                                                                                          ) => saRaw1Char
-case (RawN   , [^'\n'|'\r']*                                                                    '\r'?'\n'?) => saRawNLine
+case (Initial,                                                                                                 ['\n'|'\r']+) => saBlank
+case (Initial, '<' [^'<']                                                                                                  ) => saRaw1
+case (Initial, "<<" [^'\n'|'\r']+                                                                                '\r'?'\n'?) => saRawN
+case (Initial, '['                                                                                                         ) => saLeftBracket
+case (Initial, ']'                                                                                                         ) => saRightBracket
+case (Initial, '{'                                                                                                         ) => saLeftBrace
+case (Initial, '}'                                                                                                         ) => saRightBrace
+case (Initial, ( [^'\n'|'\r'|'<'|'['|'\\'|']'|'{'|'}'] | ('\\' (['\n'|'\r'|'<'|'['|'\\'|']'|'{'|'}']|"\r\n")) )* '\r'?'\n'?) => saText
+case (Middle , '<' [^'<']                                                                                                  ) => saRaw1
+case (Middle , "<<" [^'\n'|'\r']+                                                                                '\r'?'\n'?) => saRawN
+case (Middle , '['                                                                                                         ) => saLeftBracket
+case (Middle , ']'                                                                                                         ) => saRightBracket
+case (Middle , '{'                                                                                                         ) => saLeftBrace
+case (Middle , '}'                                                                                                         ) => saRightBrace
+case (Middle , ( [^'\n'|'\r'|'<'|'['|'\\'|']'|'{'|'}'] | ('\\' (['\n'|'\r'|'<'|'['|'\\'|']'|'{'|'}']|"\r\n")) )* '\r'?'\n'?) => saText
+case (Raw1   , .                                                                                                           ) => saRaw1Char
+case (RawN   , [^'\n'|'\r']*                                                                                     '\r'?'\n'?) => saRawNLine
 
 %%
 
@@ -76,6 +80,12 @@ semanticActions = SemanticActions
   , saRightBracket = withPosition $ \p n yytext -> do
       yybegin Middle
       return $ Just $ Parsing.RBRACKET ((p, p + n), yytext)
+  , saLeftBrace = withPosition $ \p n yytext -> do
+      yybegin Middle
+      return $ Just $ Parsing.LBRACE ((p, p + n), yytext)
+  , saRightBrace = withPosition $ \p n yytext -> do
+      yybegin Middle
+      return $ Just $ Parsing.RBRACE ((p, p + n), yytext)
   , saText = withPosition $ \p n yytext -> do
       yybegin Initial
       return $ Just $ Parsing.TEXT ((p, p + n), unescape yytext)

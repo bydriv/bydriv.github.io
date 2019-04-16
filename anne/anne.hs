@@ -29,6 +29,7 @@ dataToJSON (Anne.Data ds) = concat (concat [[["["]], List.intersperse [","] (map
 datumToJSON :: Anne.Datum -> [String]
 datumToJSON (Anne.AtomDatum a) = atomToJSON a
 datumToJSON (Anne.ListDatum l) = listToJSON l
+datumToJSON (Anne.DocumentDatum d) = documentToJSON d
 
 atomToJSON :: Anne.Atom -> [String]
 atomToJSON (Anne.Text _ s) = ["{\"type\":\"text\",\"value\":\"", escape s, "\"}"]
@@ -37,6 +38,9 @@ atomToJSON (Anne.RawN _ k s) = ["{\"type\":\"rawn\",\"delimiter\":\"", escape k,
 
 listToJSON :: Anne.List -> [String]
 listToJSON (Anne.List _ ds) = concat [["{\"type\":\"list\",\"value\":"], dataToJSON ds, ["}"]]
+
+documentToJSON :: Anne.Document -> [String]
+documentToJSON (Anne.Document _ anne) = anneToJSON anne
 
 main :: IO ()
 main = do
