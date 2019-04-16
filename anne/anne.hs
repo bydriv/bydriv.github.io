@@ -32,8 +32,8 @@ datumToJSON (Anne.ListDatum l) = listToJSON l
 
 atomToJSON :: Anne.Atom -> [String]
 atomToJSON (Anne.Text _ s) = ["{\"type\":\"text\",\"value\":\"", escape s, "\"}"]
-atomToJSON (Anne.Raw1 _ _ s) = ["{\"type\":\"raw1\",\"value\":\"", escape s, "\"}"]
-atomToJSON (Anne.RawN _ _ s) = ["{\"type\":\"rawn\",\"value\":\"", escape s, "\"}"]
+atomToJSON (Anne.Raw1 _ k s) = ["{\"type\":\"raw1\",\"delimiter\":\"", escape [k], "\",\"value\":\"", escape s, "\"}"]
+atomToJSON (Anne.RawN _ k s) = ["{\"type\":\"rawn\",\"delimiter\":\"", escape k, "\",\"value\":\"", escape s, "\"}"]
 
 listToJSON :: Anne.List -> [String]
 listToJSON (Anne.List _ ds) = dataToJSON ds

@@ -203,6 +203,7 @@ CODE
   [
     {
       "type": "rawn",
+      "delimiter": "DATA\n",
       "value": "data3-atom: atom\ndata3-list: [list]\ndata3-tree: [tree [leaf] [leaf]]\n"
     }
   ]
