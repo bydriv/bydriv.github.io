@@ -1,0 +1,3 @@
+#div(class=window)
+  [#div(class=header) Anne: Specification]
+  [#div(class=content) [@cat anne/doc/spec.html]]
