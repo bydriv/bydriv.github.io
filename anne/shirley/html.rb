@@ -1,5 +1,4 @@
-#!/usr/bin/ruby -Ianne/lib
-# coding: utf-8
+#!/usr/bin/ruby -Ilib
 
 require "shirley"
 
