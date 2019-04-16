@@ -25,22 +25,19 @@ module Shirley
   end
 
   def traverse_inline(cfg, json)
-    case json
-    when Hash
-      case json["type"]
-      when "text", "raw1", "rawn"
-        s = json["value"]
+    case json["type"]
+    when "text", "raw1", "rawn"
+      s = json["value"]
 
-        rules = cfg.select { |rule| rule[:type] == "atom" && json =~ rule[:regexp] }
+      rules = cfg.select { |rule| rule[:type] == "atom" && s =~ rule[:regexp] }
 
-        rules.each do |rule|
-          s = fire(rule, s)
-        end
-
-        s
+      rules.each do |rule|
+        s = fire(rule, s)
       end
-    when Array
-      s = json.map do |child|
+
+      s
+    when "list"
+      s = json["value"].map do |child|
         traverse_inline(cfg, child)
       end.join("")
 
@@ -51,14 +48,11 @@ module Shirley
   end
 
   def traverse_paragraph(cfg, json)
-    case json
-    when Hash
-      case json["type"]
-      when "blank"
-        json["value"]
-      end
-    when Array
-      s = json.map do |child|
+    case json["type"]
+    when "blank"
+      json["value"]
+    when "data"
+      s = json["value"].map do |child|
         traverse_inline(cfg, child)
       end.join("")
 
@@ -69,12 +63,15 @@ module Shirley
   end
 
   def traverse(cfg, json)
-    s = json.map do |child|
-      traverse_paragraph(cfg, child)
-    end.join("")
+    case json["type"]
+    when "anne"
+      s = json["value"].map do |child|
+        traverse_paragraph(cfg, child)
+      end.join("")
 
-    rule = cfg.find { |rule| rule[:type] == "document" && s =~ rule[:regexp] }
+      rule = cfg.find { |rule| rule[:type] == "document" && s =~ rule[:regexp] }
 
-    fire(rule, s)
+      fire(rule, s)
+    end
   end
 end

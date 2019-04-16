@@ -10,41 +10,38 @@ module Enna
   end
 
   def traverse_inline(json)
-    case json
-    when Hash
-      case json["type"]
-      when "text"
-        escape(json["value"])
-      when "raw1"
-        "<#{json["delimiter"]}#{json["value"]}#{json["delimiter"]}"
-      when "rawn"
-        "<<#{json["delimiter"]}#{json["value"]}#{json["delimiter"]}"
-      end
-    when Array
-      "[" + json.map do |child|
+    case json["type"]
+    when "text"
+      escape(json["value"])
+    when "raw1"
+      "<#{json["delimiter"]}#{json["value"]}#{json["delimiter"]}"
+    when "rawn"
+      "<<#{json["delimiter"]}#{json["value"]}#{json["delimiter"]}"
+    when "list"
+      "[" + json["value"].map do |child|
         traverse_inline(child)
       end.join("") + "]"
     end
   end
 
   def traverse_paragraph(json)
-    case json
-    when Hash
-      case json["type"]
-      when "blank"
-        json["value"]
-      end
-    when Array
-      json.map do |child|
+    case json["type"]
+    when "blank"
+      json["value"]
+    when "data"
+      json["value"].map do |child|
         traverse_inline(child)
       end.join("")
     end
   end
 
   def traverse(json)
-    json.map do |child|
-      traverse_paragraph(child)
-    end.join("")
+    case json["type"]
+    when "anne"
+      json["value"].map do |child|
+        traverse_paragraph(child)
+      end.join("")
+    end
   end
 end
 

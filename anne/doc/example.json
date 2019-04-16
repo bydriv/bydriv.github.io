@@ -1,137 +1,173 @@
-[
-  [
+{
+  "type": "anne",
+  "value": [
     {
-      "type": "text",
-      "value": "data1-atom: atom\n"
-    },
-    {
-      "type": "text",
-      "value": "data1-list: "
-    },
-    [
-      {
-        "type": "text",
-        "value": "list"
-      }
-    ],
-    {
-      "type": "text",
-      "value": "\n"
-    },
-    {
-      "type": "text",
-      "value": "data1-tree: "
-    },
-    [
-      {
-        "type": "text",
-        "value": "tree "
-      },
-      [
+      "type": "data",
+      "value": [
         {
           "type": "text",
-          "value": "leaf"
-        }
-      ],
-      {
-        "type": "text",
-        "value": " "
-      },
-      [
+          "value": "data1-atom: atom\n"
+        },
         {
           "type": "text",
-          "value": "leaf"
-        }
-      ]
-    ],
-    {
-      "type": "text",
-      "value": "\n"
-    }
-  ],
-  {
-    "type": "blank",
-    "value": "\n"
-  },
-  [
-    {
-      "type": "text",
-      "value": "data2-atom:\n"
-    },
-    {
-      "type": "text",
-      "value": "  atom\n"
-    },
-    {
-      "type": "text",
-      "value": "data2-list:\n"
-    },
-    {
-      "type": "text",
-      "value": "  "
-    },
-    [
-      {
-        "type": "text",
-        "value": "list"
-      }
-    ],
-    {
-      "type": "text",
-      "value": "\n"
-    },
-    {
-      "type": "text",
-      "value": "data2-tree:\n"
-    },
-    {
-      "type": "text",
-      "value": "  "
-    },
-    [
-      {
-        "type": "text",
-        "value": "tree\n"
-      },
-      {
-        "type": "text",
-        "value": "    "
-      },
-      [
+          "value": "data1-list: "
+        },
+        {
+          "type": "list",
+          "value": [
+            {
+              "type": "text",
+              "value": "list"
+            }
+          ]
+        },
         {
           "type": "text",
-          "value": "leaf"
-        }
-      ],
-      {
-        "type": "text",
-        "value": "\n"
-      },
-      {
-        "type": "text",
-        "value": "    "
-      },
-      [
+          "value": "\n"
+        },
         {
           "type": "text",
-          "value": "leaf"
+          "value": "data1-tree: "
+        },
+        {
+          "type": "list",
+          "value": [
+            {
+              "type": "text",
+              "value": "tree "
+            },
+            {
+              "type": "list",
+              "value": [
+                {
+                  "type": "text",
+                  "value": "leaf"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "value": " "
+            },
+            {
+              "type": "list",
+              "value": [
+                {
+                  "type": "text",
+                  "value": "leaf"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": "\n"
         }
       ]
-    ],
+    },
     {
-      "type": "text",
+      "type": "blank",
       "value": "\n"
-    }
-  ],
-  {
-    "type": "blank",
-    "value": "\n"
-  },
-  [
+    },
     {
-      "type": "rawn",
-      "delimiter": "DATA\n",
-      "value": "data3-atom: atom\ndata3-list: [list]\ndata3-tree: [tree [leaf] [leaf]]\n"
+      "type": "data",
+      "value": [
+        {
+          "type": "text",
+          "value": "data2-atom:\n"
+        },
+        {
+          "type": "text",
+          "value": "  atom\n"
+        },
+        {
+          "type": "text",
+          "value": "data2-list:\n"
+        },
+        {
+          "type": "text",
+          "value": "  "
+        },
+        {
+          "type": "list",
+          "value": [
+            {
+              "type": "text",
+              "value": "list"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": "\n"
+        },
+        {
+          "type": "text",
+          "value": "data2-tree:\n"
+        },
+        {
+          "type": "text",
+          "value": "  "
+        },
+        {
+          "type": "list",
+          "value": [
+            {
+              "type": "text",
+              "value": "tree\n"
+            },
+            {
+              "type": "text",
+              "value": "    "
+            },
+            {
+              "type": "list",
+              "value": [
+                {
+                  "type": "text",
+                  "value": "leaf"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "value": "\n"
+            },
+            {
+              "type": "text",
+              "value": "    "
+            },
+            {
+              "type": "list",
+              "value": [
+                {
+                  "type": "text",
+                  "value": "leaf"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": "\n"
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "data",
+      "value": [
+        {
+          "type": "rawn",
+          "delimiter": "DATA\n",
+          "value": "data3-atom: atom\ndata3-list: [list]\ndata3-tree: [tree [leaf] [leaf]]\n"
+        }
+      ]
     }
   ]
-]
+}

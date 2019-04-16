@@ -17,11 +17,11 @@ toJSON :: Anne.Anne -> String
 toJSON = concat . anneToJSON
 
 anneToJSON :: Anne.Anne -> [String]
-anneToJSON (Anne.Anne anne) = concat (concat [[["["]], map f anne, [["]"]]])
+anneToJSON (Anne.Anne anne) = concat (concat [[["{\"type\":\"anne\",\"value\":["]], List.intersperse [","] (map f anne), [["]}"]]])
   where
     f :: Either Anne.Blank Anne.Data -> [String]
-    f (Left (Anne.Blank _ s)) = [",{\"type\":\"blank\",\"value\":\"", escape s, "\"},"]
-    f (Right ds) = dataToJSON ds
+    f (Left (Anne.Blank _ s)) = ["{\"type\":\"blank\",\"value\":\"", escape s, "\"}"]
+    f (Right ds) = concat [["{\"type\":\"data\",\"value\":"], dataToJSON ds, ["}"]]
 
 dataToJSON :: Anne.Data -> [String]
 dataToJSON (Anne.Data ds) = concat (concat [[["["]], List.intersperse [","] (map datumToJSON ds), [["]"]]])
@@ -36,7 +36,7 @@ atomToJSON (Anne.Raw1 _ k s) = ["{\"type\":\"raw1\",\"delimiter\":\"", escape [k
 atomToJSON (Anne.RawN _ k s) = ["{\"type\":\"rawn\",\"delimiter\":\"", escape k, "\",\"value\":\"", escape s, "\"}"]
 
 listToJSON :: Anne.List -> [String]
-listToJSON (Anne.List _ ds) = dataToJSON ds
+listToJSON (Anne.List _ ds) = concat [["{\"type\":\"list\",\"value\":"], dataToJSON ds, ["}"]]
 
 main :: IO ()
 main = do

@@ -17,14 +17,14 @@
 <p>である。
 </p>
 <p>このうち、 <code>[</code> と <code>]</code> は自明であろう。
-空行は <code>/^\n$/</code> で指定される。
+空行は <code>/^&bsol;n$/</code> で指定される。
 文字列にはいくつか種類がある。
-ひとつめは <code>/([^\n\[\]<]|\\[\n\[\]<])+\n/</code> で指定されるものである。
-ふたつめはすべての K = <code>/[^<]/</code> について <code>/<K.*?K/</code> で指定されるものである。
-みっつめはすべての K = <code>/[^\n]+/</code> について <code>/<<K\n.*?\nK\n/</code> で指定されるものであり、
+ひとつめは <code>/([^&bsol;n&bsol;[&bsol;]&lt;]|&bsol;&bsol;[&bsol;n&bsol;[&bsol;]&lt;])+&bsol;n/</code> で指定されるものである。
+ふたつめはすべての K = <code>/[^&lt;]/</code> について <code>/&lt;K.*?K/</code> で指定されるものである。
+みっつめはすべての K = <code>/[^&bsol;n]+/</code> について <code>/&lt;&lt;K&bsol;n.*?&bsol;nK&bsol;n/</code> で指定されるものであり、
 ヒアドキュメントと呼ばれる。 K は一致している必要がある。
-たとえば <code>/<<CODE\n.*?\nCODE\n/</code> や <code>/<<DOC\n.*?\nDOC\n/</code>
-はヒアドキュメントだが <code>/<<DOC\n.*?\nCODE\n/</code> はヒアドキュメントではない。
+たとえば <code>/&lt;&lt;CODE&bsol;n.*?&bsol;nCODE&bsol;n/</code> や <code>/&lt;&lt;DOC&bsol;n.*?&bsol;nDOC&bsol;n/</code>
+はヒアドキュメントだが <code>/&lt;&lt;DOC&bsol;n.*?&bsol;nCODE&bsol;n/</code> はヒアドキュメントではない。
 </p>
 <h3>文法
 </h3>
@@ -56,7 +56,7 @@ data2-tree:
     [leaf]
     [leaf]]
 
-<<DATA
+&lt;&lt;DATA
 data3-atom: atom
 data3-list: [list]
 data3-tree: [tree [leaf] [leaf]]
@@ -66,141 +66,177 @@ DATA
 </p>
 <p><b>example.json</b>:
 </p>
-<pre>[
-  [
+<pre>{
+  "type": "anne",
+  "value": [
     {
-      "type": "text",
-      "value": "data1-atom: atom\n"
-    },
-    {
-      "type": "text",
-      "value": "data1-list: "
-    },
-    [
-      {
-        "type": "text",
-        "value": "list"
-      }
-    ],
-    {
-      "type": "text",
-      "value": "\n"
-    },
-    {
-      "type": "text",
-      "value": "data1-tree: "
-    },
-    [
-      {
-        "type": "text",
-        "value": "tree "
-      },
-      [
+      "type": "data",
+      "value": [
         {
           "type": "text",
-          "value": "leaf"
-        }
-      ],
-      {
-        "type": "text",
-        "value": " "
-      },
-      [
+          "value": "data1-atom: atom&bsol;n"
+        },
         {
           "type": "text",
-          "value": "leaf"
-        }
-      ]
-    ],
-    {
-      "type": "text",
-      "value": "\n"
-    }
-  ],
-  {
-    "type": "blank",
-    "value": "\n"
-  },
-  [
-    {
-      "type": "text",
-      "value": "data2-atom:\n"
-    },
-    {
-      "type": "text",
-      "value": "  atom\n"
-    },
-    {
-      "type": "text",
-      "value": "data2-list:\n"
-    },
-    {
-      "type": "text",
-      "value": "  "
-    },
-    [
-      {
-        "type": "text",
-        "value": "list"
-      }
-    ],
-    {
-      "type": "text",
-      "value": "\n"
-    },
-    {
-      "type": "text",
-      "value": "data2-tree:\n"
-    },
-    {
-      "type": "text",
-      "value": "  "
-    },
-    [
-      {
-        "type": "text",
-        "value": "tree\n"
-      },
-      {
-        "type": "text",
-        "value": "    "
-      },
-      [
+          "value": "data1-list: "
+        },
+        {
+          "type": "list",
+          "value": [
+            {
+              "type": "text",
+              "value": "list"
+            }
+          ]
+        },
         {
           "type": "text",
-          "value": "leaf"
-        }
-      ],
-      {
-        "type": "text",
-        "value": "\n"
-      },
-      {
-        "type": "text",
-        "value": "    "
-      },
-      [
+          "value": "&bsol;n"
+        },
         {
           "type": "text",
-          "value": "leaf"
+          "value": "data1-tree: "
+        },
+        {
+          "type": "list",
+          "value": [
+            {
+              "type": "text",
+              "value": "tree "
+            },
+            {
+              "type": "list",
+              "value": [
+                {
+                  "type": "text",
+                  "value": "leaf"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "value": " "
+            },
+            {
+              "type": "list",
+              "value": [
+                {
+                  "type": "text",
+                  "value": "leaf"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": "&bsol;n"
         }
       ]
-    ],
+    },
     {
-      "type": "text",
-      "value": "\n"
-    }
-  ],
-  {
-    "type": "blank",
-    "value": "\n"
-  },
-  [
+      "type": "blank",
+      "value": "&bsol;n"
+    },
     {
-      "type": "rawn",
-      "delimiter": "DATA\n",
-      "value": "data3-atom: atom\ndata3-list: [list]\ndata3-tree: [tree [leaf] [leaf]]\n"
+      "type": "data",
+      "value": [
+        {
+          "type": "text",
+          "value": "data2-atom:&bsol;n"
+        },
+        {
+          "type": "text",
+          "value": "  atom&bsol;n"
+        },
+        {
+          "type": "text",
+          "value": "data2-list:&bsol;n"
+        },
+        {
+          "type": "text",
+          "value": "  "
+        },
+        {
+          "type": "list",
+          "value": [
+            {
+              "type": "text",
+              "value": "list"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": "&bsol;n"
+        },
+        {
+          "type": "text",
+          "value": "data2-tree:&bsol;n"
+        },
+        {
+          "type": "text",
+          "value": "  "
+        },
+        {
+          "type": "list",
+          "value": [
+            {
+              "type": "text",
+              "value": "tree&bsol;n"
+            },
+            {
+              "type": "text",
+              "value": "    "
+            },
+            {
+              "type": "list",
+              "value": [
+                {
+                  "type": "text",
+                  "value": "leaf"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "value": "&bsol;n"
+            },
+            {
+              "type": "text",
+              "value": "    "
+            },
+            {
+              "type": "list",
+              "value": [
+                {
+                  "type": "text",
+                  "value": "leaf"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": "&bsol;n"
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "&bsol;n"
+    },
+    {
+      "type": "data",
+      "value": [
+        {
+          "type": "rawn",
+          "delimiter": "DATA&bsol;n",
+          "value": "data3-atom: atom&bsol;ndata3-list: [list]&bsol;ndata3-tree: [tree [leaf] [leaf]]&bsol;n"
+        }
+      ]
     }
   ]
-]
+}
 </pre>
