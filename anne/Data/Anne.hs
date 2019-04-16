@@ -20,13 +20,13 @@ parse s =
   let tokens = Maybe.catMaybes tokens0 in
 
   case s' of
-    (c : _) ->
+    (_ : _) ->
       Left SyntaxError
     [] ->
       case Identity.runIdentity $ Parsing.parse Parsing.semanticActions tokens of
         Left Nothing ->
           Left SyntaxError
-        Left (Just token) ->
+        Left (Just _) ->
           Left SyntaxError
         Right (result, _) ->
           Right result

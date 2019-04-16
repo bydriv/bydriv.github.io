@@ -2,7 +2,6 @@
 
 %{
 import qualified Control.Monad.State as State
-import qualified Control.Monad.Trans as MonadTrans
 import qualified Data.Anne.Parsing   as Parsing
 %}
 

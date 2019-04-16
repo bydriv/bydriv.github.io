@@ -9,7 +9,6 @@ import qualified Data.Char           as Char
 
 
 import qualified Control.Monad.State as State
-import qualified Control.Monad.Trans as MonadTrans
 import qualified Data.Anne.Parsing   as Parsing
 
 newtype Lexing m a = Lexing { unLexing :: LexingState -> m (a, LexingState) }
