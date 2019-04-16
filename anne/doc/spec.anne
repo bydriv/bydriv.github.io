@@ -94,7 +94,7 @@ CODE
   "type": "anne",
   "value": [
     {
-      "type": "data",
+      "type": "paragraph",
       "value": [
         {
           "type": "text",
@@ -163,7 +163,7 @@ CODE
       "value": "\n"
     },
     {
-      "type": "data",
+      "type": "paragraph",
       "value": [
         {
           "type": "text",
@@ -252,7 +252,7 @@ CODE
       "value": "\n"
     },
     {
-      "type": "data",
+      "type": "paragraph",
       "value": [
         {
           "type": "rawn",
