@@ -50,7 +50,10 @@ module Shirley
     when "text", "raw1", "rawn"
       s = json["value"]
       rules = select_rules(cfg, ["atom", json["type"]], s)
-    when "anne", "document", "paragraph", "list"
+    when "paragraph", "list", "wrapper"
+      s = traverse(cfg, json["value"])
+      rules = select_rules(cfg, [json["type"]], s)
+    when "document", "data"
       s = json["value"].map do |child|
         traverse(cfg, child)
       end.join("")

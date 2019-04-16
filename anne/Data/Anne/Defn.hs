@@ -4,11 +4,19 @@ type Cursor = Int
 type Pos = (Cursor, Cursor)
 
 data Anne =
-    Anne [Either Blank Data]
+    Anne Document
+  deriving (Eq, Ord, Read, Show)
+
+data Document =
+    Document [Either Blank Paragraph]
   deriving (Eq, Ord, Read, Show)
 
 data Blank =
     Blank Pos String
+  deriving (Eq, Ord, Read, Show)
+
+data Paragraph =
+    Paragraph Data
   deriving (Eq, Ord, Read, Show)
 
 data Data =
@@ -18,7 +26,7 @@ data Data =
 data Datum =
     AtomDatum Atom
   | ListDatum List
-  | DocumentDatum Document
+  | WrapperDatum Wrapper
   deriving (Eq, Ord, Read, Show)
 
 data Atom =
@@ -31,6 +39,6 @@ data List =
     List Pos Data
   deriving (Eq, Ord, Read, Show)
 
-data Document =
-    Document Pos Anne
+data Wrapper =
+    Wrapper Pos Document
   deriving (Eq, Ord, Read, Show)

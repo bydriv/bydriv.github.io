@@ -6,11 +6,13 @@
 import qualified Data.Anne.Defn as Defn
 
 type Anne = Defn.Anne
+type Document = Defn.Document
+type Paragraph = Defn.Paragraph
 type Data = Defn.Data
 type Datum = Defn.Datum
 type Atom = Defn.Atom
 type List = Defn.List
-type Document = Defn.Document
+type Wrapper = Defn.Wrapper
 
 type LBRACKET = (Defn.Pos, String)
 type RBRACKET = (Defn.Pos, String)
@@ -25,8 +27,14 @@ type RAWN = (Defn.Pos, String, String)
 %%
 
 def rule anne :=
+  document
+
+def rule document :=
+  paragraph
+| paragraph BLANK document
+
+def rule paragraph :=
   data
-| data BLANK anne
 
 def rule data :=
 | datum data
@@ -34,7 +42,7 @@ def rule data :=
 def rule datum :=
   atom
 | list
-| document
+| wrapper
 
 def rule atom :=
   TEXT
@@ -44,17 +52,21 @@ def rule atom :=
 def rule list :=
   LBRACKET data RBRACKET
 
-def rule document :=
-  LBRACE anne RBRACE
+def rule wrapper :=
+  LBRACE document RBRACE
 
 %%
 
 semanticActions :: Monad m => SemanticActions m
 semanticActions = SemanticActions
-  { anne_implies_data = \ds ->
-      return (Defn.Anne [Right ds])
-  , anne_implies_data_BLANK_anne = \ds (p, s) (Defn.Anne dss) ->
-      return (Defn.Anne (Right ds:Left (Defn.Blank p s):dss))
+  { anne_implies_document = \d ->
+      return (Defn.Anne d)
+  , document_implies_paragraph = \par ->
+      return (Defn.Document [Right par])
+  , document_implies_paragraph_BLANK_document = \par (p, s) (Defn.Document dss) ->
+      return (Defn.Document (Right par:Left (Defn.Blank p s):dss))
+  , paragraph_implies_data = \ds ->
+      return (Defn.Paragraph ds)
   , data_implies =
       return (Defn.Data [])
   , data_implies_datum_data = \d (Defn.Data ds) ->
@@ -63,8 +75,8 @@ semanticActions = SemanticActions
       return (Defn.AtomDatum a)
   , datum_implies_list = \l ->
       return (Defn.ListDatum l)
-  , datum_implies_document = \d ->
-      return (Defn.DocumentDatum d)
+  , datum_implies_wrapper = \w ->
+      return (Defn.WrapperDatum w)
   , atom_implies_TEXT = \(p, s) ->
       return (Defn.Text p s)
   , atom_implies_RAW1 = \(p, k, s) ->
@@ -73,5 +85,5 @@ semanticActions = SemanticActions
       return (Defn.RawN p k s)
   , list_implies_LBRACKET_data_RBRACKET = \((l, _), _) ds ((_, r), _) ->
       return (Defn.List (l, r) ds)
-  , document_implies_LBRACE_anne_RBRACE = \((l, _), _) anne ((_, r), _) ->
-      return (Defn.Document (l, r) anne) }
+  , wrapper_implies_LBRACE_document_RBRACE = \((l, _), _) d ((_, r), _) ->
+      return (Defn.Wrapper (l, r) d) }

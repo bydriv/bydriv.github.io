@@ -20,14 +20,12 @@ module Enna
     when "rawn"
       "<<#{json["delimiter"]}#{json["value"]}#{json["delimiter"]}"
     when "list"
-      "[" + json["value"].map do |child|
-        traverse(child)
-      end.join("") + "]"
-    when "document"
-      "{" + json["value"].map do |child|
-        traverse(child)
-      end.join("") + "}"
-    when "anne", "paragraph", "list"
+      "[" + .traverse(json["value"]) + "]"
+    when "wrapper"
+      "{" + .traverse(json["value"]) + "}"
+    when "paragraph"
+      traverse(json["value"])
+    when "document", "data"
       json["value"].map do |child|
         traverse(child)
       end.join("")

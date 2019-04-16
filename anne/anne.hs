@@ -17,19 +17,22 @@ toJSON :: Anne.Anne -> String
 toJSON = concat . anneToJSON
 
 anneToJSON :: Anne.Anne -> [String]
-anneToJSON (Anne.Anne anne) = concat (concat [[["{\"type\":\"anne\",\"value\":["]], List.intersperse [","] (map f anne), [["]}"]]])
+anneToJSON (Anne.Anne d) = documentToJSON d
+
+documentToJSON :: Anne.Document -> [String]
+documentToJSON (Anne.Document d) = concat (concat [[["{\"type\":\"document\",\"value\":["]], List.intersperse [","] (map f d), [["]}"]]])
   where
-    f :: Either Anne.Blank Anne.Data -> [String]
+    f :: Either Anne.Blank Anne.Paragraph -> [String]
     f (Left (Anne.Blank _ s)) = ["{\"type\":\"blank\",\"value\":\"", escape s, "\"}"]
-    f (Right ds) = concat [["{\"type\":\"paragraph\",\"value\":"], dataToJSON ds, ["}"]]
+    f (Right (Anne.Paragraph ds)) = concat [["{\"type\":\"paragraph\",\"value\":"], dataToJSON ds, ["}"]]
 
 dataToJSON :: Anne.Data -> [String]
-dataToJSON (Anne.Data ds) = concat (concat [[["["]], List.intersperse [","] (map datumToJSON ds), [["]"]]])
+dataToJSON (Anne.Data ds) = concat (concat [[["{\"type\":\"data\",\"value\":["]], List.intersperse [","] (map datumToJSON ds), [["]}"]]])
 
 datumToJSON :: Anne.Datum -> [String]
 datumToJSON (Anne.AtomDatum a) = atomToJSON a
 datumToJSON (Anne.ListDatum l) = listToJSON l
-datumToJSON (Anne.DocumentDatum d) = documentToJSON d
+datumToJSON (Anne.WrapperDatum w) = wrapperToJSON w
 
 atomToJSON :: Anne.Atom -> [String]
 atomToJSON (Anne.Text _ s) = ["{\"type\":\"text\",\"value\":\"", escape s, "\"}"]
@@ -39,12 +42,8 @@ atomToJSON (Anne.RawN _ k s) = ["{\"type\":\"rawn\",\"delimiter\":\"", escape k,
 listToJSON :: Anne.List -> [String]
 listToJSON (Anne.List _ ds) = concat [["{\"type\":\"list\",\"value\":"], dataToJSON ds, ["}"]]
 
-documentToJSON :: Anne.Document -> [String]
-documentToJSON (Anne.Document _ (Anne.Anne anne)) = concat (concat [[["{\"type\":\"document\",\"value\":["]], List.intersperse [","] (map f anne), [["]}"]]])
-  where
-    f :: Either Anne.Blank Anne.Data -> [String]
-    f (Left (Anne.Blank _ s)) = ["{\"type\":\"blank\",\"value\":\"", escape s, "\"}"]
-    f (Right ds) = concat [["{\"type\":\"paragraph\",\"value\":"], dataToJSON ds, ["}"]]
+wrapperToJSON :: Anne.Wrapper -> [String]
+wrapperToJSON (Anne.Wrapper _ d) = concat [["{\"type\":\"wrapper\",\"value\":"], documentToJSON d, ["}"]]
 
 main :: IO ()
 main = do
