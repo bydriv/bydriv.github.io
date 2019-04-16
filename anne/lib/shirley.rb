@@ -29,7 +29,9 @@ module Shirley
     when "text", "raw1", "rawn"
       s = json["value"]
 
-      rules = cfg.select { |rule| (rule[:type] == "atom" || rule[:type] == json["type"]) && s =~ rule[:regexp] }
+      rules = cfg.select do |rule|
+        (rule[:type] == "atom" || rule[:type] == json["type"]) && s =~ rule[:regexp]
+      end
 
       rules.each do |rule|
         s = fire(rule, s)
