@@ -6,7 +6,7 @@ module Enna
   extend self
 
   def escape(s)
-    s.gsub(/([<\[\\\]]|(?:\n\r(?!\z)))/) { "\\#$1" }
+    s.gsub(/([<\[\\\]{}]|(?:\n\r(?!\z)))/) { "\\#$1" }
   end
 
   def traverse(json)
@@ -23,6 +23,10 @@ module Enna
       "[" + json["value"].map do |child|
         traverse(child)
       end.join("") + "]"
+    when "document"
+      "{" + json["value"].map do |child|
+        traverse(child)
+      end.join("") + "}"
     when "anne", "paragraph", "list"
       json["value"].map do |child|
         traverse(child)

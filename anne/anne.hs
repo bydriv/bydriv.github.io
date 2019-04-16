@@ -40,7 +40,11 @@ listToJSON :: Anne.List -> [String]
 listToJSON (Anne.List _ ds) = concat [["{\"type\":\"list\",\"value\":"], dataToJSON ds, ["}"]]
 
 documentToJSON :: Anne.Document -> [String]
-documentToJSON (Anne.Document _ anne) = anneToJSON anne
+documentToJSON (Anne.Document _ (Anne.Anne anne)) = concat (concat [[["{\"type\":\"document\",\"value\":["]], List.intersperse [","] (map f anne), [["]}"]]])
+  where
+    f :: Either Anne.Blank Anne.Data -> [String]
+    f (Left (Anne.Blank _ s)) = ["{\"type\":\"blank\",\"value\":\"", escape s, "\"}"]
+    f (Right ds) = concat [["{\"type\":\"paragraph\",\"value\":"], dataToJSON ds, ["}"]]
 
 main :: IO ()
 main = do
