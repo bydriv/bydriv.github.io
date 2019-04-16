@@ -1,0 +1,42 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+div#game, div#game canvas {
+    width: 640px;
+    height: 480px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+form#mode, div#downloads {
+    width: 640px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+div#ctrl {
+    position: relative;
+    top: -480px;
+    width: 640px;
+    height: 0;
+    margin: 0 auto;
+    padding: 0;
+    user-select: none;
+    -moz-user-select: none;
+}
+
+div#ctrl img {
+    width: 640px;
+    height: 480px;
+    opacity: 0.5;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+}
+
+div#man {
+    width: 640px;
+    margin: 0 auto;
+    padding: 0;
+}

@@ -1,0 +1,71 @@
+#!/usr/bin/ruby
+
+require "json"
+
+config = JSON.parse ARGF.read
+
+printf "use std::collections::HashMap;\n"
+printf "\n"
+printf "#[repr(C)]\n"
+printf "pub struct AssetDefn<'a> {\n"
+printf "    pub path: &'a str,\n"
+printf "    pub name: &'a str,\n"
+printf "    pub x: u32,\n"
+printf "    pub y: u32,\n"
+printf "    pub width: u32,\n"
+printf "    pub height: u32,\n"
+printf "}\n"
+printf "\n"
+printf "pub static SCALE: u32 = %d;\n", config["scale"]
+printf "pub static WIDTH: u32 = %d;\n", config["width"]
+printf "pub static HEIGHT: u32 = %d;\n", config["height"]
+
+asset_defns_len = config["assets"].map {|asset| asset[1].length }.inject(:+)
+
+printf "pub static ASSET_DEFNS_LEN: usize = %d;\n", asset_defns_len
+printf "\n"
+printf "pub static ASSET_DEFNS: [AssetDefn; %d] = [\n", asset_defns_len
+
+config["assets"].each do |asset|
+  path = asset[0]
+
+  asset[1].each do |defn|
+    name = defn[0]
+    x = defn[1][0]
+    y = defn[1][1]
+    width = defn[1][2]
+    height = defn[1][3]
+
+    printf "    AssetDefn {path: \"%s\", name: \"%s\", x: %d, y: %d, width: %d, height: %d},\n", path, name, x, y, width, height
+  end
+end
+
+printf "];\n"
+
+printf "pub fn MAPS() -> HashMap<String, hijack::map::Map> { vec![\n"
+
+config["maps"].each do |path|
+  m = path.sub(/map\/(.*?)\.json/) do
+    mod = $1.gsub("/", "::").gsub(/(....)-(....)/) { "map#{$1}_#{$2}" }
+    "hijack::map::#{mod}"
+  end
+
+  printf "  (\"%s\".to_string(), %s::new()),", path, m
+end
+
+printf "].into_iter().collect()\n"
+printf "}\n"
+
+printf "pub fn EPISODES() -> HashMap<String, hijack::episode::Episode> { vec![\n"
+
+config["episodes"].each do |path|
+  m = path.sub(/episode\/(.*?)\.json/) do
+    mod = $1.gsub("/", "::").gsub("-", "_")
+    "hijack::episode::#{mod}"
+  end
+
+  printf "  (\"%s\".to_string(), %s::new()),", path, m
+end
+
+printf "].into_iter().collect()\n"
+printf "}\n"

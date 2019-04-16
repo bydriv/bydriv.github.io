@@ -1,0 +1,30 @@
+#!/bin/sh
+
+for asset in "$@"; do
+    test ! -f "$asset" && printf "%s: %s: No such file or directory\n" "$0" "$asset"
+done
+
+for asset in "$@"; do
+    test ! -f "$asset" && exit 1
+done
+
+printf "#[repr(C)]\n"
+printf "pub struct Asset<'a> {\n"
+printf "    pub path: &'a str,\n"
+printf "    pub len: usize,\n"
+printf "    pub data: &'a [u8],\n"
+printf "}\n"
+printf "\n"
+printf "pub static assets_len: usize = %d;\n" "$#"
+printf "\n"
+printf "pub static assets: [Asset; %d] = [\n" "$#"
+
+for asset in "$@"; do
+    printf "Asset {"
+    printf '  path: "%s", ' "$asset"
+    printf '  len: %d,' "$(wc -c "$asset" | awk '{print $1}')"
+    printf '  data: &[%s],' "$(xxd -p "$asset" | perl -pe 's/\s//g;s/(.{2})/0x$1,/g')"
+    printf "},\n"
+done
+
+printf '];\n'

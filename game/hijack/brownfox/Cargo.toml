@@ -1,0 +1,10 @@
+[package]
+name = "brownfox"
+version = "0.1.0"
+authors = ["bydriv <bydriv@gmail.com>"]
+
+[lib]
+crate-type = ["lib", "staticlib"]
+
+[dependencies]
+num = "0.2.0"

@@ -1,0 +1,2 @@
+[workspace]
+members = ["brownfox", "hijack", "hijackjs"]
