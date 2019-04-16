@@ -9,17 +9,17 @@ import qualified Data.Anne.Parsing   as Parsing
 
 case (Initial,                                               ['\n'|'\r']+) => saBlank
 case (Initial, '<' [^'<']                                                ) => saRaw1
-case (Initial, "<<" [^'\n'|'\r']+                            ['\n'|'\r']?) => saRawN
+case (Initial, "<<" [^'\n'|'\r']+                              '\r'?'\n'?) => saRawN
 case (Initial, '['                                                       ) => saLeftBracket
 case (Initial, ']'                                                       ) => saRightBracket
-case (Initial, ( [^'\n'|'\r'|'<'|'['|'\\'|']'] | ('\\' .) )* ['\n'|'\r']?) => saText
+case (Initial, ( [^'\n'|'\r'|'<'|'['|'\\'|']'] | ('\\' .) )*   '\r'?'\n'?) => saText
 case (Middle , '<' [^'<']                                                ) => saRaw1
-case (Middle , "<<" [^'\n'|'\r']+                            ['\n'|'\r']?) => saRawN
+case (Middle , "<<" [^'\n'|'\r']+                              '\r'?'\n'?) => saRawN
 case (Middle , '['                                                       ) => saLeftBracket
 case (Middle , ']'                                                       ) => saRightBracket
-case (Middle , ( [^'\n'|'\r'|'<'|'['|'\\'|']'] | ('\\' .) )* ['\n'|'\r']?) => saText
+case (Middle , ( [^'\n'|'\r'|'<'|'['|'\\'|']'] | ('\\' .) )*   '\r'?'\n'?) => saText
 case (Raw1   , .                                                         ) => saRaw1Char
-case (RawN   , [^'\n'|'\r']*                                 ['\n'|'\r']?) => saRawNLine
+case (RawN   , [^'\n'|'\r']*                                   '\r'?'\n'?) => saRawNLine
 
 %%
 

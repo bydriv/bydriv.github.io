@@ -100,7 +100,7 @@ dfa2InitialState :: Int
 dfa2InitialState = 1
 
 dfa2FinalStates :: [Int]
-dfa2FinalStates = [4,5]
+dfa2FinalStates = [4,5,6]
 
 dfa2Transition :: Int -> Char -> Int
 dfa2Transition q c =
@@ -124,8 +124,10 @@ dfa2Transition q c =
       (4, 0) -> 4
       (4, 1) -> 4
       (4, 2) -> 5
-      (4, 3) -> 5
+      (4, 3) -> 6
       (4, 4) -> 4
+      (6, 0) -> 5
+      (6, 2) -> 5
       _ -> 0
 
 dfa3InitialState :: Int
@@ -168,7 +170,7 @@ dfa5InitialState :: Int
 dfa5InitialState = 1
 
 dfa5FinalStates :: [Int]
-dfa5FinalStates = [1,2]
+dfa5FinalStates = [1,2,3]
 
 dfa5Transition :: Int -> Char -> Int
 dfa5Transition q c =
@@ -184,13 +186,14 @@ dfa5Transition q c =
     case (q, c') of
       (1, 0) -> 1
       (1, 1) -> 2
-      (1, 2) -> 2
-      (1, 4) -> 3
-      (3, 0) -> 1
-      (3, 1) -> 1
-      (3, 2) -> 1
-      (3, 3) -> 1
-      (3, 4) -> 1
+      (1, 2) -> 3
+      (1, 4) -> 4
+      (3, 1) -> 2
+      (4, 0) -> 1
+      (4, 1) -> 1
+      (4, 2) -> 1
+      (4, 3) -> 1
+      (4, 4) -> 1
       _ -> 0
 
 dfa6InitialState :: Int
@@ -219,7 +222,7 @@ dfa7InitialState :: Int
 dfa7InitialState = 1
 
 dfa7FinalStates :: [Int]
-dfa7FinalStates = [4,5]
+dfa7FinalStates = [4,5,6]
 
 dfa7Transition :: Int -> Char -> Int
 dfa7Transition q c =
@@ -243,8 +246,10 @@ dfa7Transition q c =
       (4, 0) -> 4
       (4, 1) -> 4
       (4, 2) -> 5
-      (4, 3) -> 5
+      (4, 3) -> 6
       (4, 4) -> 4
+      (6, 0) -> 5
+      (6, 2) -> 5
       _ -> 0
 
 dfa8InitialState :: Int
@@ -287,7 +292,7 @@ dfa10InitialState :: Int
 dfa10InitialState = 1
 
 dfa10FinalStates :: [Int]
-dfa10FinalStates = [1,2]
+dfa10FinalStates = [1,2,3]
 
 dfa10Transition :: Int -> Char -> Int
 dfa10Transition q c =
@@ -303,13 +308,14 @@ dfa10Transition q c =
     case (q, c') of
       (1, 0) -> 1
       (1, 1) -> 2
-      (1, 2) -> 2
-      (1, 4) -> 3
-      (3, 0) -> 1
-      (3, 1) -> 1
-      (3, 2) -> 1
-      (3, 3) -> 1
-      (3, 4) -> 1
+      (1, 2) -> 3
+      (1, 4) -> 4
+      (3, 1) -> 2
+      (4, 0) -> 1
+      (4, 1) -> 1
+      (4, 2) -> 1
+      (4, 3) -> 1
+      (4, 4) -> 1
       _ -> 0
 
 dfa11InitialState :: Int
@@ -333,7 +339,7 @@ dfa12InitialState :: Int
 dfa12InitialState = 1
 
 dfa12FinalStates :: [Int]
-dfa12FinalStates = [1,2]
+dfa12FinalStates = [1,2,3]
 
 dfa12Transition :: Int -> Char -> Int
 dfa12Transition q c =
@@ -349,7 +355,9 @@ dfa12Transition q c =
       (1, 0) -> 1
       (1, 1) -> 1
       (1, 2) -> 2
-      (1, 3) -> 2
+      (1, 3) -> 3
+      (3, 0) -> 2
+      (3, 2) -> 2
       _ -> 0
 
 match :: Int -> [Int] -> (Int -> Char -> Int) -> String -> Maybe Int
