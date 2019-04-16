@@ -12,19 +12,34 @@
 <ul><li><code>[</code></li>
 <li><code>]</code></li>
 <li>空行 (<b>BLANK</b> と表す)</li>
-<li>文字列 (<b>STRING</b> と表す)</li>
+<li>文章 (<b>TEXT</b> と表す)</li>
+<li>単行生文章 (<b>RAW1</b> と表す)</li>
+<li>複行生文章 (<b>RAWN</b> と表す)</li>
 </ul>
 <p>である。
 </p>
-<p>このうち、 <code>[</code> と <code>]</code> は自明であろう。
-空行は <code>/^&bsol;n$/</code> で指定される。
-文字列にはいくつか種類がある。
-ひとつめは <code>/([^&bsol;n&bsol;[&bsol;]&lt;]|&bsol;&bsol;[&bsol;n&bsol;[&bsol;]&lt;])+&bsol;n/</code> で指定されるものである。
-ふたつめはすべての K = <code>/[^&lt;]/</code> について <code>/&lt;K.*?K/</code> で指定されるものである。
-みっつめはすべての K = <code>/[^&bsol;n]+/</code> について <code>/&lt;&lt;K&bsol;n.*?&bsol;nK&bsol;n/</code> で指定されるものであり、
-ヒアドキュメントと呼ばれる。 K は一致している必要がある。
-たとえば <code>/&lt;&lt;CODE&bsol;n.*?&bsol;nCODE&bsol;n/</code> や <code>/&lt;&lt;DOC&bsol;n.*?&bsol;nDOC&bsol;n/</code>
-はヒアドキュメントだが <code>/&lt;&lt;DOC&bsol;n.*?&bsol;nCODE&bsol;n/</code> はヒアドキュメントではない。
+<p>字句に関する形式的な議論は複雑になるため避け、ここでは直観的に説明する。
+</p>
+<p>まず、 <code>[</code> や <code>]</code> はそれ自体が字句である。
+</p>
+<p>空行とは行頭から行末に至るまで改行のみからなる文字列である。
+ただし改行とは <code>&bsol;n</code> または <code>&bsol;r</code> または <code>&bsol;r&bsol;n</code> である。
+</p>
+<p>単行生文章は、たとえば <code>&lt;|hello world|</code> のように、 <code>&lt;d</code> から始まり <code>d</code> で終わる文字列である。
+ただし <code>d</code> は <code>&lt;</code> 以外の任意の1文字である。
+</p>
+<p>複行生文章は、たとえば
+</p>
+<pre>&lt;&lt;CODE
+hello world
+CODE
+</pre>
+<p>のように、 <code>/&lt;&lt;d$/</code> から始まり <code>/^d$</code> で終わる文字列である。
+ただし <code>d</code> は任意の行末までの文字列であり、一致していなければならない。
+</p>
+<p>最後に文章とは、それ以外の文字列である。
+例外として、 <code>&lt;</code> や <code>[</code> のような予約された記号は、
+<code>&bsol;&lt;</code> や <code>&bsol;[</code> のようにエスケープしなければならない。
 </p>
 <h3>文法
 </h3>

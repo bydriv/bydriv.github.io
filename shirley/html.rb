@@ -1,4 +1,4 @@
-#!/usr/bin/ruby -Isrc
+#!/usr/bin/ruby -Ianne/lib
 # coding: utf-8
 
 require "shirley"
