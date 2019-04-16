@@ -1,0 +1,45 @@
+<h2 >Anne チートシート
+</h2>
+<h3 >インストール方法
+</h3>
+<pre >$ git clone git://github.com/bydrv/bydriv.github.io
+$ cd bydriv.github.io/anne
+$ stack install
+$ anne &lt; foo.anne
+</pre>
+<h3 >Anne と Shirley について
+</h3>
+<ul ><li >Anne はシリアライズフォーマット</li>
+<li >Shirley はそれを処理してべつの形式に変換するプロセッサ</li>
+</ul>
+<p>ここには Anne のことのみを書く。
+Shirley のことは Shirley チートシートを参照のこと。
+</p>
+<p>Anne は必ずしも JSON に変換しなければならない形式ではない。
+Haskell の <code >Data.Anne</code> モジュールを使えば Anne をそのまま処理できる。
+とはいえ jq などを使うことを考えると、 JSON に変換したほうがいろいろと都合がいい。
+</p>
+<h3 >段落
+</h3>
+<pre >段落1-行1
+段落1-行2
+
+段落2-行1
+段落2-行2
+</pre>
+<h3 >raw 文字列
+</h3>
+<pre >&lt;|foo|
+&lt;!bar!
+</pre>
+<h3 >ヒアドキュメント
+</h3>
+<pre >&lt;&lt;CODE
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+CODE
+</pre>
+<h3 >リスト
+</h3>
+<pre >[リスト]
+[木 [枝] [枝]]
+</pre>

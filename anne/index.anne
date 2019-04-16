@@ -1,3 +1,11 @@
 #div(class=window)
   [#div(class=header) Anne: Specification]
   [#div(class=content) [@cat anne/doc/spec.html]]
+
+#div(class=window)
+  [#div(class=header) Anne: Cheatsheet]
+  [#div(class=content) [@cat anne/doc/cheatsheet.html]]
+
+#div(class=window)
+  [#div(class=header) Shirley: Cheatsheet]
+  [#div(class=content) [@cat anne/doc/shirley-cheatsheet.html]]
