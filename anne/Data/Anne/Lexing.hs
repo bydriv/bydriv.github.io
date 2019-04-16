@@ -538,7 +538,7 @@ semanticActions = SemanticActions
       if yytext == k then do
         s <- flushBuffer
         yybegin Initial
-        return $ Just $ Parsing.RAW1 ((bufP, bufN + n), head k, s)
+        return $ Just $ Parsing.RAW1 ((bufP, bufP + bufN + n), head k, s)
       else do
         appendToBuffer n yytext
         return Nothing
@@ -548,7 +548,7 @@ semanticActions = SemanticActions
       if yytext == k then do
         s <- flushBuffer
         yybegin Initial
-        return $ Just $ Parsing.RAWN ((bufP, bufN + n), k, s)
+        return $ Just $ Parsing.RAWN ((bufP, bufP + bufN + n), k, s)
       else do
         appendToBuffer n yytext
         return Nothing }
