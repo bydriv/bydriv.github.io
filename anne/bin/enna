@@ -9,8 +9,10 @@ module Enna
     s.gsub(/([<\[\\\]]|(?:\n\r(?!\z)))/) { "\\#$1" }
   end
 
-  def traverse_inline(json)
+  def traverse(json)
     case json["type"]
+    when "blank"
+      json["value"]
     when "text"
       escape(json["value"])
     when "raw1"
@@ -19,27 +21,11 @@ module Enna
       "<<#{json["delimiter"]}#{json["value"]}#{json["delimiter"]}"
     when "list"
       "[" + json["value"].map do |child|
-        traverse_inline(child)
+        traverse(child)
       end.join("") + "]"
-    end
-  end
-
-  def traverse_paragraph(json)
-    case json["type"]
-    when "blank"
-      json["value"]
-    when "data"
+    when "anne", "paragraph", "list"
       json["value"].map do |child|
-        traverse_inline(child)
-      end.join("")
-    end
-  end
-
-  def traverse(json)
-    case json["type"]
-    when "anne"
-      json["value"].map do |child|
-        traverse_paragraph(child)
+        traverse(child)
       end.join("")
     end
   end

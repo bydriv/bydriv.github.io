@@ -24,56 +24,44 @@ module Shirley
     end
   end
 
-  def traverse_inline(cfg, json)
-    case json["type"]
-    when "text", "raw1", "rawn"
-      s = json["value"]
-
-      rules = cfg.select do |rule|
-        (rule[:type] == "atom" || rule[:type] == json["type"]) && s =~ rule[:regexp]
+  def select_rules(cfg, ts, s, &f)
+    rules = cfg.select do |rule|
+      ts.any? do |t|
+        rule[:type] == "all-#{t}"
       end
+    end
 
-      rules.each do |rule|
-        s = fire(rule, s)
+    rule = cfg.find do |rule|
+      ts.any? do |t|
+        rule[:type] == "first-#{t}" && s =~ rule[:regexp]
       end
-
-      s
-    when "list"
-      s = json["value"].map do |child|
-        traverse_inline(cfg, child)
-      end.join("")
-
-      rule = cfg.find { |rule| rule[:type] == "inline" && s =~ rule[:regexp] }
-
-      fire(rule, s)
     end
-  end
 
-  def traverse_paragraph(cfg, json)
-    case json["type"]
-    when "blank"
-      json["value"]
-    when "data"
-      s = json["value"].map do |child|
-        traverse_inline(cfg, child)
-      end.join("")
+    rules << rule if rule
 
-      rule = cfg.find { |rule| rule[:type] == "paragraph" && s =~ rule[:regexp] }
-
-      fire(rule, s)
-    end
+    rules
   end
 
   def traverse(cfg, json)
     case json["type"]
-    when "anne"
+    when "blank"
+      s = json["value"]
+      rules = select_rules(cfg, [json["type"]], s)
+    when "text", "raw1", "rawn"
+      s = json["value"]
+      rules = select_rules(cfg, ["atom", json["type"]], s)
+    when "anne", "paragraph", "list"
       s = json["value"].map do |child|
-        traverse_paragraph(cfg, child)
+        traverse(cfg, child)
       end.join("")
 
-      rule = cfg.find { |rule| rule[:type] == "document" && s =~ rule[:regexp] }
-
-      fire(rule, s)
+      rules = select_rules(cfg, [json["type"]], s)
     end
+
+    rules.each do |rule|
+      s = fire(rule, s)
+    end
+
+    s
   end
 end

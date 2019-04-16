@@ -2,7 +2,7 @@
   "type": "anne",
   "value": [
     {
-      "type": "data",
+      "type": "paragraph",
       "value": [
         {
           "type": "text",
@@ -71,7 +71,7 @@
       "value": "\n"
     },
     {
-      "type": "data",
+      "type": "paragraph",
       "value": [
         {
           "type": "text",
@@ -160,7 +160,7 @@
       "value": "\n"
     },
     {
-      "type": "data",
+      "type": "paragraph",
       "value": [
         {
           "type": "rawn",

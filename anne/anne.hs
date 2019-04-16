@@ -21,7 +21,7 @@ anneToJSON (Anne.Anne anne) = concat (concat [[["{\"type\":\"anne\",\"value\":["
   where
     f :: Either Anne.Blank Anne.Data -> [String]
     f (Left (Anne.Blank _ s)) = ["{\"type\":\"blank\",\"value\":\"", escape s, "\"}"]
-    f (Right ds) = concat [["{\"type\":\"data\",\"value\":"], dataToJSON ds, ["}"]]
+    f (Right ds) = concat [["{\"type\":\"paragraph\",\"value\":"], dataToJSON ds, ["}"]]
 
 dataToJSON :: Anne.Data -> [String]
 dataToJSON (Anne.Data ds) = concat (concat [[["["]], List.intersperse [","] (map datumToJSON ds), [["]"]]])

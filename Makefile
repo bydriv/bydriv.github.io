@@ -1,14 +1,17 @@
-%.enna: %.anne
-	cat $< | bin/anne | bin/enna > $@
+ANNE:=anne
+ENNA:=anne/bin/enna
 
-anne/%.html: anne/%.anne shirley/html.rb
-	cat $< | bin/anne | shirley/html.rb > $@
+%.enna: %.anne
+	cat $< | $(ANNE) | $(ENNA) > $@
+
+anne/%.html: anne/%.anne anne/shirley/html.rb
+	cat $< | $(ANNE) | anne/shirley/html.rb > $@
 
 anne/%.json: anne/%.anne
-	cat $< | bin/anne | jq . > $@
+	cat $< | $(ANNE) | jq . > $@
 
-blog/%.html: blog/%.anne shirley/html.rb
-	cat $< | bin/anne | shirley/html.rb > $@
+blog/%.html: blog/%.anne anne/shirley/html.rb
+	cat $< | $(ANNE) | anne/shirley/html.rb > $@
 
 novel/%.html: novel/%.txt shirley/novel.rb
-	cat $< | bin/anne | shirley/novel.rb > $@
+	cat $< | $(ANNE) | shirley/novel.rb > $@
