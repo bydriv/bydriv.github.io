@@ -1,8 +1,5 @@
-#!/usr/bin/runhaskell -isrc
-
 import qualified Data.Anne  as Anne
 import qualified Data.List  as List
-import qualified Data.Maybe as Maybe
 
 escape :: String -> String
 escape [] = []
@@ -16,30 +13,30 @@ escape ('\r':s) = '\\' : 'r' : escape s
 escape ('\t':s) = '\\' : 't' : escape s
 escape (c:s) = c : escape s
 
-list :: [String] -> String
-list ss = concat (["["] ++ List.intersperse "," ss ++ ["]"])
-
-right :: Either a b -> Maybe b
-right (Right x) = Just x
-right _ = Nothing
-
 toJSON :: Anne.Anne -> String
-toJSON (Anne.Anne dss) = list (map dataToJSON (Maybe.mapMaybe right dss))
+toJSON = concat . anneToJSON
 
-dataToJSON :: Anne.Data -> String
-dataToJSON (Anne.Data ds) = list (map datumToJSON ds)
+anneToJSON :: Anne.Anne -> [String]
+anneToJSON (Anne.Anne anne) = concat (concat [[["["]], map f anne, [["]"]]])
+  where
+    f :: Either Anne.Blank Anne.Data -> [String]
+    f (Left (Anne.Blank _ s)) = [",{\"type\":\"blank\",\"value\":\"", escape s, "\"},"]
+    f (Right ds) = dataToJSON ds
 
-datumToJSON :: Anne.Datum -> String
+dataToJSON :: Anne.Data -> [String]
+dataToJSON (Anne.Data ds) = concat (concat [[["["]], List.intersperse [","] (map datumToJSON ds), [["]"]]])
+
+datumToJSON :: Anne.Datum -> [String]
 datumToJSON (Anne.AtomDatum a) = atomToJSON a
 datumToJSON (Anne.ListDatum l) = listToJSON l
 
-listToJSON :: Anne.List -> String
-listToJSON (Anne.List _ ds) = dataToJSON ds
+atomToJSON :: Anne.Atom -> [String]
+atomToJSON (Anne.Text _ s) = ["{\"type\":\"text\",\"value\":\"", escape s, "\"}"]
+atomToJSON (Anne.Raw1 _ _ s) = ["{\"type\":\"raw1\",\"value\":\"", escape s, "\"}"]
+atomToJSON (Anne.RawN _ _ s) = ["{\"type\":\"rawn\",\"value\":\"", escape s, "\"}"]
 
-atomToJSON :: Anne.Atom -> String
-atomToJSON (Anne.Text _ s) = "\"" ++ escape s ++ "\""
-atomToJSON (Anne.Raw1 _ _ s) =  "\"" ++ escape s ++ "\""
-atomToJSON (Anne.RawN _ _ s) =  "\"" ++ escape s ++ "\""
+listToJSON :: Anne.List -> [String]
+listToJSON (Anne.List _ ds) = dataToJSON ds
 
 main :: IO ()
 main = do

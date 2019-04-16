@@ -1,50 +1,136 @@
 [
   [
-    "data1-atom: atom\n",
-    "data1-list: ",
+    {
+      "type": "text",
+      "value": "data1-atom: atom\n"
+    },
+    {
+      "type": "text",
+      "value": "data1-list: "
+    },
     [
-      "list"
+      {
+        "type": "text",
+        "value": "list"
+      }
     ],
-    "\n",
-    "data1-tree: ",
+    {
+      "type": "text",
+      "value": "\n"
+    },
+    {
+      "type": "text",
+      "value": "data1-tree: "
+    },
     [
-      "tree ",
+      {
+        "type": "text",
+        "value": "tree "
+      },
       [
-        "leaf"
+        {
+          "type": "text",
+          "value": "leaf"
+        }
       ],
-      " ",
+      {
+        "type": "text",
+        "value": " "
+      },
       [
-        "leaf"
+        {
+          "type": "text",
+          "value": "leaf"
+        }
       ]
     ],
-    "\n"
+    {
+      "type": "text",
+      "value": "\n"
+    }
   ],
+  {
+    "type": "blank",
+    "value": "\n"
+  },
   [
-    "data2-atom:\n",
-    "  atom\n",
-    "data2-list:\n",
-    "  ",
+    {
+      "type": "text",
+      "value": "data2-atom:\n"
+    },
+    {
+      "type": "text",
+      "value": "  atom\n"
+    },
+    {
+      "type": "text",
+      "value": "data2-list:\n"
+    },
+    {
+      "type": "text",
+      "value": "  "
+    },
     [
-      "list"
+      {
+        "type": "text",
+        "value": "list"
+      }
     ],
-    "\n",
-    "data2-tree:\n",
-    "  ",
+    {
+      "type": "text",
+      "value": "\n"
+    },
+    {
+      "type": "text",
+      "value": "data2-tree:\n"
+    },
+    {
+      "type": "text",
+      "value": "  "
+    },
     [
-      "tree\n",
-      "    ",
+      {
+        "type": "text",
+        "value": "tree\n"
+      },
+      {
+        "type": "text",
+        "value": "    "
+      },
       [
-        "leaf"
+        {
+          "type": "text",
+          "value": "leaf"
+        }
       ],
-      "\n",
-      "    ",
+      {
+        "type": "text",
+        "value": "\n"
+      },
+      {
+        "type": "text",
+        "value": "    "
+      },
       [
-        "leaf"
+        {
+          "type": "text",
+          "value": "leaf"
+        }
       ]
     ],
-    "\n"
+    {
+      "type": "text",
+      "value": "\n"
+    }
   ],
+  {
+    "type": "blank",
+    "value": "\n"
+  },
   [
-    "data3-atom: atom\ndata3-list: [list]\ndata3-tree: [tree [leaf] [leaf]]\n"
+    {
+      "type": "rawn",
+      "value": "data3-atom: atom\ndata3-list: [list]\ndata3-tree: [tree [leaf] [leaf]]\n"
+    }
   ]
 ]

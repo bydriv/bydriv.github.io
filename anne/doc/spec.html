@@ -1,25 +1,34 @@
 <h2>Anne: 軽量データ構造
-</h2><h3>概要
-</h3><p>Anne は人間が書くための軽量なデータ構造である。
+</h2>
+<h3>概要
+</h3>
+<p>Anne は人間が書くための軽量なデータ構造である。
 この文書は Anne の定義を記述するものである。
-</p><h3>字句
-</h3><p>Anne の字句は4種類であり、すなわち
-</p><ul><li><code>[</code></li>
+</p>
+<h3>字句
+</h3>
+<p>Anne の字句は4種類であり、すなわち
+</p>
+<ul><li><code>[</code></li>
 <li><code>]</code></li>
 <li>空行 (<b>BLANK</b> と表す)</li>
 <li>文字列 (<b>STRING</b> と表す)</li>
-</ul><p>である。
-</p><p>このうち、 <code>[</code> と <code>]</code> は自明であろう。
-空行は <code>/^&bsol;n$/</code> で指定される。
+</ul>
+<p>である。
+</p>
+<p>このうち、 <code>[</code> と <code>]</code> は自明であろう。
+空行は <code>/^\n$/</code> で指定される。
 文字列にはいくつか種類がある。
-ひとつめは <code>/([^&bsol;n&bsol;[&bsol;]&lt;]|&bsol;&bsol;[&bsol;n&bsol;[&bsol;]&lt;])+&bsol;n/</code> で指定されるものである。
-ふたつめはすべての K = <code>/[^&lt;]/</code> について <code>/&lt;K.*?K/</code> で指定されるものである。
-みっつめはすべての K = <code>/[^&bsol;n]+/</code> について <code>/&lt;&lt;K&bsol;n.*?&bsol;nK&bsol;n/</code> で指定されるものであり、
+ひとつめは <code>/([^\n\[\]<]|\\[\n\[\]<])+\n/</code> で指定されるものである。
+ふたつめはすべての K = <code>/[^<]/</code> について <code>/<K.*?K/</code> で指定されるものである。
+みっつめはすべての K = <code>/[^\n]+/</code> について <code>/<<K\n.*?\nK\n/</code> で指定されるものであり、
 ヒアドキュメントと呼ばれる。 K は一致している必要がある。
-たとえば <code>/&lt;&lt;CODE&bsol;n.*?&bsol;nCODE&bsol;n/</code> や <code>/&lt;&lt;DOC&bsol;n.*?&bsol;nDOC&bsol;n/</code>
-はヒアドキュメントだが <code>/&lt;&lt;DOC&bsol;n.*?&bsol;nCODE&bsol;n/</code> はヒアドキュメントではない。
-</p><h3>文法
-</h3><table><tr><td><em>anne</em> </td> <td>::=</td> <td><em>data</em>                      </td></tr>
+たとえば <code>/<<CODE\n.*?\nCODE\n/</code> や <code>/<<DOC\n.*?\nDOC\n/</code>
+はヒアドキュメントだが <code>/<<DOC\n.*?\nCODE\n/</code> はヒアドキュメントではない。
+</p>
+<h3>文法
+</h3>
+<table><tr><td><em>anne</em> </td> <td>::=</td> <td><em>data</em>                      </td></tr>
 <tr><td></td> <td>|</td> <td><em>data</em> <b>BLANK</b> <em>anne</em></td></tr>
 <tr><td><em>data</em> </td> <td>::=</td> <td><em>(* empty *)</em>               </td></tr>
 <tr><td></td> <td>|</td> <td><em>datum</em> <em>data</em>          </td></tr>
@@ -27,10 +36,14 @@
 <tr><td></td> <td>|</td> <td><em>list</em>                      </td></tr>
 <tr><td><em>atom</em> </td> <td>::=</td> <td><b>STRING</b>                     </td></tr>
 <tr><td><em>list</em> </td> <td>::=</td> <td><code>[</code> <em>data</em> <code>]</code></td></tr>
-</table><h3>例
-</h3><p>データ構造としての Anne を説明するために、 JSON との対応を例示する。
-</p><p><b>example.anne</b>:
-</p><pre>data1-atom: atom
+</table>
+<h3>例
+</h3>
+<p>データ構造としての Anne を説明するために、 JSON との対応を例示する。
+</p>
+<p><b>example.anne</b>:
+</p>
+<pre>data1-atom: atom
 data1-list: [list]
 data1-tree: [tree [leaf] [leaf]]
 
@@ -43,61 +56,150 @@ data2-tree:
     [leaf]
     [leaf]]
 
-&lt;&lt;DATA
+<<DATA
 data3-atom: atom
 data3-list: [list]
 data3-tree: [tree [leaf] [leaf]]
 DATA
-</pre><p>上記の Anne ファイルは、以下の JSON ファイルと等価である。
-</p><p><b>example.json</b>:
-</p><pre>[
+</pre>
+<p>上記の Anne ファイルは、以下の JSON ファイルと等価である。
+</p>
+<p><b>example.json</b>:
+</p>
+<pre>[
   [
-    "data1-atom: atom&bsol;n",
-    "data1-list: ",
+    {
+      "type": "text",
+      "value": "data1-atom: atom\n"
+    },
+    {
+      "type": "text",
+      "value": "data1-list: "
+    },
     [
-      "list"
+      {
+        "type": "text",
+        "value": "list"
+      }
     ],
-    "&bsol;n",
-    "data1-tree: ",
+    {
+      "type": "text",
+      "value": "\n"
+    },
+    {
+      "type": "text",
+      "value": "data1-tree: "
+    },
     [
-      "tree ",
+      {
+        "type": "text",
+        "value": "tree "
+      },
       [
-        "leaf"
+        {
+          "type": "text",
+          "value": "leaf"
+        }
       ],
-      " ",
+      {
+        "type": "text",
+        "value": " "
+      },
       [
-        "leaf"
+        {
+          "type": "text",
+          "value": "leaf"
+        }
       ]
     ],
-    "&bsol;n"
+    {
+      "type": "text",
+      "value": "\n"
+    }
   ],
+  {
+    "type": "blank",
+    "value": "\n"
+  },
   [
-    "data2-atom:&bsol;n",
-    "  atom&bsol;n",
-    "data2-list:&bsol;n",
-    "  ",
+    {
+      "type": "text",
+      "value": "data2-atom:\n"
+    },
+    {
+      "type": "text",
+      "value": "  atom\n"
+    },
+    {
+      "type": "text",
+      "value": "data2-list:\n"
+    },
+    {
+      "type": "text",
+      "value": "  "
+    },
     [
-      "list"
+      {
+        "type": "text",
+        "value": "list"
+      }
     ],
-    "&bsol;n",
-    "data2-tree:&bsol;n",
-    "  ",
+    {
+      "type": "text",
+      "value": "\n"
+    },
+    {
+      "type": "text",
+      "value": "data2-tree:\n"
+    },
+    {
+      "type": "text",
+      "value": "  "
+    },
     [
-      "tree&bsol;n",
-      "    ",
+      {
+        "type": "text",
+        "value": "tree\n"
+      },
+      {
+        "type": "text",
+        "value": "    "
+      },
       [
-        "leaf"
+        {
+          "type": "text",
+          "value": "leaf"
+        }
       ],
-      "&bsol;n",
-      "    ",
+      {
+        "type": "text",
+        "value": "\n"
+      },
+      {
+        "type": "text",
+        "value": "    "
+      },
       [
-        "leaf"
+        {
+          "type": "text",
+          "value": "leaf"
+        }
       ]
     ],
-    "&bsol;n"
+    {
+      "type": "text",
+      "value": "\n"
+    }
   ],
+  {
+    "type": "blank",
+    "value": "\n"
+  },
   [
-    "data3-atom: atom&bsol;ndata3-list: [list]&bsol;ndata3-tree: [tree [leaf] [leaf]]&bsol;n"
+    {
+      "type": "rawn",
+      "value": "data3-atom: atom\ndata3-list: [list]\ndata3-tree: [tree [leaf] [leaf]]\n"
+    }
   ]
 ]
 </pre>

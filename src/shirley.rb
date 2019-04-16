@@ -26,14 +26,19 @@ module Shirley
 
   def traverse_inline(cfg, json)
     case json
-    when String
-      rules = cfg.select { |rule| rule[:type] == "atom" && json =~ rule[:regexp] }
+    when Hash
+      case json["type"]
+      when "text", "raw1", "rawn"
+        s = json["value"]
 
-      rules.each do |rule|
-        json = fire(rule, json)
+        rules = cfg.select { |rule| rule[:type] == "atom" && json =~ rule[:regexp] }
+
+        rules.each do |rule|
+          s = fire(rule, s)
+        end
+
+        s
       end
-
-      json
     when Array
       s = json.map do |child|
         traverse_inline(cfg, child)
@@ -46,13 +51,21 @@ module Shirley
   end
 
   def traverse_paragraph(cfg, json)
-    s = json.map do |child|
-      traverse_inline(cfg, child)
-    end.join("")
+    case json
+    when Hash
+      case json["type"]
+      when "blank"
+        json["value"]
+      end
+    when Array
+      s = json.map do |child|
+        traverse_inline(cfg, child)
+      end.join("")
 
-    rule = cfg.find { |rule| rule[:type] == "paragraph" && s =~ rule[:regexp] }
+      rule = cfg.find { |rule| rule[:type] == "paragraph" && s =~ rule[:regexp] }
 
-    fire(rule, s)
+      fire(rule, s)
+    end
   end
 
   def traverse(cfg, json)
