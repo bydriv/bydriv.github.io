@@ -1,0 +1,51 @@
+#!/usr/bin/ruby
+
+require "json"
+
+module Enna
+  extend self
+
+  def escape(s)
+    s.gsub(/([<\[\\\]]|(?:\n\r(?!\z)))/) { "\\#$1" }
+  end
+
+  def traverse_inline(json)
+    case json
+    when Hash
+      case json["type"]
+      when "text"
+        escape(json["value"])
+      when "raw1"
+        "<#{json["delimiter"]}#{json["value"]}#{json["delimiter"]}"
+      when "rawn"
+        "<<#{json["delimiter"]}#{json["value"]}#{json["delimiter"]}"
+      end
+    when Array
+      "[" + json.map do |child|
+        traverse_inline(child)
+      end.join("") + "]"
+    end
+  end
+
+  def traverse_paragraph(json)
+    case json
+    when Hash
+      case json["type"]
+      when "blank"
+        json["value"]
+      end
+    when Array
+      json.map do |child|
+        traverse_inline(child)
+      end.join("")
+    end
+  end
+
+  def traverse(json)
+    json.map do |child|
+      traverse_paragraph(child)
+    end.join("")
+  end
+end
+
+puts(Enna.traverse(JSON.parse(ARGF.read)))

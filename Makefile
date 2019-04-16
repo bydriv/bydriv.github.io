@@ -1,3 +1,6 @@
+%.enna: %.anne
+	cat $< | bin/anne | bin/enna > $@
+
 anne/%.html: anne/%.anne shirley/html.rb
 	cat $< | bin/anne | shirley/html.rb > $@
 
