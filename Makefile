@@ -10,7 +10,7 @@ index.html: index.anne $(wildcard prelude/*)
 	cat prelude/header.html > $@
 	cat $< | $(ANNE) | $(HTML) >> $@
 
-novel/%/text.html: novel/%.txt
+novel/%/text.html: novel/%.txt shirley/novel.rb
 	cat $< | $(ANNE) | $(NOVEL) > $@
 
 %.html: %.anne $(wildcard prelude/*)
