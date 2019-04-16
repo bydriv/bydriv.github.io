@@ -53,7 +53,9 @@ CODE'
 [#tr [#td            ] [#td   |] [#td [#em datum] [#em data]          ]]
 [#tr [#td [#em datum]] [#td ::=] [#td [#em atom]                      ]]
 [#tr [#td            ] [#td   |] [#td [#em list]                      ]]
-[#tr [#td [#em atom] ] [#td ::=] [#td [#b STRING]                     ]]
+[#tr [#td [#em atom] ] [#td ::=] [#td [#b TEXT]                       ]]
+[#tr [#td            ] [#td   |] [#td [#b RAW1]                       ]]
+[#tr [#td            ] [#td   |] [#td [#b RAWN]                       ]]
 [#tr [#td [#em list] ] [#td ::=] [#td [#code \[] [#em data] [#code \]]]]
 
 #h3 例
