@@ -20,7 +20,7 @@ module Shirley
     when String
       s.gsub(rule[:regexp], rule[:replace])
     when Proc
-      s.gsub(rule[:regexp], &rule[:replace])
+      s.gsub(rule[:regexp]) { rule[:replace].call($~) }
     end
   end
 

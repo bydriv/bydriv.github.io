@@ -1,17 +1,17 @@
 ANNE:=anne
-ENNA:=anne/bin/enna
+HTML:=anne/shirley/html.rb
+NOVEL:=shirley/novel.rb
 
-%.enna: %.anne
-	cat $< | $(ANNE) | $(ENNA) > $@
+index.html: index.anne $(wildcard prelude/*)
+	cat prelude/header.html > $@
+	cat $< | $(ANNE) | $(HTML) >> $@
 
-anne/%.html: anne/%.anne anne/shirley/html.rb
-	cat $< | $(ANNE) | anne/shirley/html.rb > $@
+%/index.html: %/index.anne $(wildcard prelude/*)
+	cat prelude/header.html > $@
+	cat $< | $(ANNE) | $(HTML) >> $@
 
-anne/%.json: anne/%.anne
-	cat $< | $(ANNE) | jq . > $@
+novel/%/text.html: novel/%.txt
+	cat $< | $(ANNE) | $(NOVEL) > $@
 
-blog/%.html: blog/%.anne anne/shirley/html.rb
-	cat $< | $(ANNE) | anne/shirley/html.rb > $@
-
-novel/%.html: novel/%.txt shirley/novel.rb
-	cat $< | $(ANNE) | shirley/novel.rb > $@
+%.html: %.anne $(wildcard prelude/*)
+	cat $< | $(ANNE) | $(HTML) > $@

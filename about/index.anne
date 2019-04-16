@@ -1,0 +1,3 @@
+#div(class=window)
+  [#div(class=header) bydriv.github.io]
+  [#div(class=content) [@cat about/about.html]]

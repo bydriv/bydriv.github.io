@@ -1,0 +1,11 @@
+#div(class=window)
+  [#div(class=header) かつてそこにはそれは大きな街があったのです]
+  [#div(class=content) [#img(src=/img/gallery0000.png)]]
+
+#div(class=window)
+  [#div(class=header) Apple Bobbing]
+  [#div(class=content) [#img(src=/img/gallery0001.png)]]
+
+#div(class=window)
+  [#div(class=header) Just a Board]
+  [#div(class=content) [#img(src=/img/gallery0002.png)]]
