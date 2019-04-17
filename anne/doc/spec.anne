@@ -7,11 +7,13 @@ Anne は人間が書くための軽量なデータ構造である。
 
 #h3 字句
 
-Anne の字句は4種類であり、すなわち
+Anne の字句は8種類であり、すなわち
 
 #ul
 [#li [#code \[]]
 [#li [#code \]]]
+[#li [#code \{]]
+[#li [#code \}]]
 [#li 空行 ([#b BLANK] と表す)]
 [#li 文章 ([#b TEXT] と表す)]
 [#li 単行生文章 ([#b RAW1] と表す)]
@@ -21,7 +23,7 @@ Anne の字句は4種類であり、すなわち
 
 字句に関する形式的な議論は複雑になるため避け、ここでは直観的に説明する。
 
-まず、 [#code \[] や [#code \]] はそれ自体が字句である。
+まず、 [#code \[] や [#code \]] や [#code \{] や [#code \}] はそれ自体が字句である。
 
 空行とは行頭から行末に至るまで改行のみからなる文字列である。
 ただし改行とは [#code \\n] または [#code \\r] または [#code \\r\\n] である。
@@ -47,16 +49,20 @@ CODE'
 #h3 文法
 
 #table
-[#tr [#td [#em anne] ] [#td ::=] [#td [#em data]                      ]]
-[#tr [#td            ] [#td   |] [#td [#em data] [#b BLANK] [#em anne]]]
-[#tr [#td [#em data] ] [#td ::=] [#td [#em (* empty *)]               ]]
-[#tr [#td            ] [#td   |] [#td [#em datum] [#em data]          ]]
-[#tr [#td [#em datum]] [#td ::=] [#td [#em atom]                      ]]
-[#tr [#td            ] [#td   |] [#td [#em list]                      ]]
-[#tr [#td [#em atom] ] [#td ::=] [#td [#b TEXT]                       ]]
-[#tr [#td            ] [#td   |] [#td [#b RAW1]                       ]]
-[#tr [#td            ] [#td   |] [#td [#b RAWN]                       ]]
-[#tr [#td [#em list] ] [#td ::=] [#td [#code \[] [#em data] [#code \]]]]
+[#tr [#td [#em anne]     ] [#td ::=] [#td [#em document]                           ]]
+[#tr [#td [#em document] ] [#td ::=] [#td [#em paragraph]                          ]]
+[#tr [#td                ] [#td   |] [#td [#em paragraph] [#b BLANK] [#em document]]]
+[#tr [#td [#em paragraph]] [#td ::=] [#td [#em data]                               ]]
+[#tr [#td [#em data]     ] [#td ::=] [#td [#em (* empty *)]                        ]]
+[#tr [#td                ] [#td   |] [#td [#em datum] [#em data]                   ]]
+[#tr [#td [#em datum]    ] [#td ::=] [#td [#em atom]                               ]]
+[#tr [#td                ] [#td   |] [#td [#em list]                               ]]
+[#tr [#td                ] [#td   |] [#td [#em wrapper]                            ]]
+[#tr [#td [#em atom]     ] [#td ::=] [#td [#b TEXT]                                ]]
+[#tr [#td                ] [#td   |] [#td [#b RAW1]                                ]]
+[#tr [#td                ] [#td   |] [#td [#b RAWN]                                ]]
+[#tr [#td [#em list]     ] [#td ::=] [#td [#code \[] [#em data] [#code \]]         ]]
+[#tr [#td [#em wrapper]  ] [#td ::=] [#td [#code \{] [#em document] [#code \}]     ]]
 
 #h3 例
 
@@ -91,72 +97,87 @@ CODE
 
 #pre <<CODE
 {
-  "type": "anne",
+  "type": "document",
   "value": [
     {
       "type": "paragraph",
-      "value": [
-        {
-          "type": "text",
-          "value": "data1-atom: atom\n"
-        },
-        {
-          "type": "text",
-          "value": "data1-list: "
-        },
-        {
-          "type": "list",
-          "value": [
-            {
-              "type": "text",
-              "value": "list"
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "value": "\n"
-        },
-        {
-          "type": "text",
-          "value": "data1-tree: "
-        },
-        {
-          "type": "list",
-          "value": [
-            {
-              "type": "text",
-              "value": "tree "
-            },
-            {
-              "type": "list",
+      "value": {
+        "type": "data",
+        "value": [
+          {
+            "type": "text",
+            "value": "data1-atom: atom\n"
+          },
+          {
+            "type": "text",
+            "value": "data1-list: "
+          },
+          {
+            "type": "list",
+            "value": {
+              "type": "data",
               "value": [
                 {
                   "type": "text",
-                  "value": "leaf"
-                }
-              ]
-            },
-            {
-              "type": "text",
-              "value": " "
-            },
-            {
-              "type": "list",
-              "value": [
-                {
-                  "type": "text",
-                  "value": "leaf"
+                  "value": "list"
                 }
               ]
             }
-          ]
-        },
-        {
-          "type": "text",
-          "value": "\n"
-        }
-      ]
+          },
+          {
+            "type": "text",
+            "value": "\n"
+          },
+          {
+            "type": "text",
+            "value": "data1-tree: "
+          },
+          {
+            "type": "list",
+            "value": {
+              "type": "data",
+              "value": [
+                {
+                  "type": "text",
+                  "value": "tree "
+                },
+                {
+                  "type": "list",
+                  "value": {
+                    "type": "data",
+                    "value": [
+                      {
+                        "type": "text",
+                        "value": "leaf"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "text",
+                  "value": " "
+                },
+                {
+                  "type": "list",
+                  "value": {
+                    "type": "data",
+                    "value": [
+                      {
+                        "type": "text",
+                        "value": "leaf"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "text",
+            "value": "\n"
+          }
+        ]
+      }
     },
     {
       "type": "blank",
@@ -164,88 +185,103 @@ CODE
     },
     {
       "type": "paragraph",
-      "value": [
-        {
-          "type": "text",
-          "value": "data2-atom:\n"
-        },
-        {
-          "type": "text",
-          "value": "  atom\n"
-        },
-        {
-          "type": "text",
-          "value": "data2-list:\n"
-        },
-        {
-          "type": "text",
-          "value": "  "
-        },
-        {
-          "type": "list",
-          "value": [
-            {
-              "type": "text",
-              "value": "list"
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "value": "\n"
-        },
-        {
-          "type": "text",
-          "value": "data2-tree:\n"
-        },
-        {
-          "type": "text",
-          "value": "  "
-        },
-        {
-          "type": "list",
-          "value": [
-            {
-              "type": "text",
-              "value": "tree\n"
-            },
-            {
-              "type": "text",
-              "value": "    "
-            },
-            {
-              "type": "list",
+      "value": {
+        "type": "data",
+        "value": [
+          {
+            "type": "text",
+            "value": "data2-atom:\n"
+          },
+          {
+            "type": "text",
+            "value": "  atom\n"
+          },
+          {
+            "type": "text",
+            "value": "data2-list:\n"
+          },
+          {
+            "type": "text",
+            "value": "  "
+          },
+          {
+            "type": "list",
+            "value": {
+              "type": "data",
               "value": [
                 {
                   "type": "text",
-                  "value": "leaf"
-                }
-              ]
-            },
-            {
-              "type": "text",
-              "value": "\n"
-            },
-            {
-              "type": "text",
-              "value": "    "
-            },
-            {
-              "type": "list",
-              "value": [
-                {
-                  "type": "text",
-                  "value": "leaf"
+                  "value": "list"
                 }
               ]
             }
-          ]
-        },
-        {
-          "type": "text",
-          "value": "\n"
-        }
-      ]
+          },
+          {
+            "type": "text",
+            "value": "\n"
+          },
+          {
+            "type": "text",
+            "value": "data2-tree:\n"
+          },
+          {
+            "type": "text",
+            "value": "  "
+          },
+          {
+            "type": "list",
+            "value": {
+              "type": "data",
+              "value": [
+                {
+                  "type": "text",
+                  "value": "tree\n"
+                },
+                {
+                  "type": "text",
+                  "value": "    "
+                },
+                {
+                  "type": "list",
+                  "value": {
+                    "type": "data",
+                    "value": [
+                      {
+                        "type": "text",
+                        "value": "leaf"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "text",
+                  "value": "\n"
+                },
+                {
+                  "type": "text",
+                  "value": "    "
+                },
+                {
+                  "type": "list",
+                  "value": {
+                    "type": "data",
+                    "value": [
+                      {
+                        "type": "text",
+                        "value": "leaf"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "text",
+            "value": "\n"
+          }
+        ]
+      }
     },
     {
       "type": "blank",
@@ -253,13 +289,16 @@ CODE
     },
     {
       "type": "paragraph",
-      "value": [
-        {
-          "type": "rawn",
-          "delimiter": "DATA\n",
-          "value": "data3-atom: atom\ndata3-list: [list]\ndata3-tree: [tree [leaf] [leaf]]\n"
-        }
-      ]
+      "value": {
+        "type": "data",
+        "value": [
+          {
+            "type": "rawn",
+            "delimiter": "DATA\n",
+            "value": "data3-atom: atom\ndata3-list: [list]\ndata3-tree: [tree [leaf] [leaf]]\n"
+          }
+        ]
+      }
     }
   ]
 }
