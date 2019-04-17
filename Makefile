@@ -2,28 +2,27 @@ ANNE:=anne
 HTML:=anne/shirley/html.rb
 NOVEL:=shirley/novel.rb
 
+.INTERMEDIATE: index.json $(patsubst %.anne,%.html,$(filter-out %index.anne,$(shell find -name '*.anne')))
+
 .PHONY: all
-all:
-	make $$(find -name 'index.html')
+all: $(patsubst %.anne,%.html,$(shell find -name 'index.anne'))
 
 %.json: %.anne $(ANNE)
 	$(ANNE) < $< > $@
 
-.INTERMEDIATE: index.json
-index.html: index.json $(HTML) $(wildcard prelude/*) $(wildcard *.json)
+%.html: %.json $(HTML)
+	$(HTML) $< > $@
+
+index.html: index.json $(HTML) $(wildcard prelude/*) $(patsubst %.anne,%.html,$(filter-out %index.anne,$(shell find -name '*.anne')))
 	cat prelude/header.html > $@
 	$(HTML) $< >> $@
 
-%/index.html: %/index.json $(HTML) $(wildcard prelude/*) $(wildcard %/*.json)
+%/index.html: %/index.json $(HTML) $(wildcard prelude/*) $(patsubst %.anne,%.html,$(filter-out %index.anne,$(shell find -name '*.anne')))
 	cat prelude/header.html > $@
 	$(HTML) $< >> $@
 
-novel/%/index.html: novel/%/index.json novel/%/text.html $(HTML) $(wildcard prelude/*) $(wildcard %/*.json)
-	cat prelude/header.html > $@
-	$(HTML) $< >> $@
-
-novel/%/text.json: novel/%.txt $(ANNE)
+novel/%.json: novel/%.txt $(ANNE)
 	$(ANNE) < $< > $@
 
-novel/%/text.html: novel/%/text.json $(NOVEL)
+novel/%.html: novel/%.json $(NOVEL)
 	$(NOVEL) $< > $@
