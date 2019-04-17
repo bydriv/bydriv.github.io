@@ -16,7 +16,7 @@ data Blank =
   deriving (Eq, Ord, Read, Show)
 
 data Paragraph =
-    Paragraph Data
+    Paragraph [Datum]
   deriving (Eq, Ord, Read, Show)
 
 data Data =

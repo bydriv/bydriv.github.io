@@ -50,9 +50,12 @@ CODE'
 
 #table
 [#tr [#td [#em anne]     ] [#td ::=] [#td [#em document]                           ]]
-[#tr [#td [#em document] ] [#td ::=] [#td [#em paragraph]                          ]]
+[#tr [#td [#em document] ] [#td ::=] [#td [#em (* empty *)]                        ]]
+[#tr [#td                ] [#td   |] [#td [#em paragraph]                          ]]
+[#tr [#td                ] [#td   |] [#td [#b BLANK] [#em document]                ]]
 [#tr [#td                ] [#td   |] [#td [#em paragraph] [#b BLANK] [#em document]]]
-[#tr [#td [#em paragraph]] [#td ::=] [#td [#em data]                               ]]
+[#tr [#td [#em paragraph]] [#td ::=] [#td [#em datum]                              ]]
+[#tr [#td                ] [#td   |] [#td [#em datum] [#em data]                   ]]
 [#tr [#td [#em data]     ] [#td ::=] [#td [#em (* empty *)]                        ]]
 [#tr [#td                ] [#td   |] [#td [#em datum] [#em data]                   ]]
 [#tr [#td [#em datum]    ] [#td ::=] [#td [#em atom]                               ]]
@@ -101,83 +104,80 @@ CODE
   "value": [
     {
       "type": "paragraph",
-      "value": {
-        "type": "data",
-        "value": [
-          {
-            "type": "text",
-            "value": "data1-atom: atom\n"
-          },
-          {
-            "type": "text",
-            "value": "data1-list: "
-          },
-          {
-            "type": "list",
-            "value": {
-              "type": "data",
-              "value": [
-                {
-                  "type": "text",
-                  "value": "list"
-                }
-              ]
-            }
-          },
-          {
-            "type": "text",
-            "value": "\n"
-          },
-          {
-            "type": "text",
-            "value": "data1-tree: "
-          },
-          {
-            "type": "list",
-            "value": {
-              "type": "data",
-              "value": [
-                {
-                  "type": "text",
-                  "value": "tree "
-                },
-                {
-                  "type": "list",
-                  "value": {
-                    "type": "data",
-                    "value": [
-                      {
-                        "type": "text",
-                        "value": "leaf"
-                      }
-                    ]
-                  }
-                },
-                {
-                  "type": "text",
-                  "value": " "
-                },
-                {
-                  "type": "list",
-                  "value": {
-                    "type": "data",
-                    "value": [
-                      {
-                        "type": "text",
-                        "value": "leaf"
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          },
-          {
-            "type": "text",
-            "value": "\n"
+      "value": [
+        {
+          "type": "text",
+          "value": "data1-atom: atom\n"
+        },
+        {
+          "type": "text",
+          "value": "data1-list: "
+        },
+        {
+          "type": "list",
+          "value": {
+            "type": "data",
+            "value": [
+              {
+                "type": "text",
+                "value": "list"
+              }
+            ]
           }
-        ]
-      }
+        },
+        {
+          "type": "text",
+          "value": "\n"
+        },
+        {
+          "type": "text",
+          "value": "data1-tree: "
+        },
+        {
+          "type": "list",
+          "value": {
+            "type": "data",
+            "value": [
+              {
+                "type": "text",
+                "value": "tree "
+              },
+              {
+                "type": "list",
+                "value": {
+                  "type": "data",
+                  "value": [
+                    {
+                      "type": "text",
+                      "value": "leaf"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "text",
+                "value": " "
+              },
+              {
+                "type": "list",
+                "value": {
+                  "type": "data",
+                  "value": [
+                    {
+                      "type": "text",
+                      "value": "leaf"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "text",
+          "value": "\n"
+        }
+      ]
     },
     {
       "type": "blank",
@@ -185,103 +185,100 @@ CODE
     },
     {
       "type": "paragraph",
-      "value": {
-        "type": "data",
-        "value": [
-          {
-            "type": "text",
-            "value": "data2-atom:\n"
-          },
-          {
-            "type": "text",
-            "value": "  atom\n"
-          },
-          {
-            "type": "text",
-            "value": "data2-list:\n"
-          },
-          {
-            "type": "text",
-            "value": "  "
-          },
-          {
-            "type": "list",
-            "value": {
-              "type": "data",
-              "value": [
-                {
-                  "type": "text",
-                  "value": "list"
-                }
-              ]
-            }
-          },
-          {
-            "type": "text",
-            "value": "\n"
-          },
-          {
-            "type": "text",
-            "value": "data2-tree:\n"
-          },
-          {
-            "type": "text",
-            "value": "  "
-          },
-          {
-            "type": "list",
-            "value": {
-              "type": "data",
-              "value": [
-                {
-                  "type": "text",
-                  "value": "tree\n"
-                },
-                {
-                  "type": "text",
-                  "value": "    "
-                },
-                {
-                  "type": "list",
-                  "value": {
-                    "type": "data",
-                    "value": [
-                      {
-                        "type": "text",
-                        "value": "leaf"
-                      }
-                    ]
-                  }
-                },
-                {
-                  "type": "text",
-                  "value": "\n"
-                },
-                {
-                  "type": "text",
-                  "value": "    "
-                },
-                {
-                  "type": "list",
-                  "value": {
-                    "type": "data",
-                    "value": [
-                      {
-                        "type": "text",
-                        "value": "leaf"
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          },
-          {
-            "type": "text",
-            "value": "\n"
+      "value": [
+        {
+          "type": "text",
+          "value": "data2-atom:\n"
+        },
+        {
+          "type": "text",
+          "value": "  atom\n"
+        },
+        {
+          "type": "text",
+          "value": "data2-list:\n"
+        },
+        {
+          "type": "text",
+          "value": "  "
+        },
+        {
+          "type": "list",
+          "value": {
+            "type": "data",
+            "value": [
+              {
+                "type": "text",
+                "value": "list"
+              }
+            ]
           }
-        ]
-      }
+        },
+        {
+          "type": "text",
+          "value": "\n"
+        },
+        {
+          "type": "text",
+          "value": "data2-tree:\n"
+        },
+        {
+          "type": "text",
+          "value": "  "
+        },
+        {
+          "type": "list",
+          "value": {
+            "type": "data",
+            "value": [
+              {
+                "type": "text",
+                "value": "tree\n"
+              },
+              {
+                "type": "text",
+                "value": "    "
+              },
+              {
+                "type": "list",
+                "value": {
+                  "type": "data",
+                  "value": [
+                    {
+                      "type": "text",
+                      "value": "leaf"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "text",
+                "value": "\n"
+              },
+              {
+                "type": "text",
+                "value": "    "
+              },
+              {
+                "type": "list",
+                "value": {
+                  "type": "data",
+                  "value": [
+                    {
+                      "type": "text",
+                      "value": "leaf"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "text",
+          "value": "\n"
+        }
+      ]
     },
     {
       "type": "blank",
@@ -289,16 +286,13 @@ CODE
     },
     {
       "type": "paragraph",
-      "value": {
-        "type": "data",
-        "value": [
-          {
-            "type": "rawn",
-            "delimiter": "DATA\n",
-            "value": "data3-atom: atom\ndata3-list: [list]\ndata3-tree: [tree [leaf] [leaf]]\n"
-          }
-        ]
-      }
+      "value": [
+        {
+          "type": "rawn",
+          "delimiter": "DATA\n",
+          "value": "data3-atom: atom\ndata3-list: [list]\ndata3-tree: [tree [leaf] [leaf]]\n"
+        }
+      ]
     }
   ]
 }

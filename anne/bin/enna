@@ -23,9 +23,7 @@ module Enna
       "[" + .traverse(json["value"]) + "]"
     when "wrapper"
       "{" + .traverse(json["value"]) + "}"
-    when "paragraph"
-      traverse(json["value"])
-    when "document", "data"
+    when "document", "paragraph", "data"
       json["value"].map do |child|
         traverse(child)
       end.join("")

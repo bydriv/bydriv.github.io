@@ -63,9 +63,12 @@ CODE
 <h3 >文法
 </h3>
 <table ><tr ><td ><em >anne</em>     </td> <td >::=</td> <td ><em >document</em>                           </td></tr>
-<tr ><td ><em >document</em> </td> <td >::=</td> <td ><em >paragraph</em>                          </td></tr>
+<tr ><td ><em >document</em> </td> <td >::=</td> <td ><em >(* empty *)</em>                        </td></tr>
+<tr ><td ></td> <td >|</td> <td ><em >paragraph</em>                          </td></tr>
+<tr ><td ></td> <td >|</td> <td ><b >BLANK</b> <em >document</em>                </td></tr>
 <tr ><td ></td> <td >|</td> <td ><em >paragraph</em> <b >BLANK</b> <em >document</em></td></tr>
-<tr ><td ><em >paragraph</em></td> <td >::=</td> <td ><em >data</em>                               </td></tr>
+<tr ><td ><em >paragraph</em></td> <td >::=</td> <td ><em >datum</em>                              </td></tr>
+<tr ><td ></td> <td >|</td> <td ><em >datum</em> <em >data</em>                   </td></tr>
 <tr ><td ><em >data</em>     </td> <td >::=</td> <td ><em >(* empty *)</em>                        </td></tr>
 <tr ><td ></td> <td >|</td> <td ><em >datum</em> <em >data</em>                   </td></tr>
 <tr ><td ><em >datum</em>    </td> <td >::=</td> <td ><em >atom</em>                               </td></tr>
@@ -111,83 +114,80 @@ DATA
   "value": [
     {
       "type": "paragraph",
-      "value": {
-        "type": "data",
-        "value": [
-          {
-            "type": "text",
-            "value": "data1-atom: atom&bsol;n"
-          },
-          {
-            "type": "text",
-            "value": "data1-list: "
-          },
-          {
-            "type": "list",
-            "value": {
-              "type": "data",
-              "value": [
-                {
-                  "type": "text",
-                  "value": "list"
-                }
-              ]
-            }
-          },
-          {
-            "type": "text",
-            "value": "&bsol;n"
-          },
-          {
-            "type": "text",
-            "value": "data1-tree: "
-          },
-          {
-            "type": "list",
-            "value": {
-              "type": "data",
-              "value": [
-                {
-                  "type": "text",
-                  "value": "tree "
-                },
-                {
-                  "type": "list",
-                  "value": {
-                    "type": "data",
-                    "value": [
-                      {
-                        "type": "text",
-                        "value": "leaf"
-                      }
-                    ]
-                  }
-                },
-                {
-                  "type": "text",
-                  "value": " "
-                },
-                {
-                  "type": "list",
-                  "value": {
-                    "type": "data",
-                    "value": [
-                      {
-                        "type": "text",
-                        "value": "leaf"
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          },
-          {
-            "type": "text",
-            "value": "&bsol;n"
+      "value": [
+        {
+          "type": "text",
+          "value": "data1-atom: atom&bsol;n"
+        },
+        {
+          "type": "text",
+          "value": "data1-list: "
+        },
+        {
+          "type": "list",
+          "value": {
+            "type": "data",
+            "value": [
+              {
+                "type": "text",
+                "value": "list"
+              }
+            ]
           }
-        ]
-      }
+        },
+        {
+          "type": "text",
+          "value": "&bsol;n"
+        },
+        {
+          "type": "text",
+          "value": "data1-tree: "
+        },
+        {
+          "type": "list",
+          "value": {
+            "type": "data",
+            "value": [
+              {
+                "type": "text",
+                "value": "tree "
+              },
+              {
+                "type": "list",
+                "value": {
+                  "type": "data",
+                  "value": [
+                    {
+                      "type": "text",
+                      "value": "leaf"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "text",
+                "value": " "
+              },
+              {
+                "type": "list",
+                "value": {
+                  "type": "data",
+                  "value": [
+                    {
+                      "type": "text",
+                      "value": "leaf"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "text",
+          "value": "&bsol;n"
+        }
+      ]
     },
     {
       "type": "blank",
@@ -195,103 +195,100 @@ DATA
     },
     {
       "type": "paragraph",
-      "value": {
-        "type": "data",
-        "value": [
-          {
-            "type": "text",
-            "value": "data2-atom:&bsol;n"
-          },
-          {
-            "type": "text",
-            "value": "  atom&bsol;n"
-          },
-          {
-            "type": "text",
-            "value": "data2-list:&bsol;n"
-          },
-          {
-            "type": "text",
-            "value": "  "
-          },
-          {
-            "type": "list",
-            "value": {
-              "type": "data",
-              "value": [
-                {
-                  "type": "text",
-                  "value": "list"
-                }
-              ]
-            }
-          },
-          {
-            "type": "text",
-            "value": "&bsol;n"
-          },
-          {
-            "type": "text",
-            "value": "data2-tree:&bsol;n"
-          },
-          {
-            "type": "text",
-            "value": "  "
-          },
-          {
-            "type": "list",
-            "value": {
-              "type": "data",
-              "value": [
-                {
-                  "type": "text",
-                  "value": "tree&bsol;n"
-                },
-                {
-                  "type": "text",
-                  "value": "    "
-                },
-                {
-                  "type": "list",
-                  "value": {
-                    "type": "data",
-                    "value": [
-                      {
-                        "type": "text",
-                        "value": "leaf"
-                      }
-                    ]
-                  }
-                },
-                {
-                  "type": "text",
-                  "value": "&bsol;n"
-                },
-                {
-                  "type": "text",
-                  "value": "    "
-                },
-                {
-                  "type": "list",
-                  "value": {
-                    "type": "data",
-                    "value": [
-                      {
-                        "type": "text",
-                        "value": "leaf"
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          },
-          {
-            "type": "text",
-            "value": "&bsol;n"
+      "value": [
+        {
+          "type": "text",
+          "value": "data2-atom:&bsol;n"
+        },
+        {
+          "type": "text",
+          "value": "  atom&bsol;n"
+        },
+        {
+          "type": "text",
+          "value": "data2-list:&bsol;n"
+        },
+        {
+          "type": "text",
+          "value": "  "
+        },
+        {
+          "type": "list",
+          "value": {
+            "type": "data",
+            "value": [
+              {
+                "type": "text",
+                "value": "list"
+              }
+            ]
           }
-        ]
-      }
+        },
+        {
+          "type": "text",
+          "value": "&bsol;n"
+        },
+        {
+          "type": "text",
+          "value": "data2-tree:&bsol;n"
+        },
+        {
+          "type": "text",
+          "value": "  "
+        },
+        {
+          "type": "list",
+          "value": {
+            "type": "data",
+            "value": [
+              {
+                "type": "text",
+                "value": "tree&bsol;n"
+              },
+              {
+                "type": "text",
+                "value": "    "
+              },
+              {
+                "type": "list",
+                "value": {
+                  "type": "data",
+                  "value": [
+                    {
+                      "type": "text",
+                      "value": "leaf"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "text",
+                "value": "&bsol;n"
+              },
+              {
+                "type": "text",
+                "value": "    "
+              },
+              {
+                "type": "list",
+                "value": {
+                  "type": "data",
+                  "value": [
+                    {
+                      "type": "text",
+                      "value": "leaf"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "text",
+          "value": "&bsol;n"
+        }
+      ]
     },
     {
       "type": "blank",
@@ -299,16 +296,13 @@ DATA
     },
     {
       "type": "paragraph",
-      "value": {
-        "type": "data",
-        "value": [
-          {
-            "type": "rawn",
-            "delimiter": "DATA&bsol;n",
-            "value": "data3-atom: atom&bsol;ndata3-list: [list]&bsol;ndata3-tree: [tree [leaf] [leaf]]&bsol;n"
-          }
-        ]
-      }
+      "value": [
+        {
+          "type": "rawn",
+          "delimiter": "DATA&bsol;n",
+          "value": "data3-atom: atom&bsol;ndata3-list: [list]&bsol;ndata3-tree: [tree [leaf] [leaf]]&bsol;n"
+        }
+      ]
     }
   ]
 }

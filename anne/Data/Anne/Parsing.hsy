@@ -30,11 +30,13 @@ def rule anne :=
   document
 
 def rule document :=
-  paragraph
+| paragraph
+| BLANK document
 | paragraph BLANK document
 
 def rule paragraph :=
-  data
+  datum
+| datum paragraph
 
 def rule data :=
 | datum data
@@ -61,12 +63,18 @@ semanticActions :: Monad m => SemanticActions m
 semanticActions = SemanticActions
   { anne_implies_document = \d ->
       return (Defn.Anne d)
+  , document_implies =
+      return (Defn.Document [])
   , document_implies_paragraph = \par ->
       return (Defn.Document [Right par])
+  , document_implies_BLANK_document = \(p, s) (Defn.Document dss) ->
+      return (Defn.Document (Left (Defn.Blank p s):dss))
   , document_implies_paragraph_BLANK_document = \par (p, s) (Defn.Document dss) ->
       return (Defn.Document (Right par:Left (Defn.Blank p s):dss))
-  , paragraph_implies_data = \ds ->
-      return (Defn.Paragraph ds)
+  , paragraph_implies_datum = \d ->
+      return (Defn.Paragraph [d])
+  , paragraph_implies_datum_paragraph = \d (Defn.Paragraph ds) ->
+      return (Defn.Paragraph (d:ds))
   , data_implies =
       return (Defn.Data [])
   , data_implies_datum_data = \d (Defn.Data ds) ->

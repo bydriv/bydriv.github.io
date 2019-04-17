@@ -680,7 +680,7 @@ semanticActions = SemanticActions
       yybegin Middle
       return $ Just $ Parsing.RBRACKET ((p, p + n), yytext)
   , saLeftBrace = withPosition $ \p n yytext -> do
-      yybegin Middle
+      yybegin Initial
       return $ Just $ Parsing.LBRACE ((p, p + n), yytext)
   , saRightBrace = withPosition $ \p n yytext -> do
       yybegin Middle
