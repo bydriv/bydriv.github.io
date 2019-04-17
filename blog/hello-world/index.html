@@ -290,9 +290,9 @@ $ stack install
 $ cat &lt;&lt; EOF &gt; hello.anne
 hello world
 EOF
-$ cat your.anne | anne # minify して出力される
+$ cat hello.anne | anne # minify して出力される
 {"type":"document","value":[{"type":"paragraph","value":[{"type":"text","value":"hello world&bsol;n"}]}]}
-$ cat your.anne | anne | jq . # 整形したい場合
+$ cat hello.anne | anne | jq . # 整形したい場合
 {
   "type": "document",
   "value": [
@@ -324,7 +324,7 @@ $ cat your.anne | anne | jq . # 整形したい場合
 </p>
 <pre >$ pwd
 path/to/bydriv.github.io/anne
-$ cat your.anne | anne | ruby shirley/html.rb
+$ cat hello.anne | anne | ruby shirley/html.rb
 &lt;p&gt;hello world
 &lt;/p&gt;
 </pre>
