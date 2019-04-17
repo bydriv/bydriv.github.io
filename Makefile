@@ -2,16 +2,21 @@ ANNE:=anne
 HTML:=anne/shirley/html.rb
 NOVEL:=shirley/novel.rb
 
-index.html: index.anne $(wildcard prelude/*)
+.PHONY: all
+all:
+	make $$(find -name 'index.html')
+
+%.json: %.anne $(ANNE)
+	$(ANNE) < $< > $@
+
+.INTERMEDIATE: index.json
+index.html: index.json $(HTML) $(wildcard prelude/*) $(wildcard *.json)
 	cat prelude/header.html > $@
-	cat $< | $(ANNE) | $(HTML) >> $@
+	$(HTML) $< >> $@
 
-%/index.html: %/index.anne $(wildcard prelude/*)
+%/index.html: %/index.json $(HTML) $(wildcard prelude/*) $(wildcard %/*.json)
 	cat prelude/header.html > $@
-	cat $< | $(ANNE) | $(HTML) >> $@
+	$(HTML) $< >> $@
 
-novel/%/text.html: novel/%.txt shirley/novel.rb
-	cat $< | $(ANNE) | $(NOVEL) > $@
-
-%.html: %.anne $(wildcard prelude/*)
-	cat $< | $(ANNE) | $(HTML) > $@
+novel/%/text.json: novel/%.txt $(NOVEL)
+	$(NOVEL) $< > $@
