@@ -97,11 +97,15 @@ div.window > div.content h3 {
 }
 
 div.window > div.content h4 {
-    border-bottom: solid 1px rgba(255, 255, 255, 1);
+    border-bottom: solid 1px rgba(255, 255, 255, 0.75);
 }
 
 div.window > div.content h5 {
-    border-bottom: dotted 1px rgba(255, 255, 255, 1);
+    border-bottom: dashed 1px rgba(255, 255, 255, 0.5);
+}
+
+div.window > div.content h6 {
+    border-bottom: dotted 1px rgba(255, 255, 255, 0.25);
 }
 
 div.window > div.content h6 {
