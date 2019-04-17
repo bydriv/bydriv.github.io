@@ -21,6 +21,12 @@ index.html: index.json $(HTML) $(wildcard prelude/*) $(patsubst %.anne,%.html,$(
 	cat prelude/header.html > $@
 	$(HTML) $< >> $@
 
+blog/%/index.html: blog/%/index.json $(HTML) $(wildcard prelude/*) $(patsubst %.anne,%.html,$(filter-out %index.anne,$(shell find -name '*.anne')))
+	cat prelude/header.html > $@
+	cat prelude/blog-header.html >> $@
+	$(HTML) $< >> $@
+	cat prelude/blog-footer.html >> $@
+
 novel/%.json: novel/%.txt $(ANNE)
 	$(ANNE) < $< > $@
 

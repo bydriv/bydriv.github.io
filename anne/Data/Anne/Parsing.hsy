@@ -12,12 +12,9 @@ type Data = Defn.Data
 type Datum = Defn.Datum
 type Atom = Defn.Atom
 type List = Defn.List
-type Wrapper = Defn.Wrapper
 
 type LBRACKET = (Defn.Pos, String)
 type RBRACKET = (Defn.Pos, String)
-type LBRACE = (Defn.Pos, String)
-type RBRACE = (Defn.Pos, String)
 type BLANK = (Defn.Pos, String)
 type TEXT = (Defn.Pos, String)
 type RAW1 = (Defn.Pos, Char, String)
@@ -27,11 +24,10 @@ type RAWN = (Defn.Pos, String, String)
 %%
 
 def rule anne :=
-  document
+| document
 
 def rule document :=
-| paragraph
-| BLANK document
+  paragraph
 | paragraph BLANK document
 
 def rule paragraph :=
@@ -44,7 +40,6 @@ def rule data :=
 def rule datum :=
   atom
 | list
-| wrapper
 
 def rule atom :=
   TEXT
@@ -54,21 +49,16 @@ def rule atom :=
 def rule list :=
   LBRACKET data RBRACKET
 
-def rule wrapper :=
-  LBRACE document RBRACE
-
 %%
 
 semanticActions :: Monad m => SemanticActions m
 semanticActions = SemanticActions
-  { anne_implies_document = \d ->
+  { anne_implies =
+      return (Defn.Anne (Defn.Document []))
+  , anne_implies_document = \d ->
       return (Defn.Anne d)
-  , document_implies =
-      return (Defn.Document [])
   , document_implies_paragraph = \par ->
       return (Defn.Document [Right par])
-  , document_implies_BLANK_document = \(p, s) (Defn.Document dss) ->
-      return (Defn.Document (Left (Defn.Blank p s):dss))
   , document_implies_paragraph_BLANK_document = \par (p, s) (Defn.Document dss) ->
       return (Defn.Document (Right par:Left (Defn.Blank p s):dss))
   , paragraph_implies_datum = \d ->
@@ -83,8 +73,6 @@ semanticActions = SemanticActions
       return (Defn.AtomDatum a)
   , datum_implies_list = \l ->
       return (Defn.ListDatum l)
-  , datum_implies_wrapper = \w ->
-      return (Defn.WrapperDatum w)
   , atom_implies_TEXT = \(p, s) ->
       return (Defn.Text p s)
   , atom_implies_RAW1 = \(p, k, s) ->
@@ -92,6 +80,4 @@ semanticActions = SemanticActions
   , atom_implies_RAWN = \(p, k, s) ->
       return (Defn.RawN p k s)
   , list_implies_LBRACKET_data_RBRACKET = \((l, _), _) ds ((_, r), _) ->
-      return (Defn.List (l, r) ds)
-  , wrapper_implies_LBRACE_document_RBRACE = \((l, _), _) d ((_, r), _) ->
-      return (Defn.Wrapper (l, r) d) }
+      return (Defn.List (l, r) ds) }

@@ -32,7 +32,6 @@ dataToJSON (Anne.Data ds) = concat (concat [[["{\"type\":\"data\",\"value\":["]]
 datumToJSON :: Anne.Datum -> [String]
 datumToJSON (Anne.AtomDatum a) = atomToJSON a
 datumToJSON (Anne.ListDatum l) = listToJSON l
-datumToJSON (Anne.WrapperDatum w) = wrapperToJSON w
 
 atomToJSON :: Anne.Atom -> [String]
 atomToJSON (Anne.Text _ s) = ["{\"type\":\"text\",\"value\":\"", escape s, "\"}"]
@@ -41,9 +40,6 @@ atomToJSON (Anne.RawN _ k s) = ["{\"type\":\"rawn\",\"delimiter\":\"", escape k,
 
 listToJSON :: Anne.List -> [String]
 listToJSON (Anne.List _ ds) = concat [["{\"type\":\"list\",\"value\":"], dataToJSON ds, ["}"]]
-
-wrapperToJSON :: Anne.Wrapper -> [String]
-wrapperToJSON (Anne.Wrapper _ d) = concat [["{\"type\":\"wrapper\",\"value\":"], documentToJSON d, ["}"]]
 
 main :: IO ()
 main = do

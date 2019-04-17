@@ -26,7 +26,6 @@ data Data =
 data Datum =
     AtomDatum Atom
   | ListDatum List
-  | WrapperDatum Wrapper
   deriving (Eq, Ord, Read, Show)
 
 data Atom =
@@ -37,8 +36,4 @@ data Atom =
 
 data List =
     List Pos Data
-  deriving (Eq, Ord, Read, Show)
-
-data Wrapper =
-    Wrapper Pos Document
   deriving (Eq, Ord, Read, Show)
