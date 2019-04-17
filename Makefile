@@ -18,5 +18,12 @@ index.html: index.json $(HTML) $(wildcard prelude/*) $(wildcard *.json)
 	cat prelude/header.html > $@
 	$(HTML) $< >> $@
 
-novel/%/text.json: novel/%.txt $(NOVEL)
+novel/%/index.html: novel/%/index.json novel/%/text.html $(HTML) $(wildcard prelude/*) $(wildcard %/*.json)
+	cat prelude/header.html > $@
+	$(HTML) $< >> $@
+
+novel/%/text.json: novel/%.txt $(ANNE)
+	$(ANNE) < $< > $@
+
+novel/%/text.html: novel/%/text.json $(NOVEL)
 	$(NOVEL) $< > $@
