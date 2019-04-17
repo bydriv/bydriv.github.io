@@ -1,0 +1,7 @@
+#div(class=window)
+  [#div(class=header) MINAGAWA, Teiri]
+  [#div(class=content) [@cat worldview/teiri.html]]
+
+#div(class=window)
+  [#div(class=header) Elder City]
+  [#div(class=content) [@cat worldview/elder-city.html]]
