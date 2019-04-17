@@ -1,0 +1,7 @@
+#div(class=window)
+  [#div(class=header)]
+  [#div(class=content) [@cat blog/2019-04-17/summary.html] [#div(class=cont) ([#a(href=/blog/2019-04-17) READ MORE])]]
+
+#div(class=window)
+  [#div(class=header)]
+  [#div(class=content) [@cat blog/2019-04-18/summary.html] [#div(class=cont) ([#a(href=/blog/2019-04-18) READ MORE])]]

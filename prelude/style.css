@@ -145,6 +145,11 @@ div.window > div.content code {
     font-family: Consolas, "Courier New";
 }
 
+div.window > div.content div.cont {
+    margin: 1em;
+    text-align: right;
+}
+
 span.space {
     display: inline-block;
     margin: 0;

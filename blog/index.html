@@ -1,0 +1,57 @@
+<!DOCTYPE html><!--
+
+--><meta charset="utf-8"><!--
+--><meta name="viewport" content="width=device-width, initial-scale=1"><!--
+--><title>bydriv.github.io</title><!--
+
+--><link rel="stylesheet" type="text/css" href="/prelude/style.css"><!--
+
+--><div class="taskbar"><!--
+--><a class="icon" href="/">&#x221A;</a><!--
+--><a class="icon" href="/about">&#x1F4BD;</a><!--
+--><a class="icon" href="/gallery">&#x1F3A8;</a><!--
+--><a class="icon" href="/novel/golden-record">&#x1F30C;</a><!--
+--><a class="icon" href="/novel/rcs">&#x1F303;</a><!--
+--><a class="icon" href="/blog">&#x1F4DD;</a><!--
+--><a class="icon" href="/anne">&#x1F45A;</a><!--
+--><a class="icon" href="/worldview">&#x1F30D;</a><!--
+--></div>
+<div class=window><div class=header></div>
+  <div class=content><h2 >Anne でブログを書くことにした
+</h2><p>なんか。
+いろいろあって Anne というシリアライズフォーマット兼軽量マークアップ言語でブログを書くことにした。
+</p><p>今日はその話。
+</p><h3 >背景
+</h3><p>もともとわたしはひとより自然言語の文章をよく書くタイプだと思う。
+ひとより、というのは、一般的なプログラマに比べて。
+</p><p>そういうのもあり、文章を書くのは非常にたいへんだと理解している。
+文章自体を書くのもたいへんだし、それを書くフォーマットに振りまわされるのもつらい。
+</p><p>ドキュメントやブログもそうなのだが、文章を書くという行為において
+人間はふたつのものと戦わねばならない。
+ひとつは英語や日本語のような自然言語。もうひとつは Word だとか LaTeX だとか、
+自然言語を入力するソフトウェア。
+</p><p>当然のことだが、もし LaTeX を完璧に使いこなせたとしても、自然言語の部分を書く能力や労力は別途求められる。
+その逆もまた然りで、自然言語で完璧に文章を書けたとしても、 LaTeX が使えるとはかぎらない。
+</p><p>このふたつはべつの行為であり、しかし、コンピュータで文章を書く以上、同時にこなさなければならないことでもある。
+</p><p>そしてやはりもちろん、両方を同時にこなすのは難しい。
+自然言語を書きつつ、ソフトウェアのチューニングもするのは困難なことだ。
+</p>
+ <div class=cont>(<a href=/blog/2019-04-17>READ MORE</a>)</div></div>
+</div>
+<div class=window><div class=header></div>
+  <div class=content><h2 >サイトにブログエンジンを乗せた
+</h2><p>ブログエンジンというか、なんというか。
+</p><p><a href=/blog>ここ</a>にアクセスするとブログ一覧が見れる。
+</p><p>Anne が JSON を吐いてくれるおかげで、ブログのサマリーは
+<code >jq</code> と <code >Makefile</code> で一瞬で実装できた。
+</p><pre >blog/%/summary.json: blog/%/index.json
+	cat $&lt; | jq '{type:"document",value:.value|map(select(.type == "paragraph"))|.[0:10]}' &gt; $@
+</pre><p>というか jq ってほんとすごいし便利ですね！！！！！！！！！！！！！
+</p><p><code >index.anne</code> を用意して <code >make</code> って入力するだけでビルドから
+サマリーまでぜんぶやってくれる。すごい（そうでもない）。
+</p><p>Anne については <a href=/blog/2019-04-17>こっちのブログ</a> にあらかた書いた。
+</p><p>つぎは Anne をベースにブログエンジンを、もうすこし汎用的に書きたい感じもある。
+</p><p>そんなに複雑なことをしなくても jq と Makefile だけでいろいろできそう。
+</p>
+ <div class=cont>(<a href=/blog/2019-04-18>READ MORE</a>)</div></div>
+</div>
