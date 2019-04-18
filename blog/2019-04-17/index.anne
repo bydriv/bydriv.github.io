@@ -63,7 +63,7 @@ Anne はシリアライズフォーマットなので、とくにこれといっ
 Anne の仕様については、 [#a(href=../../anne) Anne のページ] を参照してほしい。
 
 もしこのページのコードを読みたければ、
-[#a(href=https://github.com/bydriv/bydriv.github.io/blob/master/blog/hello-world/index.anne) https://github.com/bydriv/bydriv.github.io/blob/master/blog/hello-world/index.anne] で読むことができる。
+[#a(href=https://github.com/bydriv/bydriv.github.io/blob/master/blog/2019-04-17/index.anne) https://github.com/bydriv/bydriv.github.io/blob/master/blog/2019-04-17/index.anne] で読むことができる。
 このページ自体が実際どういう JSON になるのかは、
 [#a(href=index.json) index.json] を見ればわかると思う。
 
