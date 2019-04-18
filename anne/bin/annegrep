@@ -1,0 +1,102 @@
+#!/usr/bin/ruby
+
+require "json"
+require "optparse"
+
+module Annegrep
+  extend self
+
+  def match(options, args, json)
+    case json["type"]
+    when "blank", "text", "raw1", "rawn"
+      if json["value"] =~ args[:regexp]
+        true
+      else
+        false
+      end
+    when "list"
+      match(options, args, json["value"])
+    when "document", "paragraph", "data"
+      json["value"].any? {|child| match(options, args, child)}
+    end
+  end
+
+  def traverse(options, args, json)
+    case json["type"]
+    when "blank", "text", "raw1", "rawn"
+      if options[json["type"].to_sym] && match(options, args, json)
+        json
+      else
+        nil
+      end
+    when "list"
+      if options[:list] && match(options, args, json)
+        json
+      else
+        child = traverse(options, args, json["value"])
+
+        if child.nil?
+          nil
+        else
+          {
+            "type" => json["type"],
+            "value" => child
+          }
+        end
+      end
+    when "document", "paragraph", "data"
+      if options[json["type"].to_sym] && match(options, args, json)
+        json
+      else
+        children = []
+        before = nil
+
+        json["value"].each_with_index do |child, i|
+          if child["type"] == "blank" && before
+            children << child
+            c = nil
+          else
+            c = traverse(options, args, child)
+          end
+
+          children << before if c && before && before["type"] == "blank"
+          children << c if c
+          before = c
+        end
+
+        if !children.empty? && children.last["type"] === "blank"
+          children.pop
+        end
+
+        if children.empty?
+          nil
+        else
+          {
+            "type" => json["type"],
+            "value" => children
+          }
+        end
+      end
+    end
+  end
+end
+
+options = {}
+args = {}
+
+p = OptionParser.new
+
+p.on("-d", "--document") { options[:document] = true }
+p.on("-p", "--paragraph") { options[:paragraph] = true }
+p.on("-d", "--data") { options[:data] = true }
+p.on("-l", "--list") { options[:list] = true }
+p.on("-t", "--text") { options[:text] = true }
+p.on("-1", "--raw1") { options[:raw1] = true }
+p.on("-n", "--rawn") { options[:rawn] = true }
+p.on("-b", "--blank") { options[:blank] = true }
+
+p.parse!(ARGV)
+
+args[:regexp] = Regexp.new(ARGV.shift)
+
+puts(JSON.dump(Annegrep.traverse(options, args, JSON.parse(ARGF.read))))
