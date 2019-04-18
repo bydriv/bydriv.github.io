@@ -18,7 +18,7 @@ CODE
 
 #pre <<CODE
 $ anne < a.anne
-1:6-2:1: error: nonterminating raw text
+1:6-2:4: error: nonterminating raw text
 #pre <<FOO
 BAR
 CODE
