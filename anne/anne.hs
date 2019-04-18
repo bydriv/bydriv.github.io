@@ -97,8 +97,8 @@ main = do
               let s'' = substr (bol, eol) s in
               let lineno1 = lineOf (fst pos') s in
               let colno1 = colOf (fst pos') s in
-              let lineno2 = lineOf (snd pos') s in
-              let colno2 = colOf (snd pos') s in
+              let lineno2 = lineOf (max 0 (snd pos' - 1)) s in
+              let colno2 = colOf (max 0 (snd pos' - 1)) s in
               let loc =
                     if lineno1 == lineno2 then
                       if colno1 == colno2 then
