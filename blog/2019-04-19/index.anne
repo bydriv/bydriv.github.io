@@ -1,0 +1,72 @@
+#h2 Anne 開発日記 (2019-04-19)
+
+#h3 エラーメッセージがまともになった
+
+よい開発者はエラー処理に気を遣う（ほんまか）。
+
+いままでエラーメッセージはただ単に SyntaxError としか表示していなかった。
+それを行番号など表示するようにした。
+
+たとえばこういうふうに書くと:
+
+#pre <<CODE
+#pre <<FOO
+BAR
+CODE
+
+こんなふうに表示される:
+
+#pre <<CODE
+$ anne < a.anne
+1:6-2:1: error: nonterminating raw text
+#pre <<FOO
+BAR
+CODE
+
+このブログではまだハイライトを実装していないので地味だが、ターミナルでは色もつくし下線もひかれる。
+
+#h3 周辺ツールをすこし開発した
+
+Anne は Shirley などのライブラリでいろいろな方言
+(DSLと言ってもよいかもしれない)
+が定義できるシリアライズフォーマットとして設計されている。
+
+このような設計にするメリットは方言に依らずに処理できる周辺ツールを充実させることができることだと思う (ほんまか)。
+
+というわけで、 Anne の周辺ツールを試しにいくつか開発している。
+
+#h4 enna
+
+[#a(href=https://github.com/bydriv/bydriv.github.io/blob/master/anne/bin/enna) https://github.com/bydriv/bydriv.github.io/blob/master/anne/bin/enna]
+
+enna は anne が出力した JSON を Anne に戻すツールである。
+
+#pre <<CODE
+$ anne < a.anne | enna > b.anne
+# a.anne と b.anne はまったく同じ
+$ diff a.anne b.anne
+$ echo $?
+0
+CODE
+
+#h4 annegrep
+
+[#a(href=https://github.com/bydriv/bydriv.github.io/blob/master/anne/bin/annegrep) https://github.com/bydriv/bydriv.github.io/blob/master/anne/bin/annegrep]
+
+annegrep は段落単位、コードブロック単位で Anne を検索する。
+
+#pre <<CODE
+$ cat << EOF > a.anne
+段落1: aaaaaaaaaaaaaaaa
+段落1: bbbbbbbbbbbbbbbb
+段落1: cccccccccccccccc
+
+段落2: dddddddddddddddd
+段落2: eeeeeeeeeeeeeeee
+段落2: ffffffffffffffff
+EOF
+$ anne < a.anne | annegrep -p b | enna
+段落1: aaaaaaaaaaaaaaaa
+段落1: bbbbbbbbbbbbbbbb
+段落1: cccccccccccccccc
+CODE

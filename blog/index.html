@@ -55,3 +55,22 @@
 </p>
  <div class=cont>(<a href=/blog/2019-04-18>READ MORE</a>)</div></div>
 </div>
+<div class=window><div class=header></div>
+  <div class=content><h2 >Anne 開発日記 (2019-04-19)
+</h2><h3 >エラーメッセージがまともになった
+</h3><p>よい開発者はエラー処理に気を遣う（ほんまか）。
+</p><p>いままでエラーメッセージはただ単に SyntaxError としか表示していなかった。
+それを行番号など表示するようにした。
+</p><p>たとえばこういうふうに書くと:
+</p><pre >#pre &lt;&lt;FOO
+BAR
+</pre><p>こんなふうに表示される:
+</p><pre >$ anne &lt; a.anne
+1:6-2:1: error: nonterminating raw text
+#pre &lt;&lt;FOO
+BAR
+</pre><p>このブログではまだハイライトを実装していないので地味だが、ターミナルでは色もつくし下線もひかれる。
+</p><h3 >周辺ツールをすこし開発した
+</h3>
+ <div class=cont>(<a href=/blog/2019-04-19>READ MORE</a>)</div></div>
+</div>
