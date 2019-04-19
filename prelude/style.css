@@ -169,3 +169,18 @@ div.blank-line {
 span.dashes {
     font-family: Meiryo;
 }
+
+p.indent {
+    text-indent: 1em;
+}
+
+sup.sect:target ~ span.text {
+    color: rgba(0, 0, 0, 1);
+    background-color: rgba(255, 255, 255, 1);
+}
+
+
+sup.sect:target ~ sup.sect ~ span.text {
+    color: inherit;
+    background-color: inherit;
+}

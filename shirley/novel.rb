@@ -6,13 +6,24 @@ require "shirley"
 $chap = 0
 
 cfg = Shirley.config([
-    ["first-paragraph", /\A\$(\d+):(.*?)\n\z/m, proc {|m| $chap = m[1]; "<h2 id=\"#{m[1]}\">#{m[2]}</h2>" }],
-    ["first-paragraph", /\A\$(\d+)\n\z/m, proc {|m| $chap = m[1]; "<h2>第#{m[1]}章</h2>" }],
-    ["first-paragraph", /\A\+\n\z/m, "<div class=\"blank-line\"></div>"],
-    ["first-paragraph", /\A\*\n\z/m, "<div class=\"blank-line\"></div>"],
-    ["first-paragraph", /\A(.*)\z/m, "<p>\\1</p>"],
-    ["first-list", /\A(\d+)\z/m, proc {|m| "<sup id=\"#$chap:#{m[1]}\">#{m[1]}</sup>"}],
-    ["first-list", /\A#ruby:([^:]+):([^:]+)\z/m, "<ruby>\\1<rp>(</rp><rt>\\2</rt><rp>)</rp></ruby>"]
+    ["first-paragraph", /\A\$(\d+):(.*?)\z/m, proc {|m| $chap = m[1]; "<h2 class=\"chap\" id=\"#{m[1]}\"><a href=\"#$chap\">#{m[2]}</a></h2>" }],
+    ["first-paragraph", /\A\$(\d+)\z/m, proc {|m| $chap = m[1]; "<h2 class=\"chap\" ><a href=\"#$chap\">第#{m[1]}章</a></h2>" }],
+    ["first-paragraph", /\A\+\z/m, "<div class=\"blank-line\"></div>"],
+    ["first-paragraph", /\A\*\z/m, "<div class=\"blank-line\"></div>"],
+    ["first-paragraph", /\A(<.*?>.*?<\/.*?>)(「.*)\z/m, "<p class=\"noindent\">\\1\\2</p>"],
+    ["first-paragraph", /\A(.*)\z/m, "<p class=\"indent\">\\1</p>"],
+    ["first-list", /\A(\d+)\z/m, proc {|m| "<sup class=\"sect\" id=\"#$chap:#{m[1]}\"><a href=\"##$chap:#{m[1]}\">#{m[1]}</a></sup>"}],
+    ["first-list", /\A#ruby:([^:]+):([^:]+)\z/m, "<ruby>\\1<rp>(</rp><rt>\\2</rt><rp>)</rp></ruby>"],
+    ["all-text", /\n/m, ""],
+    ["all-text", /(！|？|！？)([^！？」])/m, "\\1<span class=\"space\"></span>\\2"],
+    ["all-text", /(……)/m, "<span class=\"dots\">\\1</span>"],
+    ["all-text", /(――)/m, "<span class=\"dashes\">\\1</span>"],
+    ["first-text", /\A\$(\d+):(.*?)\z/m, "\\0"],
+    ["first-text", /\A\$(\d+)\z/m, "\\0"],
+    ["first-text", /\A\+\z/m, "\\0"],
+    ["first-text", /\A\*\z/m, "\\0"],
+    ["first-text", /\A(\d+)\z/m, "\\0"],
+    ["first-text", /\A(.+)\z/m, "<span class=\"text\">\\1</span>"]
 ])
 
 puts(Shirley.traverse(cfg, JSON.parse(ARGF.read)))

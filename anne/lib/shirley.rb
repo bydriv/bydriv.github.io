@@ -31,6 +31,10 @@ module Shirley
       end
     end
 
+    rules.each do |rule|
+      s = fire(rule, s)
+    end
+
     rule = cfg.find do |rule|
       ts.any? do |t|
         rule[:type] == "first-#{t}" && s =~ rule[:regexp]
