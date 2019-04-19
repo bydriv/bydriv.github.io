@@ -7,7 +7,7 @@ $chap = 0
 
 cfg = Shirley.config([
     ["first-paragraph", /\A\$(\d+):(.*?)\z/m, proc {|m| $chap = m[1]; "<h2 class=\"chap\" id=\"#{m[1]}\"><a href=\"##$chap\">#{m[2]}</a></h2>" }],
-    ["first-paragraph", /\A\$(\d+)\z/m, proc {|m| $chap = m[1]; "<h2 class=\"chap\" ><a href=\"##$chap\">第#{m[1]}章</a></h2>" }],
+    ["first-paragraph", /\A\$(\d+)\z/m, proc {|m| $chap = m[1]; "<h2 class=\"chap\" id=\"#{m[1]}\"><a href=\"##$chap\">第#{m[1]}章</a></h2>" }],
     ["first-paragraph", /\A\+\z/m, "<div class=\"blank-line\"></div>"],
     ["first-paragraph", /\A\*\z/m, "<div class=\"blank-line\"></div>"],
     ["first-paragraph", /\A(<.*?>.*?<\/.*?>)(「.*)\z/m, "<p class=\"noindent\">\\1\\2</p>"],
