@@ -56,7 +56,6 @@ function viewHijack(state, onscreenCanvas, offscreenCanvas) {
     }
 
     var onscreenContext = onscreenCanvas.getContext("2d");
-    //onscreenContext.imageSmoothingEnabled = false;
     onscreenContext.drawImage(offscreenCanvas, 0, 0);
 }
 
