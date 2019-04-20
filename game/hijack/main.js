@@ -32,16 +32,18 @@ function newHijack(images) {
     };
 };
 
-function stepHijack(state) {
+function stepHijack(state, input) {
+    console.log(input);
+
     switch (state.mode) {
     case HIJACK_MODE_TITLE:
-        return stepHijackModeTitle(state);
+        return stepHijackModeTitle(state, input);
     case HIJACK_MODE_CHARACTER_SELECTION:
-        return stepHijackCharacterSelection(state);
+        return stepHijackCharacterSelection(state, input);
     case HIJACK_MODE_GAME:
-        return stepHijackModeGame(state);
+        return stepHijackModeGame(state, input);
     case HIJACK_MODE_RESULT:
-        return stepHijackModeResult(state);
+        return stepHijackModeResult(state, input);
     }
 }
 
@@ -59,19 +61,19 @@ function viewHijack(state, onscreenCanvas, offscreenCanvas) {
     onscreenContext.drawImage(offscreenCanvas, 0, 0);
 }
 
-function stepHijackModeTitle(state) {
+function stepHijackModeTitle(state, input) {
     return state;
 }
 
-function stepHijackModeCharacterSelection(state) {
+function stepHijackModeCharacterSelection(state, input) {
     return state;
 }
 
-function stepHijackModeGame(state) {
+function stepHijackModeGame(state, input) {
     return state;
 }
 
-function stepHijackModeResult(state) {
+function stepHijackModeResult(state, input) {
     return state;
 }
 
@@ -85,7 +87,8 @@ window.addEventListener("load", function () {
         viewHijack(state, onscreenCanvas, offscreenCanvas);
 
         requestAnimationFrame(function step() {
-            state = stepHijack(state);
+            var input = Array.from(navigator.getGamepads()).filter(function (pad) { return pad != null; });
+            state = stepHijack(state, input);
             viewHijack(state, onscreenCanvas, offscreenCanvas);
             requestAnimationFrame(step);
         });
