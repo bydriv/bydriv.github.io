@@ -33,8 +33,6 @@ function newHijack(images) {
 };
 
 function stepHijack(state, input) {
-    console.log(input);
-
     switch (state.mode) {
     case HIJACK_MODE_TITLE:
         return stepHijackModeTitle(state, input);
