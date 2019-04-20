@@ -274,6 +274,11 @@ window.addEventListener("load", function () {
         loadImage("pixelart/teiri/run_left.png"),
         loadImage("pixelart/teiri/run_right.png")
     ]).then(function (images) {
+        var mode = document.getElementById("mode");
+
+        var recording = false;
+        var recorder = null;
+
         var state = newHijack(images);
         var onscreenCanvas = document.getElementById("hijack");
         var offscreenCanvas = document.createElement("canvas");
@@ -282,6 +287,52 @@ window.addEventListener("load", function () {
         viewHijack(state, onscreenCanvas, offscreenCanvas);
 
         requestAnimationFrame(function step() {
+            if (!recording && mode["record-mode"].checked) {
+                var canvasStream = onscreenCanvas.captureStream();
+                recorder = new MediaRecorder(canvasStream);
+                var chunks = [];
+
+                recorder.addEventListener("dataavailable", function (e) {
+                    chunks.push(e.data);
+                });
+
+                recorder.addEventListener("stop", function () {
+                    var blob = new Blob(chunks, {"type": "video/mpeg"});
+                    var url = URL.createObjectURL(blob);
+                    var video = document.createElement("video");
+                    video.src = url;
+                    video.controls = true;
+                    var a = document.createElement("a");
+                    var text = document.createTextNode("download");
+                    a.href = url;
+                    a.appendChild(text);
+
+                    var w = document.createElement("div");
+                    var header = document.createElement("div");
+                    var content = document.createElement("div");
+                    w.setAttribute("class", "window");
+                    header.setAttribute("class", "header");
+                    content.setAttribute("class", "content");
+                    header.appendChild(document.createTextNode(url));
+                    content.appendChild(video);
+                    content.appendChild(a);
+                    w.appendChild(header);
+                    w.appendChild(content);
+
+                    document.querySelector("body").appendChild(w);
+
+                    recorder = null;
+                });
+
+                recorder.start();
+                recording = true;
+            }
+
+            if (recording && !mode["record-mode"].checked) {
+                recorder.stop();
+                recording = false;
+            }
+
             var input = Array.from(navigator.getGamepads()).filter(function (pad) { return pad != null; });
             state = stepHijack(state, input);
             viewHijack(state, onscreenCanvas, offscreenCanvas);
