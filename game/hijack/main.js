@@ -11,8 +11,14 @@ function loadImage(src) {
     });
 }
 
+var HIJACK_MODE_TITLE = "title";
+var HIJACK_MODE_CHARACTER_SELECTION = "characterSelection";
+var HIJACK_MODE_GAME = "game";
+var HIJACK_MODE_RESULT = "result";
+
 function newHijack(images) {
     return {
+        mode: HIJACK_MODE_TITLE,
         images: images,
         views: [{
             sx: 0,
@@ -27,7 +33,16 @@ function newHijack(images) {
 };
 
 function stepHijack(state) {
-    return state;
+    switch (state.mode) {
+    case HIJACK_MODE_TITLE:
+        return stepHijackModeTitle(state);
+    case HIJACK_MODE_CHARACTER_SELECTION:
+        return stepHijackCharacterSelection(state);
+    case HIJACK_MODE_GAME:
+        return stepHijackModeGame(state);
+    case HIJACK_MODE_RESULT:
+        return stepHijackModeResult(state);
+    }
 }
 
 function viewHijack(state, onscreenCanvas, offscreenCanvas) {
@@ -43,6 +58,22 @@ function viewHijack(state, onscreenCanvas, offscreenCanvas) {
     var onscreenContext = onscreenCanvas.getContext("2d");
     //onscreenContext.imageSmoothingEnabled = false;
     onscreenContext.drawImage(offscreenCanvas, 0, 0);
+}
+
+function stepHijackModeTitle(state) {
+    return state;
+}
+
+function stepHijackModeCharacterSelection(state) {
+    return state;
+}
+
+function stepHijackModeGame(state) {
+    return state;
+}
+
+function stepHijackModeResult(state) {
+    return state;
 }
 
 window.addEventListener("load", function () {
