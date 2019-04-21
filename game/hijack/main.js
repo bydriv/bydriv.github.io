@@ -93,25 +93,26 @@ function stepHijackModeCharacterSelection(state, input) {
     if (input.some(function (pad) { return pad.buttons.some(function (button) { return button.pressed; }); })) {
         state.mode = HIJACK_MODE_GAME;
 
-        state.character0 =
-            {
-                i: 0,
-                x: 0,
-                y: 480 - 192,
-                pose: "neutral",
-                direction: "right",
-                character: state.config.characters[0]
-            };
+        var character0 = state.config.characters[0];
+        var character1 = state.config.characters[0];
 
-        state.character1 =
-            {
-                i: 0,
-                x: 640 - 192,
-                y: 480 - 192,
-                pose: "neutral",
-                direction: "left",
-                character: state.config.characters[0]
-            };
+        state.character0 = {
+            i: 0,
+            x: 0,
+            y: 480 - character0.animations.neutral_right.height * 2,
+            pose: "neutral",
+            direction: "right",
+            character: character0
+        };
+
+        state.character1 = {
+            i: 0,
+            x: 640 - character0.animations.neutral_left.width * 2,
+            y: 480 - character0.animations.neutral_left.height * 2,
+            pose: "neutral",
+            direction: "left",
+            character: character1
+        };
     }
 
     return state;
@@ -122,38 +123,46 @@ function stepHijackModeGame(state, input) {
     case 0:
         break;
     case 1:
+        stepCharacter(0, state.character0);
+        break;
     default:
-        var x0 = input[0].axes[0];
-        var y0 = input[0].axes[1];
-
-        if (x0 < -0.5) {
-            if (state.character0.pose === "run")
-                ++state.character0.i;
-            else
-                state.character0.i = 0;
-            state.character0.pose = "run";
-            state.character0.direction = "left";
-            if (state.character0.i % state.character0.character.actions.run_left.frames_per_effect === 0)
-                state.character0.x += state.character0.character.actions.run_left.effect.move * 2;
-        } else if (x0 > 0.5) {
-            if (state.character0.pose === "run")
-                ++state.character0.i;
-            else
-                state.character0.i = 0;
-            state.character0.pose = "run";
-            state.character0.direction = "right";
-            if (state.character0.i % state.character0.character.actions.run_right.frames_per_effect === 0)
-                state.character0.x += state.character0.character.actions.run_right.effect.move * 2;
-        } else {
-            if (state.character0.pose === "neutral")
-                ++state.character0.i;
-            else
-                state.character0.i = 0;
-            state.character0.pose = "neutral";
-        }
+        stepCharacter(0, state.character0);
+        stepCharacter(1, state.character1);
+        break;
     }
 
     return state;
+
+    function stepCharacter(i, character) {
+        var x0 = input[i].axes[0];
+        var y0 = input[i].axes[1];
+
+        if (x0 < -0.5) {
+            if (character.pose === "run")
+                ++character.i;
+            else
+                character.i = 0;
+            character.pose = "run";
+            character.direction = "left";
+            if (character.i % character.character.actions.run_left.frames_per_effect === 0)
+                character.x += character.character.actions.run_left.effect.move * 2;
+        } else if (x0 > 0.5) {
+            if (character.pose === "run")
+                ++character.i;
+            else
+                character.i = 0;
+            character.pose = "run";
+            character.direction = "right";
+            if (character.i % character.character.actions.run_right.frames_per_effect === 0)
+                character.x += character.character.actions.run_right.effect.move * 2;
+        } else {
+            if (character.pose === "neutral")
+                ++character.i;
+            else
+                character.i = 0;
+            character.pose = "neutral";
+        }
+    }
 }
 
 function stepHijackModeResult(state, input) {
@@ -184,25 +193,31 @@ function viewHijackModeCharacterSelection(state) {
 
 function viewHijackModeGame(state) {
     var views = [];
-    var id = state.character0.pose + "_" + state.character0.direction;
-    var action = state.character0.character.actions[id];
-    var animation = action.animation;
 
-    var m = Math.floor(animation.sprite_sheet.width / animation.width);
-
-    views.push({
-        sx: Math.floor(state.character0.i / animation.frames_per_sprite % m) * animation.width,
-        sy: 0,
-        sw: animation.width,
-        sh: animation.height,
-        dx: state.character0.x,
-        dy: state.character0.y,
-        dw: animation.width * 2,
-        dh: animation.height * 2,
-        img: animation.sprite_sheet
-    });
+    viewCharacter(state.character0);
+    viewCharacter(state.character1);
 
     return views;
+
+    function viewCharacter(character) {
+        var id = character.pose + "_" + character.direction;
+        var action = character.character.actions[id];
+        var animation = action.animation;
+
+        var m = Math.floor(animation.sprite_sheet.width / animation.width);
+
+        views.push({
+            sx: Math.floor(character.i / animation.frames_per_sprite % m) * animation.width,
+            sy: 0,
+            sw: animation.width,
+            sh: animation.height,
+            dx: character.x,
+            dy: character.y,
+            dw: animation.width * 2,
+            dh: animation.height * 2,
+            img: animation.sprite_sheet
+        });
+    }
 }
 
 function viewHijackModeResult(state) {
