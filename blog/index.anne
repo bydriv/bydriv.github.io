@@ -9,3 +9,7 @@
 #div(class=window)
   [#div(class=header)]
   [#div(class=content) [@cat blog/2019-04-19/summary.html] [#div(class=cont) ([#a(href=/blog/2019-04-19) READ MORE])]]
+
+#div(class=window)
+  [#div(class=header)]
+  [#div(class=content) [@cat blog/2019-04-21/summary.html] [#div(class=cont) ([#a(href=/blog/2019-04-21) READ MORE])]]

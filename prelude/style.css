@@ -150,6 +150,11 @@ div.window > div.content div.cont {
     text-align: right;
 }
 
+div.window > div.content video.center {
+    display: block;
+    margin: 0 auto;
+}
+
 span.space {
     display: inline-block;
     margin: 0;
