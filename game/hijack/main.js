@@ -136,31 +136,63 @@ function stepHijackModeGame(state, input) {
     function stepCharacter(i, character) {
         var x0 = input[i].axes[0];
         var y0 = input[i].axes[1];
+        var button0 = input[i].buttons[0].pressed;
 
-        if (x0 < -0.5) {
-            if (character.pose === "run")
+        switch (character.pose) {
+        case "weak":
+            var action;
+
+            switch (character.direction) {
+            case "left":
+                action = character.character.actions.weak_left;
+                break;
+            case "right":
+                action = character.character.actions.weak_right;
+                break;
+            }
+
+            if (character.i < action.startup)
                 ++character.i;
-            else
-                character.i = 0;
-            character.pose = "run";
-            character.direction = "left";
-            if (character.i % character.character.actions.run_left.frames_per_effect === 0)
-                character.x += character.character.actions.run_left.effect.move * 2;
-        } else if (x0 > 0.5) {
-            if (character.pose === "run")
+            else if (character.i < action.startup + action.active)
                 ++character.i;
-            else
-                character.i = 0;
-            character.pose = "run";
-            character.direction = "right";
-            if (character.i % character.character.actions.run_right.frames_per_effect === 0)
-                character.x += character.character.actions.run_right.effect.move * 2;
-        } else {
-            if (character.pose === "neutral")
+            else if (character.i < action.startup + action.active + action.recovery)
                 ++character.i;
-            else
+            else {
+                character.pose = "neutral";
                 character.i = 0;
-            character.pose = "neutral";
+            }
+        default:
+            if (button0) {
+                character.i = 0;
+                character.pose = "weak";
+                return;
+            }
+
+            if (x0 < -0.5) {
+                if (character.pose === "run")
+                    ++character.i;
+                else
+                    character.i = 0;
+                character.pose = "run";
+                character.direction = "left";
+                if (character.i % character.character.actions.run_left.frames_per_effect === 0)
+                    character.x += character.character.actions.run_left.effect.move * 2;
+            } else if (x0 > 0.5) {
+                if (character.pose === "run")
+                    ++character.i;
+                else
+                    character.i = 0;
+                character.pose = "run";
+                character.direction = "right";
+                if (character.i % character.character.actions.run_right.frames_per_effect === 0)
+                    character.x += character.character.actions.run_right.effect.move * 2;
+            } else {
+                if (character.pose === "neutral")
+                    ++character.i;
+                else
+                    character.i = 0;
+                character.pose = "neutral";
+            }
         }
     }
 }

@@ -31,6 +31,38 @@
             "effect": {
                 "move": 18
             }
+        },
+        "weak_left": {
+            "command": "button0",
+            "direction": "left",
+            "where": "ground",
+            "animation": "weak_left",
+            "effect": {
+                "attack": {
+                    "startup": 8,
+                    "active": 8,
+                    "recovery": 16,
+                    "x": 0,
+                    "y": 0,
+                    "width": 96,
+                    "height": 96
+                }
+            }
+        },
+        "weak_right": {
+            "command": "button0",
+            "direction": "right",
+            "where": "ground",
+            "animation": "weak_right",
+            "frames_per_effect": 4,
+            "effect": {
+                "attack": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 96,
+                    "height": 96
+                }
+            }
         }
     },
     "animations": {
@@ -57,6 +89,18 @@
             "height": 96,
             "frames_per_sprite": 4,
             "sprite_sheet": "pixelart/teiri/run_right.png"
+        },
+        "weak_left": {
+            "width": 96,
+            "height": 96,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "pixelart/teiri/weak_left.png"
+        },
+        "weak_right": {
+            "width": 96,
+            "height": 96,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "pixelart/teiri/weak_right.png"
         }
     }
 }
