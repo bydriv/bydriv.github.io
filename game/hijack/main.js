@@ -61,7 +61,6 @@ function viewHijack(state) {
 
     for (var i = 0; i < views.length; ++i) {
         var view = views[i];
-
         offscreenContext.drawImage(view.img, view.sx, view.sy, view.sw, view.sh, view.dx, view.dy, view.dw, view.dh);
     }
 
@@ -98,8 +97,8 @@ function stepHijackModeCharacterSelection(state, input) {
 
         state.character0 = {
             i: 0,
-            x: 0,
-            y: 480 - character0.animations.neutral_right.height * 2,
+            x: -character0.actions.neutral_right.x * 2,
+            y: 480 - character0.actions.neutral_right.y * 2 - character0.actions.neutral_right.height * 2,
             pose: "neutral",
             direction: "right",
             character: character0
@@ -107,8 +106,8 @@ function stepHijackModeCharacterSelection(state, input) {
 
         state.character1 = {
             i: 0,
-            x: 640 - character0.animations.neutral_left.width * 2,
-            y: 480 - character0.animations.neutral_left.height * 2,
+            x: 640 - character0.actions.neutral_left.x * 2 - character0.actions.neutral_left.width * 2,
+            y: 480 - character0.actions.neutral_left.y * 2 - character0.actions.neutral_left.height * 2,
             pose: "neutral",
             direction: "left",
             character: character1
@@ -138,13 +137,11 @@ function stepHijackModeGame(state, input) {
         var y0 = input[i].axes[1];
         var button0 = input[i].buttons[0].pressed;
         var button1 = input[i].buttons[1].pressed;
-        var action;
+        var action = character.character.actions[character.pose + "_" + character.direction];
 
         switch (character.pose) {
         case "weak":
         case "strong":
-            var action = character.character.actions[character.pose + "_" + character.direction];
-
             if (character.i < action.startup)
                 ++character.i;
             else if (character.i < action.startup + action.active)
@@ -244,8 +241,8 @@ function viewHijackModeGame(state) {
             sy: 0,
             sw: animation.width,
             sh: animation.height,
-            dx: character.x,
-            dy: character.y,
+            dx: character.x + animation.x * 2,
+            dy: character.y + animation.y * 2,
             dw: animation.width * 2,
             dh: animation.height * 2,
             img: animation.sprite_sheet
@@ -303,18 +300,28 @@ function loadConfig(src) {
                                 console.error("character.animations[%o] is %o", prop, character.animations[prop]);
                             }
 
+                            if (typeof animation.x !== "number") {
+                                console.error("animation.x isn't a number: %o", animation.x);
+                                reject();
+                            }
+
+                            if (typeof animation.y !== "number") {
+                                console.error("animation.y isn't a number: %o", animation.y);
+                                reject();
+                            }
+
                             if (typeof animation.width !== "number") {
                                 console.error("animation.width isn't a number: %o", animation.width);
                                 reject();
                             }
 
                             if (typeof animation.height !== "number") {
-                                console.error("animation.width isn't a number: %o", animation.height);
+                                console.error("animation.height isn't a number: %o", animation.height);
                                 reject();
                             }
 
                             if (typeof animation.frames_per_sprite !== "number") {
-                                console.error("animation.width isn't a number: %o", animation.frames_per_sprite);
+                                console.error("animation.frames_per_sprite isn't a number: %o", animation.frames_per_sprite);
                                 reject();
                             }
 
@@ -327,6 +334,8 @@ function loadConfig(src) {
                                 promises1.push(loadImage(animation.sprite_sheet).then(function (sprite_sheet) {
                                     return {
                                         id: id,
+                                        x: animation.x,
+                                        y: animation.y,
                                         width: animation.width,
                                         height: animation.height,
                                         frames_per_sprite: animation.frames_per_sprite,
@@ -349,6 +358,31 @@ function loadConfig(src) {
 
                                 if (action == null) {
                                     console.error("character.actions[%o] is %o", prop, character.actions[prop]);
+                                }
+
+                                if (typeof action.x !== "number") {
+                                    console.error("action.x isn't a number: %o", action.x);
+                                    reject();
+                                }
+
+                                if (typeof action.y !== "number") {
+                                    console.error("action.y isn't a number: %o", action.y);
+                                    reject();
+                                }
+
+                                if (typeof action.width !== "number") {
+                                    console.error("action.width isn't a number: %o", action.width);
+                                    reject();
+                                }
+
+                                if (typeof action.height !== "number") {
+                                    console.error("action.height isn't a number: %o", action.height);
+                                    reject();
+                                }
+
+                                if (typeof action.animation !== "string") {
+                                    console.error("action.animation isn't a string: %o", action.animation);
+                                    reject();
                                 }
 
                                 if (animations[action.animation] == null) {
