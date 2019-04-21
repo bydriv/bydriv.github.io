@@ -37,13 +37,13 @@
         "neutral_left": {
             "width": 96,
             "height": 96,
-            "frames_per_sprite": 4,
+            "frames_per_sprite": 5,
             "sprite_sheet": "pixelart/teiri/neutral_left.png"
         },
         "neutral_right": {
             "width": 96,
             "height": 96,
-            "frames_per_sprite": 4,
+            "frames_per_sprite": 5,
             "sprite_sheet": "pixelart/teiri/neutral_right.png"
         },
         "run_left": {

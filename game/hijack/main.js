@@ -226,7 +226,7 @@ function viewHijackModeResult(state) {
 
 function loadConfig(src) {
     return new Promise(function (resolve, reject) {
-        fetch(src).then(function (config) { return config.json(); }).then(function (config) {
+        fetch(src, {cache: "no-cache"}).then(function (config) { return config.json(); }).then(function (config) {
             if (typeof config.logo !== "string") {
                 console.error("config.logo isn't a string: %o", i, config.logo);
                 reject();
@@ -244,7 +244,7 @@ function loadConfig(src) {
                         reject();
                     }
 
-                    return fetch(path).then(function (character) { return character.json(); });
+                    return fetch(path, {cache: "no-cache"}).then(function (character) { return character.json(); });
                 })).then(function (characters) {
                     var promises0 = [];
 
