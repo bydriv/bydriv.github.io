@@ -137,19 +137,13 @@ function stepHijackModeGame(state, input) {
         var x0 = input[i].axes[0];
         var y0 = input[i].axes[1];
         var button0 = input[i].buttons[0].pressed;
+        var button1 = input[i].buttons[1].pressed;
+        var action;
 
         switch (character.pose) {
         case "weak":
-            var action;
-
-            switch (character.direction) {
-            case "left":
-                action = character.character.actions.weak_left;
-                break;
-            case "right":
-                action = character.character.actions.weak_right;
-                break;
-            }
+        case "strong":
+            var action = character.character.actions[character.pose + "_" + character.direction];
 
             if (character.i < action.startup)
                 ++character.i;
@@ -166,6 +160,12 @@ function stepHijackModeGame(state, input) {
             if (button0) {
                 character.i = 0;
                 character.pose = "weak";
+                return;
+            }
+
+            if (button1) {
+                character.i = 0;
+                character.pose = "strong";
                 return;
             }
 

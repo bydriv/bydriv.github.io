@@ -39,6 +39,30 @@
                 "width": 96,
                 "height": 96
             }
+        },
+        "strong_left": {
+            "animation": "strong_left",
+            "startup": 8,
+            "active": 8,
+            "recovery": 16,
+            "attack": {
+                "x": 0,
+                "y": 0,
+                "width": 96,
+                "height": 96
+            }
+        },
+        "strong_right": {
+            "animation": "strong_right",
+            "startup": 8,
+            "active": 8,
+            "recovery": 16,
+            "attack": {
+                "x": 0,
+                "y": 0,
+                "width": 96,
+                "height": 96
+            }
         }
     },
     "animations": {
@@ -77,6 +101,18 @@
             "height": 96,
             "frames_per_sprite": 4,
             "sprite_sheet": "pixelart/teiri/weak_right.png"
+        },
+        "strong_left": {
+            "width": 96,
+            "height": 96,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "pixelart/teiri/strong_left.png"
+        },
+        "strong_right": {
+            "width": 96,
+            "height": 96,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "pixelart/teiri/strong_right.png"
         }
     }
 }
