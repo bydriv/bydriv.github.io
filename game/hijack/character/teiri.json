@@ -1,0 +1,62 @@
+{
+    "actions": {
+        "neutral_left": {
+            "command": "neutral",
+            "direction": "left",
+            "where": "ground",
+            "animation": "neutral_left"
+        },
+        "neutral_right": {
+            "command": "neutral",
+            "direction": "right",
+            "where": "ground",
+            "animation": "neutral_right"
+        },
+        "run_left": {
+            "command": "left_stick_left",
+            "direction": "any",
+            "where": "ground",
+            "animation": "run_left",
+            "frames_per_effect": 4,
+            "effect": {
+                "move": -18
+            }
+        },
+        "run_right": {
+            "command": "left_stick_right",
+            "direction": "any",
+            "where": "ground",
+            "animation": "run_right",
+            "frames_per_effect": 4,
+            "effect": {
+                "move": 18
+            }
+        }
+    },
+    "animations": {
+        "neutral_left": {
+            "width": 96,
+            "height": 96,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "pixelart/teiri/neutral_left.png"
+        },
+        "neutral_right": {
+            "width": 96,
+            "height": 96,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "pixelart/teiri/neutral_right.png"
+        },
+        "run_left": {
+            "width": 96,
+            "height": 96,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "pixelart/teiri/run_left.png"
+        },
+        "run_right": {
+            "width": 96,
+            "height": 96,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "pixelart/teiri/run_right.png"
+        }
+    }
+}

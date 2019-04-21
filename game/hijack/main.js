@@ -16,10 +16,12 @@ var HIJACK_MODE_CHARACTER_SELECTION = "characterSelection";
 var HIJACK_MODE_GAME = "game";
 var HIJACK_MODE_RESULT = "result";
 
-function newHijack(images) {
+function newHijack(config, onscreenCanvas, offscreenCanvas) {
     return {
         mode: HIJACK_MODE_TITLE,
-        images: images
+        config: config,
+        onscreenCanvas: onscreenCanvas,
+        offscreenCanvas: offscreenCanvas
     };
 };
 
@@ -36,10 +38,9 @@ function stepHijack(state, input) {
     }
 }
 
-function viewHijack(state, onscreenCanvas, offscreenCanvas) {
-    var offscreenContext = offscreenCanvas.getContext("2d");
-    offscreenContext.imageSmoothingEnabled = false;
-    offscreenContext.fillRect(0, 0, offscreenCanvas.width, offscreenCanvas.height);
+function viewHijack(state) {
+    var offscreenContext = state.offscreenCanvas.getContext("2d");
+    offscreenContext.fillRect(0, 0, state.offscreenCanvas.width, state.offscreenCanvas.height);
 
     var views = [];
 
@@ -64,8 +65,8 @@ function viewHijack(state, onscreenCanvas, offscreenCanvas) {
         offscreenContext.drawImage(view.img, view.sx, view.sy, view.sw, view.sh, view.dx, view.dy, view.dw, view.dh);
     }
 
-    var onscreenContext = onscreenCanvas.getContext("2d");
-    onscreenContext.drawImage(offscreenCanvas, 0, 0);
+    var onscreenContext = state.onscreenCanvas.getContext("2d");
+    onscreenContext.drawImage(state.offscreenCanvas, 0, 0);
 }
 
 function stepHijackModeTitle(state, input) {
@@ -99,12 +100,7 @@ function stepHijackModeCharacterSelection(state, input) {
                 y: 480 - 192,
                 pose: "neutral",
                 direction: "right",
-                images: {
-                    neutral_left: state.images[1],
-                    neutral_right: state.images[2],
-                    run_left: state.images[3],
-                    run_right: state.images[4]
-                }
+                character: state.config.characters[0]
             };
 
         state.character1 =
@@ -114,12 +110,7 @@ function stepHijackModeCharacterSelection(state, input) {
                 y: 480 - 192,
                 pose: "neutral",
                 direction: "left",
-                images: {
-                    neutral_left: state.images[1],
-                    neutral_right: state.images[2],
-                    run_left: state.images[3],
-                    run_right: state.images[4]
-                }
+                character: state.config.characters[0]
             };
     }
 
@@ -142,8 +133,8 @@ function stepHijackModeGame(state, input) {
                 state.character0.i = 0;
             state.character0.pose = "run";
             state.character0.direction = "left";
-            if (state.character0.i % 4 === 0)
-                state.character0.x -= 36;
+            if (state.character0.i % state.character0.character.actions.run_left.frames_per_effect === 0)
+                state.character0.x += state.character0.character.actions.run_left.effect.move * 2;
         } else if (x0 > 0.5) {
             if (state.character0.pose === "run")
                 ++state.character0.i;
@@ -151,8 +142,8 @@ function stepHijackModeGame(state, input) {
                 state.character0.i = 0;
             state.character0.pose = "run";
             state.character0.direction = "right";
-            if (state.character0.i % 4 === 0)
-                state.character0.x += 36;
+            if (state.character0.i % state.character0.character.actions.run_right.frames_per_effect === 0)
+                state.character0.x += state.character0.character.actions.run_right.effect.move * 2;
         } else {
             if (state.character0.pose === "neutral")
                 ++state.character0.i;
@@ -173,13 +164,13 @@ function viewHijackModeTitle(state) {
     var views = [{
         sx: 0,
         sy: 0,
-        sw: state.images[0].width,
-        sh: state.images[0].height,
-        dx: (640 - state.images[0].width * 2) / 2,
-        dy: (480 - state.images[0].height * 2) / 2,
-        dw: state.images[0].width * 2,
-        dh: state.images[0].height * 2,
-        img: state.images[0]
+        sw: state.config.logo.width,
+        sh: state.config.logo.height,
+        dx: (640 - state.config.logo.width * 2) / 2,
+        dy: (480 - state.config.logo.height * 2) / 2,
+        dw: state.config.logo.width * 2,
+        dh: state.config.logo.height * 2,
+        img: state.config.logo
     }];
 
     return views;
@@ -193,71 +184,23 @@ function viewHijackModeCharacterSelection(state) {
 
 function viewHijackModeGame(state) {
     var views = [];
+    var id = state.character0.pose + "_" + state.character0.direction;
+    var action = state.character0.character.actions[id];
+    var animation = action.animation;
 
-    switch (state.character0.pose) {
-    case "neutral":
-        switch (state.character0.direction) {
-        case "left":
-            views.push({
-                sx: Math.floor(state.character0.i / 5 % 8) * 96,
-                sy: 0,
-                sw: 96,
-                sh: 96,
-                dx: state.character0.x,
-                dy: state.character0.y,
-                dw: 192,
-                dh: 192,
-                img: state.character0.images.neutral_left
-            });
-            break;
-        case "right":
-            views.push({
-                sx: Math.floor(state.character0.i / 5 % 8) * 96,
-                sy: 0,
-                sw: 96,
-                sh: 96,
-                dx: state.character0.x,
-                dy: state.character0.y,
-                dw: 192,
-                dh: 192,
-                img: state.character0.images.neutral_right
-            });
-            break;
-        }
-        break;
-    case "run":
-        switch (state.character0.direction) {
-        case "left":
-            views.push({
-                sx: Math.floor(state.character0.i / 4 % 8) * 96,
-                sy: 0,
-                sw: 96,
-                sh: 96,
-                dx: state.character0.x,
-                dy: state.character0.y,
-                dw: 192,
-                dh: 192,
-                scale: 2,
-                img: state.character0.images.run_left
-            });
-            break;
-        case "right":
-            views.push({
-                sx: Math.floor(state.character0.i / 4 % 8) * 96,
-                sy: 0,
-                sw: 96,
-                sh: 96,
-                dx: state.character0.x,
-                dy: state.character0.y,
-                dw: 192,
-                dh: 192,
-                scale: 2,
-                img: state.character0.images.run_right
-            });
-            break;
-        }
-        break;
-    }
+    var m = Math.floor(animation.sprite_sheet.width / animation.width);
+
+    views.push({
+        sx: Math.floor(state.character0.i / animation.frames_per_sprite % m) * animation.width,
+        sy: 0,
+        sw: animation.width,
+        sh: animation.height,
+        dx: state.character0.x,
+        dy: state.character0.y,
+        dw: animation.width * 2,
+        dh: animation.height * 2,
+        img: animation.sprite_sheet
+    });
 
     return views;
 }
@@ -266,25 +209,168 @@ function viewHijackModeResult(state) {
     return [];
 }
 
+function loadConfig(src) {
+    return new Promise(function (resolve, reject) {
+        fetch(src).then(function (config) { return config.json(); }).then(function (config) {
+            if (typeof config.logo !== "string") {
+                console.error("config.logo isn't a string: %o", i, config.logo);
+                reject();
+            }
+
+            loadImage(config.logo).then(function (logo) {
+                if (!Array.isArray(config.characters)) {
+                    console.error("config.characters isn't an array: %o", config.characters);
+                    return;
+                }
+
+                Promise.all(config.characters.map(function (path, i) {
+                    if (typeof path !== "string") {
+                        console.error("config.characters[%o] isn't a string: %o", i, config.characters);
+                        reject();
+                    }
+
+                    return fetch(path).then(function (character) { return character.json(); });
+                })).then(function (characters) {
+                    var promises0 = [];
+
+                    for (var i = 0; i < characters.length; ++i) {
+                        var character = characters[i];
+
+                        if (Object.prototype.toString.call(character.actions) !== "[object Object]") {
+                            console.error("character.actions isn't an onject: %o", character.actions);
+                            reject();
+                        }
+
+                        if (Object.prototype.toString.call(character.animations) !== "[object Object]") {
+                            console.error("character.actions isn't an onject: %o", character.animations);
+                            reject();
+                        }
+
+                        var promises1 = [];
+
+                        for (var prop in character.animations) {
+                            var animation = character.animations[prop];
+
+                            if (animation == null) {
+                                console.error("character.animations[%o] is %o", prop, character.animations[prop]);
+                            }
+
+                            if (typeof animation.width !== "number") {
+                                console.error("animation.width isn't a number: %o", animation.width);
+                                reject();
+                            }
+
+                            if (typeof animation.height !== "number") {
+                                console.error("animation.width isn't a number: %o", animation.height);
+                                reject();
+                            }
+
+                            if (typeof animation.frames_per_sprite !== "number") {
+                                console.error("animation.width isn't a number: %o", animation.frames_per_sprite);
+                                reject();
+                            }
+
+                            if (typeof animation.sprite_sheet !== "string") {
+                                console.error("animation.sprite_sheet isn't a string: %o", animation.sprite_sheet);
+                                reject();
+                            }
+
+                            (function (id, animation) {
+                                promises1.push(loadImage(animation.sprite_sheet).then(function (sprite_sheet) {
+                                    return {
+                                        id: id,
+                                        width: animation.width,
+                                        height: animation.height,
+                                        frames_per_sprite: animation.frames_per_sprite,
+                                        sprite_sheet: sprite_sheet
+                                    };
+                                }));
+                            }(prop, animation));
+                        }
+
+                        promises0.push(Promise.all(promises1).then(function (_animations) {
+                            var animations = {};
+
+                            for (var j = 0; j < _animations.length; ++j)
+                                animations[_animations[j].id] = _animations[j];
+
+                            var actions = {};
+
+                            for (var prop in character.actions) {
+                                var action = character.actions[prop];
+
+                                if (action == null) {
+                                    console.error("character.actions[%o] is %o", prop, character.actions[prop]);
+                                }
+
+                                if (typeof action.command !== "string") {
+                                    console.error("action.command isn't a string: %o", action.command);
+                                    reject();
+                                }
+
+                                if (typeof action.direction !== "string") {
+                                    console.error("action.direction isn't a string: %o", action.direction);
+                                    reject();
+                                }
+
+                                if (typeof action.where !== "string") {
+                                    console.error("action.where isn't a string: %o", action.where);
+                                    reject();
+                                }
+
+                                if (animations[action.animation] == null) {
+                                    console.error("animations[%o] is %o", action.animation, animations[action.animation]);
+                                    reject();
+                                }
+
+                                var animation = animations[action.animation];
+
+                                actions[prop] = {
+                                    id: prop,
+                                    command: action.command,
+                                    direction: action.direction,
+                                    where: action.where,
+                                    frames_per_effect: action.frames_per_effect,
+                                    effect: action.effect,
+                                    animation: animation
+                                };
+                            }
+
+                            return {
+                                actions: actions,
+                                animations: animations
+                            };
+                        }));
+                    }
+
+                    Promise.all(promises0).then(function (characters) {
+                        resolve({
+                            logo: logo,
+                            characters: characters
+                        });
+                    });
+                });
+            });
+        });
+    });
+}
+
 window.addEventListener("load", function () {
-    Promise.all([
-        loadImage("pixelart/system/logo.png"),
-        loadImage("pixelart/teiri/neutral_left.png"),
-        loadImage("pixelart/teiri/neutral_right.png"),
-        loadImage("pixelart/teiri/run_left.png"),
-        loadImage("pixelart/teiri/run_right.png")
-    ]).then(function (images) {
+    loadConfig("config.json").then(function (config) {
         var mode = document.getElementById("mode");
 
         var recording = false;
         var recorder = null;
 
-        var state = newHijack(images);
         var onscreenCanvas = document.getElementById("hijack");
         var offscreenCanvas = document.createElement("canvas");
         offscreenCanvas.width = onscreenCanvas.width;
         offscreenCanvas.height = onscreenCanvas.height;
-        viewHijack(state, onscreenCanvas, offscreenCanvas);
+        var offscreenContext = offscreenCanvas.getContext("2d");
+        offscreenContext.imageSmoothingEnabled = false;
+
+        var state = newHijack(config, onscreenCanvas, offscreenCanvas);
+        viewHijack(state);
 
         requestAnimationFrame(function step() {
             if (!recording && mode["record-mode"].checked) {
@@ -335,7 +421,7 @@ window.addEventListener("load", function () {
 
             var input = Array.from(navigator.getGamepads()).filter(function (pad) { return pad != null; });
             state = stepHijack(state, input);
-            viewHijack(state, onscreenCanvas, offscreenCanvas);
+            viewHijack(state);
             requestAnimationFrame(step);
         });
     });
