@@ -158,9 +158,10 @@ function stepHijackModeGame(state, input) {
             else if (character.i < action.startup + action.active + action.recovery)
                 ++character.i;
             else {
-                character.pose = "neutral";
                 character.i = 0;
+                character.pose = "neutral";
             }
+            break;
         default:
             if (button0) {
                 character.i = 0;
