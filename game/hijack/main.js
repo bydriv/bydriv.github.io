@@ -175,8 +175,8 @@ function stepHijackModeGame(state, input) {
                     character.i = 0;
                 character.pose = "run";
                 character.direction = "left";
-                if (character.i % character.character.actions.run_left.frames_per_effect === 0)
-                    character.x += character.character.actions.run_left.effect.move * 2;
+                if (character.i % character.character.actions.run_left.frames_per_move === 0)
+                    character.x += character.character.actions.run_left.move * 2;
             } else if (x0 > 0.5) {
                 if (character.pose === "run")
                     ++character.i;
@@ -184,8 +184,8 @@ function stepHijackModeGame(state, input) {
                     character.i = 0;
                 character.pose = "run";
                 character.direction = "right";
-                if (character.i % character.character.actions.run_right.frames_per_effect === 0)
-                    character.x += character.character.actions.run_right.effect.move * 2;
+                if (character.i % character.character.actions.run_right.frames_per_move === 0)
+                    character.x += character.character.actions.run_right.move * 2;
             } else {
                 if (character.pose === "neutral")
                     ++character.i;
@@ -350,21 +350,6 @@ function loadConfig(src) {
                                     console.error("character.actions[%o] is %o", prop, character.actions[prop]);
                                 }
 
-                                if (typeof action.command !== "string") {
-                                    console.error("action.command isn't a string: %o", action.command);
-                                    reject();
-                                }
-
-                                if (typeof action.direction !== "string") {
-                                    console.error("action.direction isn't a string: %o", action.direction);
-                                    reject();
-                                }
-
-                                if (typeof action.where !== "string") {
-                                    console.error("action.where isn't a string: %o", action.where);
-                                    reject();
-                                }
-
                                 if (animations[action.animation] == null) {
                                     console.error("animations[%o] is %o", action.animation, animations[action.animation]);
                                     reject();
@@ -372,15 +357,11 @@ function loadConfig(src) {
 
                                 var animation = animations[action.animation];
 
-                                actions[prop] = {
-                                    id: prop,
-                                    command: action.command,
-                                    direction: action.direction,
-                                    where: action.where,
-                                    frames_per_effect: action.frames_per_effect,
-                                    effect: action.effect,
-                                    animation: animation
-                                };
+                                action = JSON.parse(JSON.stringify(action));
+                                action.id = prop;
+                                action.animation = animation;
+
+                                actions[prop] = action;
                             }
 
                             return {
