@@ -66,94 +66,87 @@ function mutate(genome) {
     return newGenome;
 }
 
-function drawState(state, canvas) {
-    const context = canvas.getContext("2d");
-    const image = new ImageData(canvas.width, canvas.height);
 
-    for (var i = 0; i < image.data.length; i += 4)
-        image.data[i + 3] = 0xFF;
+window.addEventListener("DOMContentLoaded", () => {
+    const game = new Game();
+    const stats = new Stats();
+    stats.showPanel( 0 ); // 0: fps, 1: ms, 2: mb, 3+: custom
+    document.body.appendChild( stats.domElement );
+    function recur(){
+        stats.begin();
+        game.step();
+        stats.end();
+        requestAnimationFrame(recur);
+    }
+    recur();
+});
 
-    state.areas.forEach(function (area) {
-        area.lifes.forEach(function (life) {
-            const x = life.individual.x;
-            const y = life.individual.y;
-            if (0 <= x && x < image.width && 0 <= y && y < image.height) {
-                image.data[(y * image.width + x) * 4] = life.individual.genome[0] >> 24 & 0xFF;
-                image.data[(y * image.width + x) * 4 + 1] = life.individual.genome[0] >> 16 & 0xFF;
-                image.data[(y * image.width + x) * 4 + 2] = life.individual.genome[0] >> 8 & 0xFF;
+
+
+class Game {
+    constructor(){
+        this.state = {
+            areas: []
+        };
+    
+        this.canvas = document.getElementById("biosphere");
+        this.context = this.canvas.getContext("2d");
+        this.context.imageSmoothingEnabled = false;
+        this.image = new ImageData(this.canvas.width, this.canvas.height);
+    
+        for (var i = 0; i < 5000; ++i) {
+            const species = {
+                genome: [
+                    Math.floor(Math.random() * 0x100000000),
+                    Math.floor(Math.random() * 0x100000000)
+                ]
+            };
+    
+            addLife(createLife(species, Math.floor(Math.random() * this.canvas.width), Math.floor(Math.random() * this.canvas.height)), this.state.areas);
+        }
+    
+        this.recording = false;
+        this.recorder = null;
+
+        this.record_mode = document.getElementById("record-mode");
+        this.record_mode.addEventListener("change", (ev)=>{
+            if (this.record_mode.checked) {
+                const canvasStream = this.canvas.captureStream();
+                this.recorder = new MediaRecorder(canvasStream, {mimeType: "video/webm"});
+                const chunks = [];
+
+                this.recorder.addEventListener("dataavailable", function (e) {
+                    chunks.push(e.data);
+                });
+
+                this.recorder.addEventListener("stop", function () {
+                    const blob = new Blob(chunks, {"type": "video/webm"});
+                    const url = URL.createObjectURL(blob);
+                    const video = document.createElement("video");
+                    video.src = url;
+                    video.controls = true;
+                    const a = document.createElement("a");
+                    const text = document.createTextNode("download");
+                    a.href = url;
+                    a.appendChild(text);
+                    document.querySelector("#downloads").appendChild(video);
+                    document.querySelector("#downloads").appendChild(a);
+                    recorder = null;
+                });
+
+                this.recorder.start();
+                this.recording = true;
+            }else{
+                this.recorder.stop();
+                this.recording = false;
             }
         });
-    });
-
-    context.putImageData(image, 0, 0);
-}
-
-window.addEventListener("load", () => {
-    let state = {
-        areas: []
-    };
-
-    const canvas = document.getElementById("biosphere");
-    const context = canvas.getContext("2d");
-    context.imageSmoothingEnabled = false;
-
-    for (var i = 0; i < 5000; ++i) {
-        const species = {
-            genome: [
-                Math.floor(Math.random() * 0x100000000),
-                Math.floor(Math.random() * 0x100000000)
-            ]
-        };
-
-        addLife(createLife(species, Math.floor(Math.random() * canvas.width), Math.floor(Math.random() * canvas.height)), state.areas);
     }
 
-    const mode = document.getElementById("mode");
-
-    var recording = false;
-    var recorder = null;
-
-    requestAnimationFrame(function step() {
-        const canvas = document.getElementById("biosphere");
+    step() {
         const newAreas = [];
-
-        if (!recording && mode["record-mode"].checked) {
-            const canvasStream = canvas.captureStream();
-            recorder = new MediaRecorder(canvasStream);
-            const chunks = [];
-
-            recorder.addEventListener("dataavailable", function (e) {
-                chunks.push(e.data);
-            });
-
-            recorder.addEventListener("stop", function () {
-              const blob = new Blob(chunks, {"type": "video/mpeg"});
-              const url = URL.createObjectURL(blob);
-              const video = document.createElement("video");
-              video.src = url;
-              video.controls = true;
-              const a = document.createElement("a");
-              const text = document.createTextNode("download");
-              a.href = url;
-              a.appendChild(text);
-              document.querySelector("#downloads").appendChild(video);
-              document.querySelector("#downloads").appendChild(a);
-              recorder = null;
-            });
-
-            recorder.start();
-            recording = true;
-        }
-
-        if (recording && !mode["record-mode"].checked) {
-            recorder.stop();
-            recording = false;
-        }
-
-        state.areas.forEach(function (area) {
-            for (let i = 0; i < area.lifes.length; ++i) {
-                const life = area.lifes[i];
-
+        for(const area of this.state.areas){
+            for (const life of area.lifes) {
                 if (popcnt((life.individual.genome[0] >>> 8) ^ 0b110000111100001111000011) >= 12) {
                     // plants
                     if (Math.floor(Math.random() * 75) === 0)
@@ -255,7 +248,7 @@ window.addEventListener("load", () => {
                     life.individual.energy -= 60;
                 }
             }
-        });
+        }
 
         const species = {
             genome: [
@@ -266,8 +259,34 @@ window.addEventListener("load", () => {
 
         //addLife(createLife(species, Math.floor(Math.random() * canvas.width), Math.floor(Math.random() * canvas.height)), newAreas);
 
-        state.areas = newAreas;
-        drawState(state, canvas);
-        requestAnimationFrame(step);
-    });
-});
+        this.state.areas = newAreas;
+        this.drawState();
+    }
+    drawState(){
+        const width = this.image.width;
+        const height = this.image.height;
+        const data = this.image.data;
+        const areas = this.state.areas;
+        const dl = this.image.data.length;
+        for (let i = 0; i < dl; i += 4){
+            data[i + 0] = 0x00;
+            data[i + 1] = 0x00;
+            data[i + 2] = 0x00;
+            data[i + 3] = 0xFF;
+        }
+        for(const area of areas){
+            for(const life of area.lifes){
+                const x = life.individual.x;
+                const y = life.individual.y;
+                const genome = life.individual.genome;
+                if (0 <= x && x < width && 0 <= y && y < height) {
+                    data[(y * width + x) * 4] = genome[0] >> 24 & 0xFF;
+                    data[(y * width + x) * 4 + 1] = genome[0] >> 16 & 0xFF;
+                    data[(y * width + x) * 4 + 2] = genome[0] >> 8 & 0xFF;
+                }
+            }
+        }
+        this.context.putImageData(this.image, 0, 0);
+    }
+
+}
