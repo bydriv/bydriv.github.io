@@ -249,6 +249,84 @@
                 "height": 96,
                 "damage": 10
             }
+        },
+        "shield_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "animation": "shield_left",
+            "startup": 8,
+            "recovery": 16
+        },
+        "shield_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "animation": "shield_right",
+            "startup": 8,
+            "recovery": 16
+        },
+        "grab_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "animation": "grab_left",
+            "startup": 8,
+            "active": 8,
+            "recovery": 16,
+            "grab": {
+                "x": 0,
+                "y": 0,
+                "width": 96,
+                "height": 96
+            }
+        },
+        "grab_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "animation": "grab_right",
+            "startup": 8,
+            "active": 8,
+            "recovery": 16,
+            "grab": {
+                "x": 0,
+                "y": 0,
+                "width": 96,
+                "height": 96
+            }
+        },
+        "grabbed_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "animation": "grabbed_left"
+        },
+        "grabbed_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "animation": "grabbed_right"
+        },
+        "be_grabbed_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "animation": "be_grabbed_left"
+        },
+        "be_grabbed_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "animation": "be_grabbed_right"
         }
     },
     "animations": {
@@ -371,6 +449,86 @@
             "height": 96,
             "frames_per_sprite": 4,
             "sprite_sheet": "pixelart/teiri/strong_right.png"
+        },
+        "shield_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "width": 96,
+            "height": 96,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "pixelart/teiri/shield_left.png"
+        },
+        "shield_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "width": 96,
+            "height": 96,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "pixelart/teiri/shield_right.png"
+        },
+        "grab_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "width": 96,
+            "height": 96,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "pixelart/teiri/grab_left.png"
+        },
+        "grab_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "width": 96,
+            "height": 96,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "pixelart/teiri/grab_right.png"
+        },
+        "grabbed_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "width": 96,
+            "height": 96,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "pixelart/teiri/grabbed_left.png"
+        },
+        "grabbed_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "width": 96,
+            "height": 96,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "pixelart/teiri/grabbed_right.png"
+        },
+        "be_grabbed_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "width": 96,
+            "height": 96,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "pixelart/teiri/be_grabbed_left.png"
+        },
+        "be_grabbed_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "width": 96,
+            "height": 96,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "pixelart/teiri/be_grabbed_right.png"
         }
     }
 }
