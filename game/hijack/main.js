@@ -99,6 +99,7 @@ function stepHijackModeCharacterSelection(state, input) {
 
         state.character0 = {
             i: 0,
+            odds: 50,
             x: -character0.actions.neutral_right.x * 2,
             y: HIJACK_HEIGHT - character0.actions.neutral_right.y * 2 - character0.actions.neutral_right.height * 2,
             pose: "neutral",
@@ -108,6 +109,7 @@ function stepHijackModeCharacterSelection(state, input) {
 
         state.character1 = {
             i: 0,
+            odds: 50,
             x: HIJACK_WIDTH - character0.actions.neutral_left.x * 2 - character0.actions.neutral_left.width * 2,
             y: HIJACK_HEIGHT - character0.actions.neutral_left.y * 2 - character0.actions.neutral_left.height * 2,
             pose: "neutral",
@@ -120,21 +122,49 @@ function stepHijackModeCharacterSelection(state, input) {
 }
 
 function stepHijackModeGame(state, input) {
+    if (state.character0.odds >= 100 || state.character1.odds >= 100) {
+        state.mode = HIJACK_MODE_RESULT;
+        return state;
+    }
+
+    var attacks0 = [];
+    var attacks1 = [];
+
     switch (input.length) {
     case 0:
         break;
     case 1:
-        stepCharacter(0, state.character0);
+        stepCharacterA(attacks0, 0, state.character0);
+        stepCharacterB(attacks1, 0, state.character0, state.character1);
         break;
     default:
-        stepCharacter(0, state.character0);
-        stepCharacter(1, state.character1);
+        stepCharacterA(attacks0, 0, state.character0);
+        stepCharacterA(attacks1, 1, state.character1);
+        stepCharacterB(attacks1, 0, state.character0, state.character1);
+        stepCharacterB(attacks0, 1, state.character1, state.character0);
         break;
     }
 
     return state;
 
-    function stepCharacter(i, character) {
+    function stepCharacterA(attacks, i, character) {
+        var action = character.character.actions[character.pose + "_" + character.direction];
+
+        switch (character.pose) {
+        case "weak":
+        case "strong":
+            if (character.i <= action.startup && character.i < action.startup + action.active)
+                attacks.push({
+                    x: character.x + action.attack.x * 2,
+                    y: character.y + action.attack.y * 2,
+                    width: action.attack.width * 2,
+                    height: action.attack.height * 2,
+                    damage: action.attack.damage
+                });
+        }
+    }
+
+    function stepCharacterB(attacks, i, character, enemy) {
         var x0 = input[i].axes[0];
         var y0 = input[i].axes[1];
         var button0 = input[i].buttons[0].pressed;
@@ -142,6 +172,24 @@ function stepHijackModeGame(state, input) {
         var button2 = input[i].buttons[2].pressed;
         var button3 = input[i].buttons[3].pressed;
         var action = character.character.actions[character.pose + "_" + character.direction];
+
+        var rectangle = {
+            x: character.x + action.x * 2,
+            y: character.y + action.y * 2,
+            width: action.width * 2,
+            height: action.height * 2
+        };
+
+        attacks = attacks.filter(function (attack) { return collision(attack, rectangle); });
+
+        if (attacks.length > 0) {
+            for (var i = 0; i < attacks.length; ++i) {
+                character.odds -= attacks[i].damage;
+                enemy.odds += attacks[i].damage;
+            }
+
+            return;
+        }
 
         if (character.y + action.y * 2 + action.height * 2 < HIJACK_HEIGHT) {
             if (character.pose === "fall" || character.pose === "fall_bottom")
@@ -284,6 +332,10 @@ function stepHijackModeGame(state, input) {
 }
 
 function stepHijackModeResult(state, input) {
+    if (input.some(function (pad) { return pad.buttons.some(function (button) { return button.pressed; }); })) {
+        state.mode = HIJACK_MODE_CHARACTER_SELECTION;
+    }
+
     return state;
 }
 
@@ -322,10 +374,10 @@ function viewHijackModeGame(state) {
         var action = character.character.actions[id];
         var animation = action.animation;
 
-        var m = Math.floor(animation.sprite_sheet.width / animation.width);
+        var n = Math.floor(animation.sprite_sheet.width / animation.width);
 
         views.push({
-            sx: Math.floor(character.i / animation.frames_per_sprite % m) * animation.width,
+            sx: Math.floor(character.i / animation.frames_per_sprite % n) * animation.width,
             sy: 0,
             sw: animation.width,
             sh: animation.height,
@@ -577,3 +629,13 @@ window.addEventListener("load", function () {
         });
     });
 });
+
+function collision(r0, r1) {
+    var left = Math.max(r0.x, r1.x);
+    var top = Math.max(r0.y, r1.y);
+    var right = Math.min(r0.x + r0.width, r1.x + r1.width);
+    var bottom = Math.min(r0.y + r0.height, r1.y + r1.height);
+    var width = right - left;
+    var height = bottom - top;
+    return width > 0 && height > 0;
+}

@@ -195,7 +195,8 @@
                 "x": 0,
                 "y": 0,
                 "width": 96,
-                "height": 96
+                "height": 96,
+                "damage": 3
             }
         },
         "weak_right": {
@@ -211,7 +212,8 @@
                 "x": 0,
                 "y": 0,
                 "width": 96,
-                "height": 96
+                "height": 96,
+                "damage": 3
             }
         },
         "strong_left": {
@@ -227,7 +229,8 @@
                 "x": 0,
                 "y": 0,
                 "width": 96,
-                "height": 96
+                "height": 96,
+                "damage": 10
             }
         },
         "strong_right": {
@@ -243,7 +246,8 @@
                 "x": 0,
                 "y": 0,
                 "width": 96,
-                "height": 96
+                "height": 96,
+                "damage": 10
             }
         }
     },
