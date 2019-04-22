@@ -11,6 +11,8 @@ function loadImage(src) {
     });
 }
 
+var HIJACK_WIDTH = 640;
+var HIJACK_HEIGHT = 480;
 var HIJACK_MODE_TITLE = "title";
 var HIJACK_MODE_CHARACTER_SELECTION = "characterSelection";
 var HIJACK_MODE_GAME = "game";
@@ -98,7 +100,7 @@ function stepHijackModeCharacterSelection(state, input) {
         state.character0 = {
             i: 0,
             x: -character0.actions.neutral_right.x * 2,
-            y: 480 - character0.actions.neutral_right.y * 2 - character0.actions.neutral_right.height * 2,
+            y: HIJACK_HEIGHT - character0.actions.neutral_right.y * 2 - character0.actions.neutral_right.height * 2,
             pose: "neutral",
             direction: "right",
             character: character0
@@ -106,8 +108,8 @@ function stepHijackModeCharacterSelection(state, input) {
 
         state.character1 = {
             i: 0,
-            x: 640 - character0.actions.neutral_left.x * 2 - character0.actions.neutral_left.width * 2,
-            y: 480 - character0.actions.neutral_left.y * 2 - character0.actions.neutral_left.height * 2,
+            x: HIJACK_WIDTH - character0.actions.neutral_left.x * 2 - character0.actions.neutral_left.width * 2,
+            y: HIJACK_HEIGHT - character0.actions.neutral_left.y * 2 - character0.actions.neutral_left.height * 2,
             pose: "neutral",
             direction: "left",
             character: character1
@@ -137,7 +139,20 @@ function stepHijackModeGame(state, input) {
         var y0 = input[i].axes[1];
         var button0 = input[i].buttons[0].pressed;
         var button1 = input[i].buttons[1].pressed;
+        var button2 = input[i].buttons[2].pressed;
+        var button3 = input[i].buttons[3].pressed;
         var action = character.character.actions[character.pose + "_" + character.direction];
+
+        if (character.y + action.y * 2 + action.height * 2 < HIJACK_HEIGHT) {
+            if (character.pose === "fall" || character.pose === "fall_bottom")
+                ++character.i;
+            else
+                character.i = 0;
+
+            character.pose = "fall";
+        } else if (character.pose === "fall" || character.pose === "fall_bottom") {
+            character.pose = "neutral";
+        }
 
         switch (character.pose) {
         case "weak":
@@ -153,6 +168,43 @@ function stepHijackModeGame(state, input) {
                 character.pose = "neutral";
             }
             break;
+        case "short_jump_top":
+        case "full_jump_top":
+        case "short_jump":
+        case "full_jump":
+            var n = Math.floor(action.animation.sprite_sheet.width / action.animation.width);
+
+            if (character.i < n) {
+                if (character.i % action.frames_per_move === 0) {
+                    character.x += action.move.x * 2;
+                    character.y += action.move.y * 2;
+                }
+
+                ++character.i;
+            } else {
+                character.i = 0;
+                character.pose = "neutral";
+            }
+            break;
+        case "fall":
+        case "fall_bottom":
+            if (x0 < -0.5) {
+                character.pose = "fall";
+                character.direction = "left";
+            } else if (x0 > 0.5) {
+                character.pose = "fall";
+                character.direction = "right";
+            } else {
+                character.pose = "fall_bottom";
+            }
+
+            if (character.i % action.frames_per_move === 0) {
+                character.x += action.move.x * 2;
+                character.y += action.move.y * 2;
+            }
+
+            ++character.i;
+            break;
         default:
             if (button0) {
                 character.i = 0;
@@ -166,6 +218,38 @@ function stepHijackModeGame(state, input) {
                 return;
             }
 
+            if (button2) {
+                character.i = 0;
+
+                if (x0 < -0.5) {
+                    character.pose = "short_jump";
+                    character.direction = "left";
+                } else if (x0 > 0.5) {
+                    character.pose = "short_jump";
+                    character.direction = "right";
+                } else {
+                    character.pose = "short_jump_top";
+                }
+
+                return;
+            }
+
+            if (button3) {
+                character.i = 0;
+
+                if (x0 < -0.5) {
+                    character.pose = "full_jump";
+                    character.direction = "left";
+                } else if (x0 > 0.5) {
+                    character.pose = "full_jump";
+                    character.direction = "right";
+                } else {
+                    character.pose = "full_jump_top";
+                }
+
+                return;
+            }
+
             if (x0 < -0.5) {
                 if (character.pose === "run")
                     ++character.i;
@@ -173,8 +257,10 @@ function stepHijackModeGame(state, input) {
                     character.i = 0;
                 character.pose = "run";
                 character.direction = "left";
-                if (character.i % character.character.actions.run_left.frames_per_move === 0)
-                    character.x += character.character.actions.run_left.move * 2;
+                if (character.i % character.character.actions.run_left.frames_per_move === 0) {
+                    character.x += character.character.actions.run_left.move.x * 2;
+                    character.y += character.character.actions.run_left.move.y * 2;
+                }
             } else if (x0 > 0.5) {
                 if (character.pose === "run")
                     ++character.i;
@@ -182,8 +268,10 @@ function stepHijackModeGame(state, input) {
                     character.i = 0;
                 character.pose = "run";
                 character.direction = "right";
-                if (character.i % character.character.actions.run_right.frames_per_move === 0)
-                    character.x += character.character.actions.run_right.move * 2;
+                if (character.i % character.character.actions.run_right.frames_per_move === 0) {
+                    character.x += character.character.actions.run_right.move.x * 2;
+                    character.y += character.character.actions.run_right.move.y * 2;
+                }
             } else {
                 if (character.pose === "neutral")
                     ++character.i;
@@ -205,8 +293,8 @@ function viewHijackModeTitle(state) {
         sy: 0,
         sw: state.config.logo.width,
         sh: state.config.logo.height,
-        dx: (640 - state.config.logo.width * 2) / 2,
-        dy: (480 - state.config.logo.height * 2) / 2,
+        dx: (HIJACK_WIDTH - state.config.logo.width * 2) / 2,
+        dy: (HIJACK_HEIGHT - state.config.logo.height * 2) / 2,
         dw: state.config.logo.width * 2,
         dh: state.config.logo.height * 2,
         img: state.config.logo
