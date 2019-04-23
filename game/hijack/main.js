@@ -188,8 +188,31 @@ function stepHijackModeGame(state, input) {
             }
             break;
         case "short_jump_top":
-        case "full_jump_top":
+            if (x0 < -0.5) {
+                character.pose = "short_jump";
+                character.direction = "left";
+            } else if (x0 > 0.5) {
+                character.pose = "short_jump";
+                character.direction = "right";
+            }
         case "short_jump":
+            var n = Math.floor(action.animation.sprite_sheet.width / action.animation.width);
+
+            if (character.i < n * action.frames_per_move)
+                ++character.i;
+            else {
+                character.i = 0;
+                character.pose = "neutral";
+            }
+            break;
+        case "full_jump_top":
+            if (x0 < -0.5) {
+                character.pose = "full_jump";
+                character.direction = "left";
+            } else if (x0 > 0.5) {
+                character.pose = "full_jump";
+                character.direction = "right";
+            }
         case "full_jump":
             var n = Math.floor(action.animation.sprite_sheet.width / action.animation.width);
 
@@ -458,8 +481,6 @@ function stepHijackModeGame(state, input) {
         case "full_jump_top":
         case "short_jump":
         case "full_jump":
-            var n = Math.floor(action.animation.sprite_sheet.width / action.animation.width);
-
             if (character.i % action.frames_per_move === 0) {
                 var k = character.i / action.frames_per_move % action.move.length;
                 character.x += action.move[k].x * 2;
