@@ -136,47 +136,23 @@ function stepHijackModeGame(state, input) {
     case 0:
         break;
     case 1:
-        stepCharacterA(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
-        stepCharacterB(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
+        stepCharacterControl(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
+        stepCharacterCalc(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
+        stepCharacterApply(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
         break;
     default:
-        stepCharacterA(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
-        stepCharacterA(1, state.character1, attacks1, grabs1, state.character0, attacks0, grabs0);
-        stepCharacterB(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
-        stepCharacterB(1, state.character1, attacks1, grabs1, state.character0, attacks0, grabs0);
+        stepCharacterControl(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
+        stepCharacterControl(1, state.character1, attacks1, grabs1, state.character0, attacks0, grabs0);
+        stepCharacterCalc(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
+        stepCharacterCalc(1, state.character1, attacks1, grabs1, state.character0, attacks0, grabs0);
+        stepCharacterApply(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
+        stepCharacterApply(1, state.character1, attacks1, grabs1, state.character0, attacks0, grabs0);
         break;
     }
 
     return state;
 
-    function stepCharacterA(i, character, characterAttacks, characterGrabs, enemy, enemyAttacks, enemyGrabs) {
-        var action = character.character.actions[character.pose + "_" + character.direction];
-
-        switch (character.pose) {
-        case "weak":
-        case "strong":
-            if (character.i <= action.startup && character.i < action.startup + action.active)
-                characterAttacks.push({
-                    x: character.x + action.attack.x * 2,
-                    y: character.y + action.attack.y * 2,
-                    width: action.attack.width * 2,
-                    height: action.attack.height * 2,
-                    damage: action.attack.damage
-                });
-            break;
-        case "grab":
-            if (character.i <= action.startup && character.i < action.startup + action.active)
-                characterGrabs.push({
-                    x: character.x + action.grab.x * 2,
-                    y: character.y + action.grab.y * 2,
-                    width: action.grab.width * 2,
-                    height: action.grab.height * 2
-                });
-            break;
-        }
-    }
-
-    function stepCharacterB(i, character, characterAttacks, characterGrabs, enemy, enemyAttacks, enemyGrabs) {
+    function stepCharacterControl(i, character, characterAttacks, characterGrabs, enemy, enemyAttacks, enemyGrabs) {
         var x0 = input[i].axes[0];
         var y0 = input[i].axes[1];
         var button0 = input[i].buttons[0].pressed;
@@ -187,53 +163,14 @@ function stepHijackModeGame(state, input) {
         var button5 = input[i].buttons[5].pressed;
         var action = character.character.actions[character.pose + "_" + character.direction];
 
-        var characterRectangle = {
-            x: character.x + action.x * 2,
-            y: character.y + action.y * 2,
-            width: action.width * 2,
-            height: action.height * 2
-        };
-
-        var enemyRectangle = {
-            x: enemy.x + action.x * 2,
-            y: enemy.y + action.y * 2,
-            width: action.width * 2,
-            height: action.height * 2
-        };
-
-        characterGrabs = characterGrabs.filter(function (grab) { return collision(grab, enemyRectangle); });
-        characterAttacks = characterAttacks.filter(function (attack) { return collision(attack, enemyRectangle); });
-        enemyGrabs = enemyGrabs.filter(function (grab) { return collision(grab, characterRectangle); });
-        enemyAttacks = enemyAttacks.filter(function (attack) { return collision(attack, characterRectangle); });
-
-        if (characterGrabs.length > 0) {
+        if (characterGrabs.length > 0 && enemyGrabs.length === 0) {
             character.pose = "grabbed";
             return;
         }
 
-        if (enemyGrabs.length > 0) {
+        if (enemyGrabs.length > 0 && characterGrabs.length === 0) {
             character.pose = "be_grabbed";
             return;
-        }
-
-        if (enemyAttacks.length > 0) {
-            for (var i = 0; i < enemyAttacks.length; ++i) {
-                character.odds -= enemyAttacks[i].damage;
-                enemy.odds += enemyAttacks[i].damage;
-            }
-
-            return;
-        }
-
-        if (character.y + action.y * 2 + action.height * 2 < HIJACK_HEIGHT) {
-            if (character.pose === "fall" || character.pose === "fall_bottom")
-                ++character.i;
-            else
-                character.i = 0;
-
-            character.pose = "fall";
-        } else if (character.pose === "fall" || character.pose === "fall_bottom") {
-            character.pose = "neutral";
         }
 
         switch (character.pose) {
@@ -256,14 +193,9 @@ function stepHijackModeGame(state, input) {
         case "full_jump":
             var n = Math.floor(action.animation.sprite_sheet.width / action.animation.width);
 
-            if (character.i < n) {
-                if (character.i % action.frames_per_move === 0) {
-                    character.x += action.move.x * 2;
-                    character.y += action.move.y * 2;
-                }
-
+            if (character.i < n * action.frames_per_move)
                 ++character.i;
-            } else {
+            else {
                 character.i = 0;
                 character.pose = "neutral";
             }
@@ -280,24 +212,24 @@ function stepHijackModeGame(state, input) {
                 character.pose = "fall_bottom";
             }
 
-            if (character.i % action.frames_per_move === 0) {
-                character.x += action.move.x * 2;
-                character.y += action.move.y * 2;
-            }
-
             ++character.i;
             break;
         case "shield":
-            if (character.i < action.startup)
+            if (character.i < action.startup) {
+                ++character.i;
                 character.j = 0;
-            else if (button4)
+            } else if (button4) {
+                ++character.i;
                 character.j = 0;
-            else if (character.j < action.recovery)
+            } else if (character.j < action.recovery) {
+                ++character.i;
                 ++character.j;
-            else
+            } else {
+                character.i = 0;
+                character.j = 0;
                 character.pose = "neutral";
+            }
 
-            ++character.i;
             break;
         case "grab":
             if (character.i < action.startup)
@@ -327,7 +259,7 @@ function stepHijackModeGame(state, input) {
                     character.pose = "weak";
                 }
 
-                return;
+                break;
             }
 
             if (button1) {
@@ -343,7 +275,7 @@ function stepHijackModeGame(state, input) {
                     character.pose = "weak";
                 }
 
-                return;
+                break;
             }
 
             if (button2) {
@@ -359,7 +291,7 @@ function stepHijackModeGame(state, input) {
                     character.pose = "short_jump_top";
                 }
 
-                return;
+                break;
             }
 
             if (button3) {
@@ -375,7 +307,7 @@ function stepHijackModeGame(state, input) {
                     character.pose = "full_jump_top";
                 }
 
-                return;
+                break;
             }
 
             if (button4) {
@@ -391,7 +323,7 @@ function stepHijackModeGame(state, input) {
                     character.pose = "shield";
                 }
 
-                return;
+                break;
             }
 
             if (button5) {
@@ -407,7 +339,7 @@ function stepHijackModeGame(state, input) {
                     character.pose = "grab";
                 }
 
-                return;
+                break;
             }
 
             if (x0 < -0.5) {
@@ -417,10 +349,6 @@ function stepHijackModeGame(state, input) {
                     character.i = 0;
                 character.pose = "run";
                 character.direction = "left";
-                if (character.i % character.character.actions.run_left.frames_per_move === 0) {
-                    character.x += character.character.actions.run_left.move.x * 2;
-                    character.y += character.character.actions.run_left.move.y * 2;
-                }
             } else if (x0 > 0.5) {
                 if (character.pose === "run")
                     ++character.i;
@@ -428,10 +356,6 @@ function stepHijackModeGame(state, input) {
                     character.i = 0;
                 character.pose = "run";
                 character.direction = "right";
-                if (character.i % character.character.actions.run_right.frames_per_move === 0) {
-                    character.x += character.character.actions.run_right.move.x * 2;
-                    character.y += character.character.actions.run_right.move.y * 2;
-                }
             } else {
                 if (character.pose === "neutral")
                     ++character.i;
@@ -439,6 +363,133 @@ function stepHijackModeGame(state, input) {
                     character.i = 0;
                 character.pose = "neutral";
             }
+        }
+
+        if (character.y + action.y * 2 + action.height * 2 < HIJACK_HEIGHT) {
+            if (character.pose === "fall" || character.pose === "fall_bottom") {
+                character.pose = "fall_bottom";
+            } else if (character.pose === "short_jump" || character.pose === "short_jump_top") {
+            } else if (character.pose === "full_jump" || character.pose === "full_jump_top") {
+            } else {
+                character.i = 0;
+                character.pose = "fall_bottom";
+            }
+        } else if (character.pose === "fall" || character.pose === "fall_bottom") {
+            character.i = 0;
+            character.pose = "neutral";
+        }
+
+    }
+
+    function stepCharacterCalc(i, character, characterAttacks, characterGrabs, enemy, enemyAttacks, enemyGrabs) {
+        var characterAction = character.character.actions[character.pose + "_" + character.direction];
+        var enemyAction = enemy.character.actions[enemy.pose + "_" + enemy.direction];
+
+        var characterRectangle = {
+            x: character.x + characterAction.x * 2,
+            y: character.y + characterAction.y * 2,
+            width: characterAction.width * 2,
+            height: characterAction.height * 2
+        };
+
+        var enemyRectangle = {
+            x: enemy.x + enemyAction.x * 2,
+            y: enemy.y + enemyAction.y * 2,
+            width: enemyAction.width * 2,
+            height: enemyAction.height * 2
+        };
+
+        switch (character.pose) {
+        case "weak":
+        case "strong":
+            var characterAttack = {
+                x: character.x + characterAction.attack.x * 2,
+                y: character.y + characterAction.attack.y * 2,
+                width: characterAction.attack.width * 2,
+                height: characterAction.attack.height * 2,
+                damage: characterAction.attack.damage
+            };
+
+            if (character.i <= characterAction.startup && character.i < characterAction.startup + characterAction.active && collision(characterAttack, enemyRectangle))
+                characterAttacks.push({
+                    x: character.x + characterAttack.x * 2,
+                    y: character.y + characterAttack.y * 2,
+                    width: characterAttack.width * 2,
+                    height: characterAttack.height * 2,
+                    damage: characterAttack.damage
+                });
+            break;
+        case "grab":
+            var characterGrab = {
+                x: character.x + characterAction.grab.x * 2,
+                y: character.y + characterAction.grab.y * 2,
+                width: characterAction.grab.width * 2,
+                height: characterAction.grab.height * 2
+            };
+
+            if (character.i <= characterAction.startup && character.i < characterAction.startup + characterAction.active && collision(characterGrab, enemyRectangle))
+                characterGrabs.push({
+                    x: character.x + characterGrab.x * 2,
+                    y: character.y + characterGrab.y * 2,
+                    width: characterGrab.width * 2,
+                    height: characterGrab.height * 2
+                });
+            break;
+        }
+    }
+
+    function stepCharacterApply(i, character, characterAttacks, characterGrabs, enemy, enemyAttacks, enemyGrabs) {
+        var action = character.character.actions[character.pose + "_" + character.direction];
+
+        if (enemyAttacks.length > 0) {
+            for (var i = 0; i < enemyAttacks.length; ++i) {
+                character.odds -= enemyAttacks[i].damage;
+                enemy.odds += enemyAttacks[i].damage;
+            }
+
+            return;
+        }
+
+        switch (character.pose) {
+        case "weak":
+        case "strong":
+            break;
+        case "short_jump_top":
+        case "full_jump_top":
+        case "short_jump":
+        case "full_jump":
+            var n = Math.floor(action.animation.sprite_sheet.width / action.animation.width);
+
+            if (character.i % action.frames_per_move === 0) {
+                var k = character.i / action.frames_per_move % action.move.length;
+                character.x += action.move[k].x * 2;
+                character.y += action.move[k].y * 2;
+            }
+            break;
+        case "fall":
+        case "fall_bottom":
+            if (character.i % action.frames_per_move === 0) {
+                var k = character.i / action.frames_per_move % action.move.length;
+                character.x += action.move[k].x * 2;
+                character.y += action.move[k].y * 2;
+            }
+            break;
+        case "shield":
+            break;
+        case "grab":
+            break;
+        case "grabbed":
+        case "be_grabbed":
+            // TODO
+            break;
+        case "run":
+            if (character.i % action.frames_per_move === 0) {
+                var k = character.i / action.frames_per_move % action.move.length;
+                character.x += action.move[k].x * 2;
+                character.y += action.move[k].y * 2;
+            }
+            break;
+        default:
         }
     }
 }
