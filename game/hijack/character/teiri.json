@@ -383,7 +383,7 @@
             "frames_per_move": 4,
             "move": [{
                 "x": 0,
-                "y": 18
+                "y": 8
             }]
         },
         "fall_bottom_right": {
@@ -395,7 +395,7 @@
             "frames_per_move": 4,
             "move": [{
                 "x": 0,
-                "y": 18
+                "y": 8
             }]
         },
         "fall_left": {
@@ -406,8 +406,8 @@
             "animation": "fall_left",
             "frames_per_move": 4,
             "move": [{
-                "x": -18,
-                "y": 18
+                "x": -8,
+                "y": 8
             }]
         },
         "fall_right": {
@@ -418,8 +418,8 @@
             "animation": "fall_right",
             "frames_per_move": 4,
             "move": [{
-                "x": 18,
-                "y": 18
+                "x": 8,
+                "y": 8
             }]
         },
         "weak_left": {
