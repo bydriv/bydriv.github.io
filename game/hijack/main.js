@@ -401,6 +401,19 @@ function stepHijackModeGame(state, input) {
                 character.i = 0;
                 character.pose = "fall_bottom";
             }
+
+            if (x0 < -0.5) {
+                if (character.v.x > -8)
+                    --character.v.x;
+            } else if (x0 > 0.5) {
+                if (character.v.x < 8)
+                    ++character.v.x;
+            } else if (character.v.x < 0)
+                ++character.v.x;
+            else if (character.v.x > 0)
+                --character.v.x;
+
+            ++character.v.y;
         } else if (character.pose === "fall" || character.pose === "fall_bottom") {
             character.i = 0;
             character.pose = "neutral";
@@ -484,37 +497,34 @@ function stepHijackModeGame(state, input) {
         case "full_jump_top":
         case "short_jump":
         case "full_jump":
-            if (character.i % action.frames_per_move === 0) {
-                var k = character.i / action.frames_per_move % action.move.length;
-
+            if (character.i === 0) {
                 var v = {
-                    x: action.move[k].x * 2,
-                    y: action.move[k].y * 2
+                    x: action.move.x * 2,
+                    y: action.move.y * 2
                 };
 
-                character.v = v;
+                character.v.x += v.x;
+                character.v.y += v.y;
+            }
 
-                character.x += Math.floor(v.x);
-                character.y += Math.floor(v.y);
+            if (character.i % action.frames_per_move === 0) {
+                character.x += Math.floor(character.v.x);
+                character.y += Math.floor(character.v.y);
             }
             break;
         case "fall":
         case "fall_bottom":
             if (character.i % action.frames_per_move === 0) {
-                var k = character.i / action.frames_per_move % action.move.length;
-
                 var v = {
-                    x: action.move[k].x * 2,
-                    y: action.move[k].y * 2
+                    x: action.move.x * 2,
+                    y: action.move.y * 2
                 };
 
-                v.x += character.v.x;
-                v.y += character.v.y;
+                character.v.x += v.x;
+                character.v.y += v.y;
 
-                character.v = v;
-
-                character.x += Math.floor(v.x);
-                character.y += Math.floor(v.y);
+                character.x += Math.floor(character.v.x);
+                character.y += Math.floor(character.v.y);
             }
             break;
         case "shield":
@@ -532,18 +542,19 @@ function stepHijackModeGame(state, input) {
             };
             break;
         case "run":
-            if (character.i % action.frames_per_move === 0) {
-                var k = character.i / action.frames_per_move % action.move.length;
-
+            if (character.i === 0) {
                 var v = {
-                    x: action.move[k].x * 2,
-                    y: action.move[k].y * 2
+                    x: action.move.x * 2,
+                    y: action.move.y * 2
                 };
 
-                character.v = v;
+                character.v.x += v.x;
+                character.v.y += v.y;
+            }
 
-                character.x += Math.floor(v.x);
-                character.y += Math.floor(v.y);
+            if (character.i % action.frames_per_move === 0) {
+                character.x += Math.floor(character.v.x);
+                character.y += Math.floor(character.v.y);
             }
             break;
         default:
