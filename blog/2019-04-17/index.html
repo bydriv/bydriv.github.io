@@ -189,34 +189,34 @@ Unicode の文字が使えるかどうかは未定義である。
 </p>
 <ul ><li ><code >&lt;</code></li>
 <li ><code >[</code></li>
-<li ><code >&bsol;</code></li>
+<li ><code >\</code></li>
 <li ><code >]</code></li>
 </ul>
 <p>である。これらはそれぞれ、
 </p>
-<ul ><li ><code >&bsol;&lt;</code></li>
-<li ><code >&bsol;[</code></li>
-<li ><code >&bsol;&bsol;</code></li>
-<li ><code >&bsol;]</code></li>
+<ul ><li ><code >\&lt;</code></li>
+<li ><code >\[</code></li>
+<li ><code >\\</code></li>
+<li ><code >\]</code></li>
 </ul>
 <p>と書く必要がある。もしくは、
 </p>
 <ul ><li ><code >&lt;|&lt;|</code></li>
 <li ><code >&lt;|[|</code></li>
-<li ><code >&lt;|&bsol;|</code></li>
+<li ><code >&lt;|\|</code></li>
 <li ><code >&lt;|]|</code></li>
 </ul>
-<p>と書いてもよい。 <code >&bsol;</code> が直後の1文字しかエスケープできないのに対し、
+<p>と書いてもよい。 <code >\</code> が直後の1文字しかエスケープできないのに対し、
 <code >&lt;|x|</code> の記法ではもっと長い文字列もエスケープできる。
-たとえば、正規表現のように <code >&bsol;</code> が頻出する文章では、こちらのほうが便利である。
+たとえば、正規表現のように <code >\</code> が頻出する文章では、こちらのほうが便利である。
 </p>
 <p>箇条書きやテーブルは、少々複雑ではあるが
 </p>
 <pre >#ul
-[#li [#code &bsol;&lt;]]
-[#li [#code &bsol;[]]
-[#li [#code &bsol;&bsol;]]
-[#li [#code &bsol;]]]
+[#li [#code \&lt;]]
+[#li [#code \[]]
+[#li [#code \\]]
+[#li [#code \]]]
 </pre>
 <p>とか
 </p>
@@ -234,7 +234,7 @@ Unicode の文字が使えるかどうかは未定義である。
 [#tr [#td [#em atom]     ] [#td ::=] [#td [#b TEXT]                                ]]
 [#tr [#td                ] [#td   |] [#td [#b RAW1]                                ]]
 [#tr [#td                ] [#td   |] [#td [#b RAWN]                                ]]
-[#tr [#td [#em list]     ] [#td ::=] [#td [#code &bsol;[] [#em data] [#code &bsol;]]         ]]
+[#tr [#td [#em list]     ] [#td ::=] [#td [#code \[] [#em data] [#code \]]         ]]
 </pre>
 <p>というふうに書ける。
 表は Anne の文法を表しており、表示はつぎのとおり。
@@ -293,7 +293,7 @@ $ cat &lt;&lt; EOF &gt; hello.anne
 hello world
 EOF
 $ cat hello.anne | anne # minify して出力される
-{"type":"document","value":[{"type":"paragraph","value":[{"type":"text","value":"hello world&bsol;n"}]}]}
+{"type":"document","value":[{"type":"paragraph","value":[{"type":"text","value":"hello world\n"}]}]}
 $ cat hello.anne | anne | jq . # 整形したい場合
 {
   "type": "document",
@@ -303,7 +303,7 @@ $ cat hello.anne | anne | jq . # 整形したい場合
       "value": [
         {
           "type": "text",
-          "value": "hello world&bsol;n"
+          "value": "hello world\n"
         }
       ]
     }

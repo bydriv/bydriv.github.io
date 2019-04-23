@@ -51,9 +51,12 @@ module Shirley
     when "blank"
       s = json["value"]
       rules = select_rules(cfg, [json["type"]], s)
-    when "text", "raw1", "rawn"
+    when "text"
       s = json["value"]
       rules = select_rules(cfg, ["atom", json["type"]], s)
+    when "raw1", "rawn"
+      s = json["value"]
+      rules = select_rules(cfg, ["atom", json["type"], json["delimiter"]], s)
     when "list"
       s = traverse(cfg, json["value"])
       rules = select_rules(cfg, [json["type"]], s)

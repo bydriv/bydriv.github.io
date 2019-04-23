@@ -1,0 +1,140 @@
+<!DOCTYPE html><!--
+
+--><meta charset="utf-8"><!--
+--><meta name="viewport" content="width=device-width, initial-scale=1"><!--
+--><title>bydriv.github.io</title><!--
+
+--><link rel="stylesheet" type="text/css" href="/prelude/style.css"><!--
+
+--><div class="taskbar"><!--
+--><a class="icon" href="/">&#x221A;</a><!--
+--><a class="icon" href="/about">&#x1F4BD;</a><!--
+--><a class="icon" href="/gallery">&#x1F3A8;</a><!--
+--><a class="icon" href="/novel/golden-record">&#x1F30C;</a><!--
+--><a class="icon" href="/novel/rcs">&#x1F303;</a><!--
+--><a class="icon" href="/blog">&#x1F4DD;</a><!--
+--><a class="icon" href="/anne">&#x1F45A;</a><!--
+--><a class="icon" href="/worldview">&#x1F30D;</a><!--
+--></div>
+<div class="window">
+  <div class="header"></div>
+  <div class="content">
+<h2 >Anne で数式が書けるようになった
+</h2>
+<p><math xmlns="http://www.w3.org/1998/Math/MathML" alttext="e^{i\pi}=-1" display="block">
+  <mrow>
+    <msup>
+      <mi>e</mi>
+      <mrow>
+        <mi>i</mi>
+        <mo>⁢</mo>
+        <mi>π</mi>
+      </mrow>
+    </msup>
+    <mo>=</mo>
+    <mrow>
+      <mo>-</mo>
+      <mn>1</mn>
+    </mrow>
+  </mrow>
+</math>
+</p>
+<p>こんなふうに <math xmlns="http://www.w3.org/1998/Math/MathML" alttext="e^{i\theta}=\cos\theta+i\sin\theta" display="inline">
+  <mrow>
+    <msup>
+      <mi>e</mi>
+      <mrow>
+        <mi>i</mi>
+        <mo>⁢</mo>
+        <mi>θ</mi>
+      </mrow>
+    </msup>
+    <mo>=</mo>
+    <mrow>
+      <mrow>
+        <mi>cos</mi>
+        <mo>⁡</mo>
+        <mi>θ</mi>
+      </mrow>
+      <mo>+</mo>
+      <mrow>
+        <mi>i</mi>
+        <mo>⁢</mo>
+        <mrow>
+          <mi>sin</mi>
+          <mo>⁡</mo>
+          <mi>θ</mi>
+        </mrow>
+      </mrow>
+    </mrow>
+  </mrow>
+</math>
+ インラインで書くのも簡単。
+</p>
+<h3 >記法
+</h3>
+<p>それぞれ
+</p>
+<pre >&lt;&lt;$
+e^{i\pi}=-1
+$
+</pre>
+<p>および
+</p>
+<pre >&lt;$e^{i\theta}=\cos\theta+i\sin\theta$
+</pre>
+<p>と書く。
+</p>
+<pre >&lt;&lt;d
+abc
+d
+</pre>
+<p>と
+</p>
+<pre >&lt;dabcd
+</pre>
+<p>はヒアドキュメント的な記法であり、 Anne の世界観では特別なものではない。
+</p>
+<p><code >d=$</code> としてこの記法を使うことで数式として認識される。
+</p>
+<p>数式の変換には LaTeXML を利用しており、 MathML に変換される。
+</p>
+<h3 >数式を書けるようにした理由
+</h3>
+<p>もともと数式を書けるようにはするつもりだったが、
+最近数式を書く必要のある文章を書きたくなることがありこの機会に書けるようにした。
+</p>
+<h3 ><code >\</code> の問題
+</h3>
+<p>Anne では <code >\</code> は特別な記号であり、たとえば <code >[$ math]</code> というふうに書けるようにするのは難しい。
+なぜなら LaTeX では <code >\</code> は頻出する記号であり、いちいち <code >\\</code> というふうにエスケープするのは
+精神衛生上よくない。
+もちろんエスケープさえすれば技術的には可能だが、人間が書くフォーマットとしては厳しいものがある。
+</p>
+<p>そこでヒアドキュメントの記法でデリミタが <code >$</code> のときのみ数式として認識するようにした。
+このようにすることで、 <code >$</code> 以外のほとんどの記号をそのまま書けるようになった。
+</p>
+<p>同様の方法で Anne にさまざまな言語を埋めこむことが可能であり、記法もかなり軽いもので済む。
+Anne の設計がうまく活かされていると思う (ほんまか)。
+</p>
+<h3 ><code >$</code> の問題
+</h3>
+<p><code >$</code> が出現する数式を書くのはいくぶん難しい。
+ただ <code >&lt;$\mathdollar$</code> (表示: <math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\mathdollar" display="inline">
+  <mi mathvariant="normal">$</mi>
+</math>
+) というふうに書くことで
+おおむね問題なく書ける。と思う。
+とはいえ <code >$</code> という記号を(マクロなどではなく)直接書く方法がないので、
+書けない数式が存在するのは事実だと思う。
+</p>
+<p>ただ、わたしは数式を書くときに <code >$</code> という記号をあまり使わないので困らないと思う。
+いまのところ、 Anne はわたしが文章を書くのを楽にするソフトウェアなのでこれで問題ない。
+</p>
+<p>もし (わたし以外に) Anne を使うひとがいたら、困ることもあるかもしれない。
+ただ Anne の設計思想というか根本的な部分に、すべての文章を同じフォーマットで書くのは無理だし
+どっちかというと方言を楽に定義できたほうがいいよねというものがあるので、
+困ったらひとがもしいたら好きに拡張してほしい。
+</p>
+  </div>
+</div>

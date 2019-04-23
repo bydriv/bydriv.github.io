@@ -42,7 +42,7 @@
 <p>まず、 <code >[</code> や <code >]</code> はそれ自体が字句である。
 </p>
 <p>空行とは行頭から行末に至るまで改行のみからなる文字列である。
-ただし改行とは <code >&bsol;n</code> または <code >&bsol;r</code> または <code >&bsol;r&bsol;n</code> である。
+ただし改行とは <code >\n</code> または <code >\r</code> または <code >\r\n</code> である。
 </p>
 <p>単行生文章は、たとえば <code >&lt;|hello world|</code> のように、 <code >&lt;d</code> から始まり <code >d</code> で終わる文字列である。
 ただし <code >d</code> は <code >&lt;</code> 以外の任意の1文字である。
@@ -58,7 +58,7 @@ CODE
 </p>
 <p>最後に文章とは、それ以外の文字列である。
 例外として、 <code >&lt;</code> や <code >[</code> のような予約された記号は、
-<code >&bsol;&lt;</code> や <code >&bsol;[</code> のようにエスケープしなければならない。
+<code >\&lt;</code> や <code >\[</code> のようにエスケープしなければならない。
 </p>
 <h3 >文法
 </h3>
@@ -114,7 +114,7 @@ DATA
       "value": [
         {
           "type": "text",
-          "value": "data1-atom: atom&bsol;n"
+          "value": "data1-atom: atom\n"
         },
         {
           "type": "text",
@@ -134,7 +134,7 @@ DATA
         },
         {
           "type": "text",
-          "value": "&bsol;n"
+          "value": "\n"
         },
         {
           "type": "text",
@@ -182,28 +182,28 @@ DATA
         },
         {
           "type": "text",
-          "value": "&bsol;n"
+          "value": "\n"
         }
       ]
     },
     {
       "type": "blank",
-      "value": "&bsol;n"
+      "value": "\n"
     },
     {
       "type": "paragraph",
       "value": [
         {
           "type": "text",
-          "value": "data2-atom:&bsol;n"
+          "value": "data2-atom:\n"
         },
         {
           "type": "text",
-          "value": "  atom&bsol;n"
+          "value": "  atom\n"
         },
         {
           "type": "text",
-          "value": "data2-list:&bsol;n"
+          "value": "data2-list:\n"
         },
         {
           "type": "text",
@@ -223,11 +223,11 @@ DATA
         },
         {
           "type": "text",
-          "value": "&bsol;n"
+          "value": "\n"
         },
         {
           "type": "text",
-          "value": "data2-tree:&bsol;n"
+          "value": "data2-tree:\n"
         },
         {
           "type": "text",
@@ -240,7 +240,7 @@ DATA
             "value": [
               {
                 "type": "text",
-                "value": "tree&bsol;n"
+                "value": "tree\n"
               },
               {
                 "type": "text",
@@ -260,7 +260,7 @@ DATA
               },
               {
                 "type": "text",
-                "value": "&bsol;n"
+                "value": "\n"
               },
               {
                 "type": "text",
@@ -283,21 +283,21 @@ DATA
         },
         {
           "type": "text",
-          "value": "&bsol;n"
+          "value": "\n"
         }
       ]
     },
     {
       "type": "blank",
-      "value": "&bsol;n"
+      "value": "\n"
     },
     {
       "type": "paragraph",
       "value": [
         {
           "type": "rawn",
-          "delimiter": "DATA&bsol;n",
-          "value": "data3-atom: atom&bsol;ndata3-list: [list]&bsol;ndata3-tree: [tree [leaf] [leaf]]&bsol;n"
+          "delimiter": "DATA\n",
+          "value": "data3-atom: atom\ndata3-list: [list]\ndata3-tree: [tree [leaf] [leaf]]\n"
         }
       ]
     }
@@ -374,7 +374,7 @@ CODE
 </p>
 <h3 >エスケープ処理
 </h3>
-<p>&amp; は &amp;amp; に、 &bsol; は &amp;bsol; に、 &lt; は &amp;lt; に、 &gt; は &amp;gt; にエスケープされる。
+<p>&amp; は &amp;amp; に、 \ は &amp;bsol; に、 &lt; は &amp;lt; に、 &gt; は &amp;gt; にエスケープされる。
 </p>
 <p>これは Anne の仕様でも Shirley の仕様でもなく、 HTML 用の Shirley の仕様であることに注意。
 </p>
