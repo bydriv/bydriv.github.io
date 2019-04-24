@@ -460,17 +460,23 @@ function stepHijackModeGame(state, input) {
 
             character.v.y += character.character.gravity;
 
-            if (character.v.x < 0)
+            if (character.v.x < 0) {
                 character.v.x += character.character.resistance;
-            else if (character.v.x > 0)
+                character.v.x = Math.min(0, character.v.x);
+            } else if (character.v.x > 0) {
                 character.v.x -= character.character.resistance;
+                character.v.x = Math.max(0, character.v.x);
+            }
         } else if (character.pose === "be_attacked") {
             character.v.y += character.character.gravity;
 
-            if (character.v.x < 0)
+            if (character.v.x < 0) {
                 character.v.x += character.character.resistance;
-            else if (character.v.x > 0)
+                character.v.x = Math.min(0, character.v.x);
+            } else if (character.v.x > 0) {
                 character.v.x -= character.character.resistance;
+                character.v.x = Math.max(0, character.v.x);
+            }
         } else if (character.pose === "fall") {
             character.i = 0;
             ++character.id;
