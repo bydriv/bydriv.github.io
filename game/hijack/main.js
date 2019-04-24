@@ -401,17 +401,21 @@ function stepHijackModeGame(state, input) {
             }
 
             if (x0 < -0.5) {
-                if (character.v.x > -8)
-                    --character.v.x;
+                character.v.x -= character.character.dexterity;
             } else if (x0 > 0.5) {
-                if (character.v.x < 8)
-                    ++character.v.x;
-            } else if (character.v.x < 0)
-                ++character.v.x;
-            else if (character.v.x > 0)
-                --character.v.x;
+                character.v.x += character.character.dexterity;
+            }
 
-            ++character.v.y;
+            if (y0 > 0.5) {
+                character.v.y += character.character.dexterity;
+            }
+
+            character.v.y += character.character.gravity;
+
+            if (character.v.x < 0)
+                character.v.x += character.character.resistance;
+            else if (character.v.x > 0)
+                character.v.x -= character.character.resistance;
         } else if (character.pose === "fall" || character.pose === "fall_bottom") {
             character.i = 0;
             character.pose = "neutral";
@@ -507,6 +511,7 @@ function stepHijackModeGame(state, input) {
             break;
         case "fall":
         case "fall_bottom":
+            /*
             if (character.i % action.frames_per_move === 0) {
                 var v = {
                     x: getHijackParameterX(action.move),
@@ -515,7 +520,7 @@ function stepHijackModeGame(state, input) {
 
                 character.v.x += v.x;
                 character.v.y += v.y;
-            }
+            }*/
             break;
         case "shield":
             break;
@@ -547,8 +552,8 @@ function stepHijackModeGame(state, input) {
 
         if (action.move != null) {
             if (character.i % action.frames_per_move === 0) {
-                character.x += Math.floor(character.v.x);
-                character.y += Math.floor(character.v.y);
+                character.x += Math.round(character.v.x);
+                character.y += Math.round(character.v.y);
             }
         }
 
@@ -666,6 +671,21 @@ function loadConfig(src) {
 
                     for (var i = 0; i < characters.length; ++i) {
                         var character = characters[i];
+
+                        if (typeof character.gravity !== "number") {
+                            console.error("character.gravity isn't a number: %o", character.gravity);
+                            reject();
+                        }
+
+                        if (typeof character.resistance !== "number") {
+                            console.error("character.resistance isn't a number: %o", character.resistance);
+                            reject();
+                        }
+
+                        if (typeof character.dexterity !== "number") {
+                            console.error("character.dexterity isn't a number: %o", character.dexterity);
+                            reject();
+                        }
 
                         if (Object.prototype.toString.call(character.actions) !== "[object Object]") {
                             console.error("character.actions isn't an onject: %o", character.actions);
@@ -792,6 +812,9 @@ function loadConfig(src) {
                             }
 
                             return {
+                                gravity: character.gravity,
+                                resistance: character.resistance,
+                                dexterity: character.dexterity,
                                 actions: actions,
                                 animations: animations
                             };

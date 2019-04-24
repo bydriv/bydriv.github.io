@@ -1,4 +1,7 @@
 {
+    "gravity": 4,
+    "resistance": 2,
+    "dexterity": 2,
     "actions": {
         "neutral_left": {
             "x": 16,
@@ -54,7 +57,7 @@
             "frames_per_move": 4,
             "move": {
                 "x": 0,
-                "y": -8,
+                "y": -16,
                 "scale": 2
             }
         },
@@ -68,7 +71,7 @@
             "frames_per_move": 4,
             "move": {
                 "x": 0,
-                "y": -8,
+                "y": -16,
                 "scale": 2
             }
         },
@@ -82,7 +85,7 @@
             "frames_per_move": 4,
             "move": {
                 "x": -8,
-                "y": -8,
+                "y": -16,
                 "scale": 2
             }
         },
@@ -96,7 +99,7 @@
             "frames_per_move": 4,
             "move": {
                 "x": 8,
-                "y": -8,
+                "y": -16,
                 "scale": 2
             }
         },
@@ -110,7 +113,7 @@
             "frames_per_move": 4,
             "move": {
                 "x": 0,
-                "y": -16,
+                "y": -32,
                 "scale": 2
             }
         },
@@ -124,7 +127,7 @@
             "frames_per_move": 4,
             "move": {
                 "x": 0,
-                "y": -16,
+                "y": -32,
                 "scale": 2
             }
         },
@@ -138,7 +141,7 @@
             "frames_per_move": 4,
             "move": {
                 "x": -16,
-                "y": -16,
+                "y": -32,
                 "scale": 2
             }
         },
@@ -152,7 +155,7 @@
             "frames_per_move": 4,
             "move": {
                 "x": 16,
-                "y": -16,
+                "y": -32,
                 "scale": 2
             }
         },
