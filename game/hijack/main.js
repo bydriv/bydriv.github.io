@@ -504,11 +504,6 @@ function stepHijackModeGame(state, input) {
                 character.v.x += v.x;
                 character.v.y += v.y;
             }
-
-            if (character.i % action.frames_per_move === 0) {
-                character.x += Math.floor(character.v.x);
-                character.y += Math.floor(character.v.y);
-            }
             break;
         case "fall":
         case "fall_bottom":
@@ -520,9 +515,6 @@ function stepHijackModeGame(state, input) {
 
                 character.v.x += v.x;
                 character.v.y += v.y;
-
-                character.x += Math.floor(character.v.x);
-                character.y += Math.floor(character.v.y);
             }
             break;
         case "shield":
@@ -549,13 +541,15 @@ function stepHijackModeGame(state, input) {
                 character.v.x += v.x;
                 character.v.y += v.y;
             }
+            break;
+        default:
+        }
 
+        if (action.move != null) {
             if (character.i % action.frames_per_move === 0) {
                 character.x += Math.floor(character.v.x);
                 character.y += Math.floor(character.v.y);
             }
-            break;
-        default:
         }
 
         character.x = Math.min(Math.max(-getHijackParameterX(action), character.x), getHijackParameterWidth(state.config) - getHijackParameterX(action) - getHijackParameterWidth(action));
