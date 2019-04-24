@@ -61,7 +61,17 @@ function viewHijack(state) {
 
     for (var i = 0; i < views.length; ++i) {
         var view = views[i];
-        offscreenContext.drawImage(view.img, view.sx, view.sy, view.sw, view.sh, view.dx, view.dy, view.dw, view.dh);
+
+        switch (view.type) {
+        case "image":
+            offscreenContext.drawImage(view.img, view.sx, view.sy, view.sw, view.sh, view.dx, view.dy, view.dw, view.dh);
+            break;
+        case "rect":
+            var fillStyle = offscreenContext.fillStyle;
+            offscreenContext.fillStyle = view.color;
+            offscreenContext.fillRect(view.x, view.y, view.width, view.height);
+            offscreenContext.fillStyle = fillStyle;
+        }
     }
 
     var onscreenContext = state.onscreenCanvas.getContext("2d");
@@ -544,6 +554,7 @@ function stepHijackModeResult(state, input) {
 
 function viewHijackModeTitle(state) {
     var views = [{
+        type: "image",
         sx: 0,
         sy: 0,
         sw: state.config.logo.width,
@@ -569,6 +580,7 @@ function viewHijackModeGame(state) {
 
     viewCharacter(state.character0);
     viewCharacter(state.character1);
+    viewOdds(state.character0.odds, state.character1.odds);
 
     return views;
 
@@ -580,6 +592,7 @@ function viewHijackModeGame(state) {
         var n = Math.floor(animation.sprite_sheet.width / animation.width);
 
         views.push({
+            type: "image",
             sx: Math.floor(character.i / animation.frames_per_sprite % n) * animation.width,
             sy: 0,
             sw: animation.width,
@@ -589,6 +602,28 @@ function viewHijackModeGame(state) {
             dw: getHijackParameterWidth(animation),
             dh: getHijackParameterHeight(animation),
             img: animation.sprite_sheet
+        });
+    }
+
+    function viewOdds(odds0, odds1) {
+        var left = 10;
+
+        views.push({
+            type: "rect",
+            x: 10,
+            y: 10,
+            width: odds0 * 6,
+            height: 16,
+            color: "rgba(255, 255, 255, 1)"
+        });
+
+        views.push({
+            type: "rect",
+            x: odds0 * 6 + 30,
+            y: 10,
+            width: odds1 * 6,
+            height: 16,
+            color: "rgba(255, 255, 255, 1)"
         });
     }
 }
