@@ -107,6 +107,7 @@ function stepHijackModeCharacterSelection(state, input) {
 
         state.character0 = {
             i: 0,
+            id: 0,
             v: {
                 x: 0,
                 y: 0
@@ -116,16 +117,23 @@ function stepHijackModeCharacterSelection(state, input) {
             y: getHijackParameterHeight(state.config) - getHijackParameterY(character0.actions.neutral_right) - getHijackParameterHeight(character0.actions.neutral_right),
             pose: "neutral",
             direction: "right",
+            ate: new Set(),
             character: character0
         };
 
         state.character1 = {
             i: 0,
+            id: 0,
+            v: {
+                x: 0,
+                y: 0
+            },
             odds: 50,
             x: getHijackParameterWidth(state.config) - getHijackParameterX(character0.actions.neutral_left) - getHijackParameterWidth(character0.actions.neutral_left),
             y: getHijackParameterHeight(state.config) - getHijackParameterY(character0.actions.neutral_left) - getHijackParameterHeight(character0.actions.neutral_left),
             pose: "neutral",
             direction: "left",
+            ate: new Set(),
             character: character1
         };
     }
@@ -148,15 +156,15 @@ function stepHijackModeGame(state, input) {
     case 0:
         break;
     case 1:
-        stepCharacterControl(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
         stepCharacterCalc(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
+        stepCharacterControl(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
         stepCharacterApply(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
         break;
     default:
-        stepCharacterControl(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
-        stepCharacterControl(1, state.character1, attacks1, grabs1, state.character0, attacks0, grabs0);
         stepCharacterCalc(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
         stepCharacterCalc(1, state.character1, attacks1, grabs1, state.character0, attacks0, grabs0);
+        stepCharacterControl(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
+        stepCharacterControl(1, state.character1, attacks1, grabs1, state.character0, attacks0, grabs0);
         stepCharacterApply(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
         stepCharacterApply(1, state.character1, attacks1, grabs1, state.character0, attacks0, grabs0);
         break;
@@ -174,6 +182,17 @@ function stepHijackModeGame(state, input) {
         var button4 = input[i].buttons[4].pressed;
         var button5 = input[i].buttons[5].pressed;
         var action = character.character.actions[character.pose + "_" + character.direction];
+
+        if (enemyAttacks.length > 0) {
+            for (var i = 0; i < enemyAttacks.length; ++i) {
+                if (!character.ate.has(enemyAttacks[i].id)) {
+                    character.i = 0;
+                    ++character.id;
+                    character.pose = "be_attacked";
+                    return;
+                }
+            }
+        }
 
         if (characterGrabs.length > 0 && enemyGrabs.length === 0) {
             character.pose = "grabbed";
@@ -196,6 +215,7 @@ function stepHijackModeGame(state, input) {
                 ++character.i;
             else {
                 character.i = 0;
+                ++character.id;
                 character.pose = "neutral";
             }
             break;
@@ -206,6 +226,7 @@ function stepHijackModeGame(state, input) {
                 ++character.i;
             else {
                 character.i = 0;
+                ++character.id;
                 character.pose = "neutral";
             }
             break;
@@ -216,6 +237,7 @@ function stepHijackModeGame(state, input) {
                 ++character.i;
             else {
                 character.i = 0;
+                ++character.id;
                 character.pose = "neutral";
             }
             break;
@@ -241,6 +263,7 @@ function stepHijackModeGame(state, input) {
             } else {
                 character.i = 0;
                 character.j = 0;
+                ++character.id;
                 character.pose = "neutral";
             }
 
@@ -254,14 +277,40 @@ function stepHijackModeGame(state, input) {
                 ++character.i;
             else {
                 character.i = 0;
+                ++character.id;
                 character.pose = "neutral";
             }
+
+            break;
+        case "be_attacked":
+            // TODO
+            var n = Math.floor(action.animation.sprite_sheet.width / action.animation.width);
+
+            if (character.i < n * action.animation.frames_per_sprite)
+                ++character.i;
+            else {
+                character.i = 0;
+                ++character.id;
+                character.pose = "neutral";
+            }
+            break;
         case "grabbed":
         case "be_grabbed":
             // TODO
+            var n = Math.floor(action.animation.sprite_sheet.width / action.animation.width);
+
+            if (character.i < n * action.animation.frames_per_sprite)
+                ++character.i;
+            else {
+                character.i = 0;
+                ++character.id;
+                character.pose = "neutral";
+            }
+            break;
         default:
             if (button0) {
                 character.i = 0;
+                ++character.id;
 
                 if (x0 < -0.5) {
                     character.pose = "weak";
@@ -278,15 +327,16 @@ function stepHijackModeGame(state, input) {
 
             if (button1) {
                 character.i = 0;
+                ++character.id;
 
                 if (x0 < -0.5) {
-                    character.pose = "weak";
+                    character.pose = "strong";
                     character.direction = "left";
                 } else if (x0 > 0.5) {
-                    character.pose = "weak";
+                    character.pose = "strong";
                     character.direction = "right";
                 } else {
-                    character.pose = "weak";
+                    character.pose = "strong";
                 }
 
                 break;
@@ -294,6 +344,7 @@ function stepHijackModeGame(state, input) {
 
             if (button2) {
                 character.i = 0;
+                ++character.id;
 
                 if (x0 < -0.5) {
                     character.pose = "short_jump";
@@ -310,6 +361,7 @@ function stepHijackModeGame(state, input) {
 
             if (button3) {
                 character.i = 0;
+                ++character.id;
                 if (x0 < -0.5) {
                     character.pose = "full_jump";
                     character.direction = "left";
@@ -325,6 +377,7 @@ function stepHijackModeGame(state, input) {
 
             if (button4) {
                 character.i = 0;
+                ++character.id;
 
                 if (x0 < -0.5) {
                     character.pose = "shield";
@@ -341,6 +394,7 @@ function stepHijackModeGame(state, input) {
 
             if (button5) {
                 character.i = 0;
+                ++character.id;
 
                 if (x0 < -0.5) {
                     character.pose = "grab";
@@ -358,22 +412,28 @@ function stepHijackModeGame(state, input) {
             if (x0 < -0.5) {
                 if (character.pose === "run")
                     ++character.i;
-                else
+                else {
                     character.i = 0;
+                    ++character.id;
+                }
                 character.pose = "run";
                 character.direction = "left";
             } else if (x0 > 0.5) {
                 if (character.pose === "run")
                     ++character.i;
-                else
+                else {
                     character.i = 0;
+                    ++character.id;
+                }
                 character.pose = "run";
                 character.direction = "right";
             } else {
                 if (character.pose === "neutral")
                     ++character.i;
-                else
+                else {
                     character.i = 0;
+                    ++character.id;
+                }
                 character.pose = "neutral";
             }
         }
@@ -384,6 +444,7 @@ function stepHijackModeGame(state, input) {
             } else if (character.pose === "full_jump") {
             } else {
                 character.i = 0;
+                ++character.id;
                 character.pose = "fall";
             }
 
@@ -403,8 +464,16 @@ function stepHijackModeGame(state, input) {
                 character.v.x += character.character.resistance;
             else if (character.v.x > 0)
                 character.v.x -= character.character.resistance;
+        } else if (character.pose === "be_attacked") {
+            character.v.y += character.character.gravity;
+
+            if (character.v.x < 0)
+                character.v.x += character.character.resistance;
+            else if (character.v.x > 0)
+                character.v.x -= character.character.resistance;
         } else if (character.pose === "fall") {
             character.i = 0;
+            ++character.id;
             character.pose = "neutral";
         }
     }
@@ -435,16 +504,19 @@ function stepHijackModeGame(state, input) {
                 y: character.y + getHijackParameterY(characterAction.attack),
                 width: getHijackParameterWidth(characterAction.attack),
                 height: getHijackParameterHeight(characterAction.attack),
-                damage: characterAction.attack.damage
+                damage: characterAction.attack.damage,
+                v: characterAction.attack.v
             };
 
             if (character.i <= characterAction.startup && character.i < characterAction.startup + characterAction.active && collision(characterAttack, enemyRectangle))
                 characterAttacks.push({
+                    id: character.id,
                     x: character.x + getHijackParameterX(characterAttack),
                     y: character.y + getHijackParameterY(characterAttack),
                     width: getHijackParameterWidth(characterAttack),
                     height: getHijackParameterHeight(characterAttack),
-                    damage: characterAttack.damage
+                    damage: characterAttack.damage,
+                    v: characterAttack.v
                 });
             break;
         case "grab":
@@ -457,6 +529,7 @@ function stepHijackModeGame(state, input) {
 
             if (character.i <= characterAction.startup && character.i < characterAction.startup + characterAction.active && collision(characterGrab, enemyRectangle))
                 characterGrabs.push({
+                    id: character.id,
                     x: character.x + getHijackParameterX(characterGrab),
                     y: character.y + getHijackParameterY(characterGrab),
                     width: getHijackParameterWidth(characterGrab),
@@ -473,11 +546,14 @@ function stepHijackModeGame(state, input) {
 
         if (enemyAttacks.length > 0) {
             for (var i = 0; i < enemyAttacks.length; ++i) {
-                character.odds -= enemyAttacks[i].damage;
-                enemy.odds += enemyAttacks[i].damage;
+                if (!character.ate.has(enemyAttacks[i].id)) {
+                    character.odds -= enemyAttacks[i].damage;
+                    enemy.odds += enemyAttacks[i].damage;
+                    character.v.x += enemyAttacks[i].v.x;
+                    character.v.y += enemyAttacks[i].v.y;
+                    character.ate.add(enemyAttacks[i].id);
+                }
             }
-
-            return;
         }
 
         switch (character.pose) {
