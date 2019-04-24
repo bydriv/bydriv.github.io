@@ -5,6 +5,7 @@
             "y": 0,
             "width": 64,
             "height": 96,
+            "scale": 2,
             "animation": "neutral_left"
         },
         "neutral_right": {
@@ -12,6 +13,7 @@
             "y": 0,
             "width": 64,
             "height": 96,
+            "scale": 2,
             "animation": "neutral_right"
         },
         "run_left": {
@@ -19,11 +21,13 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "animation": "run_left",
             "frames_per_move": 4,
             "move": {
                 "x": -18,
-                "y": 0
+                "y": 0,
+                "scale": 2
             }
         },
         "run_right": {
@@ -31,11 +35,13 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "animation": "run_right",
             "frames_per_move": 4,
             "move": {
                 "x": 18,
-                "y": 0
+                "y": 0,
+                "scale": 2
             }
         },
         "short_jump_top_left": {
@@ -43,11 +49,13 @@
             "y": 0,
             "width": 64,
             "height": 96,
+            "scale": 2,
             "animation": "jump_left",
             "frames_per_move": 4,
             "move": {
                 "x": 0,
-                "y": -8
+                "y": -8,
+                "scale": 2
             }
         },
         "short_jump_top_right": {
@@ -55,11 +63,13 @@
             "y": 0,
             "width": 64,
             "height": 96,
+            "scale": 2,
             "animation": "jump_right",
             "frames_per_move": 4,
             "move": {
                 "x": 0,
-                "y": -8
+                "y": -8,
+                "scale": 2
             }
         },
         "short_jump_left": {
@@ -67,11 +77,13 @@
             "y": 0,
             "width": 64,
             "height": 96,
+            "scale": 2,
             "animation": "jump_left",
             "frames_per_move": 4,
             "move": {
                 "x": -8,
-                "y": -8
+                "y": -8,
+                "scale": 2
             }
         },
         "short_jump_right": {
@@ -79,11 +91,13 @@
             "y": 0,
             "width": 64,
             "height": 96,
+            "scale": 2,
             "animation": "jump_right",
             "frames_per_move": 4,
             "move": {
                 "x": 8,
-                "y": -8
+                "y": -8,
+                "scale": 2
             }
         },
         "full_jump_top_left": {
@@ -91,11 +105,13 @@
             "y": 0,
             "width": 64,
             "height": 96,
+            "scale": 2,
             "animation": "jump_left",
             "frames_per_move": 4,
             "move": {
                 "x": 0,
-                "y": -16
+                "y": -16,
+                "scale": 2
             }
         },
         "full_jump_top_right": {
@@ -103,11 +119,13 @@
             "y": 0,
             "width": 64,
             "height": 96,
+            "scale": 2,
             "animation": "jump_right",
             "frames_per_move": 4,
             "move": {
                 "x": 0,
-                "y": -16
+                "y": -16,
+                "scale": 2
             }
         },
         "full_jump_left": {
@@ -115,11 +133,13 @@
             "y": 0,
             "width": 64,
             "height": 96,
+            "scale": 2,
             "animation": "jump_left",
             "frames_per_move": 4,
             "move": {
                 "x": -16,
-                "y": -16
+                "y": -16,
+                "scale": 2
             }
         },
         "full_jump_right": {
@@ -127,11 +147,13 @@
             "y": 0,
             "width": 64,
             "height": 96,
+            "scale": 2,
             "animation": "jump_right",
             "frames_per_move": 4,
             "move": {
                 "x": 16,
-                "y": -16
+                "y": -16,
+                "scale": 2
             }
         },
         "fall_bottom_left": {
@@ -139,11 +161,13 @@
             "y": 0,
             "width": 64,
             "height": 96,
+            "scale": 2,
             "animation": "fall_left",
             "frames_per_move": 4,
             "move": {
                 "x": 0,
-                "y": 4
+                "y": 4,
+                "scale": 2
             }
         },
         "fall_bottom_right": {
@@ -151,11 +175,13 @@
             "y": 0,
             "width": 64,
             "height": 96,
+            "scale": 2,
             "animation": "fall_right",
             "frames_per_move": 4,
             "move": {
                 "x": 0,
-                "y": 4
+                "y": 4,
+                "scale": 2
             }
         },
         "fall_left": {
@@ -163,11 +189,13 @@
             "y": 0,
             "width": 64,
             "height": 96,
+            "scale": 2,
             "animation": "fall_left",
             "frames_per_move": 4,
             "move": {
                 "x": 0,
-                "y": 4
+                "y": 4,
+                "scale": 2
             }
         },
         "fall_right": {
@@ -175,11 +203,13 @@
             "y": 0,
             "width": 64,
             "height": 96,
+            "scale": 2,
             "animation": "fall_right",
             "frames_per_move": 4,
             "move": {
                 "x": 0,
-                "y": 4
+                "y": 4,
+                "scale": 2
             }
         },
         "weak_left": {
@@ -187,6 +217,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "animation": "weak_left",
             "startup": 8,
             "active": 8,
@@ -196,6 +227,7 @@
                 "y": 0,
                 "width": 96,
                 "height": 96,
+                "scale": 2,
                 "damage": 3
             }
         },
@@ -204,6 +236,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "animation": "weak_right",
             "startup": 8,
             "active": 8,
@@ -213,6 +246,7 @@
                 "y": 0,
                 "width": 96,
                 "height": 96,
+                "scale": 2,
                 "damage": 3
             }
         },
@@ -221,6 +255,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "animation": "strong_left",
             "startup": 8,
             "active": 8,
@@ -230,6 +265,7 @@
                 "y": 0,
                 "width": 96,
                 "height": 96,
+                "scale": 2,
                 "damage": 10
             }
         },
@@ -238,6 +274,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "animation": "strong_right",
             "startup": 8,
             "active": 8,
@@ -247,6 +284,7 @@
                 "y": 0,
                 "width": 96,
                 "height": 96,
+                "scale": 2,
                 "damage": 10
             }
         },
@@ -255,6 +293,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "animation": "shield_left",
             "startup": 8,
             "recovery": 16
@@ -264,6 +303,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "animation": "shield_right",
             "startup": 8,
             "recovery": 16
@@ -273,6 +313,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "animation": "grab_left",
             "startup": 8,
             "active": 8,
@@ -281,7 +322,8 @@
                 "x": 0,
                 "y": 0,
                 "width": 96,
-                "height": 96
+                "height": 96,
+                "scale": 2
             }
         },
         "grab_right": {
@@ -289,6 +331,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "animation": "grab_right",
             "startup": 8,
             "active": 8,
@@ -297,7 +340,8 @@
                 "x": 0,
                 "y": 0,
                 "width": 96,
-                "height": 96
+                "height": 96,
+                "scale": 2
             }
         },
         "grabbed_left": {
@@ -305,6 +349,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "animation": "grabbed_left"
         },
         "grabbed_right": {
@@ -312,6 +357,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "animation": "grabbed_right"
         },
         "be_grabbed_left": {
@@ -319,6 +365,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "animation": "be_grabbed_left"
         },
         "be_grabbed_right": {
@@ -326,6 +373,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "animation": "be_grabbed_right"
         }
     },
@@ -335,6 +383,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "frames_per_sprite": 5,
             "sprite_sheet": "pixelart/teiri/neutral_left.png"
         },
@@ -343,6 +392,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "frames_per_sprite": 5,
             "sprite_sheet": "pixelart/teiri/neutral_right.png"
         },
@@ -351,6 +401,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "frames_per_sprite": 4,
             "sprite_sheet": "pixelart/teiri/run_left.png"
         },
@@ -359,6 +410,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "frames_per_sprite": 4,
             "sprite_sheet": "pixelart/teiri/run_right.png"
         },
@@ -367,6 +419,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "frames_per_sprite": 4,
             "sprite_sheet": "pixelart/teiri/jump_left.png"
         },
@@ -375,6 +428,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "frames_per_sprite": 4,
             "sprite_sheet": "pixelart/teiri/jump_right.png"
         },
@@ -383,6 +437,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "frames_per_sprite": 4,
             "sprite_sheet": "pixelart/teiri/fall_left.png"
         },
@@ -391,6 +446,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "frames_per_sprite": 4,
             "sprite_sheet": "pixelart/teiri/fall_right.png"
         },
@@ -399,6 +455,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "frames_per_sprite": 4,
             "sprite_sheet": "pixelart/teiri/weak_left.png"
         },
@@ -407,6 +464,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "frames_per_sprite": 4,
             "sprite_sheet": "pixelart/teiri/weak_right.png"
         },
@@ -415,6 +473,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "frames_per_sprite": 4,
             "sprite_sheet": "pixelart/teiri/strong_left.png"
         },
@@ -423,6 +482,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "frames_per_sprite": 4,
             "sprite_sheet": "pixelart/teiri/strong_right.png"
         },
@@ -431,6 +491,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "frames_per_sprite": 4,
             "sprite_sheet": "pixelart/teiri/shield_left.png"
         },
@@ -439,6 +500,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "frames_per_sprite": 4,
             "sprite_sheet": "pixelart/teiri/shield_right.png"
         },
@@ -447,6 +509,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "frames_per_sprite": 4,
             "sprite_sheet": "pixelart/teiri/grab_left.png"
         },
@@ -455,6 +518,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "frames_per_sprite": 4,
             "sprite_sheet": "pixelart/teiri/grab_right.png"
         },
@@ -463,6 +527,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "frames_per_sprite": 4,
             "sprite_sheet": "pixelart/teiri/grabbed_left.png"
         },
@@ -471,6 +536,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "frames_per_sprite": 4,
             "sprite_sheet": "pixelart/teiri/grabbed_right.png"
         },
@@ -479,6 +545,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "frames_per_sprite": 4,
             "sprite_sheet": "pixelart/teiri/be_grabbed_left.png"
         },
@@ -487,6 +554,7 @@
             "y": 0,
             "width": 96,
             "height": 96,
+            "scale": 2,
             "frames_per_sprite": 4,
             "sprite_sheet": "pixelart/teiri/be_grabbed_right.png"
         }

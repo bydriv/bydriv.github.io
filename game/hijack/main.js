@@ -102,8 +102,8 @@ function stepHijackModeCharacterSelection(state, input) {
                 y: 0
             },
             odds: 50,
-            x: -character0.actions.neutral_right.x * 2,
-            y: state.config.height - character0.actions.neutral_right.y * 2 - character0.actions.neutral_right.height * 2,
+            x: -getHijackParameterX(character0.actions.neutral_right),
+            y: getHijackParameterHeight(state.config) - getHijackParameterY(character0.actions.neutral_right) - getHijackParameterHeight(character0.actions.neutral_right),
             pose: "neutral",
             direction: "right",
             character: character0
@@ -112,8 +112,8 @@ function stepHijackModeCharacterSelection(state, input) {
         state.character1 = {
             i: 0,
             odds: 50,
-            x: state.config.width - character0.actions.neutral_left.x * 2 - character0.actions.neutral_left.width * 2,
-            y: state.config.height - character0.actions.neutral_left.y * 2 - character0.actions.neutral_left.height * 2,
+            x: getHijackParameterWidth(state.config) - getHijackParameterX(character0.actions.neutral_left) - getHijackParameterWidth(character0.actions.neutral_left),
+            y: getHijackParameterHeight(state.config) - getHijackParameterY(character0.actions.neutral_left) - getHijackParameterHeight(character0.actions.neutral_left),
             pose: "neutral",
             direction: "left",
             character: character1
@@ -390,7 +390,7 @@ function stepHijackModeGame(state, input) {
             }
         }
 
-        if (character.y + action.y * 2 + action.height * 2 < state.config.height) {
+        if (character.y + getHijackParameterY(action) + getHijackParameterHeight(action) < getHijackParameterHeight(state.config)) {
             if (character.pose === "fall" || character.pose === "fall_bottom") {
                 character.pose = "fall_bottom";
             } else if (character.pose === "short_jump" || character.pose === "short_jump_top") {
@@ -423,53 +423,53 @@ function stepHijackModeGame(state, input) {
         var enemyAction = enemy.character.actions[enemy.pose + "_" + enemy.direction];
 
         var characterRectangle = {
-            x: character.x + characterAction.x * 2,
-            y: character.y + characterAction.y * 2,
-            width: characterAction.width * 2,
-            height: characterAction.height * 2
+            x: character.x + getHijackParameterX(characterAction),
+            y: character.y + getHijackParameterY(characterAction),
+            width: getHijackParameterWidth(characterAction),
+            height: getHijackParameterHeight(characterAction)
         };
 
         var enemyRectangle = {
-            x: enemy.x + enemyAction.x * 2,
-            y: enemy.y + enemyAction.y * 2,
-            width: enemyAction.width * 2,
-            height: enemyAction.height * 2
+            x: enemy.x + getHijackParameterX(enemyAction),
+            y: enemy.y + getHijackParameterY(enemyAction),
+            width: getHijackParameterWidth(enemyAction),
+            height: getHijackParameterHeight(enemyAction)
         };
 
         switch (character.pose) {
         case "weak":
         case "strong":
             var characterAttack = {
-                x: character.x + characterAction.attack.x * 2,
-                y: character.y + characterAction.attack.y * 2,
-                width: characterAction.attack.width * 2,
-                height: characterAction.attack.height * 2,
+                x: character.x + getHijackParameterX(characterAction.attack),
+                y: character.y + getHijackParameterY(characterAction.attack),
+                width: getHijackParameterWidth(characterAction.attack),
+                height: getHijackParameterHeight(characterAction.attack),
                 damage: characterAction.attack.damage
             };
 
             if (character.i <= characterAction.startup && character.i < characterAction.startup + characterAction.active && collision(characterAttack, enemyRectangle))
                 characterAttacks.push({
-                    x: character.x + characterAttack.x * 2,
-                    y: character.y + characterAttack.y * 2,
-                    width: characterAttack.width * 2,
-                    height: characterAttack.height * 2,
+                    x: character.x + getHijackParameterX(characterAttack),
+                    y: character.y + getHijackParameterY(characterAttack),
+                    width: getHijackParameterWidth(characterAttack),
+                    height: getHijackParameterHeight(characterAttack),
                     damage: characterAttack.damage
                 });
             break;
         case "grab":
             var characterGrab = {
-                x: character.x + characterAction.grab.x * 2,
-                y: character.y + characterAction.grab.y * 2,
-                width: characterAction.grab.width * 2,
-                height: characterAction.grab.height * 2
+                x: character.x + getHijackParameterX(characterAction.grab),
+                y: character.y + getHijackParameterY(characterAction.grab),
+                width: getHijackParameterWidth(characterAction.grab),
+                height: getHijackParameterHeight(characterAction.grab)
             };
 
             if (character.i <= characterAction.startup && character.i < characterAction.startup + characterAction.active && collision(characterGrab, enemyRectangle))
                 characterGrabs.push({
-                    x: character.x + characterGrab.x * 2,
-                    y: character.y + characterGrab.y * 2,
-                    width: characterGrab.width * 2,
-                    height: characterGrab.height * 2
+                    x: character.x + getHijackParameterX(characterGrab),
+                    y: character.y + getHijackParameterY(characterGrab),
+                    width: getHijackParameterWidth(characterGrab),
+                    height: getHijackParameterHeight(characterGrab)
                 });
             break;
         }
@@ -497,8 +497,8 @@ function stepHijackModeGame(state, input) {
         case "full_jump":
             if (character.i === 0) {
                 var v = {
-                    x: action.move.x * 2,
-                    y: action.move.y * 2
+                    x: getHijackParameterX(action.move),
+                    y: getHijackParameterY(action.move)
                 };
 
                 character.v.x += v.x;
@@ -514,8 +514,8 @@ function stepHijackModeGame(state, input) {
         case "fall_bottom":
             if (character.i % action.frames_per_move === 0) {
                 var v = {
-                    x: action.move.x * 2,
-                    y: action.move.y * 2
+                    x: getHijackParameterX(action.move),
+                    y: getHijackParameterY(action.move)
                 };
 
                 character.v.x += v.x;
@@ -542,8 +542,8 @@ function stepHijackModeGame(state, input) {
         case "run":
             if (character.i === 0) {
                 var v = {
-                    x: action.move.x * 2,
-                    y: action.move.y * 2
+                    x: getHijackParameterX(action.move),
+                    y: getHijackParameterY(action.move)
                 };
 
                 character.v.x += v.x;
@@ -558,8 +558,8 @@ function stepHijackModeGame(state, input) {
         default:
         }
 
-        character.x = Math.min(Math.max(-action.x * 2, character.x), state.config.width - action.x - action.width * 2);
-        character.y = Math.min(Math.max(-action.y * 2, character.y), state.config.height - action.y - action.height * 2);
+        character.x = Math.min(Math.max(-getHijackParameterX(action), character.x), getHijackParameterWidth(state.config) - getHijackParameterX(action) - getHijackParameterWidth(action));
+        character.y = Math.min(Math.max(-getHijackParameterY(action), character.y), getHijackParameterHeight(state.config) - getHijackParameterY(action) - getHijackParameterHeight(action));
     }
 }
 
@@ -577,10 +577,10 @@ function viewHijackModeTitle(state) {
         sy: 0,
         sw: state.config.logo.width,
         sh: state.config.logo.height,
-        dx: (state.config.width - state.config.logo.width * 2) / 2,
-        dy: (state.config.height - state.config.logo.height * 2) / 2,
-        dw: state.config.logo.width * 2,
-        dh: state.config.logo.height * 2,
+        dx: (getHijackParameterWidth(state.config) - state.config.logo.width * state.config.logo_scale) / 2,
+        dy: (getHijackParameterHeight(state.config) - state.config.logo.height * state.config.logo_scale) / 2,
+        dw: state.config.logo.width * state.config.logo_scale,
+        dh: state.config.logo.height * state.config.logo_scale,
         img: state.config.logo
     }];
 
@@ -613,10 +613,10 @@ function viewHijackModeGame(state) {
             sy: 0,
             sw: animation.width,
             sh: animation.height,
-            dx: character.x + animation.x * 2,
-            dy: character.y + animation.y * 2,
-            dw: animation.width * 2,
-            dh: animation.height * 2,
+            dx: character.x + getHijackParameterX(animation),
+            dy: character.y + getHijackParameterY(animation),
+            dw: getHijackParameterWidth(animation),
+            dh: getHijackParameterHeight(animation),
             img: animation.sprite_sheet
         });
     }
@@ -634,6 +634,11 @@ function loadConfig(src) {
                 reject();
             }
 
+            if (typeof config.logo_scale !== "number") {
+                console.error("config.logo_scale isn't a number: %o", config.logo_scale);
+                reject();
+            }
+
             if (typeof config.width !== "number") {
                 console.error("config.width isn't a number: %o", config.width);
                 reject();
@@ -641,6 +646,11 @@ function loadConfig(src) {
 
             if (typeof config.height !== "number") {
                 console.error("config.height isn't a number: %o", config.height);
+                reject();
+            }
+
+            if (typeof config.scale !== "number") {
+                console.error("config.scale isn't a number: %o", config.scale);
                 reject();
             }
 
@@ -702,6 +712,11 @@ function loadConfig(src) {
                                 reject();
                             }
 
+                            if (typeof animation.scale !== "number") {
+                                console.error("animation.scale isn't a number: %o", animation.scale);
+                                reject();
+                            }
+
                             if (typeof animation.frames_per_sprite !== "number") {
                                 console.error("animation.frames_per_sprite isn't a number: %o", animation.frames_per_sprite);
                                 reject();
@@ -720,6 +735,7 @@ function loadConfig(src) {
                                         y: animation.y,
                                         width: animation.width,
                                         height: animation.height,
+                                        scale: animation.scale,
                                         frames_per_sprite: animation.frames_per_sprite,
                                         sprite_sheet: sprite_sheet
                                     };
@@ -791,8 +807,10 @@ function loadConfig(src) {
                     Promise.all(promises0).then(function (characters) {
                         resolve({
                             logo: logo,
+                            logo_scale: config.logo_scale,
                             width: config.width,
                             height: config.height,
+                            scale: config.scale,
                             characters: characters
                         });
                     });
@@ -800,6 +818,22 @@ function loadConfig(src) {
             });
         });
     });
+}
+
+function getHijackParameterX(position) {
+    return position.x * position.scale;
+}
+
+function getHijackParameterY(position) {
+    return position.y * position.scale;
+}
+
+function getHijackParameterWidth(rectangle) {
+    return rectangle.width * rectangle.scale;
+}
+
+function getHijackParameterHeight(rectangle) {
+    return rectangle.height * rectangle.scale;
 }
 
 window.addEventListener("load", function () {
