@@ -11,8 +11,6 @@ function loadImage(src) {
     });
 }
 
-var HIJACK_WIDTH = 640;
-var HIJACK_HEIGHT = 480;
 var HIJACK_MODE_TITLE = "title";
 var HIJACK_MODE_CHARACTER_SELECTION = "characterSelection";
 var HIJACK_MODE_GAME = "game";
@@ -105,7 +103,7 @@ function stepHijackModeCharacterSelection(state, input) {
             },
             odds: 50,
             x: -character0.actions.neutral_right.x * 2,
-            y: HIJACK_HEIGHT - character0.actions.neutral_right.y * 2 - character0.actions.neutral_right.height * 2,
+            y: state.config.height - character0.actions.neutral_right.y * 2 - character0.actions.neutral_right.height * 2,
             pose: "neutral",
             direction: "right",
             character: character0
@@ -114,8 +112,8 @@ function stepHijackModeCharacterSelection(state, input) {
         state.character1 = {
             i: 0,
             odds: 50,
-            x: HIJACK_WIDTH - character0.actions.neutral_left.x * 2 - character0.actions.neutral_left.width * 2,
-            y: HIJACK_HEIGHT - character0.actions.neutral_left.y * 2 - character0.actions.neutral_left.height * 2,
+            x: state.config.width - character0.actions.neutral_left.x * 2 - character0.actions.neutral_left.width * 2,
+            y: state.config.height - character0.actions.neutral_left.y * 2 - character0.actions.neutral_left.height * 2,
             pose: "neutral",
             direction: "left",
             character: character1
@@ -392,7 +390,7 @@ function stepHijackModeGame(state, input) {
             }
         }
 
-        if (character.y + action.y * 2 + action.height * 2 < HIJACK_HEIGHT) {
+        if (character.y + action.y * 2 + action.height * 2 < state.config.height) {
             if (character.pose === "fall" || character.pose === "fall_bottom") {
                 character.pose = "fall_bottom";
             } else if (character.pose === "short_jump" || character.pose === "short_jump_top") {
@@ -560,8 +558,8 @@ function stepHijackModeGame(state, input) {
         default:
         }
 
-        character.x = Math.min(Math.max(-action.x * 2, character.x), HIJACK_WIDTH - action.x - action.width * 2);
-        character.y = Math.min(Math.max(-action.y * 2, character.y), HIJACK_HEIGHT - action.y - action.height * 2);
+        character.x = Math.min(Math.max(-action.x * 2, character.x), state.config.width - action.x - action.width * 2);
+        character.y = Math.min(Math.max(-action.y * 2, character.y), state.config.height - action.y - action.height * 2);
     }
 }
 
@@ -579,8 +577,8 @@ function viewHijackModeTitle(state) {
         sy: 0,
         sw: state.config.logo.width,
         sh: state.config.logo.height,
-        dx: (HIJACK_WIDTH - state.config.logo.width * 2) / 2,
-        dy: (HIJACK_HEIGHT - state.config.logo.height * 2) / 2,
+        dx: (state.config.width - state.config.logo.width * 2) / 2,
+        dy: (state.config.height - state.config.logo.height * 2) / 2,
         dw: state.config.logo.width * 2,
         dh: state.config.logo.height * 2,
         img: state.config.logo
@@ -633,6 +631,16 @@ function loadConfig(src) {
         fetch(src, {cache: "no-cache"}).then(function (config) { return config.json(); }).then(function (config) {
             if (typeof config.logo !== "string") {
                 console.error("config.logo isn't a string: %o", i, config.logo);
+                reject();
+            }
+
+            if (typeof config.width !== "number") {
+                console.error("config.width isn't a number: %o", config.width);
+                reject();
+            }
+
+            if (typeof config.height !== "number") {
+                console.error("config.height isn't a number: %o", config.height);
                 reject();
             }
 
@@ -783,6 +791,8 @@ function loadConfig(src) {
                     Promise.all(promises0).then(function (characters) {
                         resolve({
                             logo: logo,
+                            width: config.width,
+                            height: config.height,
                             characters: characters
                         });
                     });

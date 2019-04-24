@@ -1,5 +1,7 @@
 {
     "logo": "pixelart/system/logo.png",
+    "width": 640,
+    "height": 480,
     "characters": [
         "character/teiri.json"
     ]
