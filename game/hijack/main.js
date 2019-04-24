@@ -200,7 +200,7 @@ function stepHijackModeGame(state, input) {
         case "short_jump":
             var n = Math.floor(action.animation.sprite_sheet.width / action.animation.width);
 
-            if (character.i < n * action.frames_per_move)
+            if (character.i < n * action.animation.frames_per_sprite)
                 ++character.i;
             else {
                 character.i = 0;
@@ -218,7 +218,7 @@ function stepHijackModeGame(state, input) {
         case "full_jump":
             var n = Math.floor(action.animation.sprite_sheet.width / action.animation.width);
 
-            if (character.i < n * action.frames_per_move)
+            if (character.i < n * action.animation.frames_per_sprite)
                 ++character.i;
             else {
                 character.i = 0;
@@ -226,15 +226,10 @@ function stepHijackModeGame(state, input) {
             }
             break;
         case "fall":
-        case "fall_bottom":
             if (x0 < -0.5) {
-                character.pose = "fall";
                 character.direction = "left";
             } else if (x0 > 0.5) {
-                character.pose = "fall";
                 character.direction = "right";
-            } else {
-                character.pose = "fall_bottom";
             }
 
             ++character.i;
@@ -391,13 +386,12 @@ function stepHijackModeGame(state, input) {
         }
 
         if (character.y + getHijackParameterY(action) + getHijackParameterHeight(action) < getHijackParameterHeight(state.config)) {
-            if (character.pose === "fall" || character.pose === "fall_bottom") {
-                character.pose = "fall_bottom";
+            if (character.pose === "fall") {
             } else if (character.pose === "short_jump" || character.pose === "short_jump_top") {
             } else if (character.pose === "full_jump" || character.pose === "full_jump_top") {
             } else {
                 character.i = 0;
-                character.pose = "fall_bottom";
+                character.pose = "fall";
             }
 
             if (x0 < -0.5) {
@@ -416,7 +410,7 @@ function stepHijackModeGame(state, input) {
                 character.v.x += character.character.resistance;
             else if (character.v.x > 0)
                 character.v.x -= character.character.resistance;
-        } else if (character.pose === "fall" || character.pose === "fall_bottom") {
+        } else if (character.pose === "fall") {
             character.i = 0;
             character.pose = "neutral";
         }
@@ -510,17 +504,6 @@ function stepHijackModeGame(state, input) {
             }
             break;
         case "fall":
-        case "fall_bottom":
-            /*
-            if (character.i % action.frames_per_move === 0) {
-                var v = {
-                    x: getHijackParameterX(action.move),
-                    y: getHijackParameterY(action.move)
-                };
-
-                character.v.x += v.x;
-                character.v.y += v.y;
-            }*/
             break;
         case "shield":
             break;
@@ -550,11 +533,9 @@ function stepHijackModeGame(state, input) {
         default:
         }
 
-        if (action.move != null) {
-            if (character.i % action.frames_per_move === 0) {
-                character.x += Math.round(character.v.x);
-                character.y += Math.round(character.v.y);
-            }
+        if (character.i % action.animation.frames_per_sprite === 0) {
+            character.x += Math.round(character.v.x);
+            character.y += Math.round(character.v.y);
         }
 
         character.x = Math.min(Math.max(-getHijackParameterX(action), character.x), getHijackParameterWidth(state.config) - getHijackParameterX(action) - getHijackParameterWidth(action));
