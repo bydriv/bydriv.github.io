@@ -45,32 +45,6 @@
                 "scale": 2
             }
         },
-        "short_jump_top_left": {
-            "x": 16,
-            "y": 0,
-            "width": 64,
-            "height": 96,
-            "scale": 2,
-            "animation": "jump_left",
-            "move": {
-                "x": 0,
-                "y": -16,
-                "scale": 2
-            }
-        },
-        "short_jump_top_right": {
-            "x": 16,
-            "y": 0,
-            "width": 64,
-            "height": 96,
-            "scale": 2,
-            "animation": "jump_right",
-            "move": {
-                "x": 0,
-                "y": -16,
-                "scale": 2
-            }
-        },
         "short_jump_left": {
             "x": 16,
             "y": 0,
@@ -79,7 +53,7 @@
             "scale": 2,
             "animation": "jump_left",
             "move": {
-                "x": -8,
+                "x": 0,
                 "y": -16,
                 "scale": 2
             }
@@ -92,34 +66,8 @@
             "scale": 2,
             "animation": "jump_right",
             "move": {
-                "x": 8,
+                "x": 0,
                 "y": -16,
-                "scale": 2
-            }
-        },
-        "full_jump_top_left": {
-            "x": 16,
-            "y": 0,
-            "width": 64,
-            "height": 96,
-            "scale": 2,
-            "animation": "jump_left",
-            "move": {
-                "x": 0,
-                "y": -32,
-                "scale": 2
-            }
-        },
-        "full_jump_top_right": {
-            "x": 16,
-            "y": 0,
-            "width": 64,
-            "height": 96,
-            "scale": 2,
-            "animation": "jump_right",
-            "move": {
-                "x": 0,
-                "y": -32,
                 "scale": 2
             }
         },
@@ -131,7 +79,7 @@
             "scale": 2,
             "animation": "jump_left",
             "move": {
-                "x": -16,
+                "x": 0,
                 "y": -32,
                 "scale": 2
             }
@@ -144,7 +92,7 @@
             "scale": 2,
             "animation": "jump_right",
             "move": {
-                "x": 16,
+                "x": 0,
                 "y": -32,
                 "scale": 2
             }

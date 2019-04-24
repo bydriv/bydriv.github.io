@@ -189,14 +189,6 @@ function stepHijackModeGame(state, input) {
                 character.pose = "neutral";
             }
             break;
-        case "short_jump_top":
-            if (x0 < -0.5) {
-                character.pose = "short_jump";
-                character.direction = "left";
-            } else if (x0 > 0.5) {
-                character.pose = "short_jump";
-                character.direction = "right";
-            }
         case "short_jump":
             var n = Math.floor(action.animation.sprite_sheet.width / action.animation.width);
 
@@ -207,14 +199,6 @@ function stepHijackModeGame(state, input) {
                 character.pose = "neutral";
             }
             break;
-        case "full_jump_top":
-            if (x0 < -0.5) {
-                character.pose = "full_jump";
-                character.direction = "left";
-            } else if (x0 > 0.5) {
-                character.pose = "full_jump";
-                character.direction = "right";
-            }
         case "full_jump":
             var n = Math.floor(action.animation.sprite_sheet.width / action.animation.width);
 
@@ -308,7 +292,7 @@ function stepHijackModeGame(state, input) {
                     character.pose = "short_jump";
                     character.direction = "right";
                 } else {
-                    character.pose = "short_jump_top";
+                    character.pose = "short_jump";
                 }
 
                 break;
@@ -316,7 +300,6 @@ function stepHijackModeGame(state, input) {
 
             if (button3) {
                 character.i = 0;
-
                 if (x0 < -0.5) {
                     character.pose = "full_jump";
                     character.direction = "left";
@@ -324,7 +307,7 @@ function stepHijackModeGame(state, input) {
                     character.pose = "full_jump";
                     character.direction = "right";
                 } else {
-                    character.pose = "full_jump_top";
+                    character.pose = "full_jump";
                 }
 
                 break;
@@ -387,8 +370,8 @@ function stepHijackModeGame(state, input) {
 
         if (character.y + getHijackParameterY(action) + getHijackParameterHeight(action) < getHijackParameterHeight(state.config)) {
             if (character.pose === "fall") {
-            } else if (character.pose === "short_jump" || character.pose === "short_jump_top") {
-            } else if (character.pose === "full_jump" || character.pose === "full_jump_top") {
+            } else if (character.pose === "short_jump") {
+            } else if (character.pose === "full_jump") {
             } else {
                 character.i = 0;
                 character.pose = "fall";
@@ -474,6 +457,8 @@ function stepHijackModeGame(state, input) {
     }
 
     function stepCharacterApply(i, character, characterAttacks, characterGrabs, enemy, enemyAttacks, enemyGrabs) {
+        var x0 = input[i].axes[0];
+        var y0 = input[i].axes[1];
         var action = character.character.actions[character.pose + "_" + character.direction];
 
         if (enemyAttacks.length > 0) {
@@ -489,8 +474,6 @@ function stepHijackModeGame(state, input) {
         case "weak":
         case "strong":
             break;
-        case "short_jump_top":
-        case "full_jump_top":
         case "short_jump":
         case "full_jump":
             if (character.i === 0) {
@@ -498,6 +481,14 @@ function stepHijackModeGame(state, input) {
                     x: getHijackParameterX(action.move),
                     y: getHijackParameterY(action.move)
                 };
+
+                if (x0 < -0.5) {
+                    v.x += character.character.actions.run_left.move.x;
+                    v.y += character.character.actions.run_left.move.y;
+                } else if (x0 > 0.5) {
+                    v.x += character.character.actions.run_right.move.x;
+                    v.y += character.character.actions.run_right.move.y;
+                }
 
                 character.v.x += v.x;
                 character.v.y += v.y;
