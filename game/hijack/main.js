@@ -86,13 +86,15 @@ function stepHijackModeTitle(state, input) {
         state.selection0 =
             {
                 x: 0,
-                y: 0
+                y: 0,
+                character: state.config.characters[0]
             };
 
         state.selection1 =
             {
                 x: 0,
-                y: 0
+                y: 0,
+                character: state.config.characters[0]
             };
     }
 
@@ -100,11 +102,11 @@ function stepHijackModeTitle(state, input) {
 }
 
 function stepHijackModeCharacterSelection(state, input) {
-    if (input.some(function (pad) { return pad.buttons.some(function (button) { return button.pressed; }); })) {
+    if (input.some(function (pad) { return pad.buttons[0].pressed; })) {
         state.mode = HIJACK_MODE_GAME;
 
-        var character0 = state.config.characters[0];
-        var character1 = state.config.characters[0];
+        var character0 = state.selection0.character;
+        var character1 = state.selection0.character;
         var stage = state.config.stages[0];
 
         state.x = 0;
@@ -681,6 +683,35 @@ function viewHijackModeTitle(state) {
 function viewHijackModeCharacterSelection(state) {
     var views = [];
 
+    var portrait0 = state.selection0.character.portrait_right;
+    var portrait1 = state.selection1.character.portrait_left;
+
+    views.push({
+        type: "image",
+        sx: 0,
+        sy: 0,
+        sw: portrait0.width,
+        sh: portrait0.height,
+        dx: 0,
+        dy: 0,
+        dw: portrait0.width,
+        dh: portrait0.height,
+        img: portrait0
+    });
+
+    views.push({
+        type: "image",
+        sx: 0,
+        sy: 0,
+        sw: portrait1.width,
+        sh: portrait1.height,
+        dx: state.config.width - portrait1.width,
+        dy: 0,
+        dw: portrait1.width,
+        dh: portrait1.height,
+        img: portrait1
+    });
+
     return views;
 }
 
@@ -987,6 +1018,16 @@ function loadConfig(src) {
                             reject();
                         }
 
+                        if (typeof character.portrait_left !== "string") {
+                            console.error("character.portrait_left isn't a string: %o", character.portrait_left);
+                            reject();
+                        }
+
+                        if (typeof character.portrait_right !== "string") {
+                            console.error("character.portrait_right isn't a string: %o", character.portrait_right);
+                            reject();
+                        }
+
                         if (Object.prototype.toString.call(character.actions) !== "[object Object]") {
                             console.error("character.actions isn't an onject: %o", character.actions);
                             reject();
@@ -1057,7 +1098,10 @@ function loadConfig(src) {
                             }(prop, animation));
                         }
 
-                        promises0.push(Promise.all(promises1).then(function (_animations) {
+                        promises0.push(Promise.all([loadImage(character.portrait_left), loadImage(character.portrait_right), Promise.all(promises1)]).then(function (xs) {
+                            var portrait_left = xs[0];
+                            var portrait_right = xs[1];
+                            var _animations = xs[2];
                             var animations = {};
 
                             for (var j = 0; j < _animations.length; ++j)
@@ -1115,6 +1159,8 @@ function loadConfig(src) {
                                 gravity: character.gravity,
                                 resistance: character.resistance,
                                 dexterity: character.dexterity,
+                                portrait_left: portrait_left,
+                                portrait_right: portrait_right,
                                 actions: actions,
                                 animations: animations
                             };
