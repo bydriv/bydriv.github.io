@@ -1,0 +1,26 @@
+{
+    "foreground": {
+        "width": 1280,
+        "height": 480,
+        "frames_per_sprite": 4,
+        "sprite_sheet": "pixelart/los-angeles/foreground.png"
+    },
+    "floor": {
+        "width": 1280,
+        "height": 480,
+        "frames_per_sprite": 4,
+        "sprite_sheet": "pixelart/los-angeles/floor.png"
+    },
+    "background": {
+        "width": 1280,
+        "height": 480,
+        "frames_per_sprite": 4,
+        "sprite_sheet": "pixelart/los-angeles/background.png"
+    },
+    "perspective": {
+        "width": 1280,
+        "height": 480,
+        "frames_per_sprite": 4,
+        "sprite_sheet": "pixelart/los-angeles/perspective.png"
+    }
+}

@@ -15,6 +15,7 @@ var HIJACK_MODE_TITLE = "title";
 var HIJACK_MODE_CHARACTER_SELECTION = "characterSelection";
 var HIJACK_MODE_GAME = "game";
 var HIJACK_MODE_RESULT = "result";
+var HIJACK_FLOOR_HEIGHT = 16;
 
 function newHijack(config, onscreenCanvas, offscreenCanvas) {
     return {
@@ -104,6 +105,10 @@ function stepHijackModeCharacterSelection(state, input) {
 
         var character0 = state.config.characters[0];
         var character1 = state.config.characters[0];
+        var stage = state.config.stages[0];
+
+        state.x = 0;
+        state.y = 0;
 
         state.character0 = {
             i: 0,
@@ -114,7 +119,7 @@ function stepHijackModeCharacterSelection(state, input) {
             },
             odds: 50,
             x: -getHijackParameterX(character0.actions.neutral_right),
-            y: getHijackParameterHeight(state.config) - getHijackParameterY(character0.actions.neutral_right) - getHijackParameterHeight(character0.actions.neutral_right),
+            y: getHijackParameterHeight(state.config) - getHijackParameterY(character0.actions.neutral_right) - getHijackParameterHeight(character0.actions.neutral_right) - HIJACK_FLOOR_HEIGHT,
             pose: "neutral",
             direction: "right",
             ate: new Set(),
@@ -130,11 +135,15 @@ function stepHijackModeCharacterSelection(state, input) {
             },
             odds: 50,
             x: getHijackParameterWidth(state.config) - getHijackParameterX(character0.actions.neutral_left) - getHijackParameterWidth(character0.actions.neutral_left),
-            y: getHijackParameterHeight(state.config) - getHijackParameterY(character0.actions.neutral_left) - getHijackParameterHeight(character0.actions.neutral_left),
+            y: getHijackParameterHeight(state.config) - getHijackParameterY(character0.actions.neutral_left) - getHijackParameterHeight(character0.actions.neutral_left) - HIJACK_FLOOR_HEIGHT,
             pose: "neutral",
             direction: "left",
             ate: new Set(),
             character: character1
+        };
+
+        state.stage = {
+            stage: stage
         };
     }
 
@@ -168,6 +177,20 @@ function stepHijackModeGame(state, input) {
         stepCharacterApply(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
         stepCharacterApply(1, state.character1, attacks1, grabs1, state.character0, attacks0, grabs0);
         break;
+    }
+
+    var action0 = state.character0.character.actions[state.character0.pose + "_" + state.character0.direction];
+    var action1 = state.character1.character.actions[state.character1.pose + "_" + state.character1.direction];
+
+    var left = Math.min(state.character0.x + getHijackParameterX(action0), state.character1.x + getHijackParameterX(action1));
+    var right = Math.max(state.character0.x + getHijackParameterX(action0) + getHijackParameterWidth(action0), state.character1.x + getHijackParameterX(action1) + getHijackParameterWidth(action1));
+
+    if (left > state.x) {
+        state.x = left;
+    }
+
+    if (right < state.x + state.config.width) {
+        state.x = right - state.config.width;
     }
 
     return state;
@@ -438,7 +461,7 @@ function stepHijackModeGame(state, input) {
             }
         }
 
-        if (character.y + getHijackParameterY(action) + getHijackParameterHeight(action) < getHijackParameterHeight(state.config)) {
+        if (character.y + getHijackParameterY(action) + getHijackParameterHeight(action) < getHijackParameterHeight(state.config) - HIJACK_FLOOR_HEIGHT) {
             if (character.pose === "fall") {
             } else if (character.pose === "short_jump") {
             } else if (character.pose === "full_jump") {
@@ -549,6 +572,7 @@ function stepHijackModeGame(state, input) {
         var x0 = input[i].axes[0];
         var y0 = input[i].axes[1];
         var action = character.character.actions[character.pose + "_" + character.direction];
+        var enemyAction = enemy.character.actions[enemy.pose + "_" + enemy.direction];
 
         if (enemyAttacks.length > 0) {
             for (var i = 0; i < enemyAttacks.length; ++i) {
@@ -621,8 +645,11 @@ function stepHijackModeGame(state, input) {
             character.y += Math.round(character.v.y);
         }
 
-        character.x = Math.min(Math.max(-getHijackParameterX(action), character.x), getHijackParameterWidth(state.config) - getHijackParameterX(action) - getHijackParameterWidth(action));
-        character.y = Math.min(Math.max(-getHijackParameterY(action), character.y), getHijackParameterHeight(state.config) - getHijackParameterY(action) - getHijackParameterHeight(action));
+        var left = enemy.x + getHijackParameterX(enemyAction) + getHijackParameterWidth(enemyAction) - getHijackParameterWidth(state.config) - getHijackParameterX(action);
+        var right = enemy.x + getHijackParameterX(enemyAction) + getHijackParameterWidth(state.config) - getHijackParameterX(action) - getHijackParameterWidth(action);
+
+        character.x = Math.min(Math.max(left, character.x), right);
+        character.y = Math.min(Math.max(-getHijackParameterY(action), character.y), getHijackParameterHeight(state.config) - getHijackParameterY(action) - getHijackParameterHeight(action) - HIJACK_FLOOR_HEIGHT);
     }
 }
 
@@ -660,11 +687,118 @@ function viewHijackModeCharacterSelection(state) {
 function viewHijackModeGame(state) {
     var views = [];
 
+    viewStagePerspective(state.stage);
+    viewStageBackground(state.stage);
+    viewStageFloor(state.stage);
+    viewStageForeground(state.stage);
     viewCharacter(state.character0);
     viewCharacter(state.character1);
     viewOdds(state.character0.odds, state.character1.odds);
 
     return views;
+
+    function viewStagePerspective(stage) {
+        var x = Math.floor((stage.stage.perspective.width - state.config.width) / 2);
+        x += Math.round(state.x / 64);
+
+        var dx = 0;
+
+        while (dx < state.config.width) {
+            var sx = (x < 0 ? Math.abs(stage.stage.perspective.width + x) : x) % stage.stage.perspective.width;
+            var sw = stage.stage.perspective.width - sx;
+            var dw = sw;
+
+            views.push({
+                type: "image",
+                sx: sx,
+                sy: 0,
+                sw: sw,
+                sh: state.config.height,
+                dx: dx,
+                dy: 0,
+                dw: dw,
+                dh: state.config.height,
+                img: stage.stage.perspective.sprite_sheet
+            });
+
+            x += dw;
+            dx += dw;
+        }
+    }
+
+    function viewStageBackground(stage) {
+        var x = Math.floor((stage.stage.background.width - state.config.width) / 2);
+        x += Math.round(state.x / 8);
+
+        var dx = 0;
+
+        while (dx < state.config.width) {
+            var sx = (x < 0 ? Math.abs(stage.stage.background.width + x) : x) % stage.stage.background.width;
+            var sw = stage.stage.background.width - sx;
+            var dw = sw;
+
+            views.push({
+                type: "image",
+                sx: sx,
+                sy: 0,
+                sw: sw,
+                sh: state.config.height,
+                dx: dx,
+                dy: 0,
+                dw: dw,
+                dh: state.config.height,
+                img: stage.stage.background.sprite_sheet
+            });
+
+            x += dw;
+            dx += dw;
+        }
+    }
+
+    function viewStageFloor(stage) {
+        var x = Math.floor((stage.stage.floor.width - state.config.width) / 2);
+        x += state.x;
+
+        var dx = -state.config.width;
+
+        while (dx < state.config.width * 2) {
+            var sx = (x < 0 ? Math.abs(stage.stage.floor.width + x) : x) % stage.stage.floor.width;
+            var sw = stage.stage.floor.width - sx;
+
+            var shift1 = dx - (state.config.width / 2);
+            var shift2 = dx + sw - (state.config.width / 2);
+            var theta = Math.atan2(state.config.height, shift1);
+            var phi = Math.atan2(state.config.height, shift2);
+
+            var n = stage.stage.floor.height;
+            var h = Math.floor(stage.stage.floor.height / n);
+
+            for (var i = 0; i < n; ++i) {
+                var y = Math.floor(h * i);
+                var x1 = (state.config.width / 2) - (h * i) / Math.tan(theta);
+                var dw = (state.config.width / 2) - (h * i) / Math.tan(phi) - x1;
+
+                views.push({
+                    type: "image",
+                    sx: sx,
+                    sy: y,
+                    sw: sw,
+                    sh: h,
+                    dx: x1,
+                    dy: y,
+                    dw: dw,
+                    dh: h,
+                    img: stage.stage.floor.sprite_sheet
+                });
+            }
+
+            x += sw;
+            dx += sw;
+        }
+    }
+
+    function viewStageForeground(stage) {
+    }
 
     function viewCharacter(character) {
         var id = character.pose + "_" + character.direction;
@@ -679,8 +813,8 @@ function viewHijackModeGame(state) {
             sy: 0,
             sw: animation.width,
             sh: animation.height,
-            dx: character.x + getHijackParameterX(animation),
-            dy: character.y + getHijackParameterY(animation),
+            dx: character.x + getHijackParameterX(animation) - state.x,
+            dy: character.y + getHijackParameterY(animation) - state.y,
             dw: getHijackParameterWidth(animation),
             dh: getHijackParameterHeight(animation),
             img: animation.sprite_sheet
@@ -748,15 +882,92 @@ function loadConfig(src) {
                     return;
                 }
 
-                Promise.all(config.characters.map(function (path, i) {
-                    if (typeof path !== "string") {
-                        console.error("config.characters[%o] isn't a string: %o", i, config.characters);
-                        reject();
-                    }
+                Promise.all([
+                    Promise.all(config.characters.map(function (path, i) {
+                        if (typeof path !== "string") {
+                            console.error("config.characters[%o] isn't a string: %o", i, config.characters);
+                            reject();
+                        }
 
-                    return fetch(path, {cache: "no-cache"}).then(function (character) { return character.json(); });
-                })).then(function (characters) {
+                        return fetch(path, {cache: "no-cache"}).then(function (character) { return character.json(); });
+                    })),
+                    Promise.all(config.stages.map(function (path, i) {
+                        if (typeof path !== "string") {
+                            console.error("config.stage[%o] isn't a string: %o", i, config.stages);
+                            reject();
+                        }
+
+                        return fetch(path, {cache: "no-cache"}).then(function (stage) { return stage.json(); });
+                    }))
+                ]).then(function (xs) {
+                    var characters = xs[0];
+                    var stages = xs[1];
                     var promises0 = [];
+                    var promises2 = [];
+
+                    for (var i = 0; i < stages.length; ++i) {
+                        var stage = stages[i];
+
+                        var keys = ["foreground", "floor", "background", "perspective"];
+
+                        for (var j = 0; j < keys.length; ++j) {
+                            var key = keys[j];
+
+                            if (typeof stage[key].width !== "number") {
+                                console.error("stage[%o].width isn't a number: %o", key, stage.width);
+                                reject();
+                            }
+
+                            if (typeof stage[key].height !== "number") {
+                                console.error("stage[%o].height isn't a number: %o", key, stage.height);
+                                reject();
+                            }
+
+                            if (typeof stage[key].frames_per_sprite !== "number") {
+                                console.error("stage[%o].frames_per_sprite isn't a number: %o", key, stage.frames_per_sprite);
+                                reject();
+                            }
+
+                            if (typeof stage[key].sprite_sheet !== "string") {
+                                console.error("stage[%o].sprite_sheet isn't a string: %o", key, stage.sprite_sheet);
+                                reject();
+                            }
+                        }
+
+                        promises2.push(Promise.all([
+                            loadImage(stage.foreground.sprite_sheet),
+                            loadImage(stage.floor.sprite_sheet),
+                            loadImage(stage.background.sprite_sheet),
+                            loadImage(stage.perspective.sprite_sheet)
+                        ]).then(function (sprite_sheets) {
+                            return {
+                                foreground: {
+                                    width: stage.foreground.width,
+                                    height: stage.foreground.height,
+                                    frames_per_sprite: stage.foreground.frames_per_sprite,
+                                    sprite_sheet: sprite_sheets[0]
+                                },
+                                floor: {
+                                    width: stage.floor.width,
+                                    height: stage.floor.height,
+                                    frames_per_sprite: stage.floor.frames_per_sprite,
+                                    sprite_sheet: sprite_sheets[1]
+                                },
+                                background: {
+                                    width: stage.background.width,
+                                    height: stage.background.height,
+                                    frames_per_sprite: stage.background.frames_per_sprite,
+                                    sprite_sheet: sprite_sheets[2]
+                                },
+                                perspective: {
+                                    width: stage.perspective.width,
+                                    height: stage.perspective.height,
+                                    frames_per_sprite: stage.perspective.frames_per_sprite,
+                                    sprite_sheet: sprite_sheets[3]
+                                }
+                            };
+                        }));
+                    }
 
                     for (var i = 0; i < characters.length; ++i) {
                         var character = characters[i];
@@ -910,14 +1121,18 @@ function loadConfig(src) {
                         }));
                     }
 
-                    Promise.all(promises0).then(function (characters) {
+                    Promise.all([Promise.all(promises0), Promise.all(promises2)]).then(function (xs) {
+                        var characters = xs[0];
+                        var stages = xs[1];
+
                         resolve({
                             logo: logo,
                             logo_scale: config.logo_scale,
                             width: config.width,
                             height: config.height,
                             scale: config.scale,
-                            characters: characters
+                            characters: characters,
+                            stages
                         });
                     });
                 });

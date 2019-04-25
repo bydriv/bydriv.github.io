@@ -6,5 +6,8 @@
     "scale": 1,
     "characters": [
         "character/teiri.json"
+    ],
+    "stages": [
+        "stage/los-angeles.json"
     ]
 }
