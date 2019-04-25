@@ -185,11 +185,11 @@ function stepHijackModeGame(state, input) {
     var left = Math.min(state.character0.x + getHijackParameterX(action0), state.character1.x + getHijackParameterX(action1));
     var right = Math.max(state.character0.x + getHijackParameterX(action0) + getHijackParameterWidth(action0), state.character1.x + getHijackParameterX(action1) + getHijackParameterWidth(action1));
 
-    if (left > state.x) {
+    if (left < state.x) {
         state.x = left;
     }
 
-    if (right < state.x + state.config.width) {
+    if (right > state.x + state.config.width) {
         state.x = right - state.config.width;
     }
 
