@@ -177,13 +177,13 @@ function stepHijackModeCharacterSelection(state, input) {
 
         if (x0 < -0.5) {
             var i = state.selection0.y * 4 + (state.selection0.x - 1);
-            if (0 <= i && i < state.config.characters.length) {
+            if (0 <= state.selection0.x - 1 && state.selection0.x - 1 < 4 && 0 <= i && i < state.config.characters.length) {
                 --state.selection0.x;
             }
             state.i0 = -1;
         } else if (x0 > 0.5) {
             var i = state.selection0.y * 4 + (state.selection0.x + 1);
-            if (0 <= i && i < state.config.characters.length) {
+            if (0 <= state.selection0.x + 1 && state.selection0.x + 1 < 4 && 0 <= i && i < state.config.characters.length) {
                 ++state.selection0.x;
             }
             state.i0 = -1;
@@ -191,27 +191,27 @@ function stepHijackModeCharacterSelection(state, input) {
 
         if (y0 < -0.5) {
             var i = (state.selection0.y - 1) * 4 + state.selection0.x;
-            if (0 <= i && i < state.config.characters.length) {
+            if (0 <= state.selection0.y - 1 && state.selection0.y - 1 < 4 && 0 <= i && i < state.config.characters.length) {
                 --state.selection0.y;
             }
             state.i0 = -1;
-        } else if (x0 > 0.5) {
+        } else if (y0 > 0.5) {
             var i = (state.selection0.y + 1) * 4 + state.selection0.x;
-            if (0 <= i && i < state.config.characters.length) {
-                ++state.selection0.x;
+            if (0 <= state.selection0.y + 1 && state.selection0.y + 1 < 4 && 0 <= i && i < state.config.characters.length) {
+                ++state.selection0.y;
             }
             state.i0 = -1;
         }
 
         if (x1 < -0.5) {
             var i = state.selection1.y * 4 + (state.selection1.x - 1);
-            if (0 <= i && i < state.config.characters.length) {
+            if (0 <= state.selection1.x - 1 && state.selection1.x - 1 < 4 && 0 <= i && i < state.config.characters.length) {
                 --state.selection1.x;
             }
             state.i1 = -1;
         } else if (x1 > 0.5) {
             var i = state.selection1.y * 4 + (state.selection1.x + 1);
-            if (0 <= i && i < state.config.characters.length) {
+            if (0 <= state.selection1.x + 1 && state.selection1.x + 1 < 4 && 0 <= i && 0 <= i && i < state.config.characters.length) {
                 ++state.selection1.x;
             }
             state.i1 = -1;
@@ -219,14 +219,14 @@ function stepHijackModeCharacterSelection(state, input) {
 
         if (y1 < -0.5) {
             var i = (state.selection1.y - 1) * 4 + state.selection1.x;
-            if (0 <= i && i < state.config.characters.length) {
+            if (0 <= state.selection1.y - 1 && state.selection1.y - 1 < 4 && 0 <= i && 0 <= i && i < state.config.characters.length) {
                 --state.selection1.y;
             }
             state.i1 = -1;
-        } else if (x1 > 0.5) {
+        } else if (y1 > 0.5) {
             var i = (state.selection1.y + 1) * 4 + state.selection1.x;
-            if (0 <= i && i < state.config.characters.length) {
-                ++state.selection1.x;
+            if (0 <= state.selection1.y + 1 && state.selection1.y + 1 < 4 && 0 <= i && 0 <= i && i < state.config.characters.length) {
+                ++state.selection1.y;
             }
             state.i1 = -1;
         }

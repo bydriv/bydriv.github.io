@@ -9,6 +9,7 @@
     "height": 480,
     "scale": 1,
     "characters": [
+        "character/teiri/config.json",
         "character/test0/config.json",
         "character/test1/config.json",
         "character/test2/config.json",
