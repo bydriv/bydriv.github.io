@@ -683,6 +683,25 @@ function viewHijackModeTitle(state) {
 function viewHijackModeCharacterSelection(state) {
     var views = [];
 
+    for (var i = 0; i < state.config.characters.length; ++i) {
+        var character = state.config.characters[i];
+        var x = i % 4;
+        var y = Math.floor(i / 4);
+
+        views.push({
+            type: "image",
+            sx: 0,
+            sy: 0,
+            sw: 64,
+            sh: 64,
+            dx: 192 + x * 64,
+            dy: 96 + y * 64,
+            dw: 64,
+            dh: 64,
+            img: character.icon
+        });
+    }
+
     var portrait0 = state.selection0.character.portrait_right;
     var portrait1 = state.selection1.character.portrait_left;
 
@@ -1018,6 +1037,11 @@ function loadConfig(src) {
                             reject();
                         }
 
+                        if (typeof character.icon !== "string") {
+                            console.error("character.icon isn't a string: %o", character.icon);
+                            reject();
+                        }
+
                         if (typeof character.portrait_left !== "string") {
                             console.error("character.portrait_left isn't a string: %o", character.portrait_left);
                             reject();
@@ -1098,10 +1122,11 @@ function loadConfig(src) {
                             }(prop, animation));
                         }
 
-                        promises0.push(Promise.all([loadImage(character.portrait_left), loadImage(character.portrait_right), Promise.all(promises1)]).then(function (xs) {
-                            var portrait_left = xs[0];
-                            var portrait_right = xs[1];
-                            var _animations = xs[2];
+                        promises0.push(Promise.all([loadImage(character.icon), loadImage(character.portrait_left), loadImage(character.portrait_right), Promise.all(promises1)]).then(function (xs) {
+                            var icon = xs[0];
+                            var portrait_left = xs[1];
+                            var portrait_right = xs[2];
+                            var _animations = xs[3];
                             var animations = {};
 
                             for (var j = 0; j < _animations.length; ++j)
@@ -1159,6 +1184,7 @@ function loadConfig(src) {
                                 gravity: character.gravity,
                                 resistance: character.resistance,
                                 dexterity: character.dexterity,
+                                icon: icon,
                                 portrait_left: portrait_left,
                                 portrait_right: portrait_right,
                                 actions: actions,

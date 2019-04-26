@@ -2,6 +2,7 @@
     "gravity": 4,
     "resistance": 2,
     "dexterity": 2,
+    "icon": "illust/teiri/icon.png",
     "portrait_left": "illust/teiri/neutral_left.png",
     "portrait_right": "illust/teiri/neutral_right.png",
     "actions": {
