@@ -5,9 +5,9 @@
     "height": 480,
     "scale": 1,
     "characters": [
-        "character/teiri.json"
+        "character/teiri/config.json"
     ],
     "stages": [
-        "stage/los-angeles.json"
+        "stage/los-angeles/config.json"
     ]
 }

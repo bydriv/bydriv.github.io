@@ -2,9 +2,9 @@
     "gravity": 4,
     "resistance": 2,
     "dexterity": 2,
-    "icon": "illust/teiri/icon.png",
-    "portrait_left": "illust/teiri/neutral_left.png",
-    "portrait_right": "illust/teiri/neutral_right.png",
+    "icon": "character/teiri/icon.png",
+    "portrait_left": "character/teiri/portrait_left.png",
+    "portrait_right": "character/teiri/portrait_right.png",
     "actions": {
         "neutral_left": {
             "x": 16,
@@ -321,7 +321,7 @@
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 5,
-            "sprite_sheet": "pixelart/teiri/neutral_left.png"
+            "sprite_sheet": "character/teiri/neutral_left.png"
         },
         "neutral_right": {
             "x": 0,
@@ -330,7 +330,7 @@
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 5,
-            "sprite_sheet": "pixelart/teiri/neutral_right.png"
+            "sprite_sheet": "character/teiri/neutral_right.png"
         },
         "run_left": {
             "x": 0,
@@ -339,7 +339,7 @@
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "pixelart/teiri/run_left.png"
+            "sprite_sheet": "character/teiri/run_left.png"
         },
         "run_right": {
             "x": 0,
@@ -348,7 +348,7 @@
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "pixelart/teiri/run_right.png"
+            "sprite_sheet": "character/teiri/run_right.png"
         },
         "jump_left": {
             "x": 0,
@@ -357,7 +357,7 @@
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "pixelart/teiri/jump_left.png"
+            "sprite_sheet": "character/teiri/jump_left.png"
         },
         "jump_right": {
             "x": 0,
@@ -366,7 +366,7 @@
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "pixelart/teiri/jump_right.png"
+            "sprite_sheet": "character/teiri/jump_right.png"
         },
         "fall_left": {
             "x": 0,
@@ -375,7 +375,7 @@
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "pixelart/teiri/fall_left.png"
+            "sprite_sheet": "character/teiri/fall_left.png"
         },
         "fall_right": {
             "x": 0,
@@ -384,7 +384,7 @@
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "pixelart/teiri/fall_right.png"
+            "sprite_sheet": "character/teiri/fall_right.png"
         },
         "weak_left": {
             "x": 0,
@@ -393,7 +393,7 @@
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "pixelart/teiri/weak_left.png"
+            "sprite_sheet": "character/teiri/weak_left.png"
         },
         "weak_right": {
             "x": 0,
@@ -402,7 +402,7 @@
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "pixelart/teiri/weak_right.png"
+            "sprite_sheet": "character/teiri/weak_right.png"
         },
         "strong_left": {
             "x": 0,
@@ -411,7 +411,7 @@
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "pixelart/teiri/strong_left.png"
+            "sprite_sheet": "character/teiri/strong_left.png"
         },
         "strong_right": {
             "x": 0,
@@ -420,7 +420,7 @@
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "pixelart/teiri/strong_right.png"
+            "sprite_sheet": "character/teiri/strong_right.png"
         },
         "shield_left": {
             "x": 0,
@@ -429,7 +429,7 @@
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "pixelart/teiri/shield_left.png"
+            "sprite_sheet": "character/teiri/shield_left.png"
         },
         "shield_right": {
             "x": 0,
@@ -438,7 +438,7 @@
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "pixelart/teiri/shield_right.png"
+            "sprite_sheet": "character/teiri/shield_right.png"
         },
         "grab_left": {
             "x": 0,
@@ -447,7 +447,7 @@
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "pixelart/teiri/grab_left.png"
+            "sprite_sheet": "character/teiri/grab_left.png"
         },
         "grab_right": {
             "x": 0,
@@ -456,7 +456,7 @@
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "pixelart/teiri/grab_right.png"
+            "sprite_sheet": "character/teiri/grab_right.png"
         },
         "grabbed_left": {
             "x": 0,
@@ -465,7 +465,7 @@
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "pixelart/teiri/grabbed_left.png"
+            "sprite_sheet": "character/teiri/grabbed_left.png"
         },
         "grabbed_right": {
             "x": 0,
@@ -474,7 +474,7 @@
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "pixelart/teiri/grabbed_right.png"
+            "sprite_sheet": "character/teiri/grabbed_right.png"
         },
         "be_attacked_left": {
             "x": 0,
@@ -483,7 +483,7 @@
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "pixelart/teiri/be_attacked_left.png"
+            "sprite_sheet": "character/teiri/be_attacked_left.png"
         },
         "be_attacked_right": {
             "x": 0,
@@ -492,7 +492,7 @@
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "pixelart/teiri/be_attacked_right.png"
+            "sprite_sheet": "character/teiri/be_attacked_right.png"
         },
         "be_grabbed_left": {
             "x": 0,
@@ -501,7 +501,7 @@
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "pixelart/teiri/be_grabbed_left.png"
+            "sprite_sheet": "character/teiri/be_grabbed_left.png"
         },
         "be_grabbed_right": {
             "x": 0,
@@ -510,7 +510,7 @@
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "pixelart/teiri/be_grabbed_right.png"
+            "sprite_sheet": "character/teiri/be_grabbed_right.png"
         }
     }
 }
