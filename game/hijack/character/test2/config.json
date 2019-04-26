@@ -1,0 +1,516 @@
+{
+    "gravity": 4,
+    "resistance": 2,
+    "dexterity": 2,
+    "icon": "character/test2/icon.png",
+    "portrait_left": "character/test2/portrait_left.png",
+    "portrait_right": "character/test2/portrait_right.png",
+    "actions": {
+        "neutral_left": {
+            "x": 16,
+            "y": 0,
+            "width": 64,
+            "height": 96,
+            "scale": 2,
+            "animation": "neutral_left"
+        },
+        "neutral_right": {
+            "x": 16,
+            "y": 0,
+            "width": 64,
+            "height": 96,
+            "scale": 2,
+            "animation": "neutral_right"
+        },
+        "run_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "animation": "run_left",
+            "move": {
+                "x": -18,
+                "y": 0,
+                "scale": 2
+            }
+        },
+        "run_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "animation": "run_right",
+            "move": {
+                "x": 18,
+                "y": 0,
+                "scale": 2
+            }
+        },
+        "short_jump_left": {
+            "x": 16,
+            "y": 0,
+            "width": 64,
+            "height": 96,
+            "scale": 2,
+            "animation": "jump_left",
+            "move": {
+                "x": 0,
+                "y": -16,
+                "scale": 2
+            }
+        },
+        "short_jump_right": {
+            "x": 16,
+            "y": 0,
+            "width": 64,
+            "height": 96,
+            "scale": 2,
+            "animation": "jump_right",
+            "move": {
+                "x": 0,
+                "y": -16,
+                "scale": 2
+            }
+        },
+        "full_jump_left": {
+            "x": 16,
+            "y": 0,
+            "width": 64,
+            "height": 96,
+            "scale": 2,
+            "animation": "jump_left",
+            "move": {
+                "x": 0,
+                "y": -32,
+                "scale": 2
+            }
+        },
+        "full_jump_right": {
+            "x": 16,
+            "y": 0,
+            "width": 64,
+            "height": 96,
+            "scale": 2,
+            "animation": "jump_right",
+            "move": {
+                "x": 0,
+                "y": -32,
+                "scale": 2
+            }
+        },
+        "fall_left": {
+            "x": 16,
+            "y": 0,
+            "width": 64,
+            "height": 96,
+            "scale": 2,
+            "animation": "fall_left"
+        },
+        "fall_right": {
+            "x": 16,
+            "y": 0,
+            "width": 64,
+            "height": 96,
+            "scale": 2,
+            "animation": "fall_right"
+        },
+        "weak_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "animation": "weak_left",
+            "startup": 8,
+            "active": 8,
+            "recovery": 16,
+            "attack": {
+                "x": 0,
+                "y": 0,
+                "width": 96,
+                "height": 96,
+                "scale": 2,
+                "damage": 3,
+                "v": {
+                    "x": -3,
+                    "y": 0
+                }
+            }
+        },
+        "weak_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "animation": "weak_right",
+            "startup": 8,
+            "active": 8,
+            "recovery": 16,
+            "attack": {
+                "x": 0,
+                "y": 0,
+                "width": 96,
+                "height": 96,
+                "scale": 2,
+                "damage": 3,
+                "v": {
+                    "x": 3,
+                    "y": 0
+                }
+            }
+        },
+        "strong_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "animation": "strong_left",
+            "startup": 8,
+            "active": 8,
+            "recovery": 16,
+            "attack": {
+                "x": 0,
+                "y": 0,
+                "width": 96,
+                "height": 96,
+                "scale": 2,
+                "damage": 10,
+                "v": {
+                    "x": -64,
+                    "y": -64
+                }
+            }
+        },
+        "strong_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "animation": "strong_right",
+            "startup": 8,
+            "active": 8,
+            "recovery": 16,
+            "attack": {
+                "x": 0,
+                "y": 0,
+                "width": 96,
+                "height": 96,
+                "scale": 2,
+                "damage": 10,
+                "v": {
+                    "x": 64,
+                    "y": -64
+                }
+            }
+        },
+        "shield_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "animation": "shield_left",
+            "startup": 8,
+            "recovery": 16
+        },
+        "shield_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "animation": "shield_right",
+            "startup": 8,
+            "recovery": 16
+        },
+        "grab_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "animation": "grab_left",
+            "startup": 8,
+            "active": 8,
+            "recovery": 16,
+            "grab": {
+                "x": 0,
+                "y": 0,
+                "width": 96,
+                "height": 96,
+                "scale": 2
+            }
+        },
+        "grab_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "animation": "grab_right",
+            "startup": 8,
+            "active": 8,
+            "recovery": 16,
+            "grab": {
+                "x": 0,
+                "y": 0,
+                "width": 96,
+                "height": 96,
+                "scale": 2
+            }
+        },
+        "grabbed_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "animation": "grabbed_left"
+        },
+        "grabbed_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "animation": "grabbed_right"
+        },
+        "be_attacked_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "animation": "be_attacked_left"
+        },
+        "be_attacked_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "animation": "be_attacked_right"
+        },
+        "be_grabbed_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "animation": "be_grabbed_left"
+        },
+        "be_grabbed_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "animation": "be_grabbed_right"
+        }
+    },
+    "animations": {
+        "neutral_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "frames_per_sprite": 5,
+            "sprite_sheet": "character/test2/neutral_left.png"
+        },
+        "neutral_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "frames_per_sprite": 5,
+            "sprite_sheet": "character/test2/neutral_right.png"
+        },
+        "run_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "character/test2/run_left.png"
+        },
+        "run_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "character/test2/run_right.png"
+        },
+        "jump_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "character/test2/jump_left.png"
+        },
+        "jump_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "character/test2/jump_right.png"
+        },
+        "fall_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "character/test2/fall_left.png"
+        },
+        "fall_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "character/test2/fall_right.png"
+        },
+        "weak_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "character/test2/weak_left.png"
+        },
+        "weak_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "character/test2/weak_right.png"
+        },
+        "strong_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "character/test2/strong_left.png"
+        },
+        "strong_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "character/test2/strong_right.png"
+        },
+        "shield_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "character/test2/shield_left.png"
+        },
+        "shield_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "character/test2/shield_right.png"
+        },
+        "grab_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "character/test2/grab_left.png"
+        },
+        "grab_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "character/test2/grab_right.png"
+        },
+        "grabbed_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "character/test2/grabbed_left.png"
+        },
+        "grabbed_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "character/test2/grabbed_right.png"
+        },
+        "be_attacked_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "character/test2/be_attacked_left.png"
+        },
+        "be_attacked_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "character/test2/be_attacked_right.png"
+        },
+        "be_grabbed_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "character/test2/be_grabbed_left.png"
+        },
+        "be_grabbed_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "frames_per_sprite": 4,
+            "sprite_sheet": "character/test2/be_grabbed_right.png"
+        }
+    }
+}

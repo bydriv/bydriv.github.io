@@ -1,11 +1,18 @@
 {
     "logo": "pixelart/system/logo.png",
+    "icon_border": "pixelart/system/icon-border.png",
+    "icon_border0": "pixelart/system/icon-border0.png",
+    "icon_border1": "pixelart/system/icon-border1.png",
+    "icon_border2": "pixelart/system/icon-border2.png",
     "logo_scale": 2,
     "width": 640,
     "height": 480,
     "scale": 1,
     "characters": [
-        "character/teiri/config.json"
+        "character/test0/config.json",
+        "character/test1/config.json",
+        "character/test2/config.json",
+        "character/test3/config.json"
     ],
     "stages": [
         "stage/los-angeles/config.json"

@@ -19,6 +19,8 @@ var HIJACK_FLOOR_HEIGHT = 16;
 
 function newHijack(config, onscreenCanvas, offscreenCanvas) {
     return {
+        i0: 0,
+        i1: 0,
         mode: HIJACK_MODE_TITLE,
         config: config,
         onscreenCanvas: onscreenCanvas,
@@ -80,7 +82,17 @@ function viewHijack(state) {
 }
 
 function stepHijackModeTitle(state, input) {
-    if (input.some(function (pad) { return pad.buttons.some(function (button) { return button.pressed; }); })) {
+    var pad0 = input[0];
+    var pad1 = input[1];
+    var pad0IsPressed = pad0 && state.i0 > 4 && pad0.buttons.some(function (button) { return button.pressed; });
+    var pad1IsPressed = pad1 && state.i1 > 4 && pad1.buttons.some(function (button) { return button.pressed; });
+
+    if (pad0IsPressed || pad1IsPressed) {
+        if (pad0IsPressed)
+            state.i0 = 0;
+        if (pad1IsPressed)
+            state.i1 = 0;
+
         state.mode = HIJACK_MODE_CHARACTER_SELECTION;
 
         state.selection0 =
@@ -96,17 +108,30 @@ function stepHijackModeTitle(state, input) {
                 y: 0,
                 character: state.config.characters[0]
             };
+    } else {
+        ++state.i0;
+        ++state.i1;
     }
 
     return state;
 }
 
 function stepHijackModeCharacterSelection(state, input) {
-    if (input.some(function (pad) { return pad.buttons[0].pressed; })) {
+    var pad0 = input[0];
+    var pad1 = input[1];
+    var pad0IsPressed = pad0 && state.i0 > 4 && pad0.buttons.some(function (button) { return button.pressed; });
+    var pad1IsPressed = pad1 && state.i1 > 4 && pad1.buttons.some(function (button) { return button.pressed; });
+
+    if (pad0IsPressed || pad1IsPressed) {
+        if (pad0IsPressed)
+            state.i0 = 0;
+        if (pad1IsPressed)
+            state.i1 = 0;
+
         state.mode = HIJACK_MODE_GAME;
 
         var character0 = state.selection0.character;
-        var character1 = state.selection0.character;
+        var character1 = state.selection1.character;
         var stage = state.config.stages[0];
 
         state.x = 0;
@@ -147,6 +172,73 @@ function stepHijackModeCharacterSelection(state, input) {
         state.stage = {
             stage: stage
         };
+    } else {
+        var x0 = pad0 && state.i0 > 4 ? pad0.axes[0] : 0;
+        var y0 = pad0 && state.i0 > 4 ? pad0.axes[1] : 0;
+        var x1 = pad1 && state.i1 > 4 ? pad1.axes[0] : 0;
+        var y1 = pad1 && state.i1 > 4 ? pad1.axes[1] : 0;
+
+        if (x0 < -0.5) {
+            var i = state.selection0.y * 4 + (state.selection0.x - 1);
+            if (0 <= i && i < state.config.characters.length) {
+                --state.selection0.x;
+            }
+            state.i0 = -1;
+        } else if (x0 > 0.5) {
+            var i = state.selection0.y * 4 + (state.selection0.x + 1);
+            if (0 <= i && i < state.config.characters.length) {
+                ++state.selection0.x;
+            }
+            state.i0 = -1;
+        }
+
+        if (y0 < -0.5) {
+            var i = (state.selection0.y - 1) * 4 + state.selection0.x;
+            if (0 <= i && i < state.config.characters.length) {
+                --state.selection0.y;
+            }
+            state.i0 = -1;
+        } else if (x0 > 0.5) {
+            var i = (state.selection0.y + 1) * 4 + state.selection0.x;
+            if (0 <= i && i < state.config.characters.length) {
+                ++state.selection0.x;
+            }
+            state.i0 = -1;
+        }
+
+        if (x1 < -0.5) {
+            var i = state.selection1.y * 4 + (state.selection1.x - 1);
+            if (0 <= i && i < state.config.characters.length) {
+                --state.selection1.x;
+            }
+            state.i1 = -1;
+        } else if (x1 > 0.5) {
+            var i = state.selection1.y * 4 + (state.selection1.x + 1);
+            if (0 <= i && i < state.config.characters.length) {
+                ++state.selection1.x;
+            }
+            state.i1 = -1;
+        }
+
+        if (y1 < -0.5) {
+            var i = (state.selection1.y - 1) * 4 + state.selection1.x;
+            if (0 <= i && i < state.config.characters.length) {
+                --state.selection1.y;
+            }
+            state.i1 = -1;
+        } else if (x1 > 0.5) {
+            var i = (state.selection1.y + 1) * 4 + state.selection1.x;
+            if (0 <= i && i < state.config.characters.length) {
+                ++state.selection1.x;
+            }
+            state.i1 = -1;
+        }
+
+        state.selection0.character = state.config.characters[state.selection0.y * 4 + state.selection0.x];
+        state.selection1.character = state.config.characters[state.selection1.y * 4 + state.selection1.x];
+
+        ++state.i0;
+        ++state.i1;
     }
 
     return state;
@@ -700,6 +792,60 @@ function viewHijackModeCharacterSelection(state) {
             dh: 64,
             img: character.icon
         });
+
+        if (x === state.selection0.x && y === state.selection0.y && x === state.selection1.x && y === state.selection1.y) {
+            views.push({
+                type: "image",
+                sx: 0,
+                sy: 0,
+                sw: 64,
+                sh: 64,
+                dx: 192 + x * 64,
+                dy: 96 + y * 64,
+                dw: 64,
+                dh: 64,
+                img: state.config.icon_border2
+            });
+        } else if (x === state.selection0.x && y === state.selection0.y) {
+            views.push({
+                type: "image",
+                sx: 0,
+                sy: 0,
+                sw: 64,
+                sh: 64,
+                dx: 192 + x * 64,
+                dy: 96 + y * 64,
+                dw: 64,
+                dh: 64,
+                img: state.config.icon_border0
+            });
+        } else if (x === state.selection1.x && y === state.selection1.y) {
+            views.push({
+                type: "image",
+                sx: 0,
+                sy: 0,
+                sw: 64,
+                sh: 64,
+                dx: 192 + x * 64,
+                dy: 96 + y * 64,
+                dw: 64,
+                dh: 64,
+                img: state.config.icon_border1
+            });
+        } else {
+            views.push({
+                type: "image",
+                sx: 0,
+                sy: 0,
+                sw: 64,
+                sh: 64,
+                dx: 192 + x * 64,
+                dy: 96 + y * 64,
+                dw: 64,
+                dh: 64,
+                img: state.config.icon_border
+            });
+        }
     }
 
     var portrait0 = state.selection0.character.portrait_right;
@@ -911,6 +1057,26 @@ function loadConfig(src) {
                 reject();
             }
 
+            if (typeof config.icon_border !== "string") {
+                console.error("config.icon_border isn't a string: %o", i, config.icon_border);
+                reject();
+            }
+
+            if (typeof config.icon_border0 !== "string") {
+                console.error("config.icon_border0 isn't a string: %o", i, config.icon_border0);
+                reject();
+            }
+
+            if (typeof config.icon_border1 !== "string") {
+                console.error("config.icon_border1 isn't a string: %o", i, config.icon_border1);
+                reject();
+            }
+
+            if (typeof config.icon_border2 !== "string") {
+                console.error("config.icon_border2 isn't a string: %o", i, config.icon_border2);
+                reject();
+            }
+
             if (typeof config.width !== "number") {
                 console.error("config.width isn't a number: %o", config.width);
                 reject();
@@ -926,7 +1092,19 @@ function loadConfig(src) {
                 reject();
             }
 
-            loadImage(config.logo).then(function (logo) {
+            Promise.all([
+                loadImage(config.logo),
+                loadImage(config.icon_border),
+                loadImage(config.icon_border0),
+                loadImage(config.icon_border1),
+                loadImage(config.icon_border2)
+            ]).then(function (xs) {
+                var logo = xs[0];
+                var icon_border = xs[1];
+                var icon_border0 = xs[2];
+                var icon_border1 = xs[3];
+                var icon_border2 = xs[4];
+
                 if (!Array.isArray(config.characters)) {
                     console.error("config.characters isn't an array: %o", config.characters);
                     return;
@@ -1199,6 +1377,10 @@ function loadConfig(src) {
 
                         resolve({
                             logo: logo,
+                            icon_border: icon_border,
+                            icon_border0: icon_border0,
+                            icon_border1: icon_border1,
+                            icon_border2: icon_border2,
                             logo_scale: config.logo_scale,
                             width: config.width,
                             height: config.height,
