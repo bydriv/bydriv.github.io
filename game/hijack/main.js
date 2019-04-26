@@ -255,6 +255,8 @@ const HIJACK_INPUT_EMPTY = {
 
 function stepHijackModeGame(state, input) {
     if (state.character0.odds >= 100 || state.character1.odds >= 100) {
+        state.i0 = 0;
+        state.i1 = 0;
         state.mode = HIJACK_MODE_RESULT;
         return state;
     }
