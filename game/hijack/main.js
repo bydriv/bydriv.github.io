@@ -16,6 +16,7 @@ var HIJACK_MODE_CHARACTER_SELECTION = "characterSelection";
 var HIJACK_MODE_GAME = "game";
 var HIJACK_MODE_RESULT = "result";
 var HIJACK_FLOOR_HEIGHT = 16;
+var HIJACK_BUTTON_WAIT = 10;
 
 function newHijack(config, onscreenCanvas, offscreenCanvas) {
     return {
@@ -84,14 +85,12 @@ function viewHijack(state) {
 function stepHijackModeTitle(state, input) {
     var pad0 = input[0];
     var pad1 = input[1];
-    var pad0IsPressed = pad0 && state.i0 > 4 && pad0.buttons.some(function (button) { return button.pressed; });
-    var pad1IsPressed = pad1 && state.i1 > 4 && pad1.buttons.some(function (button) { return button.pressed; });
+    var pad0IsPressed = pad0 && state.i0 >= HIJACK_BUTTON_WAIT && pad0.buttons.some(function (button) { return button.pressed; });
+    var pad1IsPressed = pad1 && state.i1 >= HIJACK_BUTTON_WAIT && pad1.buttons.some(function (button) { return button.pressed; });
 
     if (pad0IsPressed || pad1IsPressed) {
-        if (pad0IsPressed)
-            state.i0 = 0;
-        if (pad1IsPressed)
-            state.i1 = 0;
+        state.i0 = 0;
+        state.i1 = 0;
 
         state.mode = HIJACK_MODE_CHARACTER_SELECTION;
 
@@ -119,14 +118,12 @@ function stepHijackModeTitle(state, input) {
 function stepHijackModeCharacterSelection(state, input) {
     var pad0 = input[0];
     var pad1 = input[1];
-    var pad0IsPressed = pad0 && state.i0 > 4 && pad0.buttons.some(function (button) { return button.pressed; });
-    var pad1IsPressed = pad1 && state.i1 > 4 && pad1.buttons.some(function (button) { return button.pressed; });
+    var pad0IsPressed = pad0 && state.i0 >= HIJACK_BUTTON_WAIT && pad0.buttons.some(function (button) { return button.pressed; });
+    var pad1IsPressed = pad1 && state.i1 >= HIJACK_BUTTON_WAIT && pad1.buttons.some(function (button) { return button.pressed; });
 
     if (pad0IsPressed || pad1IsPressed) {
-        if (pad0IsPressed)
-            state.i0 = 0;
-        if (pad1IsPressed)
-            state.i1 = 0;
+        state.i0 = 0;
+        state.i1 = 0;
 
         state.mode = HIJACK_MODE_GAME;
 
@@ -173,10 +170,10 @@ function stepHijackModeCharacterSelection(state, input) {
             stage: stage
         };
     } else {
-        var x0 = pad0 && state.i0 > 4 ? pad0.axes[0] : 0;
-        var y0 = pad0 && state.i0 > 4 ? pad0.axes[1] : 0;
-        var x1 = pad1 && state.i1 > 4 ? pad1.axes[0] : 0;
-        var y1 = pad1 && state.i1 > 4 ? pad1.axes[1] : 0;
+        var x0 = pad0 && state.i0 >= HIJACK_BUTTON_WAIT ? pad0.axes[0] : 0;
+        var y0 = pad0 && state.i0 >= HIJACK_BUTTON_WAIT ? pad0.axes[1] : 0;
+        var x1 = pad1 && state.i1 >= HIJACK_BUTTON_WAIT ? pad1.axes[0] : 0;
+        var y1 = pad1 && state.i1 >= HIJACK_BUTTON_WAIT ? pad1.axes[1] : 0;
 
         if (x0 < -0.5) {
             var i = state.selection0.y * 4 + (state.selection0.x - 1);
@@ -244,6 +241,18 @@ function stepHijackModeCharacterSelection(state, input) {
     return state;
 }
 
+const HIJACK_INPUT_EMPTY = {
+    axes: [0, 0],
+    buttons: [
+        {pressed: false},
+        {pressed: false},
+        {pressed: false},
+        {pressed: false},
+        {pressed: false},
+        {pressed: false}
+    ]
+};
+
 function stepHijackModeGame(state, input) {
     if (state.character0.odds >= 100 || state.character1.odds >= 100) {
         state.mode = HIJACK_MODE_RESULT;
@@ -255,23 +264,26 @@ function stepHijackModeGame(state, input) {
     var grabs0 = [];
     var grabs1 = [];
 
-    switch (input.length) {
-    case 0:
-        break;
-    case 1:
-        stepCharacterCalc(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
-        stepCharacterControl(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
-        stepCharacterApply(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
-        break;
-    default:
-        stepCharacterCalc(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
-        stepCharacterCalc(1, state.character1, attacks1, grabs1, state.character0, attacks0, grabs0);
+    input =
+        input.length === 0
+        ? [HIJACK_INPUT_EMPTY, HIJACK_INPUT_EMPTY]
+        : input.length === 1
+        ?  [input[0], HIJACK_INPUT_EMPTY]
+        : input;
+
+    stepCharacterCalc(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
+    stepCharacterCalc(1, state.character1, attacks1, grabs1, state.character0, attacks0, grabs0);
+
+    if (state.i0 >= HIJACK_BUTTON_WAIT && state.i1 >= HIJACK_BUTTON_WAIT) {
         stepCharacterControl(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
         stepCharacterControl(1, state.character1, attacks1, grabs1, state.character0, attacks0, grabs0);
-        stepCharacterApply(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
-        stepCharacterApply(1, state.character1, attacks1, grabs1, state.character0, attacks0, grabs0);
-        break;
+    } else {
+        ++state.i0;
+        ++state.i1;
     }
+
+    stepCharacterApply(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
+    stepCharacterApply(1, state.character1, attacks1, grabs1, state.character0, attacks0, grabs0);
 
     var action0 = state.character0.character.actions[state.character0.pose + "_" + state.character0.direction];
     var action1 = state.character1.character.actions[state.character1.pose + "_" + state.character1.direction];
