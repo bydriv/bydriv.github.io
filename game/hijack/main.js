@@ -338,12 +338,15 @@ function stepHijackModeGame(state, input) {
         switch (character.pose) {
         case "weak":
         case "strong":
-            if (character.i < action.startup)
+            var n = Math.floor(action.animation.sprite_sheet.width / action.animation.width);
+            if (character.i < n * action.animation.frames_per_sprite)
+                ++character.i;
+            /*if (character.i < action.startup)
                 ++character.i;
             else if (character.i < action.startup + action.active)
                 ++character.i;
             else if (character.i < action.startup + action.active + action.recovery)
-                ++character.i;
+                ++character.i;*/
             else {
                 character.i = 0;
                 ++character.id;
@@ -637,6 +640,7 @@ function stepHijackModeGame(state, input) {
         case "weak":
         case "strong":
             var characterAttack = {
+                id: character.id,
                 x: character.x + getHijackParameterX(characterAction.attack),
                 y: character.y + getHijackParameterY(characterAction.attack),
                 width: getHijackParameterWidth(characterAction.attack),
@@ -645,16 +649,8 @@ function stepHijackModeGame(state, input) {
                 v: characterAction.attack.v
             };
 
-            if (character.i <= characterAction.startup && character.i < characterAction.startup + characterAction.active && collision(characterAttack, enemyRectangle))
-                characterAttacks.push({
-                    id: character.id,
-                    x: character.x + getHijackParameterX(characterAttack),
-                    y: character.y + getHijackParameterY(characterAttack),
-                    width: getHijackParameterWidth(characterAttack),
-                    height: getHijackParameterHeight(characterAttack),
-                    damage: characterAttack.damage,
-                    v: characterAttack.v
-                });
+            if (character.i >= characterAction.startup && character.i < characterAction.startup + characterAction.active && collision(characterAttack, enemyRectangle))
+                characterAttacks.push(characterAttack);
             break;
         case "grab":
             var characterGrab = {
@@ -749,8 +745,11 @@ function stepHijackModeGame(state, input) {
         }
 
         if (character.i % action.animation.frames_per_sprite === 0) {
-            character.x += Math.round(character.v.x);
-            character.y += Math.round(character.v.y);
+            if (character.pose !== "strong") // TODO: ad-hoc
+            {
+                character.x += Math.round(character.v.x);
+                character.y += Math.round(character.v.y);
+            }
         }
 
         var left = enemy.x + getHijackParameterX(enemyAction) + getHijackParameterWidth(enemyAction) - getHijackParameterWidth(state.config) - getHijackParameterX(action);
@@ -1019,7 +1018,7 @@ function viewHijackModeGame(state) {
 
         views.push({
             type: "image",
-            sx: Math.floor(character.i / animation.frames_per_sprite % n) * animation.width,
+            sx: Math.floor(character.i / animation.frames_per_sprite) % n * animation.width,
             sy: 0,
             sw: animation.width,
             sh: animation.height,
@@ -1314,6 +1313,7 @@ function loadConfig(src) {
                             }(prop, animation));
                         }
 
+                        (function (character) {
                         promises0.push(Promise.all([loadImage(character.icon), loadImage(character.portrait_left), loadImage(character.portrait_right), Promise.all(promises1)]).then(function (xs) {
                             var icon = xs[0];
                             var portrait_left = xs[1];
@@ -1383,6 +1383,7 @@ function loadConfig(src) {
                                 animations: animations
                             };
                         }));
+                        }(character));
                     }
 
                     Promise.all([Promise.all(promises0), Promise.all(promises2)]).then(function (xs) {
