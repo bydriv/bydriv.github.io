@@ -338,8 +338,8 @@ function stepHijackModeGame(state, input) {
         switch (character.pose) {
         case "weak":
         case "strong":
-            var n = Math.floor(action.animation.sprite_sheet.width / action.animation.width);
-            if (character.i < n * action.animation.frames_per_sprite)
+            var n = Math.floor(character.character.animations[action.animation].sprite_sheet.width / character.character.animations[action.animation].width);
+            if (character.i < n * character.character.animations[action.animation].frames_per_sprite)
                 ++character.i;
             /*if (character.i < action.startup)
                 ++character.i;
@@ -354,9 +354,9 @@ function stepHijackModeGame(state, input) {
             }
             break;
         case "short_jump":
-            var n = Math.floor(action.animation.sprite_sheet.width / action.animation.width);
+            var n = Math.floor(character.character.animations[action.animation].sprite_sheet.width / character.character.animations[action.animation].width);
 
-            if (character.i < n * action.animation.frames_per_sprite)
+            if (character.i < n * character.character.animations[action.animation].frames_per_sprite)
                 ++character.i;
             else {
                 character.i = 0;
@@ -365,9 +365,9 @@ function stepHijackModeGame(state, input) {
             }
             break;
         case "full_jump":
-            var n = Math.floor(action.animation.sprite_sheet.width / action.animation.width);
+            var n = Math.floor(character.character.animations[action.animation].sprite_sheet.width / character.character.animations[action.animation].width);
 
-            if (character.i < n * action.animation.frames_per_sprite)
+            if (character.i < n * character.character.animations[action.animation].frames_per_sprite)
                 ++character.i;
             else {
                 character.i = 0;
@@ -418,9 +418,9 @@ function stepHijackModeGame(state, input) {
             break;
         case "be_attacked":
             // TODO
-            var n = Math.floor(action.animation.sprite_sheet.width / action.animation.width);
+            var n = Math.floor(character.character.animations[action.animation].sprite_sheet.width / character.character.animations[action.animation].width);
 
-            if (character.i < n * action.animation.frames_per_sprite)
+            if (character.i < n * character.character.animations[action.animation].frames_per_sprite)
                 ++character.i;
             else {
                 character.i = 0;
@@ -431,9 +431,9 @@ function stepHijackModeGame(state, input) {
         case "grabbed":
         case "be_grabbed":
             // TODO
-            var n = Math.floor(action.animation.sprite_sheet.width / action.animation.width);
+            var n = Math.floor(character.character.animations[action.animation].sprite_sheet.width / character.character.animations[action.animation].width);
 
-            if (character.i < n * action.animation.frames_per_sprite)
+            if (character.i < n * character.character.animations[action.animation].frames_per_sprite)
                 ++character.i;
             else {
                 character.i = 0;
@@ -744,7 +744,7 @@ function stepHijackModeGame(state, input) {
         default:
         }
 
-        if (character.i % action.animation.frames_per_sprite === 0) {
+        if (character.i % character.character.animations[action.animation].frames_per_sprite === 0) {
             if (character.pose !== "strong") // TODO: ad-hoc
             {
                 character.x += Math.round(character.v.x);
@@ -1012,7 +1012,7 @@ function viewHijackModeGame(state) {
     function viewCharacter(character) {
         var id = character.pose + "_" + character.direction;
         var action = character.character.actions[id];
-        var animation = action.animation;
+        var animation = character.character.animations[action.animation];
 
         var n = Math.floor(animation.sprite_sheet.width / animation.width);
 
@@ -1057,357 +1057,36 @@ function viewHijackModeResult(state) {
     return [];
 }
 
-function loadConfig(src) {
-    return new Promise(function (resolve, reject) {
-        fetch(src, {cache: "no-cache"}).then(function (config) { return config.json(); }).then(function (config) {
-            if (typeof config.logo !== "string") {
-                console.error("config.logo isn't a string: %o", i, config.logo);
-                reject();
-            }
-
-            if (typeof config.logo_scale !== "number") {
-                console.error("config.logo_scale isn't a number: %o", config.logo_scale);
-                reject();
-            }
-
-            if (typeof config.icon_border !== "string") {
-                console.error("config.icon_border isn't a string: %o", i, config.icon_border);
-                reject();
-            }
-
-            if (typeof config.icon_border0 !== "string") {
-                console.error("config.icon_border0 isn't a string: %o", i, config.icon_border0);
-                reject();
-            }
-
-            if (typeof config.icon_border1 !== "string") {
-                console.error("config.icon_border1 isn't a string: %o", i, config.icon_border1);
-                reject();
-            }
-
-            if (typeof config.icon_border2 !== "string") {
-                console.error("config.icon_border2 isn't a string: %o", i, config.icon_border2);
-                reject();
-            }
-
-            if (typeof config.width !== "number") {
-                console.error("config.width isn't a number: %o", config.width);
-                reject();
-            }
-
-            if (typeof config.height !== "number") {
-                console.error("config.height isn't a number: %o", config.height);
-                reject();
-            }
-
-            if (typeof config.scale !== "number") {
-                console.error("config.scale isn't a number: %o", config.scale);
-                reject();
-            }
-
-            Promise.all([
-                loadImage(config.logo),
-                loadImage(config.icon_border),
-                loadImage(config.icon_border0),
-                loadImage(config.icon_border1),
-                loadImage(config.icon_border2)
-            ]).then(function (xs) {
-                var logo = xs[0];
-                var icon_border = xs[1];
-                var icon_border0 = xs[2];
-                var icon_border1 = xs[3];
-                var icon_border2 = xs[4];
-
-                if (!Array.isArray(config.characters)) {
-                    console.error("config.characters isn't an array: %o", config.characters);
-                    return;
-                }
-
-                Promise.all([
-                    Promise.all(config.characters.map(function (path, i) {
-                        if (typeof path !== "string") {
-                            console.error("config.characters[%o] isn't a string: %o", i, config.characters);
-                            reject();
-                        }
-
-                        return fetch(path, {cache: "no-cache"}).then(function (character) { return character.json(); });
-                    })),
-                    Promise.all(config.stages.map(function (path, i) {
-                        if (typeof path !== "string") {
-                            console.error("config.stage[%o] isn't a string: %o", i, config.stages);
-                            reject();
-                        }
-
-                        return fetch(path, {cache: "no-cache"}).then(function (stage) { return stage.json(); });
-                    }))
-                ]).then(function (xs) {
-                    var characters = xs[0];
-                    var stages = xs[1];
-                    var promises0 = [];
-                    var promises2 = [];
-
-                    for (var i = 0; i < stages.length; ++i) {
-                        var stage = stages[i];
-
-                        var keys = ["foreground", "floor", "background", "perspective"];
-
-                        for (var j = 0; j < keys.length; ++j) {
-                            var key = keys[j];
-
-                            if (typeof stage[key].width !== "number") {
-                                console.error("stage[%o].width isn't a number: %o", key, stage.width);
-                                reject();
-                            }
-
-                            if (typeof stage[key].height !== "number") {
-                                console.error("stage[%o].height isn't a number: %o", key, stage.height);
-                                reject();
-                            }
-
-                            if (typeof stage[key].frames_per_sprite !== "number") {
-                                console.error("stage[%o].frames_per_sprite isn't a number: %o", key, stage.frames_per_sprite);
-                                reject();
-                            }
-
-                            if (typeof stage[key].sprite_sheet !== "string") {
-                                console.error("stage[%o].sprite_sheet isn't a string: %o", key, stage.sprite_sheet);
-                                reject();
-                            }
-                        }
-
-                        promises2.push(Promise.all([
-                            loadImage(stage.foreground.sprite_sheet),
-                            loadImage(stage.floor.sprite_sheet),
-                            loadImage(stage.background.sprite_sheet),
-                            loadImage(stage.perspective.sprite_sheet)
-                        ]).then(function (sprite_sheets) {
-                            return {
-                                foreground: {
-                                    width: stage.foreground.width,
-                                    height: stage.foreground.height,
-                                    frames_per_sprite: stage.foreground.frames_per_sprite,
-                                    sprite_sheet: sprite_sheets[0]
-                                },
-                                floor: {
-                                    width: stage.floor.width,
-                                    height: stage.floor.height,
-                                    frames_per_sprite: stage.floor.frames_per_sprite,
-                                    sprite_sheet: sprite_sheets[1]
-                                },
-                                background: {
-                                    width: stage.background.width,
-                                    height: stage.background.height,
-                                    frames_per_sprite: stage.background.frames_per_sprite,
-                                    sprite_sheet: sprite_sheets[2]
-                                },
-                                perspective: {
-                                    width: stage.perspective.width,
-                                    height: stage.perspective.height,
-                                    frames_per_sprite: stage.perspective.frames_per_sprite,
-                                    sprite_sheet: sprite_sheets[3]
-                                }
-                            };
-                        }));
-                    }
-
-                    for (var i = 0; i < characters.length; ++i) {
-                        var character = characters[i];
-
-                        if (typeof character.gravity !== "number") {
-                            console.error("character.gravity isn't a number: %o", character.gravity);
-                            reject();
-                        }
-
-                        if (typeof character.resistance !== "number") {
-                            console.error("character.resistance isn't a number: %o", character.resistance);
-                            reject();
-                        }
-
-                        if (typeof character.dexterity !== "number") {
-                            console.error("character.dexterity isn't a number: %o", character.dexterity);
-                            reject();
-                        }
-
-                        if (typeof character.icon !== "string") {
-                            console.error("character.icon isn't a string: %o", character.icon);
-                            reject();
-                        }
-
-                        if (typeof character.portrait_left !== "string") {
-                            console.error("character.portrait_left isn't a string: %o", character.portrait_left);
-                            reject();
-                        }
-
-                        if (typeof character.portrait_right !== "string") {
-                            console.error("character.portrait_right isn't a string: %o", character.portrait_right);
-                            reject();
-                        }
-
-                        if (Object.prototype.toString.call(character.actions) !== "[object Object]") {
-                            console.error("character.actions isn't an onject: %o", character.actions);
-                            reject();
-                        }
-
-                        if (Object.prototype.toString.call(character.animations) !== "[object Object]") {
-                            console.error("character.actions isn't an onject: %o", character.animations);
-                            reject();
-                        }
-
-                        var promises1 = [];
-
-                        for (var prop in character.animations) {
-                            var animation = character.animations[prop];
-
-                            if (animation == null) {
-                                console.error("character.animations[%o] is %o", prop, character.animations[prop]);
-                            }
-
-                            if (typeof animation.x !== "number") {
-                                console.error("animation.x isn't a number: %o", animation.x);
-                                reject();
-                            }
-
-                            if (typeof animation.y !== "number") {
-                                console.error("animation.y isn't a number: %o", animation.y);
-                                reject();
-                            }
-
-                            if (typeof animation.width !== "number") {
-                                console.error("animation.width isn't a number: %o", animation.width);
-                                reject();
-                            }
-
-                            if (typeof animation.height !== "number") {
-                                console.error("animation.height isn't a number: %o", animation.height);
-                                reject();
-                            }
-
-                            if (typeof animation.scale !== "number") {
-                                console.error("animation.scale isn't a number: %o", animation.scale);
-                                reject();
-                            }
-
-                            if (typeof animation.frames_per_sprite !== "number") {
-                                console.error("animation.frames_per_sprite isn't a number: %o", animation.frames_per_sprite);
-                                reject();
-                            }
-
-                            if (typeof animation.sprite_sheet !== "string") {
-                                console.error("animation.sprite_sheet isn't a string: %o", animation.sprite_sheet);
-                                reject();
-                            }
-
-                            (function (id, animation) {
-                                promises1.push(loadImage(animation.sprite_sheet).then(function (sprite_sheet) {
-                                    return {
-                                        id: id,
-                                        x: animation.x,
-                                        y: animation.y,
-                                        width: animation.width,
-                                        height: animation.height,
-                                        scale: animation.scale,
-                                        frames_per_sprite: animation.frames_per_sprite,
-                                        sprite_sheet: sprite_sheet
-                                    };
-                                }));
-                            }(prop, animation));
-                        }
-
-                        (function (character) {
-                        promises0.push(Promise.all([loadImage(character.icon), loadImage(character.portrait_left), loadImage(character.portrait_right), Promise.all(promises1)]).then(function (xs) {
-                            var icon = xs[0];
-                            var portrait_left = xs[1];
-                            var portrait_right = xs[2];
-                            var _animations = xs[3];
-                            var animations = {};
-
-                            for (var j = 0; j < _animations.length; ++j)
-                                animations[_animations[j].id] = _animations[j];
-
-                            var actions = {};
-
-                            for (var prop in character.actions) {
-                                var action = character.actions[prop];
-
-                                if (action == null) {
-                                    console.error("character.actions[%o] is %o", prop, character.actions[prop]);
-                                }
-
-                                if (typeof action.x !== "number") {
-                                    console.error("action.x isn't a number: %o", action.x);
-                                    reject();
-                                }
-
-                                if (typeof action.y !== "number") {
-                                    console.error("action.y isn't a number: %o", action.y);
-                                    reject();
-                                }
-
-                                if (typeof action.width !== "number") {
-                                    console.error("action.width isn't a number: %o", action.width);
-                                    reject();
-                                }
-
-                                if (typeof action.height !== "number") {
-                                    console.error("action.height isn't a number: %o", action.height);
-                                    reject();
-                                }
-
-                                if (typeof action.animation !== "string") {
-                                    console.error("action.animation isn't a string: %o", action.animation);
-                                    reject();
-                                }
-
-                                if (animations[action.animation] == null) {
-                                    console.error("animations[%o] is %o", action.animation, animations[action.animation]);
-                                    reject();
-                                }
-
-                                var animation = animations[action.animation];
-
-                                action = JSON.parse(JSON.stringify(action));
-                                action.id = prop;
-                                action.animation = animation;
-
-                                actions[prop] = action;
-                            }
-
-                            return {
-                                gravity: character.gravity,
-                                resistance: character.resistance,
-                                dexterity: character.dexterity,
-                                icon: icon,
-                                portrait_left: portrait_left,
-                                portrait_right: portrait_right,
-                                actions: actions,
-                                animations: animations
-                            };
-                        }));
-                        }(character));
-                    }
-
-                    Promise.all([Promise.all(promises0), Promise.all(promises2)]).then(function (xs) {
-                        var characters = xs[0];
-                        var stages = xs[1];
-
-                        resolve({
-                            logo: logo,
-                            icon_border: icon_border,
-                            icon_border0: icon_border0,
-                            icon_border1: icon_border1,
-                            icon_border2: icon_border2,
-                            logo_scale: config.logo_scale,
-                            width: config.width,
-                            height: config.height,
-                            scale: config.scale,
-                            characters: characters,
-                            stages
-                        });
-                    });
-                });
+function loadConfig(_config) {
+    switch (Object.prototype.toString.call(_config)) {
+    case "[object Null]":
+    case "[object Boolean]":
+    case "[object Number]":
+        return Promise.resolve(_config);
+    case "[object String]":
+        if (_config.endsWith(".json"))
+            return fetch(_config, {cache: "no-cache"}).then(function (response) {
+                return response.json();
+            }).then(function (_config) {
+                return loadConfig(_config);
             });
+        else if (_config.endsWith(".png"))
+            return loadImage(_config);
+        else
+            return Promise.resolve(_config);
+    case "[object Array]":
+        return Promise.all(_config.map(function (_cfg) {
+            return loadConfig(_cfg);
+        }));
+    case "[object Object]":
+        return Promise.all(Object.entries(_config).map(function (arg) {
+            return loadConfig(arg[1]).then(function (cfg) {
+                return [arg[0], cfg];
+            });
+        })).then(function (entries) {
+            return Object.fromEntries(entries);
         });
-    });
+    }
 }
 
 function getHijackParameterX(position) {
@@ -1427,7 +1106,11 @@ function getHijackParameterHeight(rectangle) {
 }
 
 window.addEventListener("load", function () {
-    loadConfig("config.json").then(function (config) {
+    return fetch("config.json", {cache: "no-cache"}).then(function (response) {
+        return response.json();
+    }).then(function (_config) {
+        return loadConfig(_config);
+    }).then(function (config) {
         var mode = document.getElementById("mode");
 
         var recording = false;
