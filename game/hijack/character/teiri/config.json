@@ -175,8 +175,8 @@
             "scale": 2,
             "animation": "strong_left",
             "startup": 4,
-            "active": 12,
-            "recovery": 0,
+            "active": 2,
+            "recovery": 8,
             "attack": {
                 "x": -64,
                 "y": -32,
@@ -198,8 +198,8 @@
             "scale": 2,
             "animation": "strong_right",
             "startup": 4,
-            "active": 12,
-            "recovery": 0,
+            "active": 2,
+            "recovery": 8,
             "attack": {
                 "x": 96,
                 "y": -32,
