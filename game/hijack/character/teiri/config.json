@@ -174,9 +174,9 @@
             "height": 96,
             "scale": 2,
             "animation": "strong_left",
-            "startup": 8,
-            "active": 4,
-            "recovery": 16,
+            "startup": 6,
+            "active": 3,
+            "recovery": 12,
             "attack": {
                 "x": -64,
                 "y": -32,
@@ -197,9 +197,9 @@
             "height": 96,
             "scale": 2,
             "animation": "strong_right",
-            "startup": 8,
-            "active": 4,
-            "recovery": 16,
+            "startup": 6,
+            "active": 3,
+            "recovery": 12,
             "attack": {
                 "x": 96,
                 "y": -32,
@@ -415,7 +415,7 @@
             "width": 128,
             "height": 128,
             "scale": 2,
-            "frames_per_sprite": 2,
+            "frames_per_sprite": 3,
             "sprite_sheet": "character/teiri/strong_left.png"
         },
         "strong_right": {
@@ -424,7 +424,7 @@
             "width": 128,
             "height": 128,
             "scale": 2,
-            "frames_per_sprite": 2,
+            "frames_per_sprite": 3,
             "sprite_sheet": "character/teiri/strong_right.png"
         },
         "shield_left": {
