@@ -5,6 +5,11 @@
     "icon": "character/teiri/icon.png",
     "portrait_left": "character/teiri/portrait_left.png",
     "portrait_right": "character/teiri/portrait_right.png",
+    "short_name": "Teiri",
+    "long_name": "MINAGAWA, Teiri",
+    "result_messages": [
+        "Our flag was still there!"
+    ],
     "actions": {
         "neutral_left": {
             "x": 16,

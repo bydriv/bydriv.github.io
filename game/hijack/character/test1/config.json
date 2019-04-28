@@ -5,6 +5,11 @@
     "icon": "character/test1/icon.png",
     "portrait_left": "character/test1/portrait_left.png",
     "portrait_right": "character/test1/portrait_right.png",
+    "short_name": "Test1",
+    "long_name": "Test1",
+    "result_messages": [
+        "Our flag was still there!"
+    ],
     "actions": {
         "neutral_left": {
             "x": 16,
