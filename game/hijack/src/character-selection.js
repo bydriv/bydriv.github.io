@@ -156,7 +156,7 @@ function viewHijackModeCharacterSelection(state) {
                 dy: 96 + y * 64,
                 dw: 64,
                 dh: 64,
-                img: state.config.icon_border2
+                img: state.config.icon_border2.image
             });
         } else if (x === state.selection0.x && y === state.selection0.y) {
             views.push({
@@ -169,7 +169,7 @@ function viewHijackModeCharacterSelection(state) {
                 dy: 96 + y * 64,
                 dw: 64,
                 dh: 64,
-                img: state.config.icon_border0
+                img: state.config.icon_border0.image
             });
         } else if (x === state.selection1.x && y === state.selection1.y) {
             views.push({
@@ -182,7 +182,7 @@ function viewHijackModeCharacterSelection(state) {
                 dy: 96 + y * 64,
                 dw: 64,
                 dh: 64,
-                img: state.config.icon_border1
+                img: state.config.icon_border1.image
             });
         } else {
             views.push({
@@ -195,7 +195,7 @@ function viewHijackModeCharacterSelection(state) {
                 dy: 96 + y * 64,
                 dw: 64,
                 dh: 64,
-                img: state.config.icon_border
+                img: state.config.icon_border.image
             });
         }
     }

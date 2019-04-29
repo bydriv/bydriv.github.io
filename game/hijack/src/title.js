@@ -38,11 +38,11 @@ function viewHijackModeTitle(state) {
         sy: 0,
         sw: state.config.logo.width,
         sh: state.config.logo.height,
-        dx: (getHijackParameterWidth(state.config) - state.config.logo.width * state.config.logo_scale) / 2,
-        dy: (getHijackParameterHeight(state.config) - state.config.logo.height * state.config.logo_scale) / 2,
-        dw: state.config.logo.width * state.config.logo_scale,
-        dh: state.config.logo.height * state.config.logo_scale,
-        img: state.config.logo
+        dx: (getHijackParameterWidth(state.config) - state.config.logo.width * state.config.logo.scale) / 2,
+        dy: (getHijackParameterHeight(state.config) - state.config.logo.height * state.config.logo.scale) / 2,
+        dw: state.config.logo.width * state.config.logo.scale,
+        dh: state.config.logo.height * state.config.logo.scale,
+        img: state.config.logo.image
     }];
 
     return views;
