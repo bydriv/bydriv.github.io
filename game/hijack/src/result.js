@@ -12,7 +12,7 @@ function stepHijackModeResult(state, input) {
     if (called) {
         state.mode = HIJACK_MODE_CHARACTER_SELECTION;
     } else {
-        stepHijackModeGame1(state, getInput([]));
+        stepHijackModeGame(state, getInput([]));
     }
 
     return state;

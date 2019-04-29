@@ -1,13 +1,8 @@
 function stepHijackModeGame(state, input) {
     if (state.character0.odds >= 100 || state.character1.odds >= 100) {
         state.mode = HIJACK_MODE_RESULT;
-        return state;
     }
 
-    return stepHijackModeGame1(state, input);
-}
-
-function stepHijackModeGame1(state, input) {
     var attacks0 = [];
     var attacks1 = [];
     var grabs0 = [];
