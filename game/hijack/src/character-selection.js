@@ -55,42 +55,10 @@ function stepHijackModeCharacterSelection(state, input) {
             stage: stage
         };
     } else {
-        var h0 = 0;
-        var v0 = 0;
-        var h1 = 0;
-        var v1 = 0;
-
-        whenLeftStick(state, input, 0, "left", function () {
-            h0 = -1;
-        });
-
-        whenLeftStick(state, input, 0, "top", function () {
-            v0 = -1;
-        });
-
-        whenLeftStick(state, input, 0, "right", function () {
-            h0 = 1;
-        });
-
-        whenLeftStick(state, input, 0, "bottom", function () {
-            v0 = 1;
-        });
-
-        whenLeftStick(state, input, 1, "left", function () {
-            h1 = -1;
-        });
-
-        whenLeftStick(state, input, 1, "top", function () {
-            v1 = -1;
-        });
-
-        whenLeftStick(state, input, 1, "right", function () {
-            h1 = 1;
-        });
-
-        whenLeftStick(state, input, 1, "bottom", function () {
-            v1 = 1;
-        });
+        var h0 = getPad(state, input, 0).axes[0];
+        var v0 = getPad(state, input, 0).axes[1];
+        var h1 = getPad(state, input, 1).axes[0];
+        var v1 = getPad(state, input, 1).axes[1];
 
         if (h0 < 0) {
             var i = state.selection0.y * 4 + (state.selection0.x - 1);

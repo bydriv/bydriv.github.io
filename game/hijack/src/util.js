@@ -1,4 +1,5 @@
 var HIJACK_BUTTON_WAIT = 10;
+var HIJACK_BUTTON_COUNT = 8;
 
 function collision(r0, r1) {
     var left = Math.max(r0.x, r1.x);
@@ -162,4 +163,43 @@ function whenAnyButton(state, input, i, f) {
         whenButton(state, input, i, j, g);
 
     return ret;
+}
+
+function getPad(state, input, i) {
+    var x = 0;
+    var y = 0;
+    var buttons = [];
+
+    whenLeftStick(state, input, i, "left", function () {
+        x = input[i].axes[0];
+    });
+
+    whenLeftStick(state, input, i, "top", function () {
+        y = input[i].axes[1];
+    });
+
+    whenLeftStick(state, input, i, "right", function () {
+        x = input[i].axes[0];
+    });
+
+    whenLeftStick(state, input, i, "bottom", function () {
+        y = input[i].axes[1];
+    });
+
+    for (var j = 0; j < HIJACK_BUTTON_COUNT; ++j) {
+        var pressed = false;
+
+        whenButton(state, input, i, j, function () {
+            pressed = true;
+        });
+
+        buttons.push({
+            pressed: pressed
+        });
+    }
+
+    return {
+        axes: [x, y],
+        buttons: buttons
+    };
 }
