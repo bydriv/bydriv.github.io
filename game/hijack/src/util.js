@@ -1,3 +1,26 @@
+function collision(r0, r1) {
+    var left = Math.max(r0.x, r1.x);
+    var top = Math.max(r0.y, r1.y);
+    var right = Math.min(r0.x + r0.width, r1.x + r1.width);
+    var bottom = Math.min(r0.y + r0.height, r1.y + r1.height);
+    var width = right - left;
+    var height = bottom - top;
+    return width > 0 && height > 0;
+}
+
+function vec2norm(v) {
+    return Math.sqrt(v.x * v.x + v.y * v.y);
+}
+
+function vec2normalize(v) {
+    var norm = vec2norm(v);
+
+    return {
+        x: v.x / norm,
+        y: v.y / norm
+    };
+}
+
 function loadImage(src) {
     return new Promise(function (resolve, reject) {
         const img = new Image();
