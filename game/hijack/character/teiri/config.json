@@ -1,5 +1,5 @@
 {
-    "gravity": 8,
+    "gravity": 4,
     "resistance": 2,
     "dexterity": 2,
     "icon": "character/teiri/icon.png",
@@ -62,7 +62,7 @@
             "animation": "jump_left",
             "move": {
                 "x": 0,
-                "y": -32,
+                "y": -16,
                 "scale": 2
             }
         },
@@ -75,7 +75,7 @@
             "animation": "jump_right",
             "move": {
                 "x": 0,
-                "y": -32,
+                "y": -16,
                 "scale": 2
             }
         },
@@ -88,7 +88,7 @@
             "animation": "jump_left",
             "move": {
                 "x": 0,
-                "y": -48,
+                "y": -32,
                 "scale": 2
             }
         },
@@ -101,7 +101,7 @@
             "animation": "jump_right",
             "move": {
                 "x": 0,
-                "y": -48,
+                "y": -32,
                 "scale": 2
             }
         },

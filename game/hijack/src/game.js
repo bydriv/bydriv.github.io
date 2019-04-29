@@ -327,7 +327,7 @@ function resolveHijackModeGame(state, effect) {
     var animation0 = state.player0.character.animations[action0.animation];
     var animation1 = state.player1.character.animations[action1.animation];
 
-    if (state.i % animation0.frames_per_sprite === 0 || state.i % animation1.frames_per_sprite === 0) {
+    if ((state.i - state.player0.i) % animation0.frames_per_sprite === 0 || (state.i - state.player1.i) % animation1.frames_per_sprite === 0) {
         var left = Math.min(state.player0.x + getHijackParameterX(action0), state.player1.x + getHijackParameterX(action1));
         var right = Math.max(state.player0.x + getHijackParameterX(action0) + getHijackParameterWidth(action0), state.player1.x + getHijackParameterX(action1) + getHijackParameterWidth(action1));
 
