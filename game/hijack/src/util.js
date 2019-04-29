@@ -69,3 +69,26 @@ function loadConfig(src) {
         return f(_config);
     });
 }
+
+var HIJACK_INPUT_EMPTY = {
+    axes: [0, 0],
+    buttons: [
+        {pressed: false},
+        {pressed: false},
+        {pressed: false},
+        {pressed: false},
+        {pressed: false},
+        {pressed: false}
+    ]
+};
+
+function getInput(input) {
+    switch (input.length) {
+    case 0:
+        return [HIJACK_INPUT_EMPTY, HIJACK_INPUT_EMPTY];
+    case 1:
+        return [input[0], HIJACK_INPUT_EMPTY];
+    default:
+        return input;
+    }
+}

@@ -1,8 +1,8 @@
 function stepHijackModeResult(state, input) {
     var pad0 = input[0];
     var pad1 = input[1];
-    var pad0IsPressed = pad0 && state.i0 >= HIJACK_BUTTON_WAIT && pad0.buttons.some(function (button) { return button.pressed; });
-    var pad1IsPressed = pad1 && state.i1 >= HIJACK_BUTTON_WAIT && pad1.buttons.some(function (button) { return button.pressed; });
+    var pad0IsPressed = state.i0 >= HIJACK_BUTTON_WAIT && pad0.buttons.some(function (button) { return button.pressed; });
+    var pad1IsPressed = state.i1 >= HIJACK_BUTTON_WAIT && pad1.buttons.some(function (button) { return button.pressed; });
 
     if (pad0IsPressed || pad1IsPressed) {
         state.i0 = 0;

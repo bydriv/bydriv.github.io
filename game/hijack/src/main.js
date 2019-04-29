@@ -150,7 +150,7 @@ window.addEventListener("load", function () {
                 recording = false;
             }
 
-            var input = Array.from(navigator.getGamepads()).filter(function (pad) { return pad != null; });
+            var input = getInput(Array.from(navigator.getGamepads()).filter(function (pad) { return pad != null; }));
             state = stepHijack(state, input);
             var views = viewHijack(state);
             drawViews(offscreenCanvas, offscreenContext, views);

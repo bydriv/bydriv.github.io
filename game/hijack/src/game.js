@@ -1,15 +1,3 @@
-var HIJACK_INPUT_EMPTY = {
-    axes: [0, 0],
-    buttons: [
-        {pressed: false},
-        {pressed: false},
-        {pressed: false},
-        {pressed: false},
-        {pressed: false},
-        {pressed: false}
-    ]
-};
-
 function stepHijackModeGame(state, input) {
     if (state.character0.odds >= 100 || state.character1.odds >= 100) {
         state.i0 = 0;
@@ -26,13 +14,6 @@ function stepHijackModeGame1(state, input) {
     var attacks1 = [];
     var grabs0 = [];
     var grabs1 = [];
-
-    input =
-        input.length === 0
-        ? [HIJACK_INPUT_EMPTY, HIJACK_INPUT_EMPTY]
-        : input.length === 1
-        ?  [input[0], HIJACK_INPUT_EMPTY]
-        : input;
 
     stepCharacterCalc(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
     stepCharacterCalc(1, state.character1, attacks1, grabs1, state.character0, attacks0, grabs0);
