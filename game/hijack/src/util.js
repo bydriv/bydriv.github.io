@@ -1,3 +1,5 @@
+var HIJACK_BUTTON_WAIT = 10;
+
 function collision(r0, r1) {
     var left = Math.max(r0.x, r1.x);
     var top = Math.max(r0.y, r1.y);
@@ -91,4 +93,73 @@ function getInput(input) {
     default:
         return input;
     }
+}
+
+function whenLeftStick(state, input, i, direction, f) {
+    if (!state.waitLeftStick[i][direction]) {
+        state.waitLeftStick[i][direction] = 0;
+    }
+
+    if (state.waitLeftStick[i][direction] < HIJACK_BUTTON_WAIT) {
+        ++state.waitLeftStick[i][direction];
+        return null;
+    } else {
+        var cond = false;
+
+        switch (direction) {
+        case "left":
+            cond = input[i].axes[0] < -0.5;
+            break;
+        case "top":
+            cond = input[i].axes[1] < -0.5;
+            break;
+        case "right":
+            cond = input[i].axes[0] > 0.5;
+            break;
+        case "bottom":
+            cond = input[i].axes[1] > 0.5;
+            break;
+        }
+
+        if (cond) {
+            state.waitLeftStick[i][direction] = 0;
+            return f();
+        } else {
+            ++state.waitLeftStick[i][direction];
+            return null;
+        }
+    }
+}
+
+function whenButton(state, input, i, j, f) {
+    if (!state.waitButton[i][j]) {
+        state.waitButton[i][j] = 0;
+    }
+
+    if (state.waitButton[i][j] < HIJACK_BUTTON_WAIT) {
+        ++state.waitButton[i][j];
+        return null;
+    } else if (input[i].buttons[j] && input[i].buttons[j].pressed) {
+        state.waitButton[i][j] = 0;
+        return f();
+    } else {
+        ++state.waitButton[i][j];
+        return null;
+    }
+}
+
+function whenAnyButton(state, input, i, f) {
+    var called = false;
+    var ret = null;
+
+    function g() {
+        called = true;
+        ret = f();
+        return ret;
+    }
+
+    for (var j = 0; !called && j < 32; ++j)
+        whenButton(state, input, i, j, g);
+
+    return ret;
 }

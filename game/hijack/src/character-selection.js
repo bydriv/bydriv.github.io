@@ -1,13 +1,15 @@
 function stepHijackModeCharacterSelection(state, input) {
-    var pad0 = input[0];
-    var pad1 = input[1];
-    var pad0IsPressed = state.i0 >= HIJACK_BUTTON_WAIT && pad0.buttons.some(function (button) { return button.pressed; });
-    var pad1IsPressed = state.i1 >= HIJACK_BUTTON_WAIT && pad1.buttons.some(function (button) { return button.pressed; });
+    var called = false;
 
-    if (pad0IsPressed || pad1IsPressed) {
-        state.i0 = 0;
-        state.i1 = 0;
+    whenAnyButton(state, input, 0, function () {
+        called = true;
+    });
 
+    whenAnyButton(state, input, 1, function () {
+        called = true;
+    });
+
+    if (called) {
         state.mode = HIJACK_MODE_GAME;
 
         var character0 = state.selection0.character;
@@ -53,72 +55,93 @@ function stepHijackModeCharacterSelection(state, input) {
             stage: stage
         };
     } else {
-        var x0 = pad0 && state.i0 >= HIJACK_BUTTON_WAIT ? pad0.axes[0] : 0;
-        var y0 = pad0 && state.i0 >= HIJACK_BUTTON_WAIT ? pad0.axes[1] : 0;
-        var x1 = pad1 && state.i1 >= HIJACK_BUTTON_WAIT ? pad1.axes[0] : 0;
-        var y1 = pad1 && state.i1 >= HIJACK_BUTTON_WAIT ? pad1.axes[1] : 0;
+        var h0 = 0;
+        var v0 = 0;
+        var h1 = 0;
+        var v1 = 0;
 
-        if (x0 < -0.5) {
+        whenLeftStick(state, input, 0, "left", function () {
+            h0 = -1;
+        });
+
+        whenLeftStick(state, input, 0, "top", function () {
+            v0 = -1;
+        });
+
+        whenLeftStick(state, input, 0, "right", function () {
+            h0 = 1;
+        });
+
+        whenLeftStick(state, input, 0, "bottom", function () {
+            v0 = 1;
+        });
+
+        whenLeftStick(state, input, 1, "left", function () {
+            h1 = -1;
+        });
+
+        whenLeftStick(state, input, 1, "top", function () {
+            v1 = -1;
+        });
+
+        whenLeftStick(state, input, 1, "right", function () {
+            h1 = 1;
+        });
+
+        whenLeftStick(state, input, 1, "bottom", function () {
+            v1 = 1;
+        });
+
+        if (h0 < 0) {
             var i = state.selection0.y * 4 + (state.selection0.x - 1);
             if (0 <= state.selection0.x - 1 && state.selection0.x - 1 < 4 && 0 <= i && i < state.config.characters.length) {
                 --state.selection0.x;
             }
-            state.i0 = -1;
-        } else if (x0 > 0.5) {
+        } else if (h0 > 0) {
             var i = state.selection0.y * 4 + (state.selection0.x + 1);
             if (0 <= state.selection0.x + 1 && state.selection0.x + 1 < 4 && 0 <= i && i < state.config.characters.length) {
                 ++state.selection0.x;
             }
-            state.i0 = -1;
         }
 
-        if (y0 < -0.5) {
+        if (v0 < 0) {
             var i = (state.selection0.y - 1) * 4 + state.selection0.x;
             if (0 <= state.selection0.y - 1 && state.selection0.y - 1 < 4 && 0 <= i && i < state.config.characters.length) {
                 --state.selection0.y;
             }
-            state.i0 = -1;
-        } else if (y0 > 0.5) {
+        } else if (v0 > 0) {
             var i = (state.selection0.y + 1) * 4 + state.selection0.x;
             if (0 <= state.selection0.y + 1 && state.selection0.y + 1 < 4 && 0 <= i && i < state.config.characters.length) {
                 ++state.selection0.y;
             }
-            state.i0 = -1;
         }
 
-        if (x1 < -0.5) {
+        if (h1 < 0) {
             var i = state.selection1.y * 4 + (state.selection1.x - 1);
             if (0 <= state.selection1.x - 1 && state.selection1.x - 1 < 4 && 0 <= i && i < state.config.characters.length) {
                 --state.selection1.x;
             }
-            state.i1 = -1;
-        } else if (x1 > 0.5) {
+        } else if (h1 > 0) {
             var i = state.selection1.y * 4 + (state.selection1.x + 1);
             if (0 <= state.selection1.x + 1 && state.selection1.x + 1 < 4 && 0 <= i && 0 <= i && i < state.config.characters.length) {
                 ++state.selection1.x;
             }
-            state.i1 = -1;
         }
 
-        if (y1 < -0.5) {
+        if (v1 < 0) {
             var i = (state.selection1.y - 1) * 4 + state.selection1.x;
             if (0 <= state.selection1.y - 1 && state.selection1.y - 1 < 4 && 0 <= i && 0 <= i && i < state.config.characters.length) {
                 --state.selection1.y;
             }
-            state.i1 = -1;
-        } else if (y1 > 0.5) {
+        } else if (v1 > 0) {
             var i = (state.selection1.y + 1) * 4 + state.selection1.x;
             if (0 <= state.selection1.y + 1 && state.selection1.y + 1 < 4 && 0 <= i && 0 <= i && i < state.config.characters.length) {
                 ++state.selection1.y;
             }
-            state.i1 = -1;
         }
 
         state.selection0.character = state.config.characters[state.selection0.y * 4 + state.selection0.x];
         state.selection1.character = state.config.characters[state.selection1.y * 4 + state.selection1.x];
-
-        ++state.i0;
-        ++state.i1;
     }
 
     return state;

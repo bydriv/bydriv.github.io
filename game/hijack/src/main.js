@@ -3,12 +3,13 @@ var HIJACK_MODE_CHARACTER_SELECTION = "characterSelection";
 var HIJACK_MODE_GAME = "game";
 var HIJACK_MODE_RESULT = "result";
 var HIJACK_FLOOR_HEIGHT = 16;
-var HIJACK_BUTTON_WAIT = 10;
 
 function newHijack(config, onscreenCanvas, offscreenCanvas) {
     return {
         i0: 0,
         i1: 0,
+        waitLeftStick: [{}, {}],
+        waitButton: [[], []],
         mode: HIJACK_MODE_TITLE,
         config: config,
         onscreenCanvas: onscreenCanvas,

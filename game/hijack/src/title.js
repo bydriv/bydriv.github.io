@@ -1,13 +1,15 @@
 function stepHijackModeTitle(state, input) {
-    var pad0 = input[0];
-    var pad1 = input[1];
-    var pad0IsPressed = state.i0 >= HIJACK_BUTTON_WAIT && pad0.buttons.some(function (button) { return button.pressed; });
-    var pad1IsPressed = state.i1 >= HIJACK_BUTTON_WAIT && pad1.buttons.some(function (button) { return button.pressed; });
+    var called = false;
 
-    if (pad0IsPressed || pad1IsPressed) {
-        state.i0 = 0;
-        state.i1 = 0;
+    whenAnyButton(state, input, 0, function () {
+        called = true;
+    });
 
+    whenAnyButton(state, input, 1, function () {
+        called = true;
+    });
+
+    if (called) {
         state.mode = HIJACK_MODE_CHARACTER_SELECTION;
 
         state.selection0 =
@@ -23,9 +25,6 @@ function stepHijackModeTitle(state, input) {
                 y: 0,
                 character: state.config.characters[0]
             };
-    } else {
-        ++state.i0;
-        ++state.i1;
     }
 
     return state;
