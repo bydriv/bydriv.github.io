@@ -30,53 +30,43 @@ function stepHijack(state, input) {
 }
 
 function viewHijack(state) {
-    var offscreenContext = state.offscreenCanvas.getContext("2d");
-    offscreenContext.fillRect(0, 0, state.offscreenCanvas.width, state.offscreenCanvas.height);
-
-    var views = [];
-
     switch (state.mode) {
-    case "title":
-        views = viewHijackModeTitle(state);
-        break;
-    case "characterSelection":
-        views = viewHijackModeCharacterSelection(state);
-        break;
-    case "game":
-        views = viewHijackModeGame(state);
-        break;
-    case "result":
-        views = viewHijackModeResult(state);
-        break;
+    case HIJACK_MODE_TITLE:
+        return viewHijackModeTitle(state);
+    case HIJACK_MODE_CHARACTER_SELECTION:
+        return viewHijackModeCharacterSelection(state);
+    case HIJACK_MODE_GAME:
+        return viewHijackModeGame(state);
+    case HIJACK_MODE_RESULT:
+        return viewHijackModeResult(state);
     }
+}
+
+function drawViews(canvas, context, views) {
+    context.fillRect(0, 0, canvas.width, canvas.height);
 
     for (var i = 0; i < views.length; ++i) {
         var view = views[i];
 
         switch (view.type) {
         case "image":
-            offscreenContext.drawImage(view.img, view.sx, view.sy, view.sw, view.sh, view.dx, view.dy, view.dw, view.dh);
+            context.drawImage(view.img, view.sx, view.sy, view.sw, view.sh, view.dx, view.dy, view.dw, view.dh);
             break;
         case "rect":
-            var fillStyle = offscreenContext.fillStyle;
-            offscreenContext.fillStyle = view.color;
-            offscreenContext.fillRect(view.x, view.y, view.width, view.height);
-            offscreenContext.fillStyle = fillStyle;
+            context.save();
+            context.fillStyle = view.color;
+            context.fillRect(view.x, view.y, view.width, view.height);
+            context.restore();
             break;
         case "text":
-            var fillStyle = offscreenContext.fillStyle;
-            var font = offscreenContext.font;
-            offscreenContext.fillStyle = view.color;
-            offscreenContext.font = view.fontSize.toString() + "px " + view.fontFamily;
-            offscreenContext.fillText(view.message, view.x, view.y, view.width);
-            offscreenContext.font = font;
-            offscreenContext.fillStyle = fillStyle;
+            context.save();
+            context.fillStyle = view.color;
+            context.font = view.fontSize.toString() + "px " + view.fontFamily;
+            context.fillText(view.message, view.x, view.y, view.width);
+            context.restore();
             break;
         }
     }
-
-    var onscreenContext = state.onscreenCanvas.getContext("2d");
-    onscreenContext.drawImage(state.offscreenCanvas, 0, 0);
 }
 
 function stepHijackModeTitle(state, input) {
@@ -1164,9 +1154,10 @@ window.addEventListener("load", function () {
 
         var onscreenCanvas = document.getElementById("hijack");
         var offscreenCanvas = document.createElement("canvas");
+        var offscreenContext = offscreenCanvas.getContext("2d");
+        var onscreenContext = onscreenCanvas.getContext("2d");
         offscreenCanvas.width = onscreenCanvas.width;
         offscreenCanvas.height = onscreenCanvas.height;
-        var offscreenContext = offscreenCanvas.getContext("2d");
         offscreenContext.imageSmoothingEnabled = false;
 
         var state = newHijack(config, onscreenCanvas, offscreenCanvas);
@@ -1221,7 +1212,9 @@ window.addEventListener("load", function () {
 
             var input = Array.from(navigator.getGamepads()).filter(function (pad) { return pad != null; });
             state = stepHijack(state, input);
-            viewHijack(state);
+            var views = viewHijack(state);
+            drawViews(offscreenCanvas, offscreenContext, views);
+            onscreenContext.drawImage(offscreenCanvas, 0, 0);
             requestAnimationFrame(step);
         });
     });
