@@ -324,9 +324,17 @@ function effectHijackModeGamePlayer(state, input, i, player, opponent) {
         break;
     case "hard_air_attack":
         break;
-    case "grab":
+    case "light_ground_throw":
         break;
-    case "grabbed":
+    case "medium_ground_throw":
+        break;
+    case "hard_ground_throw":
+        break;
+    case "light_air_throw":
+        break;
+    case "medium_air_throw":
+        break;
+    case "hard_air_throw":
         break;
     case "shield":
         break;
@@ -335,8 +343,6 @@ function effectHijackModeGamePlayer(state, input, i, player, opponent) {
     case "be_attacked_top":
         break;
     case "be_attacked_bottom":
-        break;
-    case "be_grabbed":
         break;
     case "be_knockdown":
         break;
