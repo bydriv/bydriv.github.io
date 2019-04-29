@@ -6,8 +6,6 @@ var HIJACK_FLOOR_HEIGHT = 16;
 
 function newHijack(config, onscreenCanvas, offscreenCanvas) {
     return {
-        i0: 0,
-        i1: 0,
         waitLeftStick: [{}, {}],
         waitButton: [[], []],
         mode: HIJACK_MODE_TITLE,

@@ -1,7 +1,5 @@
 function stepHijackModeGame(state, input) {
     if (state.character0.odds >= 100 || state.character1.odds >= 100) {
-        state.i0 = 0;
-        state.i1 = 0;
         state.mode = HIJACK_MODE_RESULT;
         return state;
     }
@@ -18,13 +16,8 @@ function stepHijackModeGame1(state, input) {
     stepCharacterCalc(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
     stepCharacterCalc(1, state.character1, attacks1, grabs1, state.character0, attacks0, grabs0);
 
-    if (state.i0 >= HIJACK_BUTTON_WAIT && state.i1 >= HIJACK_BUTTON_WAIT) {
-        stepCharacterControl(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
-        stepCharacterControl(1, state.character1, attacks1, grabs1, state.character0, attacks0, grabs0);
-    } else {
-        ++state.i0;
-        ++state.i1;
-    }
+    stepCharacterControl(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
+    stepCharacterControl(1, state.character1, attacks1, grabs1, state.character0, attacks0, grabs0);
 
     stepCharacterApply(0, state.character0, attacks0, grabs0, state.character1, attacks1, grabs1);
     stepCharacterApply(1, state.character1, attacks1, grabs1, state.character0, attacks0, grabs0);
