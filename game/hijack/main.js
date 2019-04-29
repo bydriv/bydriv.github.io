@@ -1,16 +1,3 @@
-function loadImage(src) {
-    return new Promise(function (resolve, reject) {
-        const img = new Image();
-        img.onload = function () {
-            resolve(img);
-        };
-        img.onerror = function (e) {
-            reject(e);
-        };
-        img.src = src;
-    });
-}
-
 var HIJACK_MODE_TITLE = "title";
 var HIJACK_MODE_CHARACTER_SELECTION = "characterSelection";
 var HIJACK_MODE_GAME = "game";
@@ -1152,38 +1139,6 @@ function viewHijackModeResult(state) {
     return views;
 }
 
-function loadConfig(_config) {
-    switch (Object.prototype.toString.call(_config)) {
-    case "[object Null]":
-    case "[object Boolean]":
-    case "[object Number]":
-        return Promise.resolve(_config);
-    case "[object String]":
-        if (_config.endsWith(".json"))
-            return fetch(_config, {cache: "no-cache"}).then(function (response) {
-                return response.json();
-            }).then(function (_config) {
-                return loadConfig(_config);
-            });
-        else if (_config.endsWith(".png"))
-            return loadImage(_config);
-        else
-            return Promise.resolve(_config);
-    case "[object Array]":
-        return Promise.all(_config.map(function (_cfg) {
-            return loadConfig(_cfg);
-        }));
-    case "[object Object]":
-        return Promise.all(Object.entries(_config).map(function (arg) {
-            return loadConfig(arg[1]).then(function (cfg) {
-                return [arg[0], cfg];
-            });
-        })).then(function (entries) {
-            return Object.fromEntries(entries);
-        });
-    }
-}
-
 function getHijackParameterX(position) {
     return position.x * position.scale;
 }
@@ -1201,11 +1156,7 @@ function getHijackParameterHeight(rectangle) {
 }
 
 window.addEventListener("load", function () {
-    return fetch("config.json", {cache: "no-cache"}).then(function (response) {
-        return response.json();
-    }).then(function (_config) {
-        return loadConfig(_config);
-    }).then(function (config) {
+    return loadConfig("config.json").then(function (config) {
         var mode = document.getElementById("mode");
 
         var recording = false;
