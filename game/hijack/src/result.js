@@ -30,7 +30,7 @@ function viewHijackModeResult(state) {
         color: "rgba(0, 0, 0, 0.5)"
     });
 
-    if (state.character0.odds >= 100) {
+    if (state.player0.odds >= 100) {
         var character0 = state.selection0.character;
         var portrait0 = state.selection0.character.portrait_right;
 
@@ -58,7 +58,7 @@ function viewHijackModeResult(state) {
             fontFamily: "Junicode",
             message: character0.result_messages[Math.floor(Math.random() * character0.result_messages.length)]
         });
-    } else if (state.character1.odds >= 100) {
+    } else if (state.player1.odds >= 100) {
         var character1 = state.selection1.character;
         var portrait1 = state.selection1.character.portrait_left;
 

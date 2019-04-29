@@ -6,6 +6,7 @@ var HIJACK_FLOOR_HEIGHT = 16;
 
 function newHijack(config, onscreenCanvas, offscreenCanvas) {
     return {
+        i: 0,
         waitLeftStick: [{}, {}],
         waitButton: [[], []],
         mode: HIJACK_MODE_TITLE,
@@ -100,7 +101,6 @@ window.addEventListener("load", function () {
         offscreenContext.imageSmoothingEnabled = false;
 
         var state = newHijack(config, onscreenCanvas, offscreenCanvas);
-        viewHijack(state);
 
         requestAnimationFrame(function step() {
             if (!recording && mode["record-mode"].checked) {
@@ -154,6 +154,7 @@ window.addEventListener("load", function () {
             var views = viewHijack(state);
             drawViews(offscreenCanvas, offscreenContext, views);
             onscreenContext.drawImage(offscreenCanvas, 0, 0);
+            ++state.i;
             requestAnimationFrame(step);
         });
     });

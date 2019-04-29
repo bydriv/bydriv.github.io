@@ -1,5 +1,5 @@
 {
-    "gravity": 4,
+    "gravity": 8,
     "resistance": 2,
     "dexterity": 2,
     "icon": "character/teiri/icon.png",
@@ -53,33 +53,7 @@
                 "scale": 2
             }
         },
-        "short_jump_left": {
-            "x": 16,
-            "y": 0,
-            "width": 64,
-            "height": 96,
-            "scale": 2,
-            "animation": "jump_left",
-            "move": {
-                "x": 0,
-                "y": -16,
-                "scale": 2
-            }
-        },
-        "short_jump_right": {
-            "x": 16,
-            "y": 0,
-            "width": 64,
-            "height": 96,
-            "scale": 2,
-            "animation": "jump_right",
-            "move": {
-                "x": 0,
-                "y": -16,
-                "scale": 2
-            }
-        },
-        "full_jump_left": {
+        "hop_left": {
             "x": 16,
             "y": 0,
             "width": 64,
@@ -92,7 +66,7 @@
                 "scale": 2
             }
         },
-        "full_jump_right": {
+        "hop_right": {
             "x": 16,
             "y": 0,
             "width": 64,
@@ -102,6 +76,32 @@
             "move": {
                 "x": 0,
                 "y": -32,
+                "scale": 2
+            }
+        },
+        "jump_left": {
+            "x": 16,
+            "y": 0,
+            "width": 64,
+            "height": 96,
+            "scale": 2,
+            "animation": "jump_left",
+            "move": {
+                "x": 0,
+                "y": -48,
+                "scale": 2
+            }
+        },
+        "jump_right": {
+            "x": 16,
+            "y": 0,
+            "width": 64,
+            "height": 96,
+            "scale": 2,
+            "animation": "jump_right",
+            "move": {
+                "x": 0,
+                "y": -48,
                 "scale": 2
             }
         },
@@ -121,7 +121,7 @@
             "scale": 2,
             "animation": "fall_right"
         },
-        "weak_left": {
+        "light_ground_attack_left": {
             "x": 0,
             "y": 0,
             "width": 96,
@@ -144,7 +144,7 @@
                 }
             }
         },
-        "weak_right": {
+        "light_ground_attack_right": {
             "x": 0,
             "y": 0,
             "width": 96,
@@ -167,7 +167,7 @@
                 }
             }
         },
-        "strong_left": {
+        "hard_ground_attack_left": {
             "x": 0,
             "y": 0,
             "width": 96,
@@ -190,7 +190,7 @@
                 }
             }
         },
-        "strong_right": {
+        "hard_ground_attack_right": {
             "x": 0,
             "y": 0,
             "width": 96,
