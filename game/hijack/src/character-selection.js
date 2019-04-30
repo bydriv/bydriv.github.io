@@ -20,7 +20,7 @@ function stepHijackModeCharacterSelection(state, input) {
         state.y = 0;
 
         state.player0 = {
-            i: 0,
+            i: state.i,
             id: 0,
             v: {
                 x: 0,
@@ -32,11 +32,12 @@ function stepHijackModeCharacterSelection(state, input) {
             pose: "neutral",
             direction: "right",
             ate: new Set(),
+            shield: false,
             character: character0
         };
 
         state.player1 = {
-            i: 0,
+            i: state.i,
             id: 0,
             v: {
                 x: 0,
@@ -48,6 +49,7 @@ function stepHijackModeCharacterSelection(state, input) {
             pose: "neutral",
             direction: "left",
             ate: new Set(),
+            shield: false,
             character: character1
         };
 
