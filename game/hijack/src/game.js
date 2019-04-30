@@ -23,8 +23,8 @@ function effectHijackModeGamePlayer(state, input, i, player, opponent) {
     switch (player.pose) {
     case "neutral":
         run();
-        groundAttack();
         jump();
+        groundAttack();
 
         break;
     case "run":
@@ -33,6 +33,7 @@ function effectHijackModeGamePlayer(state, input, i, player, opponent) {
         }
 
         jump();
+        dashAttack();
 
         break;
     case "hop":
@@ -229,6 +230,49 @@ function effectHijackModeGamePlayer(state, input, i, player, opponent) {
             effect.push({
                 type: "pose",
                 pose: "hard_ground_attack"
+            });
+        }
+    }
+
+    function dashAttack() {
+        if (pad.buttons[0].pressed) {
+            effect.push({
+                type: "pose",
+                pose: "light_ground_attack"
+            });
+
+            effect.push({
+                type: "reset_vector",
+                v: {
+                    x: 0,
+                    y: 0
+                }
+            });
+        } else if (pad.buttons[1].pressed) {
+            effect.push({
+                type: "pose",
+                pose: "medium_ground_attack"
+            });
+
+            effect.push({
+                type: "reset_vector",
+                v: {
+                    x: 0,
+                    y: 0
+                }
+            });
+        } else if (pad.buttons[2].pressed) {
+            effect.push({
+                type: "pose",
+                pose: "hard_ground_attack"
+            });
+
+            effect.push({
+                type: "reset_vector",
+                v: {
+                    x: 0,
+                    y: 0
+                }
             });
         }
     }
