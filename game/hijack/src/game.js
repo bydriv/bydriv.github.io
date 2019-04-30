@@ -209,6 +209,18 @@ function effectHijackModeGamePlayer(state, input, i, player, opponent) {
     case "be_attacked_bottom":
     case "be_grabbed":
     case "be_knockdown":
+        if (opponent.x < player.x) {
+            effect.push({
+                type: "direction",
+                direction: "left"
+            });
+        } else if (opponent.x > player.x) {
+            effect.push({
+                type: "direction",
+                direction: "right"
+            });
+        }
+
         if (state.i - player.i < playerAction.recovery) {
             break;
         }
@@ -576,9 +588,9 @@ function resolveHijackModeGamePlayer(state, playerEffect, opponentEffect, i, pla
             if (!player.ateThrow.has(eff["throw"].id) && player.pose === "be_grabbed") {
                 player.ateThrow.add(eff["throw"].id);
                 player.i = state.i;
-                player.pose = poseAttacked(player);
                 player.v.x += eff["throw"].v.x;
                 player.v.y += eff["throw"].v.y;
+                player.pose = poseAttacked(player);
                 player.odds -= eff["throw"].damage;
                 player.odds = Math.max(0, player.odds);
                 opponent.odds += eff["throw"].damage;
@@ -636,6 +648,9 @@ function resolveHijackModeGamePlayer(state, playerEffect, opponentEffect, i, pla
 
         if (player.pose === "fall") {
             player.pose = "neutral";
+        }
+
+        if (player.pose === "neutral") {
             player.v = {
                 x: 0,
                 y: 0
