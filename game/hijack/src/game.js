@@ -4,6 +4,18 @@ function onGround(state, player) {
     return !(player.y + getHijackParameterY(playerAction) + getHijackParameterHeight(playerAction) < getHijackParameterHeight(state.config) - HIJACK_FLOOR_HEIGHT);
 }
 
+function poseAttacked(player) {
+    if (-32 <= player.v.x && player.v.x <= 32) {
+        if (-32 <= player.v.y && player.v.y <= 32) {
+            return "be_attacked";
+        } else {
+            return "be_attacked_bottom";
+        }
+    } else {
+        return "be_attacked_top";
+    }
+}
+
 function judgeHijackModeGame(state) {
     return state.player0.odds >= 100 || state.player1.odds >= 100;
 }
@@ -28,6 +40,18 @@ function effectHijackModeGamePlayer(state, input, i, player, opponent) {
 
     switch (player.pose) {
     case "neutral":
+        if (opponent.x < player.x) {
+            effect.push({
+                type: "direction",
+                direction: "left"
+            });
+        } else if (opponent.x > player.x) {
+            effect.push({
+                type: "direction",
+                direction: "right"
+            });
+        }
+
         run();
         jump();
         groundAttack();
@@ -517,9 +541,9 @@ function resolveHijackModeGamePlayer(state, playerEffect, opponentEffect, i, pla
             if (!player.ateAttack.has(eff.attack.id) && collision(eff.attack, r) && !player.shield) {
                 player.ateAttack.add(eff.attack.id);
                 player.i = state.i;
-                player.pose = "be_attacked";
                 player.v.x += eff.attack.v.x;
                 player.v.y += eff.attack.v.y;
+                player.pose = poseAttacked(player);
                 player.odds -= eff.attack.damage;
                 player.odds = Math.max(0, player.odds);
                 opponent.odds += eff.attack.damage;
@@ -552,7 +576,7 @@ function resolveHijackModeGamePlayer(state, playerEffect, opponentEffect, i, pla
             if (!player.ateThrow.has(eff["throw"].id) && player.pose === "be_grabbed") {
                 player.ateThrow.add(eff["throw"].id);
                 player.i = state.i;
-                player.pose = "be_attacked";
+                player.pose = poseAttacked(player);
                 player.v.x += eff["throw"].v.x;
                 player.v.y += eff["throw"].v.y;
                 player.odds -= eff["throw"].damage;
@@ -588,18 +612,28 @@ function resolveHijackModeGamePlayer(state, playerEffect, opponentEffect, i, pla
     }
 
     if (!onGround(state, player)) {
-        if (player.pose !== "hop" && player.pose !== "jump" && player.pose !== "light_air_attack" && player.pose !== "medium_air_attack" && player.pose !== "hard_air_attack")
+        if (player.pose !== "hop" && player.pose !== "jump" && player.pose !== "light_air_attack" && player.pose !== "medium_air_attack" && player.pose !== "hard_air_attack" && player.pose !== "be_attacked" && player.pose !== "be_attacked_top" && player.pose !== "be_attacked_bottom")
             player.pose = "fall";
         player.v.y += player.character.gravity;
 
         if (player.v.x < 0) {
             player.v.x += player.character.resistance;
             player.v.x = Math.min(0, player.v.x);
-        } else if (player.v.x < 0) {
+        } else if (player.v.x > 0) {
             player.v.x -= player.character.resistance;
             player.v.x = Math.max(0, player.v.x);
         }
     } else {
+        if (player.pose === "be_attacked" || player.pose === "be_attacked_top" || player.pose === "be_attacked_bottom") {
+            if (player.v.x < 0) {
+                player.v.x += player.character.resistance;
+                player.v.x = Math.min(0, player.v.x);
+            } else if (player.v.x > 0) {
+                player.v.x -= player.character.resistance;
+                player.v.x = Math.max(0, player.v.x);
+            }
+        }
+
         if (player.pose === "fall") {
             player.pose = "neutral";
             player.v = {
