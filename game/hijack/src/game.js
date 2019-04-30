@@ -88,6 +88,8 @@ function effectHijackModeGamePlayer(state, input, i, player, opponent) {
         neutral();
 
         break;
+    case "groud_grab":
+        break;
     case "ground_throw_bottom":
         break;
     case "ground_throw_back":
