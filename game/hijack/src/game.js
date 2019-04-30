@@ -22,224 +22,31 @@ function effectHijackModeGamePlayer(state, input, i, player, opponent) {
 
     switch (player.pose) {
     case "neutral":
-        if (pad.axes[0] < -0.5) {
-            effect.push({
-                type: "pose",
-                pose: "run"
-            });
-
-            effect.push({
-                type: "direction",
-                direction: "left"
-            });
-
-            effect.push({
-                type: "add_vector",
-                v: {
-                    x: getHijackParameterX(player.character.actions.run_left.move),
-                    y: getHijackParameterY(player.character.actions.run_left.move)
-                }
-            });
-        } else if (pad.axes[0] > 0.5) {
-            effect.push({
-                type: "pose",
-                pose: "run"
-            });
-
-            effect.push({
-                type: "direction",
-                direction: "right"
-            });
-
-            effect.push({
-                type: "add_vector",
-                v: {
-                    x: getHijackParameterX(player.character.actions.run_right.move),
-                    y: getHijackParameterY(player.character.actions.run_right.move)
-                }
-            });
-        } else if (pad.buttons[0].pressed) {
-            effect.push({
-                type: "pose",
-                pose: "light_ground_attack"
-            });
-        } else if (pad.buttons[1].pressed) {
-            effect.push({
-                type: "pose",
-                pose: "medium_ground_attack"
-            });
-        } else if (pad.buttons[2].pressed) {
-            effect.push({
-                type: "pose",
-                pose: "hard_ground_attack"
-            });
-        } else if (pad.buttons[3].pressed) {
-            if (input[i].axes[1] < -0.5) {
-                effect.push({
-                    type: "pose",
-                    pose: "jump"
-                });
-
-                effect.push({
-                    type: "add_vector",
-                    v: {
-                        x: getHijackParameterX(player.character.actions["jump_" + player.direction].move),
-                        y: getHijackParameterY(player.character.actions["jump_" + player.direction].move)
-                    }
-                });
-            } else {
-                effect.push({
-                    type: "pose",
-                    pose: "hop"
-                });
-
-                effect.push({
-                    type: "add_vector",
-                    v: {
-                        x: getHijackParameterX(player.character.actions["hop_" + player.direction].move),
-                        y: getHijackParameterY(player.character.actions["hop_" + player.direction].move)
-                    }
-                });
-            }
-
-            if (input[i].axes[0] < -0.5) {
-                effect.push({
-                    type: "add_vector",
-                    v: {
-                        x: getHijackParameterX(player.character.actions.run_left.move),
-                        y: getHijackParameterY(player.character.actions.run_left.move)
-                    }
-                });
-            } else if (input[i].axes[0] > 0.5) {
-                effect.push({
-                    type: "add_vector",
-                    v: {
-                        x: getHijackParameterX(player.character.actions.run_right.move),
-                        y: getHijackParameterY(player.character.actions.run_right.move)
-                    }
-                });
-            }
-        }
+        run();
+        groundAttack();
+        jump();
 
         break;
     case "run":
         if (-0.5 <= input[i].axes[0] && input[i].axes[0] <= 0.5) {
-            effect.push({
-                type: "pose",
-                pose: "neutral"
-            });
-
-            effect.push({
-                type: "reset_vector",
-                v: {
-                    x: 0,
-                    y: 0
-                }
-            });
-        } else if (pad.buttons[3].pressed) {
-            if (input[i].axes[1] < -0.5) {
-                effect.push({
-                    type: "pose",
-                    pose: "jump"
-                });
-
-                effect.push({
-                    type: "add_vector",
-                    v: {
-                        x: getHijackParameterX(player.character.actions["jump_" + player.direction].move),
-                        y: getHijackParameterY(player.character.actions["jump_" + player.direction].move)
-                    }
-                });
-            } else {
-                effect.push({
-                    type: "pose",
-                    pose: "hop"
-                });
-
-                effect.push({
-                    type: "add_vector",
-                    v: {
-                        x: getHijackParameterX(player.character.actions["hop_" + player.direction].move),
-                        y: getHijackParameterY(player.character.actions["hop_" + player.direction].move)
-                    }
-                });
-            }
-
-            if (input[i].axes[0] < -0.5) {
-                effect.push({
-                    type: "add_vector",
-                    v: {
-                        x: getHijackParameterX(player.character.actions.run_left.move),
-                        y: getHijackParameterY(player.character.actions.run_left.move)
-                    }
-                });
-            } else if (input[i].axes[0] > 0.5) {
-                effect.push({
-                    type: "add_vector",
-                    v: {
-                        x: getHijackParameterX(player.character.actions.run_right.move),
-                        y: getHijackParameterY(player.character.actions.run_right.move)
-                    }
-                });
-            }
+            neutral();
         }
+
+        jump();
 
         break;
     case "hop":
     case "jump":
         if (state.i - player.i < total_frames) {
-            if (pad.buttons[0].pressed) {
-                effect.push({
-                    type: "pose",
-                    pose: "light_air_attack"
-                });
-            } else if (pad.buttons[1].pressed) {
-                effect.push({
-                    type: "pose",
-                    pose: "medium_air_attack"
-                });
-            } else if (pad.buttons[2].pressed) {
-                effect.push({
-                    type: "pose",
-                    pose: "hard_air_attack"
-                });
-            }
-
+            airAttack();
             break;
         }
 
-        effect.push({
-            type: "pose",
-            pose: "neutral"
-        });
-
-        effect.push({
-            type: "reset_vector",
-            v: {
-                x: 0,
-                y: 0
-            }
-        });
+        neutral();
 
         break;
     case "fall":
-        if (pad.buttons[0].pressed) {
-            effect.push({
-                type: "pose",
-                pose: "light_air_attack"
-            });
-        } else if (pad.buttons[1].pressed) {
-            effect.push({
-                type: "pose",
-                pose: "medium_air_attack"
-            });
-        } else if (pad.buttons[2].pressed) {
-            effect.push({
-                type: "pose",
-                pose: "hard_air_attack"
-            });
-        }
-
+        airAttack();
         break;
     case "light_ground_attack":
     case "medium_ground_attack":
@@ -277,18 +84,7 @@ function effectHijackModeGamePlayer(state, input, i, player, opponent) {
             type: "id"
         });
 
-        effect.push({
-            type: "pose",
-            pose: "neutral"
-        });
-
-        effect.push({
-            type: "reset_vector",
-            v: {
-                x: 0,
-                y: 0
-            }
-        });
+        neutral();
 
         break;
     case "ground_throw_bottom":
@@ -312,6 +108,149 @@ function effectHijackModeGamePlayer(state, input, i, player, opponent) {
     }
 
     return effect;
+
+    function neutral() {
+        effect.push({
+            type: "pose",
+            pose: "neutral"
+        });
+
+        effect.push({
+            type: "reset_vector",
+            v: {
+                x: 0,
+                y: 0
+            }
+        });
+    }
+
+    function run() {
+        if (pad.axes[0] < -0.5) {
+            effect.push({
+                type: "pose",
+                pose: "run"
+            });
+
+            effect.push({
+                type: "direction",
+                direction: "left"
+            });
+
+            effect.push({
+                type: "add_vector",
+                v: {
+                    x: getHijackParameterX(player.character.actions.run_left.move),
+                    y: getHijackParameterY(player.character.actions.run_left.move)
+                }
+            });
+        } else if (pad.axes[0] > 0.5) {
+            effect.push({
+                type: "pose",
+                pose: "run"
+            });
+
+            effect.push({
+                type: "direction",
+                direction: "right"
+            });
+
+            effect.push({
+                type: "add_vector",
+                v: {
+                    x: getHijackParameterX(player.character.actions.run_right.move),
+                    y: getHijackParameterY(player.character.actions.run_right.move)
+                }
+            });
+        }
+    }
+
+    function jump() {
+        if (pad.buttons[3].pressed) {
+            if (input[i].axes[1] < -0.5) {
+                effect.push({
+                    type: "pose",
+                    pose: "jump"
+                });
+
+                effect.push({
+                    type: "add_vector",
+                    v: {
+                        x: getHijackParameterX(player.character.actions["jump_" + player.direction].move),
+                        y: getHijackParameterY(player.character.actions["jump_" + player.direction].move)
+                    }
+                });
+            } else {
+                effect.push({
+                    type: "pose",
+                    pose: "hop"
+                });
+
+                effect.push({
+                    type: "add_vector",
+                    v: {
+                        x: getHijackParameterX(player.character.actions["hop_" + player.direction].move),
+                        y: getHijackParameterY(player.character.actions["hop_" + player.direction].move)
+                    }
+                });
+            }
+
+            if (input[i].axes[0] < -0.5 && -0.5 <= pad.axes[0] && pad.axes[0] <= 0.5) {
+                effect.push({
+                    type: "add_vector",
+                    v: {
+                        x: getHijackParameterX(player.character.actions.run_left.move),
+                        y: getHijackParameterY(player.character.actions.run_left.move)
+                    }
+                });
+            } else if (input[i].axes[0] > 0.5 && -0.5 <= pad.axes[0] && pad.axes[0] <= 0.5) {
+                effect.push({
+                    type: "add_vector",
+                    v: {
+                        x: getHijackParameterX(player.character.actions.run_right.move),
+                        y: getHijackParameterY(player.character.actions.run_right.move)
+                    }
+                });
+            }
+        }
+    }
+
+    function groundAttack() {
+        if (pad.buttons[0].pressed) {
+            effect.push({
+                type: "pose",
+                pose: "light_ground_attack"
+            });
+        } else if (pad.buttons[1].pressed) {
+            effect.push({
+                type: "pose",
+                pose: "medium_ground_attack"
+            });
+        } else if (pad.buttons[2].pressed) {
+            effect.push({
+                type: "pose",
+                pose: "hard_ground_attack"
+            });
+        }
+    }
+
+    function airAttack() {
+        if (pad.buttons[0].pressed) {
+            effect.push({
+                type: "pose",
+                pose: "light_air_attack"
+            });
+        } else if (pad.buttons[1].pressed) {
+            effect.push({
+                type: "pose",
+                pose: "medium_air_attack"
+            });
+        } else if (pad.buttons[2].pressed) {
+            effect.push({
+                type: "pose",
+                pose: "hard_air_attack"
+            });
+        }
+    }
 }
 
 function resolveHijackModeGame(state, effect) {
