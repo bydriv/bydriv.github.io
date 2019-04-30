@@ -31,7 +31,9 @@ function stepHijackModeCharacterSelection(state, input) {
             y: getHijackParameterHeight(state.config) - getHijackParameterY(character0.actions.neutral_right) - getHijackParameterHeight(character0.actions.neutral_right) - HIJACK_FLOOR_HEIGHT,
             pose: "neutral",
             direction: "right",
-            ate: new Set(),
+            ateAttack: new Set(),
+            ateGrab: new Set(),
+            ateThrow: new Set(),
             shield: false,
             character: character0
         };
@@ -48,7 +50,9 @@ function stepHijackModeCharacterSelection(state, input) {
             y: getHijackParameterHeight(state.config) - getHijackParameterY(character0.actions.neutral_left) - getHijackParameterHeight(character0.actions.neutral_left) - HIJACK_FLOOR_HEIGHT,
             pose: "neutral",
             direction: "left",
-            ate: new Set(),
+            ateAttack: new Set(),
+            ateGrab: new Set(),
+            ateThrow: new Set(),
             shield: false,
             character: character1
         };

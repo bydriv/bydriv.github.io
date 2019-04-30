@@ -403,7 +403,22 @@
             "width": 96,
             "height": 96,
             "scale": 2,
-            "animation": "ground_grab_left"
+            "animation": "ground_grab_left",
+            "startup": 8,
+            "active": 8,
+            "recovery": 16,
+            "grab": {
+                "x": 0,
+                "y": 0,
+                "width": 96,
+                "height": 96,
+                "scale": 2,
+                "damage": 0,
+                "v": {
+                    "x": 0,
+                    "y": 0
+                }
+            }
         },
         "ground_grab_right": {
             "x": 0,
@@ -411,55 +426,112 @@
             "width": 96,
             "height": 96,
             "scale": 2,
-            "animation": "ground_grab_right"
+            "animation": "ground_grab_right",
+            "startup": 8,
+            "active": 8,
+            "recovery": 16,
+            "grab": {
+                "x": 0,
+                "y": 0,
+                "width": 96,
+                "height": 96,
+                "scale": 2,
+                "damage": 0,
+                "v": {
+                    "x": 0,
+                    "y": 0
+                }
+            }
         },
-        "ground_throw_bottom_left": {
+        "light_ground_throw_left": {
             "x": 0,
             "y": 0,
             "width": 96,
             "height": 96,
             "scale": 2,
-            "animation": "ground_throw_bottom_left"
+            "animation": "light_ground_throw_left",
+            "throw": {
+                "damage": 10,
+                "v": {
+                    "x": -16,
+                    "y": 64
+                }
+            }
         },
-        "ground_throw_bottom_right": {
+        "light_ground_throw_right": {
             "x": 0,
             "y": 0,
             "width": 96,
             "height": 96,
             "scale": 2,
-            "animation": "ground_throw_bottom_right"
+            "animation": "light_ground_throw_right",
+            "throw": {
+                "damage": 10,
+                "v": {
+                    "x": 16,
+                    "y": -64
+                }
+            }
         },
-        "ground_throw_back_left": {
+        "medium_ground_throw_left": {
             "x": 0,
             "y": 0,
             "width": 96,
             "height": 96,
             "scale": 2,
-            "animation": "ground_throw_back_left"
+            "animation": "medium_ground_throw_left",
+            "throw": {
+                "damage": 10,
+                "v": {
+                    "x": -64,
+                    "y": -64
+                }
+            }
         },
-        "ground_throw_back_right": {
+        "medium_ground_throw_right": {
             "x": 0,
             "y": 0,
             "width": 96,
             "height": 96,
             "scale": 2,
-            "animation": "ground_throw_back_right"
+            "animation": "medium_ground_throw_right",
+            "throw": {
+                "damage": 10,
+                "v": {
+                    "x": 64,
+                    "y": -64
+                }
+            }
         },
-        "ground_throw_front_left": {
+        "hard_ground_throw_left": {
             "x": 0,
             "y": 0,
             "width": 96,
             "height": 96,
             "scale": 2,
-            "animation": "ground_throw_front_left"
+            "animation": "hard_ground_throw_left",
+            "throw": {
+                "damage": 10,
+                "v": {
+                    "x": -64,
+                    "y": -64
+                }
+            }
         },
-        "ground_throw_front_right": {
+        "hard_ground_throw_right": {
             "x": 0,
             "y": 0,
             "width": 96,
             "height": 96,
             "scale": 2,
-            "animation": "ground_throw_front_right"
+            "animation": "hard_ground_throw_right",
+            "throw": {
+                "damage": 10,
+                "v": {
+                    "x": 64,
+                    "y": -64
+                }
+            }
         },
         "shield_left": {
             "x": 0,
@@ -487,7 +559,8 @@
             "width": 96,
             "height": 96,
             "scale": 2,
-            "animation": "be_attacked_left"
+            "animation": "be_attacked_left",
+            "recovery": 30
         },
         "be_attacked_right": {
             "x": 0,
@@ -495,7 +568,8 @@
             "width": 96,
             "height": 96,
             "scale": 2,
-            "animation": "be_attacked_right"
+            "animation": "be_attacked_right",
+            "recovery": 30
         },
         "be_attacked_top_left": {
             "x": 0,
@@ -503,7 +577,8 @@
             "width": 96,
             "height": 96,
             "scale": 2,
-            "animation": "be_attacked_top_left"
+            "animation": "be_attacked_top_left",
+            "recovery": 30
         },
         "be_attacked_top_right": {
             "x": 0,
@@ -511,7 +586,8 @@
             "width": 96,
             "height": 96,
             "scale": 2,
-            "animation": "be_attacked_top_right"
+            "animation": "be_attacked_top_right",
+            "recovery": 30
         },
         "be_attacked_bottom_left": {
             "x": 0,
@@ -519,7 +595,8 @@
             "width": 96,
             "height": 96,
             "scale": 2,
-            "animation": "be_attacked_bottom_left"
+            "animation": "be_attacked_bottom_left",
+            "recovery": 30
         },
         "be_attacked_bottom_right": {
             "x": 0,
@@ -527,7 +604,26 @@
             "width": 96,
             "height": 96,
             "scale": 2,
-            "animation": "be_attacked_bottom_right"
+            "animation": "be_attacked_bottom_right",
+            "recovery": 30
+        },
+        "be_grabbed_left": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "animation": "be_grabbed_left",
+            "recovery": 30
+        },
+        "be_grabbed_right": {
+            "x": 0,
+            "y": 0,
+            "width": 96,
+            "height": 96,
+            "scale": 2,
+            "animation": "be_grabbed_right",
+            "recovery": 30
         },
         "be_knockdown_left": {
             "x": 0,
@@ -535,7 +631,8 @@
             "width": 96,
             "height": 96,
             "scale": 2,
-            "animation": "be_knockdown_left"
+            "animation": "be_knockdown_left",
+            "recovery": 30
         },
         "be_knockdown_right": {
             "x": 0,
@@ -543,7 +640,8 @@
             "width": 96,
             "height": 96,
             "scale": 2,
-            "animation": "be_knockdown_right"
+            "animation": "be_knockdown_right",
+            "recovery": 30
         },
         "be_knockout_left": {
             "x": 0,
@@ -761,59 +859,59 @@
             "frames_per_sprite": 4,
             "sprite_sheet": "character/teiri/ground_grab_right.png"
         },
-        "ground_throw_bottom_left": {
+        "light_ground_throw_left": {
             "x": 0,
             "y": 0,
             "width": 96,
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "character/teiri/ground_throw_bottom_left.png"
+            "sprite_sheet": "character/teiri/light_ground_throw_left.png"
         },
-        "ground_throw_bottom_right": {
+        "light_ground_throw_right": {
             "x": 0,
             "y": 0,
             "width": 96,
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "character/teiri/ground_throw_bottom_right.png"
+            "sprite_sheet": "character/teiri/light_ground_throw_right.png"
         },
-        "ground_throw_back_left": {
+        "medium_ground_throw_left": {
             "x": 0,
             "y": 0,
             "width": 96,
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "character/teiri/ground_throw_back_left.png"
+            "sprite_sheet": "character/teiri/medium_ground_throw_left.png"
         },
-        "ground_throw_back_right": {
+        "medium_ground_throw_right": {
             "x": 0,
             "y": 0,
             "width": 96,
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "character/teiri/ground_throw_back_right.png"
+            "sprite_sheet": "character/teiri/medium_ground_throw_right.png"
         },
-        "ground_throw_front_left": {
+        "hard_ground_throw_left": {
             "x": 0,
             "y": 0,
             "width": 96,
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "character/teiri/ground_throw_front_left.png"
+            "sprite_sheet": "character/teiri/hard_ground_throw_left.png"
         },
-        "ground_throw_front_right": {
+        "hard_ground_throw_right": {
             "x": 0,
             "y": 0,
             "width": 96,
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "character/teiri/ground_throw_front_right.png"
+            "sprite_sheet": "character/teiri/hard_ground_throw_right.png"
         },
         "shield_left": {
             "x": 0,
@@ -887,23 +985,23 @@
             "frames_per_sprite": 4,
             "sprite_sheet": "character/teiri/be_attacked_bottom_right.png"
         },
-        "be_attacked_left": {
+        "be_grabbed_left": {
             "x": 0,
             "y": 0,
             "width": 96,
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "character/teiri/be_attacked_left.png"
+            "sprite_sheet": "character/teiri/be_grabbed_left.png"
         },
-        "be_attacked_right": {
+        "be_grabbed_right": {
             "x": 0,
             "y": 0,
             "width": 96,
             "height": 96,
             "scale": 2,
             "frames_per_sprite": 4,
-            "sprite_sheet": "character/teiri/be_attacked_right.png"
+            "sprite_sheet": "character/teiri/be_grabbed_right.png"
         },
         "be_knockdown_left": {
             "x": 0,
