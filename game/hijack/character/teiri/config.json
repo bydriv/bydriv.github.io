@@ -573,36 +573,36 @@
         },
         "be_attacked_top_left": {
             "x": 0,
-            "y": 0,
+            "y": 16,
             "width": 96,
-            "height": 96,
+            "height": 64,
             "scale": 2,
             "animation": "be_attacked_top_left",
             "recovery": 30
         },
         "be_attacked_top_right": {
             "x": 0,
-            "y": 0,
+            "y": 16,
             "width": 96,
-            "height": 96,
+            "height": 64,
             "scale": 2,
             "animation": "be_attacked_top_right",
             "recovery": 30
         },
         "be_attacked_bottom_left": {
             "x": 0,
-            "y": 0,
+            "y": 16,
             "width": 96,
-            "height": 96,
+            "height": 64,
             "scale": 2,
             "animation": "be_attacked_bottom_left",
             "recovery": 30
         },
         "be_attacked_bottom_right": {
             "x": 0,
-            "y": 0,
+            "y": 16,
             "width": 96,
-            "height": 96,
+            "height": 64,
             "scale": 2,
             "animation": "be_attacked_bottom_right",
             "recovery": 30
