@@ -4,6 +4,8 @@ var HIJACK_MODE_GAME = "game";
 var HIJACK_MODE_RESULT = "result";
 var HIJACK_FLOOR_HEIGHT = 16;
 
+var __HIJACK_TEST__ = true;
+
 function newHijack(config, onscreenCanvas, offscreenCanvas) {
     return {
         i: 0,
@@ -23,7 +25,10 @@ function stepHijack(state, input) {
     case HIJACK_MODE_CHARACTER_SELECTION:
         return stepHijackModeCharacterSelection(state, input);
     case HIJACK_MODE_GAME:
-        return stepHijackModeGame(state, input);
+        if (__HIJACK_TEST__)
+            return stepHijackModeGameTest(state, input);
+        else
+            return stepHijackModeGame(state, input);
     case HIJACK_MODE_RESULT:
         return stepHijackModeResult(state, input);
     }

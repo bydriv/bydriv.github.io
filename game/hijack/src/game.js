@@ -494,6 +494,8 @@ function resolveHijackModeGamePlayer(state, playerEffect, opponentEffect, i, pla
     var playerAnimation = player.character.animations[playerAction.animation];
     var opponentAnimation = opponent.character.animations[opponentAction.animation];
 
+    player.shield = false;
+
     for (var i = 0; i < playerEffect.length; ++i) {
         var eff = playerEffect[i];
 
@@ -545,7 +547,7 @@ function resolveHijackModeGamePlayer(state, playerEffect, opponentEffect, i, pla
         case "attack":
             var r = {
                 x: player.x + getHijackParameterX(playerAction),
-                y: player.y + getHijackParameterX(playerAction),
+                y: player.y + getHijackParameterY(playerAction),
                 width: getHijackParameterWidth(playerAction),
                 height: getHijackParameterHeight(playerAction)
             };
@@ -566,7 +568,7 @@ function resolveHijackModeGamePlayer(state, playerEffect, opponentEffect, i, pla
         case "grab":
             var r = {
                 x: player.x + getHijackParameterX(playerAction),
-                y: player.y + getHijackParameterX(playerAction),
+                y: player.y + getHijackParameterY(playerAction),
                 width: getHijackParameterWidth(playerAction),
                 height: getHijackParameterHeight(playerAction)
             };
@@ -659,6 +661,97 @@ function resolveHijackModeGamePlayer(state, playerEffect, opponentEffect, i, pla
     }
 
     return state;
+}
+
+function inputCP(state, player, opponent) {
+    if (player.inputCpStrategy == null)
+        player.inputCpStrategy = "attack";
+
+    var axes = [0, 0];
+    var buttons = [
+        {pressed: false},
+        {pressed: false},
+        {pressed: false},
+        {pressed: false},
+        {pressed: false},
+        {pressed: false}
+    ];
+
+    if (player.pose === "be_attacked" || player.pose === "be_attacked_top" || player.pose === "be_attacked_bottom" || player.pose === "be_grabbed")
+        player.inputCpStrategy = "shield";
+
+    switch (player.inputCpStrategy) {
+    case "attack":
+        if (player.x < opponent.x - 256)
+            axes[0] = 1;
+        else if (player.x > opponent.x + 256)
+            axes[0] = -1;
+        else {
+            var n = Math.floor(Math.random() * 3);
+
+            switch (n) {
+            case 0:
+                if (player.x < opponent.x - 192)
+                    buttons[2].pressed = true;
+                else if (player.x > opponent.x + 192)
+                    buttons[2].pressed = true;
+                else if (player.x < opponent.x)
+                    axes[0] = 1;
+                else
+                    axes[0] = -1;
+                break;
+            case 1:
+                if (player.x < opponent.x - 128)
+                    axes[0] = 1;
+                else if (player.x > opponent.x + 128)
+                    axes[0] = -1;
+                else {
+                    buttons[5].pressed = true;
+                    if (opponent.pose === "be_grabbed")
+                        buttons[Math.floor(Math.random() * 2) + 1].pressed = true;
+                }
+                break;
+            default:
+                break;
+            }
+        }
+
+        var n = Math.floor(Math.random() * 30);
+
+        switch (n) {
+        case 0:
+            buttons[3].pressed = true;
+            break;
+        default:
+            break;
+        }
+
+        break;
+    case "shield":
+        var n = Math.floor(Math.random() * 30);
+
+        switch (n) {
+        case 0:
+            player.inputCpStrategy = "attack";
+            break;
+        default:
+            buttons[4].pressed = true;
+            break;
+        }
+
+        break;
+    }
+
+    return {
+        axes: axes,
+        buttons: buttons
+    };
+}
+
+function stepHijackModeGameTest(state, input) {
+    //input[0] = inputCP(state, state.player0, state.player1);
+    input[1] = inputCP(state, state.player1, state.player0);
+    return stepHijackModeGame(state, input);
 }
 
 function stepHijackModeGame(state, input) {

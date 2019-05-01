@@ -214,15 +214,15 @@
             }
         },
         "hard_ground_attack_left": {
-            "x": 0,
+            "x": -32,
             "y": 0,
             "width": 96,
             "height": 96,
             "scale": 2,
             "animation": "hard_ground_attack_left",
-            "startup": 6,
-            "active": 3,
-            "recovery": 12,
+            "startup": 8,
+            "active": 4,
+            "recovery": 16,
             "attack": {
                 "x": -64,
                 "y": -32,
@@ -237,15 +237,15 @@
             }
         },
         "hard_ground_attack_right": {
-            "x": 0,
+            "x": 32,
             "y": 0,
             "width": 96,
             "height": 96,
             "scale": 2,
             "animation": "hard_ground_attack_right",
-            "startup": 6,
-            "active": 3,
-            "recovery": 12,
+            "startup": 8,
+            "active": 4,
+            "recovery": 16,
             "attack": {
                 "x": 96,
                 "y": -32,
@@ -540,8 +540,8 @@
             "height": 96,
             "scale": 2,
             "animation": "shield_left",
-            "startup": 8,
-            "recovery": 16
+            "startup": 0,
+            "recovery": 0
         },
         "shield_right": {
             "x": 0,
@@ -550,8 +550,8 @@
             "height": 96,
             "scale": 2,
             "animation": "shield_right",
-            "startup": 8,
-            "recovery": 16
+            "startup": 0,
+            "recovery": 0
         },
         "be_attacked_left": {
             "x": 0,
@@ -775,7 +775,7 @@
             "width": 128,
             "height": 128,
             "scale": 2,
-            "frames_per_sprite": 3,
+            "frames_per_sprite": 4,
             "sprite_sheet": "character/teiri/hard_ground_attack_left.png"
         },
         "hard_ground_attack_right": {
@@ -784,7 +784,7 @@
             "width": 128,
             "height": 128,
             "scale": 2,
-            "frames_per_sprite": 3,
+            "frames_per_sprite": 4,
             "sprite_sheet": "character/teiri/hard_ground_attack_right.png"
         },
         "light_air_attack_left": {
