@@ -21,3 +21,7 @@
 #div(class=window)
   [#div(class=header)]
   [#div(class=content) [@cat blog/2019-04-28/summary.html] [#div(class=cont) ([#a(href=/blog/2019-04-28) READ MORE])]]
+
+#div(class=window)
+  [#div(class=header)]
+  [#div(class=content) [@cat blog/2019-05-05/summary.html] [#div(class=cont) ([#a(href=/blog/2019-05-05) READ MORE])]]
