@@ -1,0 +1,3 @@
+#div(class=window)
+  [#div(class=header) Selective]
+  [#div(class=content) [@cat novel/selective.html]]
