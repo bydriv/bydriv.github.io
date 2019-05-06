@@ -14,7 +14,7 @@ cfg = Shirley.config([
     ["first-paragraph", /\A(.*)\z/m, "<p class=\"indent\">\\1</p>"],
     ["first-list", /\A(\d+)\z/m, proc {|m| "<sup class=\"sect\" id=\"#$chap:#{m[1]}\"><a href=\"##$chap:#{m[1]}\">#{m[1]}</a></sup>"}],
     ["first-list", /\A#ruby:([^:]+):([^:]+)\z/m, "<ruby>\\1<rp>(</rp><rt>\\2</rt><rp>)</rp></ruby>"],
-    ["all-text", /(！|？|！？)([^！？」])/m, "\\1<span class=\"space\"></span>\\2"],
+    ["all-text", /(！|？|！？)([^！？」』])/m, "\\1<span class=\"space\"></span>\\2"],
     ["all-text", /\n/m, ""],
     ["all-text", /(……)/m, "<span class=\"dots\">\\1</span>"],
     ["all-text", /(――)/m, "<span class=\"dashes\">\\1</span>"],
