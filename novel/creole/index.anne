@@ -1,0 +1,3 @@
+#div(class=window)
+  [#div(class=header) Creole]
+  [#div(class=content) [@cat novel/creole.html]]
