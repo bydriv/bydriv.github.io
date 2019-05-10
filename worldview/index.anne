@@ -5,3 +5,7 @@
 #div(class=window)
   [#div(class=header) Elder City]
   [#div(class=content) [@cat worldview/elder-city.html]]
+
+#div(class=window)
+  [#div(class=header) Chronology]
+  [#div(class=content) [@cat worldview/chronology.html]]
