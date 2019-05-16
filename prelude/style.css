@@ -189,3 +189,7 @@ sup.sect:target ~ sup.sect ~ span.text {
     color: inherit;
     background-color: inherit;
 }
+
+ul, li {
+    font-family: "Yu Gothic", "YuGothic";
+}
