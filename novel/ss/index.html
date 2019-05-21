@@ -1,0 +1,50 @@
+<!DOCTYPE html><!--
+
+--><meta charset="utf-8"><!--
+--><meta name="viewport" content="width=device-width, initial-scale=1"><!--
+--><title>bydriv.github.io</title><!--
+
+--><link rel="stylesheet" type="text/css" href="/prelude/style.css"><!--
+
+--><div class="taskbar"><!--
+--><a class="icon" href="/">&#x221A;</a><!--
+--><a class="icon" href="/about">&#x1F4BD;</a><!--
+--><a class="icon" href="/gallery">&#x1F3A8;</a><!--
+--><a class="icon" href="/novel/golden-record">&#x1F30C;</a><!--
+--><a class="icon" href="/novel/rcs">&#x1F303;</a><!--
+--><a class="icon" href="/blog">&#x1F4DD;</a><!--
+--><a class="icon" href="/anne">&#x1F45A;</a><!--
+--><a class="icon" href="/worldview">&#x1F30D;</a><!--
+--></div>
+<div class=window><div class=header>SS</div>
+  <div class=content><h2 class="chap" id="1"><a href="#1">とあるプログラマとAIコンパイラの日常</a></h2>
+<p class="indent"><sup class="sect" id="1:1"><a href="#1:1">1</a></sup><span class="text">203X年。</span><sup class="sect" id="1:2"><a href="#1:2">2</a></sup><span class="text">おれたちプログラマはAIコンパイラでソフトウェアを開発している。</span></p>
+<p class="noindent"><sup class="sect" id="1:3"><a href="#1:3">3</a></sup><span class="text">「あ、そこです。1984行めです。アンチパターンです。</span><span class="text">こういう場合は、早期リターンに書きかえるのがセオリーで<span class="dots">……</span>」</span></p>
+<p class="noindent"><sup class="sect" id="1:4"><a href="#1:4">4</a></sup><span class="text">「うっせーな。ここは意味的にも else を書いたほうが自然なんだよ」</span></p>
+<p class="noindent"><sup class="sect" id="1:5"><a href="#1:5">5</a></sup><span class="text">「自然？<span class="space"></span>人間の感覚でしょうか」</span></p>
+<p class="noindent"><sup class="sect" id="1:6"><a href="#1:6">6</a></sup><span class="text">「そうだ自然だナチュラルだ」</span></p>
+<p class="noindent"><sup class="sect" id="1:7"><a href="#1:7">7</a></sup><span class="text">「リンには、その感覚はわかりません。ただひとつ言えることは、総合的な評価点はそのほうが低く<span class="dots">……</span>」</span></p>
+<p class="noindent"><sup class="sect" id="1:8"><a href="#1:8">8</a></sup><span class="text">「だったらおまえが書けよ！<span class="space"></span>評価点が最大になるようプログラムを自動的に変形してくれよ、頼むよ」</span></p>
+<p class="noindent"><sup class="sect" id="1:9"><a href="#1:9">9</a></sup><span class="text">「リンにはそういう機能はありません。リンはあくまで静的なリントとレビュー機能しかもちあわせておりませんので」</span></p>
+<p class="noindent"><sup class="sect" id="1:10"><a href="#1:10">10</a></sup><span class="text">「もうひとつあるだろ、そのうっとうしいまでの言語機能！<span class="space"></span></span><span class="text">むかしのコンパイラみたいにさ～無骨に warning: consider using early return instead とだけ言って終了してくれよ。</span><span class="text">頼むよ～集中できないんだよ、おまえに話しかけられると」</span></p>
+<p class="indent"><sup class="sect" id="1:11"><a href="#1:11">11</a></sup><span class="text">するとリンは黙ってしまった。</span><sup class="sect" id="1:12"><a href="#1:12">12</a></sup><span class="text">こういうところだけやけにつくりこまれているのである。</span><sup class="sect" id="1:13"><a href="#1:13">13</a></sup><span class="text">需要と供給だろうか？<span class="space"></span></span></p>
+<p class="indent"><sup class="sect" id="1:14"><a href="#1:14">14</a></sup><span class="text">リンというのは lint と綴ってリンと発音するらしい。</span><sup class="sect" id="1:15"><a href="#1:15">15</a></sup><span class="text">t を発音しないことがよくネタにされるが、この業界には nginx みたいなものがむかしからあるしいまに始まったことじゃない。</span></p>
+<p class="indent"><sup class="sect" id="1:16"><a href="#1:16">16</a></sup><span class="text">ともかくこの鬱陶しいリンというAIは某大企業が精力的に開発していることもあって、</span><span class="text">まあ機能としてはそれなりによくできている。</span><sup class="sect" id="1:17"><a href="#1:17">17</a></sup><span class="text">残念ながら3Dモデルのようなもので身体を表示してくれるとか、</span><span class="text">そういうことはおそらく技術的というより政治的な都合上できないようだが。</span><sup class="sect" id="1:18"><a href="#1:18">18</a></sup><span class="text">日本語だけで男声、女声など数種類の声や口調で喋ってくれるし</span><span class="text">(ただし、公式には単なる声のピッチの違いだけで性別は設定されていないらしい)、</span><span class="text">合成音声で人間そっくりな言葉をリアルタイムにつむぎだすのは、純粋にすごいことだ。</span></p>
+<p class="indent"><sup class="sect" id="1:19"><a href="#1:19">19</a></sup><span class="text">肝心の lint 機能に関してもかなり鋭い。</span><sup class="sect" id="1:20"><a href="#1:20">20</a></sup><span class="text">宣伝文句は「レビューの自動化」であり、</span><span class="text">それまで熟練したプログラマがコードを精読しておこなっていたレビューという工程を、</span><span class="text">ほとんど過去のものにしてしまった。</span><sup class="sect" id="1:21"><a href="#1:21">21</a></sup><span class="text">リンのレビューが信頼できないというレガシーな判断をする会社もあるが、</span><span class="text">どんどん淘汰されている。</span></p>
+<p class="indent"><sup class="sect" id="1:22"><a href="#1:22">22</a></sup><span class="text">リンにはごく単純ながらプログラマの名前を記憶したり、そういう機能もある。</span><sup class="sect" id="1:23"><a href="#1:23">23</a></sup><span class="text">とはいえ、あまりこみいったことはできない。</span></p>
+<p class="indent"><sup class="sect" id="1:24"><a href="#1:24">24</a></sup><span class="text">それがすこし寂しくなることもある。</span></p>
+<div class="blank-line"></div>
+
+<p class="noindent"><sup class="sect" id="1:25"><a href="#1:25">25</a></sup><span class="text">「リン、先月のこと覚えているか？」</span></p>
+<p class="noindent"><sup class="sect" id="1:26"><a href="#1:26">26</a></sup><span class="text">「なんのことです？」</span></p>
+<p class="noindent"><sup class="sect" id="1:27"><a href="#1:27">27</a></sup><span class="text">「ほら、その<span class="dots">……</span>結婚したんだ」</span></p>
+<p class="noindent"><sup class="sect" id="1:28"><a href="#1:28">28</a></sup><span class="text">「へぇ！<span class="space"></span>おめでとうございます！」</span></p>
+<p class="noindent"><sup class="sect" id="1:29"><a href="#1:29">29</a></sup><span class="text">「<span class="dots">……</span>やっぱり、覚えていないんだな」</span></p>
+<p class="noindent"><sup class="sect" id="1:30"><a href="#1:30">30</a></sup><span class="text">「<span class="dots">……</span>申しわけありません、リンの記憶はごく単純なものですので。</span><span class="text">GDPRなどもあり、あまり個人情報を長期間保存しておくことはできないのです」</span></p>
+<p class="noindent"><sup class="sect" id="1:31"><a href="#1:31">31</a></sup><span class="text">「<span class="dots">……</span>」</span></p>
+<p class="noindent"><sup class="sect" id="1:32"><a href="#1:32">32</a></sup><span class="text">「とはいえ、祝福のきもちはほんとうです！<span class="space"></span>ほんとうに、おめでとうございます！」</span></p>
+<div class="blank-line"></div>
+<p class="indent"><sup class="sect" id="1:33"><a href="#1:33">33</a></sup><span class="text">きもち、か。</span></p>
+<p class="indent"><sup class="sect" id="1:34"><a href="#1:34">34</a></sup><span class="text">忘れよう。</span></p>
+</div>
+</div>
