@@ -9,3 +9,7 @@
 #div(class=window)
   [#div(class=header) Just a Board]
   [#div(class=content) [#img(src=/img/gallery0002.png)]]
+
+#div(class=window)
+  [#div(class=header) 空中楼閣]
+  [#div(class=content) [#img(src=/img/gallery0004.png)]]
