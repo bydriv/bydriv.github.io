@@ -193,3 +193,12 @@ sup.sect:target ~ sup.sect ~ span.text {
 ul, li {
     font-family: "Yu Gothic", "YuGothic";
 }
+
+@font-face {
+  font-family: "Lambda Church";
+  src: url("/fonts/lambda-church.ttf") format("truetype");
+}
+
+.lambda-church {
+  font-family: "Lambda Church";
+}
