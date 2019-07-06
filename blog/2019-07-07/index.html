@@ -1,0 +1,94 @@
+<!DOCTYPE html><!--
+
+--><meta charset="utf-8"><!--
+--><meta name="viewport" content="width=device-width, initial-scale=1"><!--
+--><title>bydriv.github.io</title><!--
+
+--><link rel="stylesheet" type="text/css" href="/prelude/style.css"><!--
+
+--><div class="taskbar"><!--
+--><a class="icon" href="/">&#x221A;</a><!--
+--><a class="icon" href="/about">&#x1F4BD;</a><!--
+--><a class="icon" href="/gallery">&#x1F3A8;</a><!--
+--><a class="icon" href="/novel/golden-record">&#x1F30C;</a><!--
+--><a class="icon" href="/novel/rcs">&#x1F303;</a><!--
+--><a class="icon" href="/blog">&#x1F4DD;</a><!--
+--><a class="icon" href="/anne">&#x1F45A;</a><!--
+--><a class="icon" href="/worldview">&#x1F30D;</a><!--
+--></div>
+<div class="window">
+  <div class="header"></div>
+  <div class="content">
+<h2 >ファイル変換系便利ツール &amp; イディオム集
+</h2>
+<p>わたしがよく使うファイル変換系の便利ツールやイディオムなど。
+あとで参照するのにも便利なので書いておく。
+</p>
+<h3 >画像（ラスタ形式）
+</h3>
+<p>ImageMagick がかなりいい。
+なんかいろいろ（主に脆弱性の面で）いわくつきなツールだけど、個人で使うなら問題ない。
+ただサーバの内部でバックエンドとして採用するとかの場合はちょっと気をつけてね。
+</p>
+<h4 >形式の変換
+</h4>
+<p>PNG を JPEG にしたいなど。簡単。
+</p>
+<pre >convert from.png to.jpg
+</pre>
+<h4 >GIF アニメ
+</h4>
+<pre >convert 0.png 1.png 2.png anime.gif
+</pre>
+<h3 >動画
+</h3>
+<p>ffmpeg デショ！
+</p>
+<h4 >形式の変換
+</h4>
+<pre >ffmpeg -i from.mpeg from.mp4
+</pre>
+<h3 >PDF (生成篇)
+</h3>
+<p>言わずと知れた LaTeX
+</p>
+<p>処理系は個人的には LuaTeX がおすすめ
+</p>
+<p>図を描く: tikz (LaTeX のライブラリ) が便利
+</p>
+<h3 >PDF (編集篇)
+</h3>
+<p>すでにある PDF を編集したい。
+LaTeX で生成された原稿 PDF をどうのこうのというのが典型的。
+</p>
+<p>pdftk などのツールがある。
+このへんのツールはやたら多いので、ちょっとすぐにぜんぶ書くことはできない。
+</p>
+<h4 >PDF 回転
+</h4>
+<p>回転は pdftk を使えば簡単
+</p>
+<pre >pdftk from.pdf cat 1down output to.pdf
+</pre>
+<h4 >PDF 反転
+</h4>
+<p>pdftk ではけっこう難しい
+</p>
+<pre >\documentclass{standalone}%
+\usepackage{graphics}%
+\begin{document}%
+\reflectbox{\includegraphics{hoge.pdf}}%
+\end{document}%
+</pre>
+<h3 >フォント
+</h3>
+<p>FontForge がヤバい。
+</p>
+<h4 >形式の変換
+</h4>
+<p>TTF を OTF にしたいなど。
+</p>
+<pre >fontforge -lang=ff -c 'Open($1); Generate($2);' from.ttf from.otf
+</pre>
+  </div>
+</div>

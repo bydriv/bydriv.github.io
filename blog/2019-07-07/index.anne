@@ -1,0 +1,82 @@
+#h2 ファイル変換系便利ツール & イディオム集
+
+わたしがよく使うファイル変換系の便利ツールやイディオムなど。
+あとで参照するのにも便利なので書いておく。
+
+#h3 画像（ラスタ形式）
+
+ImageMagick がかなりいい。
+なんかいろいろ（主に脆弱性の面で）いわくつきなツールだけど、個人で使うなら問題ない。
+ただサーバの内部でバックエンドとして採用するとかの場合はちょっと気をつけてね。
+
+#h4 形式の変換
+
+PNG を JPEG にしたいなど。簡単。
+
+#pre <<CODE
+convert from.png to.jpg
+CODE
+
+#h4 GIF アニメ
+
+#pre <<CODE
+convert 0.png 1.png 2.png anime.gif
+CODE
+
+#h3 動画
+
+ffmpeg デショ！
+
+#h4 形式の変換
+
+#pre <<CODE
+ffmpeg -i from.mpeg from.mp4
+CODE
+
+#h3 PDF (生成篇)
+
+言わずと知れた LaTeX
+
+処理系は個人的には LuaTeX がおすすめ
+
+図を描く: tikz (LaTeX のライブラリ) が便利
+
+#h3 PDF (編集篇)
+
+すでにある PDF を編集したい。
+LaTeX で生成された原稿 PDF をどうのこうのというのが典型的。
+
+pdftk などのツールがある。
+このへんのツールはやたら多いので、ちょっとすぐにぜんぶ書くことはできない。
+
+#h4 PDF 回転
+
+回転は pdftk を使えば簡単
+
+#pre <<CODE
+pdftk from.pdf cat 1down output to.pdf
+CODE
+
+#h4 PDF 反転
+
+pdftk ではけっこう難しい
+
+#pre <<CODE
+\documentclass{standalone}%
+\usepackage{graphics}%
+\begin{document}%
+\reflectbox{\includegraphics{hoge.pdf}}%
+\end{document}%
+CODE
+
+#h3 フォント
+
+FontForge がヤバい。
+
+#h4 形式の変換
+
+TTF を OTF にしたいなど。
+
+#pre <<CODE
+fontforge -lang=ff -c 'Open($1); Generate($2);' from.ttf from.otf
+CODE
