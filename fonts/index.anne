@@ -3,4 +3,5 @@
   [#div(class=content)
     [#span(class=lambda-church style="font-size: 64px;") λ]
     Lambda Church のフォントです。サンプル:
-    [#span(class=lambda-church) λ]]
+    [#span(class=lambda-church) λ]
+    [#a(href="/fonts/lambda-church.ttf") ダウンロード]]
