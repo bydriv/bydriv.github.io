@@ -1,0 +1,43 @@
+<?xml version="1.0" standalone="yes"?>
+<svg
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 12.402pt -->
+    <font
+        id="kludge">
+      <font-face
+          font-family="Kludge"
+          font-weight="normal"
+          font-style="normal"
+          units-per-em="114.56pt" />
+      <!-- = 114.56pt + 12.402pt -->
+      <glyph
+          glyph-name="A"
+          unicode="A"
+          horiz-adv-x="126.962pt"
+          d="M 71.359375 48.910156 L 50.121094 86.8125 L 57.28125 99.214844 L 114.5625 0 L 100.242188 0 L 78.28125 38.035156 L 12.402344 0 L 0 0 L 6.203125 10.738281 Z M 71.359375 48.910156" />
+      <!-- = 99.213pt + 12.402pt -->
+      <glyph
+          glyph-name="H"
+          unicode="H"
+          horiz-adv-x="111.615pt"
+          d="M 0 0 L 12.402344 0 L 12.402344 43.40625 L 86.8125 43.40625 L 86.8125 0 L 99.214844 0 L 99.214844 99.214844 L 86.8125 99.214844 L 86.8125 55.808594 L 12.402344 55.808594 L 12.402344 99.214844 L 0 99.214844 Z M 0 0" />
+      <!-- = 12.402pt + 12.402pt -->
+      <glyph
+          glyph-name="I"
+          unicode="I"
+          horiz-adv-x="24.804pt"
+          d="M 0 0 L 12.402344 0 L 12.402344 99.214844 L 0 99.214844 Z M 0 0" />
+      <!-- = 26.721pt + 12.402pt -->
+      <glyph
+          glyph-name="J"
+          unicode="J"
+          horiz-adv-x="37.123pt"
+          d="M 14.320312 99.214844 L 26.722656 99.214844 L 26.722656 21.480469 L 14.320312 0 L 0 0 L 14.320312 24.800781 Z M 14.320312 99.214844" />
+      <hkern g1="H" g2="I" k="-12.402pt" />
+      <hkern g1="I" g2="J" k="1.917pt" />
+      <hkern g1="J" g2="A" k="10.485pt" />
+    </font>
+  </defs>
+</svg>
