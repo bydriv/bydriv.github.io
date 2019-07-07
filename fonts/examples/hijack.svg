@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="33.96pt" height="8.663pt" viewBox="0 0 33.96 8.663" version="1.1">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="33.613pt" height="8.663pt" viewBox="0 0 33.613 8.663" version="1.1">
 <defs>
 <g>
 <symbol overflow="visible" id="glyph0-0">
@@ -60,7 +60,7 @@
 </g>
 <g clip-path="url(#clip5)" clip-rule="nonzero">
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
-  <use xlink:href="#glyph0-5" x="24.869738" y="8.663"/>
+  <use xlink:href="#glyph0-5" x="24.521046" y="8.663"/>
 </g>
 </g>
 </g>
