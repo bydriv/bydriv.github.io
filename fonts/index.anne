@@ -5,3 +5,11 @@
     Lambda Church のフォントです。サンプル:
     [#span(class=lambda-church) λ]
     [#a(href="/fonts/lambda-church.ttf") ダウンロード]]
+
+#div(class=window)
+  [#div(class=header) Kludge]
+  [#div(class=content)
+    [#span(class=kludge style="color: #00FF00; font-size: 64px;") HIJACK]
+    制作中のフォントです(まだ H, I, J, A, C, K の 6 文字しかありません)。サンプル:
+    [#span(class=kludge) HIJACK]
+    [#a(href="/fonts/kludge.ttf") ダウンロード]]

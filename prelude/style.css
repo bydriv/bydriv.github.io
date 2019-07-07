@@ -202,3 +202,12 @@ ul, li {
 .lambda-church {
   font-family: "Lambda Church";
 }
+
+@font-face {
+  font-family: "Kludge";
+  src: url("/fonts/kludge.ttf") format("truetype");
+}
+
+.kludge {
+  font-family: "Kludge";
+}
