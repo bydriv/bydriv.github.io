@@ -1,0 +1,16 @@
+\documentclass{standalone}%
+\usepackage{tikz}%
+\begin{document}%
+\begin{tikzpicture}%
+  \fill%
+  (-1.75cm, -1.75cm) -- (0, -1.75cm)%
+  arc (270:450:1.75cm) -- (-1.75cm, 1.75cm)%
+  -- (-1.3125cm, 1.3125cm) -- (0, 1.3125cm)%
+  arc (450:270:1.3125cm) -- (-1.3125cm, -1.3125cm)%
+  -- cycle;%
+  \fill%
+  (-1.75cm, -1.75cm) -- (-1.75cm, 1.75cm)%
+  -- (-1.3125cm, 1.3125cm) -- (-1.3125cm, -1.3125cm)%
+  -- cycle;%
+\end{tikzpicture}%
+\end{document}%
