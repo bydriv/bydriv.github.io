@@ -57,6 +57,8 @@
       <hkern g1="H" g2="I" k="-12.402pt" />
       <hkern g1="I" g2="J" k="1.917pt" />
       <hkern g1="J" g2="A" k="10.485pt" />
+      <hkern g1="J" g2="K" k="-12.402pt" />
+      <hkern g1="K" g2="L" k="-12.402pt" />
     </font>
   </defs>
 </svg>
