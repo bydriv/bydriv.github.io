@@ -11,6 +11,12 @@
           font-weight="normal"
           font-style="normal"
           units-per-em="114.56pt" />
+      <!-- = 99.213pt + 12.402pt -->
+      <glyph
+          glyph-name="SP"
+          unicode="&#x0020;"
+          horiz-adv-x="99.213pt"
+          d="" />
       <!-- = 114.56pt + 12.402pt -->
       <glyph
           glyph-name="A"
@@ -83,6 +89,12 @@
           unicode="L"
           horiz-adv-x="99.213pt"
           d="M 0 99.214844 L 12.402344 99.214844 L 12.402344 12.402344 L 86.8125 12.402344 L 86.8125 0 L 0 0 Z M 0 99.214844" />
+      <!-- = 151.764pt + 12.402pt -->
+      <glyph
+          glyph-name="M"
+          unicode="M"
+          horiz-adv-x="164.166pt"
+          d="M 0 99.214844 L 12.402344 99.214844 L 75.882812 12.402344 L 139.363281 99.214844 L 151.765625 99.214844 L 151.765625 0 L 139.363281 0 L 139.363281 74.410156 L 83.042969 0 L 68.722656 0 L 12.402344 74.410156 L 12.402344 0 L 0 0 Z M 0 99.214844" />
       <!-- = 111.614pt + 12.402pt -->
       <glyph
           glyph-name="N"
@@ -131,11 +143,14 @@
           unicode="V"
           horiz-adv-x="126.962pt"
           d="M 14.320312 99.214844 L 0 99.214844 L 57.28125 0 L 114.5625 99.214844 L 100.242188 99.214844 L 57.28125 24.800781 Z M 14.320312 99.214844" />
+      <hkern g1="S" g2="A" k="12.402pt" />
       <hkern g1="A" g2="C" k="15.4263pt" />
+      <hkern g1="A" g2="V" k="41.042pt" />
       <hkern g1="L" g2="C" k="13.5077pt" />
       <hkern g1="L" g2="U" k="13.5077pt" />
       <hkern g1="T" g2="C" k="13.5077pt" />
       <hkern g1="A" g2="I" k="-12.402pt" />
+      <hkern g1="B" g2="I" k="-12.402pt" />
       <hkern g1="C" g2="I" k="-12.402pt" />
       <hkern g1="D" g2="I" k="-12.402pt" />
       <hkern g1="E" g2="I" k="-12.402pt" />
@@ -144,14 +159,17 @@
       <hkern g1="H" g2="I" k="-12.402pt" />
       <hkern g1="K" g2="I" k="-12.402pt" />
       <hkern g1="L" g2="I" k="-12.402pt" />
+      <hkern g1="M" g2="I" k="-12.402pt" />
       <hkern g1="N" g2="I" k="-12.402pt" />
       <hkern g1="O" g2="I" k="-12.402pt" />
+      <hkern g1="P" g2="I" k="-12.402pt" />
       <hkern g1="R" g2="I" k="-12.402pt" />
       <hkern g1="S" g2="I" k="-12.402pt" />
       <hkern g1="T" g2="I" k="-12.402pt" />
       <hkern g1="U" g2="I" k="-12.402pt" />
       <hkern g1="V" g2="I" k="-12.402pt" />
       <hkern g1="A" g2="J" k="3.1pt" />
+      <hkern g1="B" g2="J" k="3.1pt" />
       <hkern g1="C" g2="J" k="3.1pt" />
       <hkern g1="D" g2="J" k="3.1pt" />
       <hkern g1="E" g2="J" k="3.1pt" />
@@ -160,14 +178,17 @@
       <hkern g1="H" g2="J" k="3.1pt" />
       <hkern g1="K" g2="J" k="3.1pt" />
       <hkern g1="L" g2="J" k="3.1pt" />
+      <hkern g1="M" g2="J" k="3.1pt" />
       <hkern g1="N" g2="J" k="3.1pt" />
       <hkern g1="O" g2="J" k="3.1pt" />
+      <hkern g1="P" g2="J" k="3.1pt" />
       <hkern g1="R" g2="J" k="3.1pt" />
       <hkern g1="S" g2="J" k="3.1pt" />
       <hkern g1="T" g2="J" k="3.1pt" />
       <hkern g1="U" g2="J" k="3.1pt" />
       <hkern g1="V" g2="J" k="3.1pt" />
       <hkern g1="I" g2="A" k="-12.402pt" />
+      <hkern g1="I" g2="B" k="-12.402pt" />
       <hkern g1="I" g2="C" k="-12.402pt" />
       <hkern g1="I" g2="D" k="-12.402pt" />
       <hkern g1="I" g2="E" k="-12.402pt" />
@@ -178,14 +199,17 @@
       <hkern g1="I" g2="J" k="3.1pt" />
       <hkern g1="I" g2="K" k="-12.402pt" />
       <hkern g1="I" g2="L" k="-12.402pt" />
+      <hkern g1="I" g2="M" k="-12.402pt" />
       <hkern g1="I" g2="N" k="-12.402pt" />
       <hkern g1="I" g2="O" k="-12.402pt" />
+      <hkern g1="I" g2="P" k="-12.402pt" />
       <hkern g1="I" g2="R" k="-12.402pt" />
       <hkern g1="I" g2="S" k="-12.402pt" />
       <hkern g1="I" g2="T" k="-12.402pt" />
       <hkern g1="I" g2="U" k="-12.402pt" />
       <hkern g1="I" g2="V" k="-12.402pt" />
       <hkern g1="J" g2="A" k="10.485pt" />
+      <hkern g1="J" g2="B" k="-12.402pt" />
       <hkern g1="J" g2="C" k="-12.402pt" />
       <hkern g1="J" g2="D" k="-12.402pt" />
       <hkern g1="J" g2="E" k="-12.402pt" />
@@ -196,8 +220,10 @@
       <hkern g1="J" g2="J" k="3.1pt" />
       <hkern g1="J" g2="K" k="-12.402pt" />
       <hkern g1="J" g2="L" k="-12.402pt" />
+      <hkern g1="J" g2="M" k="-12.402pt" />
       <hkern g1="J" g2="N" k="-12.402pt" />
       <hkern g1="J" g2="O" k="-12.402pt" />
+      <hkern g1="J" g2="P" k="-12.402pt" />
       <hkern g1="J" g2="R" k="-12.402pt" />
       <hkern g1="J" g2="S" k="-12.402pt" />
       <hkern g1="J" g2="T" k="-12.402pt" />
