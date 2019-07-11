@@ -33,7 +33,7 @@
 <path style="stroke:none;" d="M 0 0 L 1.046875 0 L 1.046875 -8.609375 L 0 -8.609375 Z M 0 0 Z M 0 0 "/>
 </symbol>
 <symbol overflow="visible" id="glyph0-10">
-<path style="stroke:none;" d="M 1.21875 -8.609375 L 2.34375 -8.609375 L 2.34375 -1.828125 L 1.21875 0 L 0 0 L 1.21875 -2.171875 Z M 1.21875 -8.609375 Z M 1.21875 -8.609375 "/>
+<path style="stroke:none;" d="M 1.390625 -8.609375 L 2.4375 -8.609375 L 2.4375 -2.4375 C 2.4375 -1.738281 2.203125 -1.15625 1.734375 -0.6875 C 1.273438 -0.226562 0.695312 0 0 0 L 0 -1.046875 C 0.34375 -1.046875 0.660156 -1.175781 0.953125 -1.4375 C 1.242188 -1.695312 1.390625 -2.03125 1.390625 -2.4375 Z M 1.390625 -8.609375 Z M 1.390625 -8.609375 "/>
 </symbol>
 <symbol overflow="visible" id="glyph0-11">
 <path style="stroke:none;" d="M 0 -8.609375 L 1.046875 -8.609375 L 1.046875 -1.5625 L 8.4375 -8.609375 L 9.125 -8.609375 L 9.125 -7.828125 L 5.65625 -4.34375 L 9.125 -0.78125 L 9.125 0 L 8.4375 0 L 4.875 -3.5625 L 1.046875 0 L 0 0 Z M 0 -8.609375 Z M 0 -8.609375 "/>
@@ -90,10 +90,10 @@
   <use xlink:href="#glyph0-10" x="0" y="32.574"/>
 </g>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
-  <use xlink:href="#glyph0-11" x="4.241096" y="32.574"/>
-  <use xlink:href="#glyph0-12" x="14.377086" y="32.574"/>
-  <use xlink:href="#glyph0-13" x="22.953923" y="32.574"/>
-  <use xlink:href="#glyph0-14" x="33.696637" y="32.574"/>
+  <use xlink:href="#glyph0-11" x="4.501121" y="32.574"/>
+  <use xlink:href="#glyph0-12" x="14.637111" y="32.574"/>
+  <use xlink:href="#glyph0-13" x="23.213947" y="32.574"/>
+  <use xlink:href="#glyph0-14" x="33.956662" y="32.574"/>
 </g>
 <g clip-path="url(#clip1)" clip-rule="nonzero">
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
