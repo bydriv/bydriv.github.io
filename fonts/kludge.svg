@@ -10,8 +10,8 @@
           font-family="Kludge"
           font-weight="normal"
           font-style="normal"
-          units-per-em="114.56pt" />
-      <!-- = 99.213pt + 12.402pt -->
+          units-per-em="99.213pt" />
+      <!-- = 99.213pt -->
       <glyph
           glyph-name="SP"
           unicode="&#x0020;"
