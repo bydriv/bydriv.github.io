@@ -169,7 +169,6 @@
           d="M 0 99.214844 L 0 86.8125 L 69.273438 86.8125 L 0 12.402344 L 0 0 L 86.8125 0 L 86.8125 12.402344 L 17.535156 12.402344 L 86.8125 86.8125 L 86.8125 99.214844 Z M 0 99.214844" />
       <hkern g1="A" g2="C" k="14.5298pt" />
       <hkern g1="A" g2="G" k="14.5298pt" />
-      <hkern g1="A" g2="I" k="-12.402pt" />
       <hkern g1="A" g2="J" k="3.1pt" />
       <hkern g1="A" g2="O" k="14.5298pt" />
       <hkern g1="A" g2="Q" k="14.5298pt" />
@@ -179,30 +178,15 @@
       <hkern g1="A" g2="V" k="41.042pt" />
       <hkern g1="A" g2="W" k="41.042pt" />
       <hkern g1="A" g2="Y" k="31.0035pt" />
-      <hkern g1="B" g2="B" k="-12.402pt" />
-      <hkern g1="B" g2="D" k="-12.402pt" />
-      <hkern g1="B" g2="E" k="-12.402pt" />
-      <hkern g1="B" g2="F" k="-12.402pt" />
-      <hkern g1="B" g2="H" k="-12.402pt" />
-      <hkern g1="B" g2="I" k="-12.402pt" />
       <hkern g1="B" g2="J" k="3.1pt" />
-      <hkern g1="B" g2="K" k="-12.402pt" />
-      <hkern g1="B" g2="L" k="-12.402pt" />
-      <hkern g1="B" g2="M" k="-12.402pt" />
-      <hkern g1="B" g2="N" k="-12.402pt" />
-      <hkern g1="B" g2="P" k="-12.402pt" />
-      <hkern g1="B" g2="R" k="-12.402pt" />
-      <hkern g1="B" g2="S" k="-12.402pt" />
       <hkern g1="B" g2="T" k="4.7024pt" />
-      <hkern g1="B" g2="U" k="-12.402pt" />
       <hkern g1="B" g2="V" k="12.1039pt" />
       <hkern g1="B" g2="W" k="12.1039pt" />
       <hkern g1="B" g2="X" k="7.593pt" />
       <hkern g1="B" g2="Y" k="7.593pt" />
       <hkern g1="B" g2="Z" k="7.593pt" />
       <hkern g1="C" g2="A" k="8.3175pt" />
-      <hkern g1="C" g2="I" k="-12.402pt" />
-      <hkern g1="C" g2="J" k="3.1pt" />
+      <hkern g1="C" g2="J" k="15.502pt" />
       <hkern g1="C" g2="T" k="8.3175pt" />
       <hkern g1="C" g2="V" k="8.3175pt" />
       <hkern g1="C" g2="W" k="8.3175pt" />
@@ -210,163 +194,43 @@
       <hkern g1="C" g2="Y" k="8.3175pt" />
       <hkern g1="C" g2="Z" k="8.3175pt" />
       <hkern g1="D" g2="A" k="14.5298pt" />
-      <hkern g1="D" g2="B" k="-12.402pt" />
-      <hkern g1="D" g2="D" k="-12.402pt" />
-      <hkern g1="D" g2="E" k="-12.402pt" />
-      <hkern g1="D" g2="F" k="-12.402pt" />
-      <hkern g1="D" g2="H" k="-12.402pt" />
-      <hkern g1="D" g2="I" k="-12.402pt" />
-      <hkern g1="D" g2="J" k="3.1pt" />
-      <hkern g1="D" g2="K" k="-12.402pt" />
-      <hkern g1="D" g2="L" k="-12.402pt" />
-      <hkern g1="D" g2="M" k="-12.402pt" />
-      <hkern g1="D" g2="N" k="-12.402pt" />
-      <hkern g1="D" g2="P" k="-12.402pt" />
-      <hkern g1="D" g2="R" k="-12.402pt" />
-      <hkern g1="D" g2="S" k="-12.402pt" />
+      <hkern g1="D" g2="J" k="15.502pt" />
       <hkern g1="D" g2="T" k="14.5298pt" />
-      <hkern g1="D" g2="U" k="-12.402pt" />
       <hkern g1="D" g2="V" k="14.5298pt" />
       <hkern g1="D" g2="W" k="14.5298pt" />
       <hkern g1="D" g2="X" k="14.5298pt" />
       <hkern g1="D" g2="Y" k="14.5298pt" />
       <hkern g1="D" g2="Z" k="14.5298pt" />
-      <hkern g1="E" g2="B" k="-12.402pt" />
       <hkern g1="E" g2="C" k="6.201pt" />
-      <hkern g1="E" g2="D" k="-12.402pt" />
-      <hkern g1="E" g2="E" k="-12.402pt" />
-      <hkern g1="E" g2="F" k="-12.402pt" />
       <hkern g1="E" g2="G" k="6.201pt" />
-      <hkern g1="E" g2="H" k="-12.402pt" />
-      <hkern g1="E" g2="I" k="-12.402pt" />
       <hkern g1="E" g2="J" k="3.1pt" />
-      <hkern g1="E" g2="K" k="-12.402pt" />
-      <hkern g1="E" g2="L" k="-12.402pt" />
-      <hkern g1="E" g2="M" k="-12.402pt" />
-      <hkern g1="E" g2="N" k="-12.402pt" />
-      <hkern g1="E" g2="P" k="-12.402pt" />
-      <hkern g1="E" g2="R" k="-12.402pt" />
-      <hkern g1="E" g2="S" k="-12.402pt" />
-      <hkern g1="E" g2="U" k="-12.402pt" />
       <hkern g1="E" g2="O" k="6.201pt" />
       <hkern g1="E" g2="Q" k="6.201pt" />
       <hkern g1="F" g2="A" k="31.0035pt" />
-      <hkern g1="F" g2="B" k="-12.402pt" />
       <hkern g1="F" g2="C" k="6.201pt" />
-      <hkern g1="F" g2="D" k="-12.402pt" />
-      <hkern g1="F" g2="E" k="-12.402pt" />
-      <hkern g1="F" g2="F" k="-12.402pt" />
       <hkern g1="F" g2="G" k="6.201pt" />
-      <hkern g1="F" g2="H" k="-12.402pt" />
-      <hkern g1="F" g2="I" k="-12.402pt" />
       <hkern g1="F" g2="J" k="3.1pt" />
-      <hkern g1="F" g2="K" k="-12.402pt" />
-      <hkern g1="F" g2="L" k="-12.402pt" />
-      <hkern g1="F" g2="M" k="-12.402pt" />
-      <hkern g1="F" g2="N" k="-12.402pt" />
       <hkern g1="F" g2="O" k="6.201pt" />
-      <hkern g1="F" g2="P" k="-12.402pt" />
       <hkern g1="F" g2="Q" k="6.201pt" />
-      <hkern g1="F" g2="R" k="-12.402pt" />
-      <hkern g1="F" g2="S" k="-12.402pt" />
-      <hkern g1="F" g2="U" k="-12.402pt" />
       <hkern g1="G" g2="A" k="14.5298pt" />
-      <hkern g1="G" g2="I" k="-12.402pt" />
-      <hkern g1="G" g2="J" k="3.1pt" />
+      <hkern g1="G" g2="J" k="15.502pt" />
       <hkern g1="G" g2="T" k="14.5298pt" />
       <hkern g1="G" g2="V" k="14.5298pt" />
       <hkern g1="G" g2="W" k="14.5298pt" />
       <hkern g1="G" g2="X" k="14.5298pt" />
       <hkern g1="G" g2="Y" k="14.5298pt" />
       <hkern g1="G" g2="Z" k="14.5298pt" />
-      <hkern g1="H" g2="B" k="-12.402pt" />
-      <hkern g1="H" g2="D" k="-12.402pt" />
-      <hkern g1="H" g2="E" k="-12.402pt" />
-      <hkern g1="H" g2="F" k="-12.402pt" />
-      <hkern g1="H" g2="H" k="-12.402pt" />
-      <hkern g1="H" g2="I" k="-12.402pt" />
       <hkern g1="H" g2="J" k="3.1pt" />
-      <hkern g1="H" g2="K" k="-12.402pt" />
-      <hkern g1="H" g2="L" k="-12.402pt" />
-      <hkern g1="H" g2="M" k="-12.402pt" />
-      <hkern g1="H" g2="N" k="-12.402pt" />
-      <hkern g1="H" g2="P" k="-12.402pt" />
-      <hkern g1="H" g2="R" k="-12.402pt" />
-      <hkern g1="H" g2="S" k="-12.402pt" />
-      <hkern g1="H" g2="U" k="-12.402pt" />
-      <hkern g1="I" g2="A" k="-12.402pt" />
-      <hkern g1="I" g2="B" k="-12.402pt" />
-      <hkern g1="I" g2="C" k="-12.402pt" />
-      <hkern g1="I" g2="D" k="-12.402pt" />
-      <hkern g1="I" g2="E" k="-12.402pt" />
-      <hkern g1="I" g2="F" k="-12.402pt" />
-      <hkern g1="I" g2="G" k="-12.402pt" />
-      <hkern g1="I" g2="H" k="-12.402pt" />
-      <hkern g1="I" g2="I" k="-12.402pt" />
       <hkern g1="I" g2="J" k="3.1pt" />
-      <hkern g1="I" g2="K" k="-12.402pt" />
-      <hkern g1="I" g2="L" k="-12.402pt" />
-      <hkern g1="I" g2="M" k="-12.402pt" />
-      <hkern g1="I" g2="N" k="-12.402pt" />
-      <hkern g1="I" g2="O" k="-12.402pt" />
-      <hkern g1="I" g2="P" k="-12.402pt" />
-      <hkern g1="I" g2="Q" k="-12.402pt" />
-      <hkern g1="I" g2="R" k="-12.402pt" />
-      <hkern g1="I" g2="S" k="-12.402pt" />
-      <hkern g1="I" g2="T" k="-12.402pt" />
-      <hkern g1="I" g2="U" k="-12.402pt" />
-      <hkern g1="I" g2="V" k="-12.402pt" />
-      <hkern g1="I" g2="W" k="-12.402pt" />
-      <hkern g1="I" g2="X" k="-12.402pt" />
-      <hkern g1="I" g2="Y" k="-12.402pt" />
-      <hkern g1="I" g2="Z" k="-12.402pt" />
       <hkern g1="J" g2="A" k="10.485pt" />
-      <hkern g1="J" g2="B" k="-12.402pt" />
-      <hkern g1="J" g2="C" k="-12.402pt" />
-      <hkern g1="J" g2="D" k="-12.402pt" />
-      <hkern g1="J" g2="E" k="-12.402pt" />
-      <hkern g1="J" g2="F" k="-12.402pt" />
-      <hkern g1="J" g2="G" k="-12.402pt" />
-      <hkern g1="J" g2="H" k="-12.402pt" />
-      <hkern g1="J" g2="I" k="-12.402pt" />
       <hkern g1="J" g2="J" k="3.1pt" />
-      <hkern g1="J" g2="K" k="-12.402pt" />
-      <hkern g1="J" g2="L" k="-12.402pt" />
-      <hkern g1="J" g2="M" k="-12.402pt" />
-      <hkern g1="J" g2="N" k="-12.402pt" />
-      <hkern g1="J" g2="O" k="-12.402pt" />
-      <hkern g1="J" g2="P" k="-12.402pt" />
-      <hkern g1="J" g2="Q" k="-12.402pt" />
-      <hkern g1="J" g2="R" k="-12.402pt" />
-      <hkern g1="J" g2="S" k="-12.402pt" />
-      <hkern g1="J" g2="T" k="-12.402pt" />
-      <hkern g1="J" g2="U" k="-12.402pt" />
-      <hkern g1="J" g2="V" k="-12.402pt" />
-      <hkern g1="J" g2="W" k="-12.402pt" />
-      <hkern g1="J" g2="X" k="-12.402pt" />
-      <hkern g1="J" g2="Y" k="-12.402pt" />
-      <hkern g1="J" g2="Z" k="-12.402pt" />
-      <hkern g1="K" g2="B" k="-12.402pt" />
       <hkern g1="K" g2="C" k="14.5298pt" />
-      <hkern g1="K" g2="D" k="-12.402pt" />
-      <hkern g1="K" g2="E" k="-12.402pt" />
-      <hkern g1="K" g2="F" k="-12.402pt" />
       <hkern g1="K" g2="G" k="14.5298pt" />
-      <hkern g1="K" g2="H" k="-12.402pt" />
-      <hkern g1="K" g2="I" k="-12.402pt" />
       <hkern g1="K" g2="J" k="3.1pt" />
-      <hkern g1="K" g2="K" k="-12.402pt" />
-      <hkern g1="K" g2="L" k="-12.402pt" />
-      <hkern g1="K" g2="M" k="-12.402pt" />
-      <hkern g1="K" g2="N" k="-12.402pt" />
       <hkern g1="K" g2="O" k="14.5298pt" />
-      <hkern g1="K" g2="P" k="-12.402pt" />
       <hkern g1="K" g2="Q" k="14.5298pt" />
-      <hkern g1="K" g2="R" k="-12.402pt" />
-      <hkern g1="K" g2="U" k="-12.402pt" />
       <hkern g1="L" g2="C" k="14.5298pt" />
       <hkern g1="L" g2="G" k="14.5298pt" />
-      <hkern g1="L" g2="I" k="-12.402pt" />
       <hkern g1="L" g2="J" k="3.1pt" />
       <hkern g1="L" g2="O" k="14.5298pt" />
       <hkern g1="L" g2="Q" k="14.5298pt" />
@@ -375,39 +239,10 @@
       <hkern g1="L" g2="V" k="30.5578pt" />
       <hkern g1="L" g2="W" k="30.5578pt" />
       <hkern g1="L" g2="Y" k="31.0035pt" />
-      <hkern g1="M" g2="B" k="-12.402pt" />
-      <hkern g1="M" g2="D" k="-12.402pt" />
-      <hkern g1="M" g2="E" k="-12.402pt" />
-      <hkern g1="M" g2="F" k="-12.402pt" />
-      <hkern g1="M" g2="H" k="-12.402pt" />
-      <hkern g1="M" g2="I" k="-12.402pt" />
       <hkern g1="M" g2="J" k="3.1pt" />
-      <hkern g1="M" g2="K" k="-12.402pt" />
-      <hkern g1="M" g2="L" k="-12.402pt" />
-      <hkern g1="M" g2="M" k="-12.402pt" />
-      <hkern g1="M" g2="N" k="-12.402pt" />
-      <hkern g1="M" g2="P" k="-12.402pt" />
-      <hkern g1="M" g2="R" k="-12.402pt" />
-      <hkern g1="M" g2="S" k="-12.402pt" />
-      <hkern g1="M" g2="U" k="-12.402pt" />
-      <hkern g1="N" g2="B" k="-12.402pt" />
-      <hkern g1="N" g2="D" k="-12.402pt" />
-      <hkern g1="N" g2="E" k="-12.402pt" />
-      <hkern g1="N" g2="F" k="-12.402pt" />
-      <hkern g1="N" g2="H" k="-12.402pt" />
-      <hkern g1="N" g2="I" k="-12.402pt" />
       <hkern g1="N" g2="J" k="3.1pt" />
-      <hkern g1="N" g2="K" k="-12.402pt" />
-      <hkern g1="N" g2="L" k="-12.402pt" />
-      <hkern g1="N" g2="M" k="-12.402pt" />
-      <hkern g1="N" g2="N" k="-12.402pt" />
-      <hkern g1="N" g2="P" k="-12.402pt" />
-      <hkern g1="N" g2="R" k="-12.402pt" />
-      <hkern g1="N" g2="S" k="-12.402pt" />
-      <hkern g1="N" g2="U" k="-12.402pt" />
       <hkern g1="O" g2="A" k="14.5298pt" />
-      <hkern g1="O" g2="I" k="-12.402pt" />
-      <hkern g1="O" g2="J" k="3.1pt" />
+      <hkern g1="O" g2="J" k="15.502pt" />
       <hkern g1="O" g2="T" k="14.5298pt" />
       <hkern g1="O" g2="V" k="14.5298pt" />
       <hkern g1="O" g2="W" k="14.5298pt" />
@@ -415,48 +250,20 @@
       <hkern g1="O" g2="Y" k="14.5298pt" />
       <hkern g1="O" g2="Z" k="14.5298pt" />
       <hkern g1="P" g2="A" k="31.0035pt" />
-      <hkern g1="P" g2="I" k="-12.402pt" />
-      <hkern g1="P" g2="J" k="3.1pt" />
+      <hkern g1="P" g2="J" k="15.502pt" />
       <hkern g1="P" g2="T" k="4.7024pt" />
       <hkern g1="P" g2="Y" k="7.593pt" />
-      <hkern g1="Q" g2="B" k="-12.402pt" />
-      <hkern g1="Q" g2="D" k="-12.402pt" />
-      <hkern g1="Q" g2="E" k="-12.402pt" />
-      <hkern g1="Q" g2="F" k="-12.402pt" />
-      <hkern g1="Q" g2="H" k="-12.402pt" />
-      <hkern g1="Q" g2="I" k="-12.402pt" />
       <hkern g1="Q" g2="J" k="3.1pt" />
-      <hkern g1="Q" g2="K" k="-12.402pt" />
-      <hkern g1="Q" g2="L" k="-12.402pt" />
-      <hkern g1="Q" g2="M" k="-12.402pt" />
-      <hkern g1="Q" g2="N" k="-12.402pt" />
-      <hkern g1="Q" g2="P" k="-12.402pt" />
-      <hkern g1="Q" g2="R" k="-12.402pt" />
       <hkern g1="Q" g2="T" k="14.5298pt" />
-      <hkern g1="Q" g2="U" k="-12.402pt" />
       <hkern g1="Q" g2="V" k="14.5298pt" />
       <hkern g1="Q" g2="W" k="14.5298pt" />
       <hkern g1="Q" g2="Y" k="14.5298pt" />
-      <hkern g1="R" g2="B" k="-12.402pt" />
-      <hkern g1="R" g2="D" k="-12.402pt" />
-      <hkern g1="R" g2="E" k="-12.402pt" />
-      <hkern g1="R" g2="F" k="-12.402pt" />
-      <hkern g1="R" g2="H" k="-12.402pt" />
-      <hkern g1="R" g2="I" k="-12.402pt" />
       <hkern g1="R" g2="J" k="3.1pt" />
-      <hkern g1="R" g2="K" k="-12.402pt" />
-      <hkern g1="R" g2="L" k="-12.402pt" />
-      <hkern g1="R" g2="M" k="-12.402pt" />
-      <hkern g1="R" g2="N" k="-12.402pt" />
-      <hkern g1="R" g2="P" k="-12.402pt" />
-      <hkern g1="R" g2="R" k="-12.402pt" />
       <hkern g1="R" g2="T" k="4.7024pt" />
-      <hkern g1="R" g2="U" k="-12.402pt" />
       <hkern g1="R" g2="V" k="12.1039pt" />
       <hkern g1="R" g2="W" k="12.1039pt" />
       <hkern g1="R" g2="Y" k="7.593pt" />
       <hkern g1="S" g2="A" k="12.1039pt" />
-      <hkern g1="S" g2="I" k="-12.402pt" />
       <hkern g1="S" g2="J" k="3.1pt" />
       <hkern g1="S" g2="T" k="4.7024pt" />
       <hkern g1="S" g2="V" k="12.1039pt" />
@@ -467,89 +274,45 @@
       <hkern g1="T" g2="A" k="31.0035pt" />
       <hkern g1="T" g2="C" k="14.5298pt" />
       <hkern g1="T" g2="G" k="14.5298pt" />
-      <hkern g1="T" g2="I" k="-12.402pt" />
-      <hkern g1="T" g2="J" k="3.1pt" />
+      <hkern g1="T" g2="J" k="15.502pt" />
       <hkern g1="T" g2="O" k="14.5298pt" />
       <hkern g1="T" g2="Q" k="14.5298pt" />
       <hkern g1="U" g2="A" k="14.5298pt" />
-      <hkern g1="U" g2="B" k="-12.402pt" />
-      <hkern g1="U" g2="D" k="-12.402pt" />
-      <hkern g1="U" g2="E" k="-12.402pt" />
-      <hkern g1="U" g2="F" k="-12.402pt" />
-      <hkern g1="U" g2="H" k="-12.402pt" />
-      <hkern g1="U" g2="I" k="-12.402pt" />
-      <hkern g1="U" g2="J" k="3.1pt" />
-      <hkern g1="U" g2="K" k="-12.402pt" />
-      <hkern g1="U" g2="L" k="-12.402pt" />
-      <hkern g1="U" g2="M" k="-12.402pt" />
-      <hkern g1="U" g2="N" k="-12.402pt" />
-      <hkern g1="U" g2="P" k="-12.402pt" />
-      <hkern g1="U" g2="R" k="-12.402pt" />
-      <hkern g1="U" g2="S" k="-12.402pt" />
-      <hkern g1="U" g2="U" k="-12.402pt" />
+      <hkern g1="U" g2="J" k="15.502pt" />
       <hkern g1="V" g2="A" k="41.042pt" />
       <hkern g1="V" g2="C" k="14.5298pt" />
       <hkern g1="V" g2="G" k="14.5298pt" />
-      <hkern g1="V" g2="I" k="-12.402pt" />
-      <hkern g1="V" g2="J" k="3.1pt" />
+      <hkern g1="V" g2="J" k="15.502pt" />
       <hkern g1="V" g2="O" k="14.5298pt" />
       <hkern g1="V" g2="Q" k="14.5298pt" />
       <hkern g1="V" g2="S" k="12.1039pt" />
       <hkern g1="W" g2="A" k="41.042pt" />
       <hkern g1="W" g2="C" k="14.5298pt" />
       <hkern g1="W" g2="G" k="14.5298pt" />
-      <hkern g1="W" g2="I" k="-12.402pt" />
-      <hkern g1="W" g2="J" k="3.1pt" />
+      <hkern g1="W" g2="J" k="15.502pt" />
       <hkern g1="W" g2="O" k="14.5298pt" />
       <hkern g1="W" g2="Q" k="14.5298pt" />
       <hkern g1="W" g2="S" k="12.1039pt" />
-      <hkern g1="X" g2="B" k="-12.402pt" />
       <hkern g1="X" g2="C" k="14.5298pt" />
-      <hkern g1="X" g2="D" k="-12.402pt" />
-      <hkern g1="X" g2="E" k="-12.402pt" />
-      <hkern g1="X" g2="F" k="-12.402pt" />
       <hkern g1="X" g2="G" k="14.5298pt" />
-      <hkern g1="X" g2="H" k="-12.402pt" />
-      <hkern g1="X" g2="I" k="-12.402pt" />
       <hkern g1="X" g2="J" k="3.1pt" />
-      <hkern g1="X" g2="K" k="-12.402pt" />
-      <hkern g1="X" g2="L" k="-12.402pt" />
-      <hkern g1="X" g2="M" k="-12.402pt" />
-      <hkern g1="X" g2="N" k="-12.402pt" />
       <hkern g1="X" g2="O" k="14.5298pt" />
-      <hkern g1="X" g2="P" k="-12.402pt" />
       <hkern g1="X" g2="Q" k="14.5298pt" />
-      <hkern g1="X" g2="R" k="-12.402pt" />
       <hkern g1="X" g2="S" k="12.1039pt" />
-      <hkern g1="X" g2="U" k="-12.402pt" />
       <hkern g1="T" g2="A" k="31.0035pt" />
       <hkern g1="Y" g2="A" k="31.0035pt" />
       <hkern g1="Y" g2="C" k="14.5298pt" />
       <hkern g1="Y" g2="G" k="14.5298pt" />
-      <hkern g1="Y" g2="I" k="-12.402pt" />
-      <hkern g1="Y" g2="J" k="3.1pt" />
+      <hkern g1="Y" g2="J" k="15.502pt" />
       <hkern g1="Y" g2="O" k="14.5298pt" />
       <hkern g1="Y" g2="Q" k="14.5298pt" />
       <hkern g1="Y" g2="S" k="12.1039pt" />
-      <hkern g1="Z" g2="B" k="-12.402pt" />
       <hkern g1="Z" g2="C" k="14.5298pt" />
-      <hkern g1="Z" g2="D" k="-12.402pt" />
-      <hkern g1="Z" g2="E" k="-12.402pt" />
-      <hkern g1="Z" g2="F" k="-12.402pt" />
       <hkern g1="Z" g2="G" k="14.5298pt" />
-      <hkern g1="Z" g2="H" k="-12.402pt" />
-      <hkern g1="Z" g2="I" k="-12.402pt" />
       <hkern g1="Z" g2="J" k="3.1pt" />
-      <hkern g1="Z" g2="K" k="-12.402pt" />
-      <hkern g1="Z" g2="L" k="-12.402pt" />
-      <hkern g1="Z" g2="M" k="-12.402pt" />
-      <hkern g1="Z" g2="N" k="-12.402pt" />
       <hkern g1="Z" g2="O" k="14.5298pt" />
-      <hkern g1="Z" g2="P" k="-12.402pt" />
       <hkern g1="Z" g2="Q" k="14.5298pt" />
-      <hkern g1="Z" g2="R" k="-12.402pt" />
       <hkern g1="Z" g2="S" k="7.593pt" />
-      <hkern g1="Z" g2="U" k="-12.402pt" />
     </font>
   </defs>
 </svg>
