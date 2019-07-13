@@ -11,12 +11,6 @@
           font-weight="normal"
           font-style="normal"
           units-per-em="99.213pt" />
-      <!-- = 99.213pt -->
-      <glyph
-          glyph-name="SP"
-          unicode="&#x0020;"
-          horiz-adv-x="99.213pt"
-          d="" />
       <!-- = 114.56pt + 12.402pt -->
       <glyph
           glyph-name="A"
