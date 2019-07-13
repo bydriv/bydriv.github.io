@@ -191,10 +191,14 @@
       <hkern g1="C" g2="I" k="-12.402pt" />
       <hkern g1="C" g2="J" k="3.1pt" />
       <hkern g1="C" g2="T" k="14.5298pt" />
+      <hkern g1="C" g2="V" k="14.5298pt" />
+      <hkern g1="C" g2="W" k="14.5298pt" />
       <hkern g1="D" g2="A" k="14.5298pt" />
       <hkern g1="D" g2="I" k="-12.402pt" />
       <hkern g1="D" g2="J" k="3.1pt" />
       <hkern g1="D" g2="T" k="14.5298pt" />
+      <hkern g1="D" g2="V" k="14.5298pt" />
+      <hkern g1="D" g2="W" k="14.5298pt" />
       <hkern g1="E" g2="C" k="6.201pt" />
       <hkern g1="E" g2="G" k="6.201pt" />
       <hkern g1="E" g2="I" k="-12.402pt" />
@@ -211,6 +215,8 @@
       <hkern g1="G" g2="I" k="-12.402pt" />
       <hkern g1="G" g2="J" k="3.1pt" />
       <hkern g1="G" g2="T" k="14.5298pt" />
+      <hkern g1="G" g2="V" k="14.5298pt" />
+      <hkern g1="G" g2="W" k="14.5298pt" />
       <hkern g1="H" g2="B" k="-12.402pt" />
       <hkern g1="H" g2="D" k="-12.402pt" />
       <hkern g1="H" g2="E" k="-12.402pt" />
@@ -310,6 +316,8 @@
       <hkern g1="O" g2="I" k="-12.402pt" />
       <hkern g1="O" g2="J" k="3.1pt" />
       <hkern g1="O" g2="T" k="14.5298pt" />
+      <hkern g1="O" g2="V" k="14.5298pt" />
+      <hkern g1="O" g2="W" k="14.5298pt" />
       <hkern g1="P" g2="I" k="-12.402pt" />
       <hkern g1="P" g2="J" k="3.1pt" />
       <hkern g1="P" g2="T" k="4.7024pt" />
@@ -333,11 +341,17 @@
       <hkern g1="U" g2="I" k="-12.402pt" />
       <hkern g1="U" g2="J" k="3.1pt" />
       <hkern g1="V" g2="A" k="41.042pt" />
+      <hkern g1="V" g2="C" k="14.5298pt" />
+      <hkern g1="V" g2="G" k="14.5298pt" />
       <hkern g1="V" g2="I" k="-12.402pt" />
       <hkern g1="V" g2="J" k="3.1pt" />
+      <hkern g1="V" g2="O" k="14.5298pt" />
       <hkern g1="W" g2="A" k="41.042pt" />
+      <hkern g1="W" g2="C" k="14.5298pt" />
+      <hkern g1="W" g2="G" k="14.5298pt" />
       <hkern g1="W" g2="I" k="-12.402pt" />
       <hkern g1="W" g2="J" k="3.1pt" />
+      <hkern g1="W" g2="O" k="14.5298pt" />
     </font>
   </defs>
 </svg>
