@@ -195,17 +195,8 @@ ul, li {
 }
 
 @font-face {
-  font-family: "Lambda Church";
-  src: url("/fonts/lambda-church.ttf") format("truetype");
-}
-
-.lambda-church {
-  font-family: "Lambda Church";
-}
-
-@font-face {
   font-family: "Kludge";
-  src: url("/fonts/kludge.ttf") format("truetype");
+  src: url("/fonts/kludge.otf") format("opentype");
 }
 
 .kludge {

@@ -1,15 +1,7 @@
 #div(class=window)
-  [#div(class=header) Lambda Church]
-  [#div(class=content)
-    [#span(class=lambda-church style="font-size: 64px;") λ]
-    Lambda Church のフォントです。サンプル:
-    [#span(class=lambda-church) λ]
-    [#a(href="/fonts/lambda-church.ttf") ダウンロード]]
-
-#div(class=window)
   [#div(class=header) Kludge]
   [#div(class=content)
     [#span(class=kludge style="color: #00FF00; font-size: 64px;") KLUDGE]
     制作したフォントです(アルファベット大文字のみ収録)。サンプル:
     [#span(class=kludge) THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG]
-    [#a(href="/fonts/kludge.ttf") ダウンロード]]
+    [#a(href="/fonts/kludge.otf") ダウンロード]]
