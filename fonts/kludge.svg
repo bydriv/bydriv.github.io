@@ -206,6 +206,9 @@
       <hkern g1="C" g2="T" k="14.5298pt" />
       <hkern g1="C" g2="V" k="14.5298pt" />
       <hkern g1="C" g2="W" k="14.5298pt" />
+      <hkern g1="C" g2="X" k="14.5298pt" />
+      <hkern g1="C" g2="Y" k="14.5298pt" />
+      <hkern g1="C" g2="Z" k="14.5298pt" />
       <hkern g1="D" g2="A" k="14.5298pt" />
       <hkern g1="D" g2="B" k="-12.402pt" />
       <hkern g1="D" g2="D" k="-12.402pt" />
@@ -225,6 +228,9 @@
       <hkern g1="D" g2="U" k="-12.402pt" />
       <hkern g1="D" g2="V" k="14.5298pt" />
       <hkern g1="D" g2="W" k="14.5298pt" />
+      <hkern g1="D" g2="X" k="14.5298pt" />
+      <hkern g1="D" g2="Y" k="14.5298pt" />
+      <hkern g1="D" g2="Z" k="14.5298pt" />
       <hkern g1="E" g2="B" k="-12.402pt" />
       <hkern g1="E" g2="C" k="6.201pt" />
       <hkern g1="E" g2="D" k="-12.402pt" />
@@ -269,6 +275,9 @@
       <hkern g1="G" g2="T" k="14.5298pt" />
       <hkern g1="G" g2="V" k="14.5298pt" />
       <hkern g1="G" g2="W" k="14.5298pt" />
+      <hkern g1="G" g2="X" k="14.5298pt" />
+      <hkern g1="G" g2="Y" k="14.5298pt" />
+      <hkern g1="G" g2="Z" k="14.5298pt" />
       <hkern g1="H" g2="B" k="-12.402pt" />
       <hkern g1="H" g2="D" k="-12.402pt" />
       <hkern g1="H" g2="E" k="-12.402pt" />
@@ -336,8 +345,12 @@
       <hkern g1="J" g2="X" k="-12.402pt" />
       <hkern g1="J" g2="Y" k="-12.402pt" />
       <hkern g1="J" g2="Z" k="-12.402pt" />
+      <hkern g1="K" g2="C" k="14.5298pt" />
+      <hkern g1="K" g2="G" k="14.5298pt" />
       <hkern g1="K" g2="I" k="-12.402pt" />
       <hkern g1="K" g2="J" k="3.1pt" />
+      <hkern g1="K" g2="O" k="14.5298pt" />
+      <hkern g1="K" g2="Q" k="14.5298pt" />
       <hkern g1="L" g2="C" k="14.5298pt" />
       <hkern g1="L" g2="G" k="14.5298pt" />
       <hkern g1="L" g2="I" k="-12.402pt" />
@@ -381,6 +394,9 @@
       <hkern g1="O" g2="T" k="14.5298pt" />
       <hkern g1="O" g2="V" k="14.5298pt" />
       <hkern g1="O" g2="W" k="14.5298pt" />
+      <hkern g1="O" g2="X" k="14.5298pt" />
+      <hkern g1="O" g2="Y" k="14.5298pt" />
+      <hkern g1="O" g2="Z" k="14.5298pt" />
       <hkern g1="P" g2="I" k="-12.402pt" />
       <hkern g1="P" g2="J" k="3.1pt" />
       <hkern g1="P" g2="T" k="4.7024pt" />
@@ -428,6 +444,18 @@
       <hkern g1="W" g2="I" k="-12.402pt" />
       <hkern g1="W" g2="J" k="3.1pt" />
       <hkern g1="W" g2="O" k="14.5298pt" />
+      <hkern g1="X" g2="C" k="14.5298pt" />
+      <hkern g1="X" g2="G" k="14.5298pt" />
+      <hkern g1="X" g2="O" k="14.5298pt" />
+      <hkern g1="X" g2="Q" k="14.5298pt" />
+      <hkern g1="Y" g2="C" k="14.5298pt" />
+      <hkern g1="Y" g2="G" k="14.5298pt" />
+      <hkern g1="Y" g2="O" k="14.5298pt" />
+      <hkern g1="Y" g2="Q" k="14.5298pt" />
+      <hkern g1="Z" g2="C" k="14.5298pt" />
+      <hkern g1="Z" g2="G" k="14.5298pt" />
+      <hkern g1="Z" g2="O" k="14.5298pt" />
+      <hkern g1="Z" g2="Q" k="14.5298pt" />
     </font>
   </defs>
 </svg>
