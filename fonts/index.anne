@@ -2,6 +2,6 @@
   [#div(class=header) Kludge]
   [#div(class=content)
     [#span(class=kludge style="color: #00FF00; font-size: 64px;") KLUDGE]
-    制作したフォントです(v0.0.2, アルファベット大文字のみ収録)。サンプル:
+    制作したフォントです(v0.0.3, アルファベット大文字のみ収録)。サンプル:
     [#span(class=kludge) THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG]
     [#a(href="/fonts/kludge.otf") ダウンロード]]
