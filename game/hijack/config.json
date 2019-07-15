@@ -1,8 +1,8 @@
 {
     "logo": {
-        "width": 256,
-        "height": 64,
-        "scale": 2,
+        "width": 452,
+        "height": 100,
+        "scale": 1,
         "image": "pixelart/system/logo.png"
     },
     "icon_border": {
