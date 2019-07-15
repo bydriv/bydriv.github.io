@@ -66,19 +66,19 @@ LaTeX で生成された原稿 PDF をどうのこうのというのが典型的
 </p>
 <h4 >PDF 回転
 </h4>
-<p>回転は pdftk を使えば簡単
+<p>90/180/270度の回転は簡単
 </p>
-<pre >pdftk from.pdf cat 1down output to.pdf
+<pre >pdf90 from.pdf to.pdf
+pdf180 from.pdf to.pdf
+pdf270 from.pdf to.pdf
 </pre>
 <h4 >PDF 反転
 </h4>
-<p>pdftk ではけっこう難しい
-</p>
-<pre >\documentclass{standalone}%
-\usepackage{graphics}%
-\begin{document}%
-\reflectbox{\includegraphics{hoge.pdf}}%
-\end{document}%
+<pre >pdfflip from.pdf to.pdf
+</pre>
+<h4 >PDF トリミング
+</h4>
+<pre >pdfcrop from.pdf to.pdf
 </pre>
 <h3 >フォント
 </h3>
@@ -88,7 +88,7 @@ LaTeX で生成された原稿 PDF をどうのこうのというのが典型的
 </h4>
 <p>TTF を OTF にしたいなど。
 </p>
-<pre >fontforge -lang=ff -c 'Open($1); Generate($2);' from.ttf from.otf
+<pre >fontforge -lang=ff -c 'Open($1); Generate($2);' from.ttf to.otf
 </pre>
   </div>
 </div>

@@ -51,22 +51,24 @@ pdftk などのツールがある。
 
 #h4 PDF 回転
 
-回転は pdftk を使えば簡単
+90/180/270度の回転は簡単
 
 #pre <<CODE
-pdftk from.pdf cat 1down output to.pdf
+pdf90 from.pdf to.pdf
+pdf180 from.pdf to.pdf
+pdf270 from.pdf to.pdf
 CODE
 
 #h4 PDF 反転
 
-pdftk ではけっこう難しい
+#pre <<CODE
+pdfflip from.pdf to.pdf
+CODE
+
+#h4 PDF トリミング
 
 #pre <<CODE
-\documentclass{standalone}%
-\usepackage{graphics}%
-\begin{document}%
-\reflectbox{\includegraphics{hoge.pdf}}%
-\end{document}%
+pdfcrop from.pdf to.pdf
 CODE
 
 #h3 フォント
@@ -78,5 +80,5 @@ FontForge がヤバい。
 TTF を OTF にしたいなど。
 
 #pre <<CODE
-fontforge -lang=ff -c 'Open($1); Generate($2);' from.ttf from.otf
+fontforge -lang=ff -c 'Open($1); Generate($2);' from.ttf to.otf
 CODE
