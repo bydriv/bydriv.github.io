@@ -1,0 +1,3 @@
+#div(class=window)
+  [#div(class=header) 2047]
+  [#div(class=content) [@cat novel/2047.html]]
