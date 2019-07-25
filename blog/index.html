@@ -251,3 +251,22 @@ d
 </p>
  <div class=cont>(<a href=/blog/2019-07-16>READ MORE</a>)</div></div>
 </div>
+<div class=window><div class=header></div>
+  <div class=content><h2 >Raspberry Pi 3 B+ で Bare-Metal Hello World 作戦 (1)
+</h2><h3 >はじめに
+</h3><p>最近 (n 週遅れだけど) Raspberry Pi をいじって遊んでいる。
+いろいろいじってて、 raspi を使えばけっこうお手軽に自作 OS を実機で動かせて楽しいのでは？
+と思い至ったのでその周辺のことを最近調べている。
+</p><p>まだ計画を遂行できたわけではないけど、備忘録も兼ねて、いったんこれまでにしたことをすこしまとめておく。
+</p><h4 >Raspbian Install Battle
+</h4><p>だいたいここ (<a href=https://www.raspberrypi.org/documentation/installation/installing-images/linux.md>https://www.raspberrypi.org/documentation/installation/installing-images/linux.md</a>) に書いてある通りにすればいい。
+</p><p>まず raspbian のイメージをダウンロードする (<a href=https://www.raspberrypi.org/downloads/raspbian/>https://www.raspberrypi.org/downloads/raspbian/</a>)。
+イメージは 3 種類ある。
+</p><ul ><li ><em >Raspbian Buster with desktop and recommended software</em>: Mathematica とか入っているデスクトップ版。 Mathematica が使いたかったので、わたしはこれにした。</li>
+<li ><em >Raspbian Buster with desktop</em>: Mathematica とかは入っていない、シンプルな感じのデスクトップ版。</li>
+<li ><em >Raspbian Buster Lite</em>: デスクトップがないバージョン。サーバ構築とか電子工作がしたいなら向いてるかも。</li>
+</ul><p>SD カードを PC に接続して、そのデバイスが <code >/dev/sda</code> と認識されているとする (このへんは環境依存なので適宜変えること)。以下のコマンドで SD カードにイメージをコピー。
+</p><pre ># dd bs=4M if=2019-07-10-raspbian-buster-full.img of=/dev/sda conv=fsync
+</pre>
+ <div class=cont>(<a href=/blog/2019-07-25>READ MORE</a>)</div></div>
+</div>

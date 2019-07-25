@@ -1,0 +1,165 @@
+<!DOCTYPE html><!--
+
+--><meta charset="utf-8"><!--
+--><meta name="viewport" content="width=device-width, initial-scale=1"><!--
+--><title>bydriv.github.io</title><!--
+
+--><link rel="stylesheet" type="text/css" href="/prelude/style.css"><!--
+
+--><div class="taskbar"><!--
+--><a class="icon" href="/">&#x221A;</a><!--
+--><a class="icon" href="/about">&#x1F4BD;</a><!--
+--><a class="icon" href="/gallery">&#x1F3A8;</a><!--
+--><a class="icon" href="/novel/golden-record">&#x1F30C;</a><!--
+--><a class="icon" href="/novel/rcs">&#x1F303;</a><!--
+--><a class="icon" href="/blog">&#x1F4DD;</a><!--
+--><a class="icon" href="/anne">&#x1F45A;</a><!--
+--><a class="icon" href="/worldview">&#x1F30D;</a><!--
+--></div>
+<div class="window">
+  <div class="header"></div>
+  <div class="content">
+<h2 >Raspberry Pi 3 B+ で Bare-Metal Hello World 作戦 (1)
+</h2>
+<h3 >はじめに
+</h3>
+<p>最近 (n 週遅れだけど) Raspberry Pi をいじって遊んでいる。
+いろいろいじってて、 raspi を使えばけっこうお手軽に自作 OS を実機で動かせて楽しいのでは？
+と思い至ったのでその周辺のことを最近調べている。
+</p>
+<p>まだ計画を遂行できたわけではないけど、備忘録も兼ねて、いったんこれまでにしたことをすこしまとめておく。
+</p>
+<h4 >Raspbian Install Battle
+</h4>
+<p>だいたいここ (<a href=https://www.raspberrypi.org/documentation/installation/installing-images/linux.md>https://www.raspberrypi.org/documentation/installation/installing-images/linux.md</a>) に書いてある通りにすればいい。
+</p>
+<p>まず raspbian のイメージをダウンロードする (<a href=https://www.raspberrypi.org/downloads/raspbian/>https://www.raspberrypi.org/downloads/raspbian/</a>)。
+イメージは 3 種類ある。
+</p>
+<ul ><li ><em >Raspbian Buster with desktop and recommended software</em>: Mathematica とか入っているデスクトップ版。 Mathematica が使いたかったので、わたしはこれにした。</li>
+<li ><em >Raspbian Buster with desktop</em>: Mathematica とかは入っていない、シンプルな感じのデスクトップ版。</li>
+<li ><em >Raspbian Buster Lite</em>: デスクトップがないバージョン。サーバ構築とか電子工作がしたいなら向いてるかも。</li>
+</ul>
+<p>SD カードを PC に接続して、そのデバイスが <code >/dev/sda</code> と認識されているとする (このへんは環境依存なので適宜変えること)。以下のコマンドで SD カードにイメージをコピー。
+</p>
+<pre ># dd bs=4M if=2019-07-10-raspbian-buster-full.img of=/dev/sda conv=fsync
+</pre>
+<p>そうしたらその SD カードを Raspberry Pi に挿入して電源を ON にすれば起動する。
+</p>
+<h4 >Arch Install Battle
+</h4>
+<p>Raspberry Pi に Arch はインストールできるのか試してみた。
+</p>
+<p>結果: <a href=https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-3>https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-3</a> の通りにすればできる。
+</p>
+<p>今回も例によって SD カードが <code >/dev/sda</code> だとする。
+</p>
+<pre ># fdisk /dev/sda # o, n, &lt;ENTER&gt;, &lt;ENTER&gt;, +100M, t, c, n, &lt;ENTER&gt;, &lt;ENTER&gt;, &lt;ENTER&gt;, w の順に入力
+# mkfs.vfat /dev/sda1
+# mkfs.ext4 /dev/sda2
+# mkdir boot
+# mkdir root
+# mount /dev/sda1 boot
+# mount /dev/sda2 root
+# wget http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-3-latest.tar.gz
+# bsdtar -xpf ArchLinuxARM-rpi-3-latest.tar.gz -C root
+# sync
+# mv root/boot/* boot
+# umount boot root
+</pre>
+<p>こんな感じで SD カードをセットアップ。
+それができたら SD カードを raspi に挿入して電源 ON.
+<code >alarm login:</code> と 表示されるので、 root/root でログイン。
+</p>
+<p>そのあと初期化コマンドを実行する:
+</p>
+<pre ># pacman-key --init
+# pacman-key --populate archlinuxarm
+</pre>
+<p>こんな感じでインストールできた。
+</p>
+<h4 >Bare-Metal Hello World 作戦
+</h4>
+<p>Raspberry Pi で bare-metal なプログラムを書きたい。
+Bare-metal というのは OS などがない状態のこと。
+OS 自体は OS のうえで動いていないので、 bare-metal なプログラムと言える気がする。
+</p>
+<p><a href=https://s-matyukevich.github.io/raspberry-pi-os/docs/lesson01/rpi-os.html>https://s-matyukevich.github.io/raspberry-pi-os/docs/lesson01/rpi-os.html</a> が参考になった。
+</p>
+<p>まず、まったくまっさらな状態の SD カードを Raspberry Pi に挿して電源をいれてみた。
+BIOS のようなものも表示されず、文字通りうんともすんとも言わない。
+</p>
+<p>この状態からどのようにしてプログラムを動かすようにできるのだろうか。
+</p>
+<p>まず Arch のインストールを参考にして以下のコマンドで SD カードをフォーマット。
+Raspberry Pi の boot partition は FAT32 でなければならない。
+</p>
+<pre ># fdisk /dev/sda # o, n, &lt;ENTER&gt;, &lt;ENTER&gt;, +100M, t, c, n, &lt;ENTER&gt;, &lt;ENTER&gt;, &lt;ENTER&gt;, w の順に入力
+# mkfs.vfat /dev/sda1
+# mkfs.ext4 /dev/sda2
+# mkdir boot
+# mkdir root
+# mount /dev/sda1 boot
+# mount /dev/sda2 root
+</pre>
+<p>この状態で <a href=https://github.com/raspberrypi/firmware/tree/master/boot>https://github.com/raspberrypi/firmware/tree/master/boot</a> にある <code >bootcode.bin</code> と <code >start.elf</code> をダウンロードしてきて、 boot に配置する。
+</p>
+<pre ># cd boot
+# wget https://github.com/raspberrypi/firmware/blob/master/boot/bootcode.bin?raw=true -O bootcode.bin
+# wget https://github.com/raspberrypi/firmware/blob/master/boot/start.elf?raw=true -O start.elf
+</pre>
+<p>これだけでいちおう「うんともすんともいわない」状態ではなくなる。
+この SD カードを Raspberry Pi に挿して起動すれば、なんかカラーマップみたいなものが表示されるようになる。
+</p>
+<p>目標はここから hello world と画面に表示することだけど、これがなかなか難しくてまだ達成できていない。
+</p>
+<p>いまわかっていること: <code >kernel7.img</code> (または <code >kernel8.img</code> など。 7 とか 8 は armvN の N) と <code >config.txt</code> というファイルを boot partition に配置する。
+<code >config.txt</code> は
+</p>
+<pre >enable_uart=1
+</pre>
+<p>こんな感じのファイル。
+で、 <code >kernel7.img</code> は <code >boot.s</code> みたいなアセンブリのファイルを gcc でコンパイル、
+ld, objcopy で変換すればよいらしい。具体的には <code >boot.s</code> の内容が
+</p>
+<pre >.section ".text.boot"
+.globl _start
+_start:
+        nop
+</pre>
+<p>こんな感じだとして、まずつぎのような <code >linker.ld</code> というファイルを用意:
+</p>
+<pre >SECTIONS
+{
+  .text.boot : { *(.text.boot) }
+}
+</pre>
+<p>これを使って <code >kernel7.img</code> を生成するには:
+</p>
+<pre >$ gcc -c boot.s -o boot.o
+$ ld -T linker.ld -o kernel7.elf boot.o
+$ objcopy kernel7.elf -O binary kernel7.img
+</pre>
+<p>とする。
+</p>
+<p>あとはこれらのファイルを
+</p>
+<pre ># cp kernel7.img boot
+# cp config.txt boot
+</pre>
+<p>のようにすればいい。
+</p>
+<p>これでいちおう、 <code >kernel7.img</code> が実行される……はず。
+なのだけど、まだ肝心のプログラムを書くところまではできていない。
+</p>
+<p>なお、クロスコンパイルとか面倒なので今回、これらの作業はすべて Raspbian 上でおこなった。
+x86 などほかのアーキテクチャの CPU で開発する場合はクロスコンパイルの環境を構築する必要がある。
+クロスコンパイルの環境整えるのはなかなか面倒そうだけど、
+それができたら楽かもしれない (とはいえ、 Raspbian 上で開発するほうが楽な気もする)。
+</p>
+<p>このへん楽しいので、今後もたびたび時間を見つけてやってみたいなぁ。
+</p>
+<p>そんな感じ。
+</p>
+  </div>
+</div>
