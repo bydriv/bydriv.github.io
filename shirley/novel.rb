@@ -10,7 +10,7 @@ cfg = Shirley.config([
     ["first-paragraph", /\A\$(\d+)\z/m, proc {|m| $chap = m[1]; "<h2 class=\"chap\" id=\"#{m[1]}\"><a href=\"##$chap\">第#{m[1]}章</a></h2>" }],
     ["first-paragraph", /\A\+\z/m, "<div class=\"blank-line\"></div>"],
     ["first-paragraph", /\A\*\z/m, "<div class=\"blank-line\"></div>"],
-    ["first-paragraph", /\A((?:<sup[^>]*?>.*?<\/sup>)?<span [^>]*>)(「.*)\z/m, "<p class=\"noindent\">\\1\\2</p>"],
+    ["first-paragraph", /\A((?:<sup[^>]*?><a[^>]*?>\d+<\/a><\/sup>)?<span [^>]*>)([（「『].*)\z/m, "<p class=\"noindent\">\\1\\2</p>"],
     ["first-paragraph", /\A(.*)\z/m, "<p class=\"indent\">\\1</p>"],
     ["first-list", /\A(\d+)\z/m, proc {|m| "<sup class=\"sect\" id=\"#$chap:#{m[1]}\"><a href=\"##$chap:#{m[1]}\">#{m[1]}</a></sup>"}],
     ["first-list", /\A#fn:([^:]+):([^:]+):([^:]+)\z/m, "<sup class=\"sect\" id=\"\\1\">\\2</sup><span class=\"text\">\\3</span>"],
