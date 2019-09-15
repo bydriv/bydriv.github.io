@@ -2,10 +2,17 @@
 <meta charset="utf-8">
 <script>
   window.addEventListener("load", function () {
+    var SCALE = 8;
+
+    const mode = document.getElementById("mode");
+
+    var recording = false;
+    var recorder = null;
+
     var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d");
 
-    fetch("example.png").then(function (r) {
+    fetch("example.png", {cache: "no-cache"}).then(function (r) {
       return r.blob();
     }).then(function (b) {
       return URL.createObjectURL(b);
@@ -25,24 +32,61 @@
     });
 
     function step() {
+      if (!recording && mode["record-mode"].checked) {
+          const canvasStream = canvas.captureStream();
+          recorder = new MediaRecorder(canvasStream);
+          const chunks = [];
+
+          recorder.addEventListener("dataavailable", function (e) {
+              chunks.push(e.data);
+          });
+
+          recorder.addEventListener("stop", function () {
+            const blob = new Blob(chunks, {"type": "video/mpeg"});
+            const url = URL.createObjectURL(blob);
+            const video = document.createElement("video");
+            video.src = url;
+            video.controls = true;
+            const a = document.createElement("a");
+            const text = document.createTextNode("download");
+            a.href = url;
+            a.appendChild(text);
+            document.querySelector("#downloads").appendChild(video);
+            document.querySelector("#downloads").appendChild(a);
+            recorder = null;
+          });
+
+          recorder.start();
+          recording = true;
+      }
+
+      if (recording && !mode["record-mode"].checked) {
+          recorder.stop();
+          recording = false;
+      }
+
       var w = canvas.width;
       var h = canvas.height;
       var d = context.getImageData(0, 0, w, h);
       var e = context.createImageData(w, h);
 
-      for (var i = 0; i < w; ++i) {
-        for (var j = 0; j < h; ++j) {
-          var r = d.data[(i + j * w) * 4];
-          var g = d.data[(i + j * w) * 4 + 1];
-          var b = d.data[(i + j * w) * 4 + 2];
-          var a = d.data[(i + j * w) * 4 + 3];
+      for (var i = 0; i < Math.floor(w / SCALE); ++i) {
+        for (var j = 0; j < Math.floor(h / SCALE); ++j) {
+          var r = d.data[(i * SCALE + j * w * SCALE) * 4];
+          var g = d.data[(i * SCALE + j * w * SCALE) * 4 + 1];
+          var b = d.data[(i * SCALE + j * w * SCALE) * 4 + 2];
+          var a = d.data[(i * SCALE + j * w * SCALE) * 4 + 3];
 
           switch (type(r, g, b, a)) {
           case 0:
-            e.data[(i + j * w) * 4] = r;
-            e.data[(i + j * w) * 4 + 1] = g;
-            e.data[(i + j * w) * 4 + 2] = b;
-            e.data[(i + j * w) * 4 + 3] = a;
+            for (var k = 0; k < SCALE; ++k) {
+              for (var l = 0; l < SCALE; ++l) {
+                e.data[(i * SCALE + k + j * w * SCALE + l * w) * 4] = r;
+                e.data[(i * SCALE + k + j * w * SCALE + l * w) * 4 + 1] = g;
+                e.data[(i * SCALE + k + j * w * SCALE + l * w) * 4 + 2] = b;
+                e.data[(i * SCALE + k + j * w * SCALE + l * w) * 4 + 3] = a;
+              }
+            }
             break;
           case 1: {
             var k = 0;
@@ -65,29 +109,45 @@
               ++k;
 
             if (k === 1 || k === 2) {
-              e.data[(i + j * w) * 4] = 0x00;
-              e.data[(i + j * w) * 4 + 1] = 0x00;
-              e.data[(i + j * w) * 4 + 2] = 0xFF;
-              e.data[(i + j * w) * 4 + 3] = 0xFF;
+              for (var k = 0; k < SCALE; ++k) {
+                for (var l = 0; l < SCALE; ++l) {
+                  e.data[(i * SCALE + k + j * w * SCALE + l * w) * 4] = 0x00;
+                  e.data[(i * SCALE + k + j * w * SCALE + l * w) * 4 + 1] = 0x00;
+                  e.data[(i * SCALE + k + j * w * SCALE + l * w) * 4 + 2] = 0xFF;
+                  e.data[(i * SCALE + k + j * w * SCALE + l * w) * 4 + 3] = 0xFF;
+                }
+              }
             } else {
-              e.data[(i + j * w) * 4] = 0xFF;
-              e.data[(i + j * w) * 4 + 1] = 0xFF;
-              e.data[(i + j * w) * 4 + 2] = 0x00;
-              e.data[(i + j * w) * 4 + 3] = 0xFF;
+              for (var k = 0; k < SCALE; ++k) {
+                for (var l = 0; l < SCALE; ++l) {
+                  e.data[(i * SCALE + k + j * w * SCALE + l * w) * 4] = 0xFF;
+                  e.data[(i * SCALE + k + j * w * SCALE + l * w) * 4 + 1] = 0xFF;
+                  e.data[(i * SCALE + k + j * w * SCALE + l * w) * 4 + 2] = 0x00;
+                  e.data[(i * SCALE + k + j * w * SCALE + l * w) * 4 + 3] = 0xFF;
+                }
+              }
             }
             break;
           }
           case 2:
-            e.data[(i + j * w) * 4] = 0xFF;
-            e.data[(i + j * w) * 4 + 1] = 0x00;
-            e.data[(i + j * w) * 4 + 2] = 0x00;
-            e.data[(i + j * w) * 4 + 3] = 0xFF;
+            for (var k = 0; k < SCALE; ++k) {
+              for (var l = 0; l < SCALE; ++l) {
+                e.data[(i * SCALE + k + j * w * SCALE + l * w) * 4] = 0xFF;
+                e.data[(i * SCALE + k + j * w * SCALE + l * w) * 4 + 1] = 0x00;
+                e.data[(i * SCALE + k + j * w * SCALE + l * w) * 4 + 2] = 0x00;
+                e.data[(i * SCALE + k + j * w * SCALE + l * w) * 4 + 3] = 0xFF;
+              }
+            }
             break;
           case 3:
-            e.data[(i + j * w) * 4] = 0xFF;
-            e.data[(i + j * w) * 4 + 1] = 0xFF;
-            e.data[(i + j * w) * 4 + 2] = 0x00;
-            e.data[(i + j * w) * 4 + 3] = 0xFF;
+            for (var k = 0; k < SCALE; ++k) {
+              for (var l = 0; l < SCALE; ++l) {
+                e.data[(i * SCALE + k + j * w * SCALE + l * w) * 4] = 0xFF;
+                e.data[(i * SCALE + k + j * w * SCALE + l * w) * 4 + 1] = 0xFF;
+                e.data[(i * SCALE + k + j * w * SCALE + l * w) * 4 + 2] = 0x00;
+                e.data[(i * SCALE + k + j * w * SCALE + l * w) * 4 + 3] = 0xFF;
+              }
+            }
             break;
           }
         }
@@ -114,17 +174,21 @@
 
     function neighbor(d, i, j) {
       var w = d.width;
-      return type(d.data[(i + j * w) * 4], d.data[(i + j * w) * 4 + 1], d.data[(i + j * w) * 4 + 2], d.data[(i + j * w) * 4 + 3]);
+      return type(d.data[(i * SCALE + j * w * SCALE) * 4], d.data[(i * SCALE + j * w * SCALE) * 4 + 1], d.data[(i * SCALE + j * w * SCALE) * 4 + 2], d.data[(i * SCALE + j * w * SCALE) * 4 + 3]);
     }
   });
 </script>
 
 <style>
 #canvas {
-  width: 200%;
-  height: 200%;
   image-rendering: crisp-edges;
 }
 </style>
 
+<form id="mode">
+  <input type="checkbox" name="record-mode">record</input>
+</form>
+
 <canvas id="canvas"></canvas>
+
+<div id="downloads"></div>
