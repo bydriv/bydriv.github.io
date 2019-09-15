@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script>
+  window.addEventListener("load", function () {
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+
+    fetch("example.png").then(function (r) {
+      return r.blob();
+    }).then(function (b) {
+      return URL.createObjectURL(b);
+    }).then(function (url) {
+      return new Promise(function (resolve, reject) {
+        var img = new Image();
+        img.onload = function () {
+          resolve(img);
+        };
+        img.onerror = reject;
+        img.src = url;
+      });
+    }).then(function (img) {
+      context.drawImage(img, 0, 0);
+    }).then(function () {
+      requestAnimationFrame(step);
+    });
+
+    function step() {
+      var w = canvas.width;
+      var h = canvas.height;
+      var d = context.getImageData(0, 0, w, h);
+      var e = context.createImageData(w, h);
+
+      for (var i = 0; i < w; ++i) {
+        for (var j = 0; j < h; ++j) {
+          var r = d.data[(i + j * w) * 4];
+          var g = d.data[(i + j * w) * 4 + 1];
+          var b = d.data[(i + j * w) * 4 + 2];
+          var a = d.data[(i + j * w) * 4 + 3];
+
+          switch (type(r, g, b, a)) {
+          case 0:
+            e.data[(i + j * w) * 4] = r;
+            e.data[(i + j * w) * 4 + 1] = g;
+            e.data[(i + j * w) * 4 + 2] = b;
+            e.data[(i + j * w) * 4 + 3] = a;
+            break;
+          case 1: {
+            var k = 0;
+
+            if (neighbor(d, i + 1, j) === 2)
+              ++k;
+            if (neighbor(d, i + 1, j + 1) === 2)
+              ++k;
+            if (neighbor(d, i, j + 1) === 2)
+              ++k;
+            if (neighbor(d, i - 1, j + 1) === 2)
+              ++k;
+            if (neighbor(d, i - 1, j) === 2)
+              ++k;
+            if (neighbor(d, i - 1, j - 1) === 2)
+              ++k;
+            if (neighbor(d, i, j - 1) === 2)
+              ++k;
+            if (neighbor(d, i + 1, j - 1) === 2)
+              ++k;
+
+            if (k === 1 || k === 2) {
+              e.data[(i + j * w) * 4] = 0x00;
+              e.data[(i + j * w) * 4 + 1] = 0x00;
+              e.data[(i + j * w) * 4 + 2] = 0xFF;
+              e.data[(i + j * w) * 4 + 3] = 0xFF;
+            } else {
+              e.data[(i + j * w) * 4] = 0xFF;
+              e.data[(i + j * w) * 4 + 1] = 0xFF;
+              e.data[(i + j * w) * 4 + 2] = 0x00;
+              e.data[(i + j * w) * 4 + 3] = 0xFF;
+            }
+            break;
+          }
+          case 2:
+            e.data[(i + j * w) * 4] = 0xFF;
+            e.data[(i + j * w) * 4 + 1] = 0x00;
+            e.data[(i + j * w) * 4 + 2] = 0x00;
+            e.data[(i + j * w) * 4 + 3] = 0xFF;
+            break;
+          case 3:
+            e.data[(i + j * w) * 4] = 0xFF;
+            e.data[(i + j * w) * 4 + 1] = 0xFF;
+            e.data[(i + j * w) * 4 + 2] = 0x00;
+            e.data[(i + j * w) * 4 + 3] = 0xFF;
+            break;
+          }
+        }
+      }
+
+      context.putImageData(e, 0, 0);
+
+      setTimeout(function () {
+        requestAnimationFrame(step)
+      }, 100); // 10 fps
+    };
+
+    function type(r, g, b, a) {
+      if (r === 0xFF && g === 0xFF && b === 0x00 && a === 0xFF) {
+        return 1;
+      } else if (r === 0x00 && g === 0x00 && b === 0xFF && a === 0xFF) {
+        return 2;
+      } else if (r === 0xFF && g === 0x00 && b === 0x00 && a === 0xFF) {
+        return 3;
+      } else {
+        return 0;
+      }
+    }
+
+    function neighbor(d, i, j) {
+      var w = d.width;
+      return type(d.data[(i + j * w) * 4], d.data[(i + j * w) * 4 + 1], d.data[(i + j * w) * 4 + 2], d.data[(i + j * w) * 4 + 3]);
+    }
+  });
+</script>
+
+<style>
+#canvas {
+  width: 200%;
+  height: 200%;
+  image-rendering: crisp-edges;
+}
+</style>
+
+<canvas id="canvas"></canvas>
