@@ -1,3 +1,0 @@
-#div(class=window)
-  [#div(class=header) Tomorrow is Yesterday]
-  [#div(class=content) [@cat novel/tomorrow-is-yesterday.html]]

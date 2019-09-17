@@ -45,3 +45,7 @@ novel/%.json: novel/%.txt $(ANNE)
 
 novel/%.html: novel/%.json $(NOVEL)
 	$(NOVEL) $< > $@
+
+novel/index.html: novel/index.json $(HTML) $(wildcard prelude/*) $(patsubst %.anne,%.html,$(filter-out %index.anne,$(shell find -name '*.anne')))
+	cat prelude/header.html > $@
+	$(HTML) $< >> $@

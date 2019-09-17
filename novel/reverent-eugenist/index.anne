@@ -1,3 +1,0 @@
-#div(class=window)
-  [#div(class=header) Reverent Eugenist]
-  [#div(class=content) [@cat novel/reverent-eugenist.html]]
