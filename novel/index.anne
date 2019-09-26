@@ -2,6 +2,7 @@
   [#div(class=header) Novel]
   [#div(class=content)
     [#ul
+      [#li [#a(href=esther) エステル/Esther]]
       [#li [#a(href=golden-record) 黄金録/Golden Record]]
       [#li [#a(href=intelligence-log) テーリの諜報日誌/Intelligence Log]]
       [#li [#a(href=rcs) 逆犯罪課/Reverse Crime Section]]
