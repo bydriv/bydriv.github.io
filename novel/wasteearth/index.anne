@@ -1,7 +1,7 @@
 #div(class=window)
-  [#div(class=header) ワーストアース/Wasteearth]
+  [#div(class=header) ウェイストアース/Wasteearth]
   [#div(class=content)
-    [#h2 ワーストアース/Wasteearth]
+    [#h2 ウェイストアース/Wasteearth]
     [#ol
       [#li 第1幕
       [#ol
