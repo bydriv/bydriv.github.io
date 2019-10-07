@@ -19,6 +19,7 @@ cfg = Shirley.config([
     ["all-text", /(！|？|！？)([^！？）」』》])/m, "\\1<span class=\"space\"></span>\\2"],
     ["all-text", /\n/m, ""],
     ["all-text", /\.\.\./m, "…"],
+    ["all-text", /---/m, "―"],
     ["all-text", /(……)/m, "<span class=\"dots\">\\1</span>"],
     ["all-text", /(――)/m, "<span class=\"dashes\">\\1</span>"],
     ["first-text", /\A\$(\d+):(.*?)\z/m, "\\0"],
