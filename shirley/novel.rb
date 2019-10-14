@@ -16,6 +16,7 @@ cfg = Shirley.config([
     ["first-list", /\A#fn:([^:]+):([^:]+):([^:]+)\z/m, "<sup class=\"sect\" id=\"\\1\">\\2</sup><span class=\"text\">\\3</span>"],
     ["first-list", /\A#ln:([^:]+):([^:]+)\z/m, "<sup><a href=\"#\\1\">\\2</a></sup>"],
     ["first-list", /\A#ruby:([^:]+):([^:]+)\z/m, "<ruby>\\1<rp>(</rp><rt>\\2</rt><rp>)</rp></ruby>"],
+    ["first-list", /\A#pict:([^:]+)\z/m, "<img src=\"\\1\">"],
     ["all-text", /(！|？|！？)([^！？）」』》])/m, "\\1<span class=\"space\"></span>\\2"],
     ["all-text", /\n/m, ""],
     ["all-text", /\.\.\./m, "…"],
@@ -32,6 +33,7 @@ cfg = Shirley.config([
     ["first-text", /\A#fn:([^:]+):([^:]+):([^:]+)\z/m, "\\0"],
     ["first-text", /\A#ln:([^:]+):([^:]+)\z/m, "\\0"],
     ["first-text", /\A#ruby:([^:]+):([^:]+)\z/m, "\\0"],
+    ["first-text", /\A#pict:([^:]+)\z/m, "\\0"],
     ["first-text", /\A(.+)\z/m, "<span class=\"text\">\\1</span>"]
 ])
 
