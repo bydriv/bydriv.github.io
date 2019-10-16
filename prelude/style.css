@@ -48,7 +48,7 @@ div.window > div.header {
     border-radius: 4px 4px 0 0;
     color: rgba(0, 0, 0, 1);
     background-color: rgba(255, 255, 255, 1);
-    font-family: "Yu Gothic", "YuGothic";
+    font-family: "UD Digi Kyokasho N-R", "Yu Gothic", "YuGothic";
 }
 
 div.window > div.content {
@@ -65,13 +65,13 @@ div.window > div.content h5,
 div.window > div.content h6 {
     margin: 1em 0;
     padding: 0 1em;
-    font-family: "Yu Gothic", "YuGothic";
+    font-family: "UD Digi Kyokasho N-R", "Yu Gothic", "YuGothic";
 }
 
 div.window > div.content p {
     margin: 1em;
     padding: 0;
-    font-family: "Yu Gothic", "YuGothic";
+    font-family: "UD Digi Kyokasho N-R", "Yu Gothic", "YuGothic";
 }
 
 div.window > div.content pre {
@@ -191,7 +191,7 @@ sup.sect:target ~ sup.sect ~ span.text {
 }
 
 ul, li {
-    font-family: "Yu Gothic", "YuGothic";
+    font-family: "UD Digi Kyokasho N-R", "Yu Gothic", "YuGothic";
 }
 
 @font-face {
