@@ -194,6 +194,10 @@ ul, li {
     font-family: "UD Digi Kyokasho N-R", "Yu Gothic", "YuGothic";
 }
 
+table, tr, th, td {
+    font-family: "UD Digi Kyokasho N-R", "Yu Gothic", "YuGothic";
+}
+
 @font-face {
   font-family: "Kludge";
   src: url("/fonts/kludge.otf") format("opentype");
