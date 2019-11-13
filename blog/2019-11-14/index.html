@@ -1,0 +1,155 @@
+<!DOCTYPE html><!--
+
+--><meta charset="utf-8"><!--
+--><meta name="viewport" content="width=device-width, initial-scale=1"><!--
+--><title>bydriv.github.io</title><!--
+
+--><link rel="stylesheet" type="text/css" href="/prelude/style.css"><!--
+
+--><div class="taskbar"><!--
+--><a class="icon" href="/">&#x221A;</a><!--
+--><a class="icon" href="/about">&#x1F4BD;</a><!--
+--><a class="icon" href="/gallery">&#x1F3A8;</a><!--
+--><a class="icon" href="/novel">&#x1F4DA;</a><!--
+--><a class="icon" href="/blog">&#x1F4DD;</a><!--
+--><a class="icon" href="/anne">&#x1F45A;</a><!--
+--><a class="icon" href="/worldview">&#x1F30D;</a><!--
+--></div>
+<div class="window">
+  <div class="header"></div>
+  <div class="content">
+<h2 >Effective Makefile Programming
+</h2>
+<p>Makefile は実用的なプログラミング言語である。
+ここでは Makefile をもちいた実用プログラミング技法（？）を提案しよう。
+</p>
+<h3 >Introduction
+</h3>
+<p>趣味・仕事問わず、プログラマならしばしば簡単なスクリプトを書く必要に迫られることがあると思う。
+それは往々にしてプロダクションコードとは別の開発用の小さなツールである。
+そういったツールを書くとき、どのような言語を選択するのか？
+シェルスクリプト, Python, あるいはひとによっては、そのような場合にこそ Haskell を使うかもしれない。
+わたしにとっては、その選択肢のひとつに Makefile がある。
+これは半分は冗談だし、半分はマジメな話である。
+</p>
+<p>辞書や配列といった構造を使う必要があるなら、シェルスクリプトより Python のほうが明らかに楽である。
+シェルスクリプトは外部コマンドを呼びやすいというメリットがあり、
+ただ単にいくつかのコマンドをまとめる程度のほんとうに単純なスクリプトの場合、
+Python よりシェルスクリプトのほうが平易になりやすいと思う。
+</p>
+<p>ただシェルスクリプトでどうしてもつらい場面がひとつあり、それはオプションやサブコマンドを扱いたい場面である。
+辞書や配列を使うほど複雑なことはしないが、
+必要に応じてパラメタライズしたいという場面はよくあり、
+その場合にシェルスクリプトにはそのような機能が致命的に欠けている。
+</p>
+<p>つまり基本的にはシェルスクリプトを書きたいのだが、
+部分的にパラメタライズやサブコマンドといった場合、
+じつは Makefile の機能は非常にスクリプト言語として便利なのである。
+</p>
+<h3 >Hello world
+</h3>
+<p>なにはともあれ Hello world である。
+</p>
+<pre >#!/usr/bin/make -f
+.PHONY: main
+main:
+	@echo hello world
+</pre>
+<p>たったの 4 行！
+実用的である。
+</p>
+<p>使用法は、上記のファイルを <code >hello.mk</code> というファイルに保存したとすれば、
+</p>
+<pre >$ ./hello.mk
+hello world
+</pre>
+<p>たったこれだけである。
+</p>
+<h3 >Options
+</h3>
+<p>オプションを受けとるのも簡単。
+なんとデフォルト値まで定義できる。
+</p>
+<pre >#!/usr/bin/make -f
+X:=defvalX
+Y:=defvalY
+Z:=defvalZ
+.PHONY: main
+main:
+	@echo X="$(X)"
+	@echo Y="$(Y)"
+	@echo Z="$(Z)"
+</pre>
+<pre >$ ./opt.mk
+X=defvalX
+Y=defvalY
+Z=defvalZ
+$ ./opt.mk X=aaa
+X=aaa
+Y=defvalY
+Z=defvalZ
+</pre>
+<p>逆に引数を必須にしたければ、 <code >ifndef</code> を使えばいい。
+</p>
+<pre >#!/usr/bin/make -f
+Y:=defvalY
+Z:=defvalZ
+.PHONY: main
+main:
+ifndef X
+	@echo X is required
+	@exit 1
+endif
+	@echo X="$(X)"
+	@echo Y="$(Y)"
+	@echo Z="$(Z)"
+</pre>
+<pre >$ ./req.mk
+X is required
+req.mk:7: recipe for target 'main' failed
+make: *** [main] Error 1
+$ ./req.mk X=aaa
+X=aaa
+Y=defvalY
+Z=defvalZ
+$ ./req.mk X=aaa Y=bbb
+X=aaa
+Y=bbb
+Z=defvalZ
+</pre>
+<p>もちろんこれでは <code >--foo</code> みたいな通常のスタイルのオプションは扱えないのだが、
+ただ単純にパラメタライズしたいという要件は満たしている。
+</p>
+<h3 >Subcommands
+</h3>
+<p>サブコマンドを定義するのも簡単である。
+</p>
+<pre >#!/usr/bin/make -f
+.PHONY: main
+main:
+	@echo hello world
+.PHONY: cmd1
+cmd1:
+	@echo subcommand 1
+.PHONY: cmd2
+cmd2:
+	@echo subcommand 2
+</pre>
+<p>実行はこう。
+</p>
+<pre >$ ./subcmd.mk
+hello world
+$ ./subcmd.mk cmd1
+subcommand 1
+$ ./subcmd.mk cmd2
+subcommand 2
+</pre>
+<h3 >Conclusion
+</h3>
+<p>要するにシェルスクリプトを書きたくなったら代わりに Makefile を書けば
+オプションのパースやサブコマンドの定義を省略できてハッピーだねということが言いたかった。
+あと Makefile は基本的にどの環境にもあるのもうれしい。
+もちろんポータブルに書くのはかなり難しいのだが……。
+</p>
+  </div>
+</div>
