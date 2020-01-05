@@ -57,3 +57,7 @@
 #div(class=window)
   [#div(class=header)]
   [#div(class=content) [@cat blog/2019-12-31/summary.html] [#div(class=cont) ([#a(href=/blog/2019-12-31) READ MORE])]]
+
+#div(class=window)
+  [#div(class=header)]
+  [#div(class=content) [@cat blog/2020-01-05/summary.html] [#div(class=cont) ([#a(href=/blog/2020-01-05) READ MORE])]]
