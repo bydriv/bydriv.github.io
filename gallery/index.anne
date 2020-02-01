@@ -13,3 +13,7 @@
 #div(class=window)
   [#div(class=header) 空中楼閣]
   [#div(class=content) [#img(src=/img/gallery0004.png)]]
+
+#div(class=window)
+  [#div(class=header) 2020]
+  [#div(class=content) [#img(src=/img/gallery0005.png)]]
