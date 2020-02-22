@@ -1,0 +1,37 @@
+\documentclass{standalone}%
+\usepackage{luatexja-preset}%
+\usepackage{tikz}%
+\definecolor{silver}{RGB}{192,192,192}%
+\begin{document}%
+\begin{tikzpicture}%
+  \draw [fill = gray] (95mm, -40mm) circle [x radius = 80mm, y radius = 12mm] node[above = 12mm] {仙丹製薬関係者};%
+  \draw [fill = silver] (100mm, -40mm) circle [x radius = 40mm, y radius = 6mm] node[above = 6mm] {株主総会};%
+  \draw [fill = gray] (-10mm, 22mm) circle [x radius = 45mm, y radius = 30mm] node[above = 30mm] {合衆国連邦政府関係者};%
+  \draw [fill = silver] (40mm, 19mm) circle [x radius = 20mm, y radius = 30mm] node[above = 30mm] {月の裏側国際天文台関係者};%
+  \draw [fill = gray] (110mm, 0mm) circle [x radius = 40mm, y radius = 10mm] node[above = 10mm] {桃山不動産関係者};%
+  \draw [fill = silver] (40mm, -40mm) circle [x radius = 22mm, y radius = 4mm] node[above = 4mm] {AI研究開発部};%
+  \node (teiri) at (0mm, 0mm) {ミナガワ・テーリ};%
+  \node (emily) at (40mm, 0mm) {エミリー・リバーズ};%
+  \node (verity) at (80mm, -40mm) {ヴェリティ・A・バレー};%
+  \node (disa) at (40mm, -40mm) {ディーサ・ヨーヌドフテル};%
+  \node (kouri) at (40mm, 40mm) {ミナガワ・コーリ};%
+  \node (sushu) at (120mm, -40mm) {チェン・スーシュー};%
+  \node (xiaoshu) at (160mm, -40mm) {イェ・シャオシュー};%
+  \node (grace) at (0mm, 40mm) {グレース・A・ウォーターズ};%
+  \node (kosode) at (130mm, 0mm) {モモヤマ・コソデ};%
+  \node (goushou) at (90mm, 0mm) {モモヤマ・ゴーショー};%
+  \node (captain) at (-40mm, 40mm) {大尉};%
+  \draw (teiri) edge node[above = 1mm, draw = black, fill = white] {親友} (emily);%
+  \draw (teiri) edge node[draw = black, fill = white] {友達} (disa);%
+  \draw (teiri) edge[bend right = 90] node[draw = black, fill = white] {腐れ縁} (verity);%
+  \draw (emily) edge node[draw = black, fill = white] {ライバル} (verity);%
+  \draw (emily) edge node[draw = black, fill = white] {親友} (disa);%
+  \draw (verity) edge node[above = 3mm, draw = black, fill = white] {友達} (disa);%
+  \draw (grace) edge node[above = 1mm, draw = black, fill = white] {師弟} (captain);%
+  \draw (teiri) edge node[draw = black, fill = white] {上司と部下} (captain);%
+  \draw (teiri) edge node[draw = black, fill = white] {祖母と孫娘} (kouri);%
+  \draw (xiaoshu) edge node[above = 3mm, draw = black, fill = white] {またいとこ} (sushu);%
+  \draw (kosode) edge node[above = 1mm, draw = black, fill = white] {兄妹} (goushou);%
+  \draw (disa) edge node[draw = black, fill = white] {命の恩人} (kosode);%
+\end{tikzpicture}%
+\end{document}%

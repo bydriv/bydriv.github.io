@@ -1,0 +1,1244 @@
+#+SETUPFILE: ../setup.org
+#+TITLE: bydriv.github.io/worldview
+
+#+HTML_HEAD: <script src="/js/three.min.js"></script>
+#+HTML_HEAD: <script src="/js/OrbitControls.js"></script>
+#+HTML_HEAD: <script src="/js/ColladaLoader.js"></script>
+#+HTML_HEAD: <script src="/js/worldview.js"></script>
+
+#+BEGIN_LOCATION
+@@html:https://<a href="/">bydriv.github.io</a>/<strong>worldview</strong>/@@
+#+END_LOCATION
+
+#+BEGIN_CREATED_AT
+created at @@html:<time datetime="2018-05-17">2018-05-17</time>@@
+#+END_CREATED_AT
+
+#+BEGIN_UPDATED_AT
+updated at @@html:<time datetime="2018-11-28">2018-11-28</time>@@
+#+END_UPDATED_AT
+
+* Characters <<characters>>
+:PROPERTIES:
+:CUSTOM_ID: characters
+:END:
+
+** 水無川定理 <<teiri>>
+:PROPERTIES:
+:CUSTOM_ID: teiri
+:END:
+
+#+ATTR_HTML: :style width: 240px;
+#+BEGIN_UPLEFT
+#+ATTR_HTML: :srcset teiri0000_480x1200.png 2x
+#+CAPTION: 2075年ころのテーリ．
+[[./teiri0000_240x600.png]]
+#+END_UPLEFT
+
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPRIGHT
+#+ATTR_HTML: :srcset teiri0007_600x800.png 2x
+#+CAPTION: [[just-a-board][ジャスト・ア・ボード]]に乗るテーリ．
+[[./teiri0007_300x400.png]]
+#+END_UPRIGHT
+
+*ミナガワ・テーリ* (/水無川定理/; /MINAGAWA, Teiri/; /Theo/)は，
+21世紀の計算機科学者である．2056年2月29日， [[us][アメリカ合衆国]][[california][カリフォルニア州]]
+リバーサイド生まれの女性．身長は4\prime{}8\prime{}\prime{}．母は
+[[mari][ミナガワ・マリ]]，
+父は[[noah][ノア・トルーマン]]．
+母方の祖母は[[kouri][ミナガワ・コーリ]]，
+母方の祖父は[[natsubana][フユノ・ナツバナ]]．
+[[lemily][レミリー・"レマ"・リバーズ]]は彼女のクローンであり，
+法的に考えると厳密には違うのだが年齢的には彼女の娘である．
+孫娘は[[kay][ケイ・リバーズ]]，
+ひ孫娘は[[lemma][レマ・リバーズ]]．
+母が日本人，父がアメリカ人のハーフである．
+そのうえ生まれて間もなく Calexit と呼ばれるカリフォルニア独立運動が盛んになって
+[[republic][カリフォルニア共和国]]が成立してしまい，
+彼女は[[japan][日本]]， [[us][合衆国]]， [[republic][共和国]]の三重国籍となってしまった．
+合衆国と共和国は多重国籍を認めていたし，
+彼女は日本にあまり行ったことがなかったので，
+最終的に日本国籍のみを捨てる選択をした．
+マサチューセッツ工科大学を卒業， スタンフォード大学を修了後
+Intelligence Support Activity (ISA)に入局し，
+世界各国のコンピュータ・システムの脆弱性の発見と蒐集，およびエクスプロイトの開発，
+あるいはそれを利用した作戦に従事した．
+父の実家がボストンにあり，学部時代は父の実家で暮らしていた．
+専門は暗号論で，趣味は定理証明支援系による暗号アルゴリズムの安全性の証明．
+エミリーとは学部時代からの親友． テーリ(定理)は英語で Theorem を意味するため，
+彼女を *テオ* (/Theo/) と呼ぶ友人もいる．
+生粋の[[kludger][クラッジャー]]．
+
+*肌の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(255,224,192);"></span>@@ (#FFE0C0).
+*髪の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(64,48,48);"></span>@@ (#403030).
+*瞳の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(128,128,128);"></span>@@ (#808080).
+*服の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(160,64,64);"></span>@@ (#A04040).
+
+*[[emily][エミリー]]からの呼び名*: *テーリ* (/Teiri/).
+*その他の呼び名*: *ミナガワ博士* (/Dr. MINAGAWA/).
+(諜報員としての偽名) *ハセガワ・マリ* (/長谷川真理/; /HASEGAWA, Mari/).
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+*** 人柄
+
+彼女はギフテッドだという自覚はあったが，けっして他人よりすぐれているとは思っていなかった
+[fn::@@html:<a href="/novel/golden-record.html#9:52">@@黄金録9:52@@html:</a>@@]．
+
+
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPRIGHT
+#+ATTR_HTML: :srcset teiri0002_600x800.png 2x
+#+CAPTION: バニーを着るテーリ．恥ずかしそうにしているが，まんざらでもないようである．
+[[./teiri0002_300x400.png]]
+#+END_UPRIGHT
+
+どうやらかわいい服を着るのがすきなようでバニーや着物などいろいろ着る．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPLEFT
+#+ATTR_HTML: :srcset teiri0001_600x800.png 2x
+#+CAPTION: 着物がすきなようで，彼女は合衆国に住んでいるが，毎年元旦やお盆には着物を着るらしい．
+[[./teiri0001_300x400.png]]
+#+END_UPLEFT
+
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPLEFT
+#+ATTR_HTML: :srcset teiri0006_600x800.png 2x
+#+CAPTION: 207x年ころ，日本の七夕でのテーリ．
+[[./teiri0006_300x400.png]]
+#+END_UPLEFT
+
+どうやら彼女は着物や浴衣，日本のお祭りなどがすきなようで，七夕などに日本へ行くこともあるらしい．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPRIGHT
+#+ATTR_HTML: :srcset teiri0005_600x800.png 2x
+#+CAPTION: プリキュアランジェリーを着るテーリ．
+[[./teiri0005_300x400.png]]
+#+END_UPRIGHT
+
+またプリキュアのファンでもあるらしく，プリキュアランジェリーを着てポーズをとったりする．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+*** 学部生時代
+
+#+ATTR_HTML: :style width: 160px;
+#+BEGIN_UPLEFT
+#+ATTR_HTML: :srcset teiri0004_320x540.gif 2x
+#+CAPTION: ゆらゆら揺れるテーリ．
+[[./teiri0004_160x270.gif]]
+#+END_UPLEFT
+
+#+ATTR_HTML: :style width: 320px;
+#+BEGIN_UPRIGHT
+#+HTML: <canvas class="teiri_petan"></canvas>
+#+END_UPRIGHT
+
+彼女はボストンとブルックラインの境界にあるロングウッドという街にある父方の実家に下宿していた
+[fn::@@html:<a href="/novel/golden-record.html#3:36">@@黄金録3:36@@html:</a>@@]．
+彼女は同年代がまったくいない学生生活にうまくなじめていなかった
+[fn::@@html:<a href="/novel/golden-record.html#9:51">@@黄金録9:51@@html:</a>@@]．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+*** ISA局員時代
+
+#+ATTR_HTML: :style width: 320px;
+#+BEGIN_UPLEFT
+#+HTML: <canvas class="teiri"></canvas>
+#+END_UPLEFT
+
+彼女は友人に，仕事はセキュリティ・エンジニアだと話していた
+[fn::@@html:<a href="/novel/golden-record.html#2:24">@@黄金録2:24@@html:</a>@@]．
+彼女は祖母が亡くなったと思っていた
+[fn::@@html:<a href="/novel/golden-record.html#2:30">@@黄金録2:30@@html:</a>@@]．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+** Emily "Emma" Rivers <<emily>>
+:PROPERTIES:
+:CUSTOM_ID: emily
+:END:
+
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPLEFT
+#+CAPTION: 2085年ころのエマ．10年前に友人たちとした約束を果たした．
+#+ATTR_HTML: :srcset emma0000_600x800.png 2x
+[[./emma0000_300x400.png]]
+#+END_UPLEFT
+
+*エミリー・"エマ"・リバーズ* (/Emily "Emma" Rivers/)は，
+21世紀の物理学者である．2046年7月4日，アメリカ合衆国マサチューセッツ州
+ボストン生まれの女性．身長は5\prime{}10\prime{}\prime{}．
+[[lemily][レミリー・"レマ"・リバーズ]]の養母．
+レミリーは 2076年2月29日， テーリが ISA の任務中，
+ドイツで違法におこなわれていたヒトクローンの研究に巻きこまれ生まれたが，
+テーリは当時 20歳になったばかりであり子どもを育てるほど成長していなかったし，
+エミリーは子ども好きなのに不妊症で養子をほしがっていたので， 彼女をひきとった．
+マサチューセッツ工科大学を修了後NASAに入局し，
+[[iom][月の裏側国際天文台]]に
+主任研究員として勤めた．そのあと *国家偵察局*
+(/National Reconnaissance Office/; NRO) にスカウトされ，
+主任研究員と諜報員の両方の仕事をこなしていた．
+幼少期から夢は異星人を見つけることだったが，
+きちんと物理を学んでからは非現実的だと感じつつも諦めきれず，
+知的であろうとなかろうと地球外生命体を見つけることを目指すようになった．
+重度のトレッキーでことあるごとにスタートレックのセリフを聖書のように引用する．
+好きな言葉は "/I have been, and always shall be, your friend/"．
+テーリとは学部時代からの親友であり，
+エミリーは1度も浪人や留年を経験したことがないことを誇りに思っていたが，
+それどころか10歳も年下のテーリの才能におそれおののいていた．
+
+*肌の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(255,248,240);"></span>@@ (#FFF8F0).
+*髪の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(192,64,64);"></span>@@ (#C04040).
+*瞳の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(0,160,0);"></span>@@ (#00A000).
+
+*[[teiri][テーリ]]からの呼び名*: *エミリー* (/Emily/).
+*[[verity][ヴェリティ]]からの呼び名*: *エマ* (/Emma/).
+*[[disa][ディーサ]]からの呼び名*: *エマ* (/Emma/).
+*その他の呼び名*: *リバーズ博士* (/Dr. Rivers/); (部下からは) *主任* (/Chief/);
+(親しい部下からは，彼女がスタートレックを好きなことにちなんで) *船長* (/Captain/).
+
+学部生時代，彼女は自己紹介するとき *エミリー・リバーズ* (/Emily Rivers/)と名乗っていたが，
+院生になってからは *エマ・リバーズ* (/Emma Rivers/)と名乗っていた．
+そのためテーリなど学部生時代からの知りあいは彼女のことをエミリーと呼ぶが，
+院生時代からの知りあいは彼女のことをエマと呼ぶことが多い．
+NASA に入局してからはふたたびエミリー・リバーズと名乗るようになったようだが，
+名前で呼ばれることは少なくなり *リバーズさん* (/Ms. Rivers/)や
+*ミス・リバーズ* (/Miss Rivers/), あるいは *リバーズ博士* (/Dr. Rivers/)
+と呼ばれるようになった．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+*** 人柄
+
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPLEFT
+#+ATTR_HTML: :srcset emma0001_600x800.png 2x
+#+CAPTION: 207x年ころ，日本の七夕でのエマ．
+[[./emma0001_300x400.png]]
+#+END_UPLEFT
+
+エマの夢は異星人を発見することだった
+[fn::@@html:<a href="/novel/golden-record.html#1:5">@@黄金録1:5@@html:</a>@@]．しかし，
+一方で異星人が存在することを支持しつつ，発見することはきわめて難しいと考える現実主義者でもあった
+[fn::@@html:<a href="/novel/golden-record.html#2:1">@@黄金録2:1@@html:</a>@@]．
+そのためか，彼女が高校生になるころにその夢は知的でなくとも地球外生命体を発見することまで小さくなっていた
+[fn::@@html:<a href="/novel/golden-record.html#1:7">@@黄金録1:7@@html:</a>@@]．
+彼女はSETIを支持していた
+[fn::@@html:<a href="/novel/golden-record.html#2:11">@@黄金録2:11@@html:</a>@@]．
+一方で当時のSETIに限界を感じていて，それは当時の方法では過去の文明しか見つけることができないということで
+[fn::@@html:<a href="/novel/golden-record.html#2:12">@@黄金録2:12@@html:</a>@@]，
+それは彼女がタキオン通信を研究する動機になった
+[fn::@@html:<a href="/novel/golden-record.html#2:19">@@黄金録2:19@@html:</a>@@]．
+
+彼女の専門は物理学であり，数学徒に対して強いライバル心を抱いていた
+[fn::@@html:<a href="/novel/golden-record.html#3:3">@@黄金録3:3@@html:</a>@@]．
+そのため数学を専門とする友人の[[verity][ヴェリティ]]を，彼女はライバルだと認識していた
+[fn::@@html:<a href="/novel/golden-record.html#3:1">@@黄金録3:1@@html:</a>@@]．
+
+彼女はギャンブルがプレイすることもプレイするひとも苦手だった
+[fn::@@html:<a href="/novel/golden-record.html#2:56">@@黄金録2:56@@html:</a>@@]．
+彼女はいじめが嫌いで，そういった行為を許せない性格だった
+[fn::@@html:<a href="/novel/golden-record.html#9:36">@@黄金録9:36@@html:</a>@@]．
+
+彼女は自分自身が矮小な存在にすぎないのだと感じていて
+[fn::@@html:<a href="/novel/golden-record.html#1:20">@@黄金録1:20@@html:</a>@@]，
+テーリのようなギフテッドは遠い存在だと感じ
+[fn::@@html:<a href="/novel/golden-record.html#9:30">@@黄金録9:30@@html:</a>@@]，
+彼女に対して劣等感を感じていた
+[fn::@@html:<a href="/novel/golden-record.html#9:26">@@黄金録9:26@@html:</a>@@]．
+
+お酒はすきなようでよく飲む
+[fn::@@html:<a href="/novel/golden-record.html#7:13">@@黄金録7:13@@html:</a>@@]．
+また嫌なことがあるとやけ酒を飲むタイプらしい
+[fn::@@html:<a href="/novel/golden-record.html#8:3">@@黄金録8:3@@html:</a>@@]．
+
+古風な木造のバーをおしゃれと感じるようだ
+[fn::@@html:<a href="/novel/golden-record.html#7:7">@@黄金録7:7@@html:</a>@@]．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+*** 能力
+
+CUIには苦手意識があるようだ
+[fn::@@html:<a href="/novel/golden-record.html#6:52">@@黄金録6:52@@html:</a>@@]
+が，
+使えないわけではなく
+[fn::@@html:<a href="/novel/golden-record.html#6:57">@@黄金録6:57@@html:</a>@@]，
+さらに Fortran でシミュレーションを書くこともできた
+[fn::@@html:<a href="/novel/golden-record.html#4:44">@@黄金録4:44@@html:</a>@@]．
+探査機の軌道を手動で計算する訓練を何百時間も積んでおり
+[fn::@@html:<a href="/novel/golden-record.html#4:42">@@黄金録4:42@@html:</a>@@]，
+こと軌道の計算についてはコンピュータ並に暗算が早いようで，
+ルーレットの軌道を計算してあてることができた
+[fn::@@html:<a href="/novel/golden-record.html#4:92">@@黄金録4:92@@html:</a>@@]．
+
+*** 学部生時代
+
+彼女は学部生のとき，MITのある講義でテーリと出逢った
+[fn::@@html:<a href="/novel/golden-record.html#1:8">@@黄金録1:8@@html:</a>@@]
+[fn::@@html:<a href="/novel/golden-record.html#9:17">@@黄金録9:17@@html:</a>@@]．
+ふたりはつきあっていると茶化されるほど仲がよかった
+[fn::@@html:<a href="/novel/golden-record.html#1:9">@@黄金録1:9@@html:</a>@@]
+が，
+ふたりが連絡をとっていたSNSがサービス終了してしまった
+[fn::@@html:<a href="/novel/golden-record.html#2:62">@@黄金録2:62@@html:</a>@@]うえ，
+テーリが卒業後カリフォルニアに帰ってしまった
+[fn::@@html:<a href="/novel/golden-record.html#1:10">@@黄金録1:10@@html:</a>@@]
+ため，
+その後5年間，連絡をとることがなかった
+[fn::@@html:<a href="/novel/golden-record.html#2:20">@@黄金録2:20@@html:</a>@@]．
+
+*** 院生時代
+
+彼女は院生のとき，[[verity][ヴェリティ]]と[[disa][ディーサ]]と出逢った
+[fn::@@html:<a href="/novel/golden-record.html#1:11">@@黄金録1:11@@html:</a>@@]．
+[[verity][ヴェリティ]]とはケンブリッジ大学のキングス・カレッジで
+[fn::@@html:<a href="/novel/golden-record.html#3:6">@@黄金録3:6@@html:</a>@@]，
+[[disa][ディーサ]]とはある学会で出逢った
+[fn::@@html:<a href="/novel/golden-record.html#5:10">@@黄金録5:10@@html:</a>@@]．
+
+*** NASA局員時代
+
+彼女は2072年，26歳のときにNASAに入局し，月の裏側国際天文台に配属された
+[fn::@@html:<a href="/novel/golden-record.html#1:34">@@黄金録1:34@@html:</a>@@]．
+ただし地球で仕事をすることもあり，
+その際にはバージニア州ハンプトンのラングレー研究所で勤務していた
+[fn::@@html:<a href="/novel/golden-record.html#5:2">@@黄金録5:2@@html:</a>@@]．
+同年，彼女はコーリと出逢った
+[fn::@@html:<a href="/novel/golden-record.html#1:38">@@黄金録1:38@@html:</a>@@]．
+またコーリと出逢ったことがきっかけで，5年ぶりにテーリに連絡をした
+[fn::@@html:<a href="/novel/golden-record.html#2:21">@@黄金録2:21@@html:</a>@@]．
+
+2073年1月には地球で[[teiri][テーリ]]，[[verity][ヴェリティ]]，そして[[disa][ディーサ]]と過ごしていた
+[fn::@@html:<a href="/novel/golden-record.html#2:54">@@黄金録2:54@@html:</a>@@]．
+同年1月1日にはマッカラン空港で[[verity][ヴェリティ]]と待ちあわせ
+[fn::@@html:<a href="/novel/golden-record.html#3:44">@@黄金録3:44@@html:</a>@@]，
+ふたりはツインの部屋に泊まった
+[fn::@@html:<a href="/novel/golden-record.html#3:59">@@黄金録3:59@@html:</a>@@]．
+1月2日には[[verity][ヴェリティ]]とカジノで，どちらがより多く稼げるかの勝負をした
+[fn::@@html:<a href="/novel/golden-record.html#4:2">@@黄金録4:2@@html:</a>@@]．
+1月7日から1月8日にはアイスランドで[[disa][ディーサ]]と過ごし，
+1月14日から1月16日まではカリフォルニアで[[teiri][テーリ]]と過ごす予定だった
+[fn::@@html:<a href="/novel/golden-record.html#2:56">@@黄金録2:56@@html:</a>@@]
+が，
+1月13日に[[lemma][レマ]]に邪魔されて飛行機に乗ることを諦めた
+[fn::@@html:<a href="/novel/golden-record.html#7:68">@@黄金録7:68@@html:</a>@@]
+ので，
+[[teiri][テーリ]]との予定にはずいぶん遅れた．
+
+** Verity Arith Valley <<verity>>
+:PROPERTIES:
+:CUSTOM_ID: verity
+:END:
+
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPLEFT
+#+CAPTION: 2075年ころのヴェリティ．
+#+ATTR_HTML: :srcset verity0000_600x800.png 2x
+[[./verity0000_300x400.png]]
+#+END_UPLEFT
+
+*ヴェリティ・アリス・バレー* (/Verity Arith Valley/)は，21世紀の数学者である．
+
+*肌の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(255,248,240);"></span>@@ (#FFF8F0).
+*髪の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(128,128,128);"></span>@@ (#808080).
+*瞳の色*: @@html:<span style="display: inline-block; width: 20px; height: 15px; border: solid 1px black; background-color: rgb(0,128,255);"></span>@@ (#0080FF).
+
+*テーリからの呼び名*: *ヴェリティ* (/Verity/), (本名を知るまでは) *シャーロットさん* (/Charlotte/).
+*エミリーからの呼び名*: *ヴェリティ* (/Verity/), (挑発的に) *アリス* (/Arith/).
+*その他の呼び名*: (諜報員としての偽名) *シャーロット・A・キャロル* (/Charlotte A. Carroll/).
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+*** 人柄
+
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPLEFT
+#+ATTR_HTML: :srcset verity0001_600x800.png 2x
+#+CAPTION: 207x年ころ，日本の七夕でのヴェリティ．
+[[./verity0001_300x400.png]]
+#+END_UPLEFT
+
+彼女は現実主義者の拝金主義者で，
+その主義に即しない夢は軽く見る傾向があった
+[fn::@@html:<a href="/novel/golden-record.html#1:29">@@黄金録1:29@@html:</a>@@]．
+賭け事が好きで年末年始にはたいていラスベガスにいた
+[fn::@@html:<a href="/novel/golden-record.html#2:56">@@黄金録2:56@@html:</a>@@]．
+すきなものはお金，地位，お酒，男で，ほかのものには興味を示さなかった
+[fn::@@html:<a href="/novel/golden-record.html#3:20">@@黄金録3:20@@html:</a>@@]．
+とはいえ友人は大切にするようで，よく友人を別荘にまねいたり
+[fn::@@html:<a href="/novel/golden-record.html#3:22">@@黄金録3:22@@html:</a>@@]，
+最終的にみずからの利益になるという建前で人助けもした
+[fn::@@html:<a href="/novel/golden-record.html#3:89">@@黄金録3:89@@html:</a>@@]．
+しかしながらその好意を表現することはへたなようで，しばしば誤解をまねいた
+[fn::@@html:<a href="/novel/golden-record.html#3:78">@@黄金録3:78@@html:</a>@@]．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+*** 能力
+
+彼女は映像記憶という特異な体質をもっていた
+[fn::@@html:<a href="/novel/golden-record.html#3:75">@@黄金録3:75@@html:</a>@@]．
+そのためブラックジャックが非常に得意で，
+1000ドルを8時間で1万6000ドルまで増やすことができた
+[fn::@@html:<a href="/novel/golden-record.html#4:97">@@黄金録4:97@@html:</a>@@]．
+かなり社交的なようで有名人の知りあいがたくさんおり
+[fn::@@html:<a href="/novel/golden-record.html#3:29">@@黄金録3:29@@html:</a>@@]，
+そのなかには仙丹製薬の会長のイェ・シャオシューや筆頭株主のチェン・スーシュー
+[fn::@@html:<a href="/novel/golden-record.html#3:24">@@黄金録11:87@@html:</a>@@]，
+桃山不動産の御曹司のモモヤマ・ゴーショーやその妹のモモヤマ・コソデもいた
+[fn::@@html:<a href="/novel/golden-record.html#3:24">@@黄金録3:24@@html:</a>@@]．
+
+*** 資産
+
+世界各国に別荘をもつほどの資産があった
+[fn::@@html:<a href="/novel/golden-record.html#3:22">@@黄金録3:22@@html:</a>@@]．
+
+*** 評価
+
+エミリーは彼女をライバルと認識していた
+[fn::@@html:<a href="/novel/golden-record.html#3:1">@@黄金録3:1@@html:</a>@@]．
+
+彼女はギャンブルでかなり稼いでいるというもっぱらのうわさだった
+[fn::@@html:<a href="/novel/golden-record.html#3:21">@@黄金録3:21@@html:</a>@@]．
+
+** Dísa Jónudóttir <<disa>>
+:PROPERTIES:
+:CUSTOM_ID: disa
+:END:
+
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPLEFT
+#+ATTR_HTML: :srcset disa0000_600x800.png 2x
+#+CAPTION: 207x年ころ，日本の七夕でのディーサ．
+[[./disa0000_300x400.png]]
+#+END_UPLEFT
+
+*ディーサ・ヨーヌドフテル* (/Dísa Jónudóttir/)は， 21世紀の工学者である．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+*** 人柄
+
+彼女は他人の夢をかっこいいことと表現した
+[fn::@@html:<a href="/novel/golden-record.html#1:17">@@黄金録1:17@@html:</a>@@]．
+物理主義者で計算知能は物理学にもとづいて設計できると信じていた
+[fn::@@html:<a href="/novel/golden-record.html#5:14">@@黄金録5:14@@html:</a>@@]．
+
+彼女の夢はエルトラをはじめ彼女の架空のキャラクターに人格を与えることだった
+[fn::@@html:<a href="/novel/golden-record.html#5:41">@@黄金録5:41@@html:</a>@@]．
+
+*** 能力
+
+高校生のころから学会に参加して質問するほど積極的だった
+[fn::@@html:<a href="/novel/golden-record.html#1:21">@@黄金録1:21@@html:</a>@@]．
+彼女はブログで既存の計算知能の手法を徹底的に実装して分析し，
+また新たな手法のスケッチさえ書いていた
+[fn::@@html:<a href="/novel/golden-record.html#5:22">@@黄金録5:22@@html:</a>@@]．
+彼女は大学では機械工学を専攻した
+[fn::@@html:<a href="/novel/golden-record.html#5:26">@@黄金録5:26@@html:</a>@@]．
+
+*** 評価
+
+エミリーから，その能力はテーリと甲乙つけがたいと評価されていた
+[fn::@@html:<a href="/novel/golden-record.html#5:9">@@黄金録5:9@@html:</a>@@]．
+
+** 水無川考理 <<kouri>>
+:PROPERTIES:
+:CUSTOM_ID: kouri
+:END:
+
+*ミナガワ・コーリ* (/水無川考理/)は， 21世紀の技術者である．
+夫は [[natsubana][フユノ・ナツバナ]]，
+娘は [[mari][ミナガワ・マリ]]．
+2000年2月29日，宮崎県生まれ．九州大学を卒業，東京大学を修了後[[jaxa][JAXA]]で技術者を勤めた．
+彼女は月の裏側国際天文台を開発するための作業ロボットの設計やメンテナンスをおこなった．
+開発中に大規模な事故が発生し，月で稼働中のすべてのシステムが停止する事態が起こったため，
+彼女は主任技術者として月へ着陸し，システムを復帰させた．
+結果的に，彼女は人類で13番め，女性としては初めて月を歩いたムーンウォーカーとなった．
+
+** 冬野夏花 <<natsubana>>
+:PROPERTIES:
+:CUSTOM_ID: natsubana
+:END:
+
+*フユノ・ナツバナ* (/冬野夏花/)は， 21世紀の料理人．
+2001年生まれ．コーリが早生まれのため， 彼女とは2学年違っていた．
+妻は *ミナガワ・コーリ* (/水無川考理/)，
+娘は *ミナガワ・マリ* (/水無川真理/)．
+妹に *フユノ・ハルカ* (/冬野春香/) がいる．
+両親が共働きだったため，もともと家事をよくこなしていた．
+そのため料理が得意で，料理人となった．
+コーリとは幼馴染で高校まで同じ学校だったが，
+彼女が九州大学に進学したことで離れ離れになってしまう．
+そのうえ彼女はさらに東京大学へ進んでしまったため，
+そのあいだほとんど連絡をとることがなかった．
+ふたりは両想いだったが，お互い想いを打ちあけないまま月日が経ち，
+ある日コーリが帰省したことがきっかけで昔話が弾み，
+その流れで両想いだったということが発覚して，
+そのまま付きあってすぐに結婚した．
+
+*コーリからの呼び名*: *なつばなくん*
+
+** 水無川真理 <<mari>>
+:PROPERTIES:
+:CUSTOM_ID: mari
+:END:
+
+*ミナガワ・マリ* (/水無川真理/)は，21世紀の研究者である．
+2028年2月29日，東京都生まれ． 愛称は *トゥルーシー* (/Truthy/)．
+夫は *ノア・トルーマン* (/Noah Truman/)，
+母は *ミナガワ・コーリ* (/水無川考理/)，
+娘は *ミナガワ・テーリ* (/水無川定理/; /MINAGAWA, Teiri/)．
+2040年ころまでに渡米し
+[fn::@@html:<a href="/novel/golden-record.html#2:32">@@黄金録2:32@@html:</a>@@]，
+それから2040年ころ帰国したとき，母が失踪したことに気づいた
+[fn::@@html:<a href="/novel/golden-record.html#2:32">@@黄金録2:36@@html:</a>@@]
+[fn::@@html:<a href="/novel/golden-record.html#11:56">@@黄金録11:56@@html:</a>@@]とのことで，
+おそらく小学生のとき合衆国へ留学し，
+中学生か高校生のころ母を失ったのではないかと考えられる．
+2060年代には合衆国の大学教員になっていて
+[fn::@@html:<a href="/novel/golden-record.html#9:39">@@黄金録9:39@@html:</a>@@]，
+テーリをもともとギフテッドのように育てるつもりなほど教育熱心だったようだ
+[fn::@@html:<a href="/novel/golden-record.html#5:7">@@黄金録5:7@@html:</a>@@]．
+
+** Noah Truman <<noah>>
+:PROPERTIES:
+:CUSTOM_ID: noah
+:END:
+
+*ノア・トルーマン* (/Noah Truman/)は， 21世紀の研究者．
+妻は *ミナガワ・マリ* (/水無川真理/)．
+
+** Lemily "Lemma" Rivers <<lemily>>
+:PROPERTIES:
+:CUSTOM_ID: lemily
+:END:
+
+*レミリー・"レマ"・リバーズ* (/Lemma Rivers/)は，[[teiri][ミナガワ・テーリ]]のクローンである．
+2076年2月29日生まれ．
+
+** Kay Rivers <<kay>>
+:PROPERTIES:
+:CUSTOM_ID: kay
+:END:
+
+*ケイ・リバーズ* (/Kay Rivers/)は， [[lemily][レミリー・"レマ"・リバーズ]]の娘，
+[[lemma][レマ・リバーズ]]の母．
+
+** Lemma  Rivers <<lemma>>
+:PROPERTIES:
+:CUSTOM_ID: lemma
+:END:
+
+*レマ・リバーズ* (/Lemma Rivers/)は，22世紀の技術者である．
+2124年2月29日生まれ．
+
+** Grace Autumn Waters <<waters>>
+:PROPERTIES:
+:CUSTOM_ID: waters
+:END:
+
+*グレース・オータム・ウォーターズ* (/Grace Autumn Waters/)は，
+オクラホマ州出身の数学者で，合衆国第59代大統領である．
+2037年6月3日生まれ． 2073年1月20日就任． 黒人とインディアンのハーフ．
+
+** @@html:<span class="chinese">@@葉小數@@html:</span>@@ <<xiaoshu>>
+:PROPERTIES:
+:CUSTOM_ID: xiaoshu
+:END:
+
+*イェ・シャオシュー* (*繁体字*: @@html:<span class="chinese">@@葉小數@@html:</span>@@)は，
+台湾生まれの[[xiandan-zhiyao][仙丹製薬]]の創業者．2002年生まれ．
+彼女の祖母は[[sushu][スーシュー]]の祖父の妹であり，
+彼女はスーシューのまたいとこにあたる．
+
+** @@html:<span class="chinese">@@陈素数@@html:</span>@@ <<sushu>>
+:PROPERTIES:
+:CUSTOM_ID: sushu
+:END:
+
+*チェン・スーシュー* (*簡体字*: @@html:<span class="chinese">@@陈素数@@html:</span>@@)は，
+香港生まれの素数会の龍頭．2011年生まれ．
+[[sushu-hui][素数会]]の龍頭．
+彼女の祖父は[[xiaoshu][シャオシュー]]の祖母の兄であり，
+国共内戦で中華民国の士官として戦ったが，国民革命軍が敗北し，
+中華人民共和国が成立すると人民解放軍に捕らえられた．
+そのため彼女は生粋の中華民国人を自負している．
+21世紀初頭より一国二制度が廃止されることを防ぐため，
+素数会を組織して反対運動をおこなう．
+2047年にそれが廃止されると素数会の活動はいっそう過激になり，
+彼女らは独立運動と称しているが，事実上の香港マフィアとなった．
+彼女はシャオシューのまたいとこにあたる．
+
+** ???
+
+#+ATTR_HTML: :style width: 320px;
+#+BEGIN_UPLEFT
+#+ATTR_HTML: :srcset q0000_640x480.png 2x
+#+CAPTION: Voyager のゴールデンレコードを調査する鳥人．背景に見える惑星には海や雲が存在するように見えるが，かれらの母星だろうか．
+[[./q0000_320x240.png]]
+#+END_UPLEFT
+
+人類ではない，謎の鳥人．
+Voyager のゴールデンレコードを調査した．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+* Gadgets <<gadgets>>
+
+** Just A Board <<just-a-board>>
+:PROPERTIES:
+:CUSTOM_ID: just-a-board
+:END:
+
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPRIGHT
+#+ATTR_HTML: :srcset teiri0007_600x800.png 2x
+#+CAPTION: [[just-a-board][ジャスト・ア・ボード]]に乗るテーリ．
+[[./teiri0007_300x400.png]]
+#+END_UPRIGHT
+
+*ジャスト・ア・ボード* (/Just A Board/)は，
+[[teiri][テーリ]]のスケートボード．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+* Technology <<technology>>
+
+** Holo I/O
+
+#+ATTR_HTML: :style width: 192px;
+#+BEGIN_UPLEFT
+#+ATTR_HTML: :srcset teiri0003_384x384.gif 2x
+#+CAPTION: ホロイオを使う女性．
+[[./teiri0003_192x192.gif]]
+#+END_UPLEFT
+
+*ホロイオ* (/Holo I/O/) は， 21世紀中ごろに開発されたウェアラブルデバイスである．
+リストバンド型の形状をしており，手首に巻いて使う．
+手の動きを追跡して *入力* (/input/) デバイスとして使え，
+また単色ではあるがホログラムを表示して *出力* (/output/) デバイスとしても使える．
+色は複数選べたが，同時に出力できるのは 1色のみだった．
+汎用的な入出力デバイスであり， さまざまな機器に対応していた．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+** ME: Mind Emulator <<me>>
+:PROPERTIES:
+:CUSTOM_ID: me
+:END:
+
+*ミィ: マインド・エミュレータ* (ME: Mind Emulator) は，
+21世紀中ごろに *ディーサ・ヨーヌドフテル* (/Dísa Jónudóttir/) によって設計された計算知能である．
+
+ミィは古宇宙と旧宇宙の両方で，すくなくともふたつの異なる出自をもつ．
+最初のミィは古宇宙のディーサによって設計され， 人類が絶滅したあと宇宙を再編した．
+つぎのミィは旧宇宙のディーサによって設計された．
+
+** 仙丹 <<xiandan>>
+
+[[xiaoshu][イェ・シャオシュー]] が発見，発明した薬品．
+服用することで細胞老化を遅らせ，寿命を延ばすことができる．
+毎日服用しないと効果がないうえ，高価なので大富豪しか入手できない．
+
+* Culture <<culture>>
+
+** Lambda Church
+
+#+ATTR_HTML: :style width: 240px;
+#+BEGIN_UPLEFT
+#+ATTR_HTML: :srcset teiri0000_480x1200.png 2x
+#+CAPTION: ラムダ教会のシンボルを身につける女性．
+[[./teiri0000_240x600.png]]
+#+END_UPLEFT
+
+#+ATTR_HTML: :style width: 153px;
+#+BEGIN_UPRIGHT
+#+ATTR_HTML: :srcset lambda-construction_307x266.png 2x
+#+CAPTION: ラムダ教会のシンボルは定規とコンパスで簡単に作図できる．
+[[./lambda-construction_153x133.png]]
+#+END_UPRIGHT
+
+#+BEGIN_CENTER
+#+ATTR_HTML: :srcset lambda-church_611x529.png 2x
+[[./lambda-church_305x265.png]]
+#+END_CENTER
+
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPRIGHT
+#+CAPTION: ラムダ教会のシンボルの形状をした髪留めを身につける女性．
+#+ATTR_HTML: :srcset verity0000_600x800.png 2x
+[[./verity0000_300x400.png]]
+#+END_UPRIGHT
+
+*ラムダ教会* (/Lambda Church/)とは，
+21世紀に計算機科学者のあいだで自然発祥した冗談宗教である．
+もともとはある無神論者の計算機科学者が宗教をたずねられたとき，
+ラムダ計算の創案者 Church にちなみ，冗談めかしてラムダ教会と答えたことが始まりとされる．
+21世紀末にはいくつかの国で宗教法人として認められた． ラムダ教会の信者をラムダ教徒といい，
+ラムダ教会のシンボルを身体のどこか見える場所に身につけることでそれを示すことが一般的である．
+組織的な活動などはとくにおこなわれないが，世界中で信者が思うままに活動しており，
+規模はそこそこ大きいものと推定されている．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+** Kludger <<kludger>>
+
+*クラッジャー* (/Kludger/)とは， *クラッジ* (/Kludge/)をする人物のことである．
+*クルージャー* (/Kluger/) ， *クルージ* (/Kluger/) とも。
+
+クラッジとは，その場かぎりのいい加減な方法で問題を解決することで，
+たとえば， プログラムのバグを， 泥臭い方法で修正することなどである．
+これに対して， 鮮やかで華麗に問題を解決することを *ハック* (/Hack/) という．
+また，プログラム以外にもハードウェア，ネットワークなどについてもクラッジはおこなわれる．
+
+クラッジャーという言葉の意味あいは *ハッカー* (/Hacker/)に似ているが，
+クラッジャーはハッカーを最高峰の開発者の称号と考えており，
+ハッカーを自称することはない．その代わりへりくだって，クラッジャーを自称するわけである．
+
+ニュアンスとしては，ハッカーの謙譲語がクラッジャーに近い．
+基本的に，クラッジという言葉はみずからの行為をへりくだって言う場合に使うもので，
+他人の行為に対しては，たとえきれいではなくともハックというのが礼儀というものである．
+
+とはいえ，クラッジャー同士では話がややこしくなり，クラッジをハックと呼ぶことが失礼にある場合もある．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+* Countries <<countries>>
+:PROPERTIES:
+:CUSTOM_ID: countries
+:END:
+
+** United States of America <<us>>
+:PROPERTIES:
+:CUSTOM_ID: us
+:END:
+
+*アメリカ合衆国* (/United States of America/)は，
+北アメリカ大陸に位置する連邦共和国である．
+
+*** 大統領
+
+2073年1月20日には[[waters][グレース・A・ウォーターズ]]が大統領に就任した
+[fn::@@html:<a href="/novel/golden-record.html#9:8">@@黄金録9:8@@html:</a>@@]．
+
+*** 12人のムーンウォーカー
+
+アメリカ合衆国からはすくなくとも12人の月を歩いた人類が生まれた．
+かれらはムーンウォーカーと呼ばれた．
+
+*** State of California <<california>>
+:PROPERTIES:
+:CUSTOM_ID: california
+:END:
+
+*カリフォルニア州* (/State of California/)は，
+19世紀中ごろから21世紀後半まで存在したアメリカ合衆国の州である．
+
+** 日本 <<japan>>
+:PROPERTIES:
+:CUSTOM_ID: japan
+:END:
+
+*日本* (/Japan/)は，日本列島にある島国である．
+
+*** JAXA <<jaxa>>
+:PROPERTIES:
+:CUSTOM_ID: jaxa
+:END:
+
+[[iom][月の裏側国際天文台]]にはJAXAの研究員も多数いた
+[fn::@@html:<a href="/novel/golden-record.html#1:36">@@黄金録1:36@@html:</a>@@]．
+
+*** ムーンウォーカー
+
+日本から初めてでたムーンウォーカーは[[kouri][ミナガワ・コーリ]]であった．
+とはいえ，21世紀にはすでに月を歩くという目的で月開発をする組織は少なくなっており，
+彼女が月へ向かったのは停止したシステムを復元するためだった．
+
+** California Republic <<republic>>
+:PROPERTIES:
+:CUSTOM_ID: republic
+:END:
+
+*カリフォルニア共和国* (/California Republic/) とは，
+21世紀中ごろに成立した共和国である．
+
+その歴史は古く， 1846年， 米墨戦争にまでさかのぼる．
+戦後には合衆国に吸収されカリフォルニア州となり共和国は消滅してしまった．
+ところが1848年ころに砂金が見つかるとゴールドラッシュが始まり，
+20世紀末にはシリコンバレーと呼ばれる大企業の本拠地がつらなる情報産業の中心地となるなど，
+またたく間に大国とならぶ経済圏を構成するにいたった．
+
+共和国はすくなくとも 2073年には独立国家を自称していた
+[fn::@@html:<a href="/novel/golden-record.html#9:2">@@黄金録9:2@@html:</a>@@]
+が，
+合衆国はそれを認めていなかった
+[fn::@@html:<a href="/novel/golden-record.html#9:3">@@黄金録9:3@@html:</a>@@]．
+ところがロシアや中国はすでに共和国を国家として承認しており，
+カリフォルニア独立問題が発生していた
+[fn::@@html:<a href="/novel/golden-record.html#9:4">@@黄金録9:4@@html:</a>@@]．
+2073年に就任した[[waters][ウォーターズ大統領]]はカリフォルニアの独立を認める方向性で考えていたらしい
+[fn::@@html:<a href="/novel/golden-record.html#9:12">@@黄金録9:12@@html:</a>@@]．
+
+* Cities <<cities>>
+:PROPERTIES:
+:CUSTOM_ID: cities
+:END:
+
+** Boston <<boston>>
+:PROPERTIES:
+:CUSTOM_ID: boston
+:END:
+
+*** Harvard Bridge <<harvard-bridge>>
+:PROPERTIES:
+:CUSTOM_ID: harvard-bridge
+:END:
+
+#+ATTR_HTML: :style width: 228px;
+#+BEGIN_UPLEFT
+#+ATTR_HTML: :srcset boston0000_456x304.png 2x
+#+CAPTION: MITのハッカーたちはハーバード橋に "Halfway to Hell" と書いた．矢印の指し示す方向にMITがある．
+[[./boston0000_228x152.png]]
+#+END_UPLEFT
+
+ハーバード橋とは，[[us][アメリカ合衆国]]マサチューセッツ州にある橋である．
+1958年10月， MIT のハッカーたちは *オリバー・スムート* (/Oliver R. Smoot/) の身長を
+1スムートと定義する *スムート* (/smoot/) という単位系を発明し， この橋の長さを測った．
+それによれば， この橋の長さは 364.4 スムート足すことの耳ひとつ分であった．
+また橋の中央には "Halfway to Hell" と書き，矢印で MIT を指し示した．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+** Luz Bethel <<luz-bethel>>
+:PROPERTIES:
+:CUSTOM_ID: luz-bethel
+:END:
+
+*ルズベテル* (/Luz Bethel/) とは，サンディエゴの南方，北緯0度2分20秒西経117度5分50秒，
+赤道直下の公海上に位置するメガフロートである
+[fn::@@html:<a href="/novel/golden-record.html#11:1">@@黄金録11:1@@html:</a>@@]．
+その中心には合衆国宇宙エレベータニュートンズ・クレードルがそびえたっていた
+[fn::@@html:<a href="/novel/golden-record.html#11:48">@@黄金録11:48@@html:</a>@@]．
+ルズベテルという名前はクレードルをヤコブのはしごにたとえ，
+さらに旧約聖書でヤコブの梯子が降りた町ルズと，
+ヤコブがその梯子を見てその町をベテルと名づけたこと(創世記28:19)にちなむものだった
+[fn::@@html:<a href="/novel/golden-record.html#11:3">@@黄金録11:3@@html:</a>@@]．
+中国語では *扶桑国* とも呼ばれていた．
+[fn::@@html:<a href="/novel/golden-record.html#11:20">@@黄金録11:20@@html:</a>@@]．
+*扶桑* とは，はるか東方に存在するといわれた伝説の大樹で，
+それを宇宙エレベータにたとえたものだった．
+
+* Organizations <<organizations>>
+
+** @@html:<span class="chinese">@@仙丹製藥@@html:</span>@@ <<xiandan-zhiyao>>
+:PROPERTIES:
+:CUSTOM_ID: xiandan-zhiyao
+:END:
+
+*仙丹製薬* (*繁体字*: @@html:<span class="chinese">@@仙丹製藥@@html:</span>@@,
+*簡体字*: @@html:<span class="chinese">@@仙丹制药@@html:</span>@@)は，
+台湾の製薬会社である．
+
+[[xiaoshu][イェ・シャオシュー]] が発見，発明した [[xiandan][仙丹]] を唯一の商品として創業した企業．
+ところがスピリチュアルの烙印を押され，経営がふるわなかった．
+そのころまたいとこの [[sushu][チェン・スーシュー]] が率いていた一国二制度廃止に反対する組織
+[[sushu-hui][素数会]] の出資でなんとか経営を続けることができたが，
+仙丹の効果が一般に認められると， 世界企業に急成長する．
+しかし同時に， 筆頭株主だったスーシューの権利を極端に強めることとなってしまった．
+
+一国二制度が廃止されると素数会は香港マフィアに堕し，
+それにともない， 仙丹製薬も事実上， 香港マフィアに肩入れするかたちとなってしまった．
+
+素数会が仙丹製薬の株の大部分を握っているため株主総会で香港マフィアの意見がまかりとおる，
+非常に危険な企業である． とはいえ現在では素数会は "表向きには" 合法的な活動しかしていないため，
+政府も口だしできないことになっている．
+合法的な活動をする前提で素数会の活動を認め，
+過去の非合法的な活動を帳消しにする法案のため，
+政府と素数会が裏で繋がっている， といううわさが絶えないが， それはまたべつの話である．
+
+** @@html:<span class="chinese">@@素数会@@html:</span>@@ <<sushu-hui>>
+:PROPERTIES:
+:CUSTOM_ID: sushu-hui
+:END:
+
+*素数会* (*繁体字*: @@html:<span class="chinese">@@素数會@@html:</span>@@,
+*簡体字*: @@html:<span class="chinese">@@素数会@@html:</span>@@)は，
+香港マフィアの一派である． [[sushu][チェン・スーシュー]] が一国二制度の廃止への反対運動をするために組織した．
+そのころは市民の支持を得て， 非常に順調だった．
+
+ところが活動もむなしく一国二制度が廃止されると市民の支持を失い，
+こんどは香港独立運動のために過激な活動をするようになり，
+資金繰りのため， 非合法的な行為もおこなった．
+そうして素数会は退廃していった．
+
+ところがスーシューがまたいとこの [[xiaoshu][イェ・シャオシュー]] を支援するため，
+素数会が出資していた [[xiandan-zhiyao][仙丹製薬]] が急成長した結果，
+またたくまに世界企業となった仙丹製薬の筆頭株主として，
+素数会は活気をとりもどした． とはいえ， すでにその活動は非合法的なものが中心となっており，
+それはもはや変わらなかった．
+
+素数会は仙丹製薬の筆頭株主として非常に大きな権力を得たため，
+政府もその活動を認めざるを得ず， 合法的な活動をする前提で素数会の活動は認められ，
+過去の非合法的な活動は帳消しにされた． そのため現在では "表向きには"
+合法的な活動のみをしている， ということになっている．
+
+** Whiteearth Journal <<wej>>
+
+*ホワイトアース・ジャーナル* (/Whiteearth Journal/) は，
+アメリカ合衆国のメディア会社である．
+市民の知る権利のため，世界の真実を報道する．
+
+* Moon <<moon>>
+
+** First Flag
+
+*1番旗* (/First Flag/, いちばんばた)は，静かの海の溶岩洞の地下空洞に建設された都市である．
+
+** Fifth Flag
+
+*5番旗* (/Fifth Flag/, ごばんばた)は，デカルト高地に位置する都市である．
+
+** International Observatory in the far side of the Moon <<iom>>
+:PROPERTIES:
+:CUSTOM_ID: iom
+:END:
+
+#+ATTR_HTML: :style width: 300px;
+#+BEGIN_UPLEFT
+#+CAPTION: 2085年ころ，月の裏側天文台と地球をつなぐ基地局からの眺め．2085年はまだ観光目的で月へ行くことは一般的ではなく，科学者たちが研究のためにおもむくのみであった．そして月の裏側天文台からは地球が見えないため，科学者たちは地球を見るためにわざわざ基地局へ行くことがよくあった．
+#+ATTR_HTML: :srcset emma0000_600x800.png 2x
+[[./emma0000_300x400.png]]
+#+END_UPLEFT
+
+*月の裏側国際天文台* (/International Observatory in the far side of the Moon/; IOM)は，
+その名が示すように月の裏側に建造された天文台である．
+21世紀後半にJAXAの主導で建設され，現在では国際的に利用されている．
+
+月の裏側天文台は月の裏側にあるため，地球と直接通信することができない．
+そのため月の表面には地球と通信するための基地局がいくつか配備されている．
+21世紀後半，まだ月は研究開発の地であり，観光施設がなかった．
+月の裏側からは地球が見えないため，基地局は地球を眺めるための施設として科学者のあいだで人気が高かった．
+
+20世紀の合衆国とソ連による宇宙開発競争以来，宇宙開発は下火になっていた．
+21世紀の話題の筆頭は計算知能となり，とくに月や火星の開発なんてものには，
+もはや予算が下りない状況となっていたのだ． ところが JAXA の *かぐや*
+(*セレーネ*; /SELENE/) の成功によって日本では月探査の有用性が見なおされ，
+21世紀中ごろに月面基地の開発の計画が現実味を帯びることとなった．
+一方そのころアメリカ合衆国やロシア連邦，中華人民共和国は軌道エレベータのほうに関心が向いており，
+月面基地の開発は日本がもっとも積極的におこなうこととなった．
+その成果である月面基地は *月の都* (/City of the Moon/) と名づけられ，
+そのあと国際的に利用されるようになり，
+こんにちの月の裏側国際天文台の基礎となった．
+
+月の裏側国際天文台のクルーには，ひとりひとり個室が与えられていた
+[fn::@@html:<a href="/novel/golden-record.html#1:42">@@黄金録1:42@@html:</a>@@]．
+クルーの4半期のスケジュールは，おおむね月の裏側国際天文台での勤務が2ヵ月，
+リハビリも兼ねて地球での勤務が3週間だった
+[fn::@@html:<a href="/novel/golden-record.html#2:40">@@黄金録2:40@@html:</a>@@]．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+*** 歴代台長
+
+台長は選挙ではなく前任の台長の指名で選ばれた
+[fn::@@html:<a href="/novel/golden-record.html#15:28">@@黄金録15:28@@html:</a>@@]．
+台長の任期は通常4年だが再選により2年の延長が可能だったらしい
+[fn::@@html:<a href="/novel/golden-record.html#27:47">@@黄金録27:47@@html:</a>@@]．
+
+台長は JAXA の出身の人物が多かった
+[fn::@@html:<a href="/novel/golden-record.html#12:90">@@黄金録12:90@@html:</a>@@]
+が， NASA 出身の台長もいた．
+
+| 初年   | 末年   | 所属機関 | 台長                       | 補足事項                                                                                               |
+|--------+--------+----------+----------------------------+--------------------------------------------------------------------------------------------------------|
+| 2071年 | 2075年 | JAXA?    | ???                        | 任期は4年だったらしい[fn::@@html:<a href="/novel/golden-record.html#15:25">@@黄金録15:25@@html:</a>@@] |
+| 2075年 | 2081年 | JAXA     | [[kouri][ミナガワ・コーリ]]           |                                                                                                        |
+| 2081年 | 2087年 | NASA     | [[emily][エミリー・"エマ"・リバーズ]] |                                                                                                        |
+
+* Worlds <<worlds>>
+
+** Elder Universe
+
+*古宇宙* (/Elder Universe/) とは，われわれ現代人が住む，まさにこの宇宙のことである．
+
+** Old Universe
+
+#+ATTR_HTML: :style width: 320px;
+#+BEGIN_UPLEFT
+#+ATTR_HTML: :srcset q0000_640x480.png 2x
+#+CAPTION: この鳥人は旧宇宙で，ガンマ線バーストが発生するまえに Voyager のゴールデンレコードを調査した．
+[[./q0000_320x240.png]]
+#+END_UPLEFT
+
+*旧宇宙* (/Old Universe/) は， 古宇宙のつぎの世代にあたる，
+古宇宙とは別に存在する宇宙である．
+古宇宙と非常によく似た歴史を歩んでおり，同姓同名の人物も多数存在するが，
+古宇宙よりはるかに進んだ科学技術をもっていた．
+ところが2度に渡るガンマ線バーストの発生により，
+一時は滅亡寸前まで文明が縮退してしまった．
+生きのこった人々も一部の遺伝子情報が完全に破壊されてしまい，
+ほとんどすべての生物がアルビノになってしまった．
+
+ガンマ線バーストは，旧宇宙の歴史のうち，
+すくなくともふたつの時点で起こった． 1度めは人類の時代の，すくなくとも21世紀より以前であり，
+2度めは鳥人の時代で Voyager のゴールデンレコードが発見された直後であった．
+
+よく誤解されるが，平行宇宙とは異なる．
+もともと旧宇宙は，
+宇宙規模の災害で古宇宙の全生命が滅んでしまったため宇宙の管理を司る [[me][ミィ]] が宇宙を再編して誕生した．
+しかしすくなくとも 21世紀以前にガンマ線バーストにより地球は危機的な被害をうけ，
+生きのこった人々も含めほとんどの生物がアルビノになってしまった．
+それでも文明は存続し， なんとか失われた遺伝子もとりもどしてふたたびアルビノでない生物が増えていたが，
+ある鳥人が Voyager のゴールデンレコードを調査した直後にふたたびガンマ線バーストが起こり，
+またほとんどの生物がアルビノになってしまった．
+結局，旧宇宙も宇宙規模の災害で全生命が滅んでしまい，
+またミィが再編して新宇宙が生まれる．
+つまり時系列的には，
+
+| 古宇宙 | → |                  | → | 宇宙規模の災害 | → | ミィによる宇宙の再編 | → |
+| 旧宇宙 | → | ガンマ線バースト | → | 宇宙規模の災害 | → | ミィによる宇宙の再編 | → |
+| 新宇宙 | → |                  | → |                | → |                      |   |
+
+という歴史を歩んだ単一の宇宙であるということになる．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+** New Universe
+
+*新宇宙* (/New Universe/) とは，旧宇宙のつぎの世代の宇宙である．
+古宇宙と旧宇宙の生命の滅亡の原因が科学の発達によるものだったので，
+ミィが地球から燃料など科学の発達に必要不可欠な資源をとりのぞいて再編した宇宙だった．
+新宇宙ではあまり科学が発達せず，人々は地球からでることもなく， 中世的で幸せな暮らしを続けた．
+
+** The Cradle
+
+*大文明* (/The Cradle/) は，鳥人から見た人類のことである．
+鳥人たちの文明は人類が滅びてより遠い未来に誕生したが， かれらは地質学や考古学の見地から遠い昔，
+すくなくとも太陽系を制覇するほど栄えていた文明が存在したことを突きとめた．
+そのためその文明， すなわち人類のことを大文明と呼んだのである．
+
+* History <<history>>
+
+** 207x年の七夕
+
+#+ATTR_HTML: :style width: 320px;
+#+BEGIN_UPRIGHT
+#+ATTR_HTML: :srcset event0000_640x480.png 2x
+#+CAPTION: 日本の七夕祭りを楽しむ4人．
+[[./event0000_320x480.png]]
+#+END_UPRIGHT
+
+207x年，[[teiri][テーリ]]，[[emily][エマ]]，[[verity][ヴェリティ]]，[[disa][ディーサ]]の4人は日本の七夕祭りを楽しんだ．
+
+#+ATTR_HTML: :style clear: both;
+#+BEGIN_CLEARFIX
+#+END_CLEARFIX
+
+* Chronology <<chronology>>
+
+** Elder Universe
+
+*** 20世紀
+
+|   年 | 月 | 日 | 曜日 | できごと                   |
+|------+----+----+------+----------------------------|
+| 2000 |  2 | 29 | 火   | ミナガワ・コーリが生まれる |
+
+*** 21世紀
+
+|     年 |     月 |    日 | 曜日    | できごと                                                                                                                                                                                                               |
+|--------+--------+-------+---------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 2020頃 |        |       |         | コーリがシャオシューに院に進み遺伝医学を修めるようたきつける[fn::@@html:<a href="/novel/golden-record.html#11:65">@@黄金録11:65@@html:</a>@@]                                                                          |
+|   2028 |      2 |    29 | 火      | ミナガワ・マリが生まれる                                                                                                                                                                                               |
+| 2040頃 |        |       |         | コーリが忽然と姿を消し，周囲から死亡したものと思われる[fn::@@html:<a href="/novel/golden-record.html#2:36">@@黄金録2:36@@html:</a>@@][fn::@@html:<a href="/novel/golden-record.html#11:56">@@黄金録11:56@@html:</a>@@] |
+|   2046 |      7 |     4 | 水      | エミリー・リバーズが生まれる                                                                                                                                                                                           |
+|   2056 |      2 |    29 | 火      | ミナガワ・テーリが生まれる                                                                                                                                                                                             |
+| 2065頃 |        |       |         | MITでエミリーとテーリが出逢う[fn::@@html:<a href="/novel/golden-record.html#9:17">@@黄金録9:17@@html:</a>@@]                                                                                                           |
+| 2070頃 |        |       |         | ケンブリッジ大学のキングス・カレッジでエミリーとヴェリティが出逢う[fn::@@html:<a href="/novel/golden-record.html#3:6">@@黄金録3:6@@html:</a>@@]                                                                        |
+| 2070頃 |        |       |         | ある学会でエミリーとディーサが出逢う[fn::@@html:<a href="/novel/golden-record.html#5:10">@@黄金録5:10@@html:</a>@@]                                                                                                    |
+|   2072 | 9-10頃 |       |         | エミリーがNASAに入局し，月の裏側国際天文台に配属される[fn::@@html:<a href="/novel/golden-record.html#1:34">@@黄金録1:34@@html:</a>@@][fn::@@html:<a href="/novel/golden-record.html#2:54">@@黄金録2:54@@html:</a>@@]   |
+|   2072 | 9-10頃 |       |         | エミリーとコーリが出逢う[fn::@@html:<a href="/novel/golden-record.html#1:38">@@黄金録1:38@@html:</a>@@]                                                                                                                |
+|   2073 |      1 |     1 | 日      | エミリーがヴェリティとマッカラン空港で待ちあわせる[fn::@@html:<a href="/novel/golden-record.html#3:44">@@黄金録3:44@@html:</a>@@]                                                                                      |
+|   2073 |      1 |     2 | 月      | エミリーがヴェリティとラスベガスで勝負をする[fn::@@html:<a href="/novel/golden-record.html#4:2">@@黄金録4:2@@html:</a>@@]                                                                                              |
+|   2073 |      1 | 2-7頃 | 月-土頃 | ウォーターズ次期大統領の当選が正式に決定する[fn::@@html:<a href="/novel/golden-record.html#6:36">@@黄金録6:36@@html:</a>@@][fn::@@html:<a href="/novel/golden-record.html#9:10">@@黄金録9:10@@html:</a>@@]             |
+|   2073 |      1 |     7 | 土      | ディーサがケプラヴィーク空港まで車でエミリーを迎えに行く[fn::@@html:<a href="/novel/golden-record.html#5:62">@@黄金録5:62@@html:</a>@@]                                                                                |
+|   2073 |      1 |   7-8 | 土-日   | エミリーとディーサがレイキャヴィークでエミリーと過ごす[fn::@@html:<a href="/novel/golden-record.html#5:60">@@黄金録5:60@@html:</a>@@]                                                                                  |
+|   2073 |      1 |    13 | 金      | エミリーがノーフォーク国際空港で飛行機に乗るのを，レマが邪魔する[fn::@@html:<a href="/novel/golden-record.html#7:17">@@黄金録7:17@@html:</a>@@]                                                                        |
+|   2073 |      1 |    13 | 金      | エミリーが乗るつもりだった事件でハイジャック未遂事件が起こる[fn::@@html:<a href="/novel/golden-record.html#7:72">@@黄金録7:72@@html:</a>@@]                                                                            |
+|   2073 |      1 |    14 | 土      | エミリーがロサンゼルス空港でテーリと待ちあわせる[fn::@@html:<a href="/novel/golden-record.html#9:57">@@黄金録9:57@@html:</a>@@]                                                                                        |
+|   2073 |      1 |    20 | 金      | グレース・A・ウォーターズが合衆国第59代大統領に就任する[fn::@@html:<a href="/novel/golden-record.html#9:8">@@黄金録9:8@@html:</a>@@]                                                                                   |
+|   2074 |      4 |       |         | [[emily][エミリー]]が未来との通信に成功する[fn::@@html:<a href="/novel/golden-record.html#14:23">@@黄金録14:23@@html:</a>@@]                                                                                                      |
+|   2074 |      7 |       |         | [[emily][エミリー]]がNSAの勧誘を受ける[fn::@@html:<a href="/novel/golden-record.html#15:35">@@黄金録15:35@@html:</a>@@]                                                                                                           |
+|   2075 |      4 |       |         | [[kouri][ミナガワ・コーリ]]が[[iom][月の裏側国際天文台]]台長に就任する[fn::@@html:<a href="/novel/golden-record.html#16:9">@@黄金録16:9@@html:</a>@@]                                                                                      |
+|   2075 | 4-12頃 |       |         | [[teiri][テーリ]]がカイザー・ヴィルヘルム研究所で[[lemily][レミリー]]を見つける[fn::@@html:<a href="/novel/reverent-eugenist.html#3:14">@@敬虔な優生学者3:14@@html:</a>@@]                                                                    |
+|   2075 | 4-12頃 |       |         | [[emily][エミリー]]，[[verity][ヴェリティ]]，[[teiri][テーリ]]，[[disa][ディーサ]]の4人が月へ行く[fn::@@html:<a href="/novel/golden-record.html#16:56">@@黄金録16:56@@html:</a>@@]                                                                                 |
+|   2076 |      1 |       |         | [[emily][エミリー]]が桃山不動産に出資を頼みに行く[fn::@@html:<a href="/novel/golden-record.html#17:59">@@黄金録17:59@@html:</a>@@]                                                                                                |
+|   2076 |      2 |    29 | 土      | レミリー・"レマ"・リバーズが生まれる                                                                                                                                                                                   |
+|   2076 |    7頃 |       |         | [[emily][エミリー]]の停止していた計画が再始動する[fn::@@html:<a href="/novel/golden-record.html#19:37">@@黄金録19:37@@html:</a>@@]                                                                                                |
+|   2076 |    7頃 |       |         | [[teiri][テーリ]]が[[emily][エミリー]]に[[lemily][レミリー]]を預ける[fn::@@html:<a href="/novel/golden-record.html#19:40">@@黄金録19:40@@html:</a>@@]                                                                                                    |
+| 2085頃 |        |       |         | エミリーが月の裏側国際天文台の基地局で旧友との約束を果たす                                                                                                                                                             |
+
+*** 22世紀
+
+|   年 | 月 | 日 | 曜日 | できごと                                                                                                                                                     |
+|------+----+----+------+--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 2124 |  2 | 29 |      | [[lemma][レマ・リバーズ]]が生まれる                                                                                                                                     |
+| 2134 |    |    |      | [[lemma][レマ]]が過去との通信に成功する[fn::@@html:<a href="/novel/golden-record.html#14:32">@@黄金録14:32@@html:</a>@@]                                                |
+| 2136 |    |    |      | [[me][ミィ]]の全時空における同期が完了する[fn::@@html:<a href="/novel/golden-record.html#28:14">@@黄金録28:14@@html:</a>@@]                                          |
+| 2141 |    |    |      | [[lemma][レマ]]が1度過去へ戻ったが[[emily][エミリー]]を見つけられなかったことで彼女に助言を求める[fn::@@html:<a href="/novel/golden-record.html#28:87">@@黄金録28:87@@html:</a>@@] |
+
+*** ???
+
+| 年 | 月 | 日 | 曜日 | できごと                                     |
+| ?  |    |    |      | 宇宙規模の災害で全生命が絶滅する             |
+| ?  |    |    |      | ミィによって宇宙が再編され，旧宇宙が誕生する |
+
+** Old Universe
+
+*** ???
+
+| 年 | 月 | 日 | 曜日 | できごと                                          |
+|----+----+----+------+---------------------------------------------------|
+| ?  |    |    |      | ミィによって宇宙が再編され，旧宇宙が誕生する      |
+| ?  |    |    |      | 謎の鳥人が Voyager のゴールデンレコードを調査する |
+| ?  |    |    |      | 宇宙規模の災害で全生命が絶滅する                  |
+| ?  |    |    |      | ミィによって宇宙が再編され，新宇宙が誕生する      |
+
+** New Universe
+
+*** ???
+
+| 年 | 月 | 日 | 曜日 | できごと                                     |
+|----+----+----+------+----------------------------------------------|
+| ?  |    |    |      | ミィによって宇宙が再編され，新宇宙が誕生する |
+
+* Figures <<figures>>
+
+** Characters
+
+#+ATTR_HTML: :srcset graph_x2.png 2x
+[[./graph_x1.png]]
+
+* Translations <<translations>>
+
+** 敬称
+
+/N/ は名詞を表すメタ変数です．
+
+| English   | 日本語                  | 補足事項                                                                              |
+|-----------+-------------------------+---------------------------------------------------------------------------------------|
+| Prof. /N/ | /N/ 教授                |                                                                                       |
+| Dr. /N/   | /N/ 博士 / ドクタ・ /N/ | 医師の場合はドクタと訳します．                                                        |
+| Ms. /N/   | /N/ さん                | 性別は名前からわかりますので，通常は "さん" と訳します．                              |
+| Miss /N/  | ミス・ /N/              | Miss を "さん" と訳すと未婚という情報が失われてしまいます．                           |
+| /N/ -san  | /N/ ＝サン              | "-san" の音写と考えて "＝サン" と訳します． "さん" は通常 "Ms." や "Mr." と訳します． |
+
+** 人名
+
+人名は音写が基本です． 人名に限りませんが，
+単語を訳すときは "登場人物から見て単なる音でしかないか，意味のある言葉か"
+で音写かどうかを判断します． 人名は通常単なる音でしかないので，
+日本人の名前だろうとカタカナが基本です．
+たとえば， "真理" という女性名はわたしたち日本人にとって，
+通常 "まことのことわり" という意味ではなくて，
+単に "マリ" という音の名前です． ゆえにマリと音写するわけです．
+"Verity" と "Arith" はそれぞれ英語で "真実を述べる" と "算術" という意味ですが，
+やはり英語圏の人々も， 人名と考える場合には
+単にそういう音の名前と解釈するでしょうから， "ヴェリティ" や "アリス" と音写するわけです．
+
+ただし，見出しなどでは原語で記述する場合もあります．
+いずれにせよ原語で記述するなら原語で，
+訳語で記述するなら訳語で一貫して記述します．
+たとえば，一方で日本人の名前を "考理" と漢字で書いておきながら他方で "エミリー"
+とカタカナで書くのはおかしく， この場合は "コーリ" とカタカナで書くか
+さもなくば "Emily" とラテン文字で書くということです．
+
+人名がスペースで区切られている場合， "・" で区切るように訳します．
+人名がハイフンで繋がれている場合， "＝" で繋ぎます．
+
+英語は表音文字ですので原語と音写が一致する場合があります
+("Emily" は原語でも音写でも "Emily" です) が， English の項に書かれているのはすべて音写された名前です．
+
+| 原語       | English  | 日本語         | 補足事項                                                                                                   |
+| Teiri/定理 | Teiri    | テーリ         | テイリではなくテーリです．ややこしいのですが，彼女は合衆国で生まれたので Teiri も定理も原語扱いです．      |
+| 考理       | Kouri    | コーリ         | コウリではなくコーリです．                                                                                 |
+| 真理       | Mari     | マリ           |                                                                                                            |
+| 水無川     | MINAGAWA | ミナガワ       |                                                                                                            |
+| Emily      | Emily    | エミリー       |                                                                                                            |
+| Emma       | Emma     | エマ           |                                                                                                            |
+| Rivers     | Rivers   | リバーズ       |                                                                                                            |
+| Verity     | Verity   | ヴェリティ     |                                                                                                            |
+| Valley     | Valley   | バレー         | V は基本的にヴで音写したいのですが， Valley の音写としてはバレーのほうが一般的ですので，こうなっています． |
+| Arith      | Arith    | アリス         | アリズではありません．日本語表記だとわかりにくいのですが発音は Alice ではありません．                      |
+| Dísa       |          | ディーサ       | 英語表記は未定です．                                                                                       |
+| Jónudóttir |          | ヨーヌドフテル | 基本的に原語の発音を音写します．                                                                           |
+| Lemma      | Lemma    | レマ           |                                                                                                            |
+| Grace      | Grace    | グレース       |                                                                                                            |
+| Autumn     | Autumn   | オータム       |                                                                                                            |
+| Waters     | Waters   | ウォーターズ   |                                                                                                            |
+
+* Contributing <<contributing>>
+
+1. [[https://github.com/bydriv/bydriv.github.io][GitHub]] で fork してください．
+2. おすきなように編集してください．
+3. Pull Request をしてください (ただし merge されるかどうかは気分次第です)．
+
+このページは同一の世界観でいろいろ作品をつくって，
+それをまとめよう！　的な感じのページです．
+すでに書かれているように， 作中に登場したキャラや舞台の設定などを出典を示して記載したりします．
+もちろん文章や絵などの二次創作も歓迎です．
+
+* License <<license>>
+:PROPERTIES:
+:CUSTOM_ID: license
+:END:
