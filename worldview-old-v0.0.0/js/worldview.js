@@ -21,7 +21,7 @@ window.addEventListener("load", function () {
         scene.add(ambientLight);
         const loader = new THREE.ColladaLoader();
         var model = null;
-        loader.load('../teiri.dae', (collada) => {
+        loader.load('teiri.dae', (collada) => {
             model = collada.scene;
             scene.add(model);
         });
@@ -57,7 +57,7 @@ window.addEventListener("load", function () {
         scene.add(ambientLight);
         const loader = new THREE.ColladaLoader();
         var model = null;
-        loader.load('../teiri_petan.dae', (collada) => {
+        loader.load('teiri_petan.dae', (collada) => {
             model = collada.scene;
             scene.add(model);
         });
