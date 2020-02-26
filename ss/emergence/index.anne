@@ -1,0 +1,3 @@
+#div(class=window)
+  [#div(class=header) 創発/Emergence]
+  [#div(class=content) [@cat ss/emergence.html]]
