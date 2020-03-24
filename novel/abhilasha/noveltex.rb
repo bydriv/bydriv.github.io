@@ -7,7 +7,7 @@ $chap = 0
 
 cfg = Shirley.config([
     ["first-paragraph", /\A\\([（「『〈《])/m, "\\noindent\\\\\\1"],
-    ["all-text", /((?:(?<!\d)(?:\d\d)(?!\d))|\d)/m, "\\makebox[1\\zw][l]{\\rensuji{\\1}}"],
+    ["all-text", /((?:(?<![A-Z0-9])(?:[A-Z0-9][A-Z0-9])(?![A-Z0-9]))|[A-Z0-9])/m, "\\makebox[1\\zw][l]{\\rensuji{\\1}}"],
     ["all-text", /！！(?=[）」』〉》])/m, "\\exclexcl{}"],
     ["all-text", /！？(?=[）」』〉》])/m, "\\exclques{}"],
     ["all-text", /！！(?![）」』〉》])/m, "\\exclexcl{}\\hspace{1\\zw}"],
