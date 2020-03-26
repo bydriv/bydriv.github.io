@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<style>
+  body {
+    background: gray;
+    margin: 0;
+  }
+
+  div#container {
+    display: block;
+    margin: calc(72px / 2.54) auto;
+    width: calc(150px / 2.54 * 6.3 * 2);
+  }
+
+  canvas#card {
+    display: inline-block;
+    margin: 0;
+    width: calc(150px / 2.54 * 6.3);
+    height: calc(150px / 2.54 * 8.8);
+  }
+
+  div#card-definition {
+    display: inline-block;
+    margin: 0;
+    width: calc(150px / 2.54 * 6.3);
+    text-align: right;
+    vertical-align: top;
+  }
+
+  @font-face {
+    font-family: "Ronde";
+    src: url("fonts/Ronde-B_square.otf") format("opentype");
+  }
+
+  @font-face {
+    font-family: "MPlus";
+    src: url("fonts/mplus-1m-regular.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Kurobara";
+    src: url("fonts/kurobara-cinderella.ttf") format("truetype");
+  }
+</style>
+
+<script>
+  window.addEventListener("load", function () {
+    var card = document.getElementById("card");
+    var cardColor = document.getElementById("card-color");
+    var cardCost = document.getElementById("card-cost");
+    var cardName = document.getElementById("card-name");
+    var cardType = document.getElementById("card-type");
+    var cardStatus = document.getElementById("card-status");
+    var cardRuleText = document.getElementById("card-rule-text");
+    var cardFlavorText = document.getElementById("card-flavor-text");
+    var cardIllust = document.getElementById("card-illust");
+
+    /* cm to px (600 dpi) */
+    function cm(x) {
+      return 600 / 2.54 * x;
+    }
+
+    card.width = cm(6.3);
+    card.height = cm(8.8);
+
+    var cardCostFontSize = cm(0.4);
+    var cardCostOffsetX = cm(5.65);
+    var cardCostOffsetY = cm(0.45) + cardCostFontSize;
+
+    var cardNameFontSize = cm(0.35);
+    var cardNameOffsetX = cm(0.6);
+    var cardNameOffsetY = cm(0.55) + cardNameFontSize;
+
+    var cardTypeFontSize = cm(0.25);
+    var cardTypeOffsetX = cm(0.6);
+    var cardTypeOffsetY = cm(5.1) + cardTypeFontSize;
+
+    var cardStatusFontSize = cm(0.4);
+    var cardStatusOffsetX = cm(1.05);
+    var cardStatusOffsetY = cm(7.9) + cardStatusFontSize;
+
+    var cardRuleTextFontSize = cm(0.2);
+    var cardRuleTextOffsetX = cm(0.6);
+    var cardRuleTextOffsetY = cm(5.8) + cardRuleTextFontSize;
+
+    var cardFlavorTextFontSize = cm(0.2);
+    var cardFlavorTextOffsetX = cm(0.6);
+    var cardFlavorTextOffsetY = cm(8.2);
+
+    var offscreen = document.createElement("canvas");
+
+    offscreen.width = card.width;
+    offscreen.height = card.height;
+
+    function color(alpha) {
+      var r = parseInt(cardColor.value.slice(1, 3), 16);
+      var g = parseInt(cardColor.value.slice(3, 5), 16);
+      var b = parseInt(cardColor.value.slice(5, 7), 16);
+      return "rgba(" + r + "," + g + "," + b + "," + alpha + ")";
+    }
+
+    function refresh() {
+      var context = offscreen.getContext("2d");
+
+      var grad = context.createRadialGradient(cm(3.15), cm(0.3), cm(0.9), cm(3.15), cm(0.75), cm(5.7));
+      grad.addColorStop(0, color(0.25));
+      grad.addColorStop(1, color(1));
+      context.fillStyle = grad;
+      context.fillRect(cm(0.3), cm(0.3), cm(5.7), cm(0.9));
+
+      var grad = context.createRadialGradient(cm(3.15), cm(8.5), cm(3), cm(3.15), cm(7.15), cm(5.7));
+      grad.addColorStop(0, color(0.25));
+      grad.addColorStop(1, color(1));
+      context.fillStyle = grad;
+      context.fillRect(cm(0.3), cm(5.5), cm(5.7), cm(3));
+
+      context.fillStyle = color(0.5);
+      context.fillRect(cm(0.3), cm(5), cm(5.7), cm(0.5));
+
+      context.fillStyle = "black";
+      context.fillRect(cm(0.3), cm(1.15), cm(5.7), cm(0.05));
+      context.fillRect(cm(0.3), cm(5), cm(5.7), cm(0.0125));
+      context.fillRect(cm(0.3), cm(5.475), cm(5.7), cm(0.025));
+
+      context.fillStyle = "black";
+      context.beginPath();
+      context.ellipse(cm(5.4), cm(0.9), cm(0.3), cm(0.3), 0, Math.PI * 0.5, Math.PI);
+      context.lineTo(cm(5.1), cm(0.3));
+      context.lineTo(cm(6), cm(0.3));
+      context.lineTo(cm(6), cm(1.2));
+      context.fill();
+
+      context.fillStyle = "black";
+      context.beginPath();
+      context.ellipse(cm(1.8), cm(7.9), cm(0.3), cm(0.3), 0, Math.PI * 1.5, 0);
+      context.lineTo(cm(2.1), cm(8.5));
+      context.lineTo(cm(0.3), cm(8.5));
+      context.lineTo(cm(0.3), cm(7.6));
+      context.fill();
+
+      context.fillStyle = "white";
+      context.textAlign = "center";
+      context.font = cardCostFontSize + "px Ronde";
+      context.fillText(cardCost.value, cardCostOffsetX, cardCostOffsetY, cm(0.7));
+
+      context.strokeStyle = "rgba(255, 255, 255, 0.5)";
+      context.lineWidth = cm(0.05);
+      context.fillStyle = "black";
+      context.textAlign = "left";
+      context.font = cardNameFontSize + "px Ronde";
+      context.strokeText(cardName.value, cardNameOffsetX, cardNameOffsetY, cm(4.2));
+      context.fillText(cardName.value, cardNameOffsetX, cardNameOffsetY, cm(4.2));
+
+      context.strokeStyle = "rgba(255, 255, 255, 0.5)";
+      context.lineWidth = cm(0.025);
+      context.fillStyle = "black";
+      context.textAlign = "left";
+      context.font = cardTypeFontSize + "px Ronde";
+      context.strokeText(cardType.value, cardTypeOffsetX, cardTypeOffsetY, cm(5.1));
+      context.fillText(cardType.value, cardTypeOffsetX, cardTypeOffsetY, cm(5.1));
+
+      context.fillStyle = "white";
+      context.textAlign = "center";
+      context.font = cardStatusFontSize + "px Ronde";
+      context.fillText(cardStatus.value, cardStatusOffsetX, cardStatusOffsetY, cm(1.5));
+
+      context.strokeStyle = "rgba(255, 255, 255, 0.5)";
+      context.lineWidth = cm(0.025);
+      context.fillStyle = "black";
+      context.textAlign = "left";
+      context.font = cardRuleTextFontSize + "px MPlus";
+      var texts = cardRuleText.value.split("\n");
+      for (var i = 0; i < texts.length; ++i) {
+        context.strokeText(texts[i], cardRuleTextOffsetX, cardRuleTextOffsetY + i * cardRuleTextFontSize, cm(5.1));
+        context.fillText(texts[i], cardRuleTextOffsetX, cardRuleTextOffsetY + i * cardRuleTextFontSize, cm(5.1));
+      }
+
+      context.strokeStyle = "rgba(255, 255, 255, 0.5)";
+      context.lineWidth = cm(0.025);
+      context.fillStyle = "black";
+      context.textAlign = "right";
+      context.font = cardFlavorTextFontSize + "px Kurobara";
+      var texts = cardFlavorText.value.split("\n");
+      for (var i = 0; i < texts.length; ++i) {
+        context.strokeText(texts[i], cm(6.3) - cardFlavorTextOffsetX, cardFlavorTextOffsetY + i * cardFlavorTextFontSize - (texts.length - 1) * cardFlavorTextFontSize, cm(3.3));
+        context.fillText(texts[i], cm(6.3) - cardFlavorTextOffsetX, cardFlavorTextOffsetY + i * cardFlavorTextFontSize - (texts.length - 1) * cardFlavorTextFontSize, cm(3.3));
+      }
+
+      var cardContext = card.getContext("2d");
+      cardContext.drawImage(offscreen, 0, 0);
+    }
+
+    requestAnimationFrame(function step() {
+      var context = offscreen.getContext("2d");
+
+      context.fillStyle = "black";
+      context.beginPath();
+      context.ellipse(cm(0.3), cm(0.3), cm(0.3), cm(0.3), 0, Math.PI, Math.PI * 1.5);
+      context.lineTo(cm(6), 0);
+      context.ellipse(cm(6), cm(0.3), cm(0.3), cm(0.3), 0, Math.PI * 1.5, 0);
+      context.lineTo(cm(6.3), cm(8.5));
+      context.ellipse(cm(6), cm(8.5), cm(0.3), cm(0.3), 0, 0, Math.PI * 0.5);
+      context.lineTo(cm(0.3), cm(8.8));
+      context.ellipse(cm(0.3), cm(8.5), cm(0.3), cm(0.3), 0, Math.PI * 0.5, Math.PI);
+      context.fill();
+
+      if (cardIllust.files.length !== 1) {
+        refresh();
+
+        requestAnimationFrame(step);
+      } else {
+        var file = cardIllust.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function () {
+          var img = new Image();
+
+          img.onload = function () {
+            //context.drawImage(img, 0, 0, cm(5.1), cm(3.8), cm(0.6), cm(1.2), cm(5.1), cm(3.8));
+            context.drawImage(img, 0, 0, cm(5.7), cm(8.2), cm(0.3), cm(0.3), cm(5.7), cm(8.2));
+
+            refresh();
+
+            requestAnimationFrame(step);
+          }
+
+          img.src = reader.result;
+        }
+
+        reader.readAsDataURL(file);
+      }
+    });
+  });
+</script>
+
+<div id="container">
+  <canvas id="card"></canvas><!--
+--><div id="card-definition">
+    <input id="card-color" type="color" value="#FFFFFF" list="card-color-list"><br />
+    <input id="card-cost" type="number" max="13" min="1" value="3"><br />
+    <input id="card-name" type="text" placeholder="Name"><br />
+    <input id="card-type" type="text" placeholder="Type"><br />
+    <input id="card-status" type="text" placeholder="STR/INT/CON" value="3/3/3"><br />
+    <textarea id="card-rule-text" placeholder="Rule Text"></textarea><br />
+    <textarea id="card-flavor-text" placeholder="Flavor Text"></textarea>
+    <input id="card-illust" type="file" accept="image/png"><br />
+    ※ 推奨サイズ: 1346 x 1937 px<br />
+    (5.7 x 8.2 cm; 600 dpi)
+  </div>
+</div>
+
+<datalist id="card-color-list">
+  <option value="#FFFFFF"></option>
+  <option value="#6060A0"></option>
+  <option value="#000000"></option>
+  <option value="#A06060"></option>
+  <option value="#60A0^0"></option>
+</datalist>
