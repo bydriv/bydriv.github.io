@@ -73,20 +73,20 @@
     card.height = cm(8.8);
 
     var cardCostFontSize = cm(0.4);
-    var cardCostOffsetX = cm(5.65);
-    var cardCostOffsetY = cm(0.45) + cardCostFontSize;
+    var cardCostOffsetX = cm(5.25);
+    var cardCostOffsetY = (cm(1.2) - cardCostFontSize) / 2 + cardCostFontSize;
 
     var cardNameFontSize = cm(0.35);
     var cardNameOffsetX = cm(0.6);
-    var cardNameOffsetY = cm(0.55) + cardNameFontSize;
+    var cardNameOffsetY = cm(0.3) + (cm(0.9) - cardNameFontSize) / 2 + cardNameFontSize;
 
     var cardTypeFontSize = cm(0.25);
     var cardTypeOffsetX = cm(0.6);
-    var cardTypeOffsetY = cm(5.1) + cardTypeFontSize;
+    var cardTypeOffsetY = cm(5) + (cm(0.5) - cardTypeFontSize) / 2 + cardTypeFontSize;
 
     var cardStatusFontSize = cm(0.4);
     var cardStatusOffsetX = cm(1.05);
-    var cardStatusOffsetY = cm(7.9) + cardStatusFontSize;
+    var cardStatusOffsetY = cm(7.6) + (cm(1.2) - cardStatusFontSize) / 2 + cardStatusFontSize;
 
     var cardRuleTextFontSize = cm(0.2);
     var cardRuleTextOffsetX = cm(0.6);
@@ -112,29 +112,29 @@
       var context = offscreen.getContext("2d");
 
       var grad = context.createRadialGradient(cm(3.15), cm(0.3), cm(0.9), cm(3.15), cm(0.75), cm(5.7));
-      grad.addColorStop(0, color(0.25));
+      grad.addColorStop(0, color(0.5));
       grad.addColorStop(1, color(1));
       context.fillStyle = grad;
       context.fillRect(cm(0.3), cm(0.3), cm(5.7), cm(0.9));
 
       var grad = context.createRadialGradient(cm(3.15), cm(8.5), cm(3), cm(3.15), cm(7.15), cm(5.7));
-      grad.addColorStop(0, color(0.25));
+      grad.addColorStop(0, color(0.5));
       grad.addColorStop(1, color(1));
       context.fillStyle = grad;
       context.fillRect(cm(0.3), cm(5.5), cm(5.7), cm(3));
 
-      context.fillStyle = color(0.5);
+      context.fillStyle = color(0.75);
       context.fillRect(cm(0.3), cm(5), cm(5.7), cm(0.5));
 
       context.fillStyle = "black";
       context.fillRect(cm(0.3), cm(1.15), cm(5.7), cm(0.05));
       context.fillRect(cm(0.3), cm(5), cm(5.7), cm(0.0125));
-      context.fillRect(cm(0.3), cm(5.475), cm(5.7), cm(0.025));
+      context.fillRect(cm(0.3), cm(5.4875), cm(5.7), cm(0.0125));
 
       context.fillStyle = "black";
       context.beginPath();
-      context.ellipse(cm(5.4), cm(0.9), cm(0.3), cm(0.3), 0, Math.PI * 0.5, Math.PI);
-      context.lineTo(cm(5.1), cm(0.3));
+      context.ellipse(cm(4.5), cm(0.9), cm(0.3), cm(0.3), 0, Math.PI * 0.5, Math.PI);
+      context.lineTo(cm(4.2), cm(0.3));
       context.lineTo(cm(6), cm(0.3));
       context.lineTo(cm(6), cm(1.2));
       context.fill();
@@ -149,16 +149,16 @@
 
       context.fillStyle = "white";
       context.textAlign = "center";
-      context.font = cardCostFontSize + "px Ronde";
-      context.fillText(cardCost.value, cardCostOffsetX, cardCostOffsetY, cm(0.7));
+      context.font = cardCostFontSize + "px MPlus";
+      context.fillText(cardCost.value, cardCostOffsetX, cardCostOffsetY, cm(1.5));
 
       context.strokeStyle = "rgba(255, 255, 255, 0.5)";
       context.lineWidth = cm(0.05);
       context.fillStyle = "black";
       context.textAlign = "left";
       context.font = cardNameFontSize + "px Ronde";
-      context.strokeText(cardName.value, cardNameOffsetX, cardNameOffsetY, cm(4.2));
-      context.fillText(cardName.value, cardNameOffsetX, cardNameOffsetY, cm(4.2));
+      context.strokeText(cardName.value, cardNameOffsetX, cardNameOffsetY, cm(3.3));
+      context.fillText(cardName.value, cardNameOffsetX, cardNameOffsetY, cm(3.3));
 
       context.strokeStyle = "rgba(255, 255, 255, 0.5)";
       context.lineWidth = cm(0.025);
@@ -170,7 +170,7 @@
 
       context.fillStyle = "white";
       context.textAlign = "center";
-      context.font = cardStatusFontSize + "px Ronde";
+      context.font = cardStatusFontSize + "px MPlus";
       context.fillText(cardStatus.value, cardStatusOffsetX, cardStatusOffsetY, cm(1.5));
 
       context.strokeStyle = "rgba(255, 255, 255, 0.5)";
@@ -214,6 +214,17 @@
       context.fill();
 
       if (cardIllust.files.length !== 1) {
+        context.fillStyle = "#404040";
+        context.fillRect(cm(0.3), cm(0.3), cm(5.7), cm(8.2));
+
+        context.strokeStyle = "white";
+        context.lineWidth = cm(0.05);
+        context.fillStyle = "#404040";
+        context.textAlign = "center";
+        context.font = cm(0.6) + "px Ronde";
+        context.strokeText("No Image", cm(0.3) + cm(5.7) / 2, cm(1.2) + cm(3.8) / 2 + cm(0.3), cm(5.7));
+        context.fillText("No Image", cm(0.3) + cm(5.7) / 2, cm(1.2) + cm(3.8) / 2 + cm(0.3), cm(5.7));
+
         refresh();
 
         requestAnimationFrame(step);
@@ -247,10 +258,10 @@
   <canvas id="card"></canvas><!--
 --><div id="card-definition">
     <input id="card-color" type="color" value="#FFFFFF" list="card-color-list"><br />
-    <input id="card-cost" type="number" max="13" min="1" value="3"><br />
+    <input id="card-cost" type="text" placeholder="Cost"><br />
     <input id="card-name" type="text" placeholder="Name"><br />
     <input id="card-type" type="text" placeholder="Type"><br />
-    <input id="card-status" type="text" placeholder="STR/INT/CON" value="3/3/3"><br />
+    <input id="card-status" type="text" placeholder="STR/INT/CON"><br />
     <textarea id="card-rule-text" placeholder="Rule Text"></textarea><br />
     <textarea id="card-flavor-text" placeholder="Flavor Text"></textarea>
     <input id="card-illust" type="file" accept="image/png"><br />
