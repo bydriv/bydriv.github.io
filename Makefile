@@ -14,7 +14,7 @@ all: $(patsubst %.anne,%.html,$(shell find -name 'index.anne'))
 	$(HTML) $< > $@
 
 index.html: index.json $(HTML) $(wildcard prelude/*) $(patsubst %.anne,%.html,$(filter-out %index.anne,$(shell find -name '*.anne')))
-	cat prelude/header.html > $@
+	cat prelude/header.html | sed 's/article/website/' > $@
 	$(HTML) $< >> $@
 
 %/index.html: %/index.json $(HTML) $(wildcard prelude/*) $(patsubst %.anne,%.html,$(filter-out %index.anne,$(shell find -name '*.anne')))
