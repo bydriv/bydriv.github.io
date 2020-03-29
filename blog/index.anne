@@ -81,3 +81,7 @@
 #div(class=window)
   [#div(class=header)]
   [#div(class=content) [@cat blog/2020-03-16/summary.html] [#div(class=cont) ([#a(href=/blog/2020-03-16) READ MORE])]]
+
+#div(class=window)
+  [#div(class=header)]
+  [#div(class=content) [@cat blog/2020-03-29/summary.html] [#div(class=cont) ([#a(href=/blog/2020-03-29) READ MORE])]]
