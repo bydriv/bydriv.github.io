@@ -1,3 +1,0 @@
-#div(class=window)
-  [#div(class=header) 逆犯罪課/Reverse Crime Section]
-  [#div(class=content) [@cat novel/rcs.html]]

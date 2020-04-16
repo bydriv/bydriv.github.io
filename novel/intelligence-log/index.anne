@@ -1,3 +1,0 @@
-#div(class=window)
-  [#div(class=header) テーリの諜報日誌/Intelligence Log]
-  [#div(class=content) [@cat novel/intelligence-log.html]]

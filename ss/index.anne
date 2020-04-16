@@ -1,6 +1,0 @@
-#div(class=window)
-  [#div(class=header) SS]
-  [#div(class=content)
-    [#ul
-      [#li [#a(href=can-machines-think) 機械は考えることができるだろうか？/Can Machines Think?]]
-      [#li [#a(href=emergence) 創発/Emergence]]]]

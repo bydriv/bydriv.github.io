@@ -1,3 +1,0 @@
-#div(class=window)
-  [#div(class=header) R18]
-  [#div(class=content) [@cat novel/r18.html]]

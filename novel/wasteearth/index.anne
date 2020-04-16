@@ -1,9 +1,0 @@
-#div(class=window)
-  [#div(class=header) ウェイストアース/Wasteearth]
-  [#div(class=content)
-    [#h2 ウェイストアース/Wasteearth]
-    [#ol
-      [#li 第1幕
-      [#ol
-        [#li [#a(href=#1) 第1章]]]]]
-    [@cat novel/wasteearth.html]]
