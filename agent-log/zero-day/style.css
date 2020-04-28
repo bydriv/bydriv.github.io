@@ -1,9 +1,0 @@
-article.agent-log {
-    width: 40em;
-    margin: 0 calc((100% - 40em) / 2);
-    text-align: justify;
-}
-
-h1, h2 {
-    text-align: center;
-}
