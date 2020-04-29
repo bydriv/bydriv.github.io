@@ -4,16 +4,8 @@ body {
     background: radial-gradient(#403030, #201010);
 }
 
-@media (max-width: 42em) {
-    article {
-        margin: 0;
-    }
-}
-
-@media not (max-width: 42em) {
-    article {
-        margin: 0 calc((100% - 42em) / 2);
-    }
+article {
+    margin: 0 auto;
 }
 
 article {
