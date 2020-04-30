@@ -1,4 +1,4 @@
-# Agent's Logs
+# Agent's Log
 
 - [Agent's Log: Zero](zero)
 - [Agent's Log: Emergence](emergence)
