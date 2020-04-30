@@ -1,5 +1,7 @@
 # Agent's Log: Simian Army
 
+[Agent's Log](/agent-log) / [Simian Army](/agent-log/simian-army)
+
 「諜報日誌、107.236。公式記録。
 シミアン・アーミーと名乗るテロリストによりニューヨークにあるカオスエンジニアリング本社ビルが占拠された。
 ぼくは人質にまぎれ潜入。今回の任務は現地で人質の安全確保、

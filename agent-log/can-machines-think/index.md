@@ -1,5 +1,7 @@
 # Agent's Log: Can Machines Think?
 
+[Agent's Log](/agent-log) / [Can Machines Think?](/agent-log/can-machines-think)
+
 《諜報日誌、補足。当局が中国で開発されている新型軍用ロボット兵器の存在に関する情報をキャッチした。
 そこでぼくはそのロボットに関する情報を入手すべく、中国の当該地区を訪れている》
 

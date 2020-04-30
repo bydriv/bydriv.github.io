@@ -1,5 +1,7 @@
 # Agent's Log: Emergence
 
+[Agent's Log](/agent-log) / [Emergence](/agent-log/emergence)
+
 《諜報日誌。先日合衆国内の某所で 1 羽の雄のハクトウワシが捕獲された。
 合衆国の機密情報が記録されたメモリ・チップを所持していたことから
 諜報活動に利用された疑いがあり、そのハクトウワシに関する調査が始められた……》
