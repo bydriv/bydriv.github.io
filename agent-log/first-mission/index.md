@@ -1,6 +1,6 @@
 # Agent's Log: First Mission
 
-[Agent's Log](/agent-log) / [First Mission](/agent-log/first-mission)
+[Agent's Log](/agent-log) / [First Mission](/agent-log/first-mission) <sup>[[PDF]](/agent-log/first-mission.pdf)</sup>
 
 　２０７２年２月２９日、全世界のドローンがハイジャックされ市民が無差別に襲われる
 という凶悪な事件が起こった。

@@ -1,5 +1,5 @@
 .PHONY: all
-all: violet-garden.pdf
+all: zero.pdf first-mission.pdf violet-garden.pdf
 	./build.sh .
 	./build.sh zero
 	./build.sh first-mission
