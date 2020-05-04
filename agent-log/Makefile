@@ -9,7 +9,7 @@ all: violet-garden.pdf
 	./build.sh area-51
 	./build.sh simian-army
 
-%.pdf: %.tex %/index.tex
+%.pdf: %.tex %/index.tex agent-log.tex
 	lualatex $<
 	lualatex $<
 	#pdfpun $@ --outfile $@ --nup 2x1
@@ -18,6 +18,7 @@ all: violet-garden.pdf
 
 %/index.tex: %/index.md
 	tail -n +5 $< \
+		| perl -pe 's|!\[\]\((.*?)\)|\\includepdf{$(dir $@)\1}|g' \
 		| perl -pe 's/！？/\\rensuji{!?}/g' \
 		| perl -pe 's/！　/！/g' \
 		| perl -pe 's/？　/？/g' > $@

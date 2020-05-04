@@ -36,6 +36,10 @@ p {
     mix-blend-mode: multiply;
 }
 
+img {
+    width: 100%;
+}
+
 a {
     color: #80C0F0;
     text-decoration: none;
