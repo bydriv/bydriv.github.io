@@ -2,7 +2,7 @@
 
 - [Agent's Log: Zero](zero)
 - [Agent's Log: First Mission](first-mission)
-- [Agent's Log: Violet's Garden](violet-garden)
+- [Agent's Log: Violet's Garden](violet-garden) <sup>[[PDF]](violet-garden.pdf)</sup>
 - [Agent's Log: Emergence](emergence)
 - [Agent's Log: Can Machines Think?](can-machines-think)
 - [Agent's Log: Area 51](area-51)
