@@ -12,7 +12,7 @@ all: violet-garden.pdf
 %.pdf: %.tex %/index.tex
 	lualatex $<
 	lualatex $<
-	pdfpun $@ --outfile $@ --nup 2x1
+	#pdfpun $@ --outfile $@ --nup 2x1
 	gs -o tmp.pdf -dNoOutputFonts -sDEVICE=pdfwrite $@
 	mv tmp.pdf $@
 
