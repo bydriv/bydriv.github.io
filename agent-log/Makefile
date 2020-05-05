@@ -19,6 +19,6 @@ all: zero.pdf first-mission.pdf violet-garden.pdf
 %/index.tex: %/index.md
 	tail -n +5 $< \
 		| perl -pe 's|!\[\]\((.*?)\)|\\includepdf{$(dir $@)\1}|g' \
-		| perl -pe 's/！？/\\rensuji{!?}/g' \
+		| perl -pe 's/！？/\\makebox[1\\zw][l]{\\rensuji{!?}}/g' \
 		| perl -pe 's/！　/！/g' \
 		| perl -pe 's/？　/？/g' > $@
