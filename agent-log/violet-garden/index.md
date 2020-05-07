@@ -2,6 +2,8 @@
 
 [Agent's Log](/agent-log) / [Violet's Garden](/agent-log/violet-garden) <sup>[[PDF]](/agent-log/violet-garden.pdf)</sup>
 
+![](front-cover.png)
+
 《諜報日誌、１０２．２５５。ぼくはイギリス、エディンバラを訪れている。今回のぼく
 の任務はここにあるヴィオレットの園と呼ばれる館で潜入捜査をすることだ……》
 
