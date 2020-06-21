@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    background-image: url("/etc/site/desktop.png");
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+div.navigation {
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+a.section {
+    display: inline-block;
+    width: 40px;
+    color: rgba(255, 255, 255, 1);
+    font-size: 28px;
+    text-align: center;
+    text-decoration: none;
+}
+
+a.section:hover {
+    color: rgba(0, 0, 0, 1);
+    background-color: rgba(255, 255, 255, 1);
+}
+
+article {
+    background-clip: padding-box;
+    background-color: rgba(255, 255, 255, 0.75);
+    overflow: hidden;
+    border-bottom: solid 28px rgba(0, 0, 0, 0.75);
+}
+
+h1 {
+    margin: 16px;
+    font-size: 28px;
+}
+
+h2 {
+    margin: 16px;
+    font-size: 20px;
+}
+
+h1::before {
+    content: "# ";
+}
+
+h2::before {
+    content: "## ";
+}
+
+img {
+    display: block;
+    margin: 16px auto;
+    max-width: 100vw;
+    max-height: 100vh;
+}

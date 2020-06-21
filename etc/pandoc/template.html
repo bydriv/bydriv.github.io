@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/etc/site/style.css">
+  <title>$title$</title>
+  <meta property="og:url" content="$url$" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="$title$" />
+  <meta property="og:description" content="$description$" />
+  <meta property="og:site_name" content="bydriv.github.io" />
+  <meta property="og:image" content="$thumbnail$" />
+  <meta name="twitter:card" content="summary_large_image" />
+</head>
+
+<div class="navigation"><!--
+--><a class="section" href="/">&#x221A;</a><!--
+--><a class="section" href="/illustration">&#x1F3A8;</a><!--
+--><a class="section" href="/photo">&#x1F4F7;</a><!--
+--></div>
+
+$if(body)$
+<article>
+  $body$
+</article>
+$endif$
