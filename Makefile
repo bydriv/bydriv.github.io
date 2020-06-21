@@ -8,7 +8,9 @@ PANDOC_TEMPLATE := etc/pandoc/template.html
 all: \
 	index.html \
 	illustration/index.html \
-	photo/index.html
+	photo/index.html \
+	world/index.html \
+	$(patsubst %.md,%.html,$(wildcard world/*/index.md))
 
 %.html: %.md $(PANDOC_TEMPLATE)
 	$(PANDOC) \
