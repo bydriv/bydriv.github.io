@@ -2,7 +2,7 @@
 url: https://bydriv.github.io/illustration/
 title: bydriv.github.io
 description: Illustration
-thumbnail: https://bydriv.github.io/illustration/thumbnail.png
+thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 ---
 
 # Illustration
