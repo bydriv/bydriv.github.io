@@ -23,11 +23,12 @@ a.section {
 a.section:hover {
     color: rgba(0, 0, 0, 1);
     background-color: rgba(255, 255, 255, 1);
+    text-decoration: none;
 }
 
 article {
     background-clip: padding-box;
-    background-color: rgba(255, 255, 255, 0.75);
+    background-color: rgba(255, 255, 255, 0.875);
     overflow: hidden;
     border-bottom: solid 28px rgba(0, 0, 0, 0.75);
 }
@@ -52,6 +53,8 @@ h2::before {
 
 p {
     margin: 16px;
+    font-size: 16px;
+    text-align: justify;
 }
 
 img {
