@@ -1,5 +1,5 @@
 ---
-url: https://bydriv.github.io/world/lemma
+url: https://bydriv.github.io/world/lemma/
 title: bydriv.github.io
 description:
   レマはテーリの子孫。タイムマシンで 2070 年代にやってきて、
