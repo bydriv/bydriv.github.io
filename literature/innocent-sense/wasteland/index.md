@@ -1,9 +1,15 @@
 ---
 url: https://bydriv.github.io/literature/innocent-sense/wasteland/
-title: イノセント・センス
+title: イノセント・センス　ウェイストランド
 series-title: イノセント・センス
 episode-title: ウェイストランド
-description: ウェイストランド
+description:
+  　日進月歩の科学技術とは裏腹に、犯罪や汚職が蔓延り格差は広がり、世界は後退する。
+  極悪企業や犯罪組織がのさばり政府が市民を監視して通信を検閲し、賄賂が公権力を腐敗
+  させ司法は機能せず、自救行為が容認され、自警団による私刑が罷り通る。法律は脆弱性
+  だらけで悪人が得をし善人が損をする。優秀な人間ほど早々に世界を変えることを諦めて
+  搾取する側に回り、未来を担う子供たちさえ、それが合理的だと考えている。未来は現在
+  よりも、現在は過去よりも進歩しているという幻想は、もはや抱けない。
 thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 ---
 
