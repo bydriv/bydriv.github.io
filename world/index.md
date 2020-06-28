@@ -7,4 +7,4 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 
 # World
 
-- [Lemma Rivers](lemma)
+- [センス](sense)
