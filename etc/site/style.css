@@ -1,6 +1,17 @@
+@media (orientation: landscape) {
+    body {
+        background-image: url("/etc/site/landscape.png");
+    }
+}
+
+@media (orientation: portrait) {
+    body {
+        background-image: url("/etc/site/portrait.png");
+    }
+}
+
 body {
     margin: 0;
-    background-image: url("/etc/site/desktop.png");
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;
