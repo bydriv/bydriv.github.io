@@ -7,4 +7,5 @@ thumbnail: https://bydriv.github.io/literature/thumbnail.png
 
 # Literature
 
-- [イノセント・センス　ウェイストランド](innocent-sense/wasteland) [[PDF](innocent-sense/wasteland.pdf)]
+- [イノセント・センス](innocent-sense)
+    - [イノセント・センス　ウェイストランド](innocent-sense/wasteland) [[PDF](innocent-sense/wasteland.pdf)]

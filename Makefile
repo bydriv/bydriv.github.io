@@ -19,6 +19,7 @@ all: \
 	illustration/index.html \
 	photo/index.html \
 	literature/index.html \
+	$(patsubst %.md,%.html,$(wildcard literature/*/index.md)) \
 	$(patsubst %.md,%.html,$(wildcard literature/*/*/index.md)) \
 	$(patsubst %/index.md,%.pdf,$(wildcard literature/*/*/index.md)) \
 	world/index.html \
