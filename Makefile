@@ -17,13 +17,7 @@ TMPDIR := $(shell mktemp -d)
 all: \
 	index.html \
 	illustration/index.html \
-	photo/index.html \
-	literature/index.html \
-	$(patsubst %.md,%.html,$(wildcard literature/*/index.md)) \
-	$(patsubst %.md,%.html,$(wildcard literature/*/*/index.md)) \
-	$(patsubst %/index.md,%.pdf,$(wildcard literature/*/*/index.md)) \
-	world/index.html \
-	$(patsubst %.md,%.html,$(wildcard world/*/index.md))
+	photo/index.html
 
 %.html: %.md $(DEFAULT_TEMPLATE_HTML)
 	$(PANDOC) \
