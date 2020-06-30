@@ -2,7 +2,7 @@
 url: https://bydriv.github.io/literature/
 title: bydriv.github.io
 description: Literature
-thumbnail: https://bydriv.github.io/literature/thumbnail.png
+thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 ---
 
 # Literature

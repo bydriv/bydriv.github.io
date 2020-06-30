@@ -2,7 +2,7 @@
 url: https://bydriv.github.io/literature/nsv/nsv-2076-07-01/
 title: bydriv.github.io
 description: NSV-2076-07-01
-thumbnail: https://bydriv.github.io/literature/thumbnail.png
+thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 ---
 
 # NSV-2076-07-01
