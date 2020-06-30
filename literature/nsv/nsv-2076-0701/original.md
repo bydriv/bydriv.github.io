@@ -1,11 +1,11 @@
 ---
-url: https://bydriv.github.io/literature/nsv/nsv-2076-07-01/original.html
+url: https://bydriv.github.io/literature/nsv/nsv-2076-0701/original.html
 title: bydriv.github.io
-description: NSV-2076-07-01
+description: NSV-2076-0701
 thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 ---
 
-# NSV-2076-07-01
+# NSV-2076-0701
 
 - **Title**: A Vulnerability of Remote Code Execution on the Security Hexapod
 - **Reported Date**: July 1, 2076
