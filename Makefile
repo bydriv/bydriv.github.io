@@ -8,7 +8,9 @@ PANDOC_OPTIONS_HTML :=
 all: \
 	index.html \
 	illustration/index.html \
-	photo/index.html
+	photo/index.html \
+	blog/index.html \
+	$(patsubst %.md,%.html,$(wildcard blog/*/index.md))
 
 %.html: %.md $(DEFAULT_TEMPLATE_HTML)
 	$(PANDOC) \
