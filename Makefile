@@ -9,6 +9,9 @@ all: \
 	index.html \
 	illustration/index.html \
 	photo/index.html \
+	literature/index.html \
+	$(patsubst %.md,%.html,$(wildcard literature/*/index.md)) \
+	$(patsubst %.md,%.html,$(wildcard literature/*/*/*.md)) \
 	blog/index.html \
 	$(patsubst %.md,%.html,$(wildcard blog/*/index.md))
 
