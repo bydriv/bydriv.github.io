@@ -1,14 +1,14 @@
 ---
-url: https://bydriv.github.io/literature/nsv/nsv-2076-5368/
+url: https://bydriv.github.io/literature/nsv/nsv-2075-5344/
 title: bydriv.github.io
-description: NSV-2076-5368
+description: NSV-2075-5344
 thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 ---
 
-# NSV-2076-5368
+# NSV-2075-5344
 
 - **表題**: セキュリティ・ヘキサポッドにおけるリモートコード実行の脆弱性
-- **報告年月日**: 2076年7月1日
+- **報告年月日**: 2075年7月1日
 - **報告者**: ミナガワ・テーリ
 - **製品**: セキュリティ・ヘキサポッド (シンガポール・ロボティクス)
 - **バージョン**: ヘキサポッド・ファームウェア 1.71, 1.72, 1.74, 1.75, 1.76

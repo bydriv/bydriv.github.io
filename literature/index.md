@@ -10,4 +10,4 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 - [テーリの諜報日誌](agent-log)
     - [対決！　ヘキサポッド](agent-log/vs-hexapod)
 - [NSV: No Such Vulnerabilities](nsv)
-    - [NSV-2076-5368](nsv/nsv-2076-5368)
+    - [NSV-2075-5344](nsv/nsv-2075-5344)
