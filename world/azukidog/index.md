@@ -13,7 +13,7 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 初出は[ウェイストランド](/literature/innocent-sense/wasteland)。
 
 ホットドッグにバターと餡子を合わせたもの。
-ソーセージの塩気と餡子の甘さが絶妙に相互作用し、美味。
+ソーセージの塩気と餡子の甘味が絶妙に相互作用し、美味。
 
 チーズも合わせるとチーズアズキドッグとなる(これを単にアズキドッグと呼ぶこともある)。
 
