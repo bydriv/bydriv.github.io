@@ -7,8 +7,6 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 
 # NSV-2076-0701
 
-*これは機械訳文です。[原文](original.html)も参照してください。*
-
 - **表題**: セキュリティ・ヘキサポッドにおけるリモートコード実行の脆弱性
 - **報告年月日**: 2076年7月1日
 - **報告者**: ミナガワ・テーリ
