@@ -7,4 +7,10 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 
 # World
 
+## 能力
+
+- [センス](sense)
+
+## 組織
+
 - [シンガポール・ロボティクス](singapore-robotics)
