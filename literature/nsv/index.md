@@ -7,4 +7,4 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 
 # NSV: No Such Vulnerabilities
 
-- [NSV-2076-0701](nsv-2076-0701)
+- [NSV-2076-5368](nsv-2076-5368)

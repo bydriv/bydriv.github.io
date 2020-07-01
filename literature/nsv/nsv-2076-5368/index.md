@@ -1,11 +1,11 @@
 ---
-url: https://bydriv.github.io/literature/nsv/nsv-2076-0701/
+url: https://bydriv.github.io/literature/nsv/nsv-2076-5368/
 title: bydriv.github.io
-description: NSV-2076-0701
+description: NSV-2076-5368
 thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 ---
 
-# NSV-2076-0701
+# NSV-2076-5368
 
 - **表題**: セキュリティ・ヘキサポッドにおけるリモートコード実行の脆弱性
 - **報告年月日**: 2076年7月1日
