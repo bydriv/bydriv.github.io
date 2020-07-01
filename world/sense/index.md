@@ -5,10 +5,12 @@ description: センス
 thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 ---
 
+# センス
+
 [#ウェイストランド](/literature/innocent-sense/wasteland)
 
 **センス** (*Sense*) はテーリの特殊能力。
-初出は [ウェイストランド](/literature/innocent-sense/wasteland)。
+初出は[ウェイストランド](/literature/innocent-sense/wasteland)。
 
 本人でさえ他者には説明できない水準にまで昇華された達悦した技能のこと。
 作中では……
