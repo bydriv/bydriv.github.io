@@ -5,6 +5,8 @@ description: センス
 thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 ---
 
+# センス
+
 [#ウェイストランド](/literature/innocent-sense/wasteland)
 
 **センス** (*Sense*) はテーリの特殊能力。
