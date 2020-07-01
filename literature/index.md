@@ -8,4 +8,4 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 # Literature
 
 - [NSV: No Such Vulnerabilities](nsv)
-    - [NSV-2076-0701](nsv/nsv-2076-0701)
+    - [NSV-2076-5368](nsv/nsv-2076-5368)
