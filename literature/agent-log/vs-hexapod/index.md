@@ -1,5 +1,5 @@
 ---
-url: https://bydriv.github.io/literature/agent-log/vs-hexapod
+url: https://bydriv.github.io/literature/agent-log/vs-hexapod/
 title: bydriv.github.io
 description: "テーリの諜報日誌: 対決！　ヘキサポッド"
 thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
