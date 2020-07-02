@@ -7,6 +7,10 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 
 # World
 
+## 人物
+
+- [ミナガワ・テーリ](teiri)
+
 ## 能力
 
 - [センス](sense)
