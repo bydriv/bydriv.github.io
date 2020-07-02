@@ -22,3 +22,7 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 ## 文化
 
 - [Kludgers' Time](kludger-time)
+
+## ガジェット
+
+- [スマートカード](smartcard)
