@@ -21,25 +21,99 @@ K.T. 105.181 というふうに K.T. をつけるのがフォーマルな表現�
 
 以下によく使う Kludgers' Time を示します。
 
-## K.T. 106 / 西暦 2076 年
+## K.T. 50 / 西暦 2020 年
 
+<div class="paragraph">
+<details>
+<summary>K.T. 50</summary>
 <div class="kt-year-calendar">
-<div class="kt-month-calendar" data-year="2076" data-month="1"></div>
-<div class="kt-month-calendar" data-year="2076" data-month="2"></div>
-<div class="kt-month-calendar" data-year="2076" data-month="3"></div>
-<div class="kt-month-calendar" data-year="2076" data-month="4"></div>
-<div class="kt-month-calendar" data-year="2076" data-month="5"></div>
-<div class="kt-month-calendar" data-year="2076" data-month="6"></div>
-<div class="kt-month-calendar" data-year="2076" data-month="7"></div>
-<div class="kt-month-calendar" data-year="2076" data-month="8"></div>
-<div class="kt-month-calendar" data-year="2076" data-month="9"></div>
-<div class="kt-month-calendar" data-year="2076" data-month="10"></div>
-<div class="kt-month-calendar" data-year="2076" data-month="11"></div>
-<div class="kt-month-calendar" data-year="2076" data-month="12"></div>
+<div class="kt-month-calendar" data-year="2020" data-month="1"></div>
+<div class="kt-month-calendar" data-year="2020" data-month="2"></div>
+<div class="kt-month-calendar" data-year="2020" data-month="3"></div>
+<div class="kt-month-calendar" data-year="2020" data-month="4"></div>
+<div class="kt-month-calendar" data-year="2020" data-month="5"></div>
+<div class="kt-month-calendar" data-year="2020" data-month="6"></div>
+<div class="kt-month-calendar" data-year="2020" data-month="7"></div>
+<div class="kt-month-calendar" data-year="2020" data-month="8"></div>
+<div class="kt-month-calendar" data-year="2020" data-month="9"></div>
+<div class="kt-month-calendar" data-year="2020" data-month="10"></div>
+<div class="kt-month-calendar" data-year="2020" data-month="11"></div>
+<div class="kt-month-calendar" data-year="2020" data-month="12"></div>
+</div>
+</details>
+</div>
+
+## K.T. 102 / 西暦 2072 年
+
+<div class="paragraph">
+<details>
+<summary>K.T. 102</summary>
+<div class="kt-year-calendar">
+<div class="kt-month-calendar" data-year="2072" data-month="1"></div>
+<div class="kt-month-calendar" data-year="2072" data-month="2"></div>
+<div class="kt-month-calendar" data-year="2072" data-month="3"></div>
+<div class="kt-month-calendar" data-year="2072" data-month="4"></div>
+<div class="kt-month-calendar" data-year="2072" data-month="5"></div>
+<div class="kt-month-calendar" data-year="2072" data-month="6"></div>
+<div class="kt-month-calendar" data-year="2072" data-month="7"></div>
+<div class="kt-month-calendar" data-year="2072" data-month="8"></div>
+<div class="kt-month-calendar" data-year="2072" data-month="9"></div>
+<div class="kt-month-calendar" data-year="2072" data-month="10"></div>
+<div class="kt-month-calendar" data-year="2072" data-month="11"></div>
+<div class="kt-month-calendar" data-year="2072" data-month="12"></div>
+</div>
+</details>
+</div>
+
+## K.T. 103 / 西暦 2073 年
+
+<div class="paragraph">
+<details>
+<summary>K.T. 103</summary>
+<div class="kt-year-calendar">
+<div class="kt-month-calendar" data-year="2073" data-month="1"></div>
+<div class="kt-month-calendar" data-year="2073" data-month="2"></div>
+<div class="kt-month-calendar" data-year="2073" data-month="3"></div>
+<div class="kt-month-calendar" data-year="2073" data-month="4"></div>
+<div class="kt-month-calendar" data-year="2073" data-month="5"></div>
+<div class="kt-month-calendar" data-year="2073" data-month="6"></div>
+<div class="kt-month-calendar" data-year="2073" data-month="7"></div>
+<div class="kt-month-calendar" data-year="2073" data-month="8"></div>
+<div class="kt-month-calendar" data-year="2073" data-month="9"></div>
+<div class="kt-month-calendar" data-year="2073" data-month="10"></div>
+<div class="kt-month-calendar" data-year="2073" data-month="11"></div>
+<div class="kt-month-calendar" data-year="2073" data-month="12"></div>
+</div>
+</details>
+</div>
+
+## K.T. 104 / 西暦 2074 年
+
+<div class="paragraph">
+<details>
+<summary>K.T. 104</summary>
+<div class="kt-year-calendar">
+<div class="kt-month-calendar" data-year="2074" data-month="1"></div>
+<div class="kt-month-calendar" data-year="2074" data-month="2"></div>
+<div class="kt-month-calendar" data-year="2074" data-month="3"></div>
+<div class="kt-month-calendar" data-year="2074" data-month="4"></div>
+<div class="kt-month-calendar" data-year="2074" data-month="5"></div>
+<div class="kt-month-calendar" data-year="2074" data-month="6"></div>
+<div class="kt-month-calendar" data-year="2074" data-month="7"></div>
+<div class="kt-month-calendar" data-year="2074" data-month="8"></div>
+<div class="kt-month-calendar" data-year="2074" data-month="9"></div>
+<div class="kt-month-calendar" data-year="2074" data-month="10"></div>
+<div class="kt-month-calendar" data-year="2074" data-month="11"></div>
+<div class="kt-month-calendar" data-year="2074" data-month="12"></div>
+</div>
+</details>
 </div>
 
 ## K.T. 105 / 西暦 2075 年
 
+<div class="paragraph">
+<details>
+<summary>K.T. 105</summary>
 <div class="kt-year-calendar">
 <div class="kt-month-calendar" data-year="2075" data-month="1"></div>
 <div class="kt-month-calendar" data-year="2075" data-month="2"></div>
@@ -54,20 +128,49 @@ K.T. 105.181 というふうに K.T. をつけるのがフォーマルな表現�
 <div class="kt-month-calendar" data-year="2075" data-month="11"></div>
 <div class="kt-month-calendar" data-year="2075" data-month="12"></div>
 </div>
+</details>
+</div>
 
-## K.T. 50 / 西暦 2020 年
+## K.T. 106 / 西暦 2076 年
 
+<div class="paragraph">
+<details>
+<summary>K.T. 106</summary>
 <div class="kt-year-calendar">
-<div class="kt-month-calendar" data-year="2020" data-month="1"></div>
-<div class="kt-month-calendar" data-year="2020" data-month="2"></div>
-<div class="kt-month-calendar" data-year="2020" data-month="3"></div>
-<div class="kt-month-calendar" data-year="2020" data-month="4"></div>
-<div class="kt-month-calendar" data-year="2020" data-month="5"></div>
-<div class="kt-month-calendar" data-year="2020" data-month="6"></div>
-<div class="kt-month-calendar" data-year="2020" data-month="7"></div>
-<div class="kt-month-calendar" data-year="2020" data-month="8"></div>
-<div class="kt-month-calendar" data-year="2020" data-month="9"></div>
-<div class="kt-month-calendar" data-year="2020" data-month="10"></div>
-<div class="kt-month-calendar" data-year="2020" data-month="11"></div>
-<div class="kt-month-calendar" data-year="2020" data-month="12"></div>
+<div class="kt-month-calendar" data-year="2076" data-month="1"></div>
+<div class="kt-month-calendar" data-year="2076" data-month="2"></div>
+<div class="kt-month-calendar" data-year="2076" data-month="3"></div>
+<div class="kt-month-calendar" data-year="2076" data-month="4"></div>
+<div class="kt-month-calendar" data-year="2076" data-month="5"></div>
+<div class="kt-month-calendar" data-year="2076" data-month="6"></div>
+<div class="kt-month-calendar" data-year="2076" data-month="7"></div>
+<div class="kt-month-calendar" data-year="2076" data-month="8"></div>
+<div class="kt-month-calendar" data-year="2076" data-month="9"></div>
+<div class="kt-month-calendar" data-year="2076" data-month="10"></div>
+<div class="kt-month-calendar" data-year="2076" data-month="11"></div>
+<div class="kt-month-calendar" data-year="2076" data-month="12"></div>
+</div>
+</details>
+</div>
+
+## K.T. 107 / 西暦 2077 年
+
+<div class="paragraph">
+<details>
+<summary>K.T. 107</summary>
+<div class="kt-year-calendar">
+<div class="kt-month-calendar" data-year="2077" data-month="1"></div>
+<div class="kt-month-calendar" data-year="2077" data-month="2"></div>
+<div class="kt-month-calendar" data-year="2077" data-month="3"></div>
+<div class="kt-month-calendar" data-year="2077" data-month="4"></div>
+<div class="kt-month-calendar" data-year="2077" data-month="5"></div>
+<div class="kt-month-calendar" data-year="2077" data-month="6"></div>
+<div class="kt-month-calendar" data-year="2077" data-month="7"></div>
+<div class="kt-month-calendar" data-year="2077" data-month="8"></div>
+<div class="kt-month-calendar" data-year="2077" data-month="9"></div>
+<div class="kt-month-calendar" data-year="2077" data-month="10"></div>
+<div class="kt-month-calendar" data-year="2077" data-month="11"></div>
+<div class="kt-month-calendar" data-year="2077" data-month="12"></div>
+</div>
+</details>
 </div>
