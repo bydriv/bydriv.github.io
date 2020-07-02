@@ -7,4 +7,10 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 
 # テーリの諜報日誌
 
+- [ゼロ](zero)
+- [ファースト・ミッション](first-mission)
+- [ヴィオレットの園](violet-garden)
 - [対決！　ヘキサポッド](vs-hexapod)
+- [キャン・マシンズ・シンク？](can-machines-think)
+- [エリア 51](area-51)
+- [シミアン・アーミー](simian-army)
