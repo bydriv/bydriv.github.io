@@ -67,7 +67,7 @@ window.addEventListener("load", function () {
         if (Boolean(container.dataset.today)) {
             var date = new Date(Date.now());
             var year = date.getFullYear();
-            var month = date.getMonth();
+            var month = date.getMonth() + 1;
             var day = date.getDate();
         } else {
             var year = Number(container.dataset.year);
