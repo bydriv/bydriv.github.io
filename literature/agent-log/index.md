@@ -10,6 +10,7 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 - [ゼロ](zero)
 - [ファースト・ミッション](first-mission)
 - [ヴィオレットの園](violet-garden)
+- [創発](emergence)
 - [対決！　ヘキサポッド](vs-hexapod)
 - [キャン・マシンズ・シンク？](can-machines-think)
 - [エリア 51](area-51)

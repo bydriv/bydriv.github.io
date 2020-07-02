@@ -13,6 +13,7 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
     - [ゼロ](agent-log/zero)
     - [ファースト・ミッション](agent-log/first-mission)
     - [ヴィオレットの園](agent-log/violet-garden)
+    - [創発](agent-log/emergence)
     - [対決！　ヘキサポッド](agent-log/vs-hexapod)
     - [キャン・マシンズ・シンク？](agent-log/can-machines-think)
     - [エリア 51](agent-log/area-51)
