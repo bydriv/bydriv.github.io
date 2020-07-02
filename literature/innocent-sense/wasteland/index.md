@@ -1,6 +1,6 @@
 ---
 url: https://bydriv.github.io/literature/innocent-sense/wasteland/
-title: イノセント・センス
+title: bydriv.github.io
 description: ウェイストランド
 thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 ---
