@@ -85,3 +85,32 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+div.kt-year-calendar {
+    text-align: justify;
+}
+
+div.kt-month-calendar {
+    display: inline-block;
+    margin: 16px;
+    width: 280px;
+    vertical-align: top;
+}
+
+div.kt-month-calendar > div.header {
+    height: 40px;
+    text-align: center;
+    vertical-align: top;
+}
+
+div.kt-month-calendar > div.week {
+    height: 40px;
+}
+
+div.kt-month-calendar > div.week > div.day {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    vertical-align: top;
+}
