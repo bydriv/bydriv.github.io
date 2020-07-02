@@ -127,12 +127,18 @@ div.kt-month-calendar > div.week {
     height: 40px;
 }
 
-div.kt-month-calendar > div.week > div.day {
+div.kt-month-calendar > div.week > div.day,
+div.kt-month-calendar > div.week > div.today {
     display: inline-block;
     width: 40px;
-    height: 40px;
+    /*height: 40px;*/
     text-align: center;
     vertical-align: top;
+}
+
+div.kt-month-calendar > div.week > div.today {
+    color: rgba(0, 0, 0, 1);
+    background-color: rgba(255, 0, 255, 1);
 }
 
 div#holoio {

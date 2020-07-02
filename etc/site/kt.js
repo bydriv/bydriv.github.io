@@ -1,6 +1,10 @@
 var KT = {
-    KT: function KT(year, month, day) {
-        var date = new Date(Date.UTC(year, month - 1, day));
+    KT: function KT(timestamp) {
+        var date = new Date(timestamp);
+        var year = date.getFullYear();
+        var month = date.getMonth();
+        var day = date.getDate();
+
         var ktDay = 0;
 
         for (var i = 0; i < 12; ++i) {
@@ -23,7 +27,7 @@ var KT = {
         var days = new Date(Date.UTC(year, month, 0)).getDate();
 
         for (var i = 0; i < days; ++i)
-            f(KT.KT(year, month, i + 1));
+            f(KT.KT(Date.UTC(year, month - 1, i + 1)));
     },
     monthCalendar: function monthCalendar(year, month, f) {
         var week = [];
@@ -59,8 +63,20 @@ window.addEventListener("load", function () {
 
     for (var i = 0; i < containers.length; ++i) {
         var container = containers[i];
-        var year = Number(container.dataset.year);
-        var month = Number(container.dataset.month);
+
+        if (Boolean(container.dataset.today)) {
+            var date = new Date(Date.now());
+            var year = date.getFullYear();
+            var month = date.getMonth();
+            var day = date.getDate();
+        } else {
+            var year = Number(container.dataset.year);
+            var month = Number(container.dataset.month);
+
+            var day = container.dataset.day == null
+                ? null
+                : Number(container.dataset.day);
+        }
 
         var monthHeader = document.createElement("div");
         monthHeader.setAttribute("class", "header");
@@ -146,17 +162,26 @@ window.addEventListener("load", function () {
 
         container.appendChild(weekHeader);
 
+        var d = 0;
+
         KT.monthCalendar(year, month, function (week) {
             var weekContainer = document.createElement("div");
             weekContainer.setAttribute("class", "week");
 
             for (var j = 0; j < week.length; ++j) {
                 var dayContainer = document.createElement("div");
-                dayContainer.setAttribute("class", "day");
 
                 if (week[j] == null) {
-                    //dayContainer.innerText = "NUL";
+                    dayContainer.setAttribute("class", "day");
                 } else {
+                    ++d;
+
+                    if (day != null && d === day) {
+                        dayContainer.setAttribute("class", "today");
+                    } else {
+                        dayContainer.setAttribute("class", "day");
+                    }
+
                     dayContainer.innerText = week[j].day.toString();
                 }
 
