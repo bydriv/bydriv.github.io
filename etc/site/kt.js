@@ -2,7 +2,7 @@ var KT = {
     KT: function KT(timestamp) {
         var date = new Date(timestamp);
         var year = date.getFullYear();
-        var month = date.getMonth();
+        var month = date.getMonth() + 1;
         var day = date.getDate();
 
         var ktDay = 0;
