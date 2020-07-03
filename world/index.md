@@ -10,6 +10,8 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 ## 人物
 
 - [ミナガワ・テーリ](teiri)
+- [レミリー・リバーズ](lemily)
+- [レマ・リバーズ](lemma)
 
 ## 能力
 
