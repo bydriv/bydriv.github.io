@@ -15,6 +15,7 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
     - [ヴィオレットの園](agent-log/violet-garden)
     - [創発](agent-log/emergence)
     - [対決！　ヘキサポッド](agent-log/vs-hexapod)
+    - [敬虔な優生学者](agent-log/reverent-eugenist)
     - [キャン・マシンズ・シンク？](agent-log/can-machines-think)
     - [エリア 51](agent-log/area-51)
     - [シミアン・アーミー](agent-log/simian-army)
