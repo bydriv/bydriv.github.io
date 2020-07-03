@@ -167,3 +167,7 @@ div#holoio:not(:target) {
     left: 0;
     opacity: 0;
 }
+
+div.blank {
+    height: 16px;
+}
