@@ -23,6 +23,7 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 
 ## 組織
 
+- [仙丹製薬](xiandan-zhiyao)
 - [シンガポール・ロボティクス](singapore-robotics)
 
 ## 文化
