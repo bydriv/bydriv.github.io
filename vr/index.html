@@ -7,14 +7,20 @@
   </head>
   <body>
     <a-scene>
+      <a-assets>
+        <a-asset-item id="teiri_petan" src="teiri_petan.gltf"></a-asset-item>
+      </a-assets>
+      <a-gltf-model src="#teiri_petan" position="0 1 0"></a-gltf-model>
       <a-sky color="#DDDDDD"></a-sky>
+      <!--
       <a-box
          color="#0095DD"
          position="0 1 0"
          rotation="20 40 0">
       </a-box>
+      -->
       <a-camera
-         position="0 1 4"
+         position="0 3 6"
          cursor-visible="true"
          cursor-scale="2"
          cursor-color="#0095DD"
