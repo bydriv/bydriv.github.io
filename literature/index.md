@@ -25,5 +25,6 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
     - [心の在処](rcs/pilot)
 - [セレクティヴ](selective)
 - [セカンドアース・パニック！](secondearth-panic)
+- [孤独な計算機](lonely-computer)
 - [NSV: No Such Vulnerabilities](nsv)
     - [NSV-2075-5344](nsv/nsv-2075-5344)
