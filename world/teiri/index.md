@@ -19,7 +19,7 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 
 ## 性格
 
-正義感が強く、助けを求めるがいれば手を差し伸べずにはいられない性格。
+正義感が強く、助けを求める者がいれば手を差し伸べずにはいられない性格。
 
 『[ウェイストランド](/literature/innocent-sense/wasteland)』では彼女がもともと
 正義感の強い性格だったことが描かれている。しかし一方で利己主義・合理主義的な一面もあり、
