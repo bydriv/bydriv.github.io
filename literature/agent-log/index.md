@@ -8,7 +8,6 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 # テーリの諜報日誌
 
 - [ゼロ](zero)
-- [死の商人](merchant-of-death)
 - [ファースト・ミッション](first-mission)
 - [ヴィオレットの園](violet-garden)
 - [創発](emergence)
