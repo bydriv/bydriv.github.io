@@ -7,6 +7,8 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 
 # セカンドアース・パニック！
 
+[#孤独な計算機](/comic/lonely-computer)
+
 ## 第一章: 複製人間
 
 　西暦51世紀、人々は地球によく似た惑星セカンドアースに移住を始めていた。氷河期が

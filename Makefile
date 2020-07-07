@@ -7,6 +7,8 @@ PANDOC_OPTIONS_HTML :=
 .PHONY: all
 all: \
 	index.html \
+	blog/index.html \
+	$(patsubst %.md,%.html,$(wildcard blog/*/index.md)) \
 	illustration/index.html \
 	photo/index.html \
 	literature/index.html \
@@ -14,8 +16,8 @@ all: \
 	$(patsubst %.md,%.html,$(wildcard literature/*/*/*.md)) \
 	world/index.html \
 	$(patsubst %.md,%.html,$(wildcard world/*/index.md)) \
-	blog/index.html \
-	$(patsubst %.md,%.html,$(wildcard blog/*/index.md))
+	comic/index.html \
+	$(patsubst %.md,%.html,$(wildcard comic/*/index.md))
 
 %.html: %.md $(DEFAULT_TEMPLATE_HTML)
 	$(PANDOC) \
