@@ -11,6 +11,7 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
     - [ウェイストランド](innocent-sense/wasteland)
 - [テーリの諜報日誌](agent-log)
     - [ゼロ](agent-log/zero)
+    - [死の商人](agent-log/merchant-of-death)
     - [ファースト・ミッション](agent-log/first-mission)
     - [ヴィオレットの園](agent-log/violet-garden)
     - [創発](agent-log/emergence)
