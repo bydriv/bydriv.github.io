@@ -7,4 +7,4 @@ thumbnail: https://bydriv.github.io/literature/thumbnail.png
 
 # Comic
 
-- [Lonely Computer](lonely-computer)
+- [孤独な計算機](lonely-computer)
