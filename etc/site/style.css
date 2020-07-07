@@ -171,3 +171,8 @@ div#holoio:not(:target) {
 div.blank {
     height: 16px;
 }
+
+div.justify {
+    text-align: justify;
+    text-align-last: justify;
+}
