@@ -23,5 +23,6 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 - [RCS: 逆犯罪課](rcs)
     - [心の在処](rcs/pilot)
 - [セレクティヴ](selective)
+- [セカンドアース・パニック！](secondearth-panic)
 - [NSV: No Such Vulnerabilities](nsv)
     - [NSV-2075-5344](nsv/nsv-2075-5344)
