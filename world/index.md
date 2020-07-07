@@ -25,6 +25,7 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 
 - [仙丹製薬](xiandan-zhiyao)
 - [シンガポール・ロボティクス](singapore-robotics)
+- [ホワイトアース・ジャーナル](whiteearth-journal)
 
 ## 文化
 
