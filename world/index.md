@@ -12,6 +12,7 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 - [ミナガワ・テーリ](teiri)
 - [レミリー・リバーズ](lemily)
 - [レマ・リバーズ](lemma)
+- [ディーサ・ヨーヌドフテル](disa)
 
 ## 能力
 
