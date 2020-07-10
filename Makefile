@@ -17,7 +17,9 @@ all: \
 	world/index.html \
 	$(patsubst %.md,%.html,$(wildcard world/*/index.md)) \
 	comic/index.html \
-	$(patsubst %.md,%.html,$(wildcard comic/*/index.md))
+	$(patsubst %.md,%.html,$(wildcard comic/*/index.md)) \
+	misc/index.html \
+	$(patsubst %.md,%.html,$(wildcard misc/*/index.md))
 
 %.html: %.md $(DEFAULT_TEMPLATE_HTML)
 	$(PANDOC) \
