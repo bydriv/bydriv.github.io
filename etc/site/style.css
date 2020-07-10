@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "Kludge";
+    src: url("/misc/kludge/kludge.otf") format("opentype");
+}
+
 @media (orientation: landscape) {
     body {
         background-image: url("/etc/site/landscape.png");
@@ -175,4 +180,8 @@ div.blank {
 div.justify {
     text-align: justify;
     text-align-last: justify;
+}
+
+span.kludge {
+    font-family: "Kludge";
 }

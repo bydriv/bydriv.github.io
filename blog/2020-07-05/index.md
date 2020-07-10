@@ -1,5 +1,5 @@
 ---
-url: https://bydriv.github.io/blog/2020-06-30/
+url: https://bydriv.github.io/blog/2020-07-05/
 title: bydriv.github.io
 description: A-Frame & WebVR 周辺について
 thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
