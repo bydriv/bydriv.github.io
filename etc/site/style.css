@@ -24,7 +24,7 @@ body {
 }
 
 div.navigation {
-    height: 40px;
+    /*height: 40px;*/
     background-color: rgba(0, 0, 0, 0.75);
     text-align: justify;
     text-align-last: justify;
@@ -184,4 +184,10 @@ div.justify {
 
 span.kludge {
     font-family: "Kludge";
+}
+
+div.rest {
+    margin: 48px;
+    font-size: 16px;
+    text-align: center;
 }
