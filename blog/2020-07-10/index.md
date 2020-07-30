@@ -2,7 +2,7 @@
 url: https://bydriv.github.io/blog/2020-07-10/
 title: bydriv.github.io
 description: Kludge フォント 0.1.0 をリリースしました
-thumbnail: https://bydriv.github.io/blog/2020-07-10//thumbnail.png
+thumbnail: https://bydriv.github.io/blog/2020-07-10/thumbnail.png
 ---
 
 # Kludge フォント 0.1.0 をリリースしました
