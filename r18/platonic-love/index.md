@@ -1,5 +1,5 @@
 ---
-url: https://bydriv.github.io/r18/teiri-yusayusa/
+url: https://bydriv.github.io/r18/platonic-love/
 title: bydriv.github.io
 description: プラトニック・ラヴ
 thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
