@@ -8,3 +8,4 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 # R18
 
 - [プラトニック・ラヴ](platonic-love)
+- [プラトニック・ラヴ II](platonic-love-ii)
