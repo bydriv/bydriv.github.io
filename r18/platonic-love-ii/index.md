@@ -169,4 +169,4 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 
 　彼女は余韻に浸っていた。
 
-「ぼく、きみとなかよしできてうれしかったっ♡　またしようねっ♡」
+「ぼく、きみとなかよしできてうれしかったっ♡　またなかよし、しようねっ♡」
