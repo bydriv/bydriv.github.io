@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/etc/site/style.css">
+  <title>bydriv.github.io</title>
+  <meta property="og:url" content="https://bydriv.github.io/blog/2020-11-28/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="bydriv.github.io" />
+  <meta property="og:description" content="とりとめのない話" />
+  <meta property="og:site_name" content="bydriv.github.io" />
+  <meta property="og:image" content="https://bydriv.github.io/etc/site/thumbnail.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="text/javascript" src="/etc/site/kt.js"></script>
+</head>
+
+<div class="navigation"><!--
+--><div class="left"><!--
+--><a class="section" href="/">&#x221A;</a><!--
+--><a class="section" href="/blog">&#x1F4DD;</a><!--
+--><a class="section" href="/illustration">&#x1F3A8;</a><!--
+--><a class="section" href="/photo">&#x1F4F7;</a><!--
+--><a class="section" href="/literature">&#x1F516;</a><!--
+--><a class="section" href="/world">&#x1F4BD;</a><!--
+--><a class="section" href="/comic">&#x1F4AD;</a><!--
+--><a class="section" href="/vr">&#x1F9E9;</a><!--
+--><a class="section" href="/misc">&#x1F4C1;</a><!--
+--></div>&nbsp;<!--
+--><div class="right"><!--
+--><a class="holoio section" href="#holoio">&#x22EF;</a><!--
+--></div><!--
+--></div><!--
+--><div id="holoio">
+<div class="navigation"><!--
+--><div class="left"><!--
+-->&nbsp;</div>&nbsp;<!--
+--><div class="right"><!--
+--><a class="section" href="#">&#x2573;</a><!--
+--></div><!--
+--></div>
+
+<div class="kt-month-calendar" data-today="true"></div>
+</div>
+
+<article>
+  <h1 id="とりとめのない話">とりとめのない話</h1>
+  <p>普段考えているとりとめのない話。</p>
+  <h2 id="情報とは">情報とは</h2>
+  <p>わたしたちは日常的に情報と触れあって生きている。情報がなければ道に迷ってしまう。道路という意味での道もそうだし、個人や組織が歩む道もそうだ。言葉遊びではあるものの、道は未知、とはそう的外れな表現でもないだろう。</p>
+  <p>情報とはなにであるか、という問いに答えるのは難しい。たとえば言葉には情報がある。しかし雑音には情報がない。すべての音に情報があるわけではなく人間が解釈できる音声に情報があるのだ。ただし人間でなくとも機械が解釈できるものにも情報がある。情報には解釈する主体が必要だが、それは人間である必要はない。</p>
+  <p>情報は主観的な存在ではない。解釈されうる客体には情報がある。かと言って完全に客観的な存在でもない。情報は重さや長さを測れたりもしなければ物質と相互作用するわけでもない。情報を持つ客体の重さや長さは測れるが、それはその客体が持つ情報とはなんの関係もない。情報は主体と客体の中間に存在しているのだ。</p>
+  <p>情報は日常にありふれているのにも関わらず考えれば考えるほどふしぎな存在だ。ここでは情報の持つ性質に着目して考えてみよう。</p>
+  <h2 id="園">園</h2>
+  <p><strong>公理</strong> 𝒜 を <strong>主体</strong> (<em>subject</em>) の高々可算の集合、 ℬ を <strong>客体</strong> (<em>object</em>) の高々可算の集合、 𝒳 を <strong>情報</strong> (<em>information</em>) の高々可算の集合、 ℛ を 𝒳 を添字集合とする 𝒜 と ℬ との間の 2 項関係の族とする。</p>
+  <ul>
+  <li>𝔸<sub>1</sub> = ∀a ∈ 𝒜. ∀b ∈ ℬ. ∃x ∈ 𝒳. a ℛ<sub>x</sub> b (<strong>観測律</strong> (<em>law of observation</em>))</li>
+  <li>𝔸<sub>2</sub> = ∀x, y ∈ 𝒳. ∀a ∈ 𝒜. ∀b ∈ ℬ. a ℛ<sub>x</sub> b ∧ a ℛ<sub>y</sub> b → x = y (<strong>再現律</strong> (<em>law of reproduction</em>))</li>
+  </ul>
+  <p>が満たされるならば (𝒜, ℬ, 𝒳, ℛ) は <strong><ruby>園<rp>(</rp><rt>その</rt><rp>)</rp></ruby></strong> (<em>garden</em>) であると言う。</p>
+  <p><strong>定義</strong> a ∈ 𝒜 かつ b ∈ ℬ かつ x ∈ 𝒳 ならば f(a, b) = x ⇔ a ℛ<sub>x</sub> b と定める。</p>
+  <p><strong>定理</strong> f : 𝒜 × ℬ → 𝒳 が写像であることは (𝒜, ℬ, 𝒳, ℛ) が園であるための必要十分条件である。</p>
+  <p><strong>証明</strong></p>
+  <ul>
+  <li>f は写像である ⇔ f は左全域的かつ右一意的である。</li>
+  <li>(𝒜, ℬ, 𝒳, ℛ) は園である ⇔ (𝒜, ℬ, 𝒳, ℛ) は 𝔸<sub>1</sub> と 𝔸<sub>2</sub> を満たす。</li>
+  <li>f は左全域的である
+  <ul>
+  <li>⇔ ∀a ∈ 𝒜. ∀b ∈ ℬ. ∃x ∈ 𝒳. f(a, b) = x</li>
+  <li>⇔ ∀a ∈ 𝒜. ∀b ∈ ℬ. ∃x ∈ 𝒳. a ℛ<sub>x</sub> b</li>
+  <li>⇔ 𝔸<sub>1</sub></li>
+  </ul></li>
+  <li>f は右一意的である
+  <ul>
+  <li>⇔ ∀a ∈ 𝒜. ∀b ∈ ℬ. ∀x, y ∈ 𝒳. f(a, b) = x ∧ f(a, b) = y → x = y</li>
+  <li>⇔ ∀a ∈ 𝒜. ∀b ∈ ℬ. ∀x, y ∈ 𝒳. a ℛ<sub>x</sub> b ∧ a ℛ<sub>y</sub> b → x = y</li>
+  <li>⇔ 𝔸<sub>2</sub></li>
+  </ul></li>
+  </ul>
+  <p>∎</p>
+  <h3 id="例-共通鍵暗号">例: 共通鍵暗号</h3>
+  <p>A を平文の可算無限集合、 B を暗号文の可算無限集合、 X を共通鍵の可算無限集合、</p>
+  <ul>
+  <li>encrypt : A × X → B</li>
+  <li>decrypt : B × X → A</li>
+  </ul>
+  <p>を全単射である写像として a ∈ A, b ∈ B, x ∈ X ならば</p>
+  <ul>
+  <li>a ↬<sub>x</sub> b ⇔ encrypt(a, x) = b</li>
+  <li>a ↫<sub>x</sub> b ⇔ decrypt(b, x) = a</li>
+  </ul>
+  <p>と定義してみよう。 encrypt と decrypt は全単射だから公理は自明に成り立つ。 (A, B, X, ↬) と (A, B, X, ↫) は園である。</p>
+  <p>ここで園である必要十分条件 f : A × B → X は平文と暗号文から共通鍵を求める関数である。これは暗号解読と呼ばれ具体的に構成するのは一般には難しいだろう。この意味で園は f を具体的に構成せずにその性質を述べる言葉であるとも言える。</p>
+  <h3 id="例-公開鍵暗号">例: 公開鍵暗号</h3>
+  <p>A を平文の可算無限集合、 B<sub>1</sub> を公開鍵で暗号化された暗号文の可算無限集合、 B<sub>2</sub> を秘密鍵で暗号化された暗号文の可算無限集合、 X<sub>1</sub> を公開鍵の可算無限集合、 X<sub>2</sub> を秘密鍵の可算無限集合、</p>
+  <ul>
+  <li>encrypt<sub>1</sub> : A × X<sub>1</sub> → B<sub>1</sub></li>
+  <li>encrypt<sub>2</sub> : A × X<sub>2</sub> → B<sub>2</sub></li>
+  <li>decrypt<sub>1</sub> : B<sub>2</sub> × X<sub>1</sub> → A</li>
+  <li>decrypt<sub>2</sub> : B<sub>1</sub> × X<sub>2</sub> → A</li>
+  </ul>
+  <p>を全単射である写像として</p>
+  <ul>
+  <li>a ∈ A, b ∈ B<sub>1</sub>, x ∈ X<sub>1</sub> ならば a ～<sub>x</sub> b ⇔ encrypt<sub>1</sub>(a, x) = b</li>
+  <li>a ∈ A, b ∈ B<sub>1</sub>, x ∈ X<sub>2</sub> ならば a ～<sub>x</sub> b ⇔ decrypt<sub>2</sub>(b, x) = a</li>
+  <li>a ∈ A, b ∈ B<sub>2</sub>, x ∈ X<sub>1</sub> ならば a ～<sub>x</sub> b ⇔ decrypt<sub>1</sub>(b, x) = a</li>
+  <li>a ∈ A, b ∈ B<sub>2</sub>, x ∈ X<sub>2</sub> ならば a ～<sub>x</sub> b ⇔ encrypt<sub>1</sub>(a, x) = b</li>
+  </ul>
+  <p>と定義してみよう。 (A, B<sub>1</sub> ∪ B<sub>2</sub>, X<sub>1</sub> ∪ X<sub>2</sub>, ～) は園である。</p>
+  <h3 id="例-日常会話">例: 日常会話</h3>
+  <p>日常会話は暗号にも似ている。言葉を発すことは情報の暗号化であり言葉を聞くことは情報の復号である。一般に情報は完全には伝わらない。意図と解釈は異なる情報である。</p>
+  <p>A を主体の可算無限集合、 B を言葉の可算無限集合、 X<sub>1</sub> を意図の可算無限集合、 X<sub>2</sub> を解釈の可算無限集合、</p>
+  <ul>
+  <li>tell : A × X<sub>1</sub> → B</li>
+  <li>listen : A × B → X<sub>2</sub></li>
+  </ul>
+  <p>を全単射である写像として</p>
+  <ul>
+  <li>a ∈ A, b ∈ B, x ∈ X<sub>1</sub> ならば a ～<sub>x</sub> b ⇔ tell(a, x) = b</li>
+  <li>a ∈ A, b ∈ B, x ∈ X<sub>2</sub> ならば a ～<sub>x</sub> b ⇔ listen(a, b) = x</li>
+  </ul>
+  <p>と定義してみよう。 (A, B, X<sub>1</sub> ∪ X<sub>2</sub>, ～) は園である。</p>
+  <p>アリス, ボブ ∈ A の会話とは tell(アリス, x) = w ならば listen(ボブ, w) = y という関係である。 x ∈ X<sub>1</sub>, y ∈ X<sub>2</sub> ならばアリス ～<sub>x</sub> w ならばボブ ～<sub>y</sub> w と表せる。ここで x = y が必ずしも成り立たないことに注意しよう。これは客体としての w という音声は完璧に伝わるが、 x, y という情報は解釈する主体に委ねられていることを表していると言えるだろう。</p>
+  <p>これは論理式としては正しいが tell や listen が全単射であるかどうかは自明ではない。</p>
+  <p>たとえばアリス ∈ A はあまのじゃくで言葉ときもちが一致しない。すると tell(アリス, x) ≠ tell(アリス, x) であったり tell(アリス, x) = tell(アリス, y) かつ x ≠ y であったりするかもしれない。このような状況では再現律が成り立たない。</p>
+  <p>このような状況に対するアプローチはふたつある。</p>
+  <ul>
+  <li>隠れた変数があると考える。たとえば表情や仕草など、アリスは言葉以外でもきもちを表現できる。言葉だけでモデル化すれば現実に即さないのは当然で隠れた変数を洗い出せば再現律は成り立つと考える。</li>
+  <li>再現律が成り立たないことが心であることの定義だと考える。</li>
+  </ul>
+  <p>ともかく園が扱うのは再現律が成り立つものである。</p>
+  <p>つまりアリスのきもちがどうあれ言葉にされたことが同じであれば情報は同じである。これは情報という言葉の意味を考えても納得できる。</p>
+  <p>よってここでは tell や listen は全単射であると考えよう。</p>
+  <h2 id="園の外">園の外</h2>
+  <p>園の公理から 𝔸<sub>1</sub> を取りのぞいた公理系を <strong>園の外</strong> (<em>outside of garden</em>) と言う。</p>
+  <p><strong>定理</strong> f : 𝒜 × ℬ → 𝒳 が部分写像であることは (𝒜, ℬ, 𝒳, ℛ) が園の外であるための必要十分条件である。</p>
+  <p><strong>証明</strong></p>
+  <ul>
+  <li>f は部分写像である ⇔ f は右一意的である。</li>
+  <li>(𝒜, ℬ, 𝒳, ℛ) は園の外である ⇔ (𝒜, ℬ, 𝒳, ℛ) は 𝔸<sub>2</sub> を満たす。</li>
+  <li>f は右一意的である
+  <ul>
+  <li>⇔ ∀a ∈ 𝒜. ∀b ∈ ℬ. ∀x, y ∈ 𝒳. f(a, b) = x ∧ f(a, b) = y → x = y</li>
+  <li>⇔ ∀a ∈ 𝒜. ∀b ∈ ℬ. ∀x, y ∈ 𝒳. a ℛ<sub>x</sub> b ∧ a ℛ<sub>y</sub> b → x = y</li>
+  <li>⇔ 𝔸<sub>2</sub></li>
+  </ul></li>
+  </ul>
+  <p>∎</p>
+  <h2 id="独我の園">独我の園</h2>
+  <p>𝒜 が単集合であるような園は独我の園であると言う。独我の園の 𝒜 の唯一の元を 𝔈 ∈ 𝒜 と置く。</p>
+  <p><strong>定義</strong> b ∈ ℬ かつ x ∈ 𝒳 ならば f(b) = x ⇔ 𝔈 ℛ<sub>x</sub> b と定める。</p>
+  <p><strong>定理</strong> f は写像である。</p>
+  <p><strong>証明</strong></p>
+  <ul>
+  <li>f は写像である ⇔ f は左全域的かつ右一意的である。</li>
+  <li>f は左全域的である
+  <ul>
+  <li>⇔ ∀b ∈ ℬ. ∃x ∈ 𝒳. f(b) = x</li>
+  <li>⇔ ∀b ∈ ℬ. ∃x ∈ 𝒳. 𝔈 ℛ<sub>x</sub> b</li>
+  <li>⇔ 𝔸<sub>1</sub></li>
+  </ul></li>
+  <li>f は右一意的である
+  <ul>
+  <li>⇔ ∀b ∈ ℬ. ∀x, y ∈ 𝒳. f(b) = x ∧ f(b) = y → x = y</li>
+  <li>⇔ ∀b ∈ ℬ. ∀x, y ∈ 𝒳. 𝔈 ℛ<sub>x</sub> b ∧ 𝔈 ℛ<sub>y</sub> b → x = y</li>
+  <li>⇔ 𝔸<sub>2</sub></li>
+  </ul></li>
+  </ul>
+  <p>∎</p>
+  <h2 id="園の拡張">園の拡張</h2>
+  <p>園の公理に</p>
+  <ul>
+  <li>𝔸<sub>P</sub> = ∀x, y ∈ 𝒳. P(x, y) → x = y</li>
+  </ul>
+  <p>なる公理を加えた公理系が園と同値でないとき、その公理系を 𝔸<sub>P</sub> で再現律を拡張した園であると言う。</p>
+  <h2 id="主客一致の園">主客一致の園</h2>
+  <p>𝒜 = ℬ であるような園は主客一致の園と言う。主客一致の園においては次の自明な系が 𝔸<sub>1</sub> よりただちに従う。</p>
+  <p><strong>系</strong> P<sub>1</sub> = ∀a ∈ 𝒜, ∃x ∈ 𝒳. a ℛ<sub>x</sub> a</p>
+  <p><strong>系</strong> P<sub>2</sub> = ∀a, b ∈ 𝒜. ∃x, y ∈ 𝒳. a ℛ<sub>x</sub> b ⇄ b ℛ<sub>y</sub> a</p>
+  <p><strong>系</strong> P<sub>3</sub> = ∀a, b, c ∈ 𝒜. ∀x ∈ 𝒳. ∃y ∈ 𝒳. a ℛ<sub>x</sub> b → b ℛ<sub>x</sub> c → a ℛ<sub>y</sub> c</p>
+  <p>一方で次の命題は非自明である。</p>
+  <p><strong>命題</strong> P<sub>4</sub> = ∀a, b ∈ 𝒜. ∃x ∈ 𝒳. a ℛ<sub>x</sub> b ⇄ b ℛ<sub>x</sub> a</p>
+  <p><strong>命題</strong> P<sub>5</sub> = ∀a, b, c ∈ 𝒜. ∃x∈ 𝒳. a ℛ<sub>x</sub> b ∧ b ℛ<sub>x</sub> c → a ℛ<sub>x</sub> c</p>
+  <p>P, Q を次のように定め 𝔸<sub>P</sub> , 𝔸<sub>Q</sub> で再現律を拡張した園では P<sub>4</sub>, P<sub>5</sub> を証明できる。</p>
+  <ul>
+  <li>P(x, y) = ∀a, b ∈ 𝒜. a ℛ<sub>x</sub> b ∧ b ℛ<sub>y</sub> a</li>
+  <li>Q(x, y) = ∀a, b, c ∈ 𝒜. a ℛ<sub>x</sub> b ∧ b ℛ<sub>x</sub> c ∧ a ℛ<sub>y</sub> c</li>
+  </ul>
+  <p><em>(to be continued...?)</em></p>
+</article>

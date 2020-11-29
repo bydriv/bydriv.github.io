@@ -81,6 +81,11 @@ h2 {
     font-size: 20px;
 }
 
+h3 {
+    margin: 16px;
+    font-size: 16px;
+}
+
 h1::before {
     content: "# ";
 }
@@ -89,10 +94,32 @@ h2::before {
     content: "## ";
 }
 
+h3::before {
+    content: "### ";
+}
+
 p {
     margin: 16px;
     font-size: 16px;
     text-align: justify;
+}
+
+code {
+    display: inline-block;
+    padding: 2px 4px;
+    color: rgba(255, 255, 255, 0.875);
+    background-color: rgba(0, 0, 0, 0.875);
+    border-radius: 4px;
+    font-family: Consolas;
+}
+
+pre {
+    margin: 12px 0;
+    padding: 4px 16px;
+    color: rgba(255, 255, 255, 0.875);
+    background-color: rgba(0, 0, 0, 0.875);
+    font-size: 16px;
+    font-family: Consolas;
 }
 
 div.paragraph {
