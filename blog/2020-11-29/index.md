@@ -1,5 +1,5 @@
 ---
-url: https://bydriv.github.io/blog/2020-11-28/
+url: https://bydriv.github.io/blog/2020-11-29/
 title: bydriv.github.io
 description: とりとめのない話
 thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
