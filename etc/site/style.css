@@ -104,7 +104,7 @@ p {
     text-align: justify;
 }
 
-code {
+:not(pre) > code {
     display: inline-block;
     padding: 2px 4px;
     color: rgba(255, 255, 255, 0.875);
