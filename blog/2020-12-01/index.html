@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/etc/site/style.css">
+  <title>bydriv.github.io</title>
+  <meta property="og:url" content="https://bydriv.github.io/blog/2020-12-01/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="bydriv.github.io" />
+  <meta property="og:description" content="とりとめのない話 (3): 余園と創発について" />
+  <meta property="og:site_name" content="bydriv.github.io" />
+  <meta property="og:image" content="https://bydriv.github.io/etc/site/thumbnail.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="text/javascript" src="/etc/site/kt.js"></script>
+</head>
+
+<div class="navigation"><!--
+--><div class="left"><!--
+--><a class="section" href="/">&#x221A;</a><!--
+--><a class="section" href="/blog">&#x1F4DD;</a><!--
+--><a class="section" href="/illustration">&#x1F3A8;</a><!--
+--><a class="section" href="/photo">&#x1F4F7;</a><!--
+--><a class="section" href="/literature">&#x1F516;</a><!--
+--><a class="section" href="/world">&#x1F4BD;</a><!--
+--><a class="section" href="/comic">&#x1F4AD;</a><!--
+--><a class="section" href="/vr">&#x1F9E9;</a><!--
+--><a class="section" href="/misc">&#x1F4C1;</a><!--
+--></div>&nbsp;<!--
+--><div class="right"><!--
+--><a class="holoio section" href="#holoio">&#x22EF;</a><!--
+--></div><!--
+--></div><!--
+--><div id="holoio">
+<div class="navigation"><!--
+--><div class="left"><!--
+-->&nbsp;</div>&nbsp;<!--
+--><div class="right"><!--
+--><a class="section" href="#">&#x2573;</a><!--
+--></div><!--
+--></div>
+
+<div class="kt-month-calendar" data-today="true"></div>
+</div>
+
+<article>
+<h1 id="とりとめのない話-3-余園と創発について">とりとめのない話 (3): 余園と創発について</h1>
+<ul>
+<li><em>(<a href="../2020-11-30">とりとめのない話 (2): 創発と複雑系についての雑記</a> の続き)</em></li>
+</ul>
+<h2 id="余園">余園</h2>
+<p><strong>公理</strong> 𝒜 を <strong>主体</strong> (<em>subject</em>) の高々可算の集合、 ℬ を <strong>客体</strong> (<em>object</em>) の高々可算の集合、 𝒳 を <strong>情報</strong> (<em>information</em>) の高々可算の集合、 ℛ を 𝒳 を添字集合とする 𝒜 と ℬ との間の 2 項関係の族とする。</p>
+<ul>
+<li>𝔸<sub>1</sub> = ∀x ∈ 𝒳. ∃a ∈ 𝒜. ∃b ∈ ℬ. a ℛ<sub>x</sub> b (<strong>余観測律</strong> (<em>law of coobservation</em>))</li>
+<li>𝔸<sub>2</sub> = ∀a<sub>1</sub>, a<sub>2</sub> ∈ 𝒜. ∀b<sub>1</sub>, b<sub>2</sub> ∈ ℬ. ∀x ∈ 𝒳. a<sub>1</sub> ℛ<sub>x</sub> b<sub>1</sub> ∧ a<sub>2</sub> ℛ<sub>x</sub> b<sub>2</sub> → a<sub>1</sub> = a<sub>2</sub> ∧ b<sub>1</sub> = b<sub>2</sub> (<strong>余再現律</strong> (<em>law of coreproduction</em>))</li>
+</ul>
+<p>が満たされるならば (𝒜, ℬ, 𝒳, ℛ) は <strong>余園</strong> (<em>cogarden</em>) であると言う。</p>
+<p><strong>定義</strong> a ∈ 𝒜 かつ b ∈ ℬ かつ x ∈ 𝒳 ならば f(x) = (a, b) ⇔ a ℛ<sub>x</sub> b と定める。</p>
+<p><strong>定理</strong> f : 𝒳 → 𝒜 × ℬ が写像であることは (𝒜, ℬ, 𝒳, ℛ) が余園であるための必要十分条件である。</p>
+<p><strong>証明</strong> 園の場合とほとんど同じであるので演習問題とする。</p>
+<h2 id="創発">創発</h2>
+<p>A, B を集合とし、 R を A と B との間の 2 項関係とする。</p>
+<ul>
+<li>|A| &lt; |B| である。</li>
+<li>R は左一意的であり右全域的である。</li>
+</ul>
+<p>が満たされるならば R は <strong>創発</strong> (<em>emergence</em>) であると言う。</p>
+<p><strong>定理</strong> R は右一意的ではない。</p>
+<p><strong>証明</strong> R が右一意的であると仮定する。 R の定義より R は左一意的であり右全域的である。 f(b) = a ⇔ a R b と置く。 f は左一意的であり右一意的であり左全域的である。ゆえに f : B → A は単射である。ゆえに |B| ≤ |A| である。 R の定義より |A| &lt; |B| である。よって矛盾。ゆえに R は右一意的ではない。 ∎</p>
+<p><strong>定理</strong> R : A → B は写像ではない。</p>
+<p><strong>証明</strong> R : A → B が写像であると仮定する。 R は写像であるから左全域的であり右一意的である。 R は右一意的ではない。よって矛盾。ゆえに R は写像ではない。 ∎</p>
+<p><strong>定義</strong> a ∈ A, b ∈ B ならば f(b) = a ⇔ a R b と定める。</p>
+<p><strong>定理</strong> f : B → A は写像である。</p>
+<p><strong>証明</strong> f は写像である ⇔ f は左全域的であり右一意的である ⇔ R は右全域的であり左一意的である。 ∎</p>
+<h2 id="創発の余園">創発の余園</h2>
+<p>|𝒜 × ℬ| &lt; |𝒳| であるような余園を <strong>創発の余園</strong> (<em>cogarden of emergence</em>) と言う。</p>
+<p><strong>定義</strong> a ∈ 𝒜 かつ b ∈ ℬ かつ x ∈ 𝒳 ならば (a, b) R x ⇔ a ℛ<sub>x</sub> b と定める。</p>
+<p><strong>定理</strong> R が創発であることは (𝒜, ℬ, 𝒳, ℛ) が創発の余園であるための必要十分条件である。</p>
+<p><strong>証明</strong> 演習問題とする。</p>
+<h2 id="例-自然数">例: 自然数</h2>
+<pre><code>a = λ((zero, succ), n).
+  let rec f(m) =
+    if n = m then
+      ∅
+    else
+      {m} ∪ f(succ(m))
+  in
+    f(zero)
+
+b = (0, λn. n + 1)</code></pre>
+<p>として A = {a}, B = {b}, X = ℕ とする。 |A| = 1, |B| = 1, |X| = ℵ<sub>0</sub> であるから |A × B| &lt; |X| である。</p>
+<ul>
+<li>a ～<sub>n</sub> b ⇔ |a(b, n)| = n</li>
+</ul>
+<p>とする。このとき</p>
+<ul>
+<li>a ～<sub>0</sub> b</li>
+<li>a ～<sub>n</sub> b ならば a ～<sub>n+1</sub> b</li>
+</ul>
+<p>が成り立つ。</p>
+<p>まず</p>
+<ul>
+<li>a ～<sub>0</sub> b</li>
+</ul>
+<p>は |a(b, 0) = ∅| = 0 となるから成り立つ。</p>
+<ul>
+<li>a ～<sub>n</sub> b ならば a ～<sub>n+1</sub> b</li>
+</ul>
+<p>は |a(b, n + 1) = {0, 1, .., n}| = n + 1 となるから成り立つ。</p>
+<p>ゆえに任意の n ∈ ℕ に関して a ～<sub>n</sub> b が成り立つ。これは創発の定義を満たす。ゆえに (A, B, X, ～) は創発の余園である。</p>
+<p>(A, B, X, ～) が園でないことは明らかである。なぜなら a ～<sub>0</sub> b かつ a ～<sub>1</sub> b かつ 0 ≠ 1 であるから再現律を満たさない。一方で観測律は満たすようである。</p>
+<p><strong>直観的説明</strong> たとえば a = アリス、 b = ペアノの公理としよう。 ∀n ∈ ℕ. アリス ～<sub>n</sub> ペアノの公理とはアリスがペアノの公理を理解しているということである。さてあなたはアリスが <strong>本当に</strong> ペアノの公理を理解しているかを確かめたい。あなたはアリスの頭のなかを覗いて確かめることはできないから、なんらかの質問をして確かめるしかない。そこでいかなる n ∈ ℕ をとってみても、アリス ～<sub>n</sub> ペアノの公理 ⇔ |a(b, n)| = n という問題に正答できるかで確かめようというわけである。もちろん無限に存在する n ∈ ℕ について確かめることはできないから、質問する回数は高々有限回である。</p>
+<p><em>(to be continued...?)</em></p>
+</article>
