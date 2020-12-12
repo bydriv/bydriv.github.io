@@ -1,42 +1,73 @@
-{-# LANGUAGE Safe #-}
-
 module Data.Injective.Map where
 
-import qualified Data.Injective.Index as Index
+import qualified Control.Monad               as Monad
+import qualified Data.Maybe                  as Maybe
 
-newtype Map a b =
-    Map (Index.Index (Either a b))
+data Map a b =
+    Empty
+  | Branch a b (Map a b) (Map a b) (Map a b) (Map a b)
   deriving (Eq, Ord, Read, Show)
 
 empty :: Map a b
-empty = Map Index.empty
+empty =
+  Empty
 
 singleton :: a -> b -> Map a b
-singleton x y = Map (Index.singleton [Left x, Right y])
+singleton x y =
+  Branch x y Empty Empty Empty Empty
 
 insert :: (Ord a, Ord b) => a -> b -> Map a b -> Map a b
-insert x y (Map index) = Map (Index.insert [Left x, Right y] index)
+insert x y Empty =
+  Branch x y Empty Empty Empty Empty
+insert x y (Branch x' y' t1 t2 t3 t4) =
+  case (compare x x', compare y y') of
+    (EQ, EQ) ->
+      Branch x y t1 t2 t3 t4
+    (EQ, _) ->
+      error "uniqueness unsatisfied"
+    (_, EQ) ->
+      error "uniqueness unsatisfied"
+    (LT, LT) ->
+      Branch x' y' (insert x y t1) t2 t3 t4
+    (LT, GT) ->
+      Branch x' y' t1 (insert x y t2) t3 t4
+    (GT, LT) ->
+      Branch x' y' t1 t2 (insert x y t3) t4
+    (GT, GT) ->
+      Branch x' y' t1 t2 t3 (insert x y t4)
 
 lookupLeft :: (Ord a, Ord b) => a -> Map a b -> Maybe (a, b)
-lookupLeft x (Map index) =
-  case Index.lookupAt 0 (Left x) index of
-    Just [Left x', Right y] ->
+lookupLeft _ Empty =
+  Nothing
+lookupLeft x (Branch x' y t1 t2 t3 t4) =
+  case compare x x' of
+    EQ ->
       Just (x', y)
-    _ ->
-      Nothing
+    LT ->
+      Monad.mplus (lookupLeft x t1) (lookupLeft x t2)
+    GT ->
+      Monad.mplus (lookupLeft x t3) (lookupLeft x t4)
 
 lookupRight :: (Ord a, Ord b) => b -> Map a b -> Maybe (a, b)
-lookupRight y (Map index) =
-  case Index.lookupAt 1 (Right y) index of
-    Just [Left x, Right y'] ->
+lookupRight _ Empty =
+  Nothing
+lookupRight y (Branch x y' t1 t2 t3 t4) =
+  case compare y y' of
+    EQ ->
       Just (x, y')
-    _ ->
-      Nothing
+    LT ->
+      Monad.mplus (lookupRight y t1) (lookupRight y t3)
+    GT ->
+      Monad.mplus (lookupRight y t2) (lookupRight y t4)
+
+memberLeft :: (Ord a, Ord b) => a -> Map a b -> Bool
+memberLeft x f =
+  Maybe.isJust (lookupLeft x f)
+
+memberRight :: (Ord a, Ord b) => b -> Map a b -> Bool
+memberRight y f =
+  Maybe.isJust (lookupRight y f)
 
 fromList :: (Ord a, Ord b) => [(a, b)] -> Map a b
-fromList = Map . Index.fromList . map (\(x, y) -> [Left x, Right y])
-
-toList :: Map a b -> [(a, b)]
-toList (Map index) = concatMap f (Index.toList index) where
-  f [Left x, Right y] = [(x, y)]
-  f _ = []
+fromList =
+  foldr (\(x, y) -> insert x y) empty
