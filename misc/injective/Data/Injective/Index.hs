@@ -45,28 +45,26 @@ lookupAt _ _ Empty =
 lookupAt i x (Branch xs indices)
   | i >= length xs =
       error "dimention mismatch"
+  | x == xs !! i =
+      Just xs
+  | x < xs !! i =
+      let
+        n :: Int
+        n = 2 ^ length xs
+
+        indices' =
+          map snd (filter (\(j, _) -> even (j `div` (2 ^ i) `mod` 2)) (zip [0 .. n - 1] indices))
+      in
+        lookupAtParallel i x indices'
   | otherwise =
       let
-        x' = xs !! i
+        n :: Int
+        n = 2 ^ length xs
+
+        indices' =
+          map snd (filter (\(j, _) -> odd (j `div` (2 ^ i) `mod` 2)) (zip [0 .. n - 1] indices))
       in
-        if x == x' then
-          Just xs
-        else
-          let
-            n :: Int
-            n = 2 ^ length xs
-
-            f :: Int -> Bool
-            f =
-              if x < x' then
-                even
-              else
-                odd
-
-            indices' =
-              map snd (filter (\(j, _) -> f (j `div` (2 ^ i) `mod` 2)) (zip [0 .. n - 1] indices))
-          in
-            lookupAtParallel i x indices'
+        lookupAtParallel i x indices'
 
 lookupAtParallel :: Ord a => Int -> a -> [Index a] -> Maybe [a]
 lookupAtParallel _ _ [] =
