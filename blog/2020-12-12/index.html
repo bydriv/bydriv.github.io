@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/etc/site/style.css">
+  <title>bydriv.github.io</title>
+  <meta property="og:url" content="https://bydriv.github.io/blog/2020-12-12/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="bydriv.github.io" />
+  <meta property="og:description" content="プログラミング言語に標準で単射がほしいという話" />
+  <meta property="og:site_name" content="bydriv.github.io" />
+  <meta property="og:image" content="https://bydriv.github.io/etc/site/thumbnail.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="text/javascript" src="/etc/site/kt.js"></script>
+</head>
+
+<div class="navigation"><!--
+--><div class="left"><!--
+--><a class="section" href="/">&#x221A;</a><!--
+--><a class="section" href="/blog">&#x1F4DD;</a><!--
+--><a class="section" href="/illustration">&#x1F3A8;</a><!--
+--><a class="section" href="/photo">&#x1F4F7;</a><!--
+--><a class="section" href="/literature">&#x1F516;</a><!--
+--><a class="section" href="/world">&#x1F4BD;</a><!--
+--><a class="section" href="/comic">&#x1F4AD;</a><!--
+--><a class="section" href="/vr">&#x1F9E9;</a><!--
+--><a class="section" href="/misc">&#x1F4C1;</a><!--
+--></div>&nbsp;<!--
+--><div class="right"><!--
+--><a class="holoio section" href="#holoio">&#x22EF;</a><!--
+--></div><!--
+--></div><!--
+--><div id="holoio">
+<div class="navigation"><!--
+--><div class="left"><!--
+-->&nbsp;</div>&nbsp;<!--
+--><div class="right"><!--
+--><a class="section" href="#">&#x2573;</a><!--
+--></div><!--
+--></div>
+
+<div class="kt-month-calendar" data-today="true"></div>
+</div>
+
+<article>
+<h1 id="プログラミング言語に標準で単射がほしいという話">プログラミング言語に標準で単射がほしいという話</h1>
+<p>プログラミング言語には普通、標準で Map という構造がある (もちろんないものもある) 。実装は HashMap だったり二分木だったり、まちまち。ただいずれにせよこれは普通の (部分) 写像で単射が提供されていることはほとんどない。つまりキーから値をひくことは簡単だけど値からキーをひくことは困難なことが多い。</p>
+<p>ナイーブに考えるならば <code>(Map a b, Map b a)</code> と実装すればいいもののこの空間効率が悪いことは火を見るよりも明らかだ。</p>
+<p>個人的な事情として最近趣味コードを書く時間があまりとれていないというのもあり、ちょっと息抜きというか、気分転換に実装してみた。コードは以下。</p>
+<ul>
+<li><a href="../../misc/injection">Injection</a></li>
+</ul>
+<p>以下、解説。</p>
+<p>まず <strong>単射</strong> (<em>injection</em>) を表す型クラスを定義しよう。求められる性質は左から右も、右から左もひけるということである。</p>
+<pre><code>class Injection f where
+  empty :: (Ord a, Ord b) =&gt; f a b
+  insert :: (Ord a, Ord b) =&gt; a -&gt; b -&gt; f a b -&gt; f a b
+  lookupLeft :: (Ord a, Ord b) =&gt; a -&gt; f a b -&gt; Maybe b
+  lookupRight :: (Ord a, Ord b) =&gt; b -&gt; f a b -&gt; Maybe a</code></pre>
+<p>さて自明な関数として以下のものが定義できる。</p>
+<pre><code>singleton :: (Injection f, Ord a, Ord b) =&gt; a -&gt; b -&gt; f a b
+singleton x y = insert x y empty
+
+memberLeft :: (Injection f, Ord a, Ord b) =&gt; a -&gt; f a b -&gt; Bool
+memberLeft x f = Maybe.isJust (lookupLeft x f)
+
+memberRight :: (Injection f, Ord a, Ord b) =&gt; b -&gt; f a b -&gt; Bool
+memberRight y f = Maybe.isJust (lookupRight y f)
+
+fromAList :: (Injection f, Ord a, Ord b) =&gt; [(a, b)] -&gt; f a b
+fromAList = foldr (\(x, y) -&gt; insert x y) empty</code></pre>
+<p><code>fromAList</code> は連想リストから <code>Injection</code> をつくる関数だ。</p>
+<p>まず連想リストは自明に <code>Injection</code> になる。</p>
+<pre><code>newtype AList a b =
+    AList [(a, b)]
+  deriving (Eq, Ord, Read, Show)
+
+instance Injection AList where
+  empty = AList []
+  insert x y (AList l) = AList ((x, y) : l)
+  lookupLeft x (AList l) = fmap snd $ List.find (\(x&#39;, _) -&gt; x == x&#39;) l
+  lookupRight y (AList l) = fmap fst $ List.find (\(_, y&#39;) -&gt; y == y&#39;) l</code></pre>
+<p>しかしこれでは <code>lookupLeft</code> も <code>lookupRight</code> も O(n) なので、なんのおもしろみもない。</p>
+<p>四分木はどうだろう。</p>
+<pre><code>data Quadtree a b =
+    Empty
+  | Branch (a, b) (Quadtree a b) (Quadtree a b) (Quadtree a b) (Quadtree a b)
+  deriving (Eq, Ord, Read, Show)</code></pre>
+<p>二分木をふたつあわせれば <code>(Map a b, Map b a)</code> とできるのだから、当然これは <code>Injection</code> になりそうだ。ただ四分木にするとすこしおもしろくて、ふたつの instance が考えられる。仮にそれを <code>ReadQuadtree</code> と <code>WriteQuadtree</code> としてみよう。</p>
+<pre><code>newtype ReadQuadtree a b =
+    ReadQuadtree (Quadtree a b)
+  deriving (Eq, Ord, Read, Show)
+
+newtype WriteQuadtree a b =
+    WriteQuadtree (Quadtree a b)
+  deriving (Eq, Ord, Read, Show)</code></pre>
+<p><code>ReadQuadtree</code> は読み込み最適化、つまり書き込み時にすこしコストを払って読み込みを高速にし、 <code>WriteQuadtree</code> は書き込み最適化、つまり読み込み時にすこしコストを払って書き込みを高速にする。</p>
+<p><code>ReadQuadtree</code> の実装は</p>
+<pre><code>instance Injection ReadQuadtree where
+  empty = ReadQuadtree Empty
+
+  insert x y (ReadQuadtree Empty) = ReadQuadtree (Branch (x, y) Empty Empty Empty Empty)
+  insert x y (ReadQuadtree (Branch (x&#39;, y&#39;) t1 t2 t3 t4))
+    | x == x&#39; || y == y&#39; = ReadQuadtree (Branch (x, y) t1 t2 t3 t4)
+    | otherwise =
+        let
+          ReadQuadtree t1&#39; = if x &lt; x&#39; then insert x y (ReadQuadtree t1) else ReadQuadtree t1
+          ReadQuadtree t2&#39; = if x &gt; x&#39; then insert x y (ReadQuadtree t2) else ReadQuadtree t2
+          ReadQuadtree t3&#39; = if y &lt; y&#39; then insert x y (ReadQuadtree t3) else ReadQuadtree t3
+          ReadQuadtree t4&#39; = if y &gt; y&#39; then insert x y (ReadQuadtree t4) else ReadQuadtree t4
+        in
+          ReadQuadtree (Branch (x&#39;, y&#39;) t1&#39; t2&#39; t3&#39; t4&#39;)
+
+  lookupLeft _ (ReadQuadtree Empty) = Nothing
+  lookupLeft x (ReadQuadtree (Branch (x&#39;, y) t1 t2 t3 t4))
+    | x == x&#39; = Just y
+    | x &lt; x&#39; = lookupLeft x (ReadQuadtree t1)
+    | x &gt; x&#39; = lookupLeft x (ReadQuadtree t2)
+
+  lookupRight _ (ReadQuadtree Empty) = Nothing
+  lookupRight y (ReadQuadtree (Branch (x, y&#39;) t1 t2 t3 t4))
+    | y == y&#39; = Just x
+    | y &lt; y&#39; = lookupRight y (ReadQuadtree t3)
+    | y &gt; y&#39; = lookupRight y (ReadQuadtree t4)</code></pre>
+<p>となる。この場合、常に値が複製されるので空間効率が悪い代わりに <code>lookupLeft</code>, <code>lookupRight</code> が高速になる。要はこれは <code>(Map a b, Map b a)</code> とほとんど同じだ。</p>
+<pre><code>&gt; fromAList [(1, 2), (3, 4), (5, 6)] :: ReadQuadtree Int Int
+ReadQuadtree (Branch (5,6) (Branch (3,4) (Branch (1,2) Empty Empty Empty Empty) Empty (Branch (1,2) Empty Empty Empty Empty) Empty) Empty (Branch (3,4) (Branch (1,2) Empty Empty Empty Empty) Empty (Branch (1,2) Empty Empty Empty Empty) Empty) Empty)</code></pre>
+<p><code>WriteQuadtree</code> はどうだろう。</p>
+<pre><code>instance Injection WriteQuadtree where
+  empty = WriteQuadtree Empty
+
+  insert x y (WriteQuadtree Empty) = WriteQuadtree (Branch (x, y) Empty Empty Empty Empty)
+  insert x y (WriteQuadtree (Branch (x&#39;, y&#39;) t1 t2 t3 t4))
+    | x == x&#39; || y == y&#39; = WriteQuadtree (Branch (x, y) t1 t2 t3 t4)
+    | otherwise =
+        let
+          WriteQuadtree t1&#39; = if x &lt; x&#39; &amp;&amp; y &lt; y&#39; then insert x y (WriteQuadtree t1) else WriteQuadtree t1
+          WriteQuadtree t2&#39; = if x &lt; x&#39; &amp;&amp; y &gt; y&#39; then insert x y (WriteQuadtree t2) else WriteQuadtree t2
+          WriteQuadtree t3&#39; = if x &gt; x&#39; &amp;&amp; y &lt; y&#39; then insert x y (WriteQuadtree t3) else WriteQuadtree t3
+          WriteQuadtree t4&#39; = if x &gt; x&#39; &amp;&amp; y &gt; y&#39; then insert x y (WriteQuadtree t4) else WriteQuadtree t4
+        in
+          WriteQuadtree (Branch (x&#39;, y&#39;) t1&#39; t2&#39; t3&#39; t4&#39;)
+
+  lookupLeft _ (WriteQuadtree Empty) = Nothing
+  lookupLeft x (WriteQuadtree (Branch (x&#39;, y) t1 t2 t3 t4))
+    | x == x&#39; = Just y
+    | x &lt; x&#39; = Monad.mplus (lookupLeft x (WriteQuadtree t1)) (lookupLeft x (WriteQuadtree t2))
+    | x &gt; x&#39; = Monad.mplus (lookupLeft x (WriteQuadtree t3)) (lookupLeft x (WriteQuadtree t4))
+
+  lookupRight _ (WriteQuadtree Empty) = Nothing
+  lookupRight y (WriteQuadtree (Branch (x, y&#39;) t1 t2 t3 t4))
+    | y == y&#39; = Just x
+    | y &lt; y&#39; = Monad.mplus (lookupRight y (WriteQuadtree t1)) (lookupRight y (WriteQuadtree t3))
+    | y &gt; y&#39; = Monad.mplus (lookupRight y (WriteQuadtree t2)) (lookupRight y (WriteQuadtree t4))</code></pre>
+<p>これは値が複製されない代わりに、探索範囲が若干広いので、読み込みは遅くなる。遅いといっても連想リストや Map の values を線形探索するよりは爆速だ。もちろん木のバランスがいい場合。加えて言えば依存関係がないので明らかに並列化や分散処理が可能である。</p>
+<pre><code>&gt; fromAList [(1, 2), (3, 4), (5, 6)] :: WriteQuadtree Int Int
+WriteQuadtree (Branch (5,6) (Branch (3,4) (Branch (1,2) Empty Empty Empty Empty) Empty Empty Empty) Empty Empty Empty)</code></pre>
+<p>さてここまで考えることができたなら、これをバランシングしたものやハッシュ値の比較を順序関係と考えたもの、キーと値を 2 個ではなく n 個に拡張したものも考えられる。それはそれでおもしろそうなものの、続きはまた今度考えよう。今日はここまで。（データ構造とアルゴリズムが大好き。ちょっと楽しかった）</p>
+</article>
