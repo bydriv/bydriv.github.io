@@ -49,20 +49,14 @@ lookupAt i x (Branch xs indices)
       Just xs
   | x < xs !! i =
       let
-        n :: Int
-        n = 2 ^ length xs
-
         indices' =
-          map snd (filter (\(j, _) -> even (j `div` (2 ^ i) `mod` 2)) (zip [0 .. n - 1] indices))
+          map snd (filter (\(j, _) -> even (j `div` (2 ^ i) `mod` 2)) (zip [0 .. (2 :: Int) ^ length xs - 1] indices))
       in
         lookupAtParallel i x indices'
   | otherwise =
       let
-        n :: Int
-        n = 2 ^ length xs
-
         indices' =
-          map snd (filter (\(j, _) -> odd (j `div` (2 ^ i) `mod` 2)) (zip [0 .. n - 1] indices))
+          map snd (filter (\(j, _) -> odd (j `div` (2 ^ i) `mod` 2)) (zip [0 .. (2 :: Int) ^ length xs - 1] indices))
       in
         lookupAtParallel i x indices'
 
