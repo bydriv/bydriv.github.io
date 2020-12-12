@@ -19,7 +19,7 @@ insert xs Empty = singleton xs
 insert xs (Branch xs' indices)
   | length xs /= length xs' =
       error "dimention mismatch"
-  | xs == xs' =
+  | any (\(x, x') -> x == x') (zip xs xs') =
       Branch xs indices
   | otherwise =
       let
