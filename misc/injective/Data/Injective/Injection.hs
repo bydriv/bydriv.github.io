@@ -18,7 +18,8 @@ singleton x y = Branch x y Empty Empty Empty Empty
 insert :: (Ord a, Ord b) => a -> b -> Injection a b -> Injection a b
 insert x y Empty = Branch x y Empty Empty Empty Empty
 insert x y (Branch x' y' t1 t2 t3 t4)
-  | x == x' || y == y' = Branch x y t1 t2 t3 t4
+  | x == x' && y == y' = Branch x y t1 t2 t3 t4
+  | x == x' || y == y' = error "uniqueness unsatisfied"
   | otherwise =
       let
         t1' = if x < x' && y < y' then insert x y t1 else t1

@@ -21,6 +21,8 @@ insert xs (Branch xs' indices)
       error "dimention mismatch"
   | xs == xs' =
       Branch xs indices
+  | any (\(x, x') -> x == x') (zip xs xs') =
+      error "uniqueness unsatisfied"
   | otherwise =
       let
         values =
