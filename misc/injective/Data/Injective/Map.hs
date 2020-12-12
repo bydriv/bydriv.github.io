@@ -1,7 +1,7 @@
 module Data.Injective.Map where
 
-import qualified Control.Monad               as Monad
-import qualified Data.Maybe                  as Maybe
+import qualified Control.Monad as Monad
+import qualified Data.Maybe    as Maybe
 
 data Map a b =
     Empty
