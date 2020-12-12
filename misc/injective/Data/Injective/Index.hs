@@ -25,17 +25,17 @@ insert xs (Branch xs' indices)
       error "uniqueness unsatisfied"
   | otherwise =
       let
-        values =
+        conditions =
           mapM (\(x, x') -> [(x, x'), (x', x)]) (zip xs xs')
 
         indices' =
           map
-            (\(value, index) ->
-              if all (\(x, x') -> x < x') value then
+            (\(condition, index) ->
+              if all (\(x, x') -> x < x') condition then
                 insert xs index
               else
                 index)
-            (zip values indices)
+            (zip conditions indices)
       in
         Branch xs' indices'
 
