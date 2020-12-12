@@ -19,8 +19,10 @@ insert xs Empty = singleton xs
 insert xs (Branch xs' indices)
   | length xs /= length xs' =
       error "dimention mismatch"
-  | any (\(x, x') -> x == x') (zip xs xs') =
+  | xs == xs' =
       Branch xs indices
+  | any (\(x, x') -> x == x') (zip xs xs') =
+      error "uniqueness unsatisfied"
   | otherwise =
       let
         values =
