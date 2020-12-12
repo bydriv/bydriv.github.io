@@ -26,12 +26,12 @@ insert xs (Branch xs' indices)
   | otherwise =
       let
         conditions =
-          mapM (\(x, x') -> [(x, x'), (x', x)]) (zip xs xs')
+          mapM (\(x, x') -> [x < x', x > x']) (zip xs xs')
 
         indices' =
           map
             (\(condition, index) ->
-              if all (\(x, x') -> x < x') condition then
+              if and condition then
                 insert xs index
               else
                 index)
