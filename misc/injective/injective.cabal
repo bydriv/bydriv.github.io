@@ -8,8 +8,6 @@ library
   default-language: Haskell2010
   build-depends: base, parallel
   ghc-options: -Wall -Werror -O3
-  default-extensions: Strict, StrictData
+  default-extensions: Safe, Strict, StrictData
   exposed-modules:
-      Data.Injective.Index,
-      Data.Injective.Map,
-      Data.Injective.Pool
+      Data.Injective.Map
