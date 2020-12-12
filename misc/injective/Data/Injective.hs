@@ -34,14 +34,14 @@ lookupLeft x (Branch x' y t1 t2 t3 t4)
   | x == x' = Just y
   | x < x' =
       let
-        a = lookupLeft x t1
-        b = lookupLeft x t2
+        ~a = lookupLeft x t1
+        ~b = lookupLeft x t2
       in
         a `par` b `pseq` Monad.mplus a b
   | x > x' =
       let
-        a = lookupLeft x t3
-        b = lookupLeft x t4
+        ~a = lookupLeft x t3
+        ~b = lookupLeft x t4
       in
         a `par` b `pseq` Monad.mplus a b
   | otherwise = undefined
