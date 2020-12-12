@@ -26,12 +26,12 @@ insert xs (Branch xs' indices)
   | otherwise =
       let
         conditions =
-          mapM (\(x, x') -> [(x, x'), (x', x)]) (zip xs xs')
+          mapM (\(x, x') -> [x < x', x > x']) (zip xs xs')
 
         indices' =
           map
             (\(condition, index) ->
-              if all (\(x, x') -> x < x') condition then
+              if and condition then
                 insert xs index
               else
                 index)
@@ -47,16 +47,12 @@ lookupAt i x (Branch xs indices)
       error "dimention mismatch"
   | x == xs !! i =
       Just xs
-  | x < xs !! i =
-      let
-        indices' =
-          map snd (filter (\(j, _) -> even (j `div` (2 ^ i) `mod` 2)) (zip [0 .. (2 :: Int) ^ length xs - 1] indices))
-      in
-        lookupAtParallel i x indices'
   | otherwise =
       let
+        f = if x < xs !! i then even else odd
+
         indices' =
-          map snd (filter (\(j, _) -> odd (j `div` (2 ^ i) `mod` 2)) (zip [0 .. (2 :: Int) ^ length xs - 1] indices))
+          map snd (filter (\(j, _) -> f (j `div` (2 ^ i) `mod` 2)) (zip [0 .. (2 :: Int) ^ length xs - 1] indices))
       in
         lookupAtParallel i x indices'
 
