@@ -49,8 +49,7 @@ lookupAt i x (Branch xs indices)
       Just xs
   | otherwise =
       let
-        x' = xs !! i
-        f = if x < x' then even else odd
+        f = if x < xs !! i then even else odd
 
         indices' =
           map snd (filter (\(j, _) -> f (j `div` (2 ^ i) `mod` 2)) (zip [0 .. (2 :: Int) ^ length xs - 1] indices))
