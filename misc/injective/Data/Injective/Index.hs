@@ -28,8 +28,7 @@ insert xs (Branch xs' indices)
         values =
           map (\(x, x') -> [(x, x'), (x', x)]) (zip xs xs')
 
-        combinations =
-          Monad.foldM (\ys' ys -> do { y <- ys; return (y : ys') }) [] values
+        combinations = mapM id values
 
         indices' =
           map
