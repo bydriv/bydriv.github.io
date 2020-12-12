@@ -26,18 +26,16 @@ insert xs (Branch xs' indices)
   | otherwise =
       let
         values =
-          map (\(x, x') -> [(x, x'), (x', x)]) (zip xs xs')
-
-        combinations = mapM id values
+          mapM (\(x, x') -> [(x, x'), (x', x)]) (zip xs xs')
 
         indices' =
           map
-            (\(combination, index) ->
-              if all (\(x, x') -> x < x') combination then
+            (\(value, index) ->
+              if all (\(x, x') -> x < x') value then
                 insert xs index
               else
                 index)
-            (zip combinations indices)
+            (zip values indices)
       in
         Branch xs' indices'
 
