@@ -10,4 +10,5 @@ library
   ghc-options: -Wall -Werror -O3
   default-extensions: Trustworthy, Strict, StrictData
   exposed-modules:
-      Data.Injective
+      Data.Injective.Injection,
+      Data.Injective.Index

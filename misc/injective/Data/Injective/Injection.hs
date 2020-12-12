@@ -1,4 +1,4 @@
-module Data.Injective where
+module Data.Injective.Injection where
 
 import           Control.Parallel(par, pseq)
 import qualified Control.Monad               as Monad
