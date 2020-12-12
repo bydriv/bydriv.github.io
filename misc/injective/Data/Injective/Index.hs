@@ -54,41 +54,29 @@ lookupAt i x (Branch xs indices)
       in
         if x == x' then
           Just xs
-        else if x < x' then
-          let
-            n :: Int
-            n = 2 ^ length xs
-
-            indices' =
-              map snd (filter (\(j, _) -> even (j `div` (2 ^ i) `mod` 2)) (zip [0 .. n - 1] indices))
-
-            lookupParallel [] =
-              Nothing
-            lookupParallel (index : indices'') =
-              let
-                ~r1 = lookupAt i x index
-                ~r2 = lookupParallel indices''
-              in
-                r1 `par` r2 `pseq` Monad.mplus r1 r2
-          in
-            lookupParallel indices'
-        else if x > x' then
-          let
-            n :: Int
-            n = 2 ^ length xs
-
-            indices' =
-              map snd (filter (\(j, _) -> odd (j `div` (2 ^ i) `mod` 2)) (zip [0 .. n - 1] indices))
-
-            lookupParallel [] =
-              Nothing
-            lookupParallel (index : indices'') =
-              let
-                ~r1 = lookupAt i x index
-                ~r2 = lookupParallel indices''
-              in
-                r1 `par` r2 `pseq` Monad.mplus r1 r2
-          in
-            lookupParallel indices'
         else
-          undefined
+          let
+            n :: Int
+            n = 2 ^ length xs
+
+            f :: Int -> Bool
+            f =
+              if x < x' then
+                even
+              else
+                odd
+
+            indices' =
+              map snd (filter (\(j, _) -> f (j `div` (2 ^ i) `mod` 2)) (zip [0 .. n - 1] indices))
+          in
+            lookupAtParallel i x indices'
+
+lookupAtParallel :: Ord a => Int -> a -> [Index a] -> Maybe [a]
+lookupAtParallel _ _ [] =
+  Nothing
+lookupAtParallel i x (index : indices) =
+  let
+    ~a = lookupAt i x index
+    ~b = lookupAtParallel i x indices
+  in
+    a `par` b `pseq` Monad.mplus a b
