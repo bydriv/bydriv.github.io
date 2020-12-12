@@ -47,16 +47,13 @@ lookupAt i x (Branch xs indices)
       error "dimention mismatch"
   | x == xs !! i =
       Just xs
-  | x < xs !! i =
-      let
-        indices' =
-          map snd (filter (\(j, _) -> even (j `div` (2 ^ i) `mod` 2)) (zip [0 .. (2 :: Int) ^ length xs - 1] indices))
-      in
-        lookupAtParallel i x indices'
   | otherwise =
       let
+        x' = xs !! i
+        f = if x < x' then even else odd
+
         indices' =
-          map snd (filter (\(j, _) -> odd (j `div` (2 ^ i) `mod` 2)) (zip [0 .. (2 :: Int) ^ length xs - 1] indices))
+          map snd (filter (\(j, _) -> f (j `div` (2 ^ i) `mod` 2)) (zip [0 .. (2 :: Int) ^ length xs - 1] indices))
       in
         lookupAtParallel i x indices'
 
