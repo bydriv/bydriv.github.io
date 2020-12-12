@@ -11,4 +11,5 @@ library
   default-extensions: Trustworthy, Strict, StrictData
   exposed-modules:
       Data.Injective.Injection,
-      Data.Injective.Index
+      Data.Injective.Index,
+      Data.Injective.Pool

@@ -1,7 +1,20 @@
-module Data.Injective.Index where
+module Data.Injective.Index(
+  Index,
+  empty,
+  singleton,
+  insert,
+  lookupAt,
+  memberAt,
+  foldLeft,
+  foldRight,
+  collectAt,
+  fromList,
+  toList
+) where
 
 import           Control.Parallel(par, pseq)
 import qualified Control.Monad               as Monad
+import qualified Data.Maybe                  as Maybe
 
 data Index a =
     Empty
@@ -65,3 +78,43 @@ lookupAtParallel i x (index : indices) =
     ~b = lookupAtParallel i x indices
   in
     a `par` b `pseq` Monad.mplus a b
+
+memberAt :: Ord a => Int -> a -> Index a -> Bool
+memberAt i x = Maybe.isJust . lookupAt i x
+
+foldLeft :: (b -> [a] -> b) -> b -> Index a -> b
+foldLeft _ z Empty =
+  z
+foldLeft f z (Branch xs indices) =
+  f (foldl (foldLeft f) z indices) xs
+
+foldRight :: ([a] -> b -> b) -> b -> Index a -> b
+foldRight _ z Empty =
+  z
+foldRight f z (Branch xs indices) =
+  foldr (flip (foldRight f)) (f xs z) indices
+
+collectAt :: Int -> Index a -> [a]
+collectAt _ Empty =
+  []
+collectAt i (Branch xs indices) =
+  let
+    x = xs !! i
+  in
+    x : collectAtParallel i indices
+
+collectAtParallel :: Int -> [Index a] -> [a]
+collectAtParallel _ [] =
+  []
+collectAtParallel i (index : indices) =
+  let
+    ~a = collectAt i index
+    ~b = collectAtParallel i indices
+  in
+    a `par` b `pseq` Monad.mplus a b
+
+fromList :: Ord a => [[a]] -> Index a
+fromList = foldr insert empty
+
+toList :: Index a -> [[a]]
+toList = foldRight (:) []
