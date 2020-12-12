@@ -1,3 +1,5 @@
+{-# LANGUAGE Trustworthy #-}
+
 module Data.Injective.Index(
   Index,
   empty,
