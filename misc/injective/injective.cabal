@@ -1,0 +1,13 @@
+name: injective
+version: 0.0.1
+build-type: Simple
+cabal-version: >= 1.10
+
+library
+  hs-source-dirs: .
+  default-language: Haskell2010
+  build-depends: base, parallel
+  ghc-options: -Wall -Werror -O3
+  default-extensions: Trustworthy, Strict, StrictData
+  exposed-modules:
+      Data.Injective
