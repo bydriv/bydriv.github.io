@@ -71,8 +71,8 @@ insertAll xys index =
           fromList' xys1
         (xys1, (x, y) : xys2) ->
           let
-            xys3 = List.foldl' (classify (x, y)) ([], [], [], []) xys2
-            (xys4, xys5, xys6, xys7) = List.foldl' (classify (x, y)) xys3 xys1
+            xys3 = List.foldl' (classify (x, y)) ([], [], [], []) xys1
+            (xys4, xys5, xys6, xys7) = List.foldl' (classify (x, y)) xys3 xys2
           in
             Branch x y (fromList' xys4) (fromList' xys5) (fromList' xys6) (fromList' xys7)
 
