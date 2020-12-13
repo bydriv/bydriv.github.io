@@ -1,6 +1,7 @@
 module Data.Injective.Map where
 
 import qualified Control.Monad as Monad
+import qualified Data.List     as List
 import qualified Data.Maybe    as Maybe
 
 data Map a b =
@@ -69,5 +70,31 @@ memberRight y f =
   Maybe.isJust (lookupRight y f)
 
 fromList :: (Ord a, Ord b) => [(a, b)] -> Map a b
-fromList =
-  foldr (\(x, y) -> insert x y) empty
+fromList = fromList' . List.sort where
+  fromList' xys =
+    case splitAt (length xys `div` 2) xys of
+      ([], []) ->
+        Empty
+      (xys1, []) ->
+        fromList' xys1
+      (xys1, (x, y) : xys2) ->
+        let
+          xys3 = List.foldl' (f (x, y)) ([], [], [], []) xys2
+          (xys4, xys5, xys6, xys7) = List.foldl' (f (x, y)) xys3 xys1
+        in
+          Branch x y (fromList' xys4) (fromList' xys5) (fromList' xys6) (fromList' xys7)
+
+  f (x, y) (t1, t2, t3, t4) (x', y') =
+    case (compare x' x, compare y' y) of
+      (EQ, _) ->
+        error "uniqueness unsatisfied"
+      (_, EQ) ->
+        error "uniqueness unsatisfied"
+      (LT, LT) ->
+        ((x', y') : t1, t2, t3, t4)
+      (LT, GT) ->
+        (t1, (x', y') : t2, t3, t4)
+      (GT, LT) ->
+        (t1, t2, (x', y') : t3, t4)
+      (GT, GT) ->
+        (t1, t2, t3, (x', y') : t4)
