@@ -8,7 +8,10 @@ module Data.Injective.Map
   , lookupRight
   , memberLeft
   , memberRight
+  , foldLeft
+  , foldRight
   , fromList
+  , toList
   ) where
 
 import qualified Control.Monad as Monad
@@ -120,5 +123,20 @@ memberRight :: (Ord a, Ord b) => b -> Map a b -> Bool
 memberRight y f =
   Maybe.isJust (lookupRight y f)
 
+foldLeft :: (c -> a -> b -> c) -> c -> Map a b -> c
+foldLeft _ z Empty =
+  z
+foldLeft f z (Branch x y t1 t2 t3 t4) =
+  foldLeft f (foldLeft f (f (foldLeft f (foldLeft f z t1) t2) x y) t3) t4
+
+foldRight :: (a -> b -> c -> c) -> c -> Map a b -> c
+foldRight _ z Empty =
+  z
+foldRight f z (Branch x y t1 t2 t3 t4) =
+  foldRight f (foldRight f (f x y (foldRight f (foldRight f z t4) t3)) t2) t1
+
 fromList :: (Ord a, Ord b) => [(a, b)] -> Map a b
 fromList = flip insertAll Empty
+
+toList :: Map a b -> [(a, b)]
+toList = foldRight (\x y xys -> (x, y) : xys) []
