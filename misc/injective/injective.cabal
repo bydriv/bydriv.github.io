@@ -11,6 +11,7 @@ library
   default-extensions: Safe, Strict, StrictData
   exposed-modules:
       Data.Injective.Map,
+      Data.Injective.Relation,
       Data.Injective.Set,
       Data.Injective.Quotient,
       Data.Injective.Index

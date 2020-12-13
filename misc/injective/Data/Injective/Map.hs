@@ -8,6 +8,8 @@ module Data.Injective.Map
   , lookupRight
   , memberLeft
   , memberRight
+  , betweenLeft
+  , betweenRight
   , foldLeft
   , foldRight
   , fromList
@@ -122,6 +124,42 @@ memberLeft x f =
 memberRight :: (Ord a, Ord b) => b -> Map a b -> Bool
 memberRight y f =
   Maybe.isJust (lookupRight y f)
+
+betweenLeft :: (Ord a, Ord b) => a -> a -> Map a b -> [(a, b)]
+betweenLeft _ _ Empty =
+  []
+betweenLeft x1 x2 (Branch x' y t1 t2 t3 t4) =
+  case (compare x1 x', compare x2 x') of
+    (GT, _) ->
+      []
+    (_, LT) ->
+      []
+    (EQ, EQ) ->
+      [(x', y)]
+    (EQ, GT) ->
+      (x', y) : Monad.mplus (betweenLeft x1 x2 t1) (betweenLeft x1 x2 t2)
+    (LT, EQ) ->
+      (x', y) : Monad.mplus (betweenLeft x1 x2 t3) (betweenLeft x1 x2 t4)
+    (LT, GT) ->
+      (x', y) : Monad.msum [betweenLeft x1 x2 t1, betweenLeft x1 x2 t2, betweenLeft x1 x2 t3, betweenLeft x1 x2 t4]
+
+betweenRight :: (Ord a, Ord b) => b -> b -> Map a b -> [(a, b)]
+betweenRight _ _ Empty =
+  []
+betweenRight y1 y2 (Branch x y' t1 t2 t3 t4) =
+  case (compare y1 y', compare y2 y') of
+    (GT, _) ->
+      []
+    (_, LT) ->
+      []
+    (EQ, EQ) ->
+      [(x, y')]
+    (EQ, GT) ->
+      (x, y') : Monad.mplus (betweenRight y1 y2 t1) (betweenRight y1 y2 t3)
+    (LT, EQ) ->
+      (x, y') : Monad.mplus (betweenRight y1 y2 t2) (betweenRight y1 y2 t4)
+    (LT, GT) ->
+      (x, y') : Monad.msum [betweenRight y1 y2 t1, betweenRight y1 y2 t2, betweenRight y1 y2 t3, betweenRight y1 y2 t4]
 
 foldLeft :: (c -> a -> b -> c) -> c -> Map a b -> c
 foldLeft _ z Empty =
