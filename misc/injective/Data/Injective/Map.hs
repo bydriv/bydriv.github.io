@@ -1,4 +1,18 @@
-module Data.Injective.Map where
+module Data.Injective.Map
+  ( Map
+  , empty
+  , singleton
+  , insert
+  , insertAll
+  , lookupLeft
+  , lookupRight
+  , memberLeft
+  , memberRight
+  , foldLeft
+  , foldRight
+  , fromList
+  , toList
+  ) where
 
 import qualified Control.Monad as Monad
 import qualified Data.List     as List
@@ -37,6 +51,46 @@ insert x y (Branch x' y' t1 t2 t3 t4) =
     (GT, GT) ->
       Branch x' y' t1 t2 t3 (insert x y t4)
 
+insertAll :: (Ord a, Ord b) => [(a, b)] -> Map a b -> Map a b
+insertAll xys index =
+  case index of
+    Empty ->
+      fromList' (List.sort xys)
+    Branch x y t1 t2 t3 t4 ->
+      let
+        (xys1, xys2, xys3, xys4) =
+          List.foldl' (classify (x, y)) ([], [], [], []) xys
+      in
+        Branch x y (insertAll xys1 t1) (insertAll xys2 t2) (insertAll xys3 t3) (insertAll xys4 t4)
+  where
+    fromList' xys' =
+      case splitAt (length xys' `div` 2) xys' of
+        ([], []) ->
+          Empty
+        (xys1, []) ->
+          fromList' xys1
+        (xys1, (x, y) : xys2) ->
+          let
+            xys3 = List.foldl' (classify (x, y)) ([], [], [], []) xys2
+            (xys4, xys5, xys6, xys7) = List.foldl' (classify (x, y)) xys3 xys1
+          in
+            Branch x y (fromList' xys4) (fromList' xys5) (fromList' xys6) (fromList' xys7)
+
+    classify (x, y) (t1, t2, t3, t4) (x', y') =
+      case (compare x' x, compare y' y) of
+        (EQ, _) ->
+          error "uniqueness unsatisfied"
+        (_, EQ) ->
+          error "uniqueness unsatisfied"
+        (LT, LT) ->
+          ((x', y') : t1, t2, t3, t4)
+        (LT, GT) ->
+          (t1, (x', y') : t2, t3, t4)
+        (GT, LT) ->
+          (t1, t2, (x', y') : t3, t4)
+        (GT, GT) ->
+          (t1, t2, t3, (x', y') : t4)
+
 lookupLeft :: (Ord a, Ord b) => a -> Map a b -> Maybe (a, b)
 lookupLeft _ Empty =
   Nothing
@@ -69,32 +123,20 @@ memberRight :: (Ord a, Ord b) => b -> Map a b -> Bool
 memberRight y f =
   Maybe.isJust (lookupRight y f)
 
-fromList :: (Ord a, Ord b) => [(a, b)] -> Map a b
-fromList = fromList' . List.sort where
-  fromList' xys =
-    case splitAt (length xys `div` 2) xys of
-      ([], []) ->
-        Empty
-      (xys1, []) ->
-        fromList' xys1
-      (xys1, (x, y) : xys2) ->
-        let
-          xys3 = List.foldl' (f (x, y)) ([], [], [], []) xys2
-          (xys4, xys5, xys6, xys7) = List.foldl' (f (x, y)) xys3 xys1
-        in
-          Branch x y (fromList' xys4) (fromList' xys5) (fromList' xys6) (fromList' xys7)
+foldLeft :: (c -> a -> b -> c) -> c -> Map a b -> c
+foldLeft _ z Empty =
+  z
+foldLeft f z (Branch x y t1 t2 t3 t4) =
+  foldLeft f (foldLeft f (f (foldLeft f (foldLeft f z t1) t2) x y) t3) t4
 
-  f (x, y) (t1, t2, t3, t4) (x', y') =
-    case (compare x' x, compare y' y) of
-      (EQ, _) ->
-        error "uniqueness unsatisfied"
-      (_, EQ) ->
-        error "uniqueness unsatisfied"
-      (LT, LT) ->
-        ((x', y') : t1, t2, t3, t4)
-      (LT, GT) ->
-        (t1, (x', y') : t2, t3, t4)
-      (GT, LT) ->
-        (t1, t2, (x', y') : t3, t4)
-      (GT, GT) ->
-        (t1, t2, t3, (x', y') : t4)
+foldRight :: (a -> b -> c -> c) -> c -> Map a b -> c
+foldRight _ z Empty =
+  z
+foldRight f z (Branch x y t1 t2 t3 t4) =
+  foldRight f (foldRight f (f x y (foldRight f (foldRight f z t4) t3)) t2) t1
+
+fromList :: (Ord a, Ord b) => [(a, b)] -> Map a b
+fromList = flip insertAll Empty
+
+toList :: Map a b -> [(a, b)]
+toList = foldRight (\x y xys -> (x, y) : xys) []
