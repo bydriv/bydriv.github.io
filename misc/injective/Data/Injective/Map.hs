@@ -1,4 +1,15 @@
-module Data.Injective.Map where
+module Data.Injective.Map
+  ( Map
+  , empty
+  , singleton
+  , insert
+  , insertAll
+  , lookupLeft
+  , lookupRight
+  , memberLeft
+  , memberRight
+  , fromList
+  ) where
 
 import qualified Control.Monad as Monad
 import qualified Data.List     as List
@@ -36,22 +47,6 @@ insert x y (Branch x' y' t1 t2 t3 t4) =
       Branch x' y' t1 t2 (insert x y t3) t4
     (GT, GT) ->
       Branch x' y' t1 t2 t3 (insert x y t4)
-
-classify :: (Ord a, Ord b) => (a, b) -> ([(a, b)], [(a, b)], [(a, b)], [(a, b)]) -> (a, b) -> ([(a, b)], [(a, b)], [(a, b)], [(a, b)])
-classify (x, y) (t1, t2, t3, t4) (x', y') =
-  case (compare x' x, compare y' y) of
-    (EQ, _) ->
-      error "uniqueness unsatisfied"
-    (_, EQ) ->
-      error "uniqueness unsatisfied"
-    (LT, LT) ->
-      ((x', y') : t1, t2, t3, t4)
-    (LT, GT) ->
-      (t1, (x', y') : t2, t3, t4)
-    (GT, LT) ->
-      (t1, t2, (x', y') : t3, t4)
-    (GT, GT) ->
-      (t1, t2, t3, (x', y') : t4)
 
 insertAll :: (Ord a, Ord b) => [(a, b)] -> Map a b -> Map a b
 insertAll xys Empty = fromList' (List.sort xys) where
@@ -108,3 +103,19 @@ memberRight y f =
 
 fromList :: (Ord a, Ord b) => [(a, b)] -> Map a b
 fromList = flip insertAll Empty
+
+classify :: (Ord a, Ord b) => (a, b) -> ([(a, b)], [(a, b)], [(a, b)], [(a, b)]) -> (a, b) -> ([(a, b)], [(a, b)], [(a, b)], [(a, b)])
+classify (x, y) (t1, t2, t3, t4) (x', y') =
+  case (compare x' x, compare y' y) of
+    (EQ, _) ->
+      error "uniqueness unsatisfied"
+    (_, EQ) ->
+      error "uniqueness unsatisfied"
+    (LT, LT) ->
+      ((x', y') : t1, t2, t3, t4)
+    (LT, GT) ->
+      (t1, (x', y') : t2, t3, t4)
+    (GT, LT) ->
+      (t1, t2, (x', y') : t3, t4)
+    (GT, GT) ->
+      (t1, t2, t3, (x', y') : t4)
