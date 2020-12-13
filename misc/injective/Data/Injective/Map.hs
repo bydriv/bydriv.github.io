@@ -49,25 +49,44 @@ insert x y (Branch x' y' t1 t2 t3 t4) =
       Branch x' y' t1 t2 t3 (insert x y t4)
 
 insertAll :: (Ord a, Ord b) => [(a, b)] -> Map a b -> Map a b
-insertAll xys Empty = fromList' (List.sort xys) where
-  fromList' xys' =
-    case splitAt (length xys' `div` 2) xys' of
-      ([], []) ->
-        Empty
-      (xys1, []) ->
-        fromList' xys1
-      (xys1, (x, y) : xys2) ->
-        let
-          xys3 = List.foldl' (classify (x, y)) ([], [], [], []) xys2
-          (xys4, xys5, xys6, xys7) = List.foldl' (classify (x, y)) xys3 xys1
-        in
-          Branch x y (fromList' xys4) (fromList' xys5) (fromList' xys6) (fromList' xys7)
-insertAll xys (Branch x y t1 t2 t3 t4) =
-  let
-    (xys1, xys2, xys3, xys4) =
-      List.foldl' (classify (x, y)) ([], [], [], []) xys
-  in
-    Branch x y (insertAll xys1 t1) (insertAll xys2 t2) (insertAll xys3 t3) (insertAll xys4 t4)
+insertAll xys index =
+  case index of
+    Empty ->
+      fromList' (List.sort xys)
+    Branch x y t1 t2 t3 t4 ->
+      let
+        (xys1, xys2, xys3, xys4) =
+          List.foldl' (classify (x, y)) ([], [], [], []) xys
+      in
+        Branch x y (insertAll xys1 t1) (insertAll xys2 t2) (insertAll xys3 t3) (insertAll xys4 t4)
+  where
+    fromList' xys' =
+      case splitAt (length xys' `div` 2) xys' of
+        ([], []) ->
+          Empty
+        (xys1, []) ->
+          fromList' xys1
+        (xys1, (x, y) : xys2) ->
+          let
+            xys3 = List.foldl' (classify (x, y)) ([], [], [], []) xys2
+            (xys4, xys5, xys6, xys7) = List.foldl' (classify (x, y)) xys3 xys1
+          in
+            Branch x y (fromList' xys4) (fromList' xys5) (fromList' xys6) (fromList' xys7)
+
+    classify (x, y) (t1, t2, t3, t4) (x', y') =
+      case (compare x' x, compare y' y) of
+        (EQ, _) ->
+          error "uniqueness unsatisfied"
+        (_, EQ) ->
+          error "uniqueness unsatisfied"
+        (LT, LT) ->
+          ((x', y') : t1, t2, t3, t4)
+        (LT, GT) ->
+          (t1, (x', y') : t2, t3, t4)
+        (GT, LT) ->
+          (t1, t2, (x', y') : t3, t4)
+        (GT, GT) ->
+          (t1, t2, t3, (x', y') : t4)
 
 lookupLeft :: (Ord a, Ord b) => a -> Map a b -> Maybe (a, b)
 lookupLeft _ Empty =
@@ -103,19 +122,3 @@ memberRight y f =
 
 fromList :: (Ord a, Ord b) => [(a, b)] -> Map a b
 fromList = flip insertAll Empty
-
-classify :: (Ord a, Ord b) => (a, b) -> ([(a, b)], [(a, b)], [(a, b)], [(a, b)]) -> (a, b) -> ([(a, b)], [(a, b)], [(a, b)], [(a, b)])
-classify (x, y) (t1, t2, t3, t4) (x', y') =
-  case (compare x' x, compare y' y) of
-    (EQ, _) ->
-      error "uniqueness unsatisfied"
-    (_, EQ) ->
-      error "uniqueness unsatisfied"
-    (LT, LT) ->
-      ((x', y') : t1, t2, t3, t4)
-    (LT, GT) ->
-      (t1, (x', y') : t2, t3, t4)
-    (GT, LT) ->
-      (t1, t2, (x', y') : t3, t4)
-    (GT, GT) ->
-      (t1, t2, t3, (x', y') : t4)
