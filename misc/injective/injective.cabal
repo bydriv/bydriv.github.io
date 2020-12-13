@@ -10,4 +10,5 @@ library
   ghc-options: -Wall -Werror -O3
   default-extensions: Safe, Strict, StrictData
   exposed-modules:
-      Data.Injective.Map
+      Data.Injective.Map,
+      Data.Injective.Index
