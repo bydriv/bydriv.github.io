@@ -6,10 +6,17 @@ module Data.Injective.Map
   , insertAll
   , lookupLeft
   , lookupRight
+  , deleteLeft
+  , deleteRight
+  , minimumLeft
+  , minimumRight
+  , maximumLeft
+  , maximumRight
   , memberLeft
   , memberRight
   , betweenLeft
   , betweenRight
+  , union
   , foldLeft
   , foldRight
   , fromList
@@ -53,6 +60,57 @@ insert x y (Branch x' y' t1 t2 t3 t4) =
     (GT, GT) ->
       Branch x' y' t1 t2 t3 (insert x y t4)
 
+union :: (Ord a, Ord b) => Map a b -> Map a b -> Map a b
+union = insertAll . toList
+
+deleteLeft :: (Ord a, Ord b) => a -> Map a b -> Map a b
+deleteLeft _ Empty =
+  Empty
+deleteLeft x (Branch x' y t1 t2 t3 t4) =
+  case compare x x' of
+    EQ ->
+      union t1 (union t2 (union t3 t4))
+    LT ->
+      Branch x' y (deleteLeft x t1) (deleteLeft x t2) t3 t4
+    GT ->
+      Branch x' y t1 t2 (deleteLeft x t3) (deleteLeft x t4)
+
+deleteRight :: (Ord a, Ord b) => b -> Map a b -> Map a b
+deleteRight _ Empty =
+  Empty
+deleteRight y (Branch x y' t1 t2 t3 t4) =
+  case compare y y' of
+    EQ ->
+      union t1 (union t2 (union t3 t4))
+    LT ->
+      Branch x y' (deleteRight y t1) t2 (deleteRight y t3) t4
+    GT ->
+      Branch x y' t1 (deleteRight y t2) t3 (deleteRight y t4)
+
+minimumLeft :: (Ord a, Ord b) => Map a b -> Maybe a
+minimumLeft Empty =
+  Nothing
+minimumLeft (Branch x _ t1 t2 _ _) =
+  Monad.msum [minimumLeft t1, minimumLeft t2, Just x]
+
+maximumLeft :: (Ord a, Ord b) => Map a b -> Maybe a
+maximumLeft Empty =
+  Nothing
+maximumLeft (Branch x _ _ _ t3 t4) =
+  Monad.msum [maximumLeft t3, maximumLeft t4, Just x]
+
+minimumRight :: (Ord a, Ord b) => Map a b -> Maybe b
+minimumRight Empty =
+  Nothing
+minimumRight (Branch _ y t1 _ t3 _) =
+  Monad.msum [minimumRight t1, minimumRight t3, Just y]
+
+maximumRight :: (Ord a, Ord b) => Map a b -> Maybe b
+maximumRight Empty =
+  Nothing
+maximumRight (Branch _ y _ t2 _ t4) =
+  Monad.msum [maximumRight t2, maximumRight t4, Just y]
+
 insertAll :: (Ord a, Ord b) => [(a, b)] -> Map a b -> Map a b
 insertAll xys index =
   case index of
@@ -80,6 +138,8 @@ insertAll xys index =
 
     classify (x, y) (t1, t2, t3, t4) (x', y') =
       case (compare x' x, compare y' y) of
+        (EQ, EQ) ->
+          (t1, t2, t3, t4)
         (EQ, _) ->
           error "uniqueness unsatisfied"
         (_, EQ) ->
