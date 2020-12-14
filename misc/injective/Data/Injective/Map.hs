@@ -69,7 +69,29 @@ deleteLeft _ Empty =
 deleteLeft x (Branch x' y t1 t2 t3 t4) =
   case compare x x' of
     EQ ->
-      union t1 (union t2 (union t3 t4))
+      case (t1, t2, t3, t4) of
+        (Empty, Empty, Empty, Empty) ->
+          Empty
+        (Branch x1 y1 t5 t6 t7 Empty, _, _, _) ->
+          Branch x1 y1 t5 t6 t7 t4
+        (_, Branch x1 y1 t5 t6 Empty t7, _, _) ->
+          Branch x1 y1 t5 t6 t3 t7
+        (_, _, Branch x1 y1 t5 Empty t6 t7, _) ->
+          Branch x1 y1 t5 t2 t6 t7
+        (_, _, _, Branch x1 y1 Empty t5 t6 t7) ->
+          Branch x1 y1 t1 t5 t6 t7
+        (Branch x1 y1 t5 t6 t7 (Branch x2 y2 t8 t9 t10 t11), _, _, _) ->
+          -- x1 < x2 < x' && y1 < y2 < y
+          Branch x2 y2 (Branch x1 y1 t5 t6 t7 t8) t9 t10 (deleteLeft x (Branch x' y t11 t2 t3 t4))
+        (_, Branch x1 y1 t5 t6 (Branch x2 y2 t8 t9 t10 t11) t7, _, _) ->
+          -- x1 < x2 < x' && y1 > y2 > y
+          Branch x2 y2 t8 (Branch x1 y1 t5 t6 t9 t7) (deleteLeft x (Branch x' y t1 t10 t3 t4)) t11
+        (_, _, Branch x1 y1 t5 (Branch x2 y2 t8 t9 t10 t11) t6 t7, _) ->
+          -- x1 > x2 > x' && y1 < y2 < y
+          Branch x2 y2 t8 (deleteLeft x (Branch x' y t1 t2 t9 t4)) (Branch x1 y1 t5 t10 t6 t7) t11
+        (_, _, _, Branch x1 y1 (Branch x2 y2 t8 t9 t10 t11) t5 t6 t7) ->
+          -- x1 > x2 > x' && y1 > y2 > y
+          Branch x2 y2 (deleteLeft x (Branch x' y t1 t2 t3 t11)) t9 t10 (Branch x1 y1 t8 t5 t6 t7)
     LT ->
       Branch x' y (deleteLeft x t1) (deleteLeft x t2) t3 t4
     GT ->
@@ -81,7 +103,29 @@ deleteRight _ Empty =
 deleteRight y (Branch x y' t1 t2 t3 t4) =
   case compare y y' of
     EQ ->
-      union t1 (union t2 (union t3 t4))
+      case (t1, t2, t3, t4) of
+        (Empty, Empty, Empty, Empty) ->
+          Empty
+        (Branch x1 y1 t5 t6 t7 Empty, _, _, _) ->
+          Branch x1 y1 t5 t6 t7 t4
+        (_, Branch x1 y1 t5 t6 Empty t7, _, _) ->
+          Branch x1 y1 t5 t6 t3 t7
+        (_, _, Branch x1 y1 t5 Empty t6 t7, _) ->
+          Branch x1 y1 t5 t2 t6 t7
+        (_, _, _, Branch x1 y1 Empty t5 t6 t7) ->
+          Branch x1 y1 t1 t5 t6 t7
+        (Branch x1 y1 t5 t6 t7 (Branch x2 y2 t8 t9 t10 t11), _, _, _) ->
+          -- x1 < x2 < x && y1 < y2 < y'
+          Branch x2 y2 (Branch x1 y1 t5 t6 t7 t8) t9 t10 (deleteRight y (Branch x y' t11 t2 t3 t4))
+        (_, Branch x1 y1 t5 t6 (Branch x2 y2 t8 t9 t10 t11) t7, _, _) ->
+          -- x1 < x2 < x && y1 > y2 > y
+          Branch x2 y2 t8 (Branch x1 y1 t5 t6 t9 t7) (deleteRight y (Branch x y' t1 t10 t3 t4)) t11
+        (_, _, Branch x1 y1 t5 (Branch x2 y2 t8 t9 t10 t11) t6 t7, _) ->
+          -- x1 > x2 > x && y1 < y2 < y'
+          Branch x2 y2 t8 (deleteRight y (Branch x y' t1 t2 t9 t4)) (Branch x1 y1 t5 t10 t6 t7) t11
+        (_, _, _, Branch x1 y1 (Branch x2 y2 t8 t9 t10 t11) t5 t6 t7) ->
+          -- x1 > x2 > x && y1 > y2 > y'
+          Branch x2 y2 (deleteRight y (Branch x y' t1 t2 t3 t11)) t9 t10 (Branch x1 y1 t8 t5 t6 t7)
     LT ->
       Branch x y' (deleteRight y t1) t2 (deleteRight y t3) t4
     GT ->
