@@ -2,7 +2,7 @@ DEFAULT_TEMPLATE_HTML := etc/make/default/template.html
 
 PANDOC := pandoc
 PANDOC_OPTIONS := -f markdown+east_asian_line_breaks
-PANDOC_OPTIONS_HTML :=
+PANDOC_OPTIONS_HTML := --mathml
 
 .PHONY: all
 all: \
