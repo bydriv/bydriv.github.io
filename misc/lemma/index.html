@@ -163,7 +163,7 @@ import qualified Data.Word  as Word
 --  | x == y                              &lt;==&gt; metric x y == 0
 --  | metric x y                           ==  negate (metric y x)
 --  | abs (metric x y) + abs (metric y z)  &gt;=  abs (metric x z)
---  | metric x y &gt;= 0 AND metric y z &gt;= 0  ==&gt; abs (metric x z) &gt;= 0
+--  | metric x y &gt;= 0 AND metric y z &gt;= 0  ==&gt; metric x z &gt;= 0
 --------------------------------------------------------------------------------
 
 class Metric a where
