@@ -8,3 +8,4 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 # Misc.
 
 - [Kludge](kludge)
+- [Lemma](lemma)
