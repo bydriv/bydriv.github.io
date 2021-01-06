@@ -217,7 +217,7 @@ $m$, $\left|\vec{v}\right|$ という変数の動ける範囲を変えたくな�
 試してみるとすぐにわかります。ただここまできたらあともう一歩な感じはします。
 とりあえず今日はこのへんで。
 
-## 付録 A. 公理、定理、定義の整理
+## 付録 A 公理、定理、定義の整理
 
 ### 公理
 
@@ -253,7 +253,7 @@ $m$, $\left|\vec{v}\right|$ という変数の動ける範囲を変えたくな�
 - $\epsilon=E^2=c^2\Rightarrow\left(E^2=\left(mc^2\right)^2+\left(pc\right)^2\Leftrightarrow\epsilon^2=m^2\epsilon^3+\left|\vec{v}\right|^2\epsilon\right)$
 - $\epsilon=E^2=c^2\Rightarrow\left(E=h\nu\Leftrightarrow\epsilon=k^2\hbar^2\epsilon\right)$
 
-## 付録 B. 検算プログラム
+## 付録 B 検算プログラム
 
 基本的に文字式を考えるときは数式のほうが簡単ですが文字式ではなく実際の値を求める場合などには
 プログラムで検算したほうが簡単です。 $\pi$ は無理数ですが近似値で計算すればいいので
