@@ -12,7 +12,7 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 
 - $E^2=\left(mc^2\right)^2+\left(pc\right)^2\Leftrightarrow{}E=\frac{c^2}{E}m^2c^2+\frac{E}{c^2}\left|\vec{v}\right|^2$
 
-さてこの関係から気になってくるのは質量とエネルギーが非対称な関係にあるということで
+さてこの関係から気になってくるのは質量と速度が非対称な関係にあるということで
 この方程式から $c^2$ という部分を消せないかということです。
 すると実は光速度定数を $c=1$ と定義してしまえばいいことに気付きます。
 そのような単位系は **プランク単位系** と呼ばれます。
