@@ -3,7 +3,8 @@
     src: url("/misc/kludge/kludge.otf") format("opentype");
 }
 
-/* https://junicode.sourceforge.io/ */
+/* "Junicode" is lisenced under the SIL Open Font License 1.1
+ * by https://junicode.sourceforge.io/ */
 @font-face {
     font-family: "Junicode";
     src: url("/fonts/Junicode.ttf") format("truetype");
@@ -32,13 +33,15 @@
     font-style: italic;
 }
 
-/* https://github.com/fontworks-fonts/Klee */
+/* "Klee" is lisenced under the SIL Open Font License 1.1
+ * by https://github.com/fontworks-fonts/Klee */
 @font-face {
     font-family: "Klee";
     src: url("/fonts/KleeOne-Regular.ttf") format("truetype");
 }
 
-/* https://github.com/fontworks-fonts/RocknRoll */
+/* "RocknRoll" is lisenced under the SIL Open Font License 1.1
+ * by https://github.com/fontworks-fonts/RocknRoll */
 @font-face {
     font-family: "RocknRoll";
     src: url("/fonts/RocknRollOne-Regular.ttf") format("truetype");
