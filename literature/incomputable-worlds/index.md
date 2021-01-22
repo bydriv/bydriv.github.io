@@ -1,5 +1,5 @@
 ---
-url: https://bydriv.github.io/literature/agent-log/incomputable-worlds/
+url: https://bydriv.github.io/literature/incomputable-worlds/
 title: bydriv.github.io
 description: "テーリの研究日誌: 計算不能世界論"
 thumbnail: https://bydriv.github.io/etc/site/thumbnail.png

@@ -7,6 +7,7 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 
 # Literature
 
+- [テーリの研究日誌: 計算不能世界論](incomputable-worlds)
 - [イノセント・センス](innocent-sense)
     - [ウェイストランド](innocent-sense/wasteland)
 - [テーリの諜報日誌](agent-log)
