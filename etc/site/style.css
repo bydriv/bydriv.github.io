@@ -3,6 +3,47 @@
     src: url("/misc/kludge/kludge.otf") format("opentype");
 }
 
+/* https://junicode.sourceforge.io/ */
+@font-face {
+    font-family: "Junicode";
+    src: url("/fonts/Junicode.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Junicode";
+    src: url("/fonts/Junicode-Bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Junicode";
+    src: url("/fonts/Junicode-Italic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Junicode";
+    src: url("/fonts/Junicode-BoldItalic.ttf") format("truetype");
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* https://github.com/fontworks-fonts/Klee */
+@font-face {
+    font-family: "Klee";
+    src: url("/fonts/KleeOne-Regular.ttf") format("truetype");
+}
+
+/* https://github.com/fontworks-fonts/RocknRoll */
+@font-face {
+    font-family: "RocknRoll";
+    src: url("/fonts/RocknRollOne-Regular.ttf") format("truetype");
+}
+
 @media (orientation: landscape) {
     body {
         background-image: url("/etc/site/landscape.png");
@@ -20,7 +61,19 @@ body {
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;
-    color: #404040;
+    color: rgba(64, 64, 64, 0.875);
+}
+
+div.junicode, span.junicode {
+    font-family: "Junicode";
+}
+
+div.klee {
+    font-family: "Klee";
+}
+
+div.rocknroll {
+    font-family: "RocknRoll";
 }
 
 div.navigation {
@@ -141,7 +194,7 @@ img {
 }
 
 a {
-    color: rgba(0, 128, 255, 1);
+    color: rgba(0, 128, 255, 0.875);
     text-decoration: none;
 }
 
@@ -222,4 +275,63 @@ div.rest {
     margin: 48px;
     font-size: 16px;
     text-align: center;
+}
+
+blockquote {
+    margin: 16px 32px;
+    font-size: 16px;
+    font-style: italic;
+    text-align: justify;
+}
+
+ul {
+    margin: 16px;
+}
+
+span.emphasis {
+    text-emphasis-style: dot;
+}
+
+div.inverse {
+    border-top: solid 20px rgba(0, 0, 0, 0.75);
+    border-bottom: solid 20px rgba(0, 0, 0, 0.75);
+    color: rgba(255, 255, 255, 0.875);
+    background: radial-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.875));
+    font-family: "Klee";
+}
+
+hr {
+    border-left: none;
+    border-top: dotted 2px rgba(0, 0, 0, 0.5);
+    border-right: none;
+    border-bottom: none;
+}
+
+div.inverse hr {
+    border-left: none;
+    border-top: dotted 2px rgba(255, 255, 255, 0.5);
+    border-right: none;
+    border-bottom: none;
+}
+
+div.subtitle {
+    margin: 16px;
+    text-align: right;
+    font-style: italic;
+}
+
+dl {
+    margin: 16px;
+}
+
+dt, dd > p {
+    margin: 0;
+}
+
+dd {
+    margin: 0 16px;
+}
+
+dt, dd > p {
+    font-size: 12px;
 }
