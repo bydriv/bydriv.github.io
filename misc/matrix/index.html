@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/etc/site/style.css">
+  <title>bydriv.github.io</title>
+  <meta property="og:url" content="https://bydriv.github.io/misc/matrix/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="bydriv.github.io" />
+  <meta property="og:description" content="Matrix" />
+  <meta property="og:site_name" content="bydriv.github.io" />
+  <meta property="og:image" content="https://bydriv.github.io/etc/site/thumbnail.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="text/javascript" src="/etc/site/kt.js"></script>
+</head>
+
+<div class="navigation"><!--
+--><div class="left"><!--
+--><a class="section" href="/">&#x221A;</a><!--
+--><a class="section" href="/blog">&#x1F4DD;</a><!--
+--><a class="section" href="/illustration">&#x1F3A8;</a><!--
+--><a class="section" href="/photo">&#x1F4F7;</a><!--
+--><a class="section" href="/literature">&#x1F516;</a><!--
+--><a class="section" href="/world">&#x1F4BD;</a><!--
+--><a class="section" href="/comic">&#x1F4AD;</a><!--
+--><a class="section" href="/vr">&#x1F9E9;</a><!--
+--><a class="section" href="/misc">&#x1F4C1;</a><!--
+--></div>&nbsp;<!--
+--><div class="right"><!--
+--><a class="holoio section" href="#holoio">&#x22EF;</a><!--
+--></div><!--
+--></div><!--
+--><div id="holoio">
+<div class="navigation"><!--
+--><div class="left"><!--
+-->&nbsp;</div>&nbsp;<!--
+--><div class="right"><!--
+--><a class="section" href="#">&#x2573;</a><!--
+--></div><!--
+--></div>
+
+<div class="kt-month-calendar" data-today="true"></div>
+</div>
+
+<article>
+<h1 id="matrix">Matrix</h1>
+<p>行列演算ライブラリ。</p>
+<h2 id="full-code-listing">Full Code Listing</h2>
+<h3 id="signature-ring">signature RING</h3>
+<pre><code>(* signature RING                                                             *)
+(*                                                                            *)
+(* ADDITIVE LAWS                                                              *)
+(*                                                                            *)
+(*   (a + b) + c = a + (b + c)                                                *)
+(*   a + b       = b + a                                                      *)
+(*   zero + a    = a                                                          *)
+(*   a + zero    = a                                                          *)
+(*   a + ~a      = zero                                                       *)
+(*                                                                            *)
+(* MULTIPLICATIVE LAWS                                                        *)
+(*                                                                            *)
+(*   (a * b) * c = a * (b * c)                                                *)
+(*   one * a     = a                                                          *)
+(*   a * one     = a                                                          *)
+(*                                                                            *)
+(* DISTRIBUTIVE LAWS                                                          *)
+(*                                                                            *)
+(*   a * (b + c) = a * b + a * c                                              *)
+(*   (a + b) * c = a * c + b * c                                              *)
+
+signature RING = sig
+  type t
+  val zero : t
+  val one : t
+  val + : t * t -&gt; t
+  val * : t * t -&gt; t
+  val ~ : t -&gt; t
+end</code></pre>
+<h3 id="signature-field">signature FIELD</h3>
+<pre><code>signature FIELD = sig
+  include RING
+  val inverse : t -&gt; t option
+end</code></pre>
+<h3 id="signature-matrix">signature MATRIX</h3>
+<pre><code>signature MATRIX = sig
+  exception Dimension
+
+  type scalar
+  type matrix
+
+(* PRIMITIVE OPERATIONS                                                       *)
+
+  val new : int * int * (int * int -&gt; scalar) -&gt; matrix
+
+  val width : matrix -&gt; int
+  val height : matrix -&gt; int
+
+  val element : int * int * matrix -&gt; scalar option
+  val row : int * matrix -&gt; scalar vector option
+  val column : int * matrix -&gt; scalar vector option
+
+(* BASIC OPERATIONS                                                           *)
+(*                                                                            *)
+(*   A + B raises Dimension if width A &lt;&gt; width B or height A &lt;&gt; height B.    *)
+(*   A - B raises Dimension if width A &lt;&gt; width B or height A &lt;&gt; height B.    *)
+(*   A * B raises Dimension if width A &lt;&gt; height B.                           *)
+
+  val submatrix : int * int * matrix -&gt; matrix
+  val transpose : matrix -&gt; matrix
+  val scale : scalar * matrix -&gt; matrix
+
+  val + : matrix * matrix -&gt; matrix
+  val - : matrix * matrix -&gt; matrix
+  val * : matrix * matrix -&gt; matrix
+
+(* SQUARE MATRIX OPERATIONS                                                   *)
+(*                                                                            *)
+(*   eigenequation(a, A) returns R.zero if a is an eigenvalue of A.           *)
+(*                                                                            *)
+(*   determinant A raises Dimension if not (isSquareMatrix A).                *)
+(*   adjugate A raises Dimension if not (isSquareMatrix A).                   *)
+(*   eigenequation(a, A) raises Dimension if not (isSquareMatrix A).          *)
+
+  val isSquareMatrix : matrix -&gt; bool
+
+  val identityMatrix : int -&gt; matrix
+
+  val determinant : matrix -&gt; scalar
+  val adjugate : matrix -&gt; matrix
+  val eigenequation : scalar * matrix -&gt; scalar
+
+(* PROCEDURAL OPERATIONS                                                      *)
+
+  val appiRow : matrix * (int * scalar vector -&gt; unit) -&gt; unit
+  val appiCol : matrix * (int * scalar vector -&gt; unit) -&gt; unit
+  val appRow : matrix * (scalar vector -&gt; unit) -&gt; unit
+  val appCol : matrix * (scalar vector -&gt; unit) -&gt; unit
+
+(* CONSTRUCTORS                                                               *)
+(*                                                                            *)
+(* fromRows rows raises Dimension if length of some rows is different.        *)
+
+  val fromRows : scalar list list -&gt; matrix
+end</code></pre>
+<h3 id="signature-field_matrix">signature FIELD_MATRIX</h3>
+<pre><code>signature FIELD_MATRIX = sig
+  include MATRIX
+
+(* REGULAR MATRIX OPERATIONS                                                  *)
+(*                                                                            *)
+(*   inverse A raises Dimension if not (isRegularMatrix A).                   *)
+
+  val isRegularMatrix : matrix -&gt; bool
+
+  val inverse : matrix -&gt; matrix
+end</code></pre>
+<h3 id="functor-matrix">functor Matrix</h3>
+<pre><code>functor Matrix(R : RING) :&gt; MATRIX where type scalar = R.t = struct
+  exception Dimension
+
+  type scalar = R.t
+
+  abstype matrix = MATRIX of {
+    width : int,
+    height : int,
+    elements : scalar vector
+  } with
+    fun new(width, height, f) = MATRIX {
+      width =
+        width,
+      height =
+        height,
+      elements =
+        Vector.tabulate(width * height, fn i =&gt; let
+          val (x, y) = (i mod width, i div width)
+        in
+          f(x, y)
+        end)
+    }
+
+    fun width(MATRIX {width, ...}) =
+      width
+
+    fun height(MATRIX {height, ...}) =
+      height
+
+    fun element(x, y, MATRIX {width, height, elements}) = let
+      val i = y * width + x
+    in
+      if not (0 &lt;= i andalso i &lt; width * height) then
+        NONE
+      else
+        SOME(Vector.sub(elements, i))
+    end
+
+    fun column(x, MATRIX {width, height, elements}) =
+      if not (0 &lt;= x andalso x &lt; width) then
+        NONE
+      else let
+        val v = Vector.tabulate(height, fn i =&gt;
+          Vector.sub(elements, i * width + x))
+      in
+        SOME v
+      end
+
+    fun row(y, MATRIX {width, height, elements}) =
+      if not (0 &lt;= y andalso y &lt; height) then
+        NONE
+      else let
+        val v = Vector.tabulate(width, fn i =&gt;
+          Vector.sub(elements, y * width + i))
+      in
+        SOME v
+      end
+  end
+
+  local
+    fun sub(x, y, A) =
+      case element(x, y, A) of
+        NONE =&gt;
+          raise Subscript
+      | SOME a =&gt;
+          a
+
+    fun subColumn(x, A) =
+      case column(x, A) of
+        NONE =&gt;
+          raise Subscript
+      | SOME v =&gt;
+          v
+
+    fun subRow(y, A) =
+      case row(y, A) of
+        NONE =&gt;
+          raise Subscript
+      | SOME v =&gt;
+          v
+  in
+    fun submatrix(x, y, A) =
+      if width A = 0 orelse height A = 0 then
+        A
+      else if not (0 &lt;= x andalso x &lt; width A) then
+        A
+      else if not (0 &lt;= y andalso y &lt; height A) then
+        A
+      else
+        new(width A - 1, height A - 1, fn (i, j) =&gt;
+          if i &lt; x andalso j &lt; y then
+            sub(i, j, A)
+          else if i &lt; x then
+            sub(i, j + 1, A)
+          else if j &lt; y then
+            sub(i + 1, j, A)
+          else
+            sub(i + 1, j + 1, A))
+
+    fun transpose A =
+      new(height A, width A, fn (i, j) =&gt; sub(j, i, A))
+
+    fun scale(a, A) =
+      new(width A, height A, fn (i, j) =&gt; R.*(a, sub(i, j, A)))
+
+    fun A + B =
+      if not (width A = width B andalso height A = height B) then
+        raise Dimension
+      else let
+        val n = width A (* = width B *)
+        val m = height A (* = height B *)
+      in
+        new(n, m, fn (i, j) =&gt; R.+(sub(i, j, A), sub(i, j, B)))
+      end
+
+    fun A - B =
+      if not (width A = width B andalso height A = height B) then
+        raise Dimension
+      else let
+        val n = width A (* = width B *)
+        val m = height A (* = height B *)
+      in
+        new(n, m, fn (i, j) =&gt; R.+(sub(i, j, A), R.~(sub(i, j, B))))
+      end
+
+    fun A * B =
+      if not (width A = height B) then
+        raise Dimension
+      else let
+        val n = width A (* = height B *)
+      in
+        new(width B, height A, fn (i, j) =&gt; let
+          val (v, u) = (subRow(j, A), subColumn(i, B))
+          val l = List.tabulate(n, fn k =&gt;
+            R.*(Vector.sub(v, k), Vector.sub(u, k)))
+        in
+          List.foldr R.+ R.zero l
+        end)
+      end
+
+    fun isSquareMatrix A =
+      width A = height A
+
+    fun identityMatrix n =
+      new(n, n, fn (i, j) =&gt; if i = j then R.one else R.zero)
+
+    fun determinant A =
+      if not (isSquareMatrix A) then
+        raise Dimension
+      else let
+        val n = width A (* = height A *)
+      in
+        if n = 0 then
+          R.zero
+        else if n = 1 then
+          sub(0, 0, A)
+        else let
+          val i = ref 0
+          val a = ref R.zero
+        in
+          while !i &lt; n do (
+            if !i mod 2 = 0 then
+              a := R.+(!a, R.*(sub(0, !i, A), determinant(submatrix(0, !i, A))))
+            else
+              a := R.+(!a, R.~(R.*(sub(0, !i, A), determinant(submatrix(0, !i, A)))));
+            i := Int.+(!i, 1));
+          !a
+        end
+      end
+
+    fun adjugate A =
+      if not (isSquareMatrix A) then
+        raise Dimension
+      else
+        new(height A, width A, fn (i, j) =&gt;
+          if Int.+(i, j) mod 2 = 0 then
+            determinant(submatrix(j, i, A))
+          else
+            R.~(determinant(submatrix(j, i, A))))
+
+    fun eigenequation(a, A) =
+      if not (isSquareMatrix A) then
+        raise Dimension
+      else let
+        val n = width A (* = height A *)
+        val I = identityMatrix n
+      in
+        determinant(A - scale(a, I))
+      end
+
+    fun appiRow(A, f) = let
+      val i = ref 0
+    in
+      while !i &lt; height A do (
+        f(!i, subRow(!i, A));
+        i := Int.+(!i, 1))
+    end
+
+    fun appiCol(A, f) = let
+      val i = ref 0
+    in
+      while !i &lt; width A do (
+        f(!i, subColumn(!i, A));
+        i := Int.+(!i, 1))
+    end
+
+    fun appRow(A, f) =
+      appiRow(A, fn (_, v) =&gt; f v)
+
+    fun appCol(A, f) =
+      appiCol(A, fn (_, v) =&gt; f v)
+
+    fun fromRows rows =
+      case rows of
+        nil =&gt;
+          new(0, 0, fn _ =&gt; R.zero)
+      | row :: _ =&gt; let
+          val width = List.length row
+          val height = List.length rows
+          val rows = Vector.fromList (List.map Vector.fromList rows)
+        in
+          if Vector.exists (fn row =&gt; Vector.length row &lt;&gt; width) rows then
+            raise Dimension
+          else
+            new(width, height, fn (i, j) =&gt;
+              Vector.sub(Vector.sub(rows, j), i))
+        end
+  end
+end</code></pre>
+<h3 id="functor-fieldmatrix">functor FieldMatrix</h3>
+<pre><code>functor FieldMatrix(F : FIELD) :&gt; FIELD_MATRIX where type scalar = F.t = struct
+  local structure M = Matrix(F) in
+    open M
+
+    fun isRegularMatrix A =
+      if not (isSquareMatrix A) then
+        false
+      else
+        Option.isSome (F.inverse (determinant A))
+
+    fun inverse A =
+      case F.inverse (determinant A) of
+        NONE =&gt;
+          raise Dimension
+      | SOME a =&gt;
+          scale (a, adjugate A)
+  end
+end</code></pre>
+<h3 id="structure-intring">structure IntRing</h3>
+<pre><code>structure IntRing : RING = struct
+  type t = int
+  val zero = 0
+  val one = 1
+  val op + = Int.+
+  val op * = Int.*
+  val ~ = Int.~
+end</code></pre>
+<h3 id="structure-realfield">structure RealField</h3>
+<pre><code>structure RealField : FIELD = struct
+  type t = real
+  val zero = 0.0
+  val one = 1.0
+  val op + = Real.+
+  val op * = Real.*
+  val ~ = Real.~
+
+  fun inverse q =
+    if Real.==(q, 0.0) then
+      NONE
+    else
+      SOME (1.0 / q)
+end</code></pre>
+<h3 id="structure-intmatrix">structure IntMatrix</h3>
+<pre><code>structure IntMatrix = Matrix(IntRing)</code></pre>
+<h3 id="structure-realmatrix">structure RealMatrix</h3>
+<pre><code>structure RealMatrix = FieldMatrix(RealField)</code></pre>
+</article>

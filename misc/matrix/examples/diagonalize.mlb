@@ -1,0 +1,6 @@
+local
+  $(SML_LIB)/basis/basis.mlb
+  ../matrix.mlb
+in
+  diagonalize.sml
+end
