@@ -9,3 +9,4 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 
 - [Kludge](kludge)
 - [Lemma](lemma)
+- [Matrix](matrix)
