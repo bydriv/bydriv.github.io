@@ -127,7 +127,7 @@ $vRu$ と $uRv$ を区別すればよいわけです。そこで多対多の関�
 
 関係をある種の表としてとらえるのであれば、
 
-$G=\left(\begin{array}{cccc}\left(a_1^{},b_1^{}\right)&\left(a_2^{},b_1^{}\right)&\cdots&\left(a_n^{},b_1^{}\right)\\\left(a_1^{},b_2^{}\right)&\left(a_2^{},b_2^{}\right)&\cdots{}&\left(a_n^{},b_2^{}\right)\\\vdots&\vdots&\ddots&\vdots\\\left(a_1^{},b_m^{}\right)&\left(a_2^{},b_2^{}\right)&\cdots{}&\left(a_n^{},b_m^{}\right)\\\end{array}\right)$
+$G=\left(\begin{array}{cccc}\left(a_1^{},b_1^{}\right)&\left(a_2^{},b_1^{}\right)&\cdots&\left(a_n^{},b_1^{}\right)\\\left(a_1^{},b_2^{}\right)&\left(a_2^{},b_2^{}\right)&\cdots{}&\left(a_n^{},b_2^{}\right)\\\vdots&\vdots&\ddots&\vdots\\\left(a_1^{},b_m^{}\right)&\left(a_2^{},b_m^{}\right)&\cdots{}&\left(a_n^{},b_m^{}\right)\\\end{array}\right)$
 
 となるでしょう。
 
@@ -142,7 +142,7 @@ $b_2^{}\in{}B$ の行のすべての関係を列挙したり、
 (ほんとうにメモリ上にそういう表をつくる必要はなく、あくまで計算しやすくするため。
 適当に `Nothing` とかで埋めればよい)。
 
-$G=\left(\begin{array}{cccc}\left(a_1^{},b_1^{}\right)&\left(a_2^{},b_1^{}\right)&\cdots&\left(a_n^{},b_1^{}\right)\\\left(a_1^{},b_2^{}\right)&\left(a_2^{},b_2^{}\right)&\cdots{}&\left(a_n^{},b_2^{}\right)\\\vdots&\vdots&\ddots&\vdots\\\left(a_1^{},b_n^{}\right)&\left(a_2^{},b_2^{}\right)&\cdots{}&\left(a_n^{},b_n^{}\right)\\\end{array}\right)$
+$G=\left(\begin{array}{cccc}\left(a_1^{},b_1^{}\right)&\left(a_2^{},b_1^{}\right)&\cdots&\left(a_n^{},b_1^{}\right)\\\left(a_1^{},b_2^{}\right)&\left(a_2^{},b_2^{}\right)&\cdots{}&\left(a_n^{},b_2^{}\right)\\\vdots&\vdots&\ddots&\vdots\\\left(a_1^{},b_n^{}\right)&\left(a_2^{},b_n^{}\right)&\cdots{}&\left(a_n^{},b_n^{}\right)\\\end{array}\right)$
 
 ここで $i=j$ となるような対角線の添え字に着目します。
 すると
