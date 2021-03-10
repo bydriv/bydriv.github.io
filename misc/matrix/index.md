@@ -291,9 +291,7 @@ functor Matrix(R : RING) :> MATRIX where type scalar = R.t = struct
         val n = width A (* = height A *)
       in
         if n = 0 then
-          R.zero
-        else if n = 1 then
-          sub(0, 0, A)
+          R.one
         else let
           val i = ref 0
           val a = ref R.zero
