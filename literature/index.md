@@ -30,3 +30,4 @@ thumbnail: https://bydriv.github.io/etc/site/thumbnail.png
 - [孤独な計算機](lonely-computer)
 - [NSV: No Such Vulnerabilities](nsv)
     - [NSV-2075-5344](nsv/nsv-2075-5344)
+- [実理の冒険 - 明治英吉利留学譚](adventures-in-london)
