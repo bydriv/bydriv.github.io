@@ -10,8 +10,6 @@ PANDOC_OPTIONS_HTML := --mathml
 .PHONY: all
 all: \
 	index.html \
-	blog/index.html \
-	$(patsubst %.md,%.html,$(wildcard blog/*/index.md)) \
 	illustration/index.html \
 	photo/index.html \
 	literature/index.html \
