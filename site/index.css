@@ -68,7 +68,6 @@ div.tapestry article.component label.component:hover {
 div.tapestry nav.component a.component,
 div.tapestry nav.component label.component {
     color: #808080;
-    background-color: #000000;
     text-decoration: none;
 }
 
@@ -129,6 +128,8 @@ div.tapestry article.component hr {
     border: none;
     outline: dashed 1px #FFFFFF;
     outline-offset: -2px;
+
+    mix-blend-mode: multiply;
 }
 
 div.tapestry article.component img {
