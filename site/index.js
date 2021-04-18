@@ -71,8 +71,6 @@ window.addEventListener("popstate", () => {
 });
 
 (() => {
-  let articleScrollLeft = null;
-  let articleScrollTop = null;
   let startClientX = null;
   let startClientY = null;
   let endClientX = null;
@@ -82,14 +80,15 @@ window.addEventListener("popstate", () => {
   let TOUCH = null;
 
   window.addEventListener("touchstart", (e) => {
-    if (history.state == null) {
+    const route = document.querySelector("input.state:checked").dataset.route;
+
+    const article = document.querySelector("article.component[data-route=\"" + route + "\"]");
+
+    if (!((article.scrollLeft === 0 && article.scrollTop === 0) || (article.offsetWidth + Math.abs(article.scrollLeft) >= article.scrollWidth && article.offsetHeight + Math.abs(article.scrollTop) >= article.scrollHeight))) {
       return;
     }
 
-    const article = document.querySelector("article.component[data-route=\"" + history.state.route + "\"]");
-
-    articleScrollLeft = article.scrollLeft;
-    articleScrollTop = article.scrollTop;
+    TOUCHES.clear();
 
     for (const touch of e.touches) {
       if (!article.contains(touch.target)) {
@@ -98,6 +97,9 @@ window.addEventListener("popstate", () => {
 
       if (!TOUCHES.has(touch.identifier)) {
         TOUCHES.set(touch.identifier, {
+          route,
+          forward: article.offsetWidth + Math.abs(article.scrollLeft) >= article.scrollWidth && article.offsetHeight + Math.abs(article.scrollTop) >= article.scrollHeight,
+          backward: article.scrollLeft === 0 && article.scrollTop === 0,
           startClientX: touch.clientX,
           startClientY: touch.clientY
         });
@@ -130,14 +132,12 @@ window.addEventListener("popstate", () => {
 
     TOUCHES.clear();
 
-    const article = document.querySelector("article.component[data-route=\"" + history.state.route + "\"]");
-    const nav = document.querySelector("nav.component[data-route=\"" + history.state.route + "\"], nav.component[data-routes~=\"" + history.state.route + "\"]");
-    const label = nav.querySelector("label.component[data-route=\"" + history.state.route + "\"]");
+    const article = document.querySelector("article.component[data-route=\"" + TOUCH.route + "\"]");
+    const nav = document.querySelector("nav.component[data-route=\"" + TOUCH.route + "\"], nav.component[data-routes~=\"" + TOUCH.route + "\"]");
+    const label = nav.querySelector("label.component[data-route=\"" + TOUCH.route + "\"]");
 
-    if (articleScrollLeft !== article.scrollLeft || articleScrollTop !== article.scrollTop) {
-      return;
-    }
-
+    const forward = TOUCH.forward;
+    const backward = TOUCH.backward;
     const vector = [TOUCH.startClientX - TOUCH.endClientX, TOUCH.startClientY - TOUCH.endClientY];
 
     TOUCH = null;
@@ -149,7 +149,7 @@ window.addEventListener("popstate", () => {
     const articleClasses = article.getAttribute("class").split(/\s+/);
 
     if (articleClasses.includes("vertical-writing")) {
-      if (vector[0] < -32) {
+      if (vector[0] < -32 && forward) {
         const sibling = label.nextSibling;
 
         if (sibling != null) {
@@ -159,7 +159,7 @@ window.addEventListener("popstate", () => {
           nextArticle.scrollLeft = 0;
           nextArticle.scrollTop = 0;
         }
-      } else if (vector[0] > 32) {
+      } else if (vector[0] > 32 && backward) {
         if (label.dataset.route === nav.dataset.route) {
           return;
         }
