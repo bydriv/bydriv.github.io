@@ -1,0 +1,159 @@
+@import url("../lib/tapestry.css");
+
+/* "RocknRoll" is lisenced under the SIL Open Font License 1.1
+ * by https://github.com/fontworks-fonts/RocknRoll */
+@font-face {
+    font-family: "RocknRoll";
+    src: url("./RocknRollOne-Regular.ttf") format("truetype");
+}
+
+@media (orientation: landscape) {
+    body {
+        background-image: url("/site/landscape.png");
+    }
+}
+
+@media (orientation: portrait) {
+    body {
+        background-image: url("/site/portrait.png");
+    }
+}
+
+body {
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+html, body, div.tapestry {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+div.tapestry *.component {
+    font-family: "RocknRoll";
+    font-size: 16px;
+}
+
+div.tapestry article.component[data-route="/"] {
+    display: none;
+}
+
+div.tapestry article.component {
+    color: #000000;
+    background-color: rgba(255, 255, 255, 0.75);
+    outline: solid 8px #000000;
+}
+
+div.tapestry nav.component {
+    color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+div.tapestry article.component a,
+div.tapestry article.component label.component {
+    color: #0080FF;
+    text-decoration: none;
+}
+
+div.tapestry article.component a:hover,
+div.tapestry article.component label.component:hover {
+    color: #0080FF;
+    text-decoration: underline;
+}
+
+div.tapestry nav.component a.component,
+div.tapestry nav.component label.component {
+    color: #808080;
+    background-color: #000000;
+    text-decoration: none;
+}
+
+div.tapestry article.component h1 {
+    margin: 32px;
+    padding: 0;
+
+    font-size: 32px;
+    font-weight: normal;
+
+    text-align: center;
+}
+
+div.tapestry article.component ul,
+div.tapestry article.component li {
+    box-sizing: border-box;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+div.tapestry article.component li {
+    border-bottom: dashed 1px #000000;
+    text-align: justify;
+}
+
+div.tapestry article.vertical-writing.component p:first-child {
+    margin-right: 48px;
+}
+
+div.tapestry article.vertical-writing.component p:last-child {
+    margin-left: 48px;
+}
+
+div.tapestry article.vertical-writing.component p {
+    margin: 64px 24px;
+    padding: 0;
+
+    font-size: 16px;
+    line-height: 24px;
+}
+
+div.tapestry article.component p:not([align]) {
+    text-align: justify;
+}
+
+div.tapestry article.component hr {
+    margin: 0 30px;
+    padding: 0;
+
+    min-width: 4px;
+    min-height: 4px;
+
+    background-color: #000000;
+
+    border: none;
+    outline: dashed 1px #FFFFFF;
+    outline-offset: -2px;
+}
+
+div.tapestry article.component img {
+    display: block;
+
+    margin: auto;
+    padding: 0;
+
+    max-width: 100%;
+    max-height: 100%;
+}
+
+span.rensuji {
+    display: inline-block;
+
+    margin: -0.25em;
+    padding: 0;
+
+    width: 1.5em;
+    height: 1.5em;
+
+    white-space: nowrap;
+    overfow-wrap: normal;
+
+    text-align: center;
+
+    writing-mode: horizontal-tb;
+}
