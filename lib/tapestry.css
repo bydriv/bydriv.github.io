@@ -1,0 +1,249 @@
+/******************************************************************************
+ * <div class="tapestry">..</div>
+ ******************************************************************************/
+div.tapestry {
+    --tapestry-width-unit: 32px;
+    --tapestry-height-unit: 32px;
+}
+
+/******************************************************************************
+ * <input class="state">
+ ******************************************************************************/
+div.tapestry input.state {
+    display: none;
+}
+
+/******************************************************************************
+ * <div class="layer">..</div>
+ ******************************************************************************/
+div.tapestry div.layer {
+    box-sizing: border-box;
+    pointer-events: none;
+
+    position: absolute;
+
+    left: auto;
+    top: auto;
+    right: auto;
+    bottom: auto;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+/******************************************************************************
+ * <div class="left layer">..</div>
+ ******************************************************************************/
+div.tapestry div.left.layer {
+    left: 0;
+}
+
+/******************************************************************************
+ * <div class="top layer">..</div>
+ ******************************************************************************/
+div.tapestry div.top.layer {
+    top: 0;
+}
+
+/******************************************************************************
+ * <div class="right layer">..</div>
+ ******************************************************************************/
+div.tapestry div.right.layer {
+    right: 0;
+}
+
+/******************************************************************************
+ * <div class="bottom layer">..</div>
+ ******************************************************************************/
+div.tapestry div.bottom.layer {
+    bottom: 0;
+}
+
+/******************************************************************************
+ * <div class="layer" data-width="..">..</div>
+ ******************************************************************************/
+div.tapestry div.layer:not([data-width]),
+div.tapestry div.layer[data-width="full"] {
+    width: 100%;
+}
+
+div.tapestry div.layer[data-width="half"] {
+    width: 50%;
+}
+
+div.tapestry div.layer[data-width="1"] {
+    width: var(--tapestry-width-unit);
+}
+
+div.tapestry div.layer[data-width="2"] {
+    width: calc(2 * var(--tapestry-width-unit));
+}
+
+div.tapestry div.layer[data-width="-1"] {
+    width: calc(100% - var(--tapestry-width-unit));
+}
+
+div.tapestry div.layer[data-width="-2"] {
+    width: calc(100% - (2 * var(--tapestry-width-unit)));
+}
+
+/******************************************************************************
+ * <div class="layer" data-height="..">..</div>
+ ******************************************************************************/
+div.tapestry div.layer:not([data-height]),
+div.tapestry div.layer[data-height="full"] {
+    height: 100%;
+}
+
+div.tapestry div.layer[data-height="half"] {
+    height: 50%;
+}
+
+div.tapestry div.layer[data-height="1"] {
+    height: var(--tapestry-height-unit);
+}
+
+div.tapestry div.layer[data-height="2"] {
+    height: calc(2 * var(--tapestry-height-unit));
+}
+
+div.tapestry div.layer[data-height="-1"] {
+    height: calc(100% - var(--tapestry-height-unit));
+}
+
+div.tapestry div.layer[data-height="-2"] {
+    height: calc(100% - (2 * var(--tapestry-height-unit)));
+}
+
+/******************************************************************************
+ * <.. class="component">..</..>
+ ******************************************************************************/
+div.tapestry *.component {
+    box-sizing: border-box;
+    pointer-events: auto;
+}
+
+/******************************************************************************
+ * <article class="component">..</article>
+ * <nav class="component">..</nav>
+ ******************************************************************************/
+div.tapestry article.component,
+div.tapestry nav.component {
+    display: block;
+
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+
+    transition: width 1s, height 1s, opacity 1s;
+}
+
+/******************************************************************************
+ * <article class="horizontal component">..</article>
+ * <nav class="horizontal component">..</nav>
+ ******************************************************************************/
+div.tapestry article.horizontal.component,
+div.tapestry nav.horizontal.component {
+    white-space: nowrap;
+    overflow-wrap: normal;
+
+    overflow-x: scroll;
+    overflow-y: hidden;
+
+    width: 0;
+    opacity: 0;
+}
+
+/******************************************************************************
+ * <article class="vertical component">..</article>
+ * <nav class="vertical component">..</nav>
+ ******************************************************************************/
+div.tapestry article.vertical.component,
+div.tapestry nav.vertical.component {
+    /*position: absolute;
+    left: 0;
+    top: 0;*/
+
+    white-space: normal;
+    overflow-wrap: break-word;
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    height: 0;
+    opacity: 0;
+}
+
+/******************************************************************************
+ * <article class="vertical-writing component">..</article>
+ * <nav class="vertical-writing component">..</nav>
+ ******************************************************************************/
+div.tapestry article.vertical-writing.component,
+div.tapestry nav.vertical-writing.component {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    white-space: normal;
+    overflow-wrap: break-word;
+
+    overflow-x: scroll;
+    overflow-y: hidden;
+
+    width: 0;
+    opacity: 0;
+
+    writing-mode: vertical-rl;
+}
+
+/******************************************************************************
+ * <article class="component" data-scrollbar="..">..</article>
+ * <nav class="component" data-scrollbar="..">..</nav>
+ ******************************************************************************/
+div.tapestry article.component:not([data-scrollbar]),
+div.tapestry article.component[data-scrollbar="none"],
+div.tapestry nav.component:not([data-scrollbar]),
+div.tapestry nav.component[data-scrollbar="none"] {
+    scrollbar-width: none;
+}
+
+div.tapestry article.component:not([data-scrollbar])::-webkit-scrollbar,
+div.tapestry article.component[data-scrollbar="none"]::-webkit-scrollbar,
+div.tapestry nav.component:not([data-scrollbar])::-webkit-scrollbar,
+div.tapestry nav.component[data-scrollbar="none"]::-webkit-scrollbar {
+    display: none;
+}
+
+div.tapestry article.component[data-scrollbar="thin"],
+div.tapestry nav.component[data-scrollbar="thin"] {
+    scrollbar-width: thin;
+}
+
+div.layer article.component:not([data-route]),
+div.layer nav.component:not([data-route]) {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+}
+
+/******************************************************************************
+ * <label class="component">..</label>
+ * <a class="component">..</a>
+ ******************************************************************************/
+div.tapestry label.component,
+div.tapestry a.component {
+    display: inline-block;
+
+    margin: 0;
+    padding: calc(var(--tapestry-width-unit) / 8) calc(var(--tapestry-height-unit) / 4);
+    width: auto;
+    height: var(--tapestry-height-unit);
+}

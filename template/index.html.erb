@@ -1,0 +1,91 @@
+<%- require "json" -%>
+<%- require "./lib/datafile" -%>
+<%- ROUTES = ENV["ROUTES"].split(/\s+/) -%>
+<%- ROUTE = ENV["ROUTE"] -%>
+<%- DATAFILE = Datafile.parse(File.read(".#{ROUTE}Datafile")) -%>
+<!DOCTYPE html>
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:url" content="https://bydriv.github.io<%= ROUTE === "/" ? "" : ROUTE -%>">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="<%= (DATAFILE["title"]&.text || ROUTE).chomp -%>">
+  <meta property="og:description" content="<%= (DATAFILE["description"]&.text || "").chomp -%>">
+  <meta property="og:site_name" content="bydriv.github.io">
+  <meta property="og:image" content="<%= (DATAFILE["thumbnail"]&.text || "https://bydriv.github.io/site/thumbnail.png").chomp -%>">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <title><%= (DATAFILE["title"]&.text || ROUTE).chomp -%></title>
+
+  <link rel="stylesheet" type="text/css" href="/site/index.css">
+  <script type="text/javascript" src="/site/index.js"></script>
+
+  <style type="text/css">
+/* route.css */
+
+<%- ROUTES.each do |route| -%>
+div.tapestry input.state[id="<%= route %>"]:checked ~ div.layer article.component[data-route="<%= route %>"],
+div.tapestry input.state[id="<%= route %>"]:checked ~ div.layer nav.component[data-route="<%= route %>"],
+div.tapestry input.state[id="<%= route %>"]:checked ~ div.layer nav.component[data-routes~="<%= route %>"] {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+}
+
+div.tapestry input.state[id="<%= route %>"]:checked ~ div.layer nav.component label.component[for="<%= route %>"],
+div.tapestry input.state[id="<%= route %>"]:checked ~ div.layer nav.component a.component[data-route="<%= route %>"],
+div.tapestry input.state[id="<%= route %>"]:checked ~ div.layer nav.component[data-route="<%= route %>"] label.component[for="<%= route %>"],
+div.tapestry input.state[id="<%= route %>"]:checked ~ div.layer nav.component[data-route="<%= route %>"] a.component[data-route="<%= route %>"] {
+  color: #FF00FF;
+}
+
+div.tapestry input.state[id="<%= route %>"]:not(:checked) ~ div.layer nav.component[data-route="<%= route %>"] label.component[for="<%= route %>"],
+div.tapestry input.state[id="<%= route %>"]:not(:checked) ~ div.layer nav.component[data-route="<%= route %>"] a.component[data-route="<%= route %>"] {
+  color: #FFFFFF;
+}
+
+<%- end -%>
+/* route.css ends here */
+  </style>
+</head>
+
+<div class="tapestry">
+<%- ROUTES.each do |route| -%>
+<%-  if ROUTE == route -%>
+  <input class="state" type="radio" name="route" id="<%= route -%>" data-route="<%= route -%>" checked>
+<%-   else -%>
+  <input class="state" type="radio" name="route" id="<%= route -%>" data-route="<%= route -%>">
+<%-   end -%>
+<%- end -%>
+
+<%- ROUTES.each do |route| -%>
+<% datafile = Datafile.parse(File.read(".#{route}Datafile")) %>
+  <div class="top left layer" data-height="-1">
+<%-   if ROUTE == route -%>
+    <article class="<%= (datafile["class"]&.text || "vertical component").chomp -%>" data-route="<%= route %>" data-loaded="true" data-title="<%= (datafile["title"]&.text || route).chomp %>" data-scrollbar="none">
+<%=     File.read(".#{ROUTE}article.html") -%>
+    </article>
+<%-   else -%>
+    <article class="<%= (datafile["class"]&.text || "vertical component").chomp -%>" data-route="<%= route %>" data-loaded="false" data-title="<%= (datafile["title"]&.text || route).chomp %>" data-scrollbar="none"></article>
+<%-   end -%>
+  </div>
+<%- end -%>
+
+<%- ROUTES.each do |route| -%>
+<%-   if route.count("/").odd? -%>
+<%-     re = /^#{Regexp.escape(route)}[^\/]+\/$/ -%>
+<%-     routes = ROUTES.select {|r| re =~ r} -%>
+  <div class="bottom right layer" data-width="full" data-height="1">
+<%-     if (ENV["ROUTE"].count("/").odd? && ENV["ROUTE"] == route) || (ENV["ROUTE"].count("/").even? && ENV["ROUTE"].start_with?(route) && route.count("/") + 1 === ENV["ROUTE"].count("/")) -%>
+    <nav class="horizontal component" data-route="<%= route %>" data-routes="<%= routes.join(" ") %>" data-loaded="true" data-scrollbar="none">
+<%=     File.read(".#{route}nav.html") -%>
+    </nav>
+<%-     else -%>
+    <nav class="horizontal component" data-route="<%= route %>" data-routes="<%= routes.join(" ") %>" data-loaded="false" data-scrollbar="none"></nav>
+<%-     end -%>
+  </div>
+<%-   end -%>
+<%- end -%>
+</div>
