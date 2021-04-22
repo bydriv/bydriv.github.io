@@ -53,20 +53,17 @@ div.tapestry nav.component {
     background-color: rgba(0, 0, 0, 0.75);
 }
 
-div.tapestry article.component a,
-div.tapestry article.component label.component {
+div.tapestry article.component a {
     color: #0080FF;
     text-decoration: none;
 }
 
-div.tapestry article.component a:hover,
-div.tapestry article.component label.component:hover {
+div.tapestry article.component a:hover {
     color: #0080FF;
     text-decoration: underline;
 }
 
-div.tapestry nav.component a.component,
-div.tapestry nav.component label.component {
+div.tapestry nav.component a.component {
     color: #808080;
     text-decoration: none;
 }
@@ -94,6 +91,7 @@ div.tapestry article.component li {
 div.tapestry article.component li {
     border-bottom: dashed 1px #000000;
     text-align: justify;
+    padding: 4px 8px;
 }
 
 div.tapestry article.vertical-writing.component p:first-child {
@@ -157,4 +155,22 @@ span.rensuji {
     text-align: center;
 
     writing-mode: horizontal-tb;
+}
+
+/******************************************************************************
+ * <nav class="component">
+ *   <a class="component" data-focus="true">..</a>
+ * </nav>
+ ******************************************************************************/
+div.layer nav.component a.component[data-focus="true"] {
+  color: #FF00FF;
+}
+
+/******************************************************************************
+ * <nav class="component">
+ *   <a class="component" data-focus-within="true">..</a>
+ * </nav>
+ ******************************************************************************/
+div.layer nav.component a.component[data-focus-within="true"] {
+  color: #FFFFFF;
 }

@@ -1,15 +1,22 @@
 <%- require "pathname" -%>
 <%- require "./lib/datafile" -%>
+<%- ROUTE_WITHIN = ENV["ROUTE_WITHIN"] -%>
 <%- ROUTE = ENV["ROUTE"] -%>
-<%- DATAFILE = Datafile.parse(File.read(".#{ROUTE}Datafile")) -%>
-<a class="component" href="/" data-route="/">&#x221A;</a><%- -%>
+<%- DATAFILE = Datafile.parse(File.read(".#{ROUTE_WITHIN}Datafile")) -%>
+<a class="component" href="/" data-route="/" data-focus="<%= ROUTE == "/" -%>" data-focus-within="<%= ROUTE_WITHIN == "/" && ROUTE != ROUTE_WITHIN -%>">&#x221A;</a><%- -%>
 <%- DATAFILE.data.each do |datum| -%>
 <%-   case datum.path -%>
 <%-   when /^nav$/ -%>
 <%-     datum.text.lines do |line| -%>
-<%-       route = Pathname.new("#{ROUTE}#{line.chomp}/").expand_path.to_s + "/" -%>
+<%-       route = Pathname.new("#{ROUTE_WITHIN}#{line.chomp}/").expand_path.to_s + "/" -%>
 <%-       datafile = Datafile.parse(File.read(".#{route}Datafile")) -%>
-<a class="component" href="<%= route -%>" data-route="<%= route -%>"><%= (datafile["title"]&.text || line).chomp -%></a><%- -%>
+<%-       if ROUTE == route -%>
+<a class="component" href="<%= route -%>" data-route="<%= route -%>" data-focus="true" data-focus-within="false"><%= (datafile["title"]&.text || line).chomp -%></a><%- -%>
+<%-       elsif ROUTE_WITHIN == route -%>
+<a class="component" href="<%= route -%>" data-route="<%= route -%>" data-focus="false" data-focus-within="true"><%= (datafile["title"]&.text || line).chomp -%></a><%- -%>
+<%-       else -%>
+<a class="component" href="<%= route -%>" data-route="<%= route -%>" data-focus="false" data-focus-within="false"><%= (datafile["title"]&.text || line).chomp -%></a><%- -%>
+<%-       end -%>
 <%-     end -%>
 <%-   end -%>
 <%- end -%>
