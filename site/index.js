@@ -6,7 +6,7 @@
     });
 
     window.addEventListener("popstate", () => {
-        select(history.state.route);
+        select(history.state.route, false);
     });
 
     window.addEventListener("touchstart", (e) => {
@@ -85,13 +85,13 @@
             const route = link.dataset.route;
 
             link.addEventListener("click", (e) => {
-                select(route);
+                select(route, true);
                 e.preventDefault();
             });
         }
     }
 
-    function select(route) {
+    function select(route, pushState = true) {
         ROUTE = route;
 
         const articles = document.querySelectorAll("article");
@@ -101,12 +101,14 @@
             if (article.dataset.route === route) {
                 article.dataset.visible = "true";
 
-                document.title = article.dataset.title;
+                if (pushState) {
+                    document.title = article.dataset.title;
 
-                history.pushState({
-                    route,
-                    title: document.title
-                }, document.title, route);
+                    history.pushState({
+                        route,
+                        title: document.title
+                    }, document.title, route);
+                }
             } else {
                 article.dataset.visible = "false";
             }
