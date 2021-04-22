@@ -7,13 +7,6 @@ div.tapestry {
 }
 
 /******************************************************************************
- * <input class="state">
- ******************************************************************************/
-div.tapestry input.state {
-    display: none;
-}
-
-/******************************************************************************
  * <div class="layer">..</div>
  ******************************************************************************/
 div.tapestry div.layer {
@@ -168,10 +161,6 @@ div.tapestry nav.horizontal.component {
  ******************************************************************************/
 div.tapestry article.vertical.component,
 div.tapestry nav.vertical.component {
-    /*position: absolute;
-    left: 0;
-    top: 0;*/
-
     white-space: normal;
     overflow-wrap: break-word;
 
@@ -235,10 +224,8 @@ div.layer nav.component:not([data-route]) {
 }
 
 /******************************************************************************
- * <label class="component">..</label>
  * <a class="component">..</a>
  ******************************************************************************/
-div.tapestry label.component,
 div.tapestry a.component {
     display: inline-block;
 
@@ -246,4 +233,15 @@ div.tapestry a.component {
     padding: calc(var(--tapestry-width-unit) / 8) calc(var(--tapestry-height-unit) / 4);
     width: auto;
     height: var(--tapestry-height-unit);
+}
+
+/******************************************************************************
+ * <article class="component" data-visible="true">..</article>
+ * <nav class="component" data-visible="true">..</nav>
+ ******************************************************************************/
+div.layer article.component[data-visible="true"],
+div.layer nav.component[data-visible="true"] {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
 }
