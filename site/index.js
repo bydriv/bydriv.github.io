@@ -18,13 +18,15 @@
                 continue;
             }
 
-            TOUCHES.set(touch.identifier, {
-                route,
-                forward: article.offsetWidth + Math.abs(article.scrollLeft) >= article.scrollWidth && article.offsetHeight + Math.abs(article.scrollTop) >= article.scrollHeight,
-                backward: article.scrollLeft === 0 && article.scrollTop === 0,
-                clientX: touch.clientX,
-                clientY: touch.clientY
-            });
+            if (article.getAttribute("class").split(/\s+/).includes("vertical-writing")) {
+                TOUCHES.set(touch.identifier, {
+                    route,
+                    forward: article.offsetWidth - article.scrollLeft >= article.scrollWidth && article.offsetHeight - article.scrollTop >= article.scrollHeight,
+                    backward: article.scrollLeft >= 0 && article.scrollTop >= 0,
+                    clientX: touch.clientX,
+                    clientY: touch.clientY
+                });
+            }
         }
     });
 
