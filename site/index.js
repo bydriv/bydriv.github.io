@@ -116,7 +116,7 @@
             }
 
             if (article.dataset.visible === "true" && article.dataset.loaded !== "true") {
-                fetch(article.dataset.route + "article.html", {cache: "no-cache"}).then((response) => {
+                fetch(route + "article.html", {cache: "no-cache"}).then((response) => {
                     if (response.ok) {
                         return response.text();
                     } else {
@@ -155,7 +155,7 @@
             }
 
             if (nav.dataset.visible === "true" && nav.dataset.loaded !== "true") {
-                fetch(nav.dataset.route + "nav.html", {cache: "no-cache"}).then((response) => {
+                fetch(route + "nav.html", {cache: "no-cache"}).then((response) => {
                     if (response.ok) {
                         return response.text();
                     } else {

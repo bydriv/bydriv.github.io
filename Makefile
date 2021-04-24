@@ -1,3 +1,4 @@
+DIRNAME := dirname
 ECHO := echo
 EXPR := expr
 TEST := test
@@ -24,20 +25,44 @@ article.html: Datafile template/article.html.erb
 nav.html: Datafile template/nav.html.erb
 	ROUTE_WITHIN=/ ROUTE=/ ROUTES="$(ROUTES)" $(ERB) -T - template/nav.html.erb > $@
 
-%/index.html: %/Datafile template/index.html.erb %/article.html %/nav.html %/../nav.html
+%/index.html: %/Datafile template/index.html.erb %/article.html %/nav.html
 	if $(TEST) $$($(EXPR) $$($(ECHO) $< | $(TR) -cd / | $(WC) -m) % 2) = 0; \
-	then ROUTE_WITHIN=$(dir /$<) ROUTE=$(dir /$<) ROUTES="$(ROUTES)" $(ERB) -T - template/index.html.erb > $@; \
-	else ROUTE_WITHIN=$(dir $(patsubst %/,%,$(dir /$<))) ROUTE=$(dir /$<) ROUTES="$(ROUTES)" $(ERB) -T - template/index.html.erb > $@; \
+	then \
+		ROUTE_WITHIN=$(subst //,/,$(shell $(DIRNAME) /$<)/) \
+		ROUTE=$(subst //,/,$(shell $(DIRNAME) /$<)/) \
+		ROUTES="$(ROUTES)" \
+		$(ERB) -T - template/index.html.erb > $@; \
+	else \
+		ROUTE_WITHIN=$(subst //,/,$(shell $(DIRNAME) $$($(DIRNAME) /$<))/) \
+		ROUTE=$(subst //,/,$(shell $(DIRNAME) /$<)/) \
+		ROUTES="$(ROUTES)" \
+		$(ERB) -T - template/index.html.erb > $@; \
 	fi
 
 %/article.html: %/Datafile template/article.html.erb
 	if $(TEST) $$($(EXPR) $$($(ECHO) $< | $(TR) -cd / | $(WC) -m) % 2) = 0; \
-	then ROUTE_WITHIN=$(dir /$<) ROUTE=$(dir /$<) ROUTES="$(ROUTES)" $(ERB) -T - template/article.html.erb > $@; \
-	else ROUTE_WITHIN=$(dir $(patsubst %/,%,$(dir /$<))) ROUTE=$(dir /$<) ROUTES="$(ROUTES)" $(ERB) -T - template/article.html.erb > $@; \
+	then \
+		ROUTE_WITHIN=$(subst //,/,$(shell $(DIRNAME) /$<)/) \
+		ROUTE=$(subst //,/,$(shell $(DIRNAME) /$<)/) \
+		ROUTES="$(ROUTES)" \
+		$(ERB) -T - template/article.html.erb > $@; \
+	else \
+		ROUTE_WITHIN=$(subst //,/,$(shell $(DIRNAME) $$($(DIRNAME) /$<))/) \
+		ROUTE=$(subst //,/,$(shell $(DIRNAME) /$<)/) \
+		ROUTES="$(ROUTES)" \
+		$(ERB) -T - template/article.html.erb > $@; \
 	fi
 
 %/nav.html: %/Datafile template/nav.html.erb
 	if $(TEST) $$($(EXPR) $$($(ECHO) $< | $(TR) -cd / | $(WC) -m) % 2) = 0; \
-	then ROUTE_WITHIN=$(dir /$<) ROUTE=$(dir /$<) ROUTES="$(ROUTES)" $(ERB) -T - template/nav.html.erb > $@; \
-	else ROUTE_WITHIN=$(dir $(patsubst %/,%,$(dir /$<))) ROUTE=$(dir /$<) ROUTES="$(ROUTES)" $(ERB) -T - template/nav.html.erb > $@; \
+	then \
+		ROUTE_WITHIN=$(subst //,/,$(shell $(DIRNAME) /$<)/) \
+		ROUTE=$(subst //,/,$(shell $(DIRNAME) /$<)/) \
+		ROUTES="$(ROUTES)" \
+		$(ERB) -T - template/nav.html.erb > $@; \
+	else \
+		ROUTE_WITHIN=$(subst //,/,$(shell $(DIRNAME) $$($(DIRNAME) /$<))/) \
+		ROUTE=$(subst //,/,$(shell $(DIRNAME) /$<)/) \
+		ROUTES="$(ROUTES)" \
+		$(ERB) -T - template/nav.html.erb > $@; \
 	fi
