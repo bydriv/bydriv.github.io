@@ -1,55 +1,93 @@
-<%- require "json" -%>
-<%- require "./lib/datafile" -%>
-<%- ROUTES = ENV["ROUTES"].split(/\s+/) -%>
-<%- ROUTE = ENV["ROUTE"] -%>
-<%- DATAFILE = Datafile.parse(File.read(".#{ROUTE}Datafile")) -%>
+<%-
+
+require "json"
+require "./lib/datafile"
+
+ROUTE = File.join(File.expand_path(ENV["ROUTE"]), "/")
+ROUTES = ENV["ROUTES"].split(/\s+/).map {|route| File.join(File.expand_path(route), "/") }
+
+DATAFILE = Datafile.parse(File.read(File.join(".", ROUTE, "Datafile")))
+
+PATHNAME = ROUTE === "/" ? "" : ROUTE
+TITLE = DATAFILE["title"]&.text&.chomp || ROUTE
+DESCRIPTION = DATAFILE["description"]&.text&.chomp || ""
+THUMBNAIL = DATAFILE["thumbnail"]&.text&.chomp || "https://bydriv.github.io/site/thumbnail.png"
+
+-%>
 <!DOCTYPE html>
 
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta property="og:url" content="https://bydriv.github.io<%= ROUTE === "/" ? "" : ROUTE -%>">
+  <meta property="og:url" content="https://bydriv.github.io<%= PATHNAME -%>">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="<%= (DATAFILE["title"]&.text || ROUTE).chomp -%>">
-  <meta property="og:description" content="<%= (DATAFILE["description"]&.text || "").chomp -%>">
+  <meta property="og:title" content="<%= TITLE -%>">
+  <meta property="og:description" content="<%= DESCRIPTION -%>">
   <meta property="og:site_name" content="bydriv.github.io">
-  <meta property="og:image" content="<%= (DATAFILE["thumbnail"]&.text || "https://bydriv.github.io/site/thumbnail.png").chomp -%>">
+  <meta property="og:image" content="<%= THUMBNAIL -%>">
   <meta name="twitter:card" content="summary_large_image">
 
-  <title><%= (DATAFILE["title"]&.text || ROUTE).chomp -%></title>
+  <title><%= TITLE -%></title>
 
   <link rel="stylesheet" type="text/css" href="/site/index.css">
   <script type="text/javascript" src="/site/index.js"></script>
 </head>
 
 <div class="tapestry">
-<%- ROUTES.each do |route| -%>
-<% datafile = Datafile.parse(File.read(".#{route}Datafile")) %>
-  <div class="top left layer" data-height="-1">
-<%-   if ROUTE == route -%>
-    <article class="<%= (datafile["class"]&.text || "vertical component").chomp -%>" data-route="<%= route %>" data-loaded="true" data-title="<%= (datafile["title"]&.text || route).chomp %>" data-scrollbar="none" data-visible="true">
-<%=     File.read(".#{ROUTE}article.html") -%>
-    </article>
-<%-   else -%>
-    <article class="<%= (datafile["class"]&.text || "vertical component").chomp -%>" data-route="<%= route %>" data-loaded="false" data-title="<%= (datafile["title"]&.text || route).chomp %>" data-scrollbar="none" data-visible="false"></article>
-<%-   end -%>
-  </div>
-<%- end -%>
+<%-
 
-<%- ROUTES.each do |route| -%>
-<%-   if route.count("/").odd? -%>
-<%-     re = /^#{Regexp.escape(route)}[^\/]+\/$/ -%>
-<%-     routes = ROUTES.select {|r| re =~ r} -%>
-  <div class="bottom right layer" data-width="full" data-height="1">
-<%-     if (ENV["ROUTE"].count("/").odd? && ENV["ROUTE"] == route) || (ENV["ROUTE"].count("/").even? && ENV["ROUTE"].start_with?(route) && route.count("/") + 1 === ENV["ROUTE"].count("/")) -%>
-    <nav class="horizontal component" data-route="<%= route %>" data-routes="<%= routes.join(" ") %>" data-loaded="true" data-scrollbar="none" data-visible="true">
-<%=     File.read(".#{ENV["ROUTE"]}nav.html") -%>
-    </nav>
-<%-     else -%>
-    <nav class="horizontal component" data-route="<%= route %>" data-routes="<%= routes.join(" ") %>" data-loaded="false" data-scrollbar="none" data-visible="false"></nav>
-<%-     end -%>
+ROUTES.each do |route|
+  datafile = Datafile.parse(File.read(File.join(".", route, "Datafile")))
+
+  if ROUTE == route
+    klass = datafile["class"]&.text&.chomp || "vertical component"
+    visible = "true"
+    loaded = "true"
+    title = datafile["title"]&.text&.chomp || route
+    text = File.read(File.join(".", ROUTE, "article.html"))
+  else
+    klass = datafile["class"]&.text&.chomp || "vertical component"
+    visible = "false"
+    loaded = "false"
+    title = datafile["title"]&.text&.chomp || route
+    text = ""
+  end
+-%>
+  <div class="top left layer" data-height="-1">
+    <article class="<%= klass -%>" data-route="<%= route %>" data-loaded="<%= loaded -%>" data-title="<%= title %>" data-scrollbar="none" data-visible="<%= visible -%>">
+<%= text -%>
+    </article>
   </div>
-<%-   end -%>
-<%- end -%>
+<%-
+end
+
+ROUTES.each do |route|
+  next if route.count("/").even?
+
+  re = /^#{Regexp.escape(route)}[^\/]+\/$/
+  routes = ROUTES.select {|r| re =~ r}
+
+  if ROUTE == route
+    visible = "true"
+    loaded = "true"
+    text = File.read(File.join(".", ROUTE, "nav.html"))
+  elsif ROUTE.start_with?(route) && ROUTE.count("/") == route.count("/") + 1
+    visible = "true"
+    loaded = "true"
+    text = File.read(File.join(".", ROUTE, "nav.html"))
+  else
+    visible = "false"
+    loaded = "false"
+    text = ""
+  end
+-%>
+  <div class="bottom right layer" data-width="full" data-height="1">
+    <nav class="horizontal component" data-route="<%= route %>" data-routes="<%= routes.join(" ") %>" data-loaded="<%= loaded -%>" data-scrollbar="none" data-visible="<%= visible -%>">
+<%= text -%>
+    </nav>
+  </div>
+<%-
+end
+-%>
 </div>
