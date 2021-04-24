@@ -7,24 +7,6 @@
     src: url("./RocknRollOne-Regular.ttf") format("truetype");
 }
 
-@media (orientation: landscape) {
-    body {
-        background-image: url("/site/landscape.png");
-    }
-}
-
-@media (orientation: portrait) {
-    body {
-        background-image: url("/site/portrait.png");
-    }
-}
-
-body {
-    background-position: center center;
-    background-size: cover;
-    background-attachment: fixed;
-}
-
 html, body, div.tapestry {
     margin: 0;
     padding: 0;
@@ -33,41 +15,50 @@ html, body, div.tapestry {
     overflow: hidden;
 }
 
-div.tapestry *.component {
-    font-family: "RocknRoll";
-    font-size: 16px;
+/******************************************************************************
+ * <div class="tapestry">..</div>
+ ******************************************************************************/
+@media (orientation: landscape) {
+    div.tapestry {
+        background-image: url("/site/landscape.png");
+    }
 }
 
+@media (orientation: portrait) {
+    div.tapestry {
+        background-image: url("/site/portrait.png");
+    }
+}
+
+div.tapestry {
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+
+    font-size: 16px;
+    font-family: "RocknRoll";
+}
+
+/******************************************************************************
+ * <article class="component">..</article>
+ ******************************************************************************/
+div.tapestry article.component {
+    color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+/******************************************************************************
+ * <article class="component" data-route="/">..</article>
+ ******************************************************************************/
 div.tapestry article.component[data-route="/"] {
     display: none;
 }
 
-div.tapestry article.component {
-    color: #000000;
-    background-color: rgba(255, 255, 255, 0.75);
-    outline: solid 8px #000000;
-}
-
-div.tapestry nav.component {
-    color: #FFFFFF;
-    background-color: rgba(0, 0, 0, 0.75);
-}
-
-div.tapestry article.component a {
-    color: #0080FF;
-    text-decoration: none;
-}
-
-div.tapestry article.component a:hover {
-    color: #0080FF;
-    text-decoration: underline;
-}
-
-div.tapestry nav.component a.component {
-    color: #808080;
-    text-decoration: none;
-}
-
+/******************************************************************************
+ * <article class="component">
+ *   <h1>..</h1>
+ * </article>
+ ******************************************************************************/
 div.tapestry article.component h1 {
     margin: 32px;
     padding: 0;
@@ -78,22 +69,68 @@ div.tapestry article.component h1 {
     text-align: center;
 }
 
-div.tapestry article.component ul,
-div.tapestry article.component li {
-    box-sizing: border-box;
-
+/******************************************************************************
+ * <article class="component">
+ *   <ul>..</ul>
+ * </article>
+ ******************************************************************************/
+div.tapestry article.component ul {
     margin: 0;
     padding: 0;
 
     list-style: none;
 }
 
+/******************************************************************************
+ * <article class="component">
+ *   <li>..</li>
+ * </article>
+ ******************************************************************************/
 div.tapestry article.component li {
-    border-bottom: dashed 1px #000000;
-    text-align: justify;
+    box-sizing: border-box;
+
+    margin: 0;
     padding: 4px 8px;
+    width: auto;
+    height: 32px;
+
+    border-bottom: dashed 1px #000000;
 }
 
+/******************************************************************************
+ * <article class="component">
+ *   <a class="component">..</a>
+ * </article>
+ ******************************************************************************/
+div.tapestry article.component a {
+    color: rgba(0, 128, 255, 0.75);
+    text-decoration: none;
+}
+
+div.tapestry article.component a:hover {
+    text-decoration: underline;
+}
+
+/******************************************************************************
+ * <article class="component">
+ *   <img>
+ * </article>
+ ******************************************************************************/
+div.tapestry article.component img {
+    display: block;
+
+    margin: auto;
+    padding: 0;
+
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/******************************************************************************
+ * <article class="vertical-writing component">
+ *   <p>..</p>
+ * </article>
+ ******************************************************************************/
 div.tapestry article.vertical-writing.component p:first-child {
     margin-right: 48px;
 }
@@ -110,37 +147,35 @@ div.tapestry article.vertical-writing.component p {
     line-height: 24px;
 }
 
-div.tapestry article.component p:not([align]) {
+div.tapestry article.vertical-writing.component p:not([align]) {
     text-align: justify;
 }
 
-div.tapestry article.component hr {
+/******************************************************************************
+ * <article class="vertical-writing component">
+ *   <hr>
+ * </article>
+ ******************************************************************************/
+div.tapestry article.vertical-writing.component hr {
     margin: 0 30px;
     padding: 0;
 
     min-width: 4px;
     min-height: 4px;
 
-    background-color: #000000;
+    background-color: rgba(0, 0, 0, 0.75);
 
     border: none;
-    outline: dashed 1px #FFFFFF;
+    outline: dashed 1px rgba(255, 255, 255, 0.75);
     outline-offset: -2px;
-
-    mix-blend-mode: multiply;
 }
-
-div.tapestry article.component img {
-    display: block;
-
-    margin: auto;
-    padding: 0;
-
-    max-width: 100%;
-    max-height: 100%;
-}
-
-span.rensuji {
+    
+/******************************************************************************
+ * <article class="vertical-writing component">
+ *   <span class="rensuji">..</span>
+ * </article>
+ ******************************************************************************/
+div.tapestry article.vertical-writing.component span.rensuji {
     display: inline-block;
 
     margin: -0.25em;
@@ -158,12 +193,29 @@ span.rensuji {
 }
 
 /******************************************************************************
+ * <nav class="component">..</nav>
+ ******************************************************************************/
+div.tapestry nav.component {
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+/******************************************************************************
+ * <nav class="component">
+ *   <a class="component">..</a>
+ * </nav>
+ ******************************************************************************/
+div.tapestry nav.component a.component {
+    color: rgba(128, 128, 128, 0.75);
+    text-decoration: none;
+}
+
+/******************************************************************************
  * <nav class="component">
  *   <a class="component" data-focus="true">..</a>
  * </nav>
  ******************************************************************************/
-div.layer nav.component a.component[data-focus="true"] {
-  color: #FF00FF;
+div.tapestry nav.component a.component[data-focus="true"] {
+    color: rgba(255, 0, 255, 0.75);
 }
 
 /******************************************************************************
@@ -171,6 +223,6 @@ div.layer nav.component a.component[data-focus="true"] {
  *   <a class="component" data-focus-within="true">..</a>
  * </nav>
  ******************************************************************************/
-div.layer nav.component a.component[data-focus-within="true"] {
-  color: #FFFFFF;
+div.tapestry nav.component a.component[data-focus-within="true"] {
+    color: rgba(255, 255, 255, 0.75);
 }
