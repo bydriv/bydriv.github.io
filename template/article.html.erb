@@ -1,34 +1,64 @@
 <%# -*- coding: utf-8 -*-%>
-<%- require "./lib/datafile" -%>
-<%- ROUTE = ENV["ROUTE"] -%>
-<%- DATAFILE = Datafile.parse(File.read(".#{ROUTE}Datafile")) -%>
-<%- DATAFILE.data.each do |datum| -%>
-<%-   case datum.path -%>
-<%-   when /^nav$/ -%>
-<%-   when /^index$/ -%>
+<%-
+
+require "./lib/datafile"
+
+ROUTE = File.join(File.expand_path(ENV["ROUTE"]), "/")
+
+DATAFILE = Datafile.parse(File.read(File.join(".", ROUTE, "Datafile")))
+
+DATAFILE.data.each do |datum|
+  case datum.path
+  when /^index$/
+
+-%>
 <ul>
-<%-     datum.text.lines do |line| -%>
-<%-       route = "#{ROUTE}#{line.chomp}/" -%>
-<%-       datafile = Datafile.parse(File.read(".#{route}Datafile")) -%>
-  <li><a href="<%= route -%>" data-route="<%= route -%>"><%= (datafile["title"]&.text || line).chomp -%></a></li>
-<%-     end -%>
+<%-
+
+    datum.text.lines do |line|
+      path = line.chomp
+      route = File.join(File.expand_path(File.join(ROUTE, path)), "/")
+      datafile = Datafile.parse(File.read(File.join(".", route, "Datafile")))
+      text = datafile["title"]&.text&.chomp || path
+
+-%>
+  <li><a href="<%= route -%>" data-route="<%= route -%>"><%= text -%></a></li>
+<%-
+    end
+-%>
 </ul>
-<%-   when /^header$/ -%>
-<h1><%= datum.text.chomp -%></h1>
-<%-   when /^right$/ -%>
+<%-
+  when /^header$/
+    text = datum&.text&.chomp || ""
+-%>
+<h1><%= text -%></h1>
+</ul>
+<%-
+  when /^right$/
+    text = datum&.text || ""
+-%>
 <p align="right">
-<%= datum.text -%>
+<%= text -%>
 </p>
-<%-   when /^(.+\.png)$/ -%>
+<%-
+  when /^(.+\.png)$/
+-%>
 <img src="<%= $1 -%>">
-<%-   when nil -%>
-<%-     case datum.text -%>
-<%-     when /^----*$/ -%>
+<%-
+  when nil
+    case datum.text
+    when /^----*$/
+-%>
 <hr>
-<%-     else -%>
+<%-
+    else
+      text = datum&.text&.gsub("！？", "<span class=\"rensuji\">!?</span>")
+-%>
 <p>
-<%= datum.text.gsub("！？", "<span class=\"rensuji\">!?</span>") -%>
+<%= text -%>
 </p>
-<%-     end -%>
-<%-   end -%>
-<%- end -%>
+<%-
+    end
+  end
+end
+-%>

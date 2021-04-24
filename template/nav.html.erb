@@ -1,22 +1,52 @@
-<%- require "pathname" -%>
-<%- require "./lib/datafile" -%>
-<%- ROUTE_WITHIN = ENV["ROUTE_WITHIN"] -%>
-<%- ROUTE = ENV["ROUTE"] -%>
-<%- DATAFILE = Datafile.parse(File.read(".#{ROUTE_WITHIN}Datafile")) -%>
-<a class="component" href="/" data-route="/" data-focus="<%= ROUTE == "/" -%>" data-focus-within="<%= ROUTE_WITHIN == "/" && ROUTE != ROUTE_WITHIN -%>">&#x221A;</a><%- -%>
-<%- DATAFILE.data.each do |datum| -%>
-<%-   case datum.path -%>
-<%-   when /^nav$/ -%>
-<%-     datum.text.lines do |line| -%>
-<%-       route = Pathname.new("#{ROUTE_WITHIN}#{line.chomp}/").expand_path.to_s + "/" -%>
-<%-       datafile = Datafile.parse(File.read(".#{route}Datafile")) -%>
-<%-       if ROUTE == route -%>
-<a class="component" href="<%= route -%>" data-route="<%= route -%>" data-focus="true" data-focus-within="false"><%= (datafile["title"]&.text || line).chomp -%></a><%- -%>
-<%-       elsif ROUTE_WITHIN == route -%>
-<a class="component" href="<%= route -%>" data-route="<%= route -%>" data-focus="false" data-focus-within="true"><%= (datafile["title"]&.text || line).chomp -%></a><%- -%>
-<%-       else -%>
-<a class="component" href="<%= route -%>" data-route="<%= route -%>" data-focus="false" data-focus-within="false"><%= (datafile["title"]&.text || line).chomp -%></a><%- -%>
-<%-       end -%>
-<%-     end -%>
-<%-   end -%>
-<%- end -%>
+<%-
+
+require "./lib/datafile"
+
+ROUTE = File.join(File.expand_path(ENV["ROUTE"]), "/")
+ROUTES = ENV["ROUTES"].split(/\s+/).map {|route| File.join(File.expand_path(route), "/") }
+
+ROUTE_WITHIN =
+  if ROUTE.count("/").odd?
+    ROUTE
+  else
+    File.join(File.dirname(ROUTE), "/")
+  end
+
+DATAFILE = Datafile.parse(File.read(File.join(".", ROUTE_WITHIN, "Datafile")))
+
+if ROUTE == "/"
+  FOCUS = "true"
+  FOCUS_WITHIN = "false"
+elsif ROUTE_WITHIN == "/"
+  FOCUS = "false"
+  FOCUS_WITHIN = "true"
+else
+  FOCUS = "false"
+  FOCUS_WITHIN = "false"
+end
+
+-%>
+<a class="component" href="/" data-route="/" data-focus="<%= FOCUS -%>" data-focus-within="<%= FOCUS_WITHIN -%>">&#x221A;</a><%-
+
+DATAFILE["nav"]&.text&.lines do |line|
+  path = line.chomp
+  route = File.join(File.expand_path(File.join(ROUTE_WITHIN, path)), "/")
+  datafile = Datafile.parse(File.read(File.join(".", route, "Datafile")))
+
+  if route == ROUTE
+    focus = "true"
+    within = "false"
+  elsif route == ROUTE_WITHIN
+    focus = "false"
+    within = "true"
+  else
+    focus = "false"
+    within = "false"
+  end
+
+  text = datafile["title"]&.text&.chomp || path
+
+-%>
+<a class="component" href="<%= route -%>" data-route="<%= route -%>" data-focus="<%= focus -%>" data-focus-within="<%= within -%>"><%= text -%></a><%-
+  end
+-%>
