@@ -32,7 +32,6 @@ DATAFILE.data.each do |datum|
     text = datum&.text&.chomp || ""
 -%>
 <h1><%= text -%></h1>
-</ul>
 <%-
   when /^right$/
     text = datum&.text || ""
