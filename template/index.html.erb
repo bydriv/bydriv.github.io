@@ -4,7 +4,6 @@ require "json"
 require "./lib/datafile"
 
 ROUTE = File.join(File.expand_path(ENV["ROUTE"]), "/")
-ROUTES = ENV["ROUTES"].split(/\s+/).map {|route| File.join(File.expand_path(route), "/") }
 
 ROUTE_WITHIN =
   if ROUTE.count("/").odd?
@@ -12,6 +11,10 @@ ROUTE_WITHIN =
   else
     File.join(File.dirname(ROUTE), "/")
   end
+
+ROUTES = Dir[File.join(".", ROUTE_WITHIN, "*", "Datafile")].map do |path|
+  File.join(File.dirname(path)[1..-1], "/")
+end
 
 DATAFILE = Datafile.parse(File.read(File.join(".", ROUTE, "Datafile")))
 
@@ -21,9 +24,6 @@ DESCRIPTION = DATAFILE["description"]&.text&.chomp || ""
 THUMBNAIL = DATAFILE["thumbnail"]&.text&.chomp || "https://bydriv.github.io/site/thumbnail.png"
 
 CLASS = DATAFILE["class"]&.text&.chomp || "vertical component"
-
-re = /^#{Regexp.escape(ROUTE_WITHIN)}[^\/]+\/$/
-routes = ROUTES.select {|r| re =~ r}
 
 -%>
 <!DOCTYPE html>
@@ -53,7 +53,7 @@ routes = ROUTES.select {|r| re =~ r}
     </article>
   </div>
   <div class="bottom right layer" data-width="full" data-height="1">
-    <nav class="horizontal component" data-route="<%= ROUTE_WITHIN %>" data-routes="<%= routes.join(" ") %>" data-loaded="true" data-scrollbar="none" data-visible="true">
+    <nav class="horizontal component" data-route="<%= ROUTE_WITHIN %>" data-routes="<%= ROUTES.join(" ") %>" data-loaded="true" data-scrollbar="none" data-visible="true">
 <%= File.read(File.join(".", ROUTE, "nav.html")) -%>
     </nav>
   </div>

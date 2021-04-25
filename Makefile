@@ -16,7 +16,7 @@ site/routes.json: site/routes.rb $(DATAFILES)
 	ROUTES="$(ROUTES)" $(RUBY) $< > $@
 
 index.html: Datafile template/index.html.erb article.html nav.html $(shell ROUTE=/ $(RUBY) misc/lsdep.rb)
-	ROUTE=/ ROUTES="$(ROUTES)" $(ERB) -T - template/index.html.erb > $@
+	ROUTE=/ $(ERB) -T - template/index.html.erb > $@
 
 article.html: Datafile template/article.html.erb $(shell ROUTE=/ $(RUBY) misc/lsdep.rb)
 	ROUTE=/ $(ERB) -T - template/article.html.erb > $@
@@ -26,7 +26,7 @@ nav.html: Datafile template/nav.html.erb $(shell ROUTE=/ $(RUBY) misc/lsdep.rb)
 
 .SECONDEXPANSION:
 %/index.html: %/Datafile template/index.html.erb %/article.html %/nav.html $$(shell ROUTE=/$$(dir $$<) $(RUBY) misc/lsdep.rb)
-	ROUTE=/$(dir $<) ROUTES="$(ROUTES)" $(ERB) -T - template/index.html.erb > $@
+	ROUTE=/$(dir $<) $(ERB) -T - template/index.html.erb > $@
 
 %/article.html: %/Datafile template/article.html.erb $$(shell ROUTE=/$$(dir $$<) $(RUBY) misc/lsdep.rb)
 	ROUTE=/$(dir $<) $(ERB) -T - template/article.html.erb > $@
