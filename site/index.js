@@ -57,7 +57,7 @@
     });
 
     window.addEventListener("popstate", () => {
-        select(history.state.route, false);
+        select(history.state?.route || document.location.pathname, false);
     });
 
     window.addEventListener("touchstart", (e) => {
@@ -153,10 +153,9 @@
         for (const article of articles) {
             if (article.dataset.route === route) {
                 article.dataset.visible = "true";
+                document.title = article.dataset.title;
 
                 if (pushState) {
-                    document.title = article.dataset.title;
-
                     history.pushState({
                         route,
                         title: document.title
