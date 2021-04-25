@@ -3,7 +3,6 @@
 require "./lib/datafile"
 
 ROUTE = File.join(File.expand_path(ENV["ROUTE"]), "/")
-ROUTES = ENV["ROUTES"].split(/\s+/).map {|route| File.join(File.expand_path(route), "/") }
 
 ROUTE_WITHIN =
   if ROUTE.count("/").odd?

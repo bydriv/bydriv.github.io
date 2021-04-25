@@ -4,7 +4,17 @@ require "json"
 require "./lib/datafile"
 
 ROUTE = File.join(File.expand_path(ENV["ROUTE"]), "/")
-ROUTES = ENV["ROUTES"].split(/\s+/).map {|route| File.join(File.expand_path(route), "/") }
+
+ROUTE_WITHIN =
+  if ROUTE.count("/").odd?
+    ROUTE
+  else
+    File.join(File.dirname(ROUTE), "/")
+  end
+
+ROUTES = Dir[File.join(".", ROUTE_WITHIN, "*", "Datafile")].map do |path|
+  File.join(File.dirname(path)[1..-1], "/")
+end
 
 DATAFILE = Datafile.parse(File.read(File.join(".", ROUTE, "Datafile")))
 
@@ -12,6 +22,8 @@ PATHNAME = ROUTE === "/" ? "" : ROUTE
 TITLE = DATAFILE["title"]&.text&.chomp || ROUTE
 DESCRIPTION = DATAFILE["description"]&.text&.chomp || ""
 THUMBNAIL = DATAFILE["thumbnail"]&.text&.chomp || "https://bydriv.github.io/site/thumbnail.png"
+
+CLASS = DATAFILE["class"]&.text&.chomp || "vertical component"
 
 -%>
 <!DOCTYPE html>
@@ -35,59 +47,14 @@ THUMBNAIL = DATAFILE["thumbnail"]&.text&.chomp || "https://bydriv.github.io/site
 </head>
 
 <div class="tapestry">
-<%-
-
-ROUTES.each do |route|
-  datafile = Datafile.parse(File.read(File.join(".", route, "Datafile")))
-
-  if ROUTE == route
-    klass = datafile["class"]&.text&.chomp || "vertical component"
-    visible = "true"
-    loaded = "true"
-    title = datafile["title"]&.text&.chomp || route
-    text = File.read(File.join(".", ROUTE, "article.html"))
-  else
-    klass = datafile["class"]&.text&.chomp || "vertical component"
-    visible = "false"
-    loaded = "false"
-    title = datafile["title"]&.text&.chomp || route
-    text = ""
-  end
--%>
   <div class="top left layer" data-height="-1">
-    <article class="<%= klass -%>" data-route="<%= route %>" data-loaded="<%= loaded -%>" data-title="<%= title %>" data-scrollbar="none" data-visible="<%= visible -%>">
-<%= text -%>
+    <article class="<%= CLASS -%>" data-route="<%= ROUTE %>" data-loaded="true" data-title="<%= TITLE %>" data-scrollbar="none" data-visible="true">
+<%= File.read(File.join(".", ROUTE, "article.html")) -%>
     </article>
   </div>
-<%-
-end
-
-ROUTES.each do |route|
-  next if route.count("/").even?
-
-  re = /^#{Regexp.escape(route)}[^\/]+\/$/
-  routes = ROUTES.select {|r| re =~ r}
-
-  if ROUTE == route
-    visible = "true"
-    loaded = "true"
-    text = File.read(File.join(".", ROUTE, "nav.html"))
-  elsif ROUTE.start_with?(route) && ROUTE.count("/") == route.count("/") + 1
-    visible = "true"
-    loaded = "true"
-    text = File.read(File.join(".", ROUTE, "nav.html"))
-  else
-    visible = "false"
-    loaded = "false"
-    text = ""
-  end
--%>
   <div class="bottom right layer" data-width="full" data-height="1">
-    <nav class="horizontal component" data-route="<%= route %>" data-routes="<%= routes.join(" ") %>" data-loaded="<%= loaded -%>" data-scrollbar="none" data-visible="<%= visible -%>">
-<%= text -%>
+    <nav class="horizontal component" data-route="<%= ROUTE_WITHIN %>" data-routes="<%= ROUTES.join(" ") %>" data-loaded="true" data-scrollbar="none" data-visible="true">
+<%= File.read(File.join(".", ROUTE, "nav.html")) -%>
     </nav>
   </div>
-<%-
-end
--%>
 </div>
