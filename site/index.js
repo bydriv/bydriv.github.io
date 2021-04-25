@@ -2,6 +2,57 @@
     const TOUCHES = new Map();
 
     window.addEventListener("load", () => {
+        const tapestry = document.querySelector("div.tapestry");
+
+        fetch("/site/routes.json").then((response) => {
+            return response.json();
+        }).then((routes) => {
+            for (const route of routes) {
+                if (route.route === document.location.pathname) {
+                    continue;
+                }
+
+                const articleDiv = document.createElement("div");
+                const article = document.createElement("article");
+
+                articleDiv.setAttribute("class", "top left layer");
+                articleDiv.dataset.height = "-1";
+
+                article.setAttribute("class", route.class);
+                article.dataset.route = route.route;
+                article.dataset.loaded = "false";
+                article.dataset.title = route.title;
+                article.dataset.scrollbar = "none";
+                article.dataset.visible = "false";
+
+                articleDiv.appendChild(article);
+                tapestry.appendChild(articleDiv);
+
+                if ((route.route.match(/\//g) || []).length % 2 === 0) {
+                    continue;
+                }
+
+                const navDiv = document.createElement("div");
+                const nav = document.createElement("nav");
+
+                navDiv.setAttribute("class", "bottom right layer");
+                navDiv.dataset.width = "full";
+                navDiv.dataset.height = "1";
+
+                nav.setAttribute("class", "horizontal component");
+                nav.dataset.route = route.route;
+                nav.dataset.routes = routes.filter((r) => {
+                    return r.route.startsWith(route.route) && (route.route.match(/\//g) || []).length + 1 === (r.route.match(/\//g) || []).length;
+                }).map((r) => r.route).join(" ");
+                nav.dataset.loaded = "false";
+                nav.dataset.scrollbar = "none";
+                nav.dataset.visible = "false";
+
+                navDiv.appendChild(nav);
+                tapestry.appendChild(navDiv);
+            }
+        });
+
         initialize(document);
     });
 
