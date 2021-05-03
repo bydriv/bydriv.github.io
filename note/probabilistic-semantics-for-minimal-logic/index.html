@@ -106,7 +106,7 @@
 <p>
 　命題は集合を表すものと見ることもでき、確率論における事象と見るならば、つぎのような対応関係があります。
 </p>
-<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\begin{array}[]{lclclclcl}A\rightarrow{}B&amp;\Leftrightarrow&amp;B^{A}&amp;\neq&amp;\emptyset%&#10;&amp;\Leftrightarrow&amp;P\left(B\right)^{P\left(A\right)}&amp;\neq&amp;0\\&#10;A\land{}B&amp;\Leftrightarrow&amp;A\cap{}B&amp;\neq&amp;\emptyset&amp;\Leftrightarrow&amp;P\left(A\cap%&#10;{}B\right)&amp;\neq&amp;0\\&#10;A\lor{}B&amp;\Leftrightarrow&amp;A\cup{}B&amp;\neq&amp;\emptyset&amp;\Leftrightarrow&amp;P\left(A\cup{%&#10;}B\right)-P\left(A\cap{}B\right)&amp;\neq&amp;0\\&#10;\makebox{\bot}&amp;\Leftrightarrow&amp;\emptyset&amp;\neq&amp;\emptyset&amp;\Leftrightarrow&amp;P\left%&#10;(\emptyset\right)&amp;\neq&amp;0\\&#10;\end{array}" display="block">
+<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\begin{array}[]{lclclclcl}A\rightarrow{}B&amp;\Leftrightarrow&amp;B^{A}&amp;\neq&amp;\emptyset%&#10;&amp;\Leftrightarrow&amp;P\left(B\right)^{P\left(A\right)}&amp;\neq&amp;0\\&#10;A\land{}B&amp;\Leftrightarrow&amp;A\cap{}B&amp;\neq&amp;\emptyset&amp;\Leftrightarrow&amp;P\left(A\cap%&#10;{}B\right)&amp;\neq&amp;0\\&#10;A\lor{}B&amp;\Leftrightarrow&amp;A\cup{}B&amp;\neq&amp;\emptyset&amp;\Leftrightarrow&amp;P\left(A\cup{%&#10;}B\right)&amp;\neq&amp;0\\&#10;\makebox{\bot}&amp;\Leftrightarrow&amp;\emptyset&amp;\neq&amp;\emptyset&amp;\Leftrightarrow&amp;P\left%&#10;(\emptyset\right)&amp;\neq&amp;0\\&#10;\end{array}" display="block">
   <mtable displaystyle="true">
     <mtr>
       <mtd columnalign="left">
@@ -241,32 +241,16 @@
       </mtd>
       <mtd columnalign="left">
         <mrow>
+          <mi>P</mi>
+          <mo>⁢</mo>
           <mrow>
-            <mi>P</mi>
-            <mo>⁢</mo>
-            <mrow>
-              <mo>(</mo>
-              <mrow xml:id="XM4">
-                <mi>A</mi>
-                <mo>∪</mo>
-                <mi>B</mi>
-              </mrow>
-              <mo>)</mo>
+            <mo>(</mo>
+            <mrow xml:id="XM4">
+              <mi>A</mi>
+              <mo>∪</mo>
+              <mi>B</mi>
             </mrow>
-          </mrow>
-          <mo>-</mo>
-          <mrow>
-            <mi>P</mi>
-            <mo>⁢</mo>
-            <mrow>
-              <mo>(</mo>
-              <mrow xml:id="XM5">
-                <mi>A</mi>
-                <mo>∩</mo>
-                <mi>B</mi>
-              </mrow>
-              <mo>)</mo>
-            </mrow>
+            <mo>)</mo>
           </mrow>
         </mrow>
       </mtd>
@@ -304,7 +288,7 @@
           <mo>⁢</mo>
           <mrow>
             <mo>(</mo>
-            <mi mathvariant="normal" xml:id="XM6">∅</mi>
+            <mi mathvariant="normal" xml:id="XM5">∅</mi>
             <mo>)</mo>
           </mrow>
         </mrow>
@@ -1606,9 +1590,9 @@ A が公理型で、それ以外は推論規則です。
 </p>
 <p>
 　実際定義を見ると集合環の定義に似ている部分がいくつかあります。
-とくに対称差は和事象の確率と積事象の確率の差によく似ています。
+とくに対称差は和事象の確率によく似ています。
 </p>
-<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\begin{array}[]{cc}\left(A\cup{}B\right)-\left(A\cap{}B\right)&amp;P\left(A\cup{}B%&#10;\right)-P\left(A\cap{}B\right)\\&#10;\end{array}" display="block">
+<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\begin{array}[]{cc}\left(A\cup{}B\right)\setminus\left(A\cap{}B\right)&amp;P\left(%&#10;A\right)+P\left(B\right)-P\left(A\right)\cdot{}P\left(B\right)\\&#10;\end{array}" display="block">
   <mtable displaystyle="true">
     <mtr>
       <mtd columnalign="center">
@@ -1622,7 +1606,7 @@ A が公理型で、それ以外は推論規則です。
             </mrow>
             <mo>)</mo>
           </mrow>
-          <mo>-</mo>
+          <mo>∖</mo>
           <mrow>
             <mo>(</mo>
             <mrow xml:id="XM2">
@@ -1637,29 +1621,45 @@ A が公理型で、それ以外は推論規則です。
       <mtd columnalign="center">
         <mrow>
           <mrow>
-            <mi>P</mi>
-            <mo>⁢</mo>
             <mrow>
-              <mo>(</mo>
-              <mrow xml:id="XM3">
-                <mi>A</mi>
-                <mo>∪</mo>
-                <mi>B</mi>
+              <mi>P</mi>
+              <mo>⁢</mo>
+              <mrow>
+                <mo>(</mo>
+                <mi xml:id="XM3">A</mi>
+                <mo>)</mo>
               </mrow>
-              <mo>)</mo>
+            </mrow>
+            <mo>+</mo>
+            <mrow>
+              <mi>P</mi>
+              <mo>⁢</mo>
+              <mrow>
+                <mo>(</mo>
+                <mi xml:id="XM4">B</mi>
+                <mo>)</mo>
+              </mrow>
             </mrow>
           </mrow>
           <mo>-</mo>
           <mrow>
-            <mi>P</mi>
+            <mrow>
+              <mrow>
+                <mi>P</mi>
+                <mo>⁢</mo>
+                <mrow>
+                  <mo>(</mo>
+                  <mi xml:id="XM5">A</mi>
+                  <mo>)</mo>
+                </mrow>
+              </mrow>
+              <mo>⋅</mo>
+              <mi>P</mi>
+            </mrow>
             <mo>⁢</mo>
             <mrow>
               <mo>(</mo>
-              <mrow xml:id="XM4">
-                <mi>A</mi>
-                <mo>∩</mo>
-                <mi>B</mi>
-              </mrow>
+              <mi xml:id="XM6">B</mi>
               <mo>)</mo>
             </mrow>
           </mrow>

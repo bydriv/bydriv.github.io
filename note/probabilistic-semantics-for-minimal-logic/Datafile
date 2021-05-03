@@ -48,10 +48,10 @@ appendix
 
 @correspondence.tex
 \begin{array}{lclclclcl}
-A\rightarrow{}B & \Leftrightarrow & B_{}^A    & \neq & \emptyset & \Leftrightarrow & P\left(B\right)_{}^{P\left(A\right)}          & \neq & 0 \\
-A\land{}B       & \Leftrightarrow & A\cap{}B  & \neq & \emptyset & \Leftrightarrow & P\left(A\cap{}B\right)                        & \neq & 0 \\
-A\lor{}B        & \Leftrightarrow & A\cup{}B  & \neq & \emptyset & \Leftrightarrow & P\left(A\cup{}B\right)-P\left(A\cap{}B\right) & \neq & 0 \\
-\makebox{\bot}  & \Leftrightarrow & \emptyset & \neq & \emptyset & \Leftrightarrow & P\left(\emptyset\right)                       & \neq & 0 \\
+A\rightarrow{}B & \Leftrightarrow & B_{}^A    & \neq & \emptyset & \Leftrightarrow & P\left(B\right)_{}^{P\left(A\right)} & \neq & 0 \\
+A\land{}B       & \Leftrightarrow & A\cap{}B  & \neq & \emptyset & \Leftrightarrow & P\left(A\cap{}B\right)               & \neq & 0 \\
+A\lor{}B        & \Leftrightarrow & A\cup{}B  & \neq & \emptyset & \Leftrightarrow & P\left(A\cup{}B\right)               & \neq & 0 \\
+\makebox{\bot}  & \Leftrightarrow & \emptyset & \neq & \emptyset & \Leftrightarrow & P\left(\emptyset\right)              & \neq & 0 \\
 \end{array}
 
 　論理包含に対応するものは冪乗で定義されており、集合論では冪集合は写像全体の集合を表します。
@@ -226,11 +226,11 @@ A が公理型で、それ以外は推論規則です。
 もちろんその場合真理値の “意味” は変わることになりますが、構文的にはそのように拡張できる余地はあります。
 
 　実際定義を見ると集合環の定義に似ている部分がいくつかあります。
-とくに対称差は和事象の確率と積事象の確率の差によく似ています。
+とくに対称差は和事象の確率によく似ています。
 
 @symmetric-difference.tex
 \begin{array}{cc}
-\left(A\cup{}B\right)-\left(A\cap{}B\right) & P\left(A\cup{}B\right)-P\left(A\cap{}B\right) \\
+\left(A\cup{}B\right)\setminus\left(A\cap{}B\right) & P\left(A\right)+P\left(B\right)-P\left(A\right)\cdot{}P\left(B\right) \\
 \end{array}
 
 @chapter
