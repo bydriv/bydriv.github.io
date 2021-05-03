@@ -1,0 +1,1666 @@
+<h1>最小論理の確率的意味論</h1>
+<h2>はしがき</h2>
+<p>
+　GW ということでなにかやりたいなと思い最小論理の確率的意味論を検討していました。
+もともとの動機はゲーム理論を論理学の知識で拡張できないかというもので、
+利得関数の計算のために論理式を使おうというところが出発点でした。
+いろいろと試行錯誤するうち、結果的には確率論のほうが色濃い体系となり
+そこそこかたちになってきましたのでまとめます。
+</p>
+<p align="right">
+(2021-05-03)
+</p>
+<h3>最小論理について</h3>
+<p>
+　最小論理は直観主義論理から爆発律を取り除いた体系です。爆発律は
+</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\frac{\makebox{\bot}}{A}" display="block">
+  <mfrac>
+    <mtext>
+      <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="bottom" name="bot" role="ADDOP">⊥</XMTok>
+    </mtext>
+    <mi>A</mi>
+  </mfrac>
+</math>
+<p>
+　という形式の推論です。ただし無矛盾律は含まれます。つまり
+</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\frac{A\quad\lnot{}A}{\makebox{\bot}}" display="block">
+  <mfrac>
+    <mrow>
+      <mi xml:id="XM1">A</mi>
+      <mo mathvariant="italic" separator="true"> </mo>
+      <mrow xml:id="XM2">
+        <mi mathvariant="normal">¬</mi>
+        <mo>⁢</mo>
+        <mi>A</mi>
+      </mrow>
+    </mrow>
+    <mtext>
+      <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="bottom" name="bot" role="ADDOP">⊥</XMTok>
+    </mtext>
+  </mfrac>
+</math>
+<p>
+　および
+</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\frac{\begin{array}[]{c}\left[A\right]\\&#10;\vdots\\&#10;\makebox{\bot}\end{array}}{\lnot{}A}" display="block">
+  <mfrac>
+    <mtable>
+      <mtr>
+        <mtd columnalign="center">
+          <mrow>
+            <mo>[</mo>
+            <mi xml:id="XM1">A</mi>
+            <mo>]</mo>
+          </mrow>
+        </mtd>
+      </mtr>
+      <mtr>
+        <mtd columnalign="center">
+          <mi mathvariant="normal">⋮</mi>
+        </mtd>
+      </mtr>
+      <mtr>
+        <mtd columnalign="center">
+          <mtext>
+            <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="bottom" name="bot" role="ADDOP">⊥</XMTok>
+          </mtext>
+        </mtd>
+      </mtr>
+    </mtable>
+    <mrow>
+      <mi mathvariant="normal">¬</mi>
+      <mo>⁢</mo>
+      <mi>A</mi>
+    </mrow>
+  </mfrac>
+</math>
+<p>
+　という形式の推論は最小論理でも可能です。
+</p>
+<h3>命題と集合の対応関係について</h3>
+<p>
+　命題は集合を表すものと見ることもでき、確率論における事象と見るならば、つぎのような対応関係があります。
+</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\begin{array}[]{lclclclcl}A\rightarrow{}B&amp;\Leftrightarrow&amp;B^{A}&amp;\neq&amp;\emptyset%&#10;&amp;\Leftrightarrow&amp;P\left(B\right)^{P\left(A\right)}&amp;\neq&amp;0\\&#10;A\land{}B&amp;\Leftrightarrow&amp;A\cap{}B&amp;\neq&amp;\emptyset&amp;\Leftrightarrow&amp;P\left(A\cap%&#10;{}B\right)&amp;\neq&amp;0\\&#10;A\lor{}B&amp;\Leftrightarrow&amp;A\cup{}B&amp;\neq&amp;\emptyset&amp;\Leftrightarrow&amp;P\left(A\cup{%&#10;}B\right)-P\left(A\cap{}B\right)&amp;\neq&amp;0\\&#10;\makebox{\bot}&amp;\Leftrightarrow&amp;\emptyset&amp;\neq&amp;\emptyset&amp;\Leftrightarrow&amp;P\left%&#10;(\emptyset\right)&amp;\neq&amp;0\\&#10;\end{array}" display="block">
+  <mtable displaystyle="true">
+    <mtr>
+      <mtd columnalign="left">
+        <mrow>
+          <mi>A</mi>
+          <mo>→</mo>
+          <mi>B</mi>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>⇔</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <msup>
+          <mi>B</mi>
+          <mi>A</mi>
+        </msup>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>≠</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mi mathvariant="normal">∅</mi>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>⇔</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mrow>
+          <mi>P</mi>
+          <mo>⁢</mo>
+          <msup>
+            <mrow>
+              <mo>(</mo>
+              <mi xml:id="XM2">B</mi>
+              <mo>)</mo>
+            </mrow>
+            <mrow>
+              <mi>P</mi>
+              <mo>⁢</mo>
+              <mrow>
+                <mo>(</mo>
+                <mi xml:id="XM1">A</mi>
+                <mo>)</mo>
+              </mrow>
+            </mrow>
+          </msup>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>≠</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mn>0</mn>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnalign="left">
+        <mrow>
+          <mi>A</mi>
+          <mo>∧</mo>
+          <mi>B</mi>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>⇔</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mrow>
+          <mi>A</mi>
+          <mo>∩</mo>
+          <mi>B</mi>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>≠</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mi mathvariant="normal">∅</mi>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>⇔</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mrow>
+          <mi>P</mi>
+          <mo>⁢</mo>
+          <mrow>
+            <mo>(</mo>
+            <mrow xml:id="XM3">
+              <mi>A</mi>
+              <mo>∩</mo>
+              <mi>B</mi>
+            </mrow>
+            <mo>)</mo>
+          </mrow>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>≠</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mn>0</mn>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnalign="left">
+        <mrow>
+          <mi>A</mi>
+          <mo>∨</mo>
+          <mi>B</mi>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>⇔</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mrow>
+          <mi>A</mi>
+          <mo>∪</mo>
+          <mi>B</mi>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>≠</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mi mathvariant="normal">∅</mi>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>⇔</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mrow>
+          <mrow>
+            <mi>P</mi>
+            <mo>⁢</mo>
+            <mrow>
+              <mo>(</mo>
+              <mrow xml:id="XM4">
+                <mi>A</mi>
+                <mo>∪</mo>
+                <mi>B</mi>
+              </mrow>
+              <mo>)</mo>
+            </mrow>
+          </mrow>
+          <mo>-</mo>
+          <mrow>
+            <mi>P</mi>
+            <mo>⁢</mo>
+            <mrow>
+              <mo>(</mo>
+              <mrow xml:id="XM5">
+                <mi>A</mi>
+                <mo>∩</mo>
+                <mi>B</mi>
+              </mrow>
+              <mo>)</mo>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>≠</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mn>0</mn>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnalign="left">
+        <mtext>
+          <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="bottom" name="bot" role="ADDOP">⊥</XMTok>
+        </mtext>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>⇔</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mi mathvariant="normal">∅</mi>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>≠</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mi mathvariant="normal">∅</mi>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>⇔</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mrow>
+          <mi>P</mi>
+          <mo>⁢</mo>
+          <mrow>
+            <mo>(</mo>
+            <mi mathvariant="normal" xml:id="XM6">∅</mi>
+            <mo>)</mo>
+          </mrow>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>≠</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mn>0</mn>
+      </mtd>
+    </mtr>
+  </mtable>
+</math>
+<p>
+　論理包含に対応するものは冪乗で定義されており、集合論では冪集合は写像全体の集合を表します。
+この関係を直観的に説明すると、論理包含と冪乗のあいだにはつぎのような関係があります。
+</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\begin{array}[]{rclcrcl}\makebox{\bot}\rightarrow\makebox{\bot}&amp;=&amp;\makebox{%&#10;\top}&amp;&amp;0^{0}=1\\&#10;\makebox{\bot}\rightarrow\makebox{\top}&amp;=&amp;\makebox{\top}&amp;&amp;1^{0}=1\\&#10;\makebox{\top}\rightarrow\makebox{\bot}&amp;=&amp;\makebox{\bot}&amp;&amp;0^{1}=0\\&#10;\makebox{\top}\rightarrow\makebox{\top}&amp;=&amp;\makebox{\top}&amp;&amp;1^{1}=1\\&#10;\end{array}" display="block">
+  <mtable displaystyle="true">
+    <mtr>
+      <mtd columnalign="right">
+        <mrow>
+          <mtext>
+            <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="bottom" name="bot" role="ADDOP">⊥</XMTok>
+          </mtext>
+          <mo>→</mo>
+          <mtext>
+            <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="bottom" name="bot" role="ADDOP">⊥</XMTok>
+          </mtext>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>=</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mtext>
+          <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="top" role="ADDOP">⊤</XMTok>
+        </mtext>
+      </mtd>
+      <mtd/>
+      <mtd columnalign="right">
+        <mrow>
+          <msup>
+            <mn>0</mn>
+            <mn>0</mn>
+          </msup>
+          <mo>=</mo>
+          <mn>1</mn>
+        </mrow>
+      </mtd>
+      <mtd/>
+      <mtd/>
+    </mtr>
+    <mtr>
+      <mtd columnalign="right">
+        <mrow>
+          <mtext>
+            <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="bottom" name="bot" role="ADDOP">⊥</XMTok>
+          </mtext>
+          <mo>→</mo>
+          <mtext>
+            <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="top" role="ADDOP">⊤</XMTok>
+          </mtext>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>=</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mtext>
+          <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="top" role="ADDOP">⊤</XMTok>
+        </mtext>
+      </mtd>
+      <mtd/>
+      <mtd columnalign="right">
+        <mrow>
+          <msup>
+            <mn>1</mn>
+            <mn>0</mn>
+          </msup>
+          <mo>=</mo>
+          <mn>1</mn>
+        </mrow>
+      </mtd>
+      <mtd/>
+      <mtd/>
+    </mtr>
+    <mtr>
+      <mtd columnalign="right">
+        <mrow>
+          <mtext>
+            <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="top" role="ADDOP">⊤</XMTok>
+          </mtext>
+          <mo>→</mo>
+          <mtext>
+            <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="bottom" name="bot" role="ADDOP">⊥</XMTok>
+          </mtext>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>=</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mtext>
+          <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="bottom" name="bot" role="ADDOP">⊥</XMTok>
+        </mtext>
+      </mtd>
+      <mtd/>
+      <mtd columnalign="right">
+        <mrow>
+          <msup>
+            <mn>0</mn>
+            <mn>1</mn>
+          </msup>
+          <mo>=</mo>
+          <mn>0</mn>
+        </mrow>
+      </mtd>
+      <mtd/>
+      <mtd/>
+    </mtr>
+    <mtr>
+      <mtd columnalign="right">
+        <mrow>
+          <mtext>
+            <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="top" role="ADDOP">⊤</XMTok>
+          </mtext>
+          <mo>→</mo>
+          <mtext>
+            <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="top" role="ADDOP">⊤</XMTok>
+          </mtext>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>=</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mtext>
+          <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="top" role="ADDOP">⊤</XMTok>
+        </mtext>
+      </mtd>
+      <mtd/>
+      <mtd columnalign="right">
+        <mrow>
+          <msup>
+            <mn>1</mn>
+            <mn>1</mn>
+          </msup>
+          <mo>=</mo>
+          <mn>1</mn>
+        </mrow>
+      </mtd>
+      <mtd/>
+      <mtd/>
+    </mtr>
+  </mtable>
+</math>
+<p>
+　これによって上記のように確率測度でもって真理値を定義しても最小論理の健全性や完全性を壊さないというものが最初の直観です。
+</p>
+<h2>確率的意味論をもつ最小論理の体系</h2>
+<h3>論理式</h3>
+<p>
+　V を変数の集合とします。
+最小論理の論理式すべての集合を U と表し、次のように帰納的に定義します。
+</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\begin{array}[]{rcrcl}x\in{}V&amp;\Longrightarrow&amp;x&amp;\in&amp;U\\&#10;p,q\in{}U&amp;\Longrightarrow&amp;p\rightarrow{}q&amp;\in&amp;U\\&#10;p,q\in{}U&amp;\Longrightarrow&amp;p\land{}q&amp;\in&amp;U\\&#10;p,q\in{}U&amp;\Longrightarrow&amp;p\lor{}q&amp;\in&amp;U\\&#10;&amp;&amp;\makebox{\bot}&amp;\in&amp;U\\&#10;p\in{}U&amp;\Longrightarrow&amp;\lnot{}p&amp;\equiv&amp;p\rightarrow\makebox{\bot}\\&#10;\end{array}" display="block">
+  <mtable displaystyle="true">
+    <mtr>
+      <mtd columnalign="right">
+        <mrow>
+          <mi>x</mi>
+          <mo>∈</mo>
+          <mi>V</mi>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>⟹</mo>
+      </mtd>
+      <mtd columnalign="right">
+        <mi>x</mi>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>∈</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mi>U</mi>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnalign="right">
+        <mrow>
+          <mrow>
+            <mi xml:id="XM1">p</mi>
+            <mo>,</mo>
+            <mi xml:id="XM2">q</mi>
+          </mrow>
+          <mo>∈</mo>
+          <mi>U</mi>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>⟹</mo>
+      </mtd>
+      <mtd columnalign="right">
+        <mrow>
+          <mi>p</mi>
+          <mo>→</mo>
+          <mi>q</mi>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>∈</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mi>U</mi>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnalign="right">
+        <mrow>
+          <mrow>
+            <mi xml:id="XM3">p</mi>
+            <mo>,</mo>
+            <mi xml:id="XM4">q</mi>
+          </mrow>
+          <mo>∈</mo>
+          <mi>U</mi>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>⟹</mo>
+      </mtd>
+      <mtd columnalign="right">
+        <mrow>
+          <mi>p</mi>
+          <mo>∧</mo>
+          <mi>q</mi>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>∈</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mi>U</mi>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnalign="right">
+        <mrow>
+          <mrow>
+            <mi xml:id="XM5">p</mi>
+            <mo>,</mo>
+            <mi xml:id="XM6">q</mi>
+          </mrow>
+          <mo>∈</mo>
+          <mi>U</mi>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>⟹</mo>
+      </mtd>
+      <mtd columnalign="right">
+        <mrow>
+          <mi>p</mi>
+          <mo>∨</mo>
+          <mi>q</mi>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>∈</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mi>U</mi>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd/>
+      <mtd/>
+      <mtd columnalign="right">
+        <mtext>
+          <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="bottom" name="bot" role="ADDOP">⊥</XMTok>
+        </mtext>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>∈</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mi>U</mi>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnalign="right">
+        <mrow>
+          <mi>p</mi>
+          <mo>∈</mo>
+          <mi>U</mi>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>⟹</mo>
+      </mtd>
+      <mtd columnalign="right">
+        <mrow>
+          <mi mathvariant="normal">¬</mi>
+          <mo>⁢</mo>
+          <mi>p</mi>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>≡</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mrow>
+          <mi>p</mi>
+          <mo>→</mo>
+          <mtext>
+            <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="bottom" name="bot" role="ADDOP">⊥</XMTok>
+          </mtext>
+        </mrow>
+      </mtd>
+    </mtr>
+  </mtable>
+</math>
+<p>
+　最後の ¬p は単なる p→⊥ の略記です。
+基本的な構文形式として定義することもありますが、今回は派生形式として定義します。
+</p>
+<h3>公理型と推論規則</h3>
+<p>
+　証明図を書くための公理型と推論規則を定義します。
+A が公理型で、それ以外は推論規則です。
+証明図の書き方については割愛します。
+</p>
+<p>
+　Γ の部分の波かっこや ∪ という記号（※）と論理式のかっこは “よくある順序で” 適当につけたり省略してもよいものとします。
+これは証明図を “よくある書き方” で書くための約束です。
+</p>
+<p>
+　（※）Γ という部分は（この体系では）仮定の有限集合ですが、形式化には流派があります。
+あくまで集合ではなく記号列とする場合には（厳密には）記号の結合や並び替えに関する規則を定義する必要があります。
+部分構造論理という体系ではこの部分に関する規則が検討されています。線型論理などが有名です。
+</p>
+<p>
+　とくに Γ = ∅ のとき Γ &#x22A2; p  を単に &#x22A2; p と記述します。
+&#x22A2; p なる証明図が存在するとき p は証明可能であると言います。
+</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\begin{array}[]{cc}\left(\textrm{A}\right)&amp;\left\{p\right\}\vdash{}p\\&#10;\omit\span\omit\\&#10;\left(\makebox{\rightarrow}\textrm{I}\right)&amp;\frac{\left\{p\right\}\cup\Gamma%&#10;\vdash{}q}{\Gamma\vdash{}p\rightarrow{}q}\\&#10;\omit\span\omit\\&#10;\left(\makebox{\rightarrow}\textrm{E}\right)&amp;\frac{\Gamma\vdash{}p\rightarrow{%&#10;}q\quad\Delta\vdash{}p}{\Gamma\cup\Delta\vdash{}q}\\&#10;\omit\span\omit\\&#10;\left(\makebox{\land}\textrm{I}\right)&amp;\frac{\Gamma\vdash{}p\quad\Delta\vdash{%&#10;}q}{\Gamma\cup\Delta\vdash{}p\land{}q}\\&#10;\omit\span\omit\\&#10;\left(\makebox{\land}\textrm{E}_{1}\right)&amp;\frac{\Gamma\vdash{}p\land{}q}{%&#10;\Gamma\vdash{}p}\\&#10;\omit\span\omit\\&#10;\left(\makebox{\land}\textrm{E}_{2}\right)&amp;\frac{\Gamma\vdash{}p\land{}q}{%&#10;\Gamma\vdash{}q}\\&#10;\omit\span\omit\\&#10;\left(\makebox{\lor}\textrm{I}_{1}\right)&amp;\frac{\Gamma\vdash{}p}{\Gamma\vdash{%&#10;}p\lor{}q}\\&#10;\omit\span\omit\\&#10;\left(\makebox{\lor}\textrm{I}_{2}\right)&amp;\frac{\Gamma\vdash{}q}{\Gamma\vdash{%&#10;}p\lor{}q}\\&#10;\omit\span\omit\\&#10;\left(\makebox{\lor}\textrm{E}\right)&amp;\frac{\Gamma\vdash{}p\lor{}q\quad{}\left%&#10;\{p\right\}\cup\Delta_{1}\vdash{}r\quad{}\left\{q\right\}\cup\Delta_{2}\vdash{%&#10;}r}{\Gamma\cup\Delta_{1}\cup\Delta_{2}\vdash{}r}\\&#10;\end{array}" display="block">
+  <mtable displaystyle="true">
+    <mtr>
+      <mtd columnalign="center">
+        <mrow>
+          <mo>(</mo>
+          <mtext xml:id="XM1">A</mtext>
+          <mo>)</mo>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mrow>
+          <mrow>
+            <mo>{</mo>
+            <mi xml:id="XM2">p</mi>
+            <mo>}</mo>
+          </mrow>
+          <mo>⊢</mo>
+          <mi>p</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnspan="2">
+        <mi/>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnalign="center">
+        <mrow>
+          <mo>(</mo>
+          <mrow xml:id="XM3">
+            <mtext xml:id="XM3a">
+              <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" name="rightarrow" role="ARROW" xml:id="XM3b">→</XMTok>
+            </mtext>
+            <mtext xml:id="XM3c">I</mtext>
+          </mrow>
+          <mo>)</mo>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mfrac>
+          <mrow>
+            <mrow>
+              <mrow>
+                <mo>{</mo>
+                <mi xml:id="XM4">p</mi>
+                <mo>}</mo>
+              </mrow>
+              <mo>∪</mo>
+              <mi mathvariant="normal">Γ</mi>
+            </mrow>
+            <mo>⊢</mo>
+            <mi>q</mi>
+          </mrow>
+          <mrow>
+            <mi mathvariant="normal">Γ</mi>
+            <mo>⊢</mo>
+            <mrow>
+              <mi>p</mi>
+              <mo>→</mo>
+              <mi>q</mi>
+            </mrow>
+          </mrow>
+        </mfrac>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnspan="2">
+        <mi/>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnalign="center">
+        <mrow>
+          <mo>(</mo>
+          <mrow xml:id="XM5">
+            <mtext xml:id="XM5a">
+              <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" name="rightarrow" role="ARROW" xml:id="XM5b">→</XMTok>
+            </mtext>
+            <mtext xml:id="XM5c">E</mtext>
+          </mrow>
+          <mo>)</mo>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mfrac>
+          <mrow>
+            <mi mathvariant="normal">Γ</mi>
+            <mo>⊢</mo>
+            <mrow>
+              <mi>p</mi>
+              <mo>→</mo>
+              <mrow>
+                <mi xml:id="XM6">q</mi>
+                <mo mathvariant="italic" separator="true"> </mo>
+                <mi mathvariant="normal" xml:id="XM7">Δ</mi>
+              </mrow>
+            </mrow>
+            <mo>⊢</mo>
+            <mi>p</mi>
+          </mrow>
+          <mrow>
+            <mrow>
+              <mi mathvariant="normal">Γ</mi>
+              <mo>∪</mo>
+              <mi mathvariant="normal">Δ</mi>
+            </mrow>
+            <mo>⊢</mo>
+            <mi>q</mi>
+          </mrow>
+        </mfrac>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnspan="2">
+        <mi/>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnalign="center">
+        <mrow>
+          <mo>(</mo>
+          <mrow xml:id="XM8">
+            <mtext xml:id="XM8a">
+              <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="and" name="land" role="ADDOP" xml:id="XM8b">∧</XMTok>
+            </mtext>
+            <mtext xml:id="XM8c">I</mtext>
+          </mrow>
+          <mo>)</mo>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mfrac>
+          <mrow>
+            <mi mathvariant="normal">Γ</mi>
+            <mo>⊢</mo>
+            <mrow>
+              <mi xml:id="XM9">p</mi>
+              <mo mathvariant="italic" separator="true"> </mo>
+              <mi mathvariant="normal" xml:id="XM10">Δ</mi>
+            </mrow>
+            <mo>⊢</mo>
+            <mi>q</mi>
+          </mrow>
+          <mrow>
+            <mrow>
+              <mi mathvariant="normal">Γ</mi>
+              <mo>∪</mo>
+              <mi mathvariant="normal">Δ</mi>
+            </mrow>
+            <mo>⊢</mo>
+            <mrow>
+              <mi>p</mi>
+              <mo>∧</mo>
+              <mi>q</mi>
+            </mrow>
+          </mrow>
+        </mfrac>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnspan="2">
+        <mi/>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnalign="center">
+        <mrow>
+          <mo>(</mo>
+          <msub xml:id="XM11">
+            <mrow>
+              <mtext>
+                <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="and" name="land" role="ADDOP">∧</XMTok>
+              </mtext>
+              <mtext>E</mtext>
+            </mrow>
+            <mn>1</mn>
+          </msub>
+          <mo>)</mo>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mfrac>
+          <mrow>
+            <mi mathvariant="normal">Γ</mi>
+            <mo>⊢</mo>
+            <mrow>
+              <mi>p</mi>
+              <mo>∧</mo>
+              <mi>q</mi>
+            </mrow>
+          </mrow>
+          <mrow>
+            <mi mathvariant="normal">Γ</mi>
+            <mo>⊢</mo>
+            <mi>p</mi>
+          </mrow>
+        </mfrac>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnspan="2">
+        <mi/>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnalign="center">
+        <mrow>
+          <mo>(</mo>
+          <msub xml:id="XM12">
+            <mrow>
+              <mtext>
+                <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="and" name="land" role="ADDOP">∧</XMTok>
+              </mtext>
+              <mtext>E</mtext>
+            </mrow>
+            <mn>2</mn>
+          </msub>
+          <mo>)</mo>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mfrac>
+          <mrow>
+            <mi mathvariant="normal">Γ</mi>
+            <mo>⊢</mo>
+            <mrow>
+              <mi>p</mi>
+              <mo>∧</mo>
+              <mi>q</mi>
+            </mrow>
+          </mrow>
+          <mrow>
+            <mi mathvariant="normal">Γ</mi>
+            <mo>⊢</mo>
+            <mi>q</mi>
+          </mrow>
+        </mfrac>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnspan="2">
+        <mi/>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnalign="center">
+        <mrow>
+          <mo>(</mo>
+          <msub xml:id="XM13">
+            <mrow>
+              <mtext>
+                <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="or" name="lor" role="ADDOP">∨</XMTok>
+              </mtext>
+              <mtext>I</mtext>
+            </mrow>
+            <mn>1</mn>
+          </msub>
+          <mo>)</mo>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mfrac>
+          <mrow>
+            <mi mathvariant="normal">Γ</mi>
+            <mo>⊢</mo>
+            <mi>p</mi>
+          </mrow>
+          <mrow>
+            <mi mathvariant="normal">Γ</mi>
+            <mo>⊢</mo>
+            <mrow>
+              <mi>p</mi>
+              <mo>∨</mo>
+              <mi>q</mi>
+            </mrow>
+          </mrow>
+        </mfrac>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnspan="2">
+        <mi/>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnalign="center">
+        <mrow>
+          <mo>(</mo>
+          <msub xml:id="XM14">
+            <mrow>
+              <mtext>
+                <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="or" name="lor" role="ADDOP">∨</XMTok>
+              </mtext>
+              <mtext>I</mtext>
+            </mrow>
+            <mn>2</mn>
+          </msub>
+          <mo>)</mo>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mfrac>
+          <mrow>
+            <mi mathvariant="normal">Γ</mi>
+            <mo>⊢</mo>
+            <mi>q</mi>
+          </mrow>
+          <mrow>
+            <mi mathvariant="normal">Γ</mi>
+            <mo>⊢</mo>
+            <mrow>
+              <mi>p</mi>
+              <mo>∨</mo>
+              <mi>q</mi>
+            </mrow>
+          </mrow>
+        </mfrac>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnspan="2">
+        <mi/>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnalign="center">
+        <mrow>
+          <mo>(</mo>
+          <mrow xml:id="XM15">
+            <mtext xml:id="XM15a">
+              <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="or" name="lor" role="ADDOP" xml:id="XM15b">∨</XMTok>
+            </mtext>
+            <mtext xml:id="XM15c">E</mtext>
+          </mrow>
+          <mo>)</mo>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mfrac>
+          <mrow>
+            <mi mathvariant="normal">Γ</mi>
+            <mo>⊢</mo>
+            <mrow>
+              <mrow xml:id="XM17">
+                <mi>p</mi>
+                <mo>∨</mo>
+                <mi>q</mi>
+              </mrow>
+              <mo mathvariant="italic" separator="true"> </mo>
+              <mrow xml:id="XM18">
+                <mrow>
+                  <mo>{</mo>
+                  <mi xml:id="XM16">p</mi>
+                  <mo>}</mo>
+                </mrow>
+                <mo>∪</mo>
+                <msub>
+                  <mi mathvariant="normal">Δ</mi>
+                  <mn>1</mn>
+                </msub>
+              </mrow>
+            </mrow>
+            <mo>⊢</mo>
+            <mrow>
+              <mi xml:id="XM20">r</mi>
+              <mo mathvariant="italic" separator="true"> </mo>
+              <mrow xml:id="XM21">
+                <mrow>
+                  <mo>{</mo>
+                  <mi xml:id="XM19">q</mi>
+                  <mo>}</mo>
+                </mrow>
+                <mo>∪</mo>
+                <msub>
+                  <mi mathvariant="normal">Δ</mi>
+                  <mn>2</mn>
+                </msub>
+              </mrow>
+            </mrow>
+            <mo>⊢</mo>
+            <mi>r</mi>
+          </mrow>
+          <mrow>
+            <mrow>
+              <mi mathvariant="normal">Γ</mi>
+              <mo>∪</mo>
+              <msub>
+                <mi mathvariant="normal">Δ</mi>
+                <mn>1</mn>
+              </msub>
+              <mo>∪</mo>
+              <msub>
+                <mi mathvariant="normal">Δ</mi>
+                <mn>2</mn>
+              </msub>
+            </mrow>
+            <mo>⊢</mo>
+            <mi>r</mi>
+          </mrow>
+        </mfrac>
+      </mtd>
+    </mtr>
+  </mtable>
+</math>
+<h3>真理値</h3>
+<p>
+　変数から [0,1] の区間への写像 ν が与えられたとき、命題の真理値 |p| をつぎのように定義します。
+</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\begin{array}[]{rcrcl}x\in{}V&amp;\Longrightarrow&amp;\left|x\right|&amp;:\joinrel=&amp;\nu%&#10;\left(x\right)\\&#10;p,q\in{}U&amp;\Longrightarrow&amp;\left|p\rightarrow{}q\right|&amp;:\joinrel=&amp;\left|q%&#10;\right|^{\left|p\right|}\\&#10;p,q\in{}U&amp;\Longrightarrow&amp;\left|p\land{}q\right|&amp;:\joinrel=&amp;\left|p\right|%&#10;\cdot\left|q\right|\\&#10;p,q\in{}U&amp;\Longrightarrow&amp;\left|p\lor{}q\right|&amp;:\joinrel=&amp;\left(\left|p\right%&#10;|+\left|q\right|\right)-\left(\left|p\right|\cdot\left|q\right|\right)\\&#10;&amp;&amp;\left|\makebox{\bot}\right|&amp;:\joinrel=&amp;0\\&#10;\end{array}" display="block">
+  <mtable displaystyle="true">
+    <mtr>
+      <mtd columnalign="right">
+        <mrow>
+          <mi>x</mi>
+          <mo>∈</mo>
+          <mi>V</mi>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>⟹</mo>
+      </mtd>
+      <mtd columnalign="right">
+        <mrow>
+          <mo>|</mo>
+          <mi xml:id="XM1">x</mi>
+          <mo>|</mo>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>:=</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mrow>
+          <mi>ν</mi>
+          <mo>⁢</mo>
+          <mrow>
+            <mo>(</mo>
+            <mi xml:id="XM2">x</mi>
+            <mo>)</mo>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnalign="right">
+        <mrow>
+          <mrow>
+            <mi xml:id="XM3">p</mi>
+            <mo>,</mo>
+            <mi xml:id="XM4">q</mi>
+          </mrow>
+          <mo>∈</mo>
+          <mi>U</mi>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>⟹</mo>
+      </mtd>
+      <mtd columnalign="right">
+        <mrow>
+          <mo>|</mo>
+          <mi>p</mi>
+          <mo>→</mo>
+          <mi>q</mi>
+          <mo>|</mo>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>:=</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <msup>
+          <mrow>
+            <mo>|</mo>
+            <mi xml:id="XM6">q</mi>
+            <mo>|</mo>
+          </mrow>
+          <mrow>
+            <mo>|</mo>
+            <mi xml:id="XM5">p</mi>
+            <mo>|</mo>
+          </mrow>
+        </msup>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnalign="right">
+        <mrow>
+          <mrow>
+            <mi xml:id="XM7">p</mi>
+            <mo>,</mo>
+            <mi xml:id="XM8">q</mi>
+          </mrow>
+          <mo>∈</mo>
+          <mi>U</mi>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>⟹</mo>
+      </mtd>
+      <mtd columnalign="right">
+        <mrow>
+          <mo>|</mo>
+          <mrow xml:id="XM9">
+            <mi>p</mi>
+            <mo>∧</mo>
+            <mi>q</mi>
+          </mrow>
+          <mo>|</mo>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>:=</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mrow>
+          <mrow>
+            <mo>|</mo>
+            <mi xml:id="XM10">p</mi>
+            <mo>|</mo>
+          </mrow>
+          <mo>⋅</mo>
+          <mrow>
+            <mo>|</mo>
+            <mi xml:id="XM11">q</mi>
+            <mo>|</mo>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnalign="right">
+        <mrow>
+          <mrow>
+            <mi xml:id="XM12">p</mi>
+            <mo>,</mo>
+            <mi xml:id="XM13">q</mi>
+          </mrow>
+          <mo>∈</mo>
+          <mi>U</mi>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>⟹</mo>
+      </mtd>
+      <mtd columnalign="right">
+        <mrow>
+          <mo>|</mo>
+          <mrow xml:id="XM14">
+            <mi>p</mi>
+            <mo>∨</mo>
+            <mi>q</mi>
+          </mrow>
+          <mo>|</mo>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>:=</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mrow>
+          <mrow>
+            <mo>(</mo>
+            <mrow xml:id="XM17">
+              <mrow>
+                <mo>|</mo>
+                <mi xml:id="XM15">p</mi>
+                <mo>|</mo>
+              </mrow>
+              <mo>+</mo>
+              <mrow>
+                <mo>|</mo>
+                <mi xml:id="XM16">q</mi>
+                <mo>|</mo>
+              </mrow>
+            </mrow>
+            <mo>)</mo>
+          </mrow>
+          <mo>-</mo>
+          <mrow>
+            <mo>(</mo>
+            <mrow xml:id="XM20">
+              <mrow>
+                <mo>|</mo>
+                <mi xml:id="XM18">p</mi>
+                <mo>|</mo>
+              </mrow>
+              <mo>⋅</mo>
+              <mrow>
+                <mo>|</mo>
+                <mi xml:id="XM19">q</mi>
+                <mo>|</mo>
+              </mrow>
+            </mrow>
+            <mo>)</mo>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd/>
+      <mtd/>
+      <mtd columnalign="right">
+        <mrow>
+          <mo>|</mo>
+          <mtext xml:id="XM21">
+            <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="bottom" name="bot" role="ADDOP" xml:id="XM21a">⊥</XMTok>
+          </mtext>
+          <mo>|</mo>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>:=</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mn>0</mn>
+      </mtd>
+    </mtr>
+  </mtable>
+</math>
+<h3>命題の真偽</h3>
+<p>
+　ある
+</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\nu:V\rightarrow{}\left[0,1\right]" display="block">
+  <mrow>
+    <mi>ν</mi>
+    <mo>:</mo>
+    <mrow>
+      <mi>V</mi>
+      <mo>→</mo>
+      <mrow>
+        <mo>[</mo>
+        <mn xml:id="XM1">0</mn>
+        <mo>,</mo>
+        <mn xml:id="XM2">1</mn>
+        <mo>]</mo>
+      </mrow>
+    </mrow>
+  </mrow>
+</math>
+<p>
+　が与えられ
+</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\left|p\right|\neq{}0" display="block">
+  <mrow>
+    <mrow>
+      <mo>|</mo>
+      <mi xml:id="XM1">p</mi>
+      <mo>|</mo>
+    </mrow>
+    <mo>≠</mo>
+    <mn>0</mn>
+  </mrow>
+</math>
+<p>
+　なるとき p を (ν のもとで) 真なる命題と言い
+</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\nu\models{}p" display="block">
+  <mrow>
+    <mi>ν</mi>
+    <mo>⊧</mo>
+    <mi>p</mi>
+  </mrow>
+</math>
+<p>
+　と表します。
+</p>
+<h3>恒真式</h3>
+<p>
+　いかなる
+</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\nu:V\rightarrow{}\left[0,1\right]" display="block">
+  <mrow>
+    <mi>ν</mi>
+    <mo>:</mo>
+    <mrow>
+      <mi>V</mi>
+      <mo>→</mo>
+      <mrow>
+        <mo>[</mo>
+        <mn xml:id="XM1">0</mn>
+        <mo>,</mo>
+        <mn xml:id="XM2">1</mn>
+        <mo>]</mo>
+      </mrow>
+    </mrow>
+  </mrow>
+</math>
+<p>
+　をとっても
+</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\nu\models{}p" display="block">
+  <mrow>
+    <mi>ν</mi>
+    <mo>⊧</mo>
+    <mi>p</mi>
+  </mrow>
+</math>
+<p>
+　なるとき p を恒真式と言い
+</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\models{}p" display="block">
+  <mrow>
+    <mi/>
+    <mo>⊧</mo>
+    <mi>p</mi>
+  </mrow>
+</math>
+<p>
+　と表します。
+</p>
+<h3>健全性と完全性</h3>
+<p>
+　健全性とは p が証明可能ならば p が恒真式であることです。
+</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\vdash{}p\Longrightarrow{}\models{}p" display="block">
+  <mrow>
+    <mo>⊢</mo>
+    <mi>p</mi>
+    <mo>⟹</mo>
+    <mo>⊧</mo>
+    <mi>p</mi>
+  </mrow>
+</math>
+<p>
+　完全性とは p が恒真式ならば p 証明可能がであることです。
+</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\models{}p\Longrightarrow{}\vdash{}p" display="block">
+  <mrow>
+    <mo>⊧</mo>
+    <mi>p</mi>
+    <mo>⟹</mo>
+    <mo>⊢</mo>
+    <mi>p</mi>
+  </mrow>
+</math>
+<p>
+　この体系では完全性はおそらく成り立たないと思われます。
+排中律がないので、恒真式であるにもかかわらず証明できない命題は無数に考えられます。
+</p>
+<p>
+　健全性の証明は省略しますが、ここには基本的なアイデアを記しておきます。
+</p>
+<p>
+　真理値の符号をとれば sgn(ν(x)) ∈ {0, 1} になることから真理値が {0, 1} の値をとる特殊な体系を考えれば
+それぞれの真理値が二値論理に対応することがわかります。
+また |p| の定義からそれぞれの命題が 0 の場合と 0 でない
+場合の場合分けで命題の真偽が保存されることがわかります。
+</p>
+<h2>所感</h2>
+<h3>真理値の “意味”</h3>
+<p>
+　この体系では（構文論的には）同値な命題でも（意味論的には）真理値が異なる命題というものが存在します。
+もっとも単純なものでは |A|≠0,1 の場合に |A∧A|≠|A| かつ |A∨A|≠|A| です。
+この体系を構成しているうちに、おもしろいと思ったものを紹介します。
+</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\begin{array}[]{rcrcl}&amp;&amp;\makebox{\top}&amp;\equiv&amp;\lnot\makebox{\bot}\\&#10;p,q\in{}U&amp;\Longrightarrow&amp;p\overline{\land}q&amp;\equiv&amp;\left(p\lor\lnot{}q\right)%&#10;\land\left(\lnot{}p\lor{}q\right)\\&#10;p,q\in{}U&amp;\Longrightarrow&amp;p\underline{\lor}q&amp;\equiv&amp;\left(p\land\lnot{}q\right%&#10;)\lor\left(\lnot{}p\land{}q\right)\\&#10;\end{array}" display="block">
+  <mtable displaystyle="true">
+    <mtr>
+      <mtd/>
+      <mtd/>
+      <mtd columnalign="right">
+        <mtext>
+          <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="top" role="ADDOP">⊤</XMTok>
+        </mtext>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>≡</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mrow>
+          <mi mathvariant="normal">¬</mi>
+          <mo>⁢</mo>
+          <mtext>
+            <XMTok xmlns="http://dlmf.nist.gov/LaTeXML" meaning="bottom" name="bot" role="ADDOP">⊥</XMTok>
+          </mtext>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnalign="right">
+        <mrow>
+          <mrow>
+            <mi xml:id="XM1">p</mi>
+            <mo>,</mo>
+            <mi xml:id="XM2">q</mi>
+          </mrow>
+          <mo>∈</mo>
+          <mi>U</mi>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>⟹</mo>
+      </mtd>
+      <mtd columnalign="right">
+        <mrow>
+          <mi>p</mi>
+          <mo>⁢</mo>
+          <mover accent="true">
+            <mo>∧</mo>
+            <mo>¯</mo>
+          </mover>
+          <mo>⁢</mo>
+          <mi>q</mi>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>≡</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mrow>
+          <mrow>
+            <mo>(</mo>
+            <mrow xml:id="XM3">
+              <mi>p</mi>
+              <mo>∨</mo>
+              <mrow>
+                <mi mathvariant="normal">¬</mi>
+                <mo>⁢</mo>
+                <mi>q</mi>
+              </mrow>
+            </mrow>
+            <mo>)</mo>
+          </mrow>
+          <mo>∧</mo>
+          <mrow>
+            <mo>(</mo>
+            <mrow xml:id="XM4">
+              <mrow>
+                <mi mathvariant="normal">¬</mi>
+                <mo>⁢</mo>
+                <mi>p</mi>
+              </mrow>
+              <mo>∨</mo>
+              <mi>q</mi>
+            </mrow>
+            <mo>)</mo>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd columnalign="right">
+        <mrow>
+          <mrow>
+            <mi xml:id="XM5">p</mi>
+            <mo>,</mo>
+            <mi xml:id="XM6">q</mi>
+          </mrow>
+          <mo>∈</mo>
+          <mi>U</mi>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>⟹</mo>
+      </mtd>
+      <mtd columnalign="right">
+        <mrow>
+          <mi>p</mi>
+          <mo>⁢</mo>
+          <munder accentunder="true">
+            <mo>∨</mo>
+            <mo>¯</mo>
+          </munder>
+          <mo>⁢</mo>
+          <mi>q</mi>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mo>≡</mo>
+      </mtd>
+      <mtd columnalign="left">
+        <mrow>
+          <mrow>
+            <mo>(</mo>
+            <mrow xml:id="XM7">
+              <mi>p</mi>
+              <mo>∧</mo>
+              <mrow>
+                <mi mathvariant="normal">¬</mi>
+                <mo>⁢</mo>
+                <mi>q</mi>
+              </mrow>
+            </mrow>
+            <mo>)</mo>
+          </mrow>
+          <mo>∨</mo>
+          <mrow>
+            <mo>(</mo>
+            <mrow xml:id="XM8">
+              <mrow>
+                <mi mathvariant="normal">¬</mi>
+                <mo>⁢</mo>
+                <mi>p</mi>
+              </mrow>
+              <mo>∧</mo>
+              <mi>q</mi>
+            </mrow>
+            <mo>)</mo>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+  </mtable>
+</math>
+<p>
+　⊤ はあまりおもしろくはありませんがあって当然なのでいれました。 |⊤|=1 です。
+</p>
+<p>
+　A⊼B は排他的論理和の否定 (XNOR) もしくは同値 (EQ) で、ふつうは ⇄ と書かれるものです。
+この真理値は |A|,|B| ≠ 0 ならば |A⊼B|=|A∧B|,  |A|,|B|=0 ならば |A⊼B|=1, そうでなければ
+|A⊼B|=0 となります。
+</p>
+<p>
+　A⊻B はいわゆる排他的論理和 (XOR) です。これは構文的には同値 (EQ) の否定に等しいです。
+|A|≠0 かつ |B|=0 ならば |A⊻B|=|A|, |A|=0 かつ |B|≠0 ならば |A⊻B|=|B|, そうでなければ |A⊻B|=0 です。
+</p>
+<h3>否定の極性</h3>
+<p>
+　すこしおもしろいと思ったこととして否定は常に {0,1} の真理値をとるということです。
+つまり |p|=0 ならば |¬p|=1, |p|≠0 ならば |¬p|=0 ということです。
+最初 |¬p|=1-|p| のような素朴な定義を考えていましたが、そうすると |p|=0.5 とかの否定も |¬p|=0.5 とかに
+なってしまい大変です（※）。
+</p>
+<p>
+　（※）体系によってはこのようなものが存在します。しかし今回はあくまで最小論理の単純な拡張としたかったことと、
+この体系を自然に二値論理に埋め込むことができるようにしたかったのでこうしました。実際、
+この体系に爆発律や排中律を追加して直観主義論理や古典論理に拡張することは可能だと思われます。
+</p>
+<h3>対数の真理値</h3>
+<p>
+　含意が指数なのであれば対数が真理値となるような論理式は存在するか考えたくなってしまうものです。
+</p>
+<p>
+　もっとも単純な観察は |p→q|,|q|≠0,1 ならば log<sub>|q|</sub>(|p→q|)=|p| だということです。
+これは仮説形成にも似ています。 |p→q|,|q|=0,1 の場合はそれぞれ二値の真理値として定義できそうです。
+</p>
+<h3>測度論との関係</h3>
+<p>
+　直観的に真理値の “意味” が想像しやすいので “確率的” としましたが確率空間や測度空間を仮定してはいません。
+ゲーム理論の利得関数を扱うために使うことも考えられます。このように真理値を確率として扱う必要は
+必ずしもないので “重みつき” くらいの一般的な名称のほうが適しているかもしれません。
+ただし ν が測度や確率測度であるようなこの体系の類を考えることはできます。
+</p>
+<h3>環への一般化</h3>
+<p>
+　真理値の定義中で除算を使用していないので、実際のところ（実数などではなく）環であればよい可能性はあります。
+もちろんその場合真理値の “意味” は変わることになりますが、構文的にはそのように拡張できる余地はあります。
+</p>
+<p>
+　実際定義を見ると集合環の定義に似ている部分がいくつかあります。
+とくに対称差は和事象の確率と積事象の確率の差によく似ています。
+</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\begin{array}[]{cc}\left(A\cup{}B\right)-\left(A\cap{}B\right)&amp;P\left(A\cup{}B%&#10;\right)-P\left(A\cap{}B\right)\\&#10;\end{array}" display="block">
+  <mtable displaystyle="true">
+    <mtr>
+      <mtd columnalign="center">
+        <mrow>
+          <mrow>
+            <mo>(</mo>
+            <mrow xml:id="XM1">
+              <mi>A</mi>
+              <mo>∪</mo>
+              <mi>B</mi>
+            </mrow>
+            <mo>)</mo>
+          </mrow>
+          <mo>-</mo>
+          <mrow>
+            <mo>(</mo>
+            <mrow xml:id="XM2">
+              <mi>A</mi>
+              <mo>∩</mo>
+              <mi>B</mi>
+            </mrow>
+            <mo>)</mo>
+          </mrow>
+        </mrow>
+      </mtd>
+      <mtd columnalign="center">
+        <mrow>
+          <mrow>
+            <mi>P</mi>
+            <mo>⁢</mo>
+            <mrow>
+              <mo>(</mo>
+              <mrow xml:id="XM3">
+                <mi>A</mi>
+                <mo>∪</mo>
+                <mi>B</mi>
+              </mrow>
+              <mo>)</mo>
+            </mrow>
+          </mrow>
+          <mo>-</mo>
+          <mrow>
+            <mi>P</mi>
+            <mo>⁢</mo>
+            <mrow>
+              <mo>(</mo>
+              <mrow xml:id="XM4">
+                <mi>A</mi>
+                <mo>∩</mo>
+                <mi>B</mi>
+              </mrow>
+              <mo>)</mo>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+  </mtable>
+</math>
+<h2>おわりに</h2>
+<p>
+　今回は真理値をこのように定義しても（おそらく）最小論理の壊さないだろうというところまで確かめられました。
+ν:V→[0,1] を ν:V→{0,1} とすればもともとの二値論理と同じ真理値表がつくれ、
+自然な拡張になっているということが大事です。
+</p>
+<p>
+　ほんとうはこの真理値表を使って利得関数を定義したり、
+より発展的なことをしたいわけですがこれだけでもだいぶ時間がかかってしまいました。
+いろいろとおもしろい話ができそうだと思っていたのですが、
+まずは第一歩ということで今回は最小論理の真理値にこのような重みづけをするまでとします。
+</p>
+<p>
+　現段階でも論理体系としてそこそこ使えるものにはなっていると思います。
+今後は制約充足問題、ゲーム理論などへの応用などを検討しています。
+</p>
+<p>
+　より興味のあるかたのために、付録に体系の定義を掲載します。どうぞご覧ください。
+</p>

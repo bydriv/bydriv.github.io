@@ -71,6 +71,45 @@ div.tapestry article.component h1 {
 
 /******************************************************************************
  * <article class="component">
+ *   <h2>..</h2>
+ * </article>
+ ******************************************************************************/
+div.tapestry article.component h2 {
+    box-sizing: border-box;
+
+    margin: 24px 0;
+    padding: 0 16px;
+
+    font-size: 16px;
+    font-weight: normal;
+
+    line-height: 24px;
+
+    border-left: solid 16px rgba(0, 0, 0, 0.75);
+    border-bottom: dashed 1px rgba(0, 0, 0, 0.75);
+}
+
+/******************************************************************************
+ * <article class="component">
+ *   <h3>..</h3>
+ * </article>
+ ******************************************************************************/
+div.tapestry article.component h3 {
+    box-sizing: border-box;
+
+    margin: 24px 32px;
+    padding: 0;
+
+    font-size: 16px;
+    font-weight: normal;
+
+    line-height: 24px;
+
+    border-bottom: dashed 1px rgba(0, 0, 0, 0.75);
+}
+
+/******************************************************************************
+ * <article class="component">
  *   <ul>..</ul>
  * </article>
  ******************************************************************************/
@@ -94,7 +133,7 @@ div.tapestry article.component li {
     width: auto;
     height: 32px;
 
-    border-bottom: dashed 1px #000000;
+    border-bottom: dashed 1px rgba(0, 0, 0, 0.75);
 }
 
 /******************************************************************************
@@ -124,6 +163,33 @@ div.tapestry article.component img {
 
     max-width: 100%;
     max-height: 100%;
+}
+
+/******************************************************************************
+ * <article class="vertical component">
+ *   <p>..</p>
+ * </article>
+ ******************************************************************************/
+div.tapestry article.vertical.component p {
+    margin: 24px 32px;
+    padding: 0;
+
+    font-size: 16px;
+    line-height: 24px;
+}
+
+div.tapestry article.vertical.component p:not([align]) {
+    text-align: justify;
+}
+
+/******************************************************************************
+ * <article class="vertical component">
+ *   <math>..</math>
+ * </article>
+ ******************************************************************************/
+div.tapestry article.vertical.component math {
+    margin: 24px 32px;
+    padding: 0;
 }
 
 /******************************************************************************

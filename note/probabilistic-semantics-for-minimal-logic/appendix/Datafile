@@ -1,0 +1,77 @@
+@title
+Appendix
+
+@header
+Appendix
+
+@chapter
+定義
+
+@section
+変数
+
+@variable.tex
+\begin{array}{rcl}
+\left|V\right| & =   & \aleph_0^{}                   \\
+\nu            & \in & \left[0,1\right]_{}^V          \\
+\nu            & :   & V\rightarrow{}\left[0,1\right] \\
+\end{array}
+
+@section
+論理式
+
+@formula.tex
+\begin{array}{rcrcl}
+x\in{}V   & \Longrightarrow & x                  & \in    & U                          \\
+p,q\in{}U & \Longrightarrow & p\rightarrow{}q    & \in    & U                          \\
+p,q\in{}U & \Longrightarrow & p\land{}q          & \in    & U                          \\
+p,q\in{}U & \Longrightarrow & p\lor{}q           & \in    & U                          \\
+          &                 & \makebox{\bot}     & \in    & U                          \\
+p\in{}U   & \Longrightarrow & \lnot{}p           & \equiv & p\rightarrow\makebox{\bot} \\
+\end{array}
+
+@section
+派生形式
+
+@derived-form.tex
+\begin{array}{rcrcl}
+          &                 & \makebox{\top}     & \equiv & \lnot\makebox{\bot}                                          \\
+p,q\in{}U & \Longrightarrow & p\overline{\land}q & \equiv & \left(p\lor\lnot{}q\right)\land\left(\lnot{}p\lor{}q\right)  \\
+p,q\in{}U & \Longrightarrow & p\underline{\lor}q & \equiv & \left(p\land\lnot{}q\right)\lor\left(\lnot{}p\land{}q\right) \\
+\end{array}
+
+@section
+公理型と推論規則
+
+@axiom-schema-and-inference-rule.tex
+\begin{array}{cc}
+\left(\textrm{A}\right)                      & \left\{p\right\}\vdash{}p                                                                                                                                                  \\
+\multicolumn{2}{c}{\quad}                                                                                                                                                                                                 \\
+\left(\makebox{\rightarrow}\textrm{I}\right) & \frac{\left\{p\right\}\cup\Gamma\vdash{}q}{\Gamma\vdash{}p\rightarrow{}q}                                                                                                  \\
+\multicolumn{2}{c}{\quad}                                                                                                                                                                                                 \\
+\left(\makebox{\rightarrow}\textrm{E}\right) & \frac{\Gamma\vdash{}p\rightarrow{}q\quad\Delta\vdash{}p}{\Gamma\cup\Delta\vdash{}q}                                                                                        \\
+\multicolumn{2}{c}{\quad}                                                                                                                                                                                                 \\
+\left(\makebox{\land}\textrm{I}\right)       & \frac{\Gamma\vdash{}p\quad\Delta\vdash{}q}{\Gamma\cup\Delta\vdash{}p\land{}q}                                                                                              \\
+\multicolumn{2}{c}{\quad}                                                                                                                                                                                                 \\
+\left(\makebox{\land}\textrm{E}_1^{}\right)  & \frac{\Gamma\vdash{}p\land{}q}{\Gamma\vdash{}p}                                                                                                                            \\
+\multicolumn{2}{c}{\quad}                                                                                                                                                                                                 \\
+\left(\makebox{\land}\textrm{E}_2^{}\right)  & \frac{\Gamma\vdash{}p\land{}q}{\Gamma\vdash{}q}                                                                                                                            \\
+\multicolumn{2}{c}{\quad}                                                                                                                                                                                                 \\
+\left(\makebox{\lor}\textrm{I}_1^{}\right)   & \frac{\Gamma\vdash{}p}{\Gamma\vdash{}p\lor{}q}                                                                                                                             \\
+\multicolumn{2}{c}{\quad}                                                                                                                                                                                                 \\
+\left(\makebox{\lor}\textrm{I}_2^{}\right)   & \frac{\Gamma\vdash{}q}{\Gamma\vdash{}p\lor{}q}                                                                                                                             \\
+\multicolumn{2}{c}{\quad}                                                                                                                                                                                                 \\
+\left(\makebox{\lor}\textrm{E}\right)        & \frac{\Gamma\vdash{}p\lor{}q\quad{}\left\{p\right\}\cup\Delta_1^{}\vdash{}r\quad{}\left\{q\right\}\cup\Delta_2^{}\vdash{}r}{\Gamma\cup\Delta_1^{}\cup\Delta_2^{}\vdash{}r} \\
+\end{array}
+
+@section
+真理値
+
+@value.tex
+\begin{array}{rcrcl}
+x\in{}V   & \Longrightarrow & \left|x\right|               & :\joinrel= & \nu\left(x\right)                                                                         \\
+p,q\in{}U & \Longrightarrow & \left|p\rightarrow{}q\right| & :\joinrel= & \left|q\right|_{}^{\left|p\right|}                                                        \\
+p,q\in{}U & \Longrightarrow & \left|p\land{}q\right|       & :\joinrel= & \left|p\right|\cdot\left|q\right|                                                         \\
+p,q\in{}U & \Longrightarrow & \left|p\lor{}q\right|        & :\joinrel= & \left(\left|p\right|+\left|q\right|\right)-\left(\left|p\right|\cdot\left|q\right|\right) \\
+          &                 & \left|\makebox{\bot}\right|  & :\joinrel= & 0                                                                                         \\
+\end{array}

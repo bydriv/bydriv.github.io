@@ -33,12 +33,28 @@ DATAFILE.data.each do |datum|
 -%>
 <h1><%= text -%></h1>
 <%-
+  when /^chapter$/
+    text = datum&.text&.chomp || ""
+-%>
+<h2><%= text -%></h2>
+<%-
+  when /^section$/
+    text = datum&.text&.chomp || ""
+-%>
+<h3><%= text -%></h3>
+<%-
   when /^right$/
     text = datum&.text || ""
 -%>
 <p align="right">
 <%= text -%>
 </p>
+<%-
+  when /^(.+\.tex)$/
+-%>
+<%- path = File.join(".", ROUTE, datum&.path&.chomp) -%>
+<%- File.write(path, datum&.text || "")  if datum&.text -%>
+<%= `cat #{path} | latexmlmath - | tail -n +2` -%>
 <%-
   when /^(.+\.png)$/
 -%>
