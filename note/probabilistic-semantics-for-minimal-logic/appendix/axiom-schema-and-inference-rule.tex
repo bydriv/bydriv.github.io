@@ -1,0 +1,19 @@
+\begin{array}{cc}
+\left(\textrm{A}\right)                      & \left\{p\right\}\vdash{}p                                                                                                                                                  \\
+\multicolumn{2}{c}{\quad}                                                                                                                                                                                                 \\
+\left(\makebox{\rightarrow}\textrm{I}\right) & \frac{\left\{p\right\}\cup\Gamma\vdash{}q}{\Gamma\vdash{}p\rightarrow{}q}                                                                                                  \\
+\multicolumn{2}{c}{\quad}                                                                                                                                                                                                 \\
+\left(\makebox{\rightarrow}\textrm{E}\right) & \frac{\Gamma\vdash{}p\rightarrow{}q\quad\Delta\vdash{}p}{\Gamma\cup\Delta\vdash{}q}                                                                                        \\
+\multicolumn{2}{c}{\quad}                                                                                                                                                                                                 \\
+\left(\makebox{\land}\textrm{I}\right)       & \frac{\Gamma\vdash{}p\quad\Delta\vdash{}q}{\Gamma\cup\Delta\vdash{}p\land{}q}                                                                                              \\
+\multicolumn{2}{c}{\quad}                                                                                                                                                                                                 \\
+\left(\makebox{\land}\textrm{E}_1^{}\right)  & \frac{\Gamma\vdash{}p\land{}q}{\Gamma\vdash{}p}                                                                                                                            \\
+\multicolumn{2}{c}{\quad}                                                                                                                                                                                                 \\
+\left(\makebox{\land}\textrm{E}_2^{}\right)  & \frac{\Gamma\vdash{}p\land{}q}{\Gamma\vdash{}q}                                                                                                                            \\
+\multicolumn{2}{c}{\quad}                                                                                                                                                                                                 \\
+\left(\makebox{\lor}\textrm{I}_1^{}\right)   & \frac{\Gamma\vdash{}p}{\Gamma\vdash{}p\lor{}q}                                                                                                                             \\
+\multicolumn{2}{c}{\quad}                                                                                                                                                                                                 \\
+\left(\makebox{\lor}\textrm{I}_2^{}\right)   & \frac{\Gamma\vdash{}q}{\Gamma\vdash{}p\lor{}q}                                                                                                                             \\
+\multicolumn{2}{c}{\quad}                                                                                                                                                                                                 \\
+\left(\makebox{\lor}\textrm{E}\right)        & \frac{\Gamma\vdash{}p\lor{}q\quad{}\left\{p\right\}\cup\Delta_1^{}\vdash{}r\quad{}\left\{q\right\}\cup\Delta_2^{}\vdash{}r}{\Gamma\cup\Delta_1^{}\cup\Delta_2^{}\vdash{}r} \\
+\end{array}
