@@ -230,7 +230,7 @@ A が公理型で、それ以外は推論規則です。
 
 @symmetric-difference.tex
 \begin{array}{cc}
-\left(A\cup{}B\right)\setminus\left(A\cap{}B\right) & P\left(A\right)+P\left(B\right)-P\left(A\right)\cdot{}P\left(B\right) \\
+\left(A\cup{}B\right)\setminus\left(A\cap{}B\right) & P\left(A\right)+P\left(B\right)-P\left(A\cap{}B\right) \\
 \end{array}
 
 @chapter
