@@ -1569,7 +1569,7 @@ A が公理型で、それ以外は推論規則です。
 　実際定義を見ると集合環の定義に似ている部分がいくつかあります。
 とくに対称差は和事象の確率によく似ています。
 </p>
-<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\begin{array}[]{cc}\left(A\cup{}B\right)\setminus\left(A\cap{}B\right)&amp;P\left(%&#10;A\right)+P\left(B\right)-P\left(A\right)\cdot{}P\left(B\right)\\&#10;\end{array}" display="block">
+<math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\begin{array}[]{cc}\left(A\cup{}B\right)\setminus\left(A\cap{}B\right)&amp;P\left(%&#10;A\right)+P\left(B\right)-P\left(A\cap{}B\right)\\&#10;\end{array}" display="block">
   <mtable displaystyle="true">
     <mtr>
       <mtd columnalign="center">
@@ -1620,23 +1620,15 @@ A が公理型で、それ以外は推論規則です。
           </mrow>
           <mo>-</mo>
           <mrow>
-            <mrow>
-              <mrow>
-                <mi>P</mi>
-                <mo>⁢</mo>
-                <mrow>
-                  <mo>(</mo>
-                  <mi xml:id="XM5">A</mi>
-                  <mo>)</mo>
-                </mrow>
-              </mrow>
-              <mo>⋅</mo>
-              <mi>P</mi>
-            </mrow>
+            <mi>P</mi>
             <mo>⁢</mo>
             <mrow>
               <mo>(</mo>
-              <mi xml:id="XM6">B</mi>
+              <mrow xml:id="XM5">
+                <mi>A</mi>
+                <mo>∩</mo>
+                <mi>B</mi>
+              </mrow>
               <mo>)</mo>
             </mrow>
           </mrow>
