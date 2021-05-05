@@ -47,21 +47,21 @@ p,q\in{}U & \Longrightarrow & p\underline{\lor}q & \equiv & \left(p\land\lnot{}q
 \begin{array}{cc}
 \left(\textrm{A}\right)                      & \left\{p\right\}\vdash{}p                                                                                                                                                  \\
 \multicolumn{2}{c}{\quad}                                                                                                                                                                                                 \\
-\left(\makebox{\rightarrow}\textrm{I}\right) & \frac{\left\{p\right\}\cup\Gamma\vdash{}q}{\Gamma\vdash{}p\rightarrow{}q}                                                                                                  \\
+\left(\makebox{\rightarrow}\textrm{I}\right) & \cfrac{\left\{p\right\}\cup\Gamma\vdash{}q}{\Gamma\vdash{}p\rightarrow{}q}                                                                                                  \\
 \multicolumn{2}{c}{\quad}                                                                                                                                                                                                 \\
-\left(\makebox{\rightarrow}\textrm{E}\right) & \frac{\Gamma\vdash{}p\rightarrow{}q\quad\Delta\vdash{}p}{\Gamma\cup\Delta\vdash{}q}                                                                                        \\
+\left(\makebox{\rightarrow}\textrm{E}\right) & \cfrac{\Gamma\vdash{}p\rightarrow{}q\quad\Delta\vdash{}p}{\Gamma\cup\Delta\vdash{}q}                                                                                        \\
 \multicolumn{2}{c}{\quad}                                                                                                                                                                                                 \\
-\left(\makebox{\land}\textrm{I}\right)       & \frac{\Gamma\vdash{}p\quad\Delta\vdash{}q}{\Gamma\cup\Delta\vdash{}p\land{}q}                                                                                              \\
+\left(\makebox{\land}\textrm{I}\right)       & \cfrac{\Gamma\vdash{}p\quad\Delta\vdash{}q}{\Gamma\cup\Delta\vdash{}p\land{}q}                                                                                              \\
 \multicolumn{2}{c}{\quad}                                                                                                                                                                                                 \\
-\left(\makebox{\land}\textrm{E}_1^{}\right)  & \frac{\Gamma\vdash{}p\land{}q}{\Gamma\vdash{}p}                                                                                                                            \\
+\left(\makebox{\land}\textrm{E}_1^{}\right)  & \cfrac{\Gamma\vdash{}p\land{}q}{\Gamma\vdash{}p}                                                                                                                            \\
 \multicolumn{2}{c}{\quad}                                                                                                                                                                                                 \\
-\left(\makebox{\land}\textrm{E}_2^{}\right)  & \frac{\Gamma\vdash{}p\land{}q}{\Gamma\vdash{}q}                                                                                                                            \\
+\left(\makebox{\land}\textrm{E}_2^{}\right)  & \cfrac{\Gamma\vdash{}p\land{}q}{\Gamma\vdash{}q}                                                                                                                            \\
 \multicolumn{2}{c}{\quad}                                                                                                                                                                                                 \\
-\left(\makebox{\lor}\textrm{I}_1^{}\right)   & \frac{\Gamma\vdash{}p}{\Gamma\vdash{}p\lor{}q}                                                                                                                             \\
+\left(\makebox{\lor}\textrm{I}_1^{}\right)   & \cfrac{\Gamma\vdash{}p}{\Gamma\vdash{}p\lor{}q}                                                                                                                             \\
 \multicolumn{2}{c}{\quad}                                                                                                                                                                                                 \\
-\left(\makebox{\lor}\textrm{I}_2^{}\right)   & \frac{\Gamma\vdash{}q}{\Gamma\vdash{}p\lor{}q}                                                                                                                             \\
+\left(\makebox{\lor}\textrm{I}_2^{}\right)   & \cfrac{\Gamma\vdash{}q}{\Gamma\vdash{}p\lor{}q}                                                                                                                             \\
 \multicolumn{2}{c}{\quad}                                                                                                                                                                                                 \\
-\left(\makebox{\lor}\textrm{E}\right)        & \frac{\Gamma\vdash{}p\lor{}q\quad{}\left\{p\right\}\cup\Delta_1^{}\vdash{}r\quad{}\left\{q\right\}\cup\Delta_2^{}\vdash{}r}{\Gamma\cup\Delta_1^{}\cup\Delta_2^{}\vdash{}r} \\
+\left(\makebox{\lor}\textrm{E}\right)        & \cfrac{\Gamma\vdash{}p\lor{}q\quad{}\left\{p\right\}\cup\Delta_1^{}\vdash{}r\quad{}\left\{q\right\}\cup\Delta_2^{}\vdash{}r}{\Gamma\cup\Delta_1^{}\cup\Delta_2^{}\vdash{}r} \\
 \end{array}
 
 @section
@@ -69,9 +69,9 @@ p,q\in{}U & \Longrightarrow & p\underline{\lor}q & \equiv & \left(p\land\lnot{}q
 
 @value.tex
 \begin{array}{rcrcl}
-x\in{}V   & \Longrightarrow & \left|x\right|               & :\joinrel= & \nu\left(x\right)                                                                         \\
-p,q\in{}U & \Longrightarrow & \left|p\rightarrow{}q\right| & :\joinrel= & \left|q\right|_{}^{\left|p\right|}                                                        \\
-p,q\in{}U & \Longrightarrow & \left|p\land{}q\right|       & :\joinrel= & \left|p\right|\cdot\left|q\right|                                                         \\
-p,q\in{}U & \Longrightarrow & \left|p\lor{}q\right|        & :\joinrel= & \left(\left|p\right|+\left|q\right|\right)-\left(\left|p\right|\cdot\left|q\right|\right) \\
-          &                 & \left|\makebox{\bot}\right|  & :\joinrel= & 0                                                                                         \\
+x\in{}V   & \Longrightarrow & \left|x\right|               & := & \nu\left(x\right)                                                                         \\
+p,q\in{}U & \Longrightarrow & \left|p\rightarrow{}q\right| & := & \left|q\right|_{}^{\left|p\right|}                                                        \\
+p,q\in{}U & \Longrightarrow & \left|p\land{}q\right|       & := & \left|p\right|\cdot\left|q\right|                                                         \\
+p,q\in{}U & \Longrightarrow & \left|p\lor{}q\right|        & := & \left(\left|p\right|+\left|q\right|\right)-\left(\left|p\right|\cdot\left|q\right|\right) \\
+          &                 & \left|\makebox{\bot}\right|  & := & 0                                                                                         \\
 \end{array}
