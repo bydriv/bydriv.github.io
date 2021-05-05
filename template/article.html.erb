@@ -50,11 +50,11 @@ DATAFILE.data.each do |datum|
 <%= text -%>
 </p>
 <%-
-  when /^(.+\.tex)$/
+  when /^(.+)\.tex$/
 -%>
+<img src="<%= $1 -%>.svg">
 <%- path = File.join(".", ROUTE, datum&.path&.chomp) -%>
-<%- File.write(path, datum&.text || "")  if datum&.text -%>
-<%= `cat #{path} | latexmlmath - | tail -n +2` -%>
+<%- File.write(path, "\\documentclass{standalone}\n\\usepackage{euler}\n\\usepackage{amsmath}\n\\begin{document}\n$\n" + (datum&.text || "") + "$\n\\end{document}\n")  if datum&.text -%>
 <%-
   when /^(.+\.png)$/
 -%>

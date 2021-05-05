@@ -27,17 +27,17 @@ appendix
 　最小論理は直観主義論理から爆発律を取り除いた体系です。爆発律は
 
 @explosion.tex
-\frac{\makebox{\bot}}{A}
+\cfrac{\makebox{\bot}}{A}
 
 　という形式の推論です。ただし無矛盾律は含まれます。つまり
 
 @noncontradiction.tex
-\frac{A\quad\lnot{}A}{\makebox{\bot}}
+\cfrac{A\quad\lnot{}A}{\makebox{\bot}}
 
 　および
 
 @proof-by-contradiction.tex
-\frac{\begin{array}{c}\left[A\right]\\\vdots\\\makebox{\bot}\end{array}}{\lnot{}A}
+\cfrac{\begin{array}{c}\left[A\right]\\\vdots\\\makebox{\bot}\end{array}}{\lnot{}A}
 
 　という形式の推論は最小論理でも可能です。
 

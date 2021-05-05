@@ -3,6 +3,9 @@ GIT := git
 RUBY := ruby
 ERB := erb
 
+LATEX := lualatex
+PDF2SVG := pdf2svg
+
 DATAFILES := $(shell $(GIT) ls-files Datafile '*/Datafile')
 ROUTES := $(patsubst %/Datafile,%/,$(addprefix /,$(DATAFILES)))
 INDICES := $(patsubst %,.%index.html,$(ROUTES))
@@ -10,7 +13,14 @@ ARTICLES := $(patsubst %,.%article.html,$(ROUTES))
 NAVS := $(patsubst %,.%nav.html,$(ROUTES))
 
 .PHONY: all
-all: site/routes.json $(INDICES) $(ARTICLES) $(NAVS)
+all: site/routes.json $(INDICES) $(ARTICLES) $(NAVS) $(patsubst %.tex,%.svg,$(shell $(GIT) ls-files Datafile '*.tex'))
+
+%.pdf: %.tex
+	cd $(dir $<) && $(LATEX) $(notdir $<)
+	rm -f $(basename $<).aux $(basename $<).log
+
+%.svg: %.pdf
+	$(PDF2SVG) $< $@
 
 site/routes.json: site/routes.rb $(DATAFILES)
 	ROUTES="$(ROUTES)" $(RUBY) $< > $@
