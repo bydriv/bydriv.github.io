@@ -1,0 +1,39 @@
+\documentclass{standalone}
+\usepackage{euler}
+\usepackage{amsmath}
+\begin{document}
+$
+\left(\rightarrow{}I\right)\quad
+\cfrac{
+  \left(P\right)\quad
+  \cfrac{
+    \left(\lor{}E\right)\quad
+    \cfrac{
+      \begin{array}{c}\\p\lor\lnot{}p\vdash{}p\lor\lnot{}p\end{array}
+      \quad
+      \begin{array}{c}\\p\vdash{}p\end{array}
+      \quad
+      \left(\rightarrow{}E\right)\quad
+      \cfrac{
+        \left(\rightarrow{}E\right)\quad
+        \cfrac{
+          \lnot{}p\vdash\lnot{}p\quad\lnot\lnot{}p\vdash\lnot\lnot{}p
+        }{
+          \lnot{}p,\lnot\lnot{}p\vdash{}\bot
+        }
+        \quad
+        \begin{array}{c}\\\bot\rightarrow{}p\vdash\bot\rightarrow{}p\end{array}
+      }{
+        \lnot{}p,\lnot\lnot{}p,\bot\rightarrow{}p\vdash{}p
+      }
+    }{
+      p\lor\lnot{}p,\lnot\lnot{}p,\bot\rightarrow{}p\vdash{}p
+    }
+  }{
+    \lnot\lnot{}p,p\lor\lnot{}p,\bot\rightarrow{}p\vdash{}p
+  }
+}{
+  p\lor\lnot{}p,\bot\rightarrow{}p\vdash\lnot\lnot{}p\rightarrow{}p
+}
+$
+\end{document}
