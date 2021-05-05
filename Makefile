@@ -5,6 +5,11 @@ ERB := erb
 
 LATEX := lualatex
 PDF2SVG := pdf2svg
+GS := gs
+
+CD := cd
+MV := mv
+RM := rm
 
 DATAFILES := $(shell $(GIT) ls-files Datafile '*/Datafile')
 ROUTES := $(patsubst %/Datafile,%/,$(addprefix /,$(DATAFILES)))
@@ -16,8 +21,10 @@ NAVS := $(patsubst %,.%nav.html,$(ROUTES))
 all: site/routes.json $(INDICES) $(ARTICLES) $(NAVS) $(patsubst %.tex,%.svg,$(shell $(GIT) ls-files Datafile '*.tex'))
 
 %.pdf: %.tex
-	cd $(dir $<) && $(LATEX) $(notdir $<)
-	rm -f $(basename $<).aux $(basename $<).log
+	$(CD) $(dir $<) && $(LATEX) $(notdir $<)
+	$(GS) -o $(basename $<)-tmp.pdf -dNoOutputFonts -sDEVICE=pdfwrite $(basename $<).pdf
+	$(MV) $(basename $<)-tmp.pdf $(basename $<).pdf
+	$(RM) -f $(basename $<).aux $(basename $<).log
 
 %.svg: %.pdf
 	$(PDF2SVG) $< $@
