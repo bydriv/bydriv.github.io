@@ -88,11 +88,11 @@ p,q\in{}U & \Longrightarrow & \left|p\lor{}q\right|        & := & \left|p\right|
 p ⊢ ¬¬p
 
 @a-entails-not-not-a.tex
-\left(\rightarrow{}I\right)\quad
+\left(\makebox{\rightarrow}I\right)\quad
 \cfrac{
   \left(P\right)\quad
   \cfrac{
-    \left(\rightarrow{}E\right)\quad
+    \left(\makebox{\rightarrow}E\right)\quad
     \cfrac{
       p\vdash{}p
       \quad
@@ -111,9 +111,9 @@ p ⊢ ¬¬p
 ¬¬¬p ⊢ ¬p
 
 @not-not-not-a-entails-not-a.tex
-\left(\rightarrow{}I\right)\quad
+\left(\makebox{\rightarrow}I\right)\quad
 \cfrac{
-  \left(\rightarrow{}E\right)\quad
+  \left(\makebox{\rightarrow}E\right)\quad
   \cfrac{
     \begin{array}{c}\Pi\\p\vdash\lnot\lnot{}p\end{array}
     \quad
@@ -129,19 +129,19 @@ p ⊢ ¬¬p
 ⊥→p ⊢ ¬q→p∨q→p
 
 @intuitionistic/p-or-q-and-not-p-implies-q.tex
-\left(\rightarrow{}I\right)\quad
+\left(\makebox{\rightarrow}I\right)\quad
 \cfrac{
-  \left(\rightarrow{}I\right)\quad
+  \left(\makebox{\rightarrow}I\right)\quad
   \cfrac{
-    \left(\lor{}E\right)\quad
+    \left(\makebox{\lor}E\right)\quad
     \cfrac{
       \begin{array}{c}\\p\lor{}q\vdash{}p\lor{}q\end{array}
       \quad
       \begin{array}{c}\\p\vdash{}p\end{array}
       \quad
-      \left(\rightarrow{}E\right)\quad
+      \left(\makebox{\rightarrow}E\right)\quad
       \cfrac{
-        \left(\rightarrow{}E\right)\quad
+        \left(\makebox{\rightarrow}E\right)\quad
         \cfrac{
           q\vdash{}q\quad\lnot{}q\vdash\lnot{}q
         }{
@@ -166,11 +166,11 @@ p ⊢ ¬¬p
 ¬¬p→p ⊢ ⊥→p
 
 @not-not-p-implies-p-entails-false-implies-p.tex
-\left(\rightarrow{}I\right)\quad
+\left(\makebox{\rightarrow}I\right)\quad
 \cfrac{
-  \left(\rightarrow{}E\right)\quad
+  \left(\makebox{\rightarrow}E\right)\quad
   \cfrac{
-    \left(\rightarrow{}I\right)\quad
+    \left(\makebox{\rightarrow}I\right)\quad
     \cfrac{
       \left(W\right)\quad
       \cfrac{
@@ -194,19 +194,19 @@ p ⊢ ¬¬p
 ⊥→p, p∨¬p ⊢ ¬¬p→p
 
 @classical/not-not-p-implies-p.tex
-\left(\rightarrow{}I\right)\quad
+\left(\makebox{\rightarrow}I\right)\quad
 \cfrac{
   \left(P\right)\quad
   \cfrac{
-    \left(\lor{}E\right)\quad
+    \left(\makebox{\lor}E\right)\quad
     \cfrac{
       \begin{array}{c}\\p\lor\lnot{}p\vdash{}p\lor\lnot{}p\end{array}
       \quad
       \begin{array}{c}\\p\vdash{}p\end{array}
       \quad
-      \left(\rightarrow{}E\right)\quad
+      \left(\makebox{\rightarrow}E\right)\quad
       \cfrac{
-        \left(\rightarrow{}E\right)\quad
+        \left(\makebox{\rightarrow}E\right)\quad
         \cfrac{
           \lnot{}p\vdash\lnot{}p\quad\lnot\lnot{}p\vdash\lnot\lnot{}p
         }{
