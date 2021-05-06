@@ -153,7 +153,7 @@ p ⊢ ¬¬p
         q,\lnot{}q,\bot\rightarrow{}p\vdash{}p
       }
     }{
-      p\lor{}q,p\lor{}q\lnot{}q,\bot\rightarrow{}p\vdash{}p
+      p\lor{}q,\lnot{}q,\bot\rightarrow{}p\vdash{}p
     }
   }{
     \lnot{}q,\bot\rightarrow{}p\vdash{}p\lor{}q\rightarrow{}p
