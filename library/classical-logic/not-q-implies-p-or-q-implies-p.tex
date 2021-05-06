@@ -1,0 +1,40 @@
+\documentclass{standalone}
+\usepackage{euler}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\begin{document}
+$
+\left(\makebox{\rightarrow}I\right)\quad
+\cfrac{
+  \left(\makebox{\rightarrow}I\right)\quad
+  \cfrac{
+    \left(\makebox{\lor}E\right)\quad
+    \cfrac{
+      \begin{array}{c}\\p\lor{}q\vdash{}p\lor{}q\end{array}
+      \quad
+      \begin{array}{c}\\p\vdash{}p\end{array}
+      \quad
+      \left(\makebox{\rightarrow}E\right)\quad
+      \cfrac{
+        \left(\makebox{\rightarrow}E\right)\quad
+        \cfrac{
+          q\vdash{}q\quad\lnot{}q\vdash\lnot{}q
+        }{
+          q,\lnot{}q\vdash\bot
+        }
+        \quad
+        \begin{array}{c}\\\vdash\bot\rightarrow{}p\end{array}
+      }{
+        q,\lnot{}q\vdash{}p
+      }
+    }{
+      p\lor{}q,\lnot{}q\vdash{}p
+    }
+  }{
+    \lnot{}q\vdash{}p\lor{}q\rightarrow{}p
+  }
+}{
+  \vdash{}\lnot{}q\rightarrow{}p\lor{}q\rightarrow{}p
+}
+$
+\end{document}

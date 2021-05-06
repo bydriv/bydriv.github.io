@@ -54,7 +54,7 @@ DATAFILE.data.each do |datum|
 -%>
 <img src="<%= $1 -%>.svg">
 <%- path = File.join(".", ROUTE, datum&.path&.chomp) -%>
-<%- File.write(path, "\\documentclass{standalone}\n\\usepackage{euler}\n\\usepackage{amsmath}\n\\begin{document}\n$\n" + (datum&.text || "") + "$\n\\end{document}\n")  if datum&.text -%>
+<%- File.write(path, "\\documentclass{standalone}\n\\usepackage{euler}\n\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\begin{document}\n$\n" + (datum&.text || "") + "$\n\\end{document}\n")  if datum&.text -%>
 <%-
   when /^(.+\.png)$/
 -%>

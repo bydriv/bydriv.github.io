@@ -1,0 +1,258 @@
+@title
+直観主義論理
+
+@header
+直観主義論理
+
+@nav
+..
+.
+
+@chapter
+定義
+
+@section
+変数
+
+@variable.tex
+\begin{array}{rcl}
+\left|V\right| & =   & \aleph_0^{}                      \\
+\nu            & \in & \left\{0,1\right\}_{}^V          \\
+\nu            & :   & V\rightarrow{}\left\{0,1\right\} \\
+\end{array}
+
+@section
+論理式
+
+@formula.tex
+\begin{array}{rcrcl}
+x\in{}V   & \Longrightarrow & x               & \in    & U                \\
+p,q\in{}U & \Longrightarrow & p\rightarrow{}q & \in    & U                \\
+p,q\in{}U & \Longrightarrow & p\land{}q       & \in    & U                \\
+p,q\in{}U & \Longrightarrow & p\lor{}q        & \in    & U                \\
+          &                 & \bot            & \in    & U                \\
+p\in{}U   & \Longrightarrow & \lnot{}p        & \equiv & p\rightarrow\bot \\
+\end{array}
+
+@section
+派生形式
+
+@derived-form.tex
+\begin{array}{rcrcl}
+          &                 & \top                & \equiv & \lnot\bot                                                     \\
+p,q\in{}U & \Longrightarrow & p\leftrightarrow{}q & \equiv & \left(p\rightarrow{}q\right)\land\left(p\rightarrow{}q\right) \\
+p,q\in{}U & \Longrightarrow & p\overline{\land}q  & \equiv & \left(p\lor\lnot{}q\right)\land\left(\lnot{}p\lor{}q\right)   \\
+p,q\in{}U & \Longrightarrow & p\underline{\lor}q  & \equiv & \left(p\land\lnot{}q\right)\lor\left(\lnot{}p\land{}q\right)  \\
+\end{array}
+
+@section
+公理型と推論規則
+
+@axiom-schema-and-inference-rule.tex
+\renewcommand{\arraystretch}{3}
+\begin{array}{cc}
+\left(A\right)                      & p\vdash{}p                                                                                                    \\
+\left(W\right)                      & \cfrac{\Gamma\vdash{}q}{p,\Gamma\vdash{}q}                                                                    \\
+\left(C\right)                      & \cfrac{p,p,\Gamma\vdash{}q}{p,\Gamma\vdash{}q}                                                                \\
+\left(P\right)                      & \cfrac{q,p,\Gamma\vdash{}r}{p,q,\Gamma\vdash{}r}                                                              \\
+\left(\makebox{\rightarrow}I\right) & \cfrac{p,\Gamma\vdash{}q}{\Gamma\vdash{}p\rightarrow{}q}                                                      \\
+\left(\makebox{\rightarrow}E\right) & \cfrac{\Gamma\vdash{}p\quad\Delta\vdash{}p\rightarrow{}q}{\Gamma,\Delta\vdash{}q}                             \\
+\left(\makebox{\land}I\right)       & \cfrac{\Gamma\vdash{}p\quad\Delta\vdash{}q}{\Gamma,\Delta\vdash{}p\land{}q}                                   \\
+\left(\makebox{\land}E_1^{}\right)  & \cfrac{\Gamma\vdash{}p\land{}q}{\Gamma\vdash{}p}                                                              \\
+\left(\makebox{\land}E_2^{}\right)  & \cfrac{\Gamma\vdash{}p\land{}q}{\Gamma\vdash{}q}                                                              \\
+\left(\makebox{\lor}I_1^{}\right)   & \cfrac{\Gamma\vdash{}p}{\Gamma\vdash{}p\lor{}q}                                                               \\
+\left(\makebox{\lor}I_2^{}\right)   & \cfrac{\Gamma\vdash{}q}{\Gamma\vdash{}p\lor{}q}                                                               \\
+\left(\makebox{\lor}E\right)        & \cfrac{\Gamma\vdash{}p\lor{}q\quad{}p,\Delta\vdash{}r\quad{}q,\Sigma\vdash{}r}{\Gamma,\Delta,\Sigma\vdash{}r} \\
+\left(\bot\right)                   & \vdash\bot\rightarrow{}p                                                                                      \\
+\end{array}
+
+@section
+真理値
+
+@truth-value.tex
+\begin{array}{rcrcl}
+x\in{}V   & \Longrightarrow & \left|x\right|               & := & \nu\left(x\right)                                               \\
+p,q\in{}U & \Longrightarrow & \left|p\rightarrow{}q\right| & := & \left|q\right|_{}^{\left|p\right|}                              \\
+p,q\in{}U & \Longrightarrow & \left|p\land{}q\right|       & := & \left|p\right|\cdot\left|q\right|                               \\
+p,q\in{}U & \Longrightarrow & \left|p\lor{}q\right|        & := & \left|p\right|+\left|q\right|-\left|p\right|\cdot\left|q\right| \\
+          &                 & \left|\bot\right|            & := & 0                                                               \\
+\end{array}
+
+@chapter
+定理
+
+@@
+⊢
+⊨
+
+@section
+p ⊢ ¬¬p
+
+@p-entails-not-not-p.tex
+\left(\makebox{\rightarrow}I\right)\quad
+\cfrac{
+  \left(P\right)\quad
+  \cfrac{
+    \left(\makebox{\rightarrow}E\right)\quad
+    \cfrac{
+      p\vdash{}p
+      \quad
+      \lnot{}p\vdash\lnot{}p
+    }{
+      p,\lnot{}p\vdash\bot
+    }
+  }{
+    \lnot{}p,p\vdash\bot
+  }
+}{
+  p\vdash{}\lnot\lnot{}p
+}
+
+@section
+¬¬¬p ⊢ ¬p
+
+@not-not-not-p-entails-not-p.tex
+\left(\makebox{\rightarrow}I\right)\quad
+\cfrac{
+  \left(\makebox{\rightarrow}E\right)\quad
+  \cfrac{
+    \begin{array}{c}\Pi\\p\vdash\lnot\lnot{}p\end{array}
+    \quad
+    \begin{array}{c}\\\lnot\lnot\lnot{}p\vdash\lnot\lnot\lnot{}p\end{array}
+  }{
+    p,\lnot\lnot\lnot{}p\vdash\bot
+  }
+}{
+  \lnot\lnot\lnot{}p\vdash\lnot{}p
+}
+
+@section
+⊢ ¬¬(p∨¬p)
+
+@not-not-p-or-not-p.tex
+\left(\makebox{\rightarrow}I\right)\quad
+\cfrac{
+  \left(C\right)\quad
+  \cfrac{
+    \left(\makebox{\rightarrow}E\right)\quad
+    \cfrac{
+      \left(\makebox{\rightarrow}I\right)\quad
+      \cfrac{
+        \left(\makebox{\rightarrow}E\right)\quad
+        \cfrac{
+          \left(\makebox{\lor}I_1^{}\right)\quad
+          \cfrac{
+            p\vdash{}p
+          }{
+            p\vdash{}p\lor\lnot{}p
+          }
+          \quad
+          \begin{array}{c}\\\lnot\left(p\lor\lnot{}p\right)\vdash\lnot\left(p\lor\lnot{}p\right)\end{array}
+        }{
+          p,\lnot\left(p\lor\lnot{}p\right)\vdash\bot
+        }
+      }{
+        \lnot\left(p\lor\lnot{}p\right)\vdash\lnot{}p
+      }
+      \quad
+      \left(\makebox{\rightarrow}I\right)\quad
+      \cfrac{
+        \left(\makebox{\rightarrow}E\right)\quad
+        \cfrac{
+          \left(\makebox{\lor}I_2^{}\right)\quad
+          \cfrac{
+            \lnot{}p\vdash\lnot{}p
+          }{
+            \lnot{}p\vdash{}p\lor\lnot{}p
+          }
+          \quad
+          \begin{array}{c}\\\lnot\left(p\lor\lnot{}p\right)\vdash\lnot\left(p\lor\lnot{}p\right)\end{array}
+        }{
+          \lnot{}p,\lnot\left(p\lor\lnot{}p\right)\vdash\bot
+        }
+      }{
+        \lnot\left(p\lor\lnot{}p\right)\vdash\lnot\lnot{}p
+      }
+    }{
+      \lnot\left(p\lor\lnot{}p\right),\lnot\left(p\lor\lnot{}p\right)\vdash\bot
+    }
+  }{
+    \lnot\left(p\lor\lnot{}p\right)\vdash\bot
+  }
+}{
+  \vdash\lnot\lnot\left(p\lor\lnot{}p\right)
+}
+
+@section
+⊢ ¬q→p∨q→p
+
+@not-q-implies-p-or-q-implies-p.tex
+\left(\makebox{\rightarrow}I\right)\quad
+\cfrac{
+  \left(\makebox{\rightarrow}I\right)\quad
+  \cfrac{
+    \left(\makebox{\lor}E\right)\quad
+    \cfrac{
+      \begin{array}{c}\\p\lor{}q\vdash{}p\lor{}q\end{array}
+      \quad
+      \begin{array}{c}\\p\vdash{}p\end{array}
+      \quad
+      \left(\makebox{\rightarrow}E\right)\quad
+      \cfrac{
+        \left(\makebox{\rightarrow}E\right)\quad
+        \cfrac{
+          q\vdash{}q\quad\lnot{}q\vdash\lnot{}q
+        }{
+          q,\lnot{}q\vdash\bot
+        }
+        \quad
+        \begin{array}{c}\\\vdash\bot\rightarrow{}p\end{array}
+      }{
+        q,\lnot{}q\vdash{}p
+      }
+    }{
+      p\lor{}q,\lnot{}q\vdash{}p
+    }
+  }{
+    \lnot{}q\vdash{}p\lor{}q\rightarrow{}p
+  }
+}{
+  \vdash{}\lnot{}q\rightarrow{}p\lor{}q\rightarrow{}p
+}
+
+@section
+p∨¬p ⊢ ¬¬p→p
+
+@p-or-not-p-entails-not-not-p-implies-p.tex
+\left(\makebox{\rightarrow}I\right)\quad
+\cfrac{
+  \left(P\right)\quad
+  \cfrac{
+    \left(\makebox{\lor}E\right)\quad
+    \cfrac{
+      \begin{array}{c}\\p\lor\lnot{}p\vdash{}p\lor\lnot{}p\end{array}
+      \quad
+      \begin{array}{c}\\p\vdash{}p\end{array}
+      \quad
+      \left(\makebox{\rightarrow}E\right)\quad
+      \cfrac{
+        \left(\makebox{\rightarrow}E\right)\quad
+        \cfrac{
+          \lnot{}p\vdash\lnot{}p\quad\lnot\lnot{}p\vdash\lnot\lnot{}p
+        }{
+          \lnot{}p,\lnot\lnot{}p\vdash{}\bot
+        }
+        \quad
+        \begin{array}{c}\\\vdash\bot\rightarrow{}p\end{array}
+      }{
+        \lnot{}p,\lnot\lnot{}p\vdash{}p
+      }
+    }{
+      p\lor\lnot{}p,\lnot\lnot{}p\vdash{}p
+    }
+  }{
+    \lnot\lnot{}p,p\lor\lnot{}p\vdash{}p
+  }
+}{
+  p\lor\lnot{}p\vdash\lnot\lnot{}p\rightarrow{}p
+}
