@@ -39,7 +39,7 @@ p\in{}U   & \Longrightarrow & \lnot{}p        & \equiv & p\rightarrow\bot \\
 
 @derived-form.tex
 \begin{array}{rcrcl}
-          &                 & \makebox{\top}      & \equiv & \lnot\makebox{\bot}                                           \\
+          &                 & \top                & \equiv & \lnot\bot                                                     \\
 p,q\in{}U & \Longrightarrow & p\leftrightarrow{}q & \equiv & \left(p\rightarrow{}q\right)\land\left(p\rightarrow{}q\right) \\
 p,q\in{}U & \Longrightarrow & p\overline{\land}q  & \equiv & \left(p\lor\lnot{}q\right)\land\left(\lnot{}p\lor{}q\right)   \\
 p,q\in{}U & \Longrightarrow & p\underline{\lor}q  & \equiv & \left(p\land\lnot{}q\right)\lor\left(\lnot{}p\land{}q\right)  \\
@@ -74,7 +74,7 @@ x\in{}V   & \Longrightarrow & \left|x\right|               & := & \nu\left(x\rig
 p,q\in{}U & \Longrightarrow & \left|p\rightarrow{}q\right| & := & \left|q\right|_{}^{\left|p\right|}                              \\
 p,q\in{}U & \Longrightarrow & \left|p\land{}q\right|       & := & \left|p\right|\cdot\left|q\right|                               \\
 p,q\in{}U & \Longrightarrow & \left|p\lor{}q\right|        & := & \left|p\right|+\left|q\right|-\left|p\right|\cdot\left|q\right| \\
-          &                 & \left|\makebox{\bot}\right|  & := & 0                                                               \\
+          &                 & \left|\bot\right|            & := & 0                                                               \\
 \end{array}
 
 @chapter
@@ -87,7 +87,7 @@ p,q\in{}U & \Longrightarrow & \left|p\lor{}q\right|        & := & \left|p\right|
 @section
 p ⊢ ¬¬p
 
-@a-entails-not-not-a.tex
+@p-entails-not-not-p.tex
 \left(\makebox{\rightarrow}I\right)\quad
 \cfrac{
   \left(P\right)\quad
@@ -110,7 +110,7 @@ p ⊢ ¬¬p
 @section
 ¬¬¬p ⊢ ¬p
 
-@not-not-not-a-entails-not-a.tex
+@not-not-not-p-entails-not-p.tex
 \left(\makebox{\rightarrow}I\right)\quad
 \cfrac{
   \left(\makebox{\rightarrow}E\right)\quad
@@ -185,7 +185,7 @@ p ⊢ ¬¬p
 @section
 ⊥→p ⊢ ¬q→p∨q→p
 
-@intuitionistic/p-or-q-and-not-p-implies-q.tex
+@false-implies-p-entails-not-q-implies-p-or-q-implies-p.tex
 \left(\makebox{\rightarrow}I\right)\quad
 \cfrac{
   \left(\makebox{\rightarrow}I\right)\quad
@@ -216,7 +216,7 @@ p ⊢ ¬¬p
     \lnot{}q,\bot\rightarrow{}p\vdash{}p\lor{}q\rightarrow{}p
   }
 }{
-  \bot\rightarrow{}p\vdash{}\lnot{}p\rightarrow{}p\lor{}q\rightarrow{}q
+  \bot\rightarrow{}p\vdash{}\lnot{}q\rightarrow{}p\lor{}q\rightarrow{}p
 }
 
 @section
@@ -250,7 +250,7 @@ p ⊢ ¬¬p
 @section
 ⊥→p, p∨¬p ⊢ ¬¬p→p
 
-@classical/not-not-p-implies-p.tex
+@false-implies-p-and-p-or-not-p-entails-not-not-p-implies-p.tex
 \left(\makebox{\rightarrow}I\right)\quad
 \cfrac{
   \left(P\right)\quad

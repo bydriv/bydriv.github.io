@@ -1,0 +1,24 @@
+\documentclass{standalone}
+\usepackage{euler}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\begin{document}
+$
+\renewcommand{\arraystretch}{3}
+\begin{array}{cc}
+\left(A\right)                      & p\vdash{}p                                                                                                    \\
+\left(W\right)                      & \cfrac{\Gamma\vdash{}q}{p,\Gamma\vdash{}q}                                                                    \\
+\left(C\right)                      & \cfrac{p,p,\Gamma\vdash{}q}{p,\Gamma\vdash{}q}                                                                \\
+\left(P\right)                      & \cfrac{q,p,\Gamma\vdash{}r}{p,q,\Gamma\vdash{}r}                                                              \\
+\left(\makebox{\rightarrow}I\right) & \cfrac{p,\Gamma\vdash{}q}{\Gamma\vdash{}p\rightarrow{}q}                                                      \\
+\left(\makebox{\rightarrow}E\right) & \cfrac{\Gamma\vdash{}p\quad\Delta\vdash{}p\rightarrow{}q}{\Gamma,\Delta\vdash{}q}                             \\
+\left(\makebox{\land}I\right)       & \cfrac{\Gamma\vdash{}p\quad\Delta\vdash{}q}{\Gamma,\Delta\vdash{}p\land{}q}                                   \\
+\left(\makebox{\land}E_1^{}\right)  & \cfrac{\Gamma\vdash{}p\land{}q}{\Gamma\vdash{}p}                                                              \\
+\left(\makebox{\land}E_2^{}\right)  & \cfrac{\Gamma\vdash{}p\land{}q}{\Gamma\vdash{}q}                                                              \\
+\left(\makebox{\lor}I_1^{}\right)   & \cfrac{\Gamma\vdash{}p}{\Gamma\vdash{}p\lor{}q}                                                               \\
+\left(\makebox{\lor}I_2^{}\right)   & \cfrac{\Gamma\vdash{}q}{\Gamma\vdash{}p\lor{}q}                                                               \\
+\left(\makebox{\lor}E\right)        & \cfrac{\Gamma\vdash{}p\lor{}q\quad{}p,\Delta\vdash{}r\quad{}q,\Sigma\vdash{}r}{\Gamma,\Delta,\Sigma\vdash{}r} \\
+\left(\bot\right)                   & \vdash\bot\rightarrow{}p                                                                                      \\
+\end{array}
+$
+\end{document}
