@@ -26,12 +26,12 @@
 
 @formula.tex
 \begin{array}{rcrcl}
-x\in{}V   & \Longrightarrow & x                  & \in    & U                          \\
-p,q\in{}U & \Longrightarrow & p\rightarrow{}q    & \in    & U                          \\
-p,q\in{}U & \Longrightarrow & p\land{}q          & \in    & U                          \\
-p,q\in{}U & \Longrightarrow & p\lor{}q           & \in    & U                          \\
-          &                 & \makebox{\bot}     & \in    & U                          \\
-p\in{}U   & \Longrightarrow & \lnot{}p           & \equiv & p\rightarrow\makebox{\bot} \\
+x\in{}V   & \Longrightarrow & x               & \in    & U                \\
+p,q\in{}U & \Longrightarrow & p\rightarrow{}q & \in    & U                \\
+p,q\in{}U & \Longrightarrow & p\land{}q       & \in    & U                \\
+p,q\in{}U & \Longrightarrow & p\lor{}q        & \in    & U                \\
+          &                 & \bot            & \in    & U                \\
+p\in{}U   & \Longrightarrow & \lnot{}p        & \equiv & p\rightarrow\bot \\
 \end{array}
 
 @section
