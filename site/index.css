@@ -192,6 +192,25 @@ div.tapestry article.vertical.component math {
     padding: 0;
 }
 
+
+/******************************************************************************
+ * <article class="vertical component">
+ *   <pre>..</pre>
+ * </article>
+ ******************************************************************************/
+div.tapestry article.vertical.component pre {
+    margin: 16px 0;
+    padding: 8px 32px;
+
+    font-size: 16px;
+    line-height: 16px;
+
+    color: rgba(255, 255, 255, 0.75);
+    background-color: rgba(0, 0, 0, 0.75);
+
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.75) inset;
+}
+
 /******************************************************************************
  * <article class="vertical-writing component">
  *   <p>..</p>
