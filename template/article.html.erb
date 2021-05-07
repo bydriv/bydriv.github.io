@@ -50,6 +50,11 @@ DATAFILE.data.each do |datum|
 <%= text -%>
 </p>
 <%-
+  when /^code$/
+    text = datum&.text || ""
+-%>
+<pre><code><%= text -%></code></pre>
+<%-
   when /^(.+)\.tex$/
 -%>
 <img src="<%= $1 -%>.svg">

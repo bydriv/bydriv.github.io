@@ -1,0 +1,60 @@
+\documentclass{standalone}
+\usepackage{euler}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\begin{document}
+$
+\left(\makebox{\rightarrow}I\right)\quad
+\cfrac{
+  \left(C\right)\quad
+  \cfrac{
+    \left(\makebox{\rightarrow}E\right)\quad
+    \cfrac{
+      \left(\makebox{\rightarrow}I\right)\quad
+      \cfrac{
+        \left(\makebox{\rightarrow}E\right)\quad
+        \cfrac{
+          \left(\makebox{\lor}I_1^{}\right)\quad
+          \cfrac{
+            p\vdash{}p
+          }{
+            p\vdash{}p\lor\lnot{}p
+          }
+          \quad
+          \begin{array}{c}\\\lnot\left(p\lor\lnot{}p\right)\vdash\lnot\left(p\lor\lnot{}p\right)\end{array}
+        }{
+          p,\lnot\left(p\lor\lnot{}p\right)\vdash\bot
+        }
+      }{
+        \lnot\left(p\lor\lnot{}p\right)\vdash\lnot{}p
+      }
+      \quad
+      \left(\makebox{\rightarrow}I\right)\quad
+      \cfrac{
+        \left(\makebox{\rightarrow}E\right)\quad
+        \cfrac{
+          \left(\makebox{\lor}I_2^{}\right)\quad
+          \cfrac{
+            \lnot{}p\vdash\lnot{}p
+          }{
+            \lnot{}p\vdash{}p\lor\lnot{}p
+          }
+          \quad
+          \begin{array}{c}\\\lnot\left(p\lor\lnot{}p\right)\vdash\lnot\left(p\lor\lnot{}p\right)\end{array}
+        }{
+          \lnot{}p,\lnot\left(p\lor\lnot{}p\right)\vdash\bot
+        }
+      }{
+        \lnot\left(p\lor\lnot{}p\right)\vdash\lnot\lnot{}p
+      }
+    }{
+      \lnot\left(p\lor\lnot{}p\right),\lnot\left(p\lor\lnot{}p\right)\vdash\bot
+    }
+  }{
+    \lnot\left(p\lor\lnot{}p\right)\vdash\bot
+  }
+}{
+  \vdash\lnot\lnot\left(p\lor\lnot{}p\right)
+}
+$
+\end{document}
