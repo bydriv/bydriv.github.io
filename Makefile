@@ -18,7 +18,7 @@ ARTICLES := $(patsubst %,.%article.html,$(ROUTES))
 NAVS := $(patsubst %,.%nav.html,$(ROUTES))
 
 .PHONY: all
-all: site/routes.json $(INDICES) $(ARTICLES) $(NAVS) $(patsubst %.tex,%.svg,$(shell $(GIT) ls-files Datafile '*.tex') $(wildcard library/*/*.tex))
+all: site/routes.json $(INDICES) $(ARTICLES) $(NAVS) $(patsubst %.tex,%.svg,$(shell $(GIT) ls-files Datafile '*.tex'))
 
 %.pdf: %.tex
 	$(CD) $(dir $<) && $(LATEX) $(notdir $<)
