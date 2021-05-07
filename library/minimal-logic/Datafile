@@ -126,6 +126,55 @@ p ⊢ ¬¬p
 }
 
 @section
+¬¬p, ¬¬(p→q) ⊢ ¬¬q
+
+@not-not-p-and-not-not-p-implies-q-entails-not-ont-q.tex
+\left(\makebox{\rightarrow}I\right)\quad
+\cfrac{
+  \left(\makebox{\rightarrow}E\right)\quad
+    \cfrac{
+    \left(\makebox{\rightarrow}I\right)\quad
+    \cfrac{
+      \left(\makebox{\rightarrow}E\right)\quad
+      \cfrac{
+        \left(\makebox{\rightarrow}I\right)\quad
+        \cfrac{
+          \left(\makebox{\rightarrow}E\right)\quad
+          \cfrac{
+            \left(\makebox{\rightarrow}E\right)\quad
+            \cfrac{
+              p\vdash{}p
+              \quad
+              p\rightarrow{}q\vdash{}p\rightarrow{}q
+            }{
+              p,p\rightarrow{}q\vdash{}q
+            }
+            \quad
+            \begin{array}{c}\\\lnot{}q\vdash\lnot{}q\end{array}
+          }{
+            p,p\rightarrow{}q,\lnot{}q\vdash{}\bot
+          }
+        }{
+          p\rightarrow{}q,\lnot{}q\vdash{}\lnot{}p
+        }
+        \quad
+        \begin{array}{c}\\\lnot\lnot{}p\vdash\lnot\lnot{}p\end{array}
+      }{
+        p\rightarrow{}q,\lnot{}q,\lnot\lnot{}p\vdash\bot
+      }
+    }{
+      \lnot{}q,\lnot\lnot{}p\vdash{}\lnot\left(p\rightarrow{}q\right)
+    }
+    \quad
+    \begin{array}{c}\\\lnot\lnot{}\left(p\rightarrow{}q\right)\vdash\lnot\lnot{}\left(p\rightarrow{}q\right)\end{array}
+  }{
+    \lnot{}q,\lnot\lnot{}p,\lnot\lnot\left(p\rightarrow{}q\right)\vdash\bot
+  }
+}{
+  \lnot\lnot{}p,\lnot\lnot\left(p\rightarrow{}q\right)\vdash\lnot\lnot{}q
+}
+
+@section
 ⊢ ¬¬(p∨¬p)
 
 @not-not-p-or-not-p.tex
