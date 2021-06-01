@@ -192,7 +192,6 @@ div.tapestry article.vertical.component math {
     padding: 0;
 }
 
-
 /******************************************************************************
  * <article class="vertical component">
  *   <pre>..</pre>
@@ -209,6 +208,22 @@ div.tapestry article.vertical.component pre {
     background-color: rgba(0, 0, 0, 0.75);
 
     box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.75) inset;
+}
+
+div.tapestry article.vertical.component pre code {
+    font-family: "Consolas", monospace;
+}
+
+div.tapestry article.vertical.component pre code span.o {
+    color: rgba(0, 255, 255, 0.75);
+}
+
+div.tapestry article.vertical.component pre code span.k {
+    color: rgba(0, 255, 0, 0.75);
+}
+
+div.tapestry article.vertical.component pre code span.kn {
+    color: rgba(255, 0, 255, 0.75);
 }
 
 /******************************************************************************
