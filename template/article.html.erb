@@ -55,11 +55,17 @@ DATAFILE.data.each do |datum|
 -%>
 <pre><code><%= text -%></code></pre>
 <%-
+  when /^(.+)\.v$/
+    path = File.join(".", ROUTE, datum&.path&.chomp)
+    text = datum&.text || `pygmentize -f html -P nowrap #{path}`
+-%>
+<pre><code><%= text -%></code></pre>
+<%-
   when /^(.+)\.tex$/
 -%>
 <img src="<%= $1 -%>.svg">
 <%- path = File.join(".", ROUTE, datum&.path&.chomp) -%>
-<%- File.write(path, "\\documentclass{standalone}\n\\usepackage{euler}\n\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\begin{document}\n$\n" + (datum&.text || "") + "$\n\\end{document}\n")  if datum&.text -%>
+<%- File.write(path, "\\documentclass{standalone}\n\\usepackage{euler}\n\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\begin{document}\n$\n" + (datum&.text || "") + "$\n\\end{document}\n") if datum&.text -%>
 <%-
   when /^(.+\.png)$/
 -%>
@@ -73,10 +79,9 @@ DATAFILE.data.each do |datum|
 <%-
     else
       text = datum&.text&.gsub("！？", "<span class=\"rensuji\">!?</span>")
+      text = text&.gsub("\n", "")
 -%>
-<p>
-<%= text -%>
-</p>
+<p><%= text -%></p>
 <%-
     end
   end

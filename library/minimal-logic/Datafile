@@ -332,3 +332,8 @@ p ⊢ ¬¬p
 }{
   p\lor\lnot{}p,\bot\rightarrow{}p\vdash\lnot\lnot{}p\rightarrow{}p
 }
+
+@chapter
+形式化
+
+@formalization.v
