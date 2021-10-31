@@ -245,22 +245,32 @@ div.tapestry article.vertical.component pre {
     background-color: rgba(0, 0, 0, 0.75);
 
     box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.75) inset;
+
+    white-space: pre-wrap;
 }
 
 div.tapestry article.vertical.component pre code {
     font-family: "Consolas", monospace;
 }
 
-div.tapestry article.vertical.component pre code span.o {
-    color: rgba(0, 255, 255, 0.75);
+div.tapestry article.vertical.component pre code span.k,
+div.tapestry article.vertical.component pre code span.kn,
+div.tapestry article.vertical.component pre code span.kr {
+    color: rgba(255, 0, 255, 0.75);
 }
 
-div.tapestry article.vertical.component pre code span.k {
+div.tapestry article.vertical.component pre code span.kt {
     color: rgba(0, 255, 0, 0.75);
 }
 
-div.tapestry article.vertical.component pre code span.kn {
-    color: rgba(255, 0, 255, 0.75);
+div.tapestry article.vertical.component pre code span.s {
+    /*color: rgba(255, 255, 0, 0.75);*/
+    color: rgba(0, 255, 255, 0.75);
+    font-style: italic;
+}
+
+div.tapestry article.vertical.component pre code span.nf {
+    color: rgba(255, 0, 0, 0.75);
 }
 
 /******************************************************************************
