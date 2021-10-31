@@ -61,6 +61,12 @@ DATAFILE.data.each do |datum|
 -%>
 <pre><code><%= text -%></code></pre>
 <%-
+  when /^(.+)\.hs$/
+    path = File.join(".", ROUTE, datum&.path&.chomp)
+    text = datum&.text || `pygmentize -f html -P nowrap #{path}`
+-%>
+<pre><code><%= text -%></code></pre>
+<%-
   when /^(.+)\.tex$/
 -%>
 <img src="<%= $1 -%>.svg">
