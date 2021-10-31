@@ -222,7 +222,7 @@
 <p>GHCi で動作確認をしてみます。今回はわかりやすい例として square(x)=x² を考えます。 sqrt(x)=√x として square⁻¹=sqrt です。たとえば square(4)=16 で sqrt(16)=4 です。</p>
 <pre><code>> :set +m
 > let square :: Relation Int.Int8 Int.Int8
-|     square = square = insert 4 16 (insert 3 9 (insert 0 0 (insert 1 1 (singleton 2 4))))
+|     square = insert 4 16 (insert 3 9 (insert 0 0 (insert 1 1 (singleton 2 4))))
 |
 > print square
 Branch [(2,4)] (27 % 32768) (Branch [(1,1)] (1 % 32768) (Branch [(0,0)] (0 % 1) Leaf Leaf) Leaf) (Branch [(3,9)] (35 % 32768) Leaf (Branch [(4,16)] (461 % 32768) Leaf Leaf))
