@@ -1,0 +1,64 @@
+@title
+Coq による極限の定義
+
+@header
+Coq による極限の定義
+
+@nav
+..
+.
+
+@chapter
+はしがき
+
+　この土日は極限の定義を Coq でしていました。ここに記録しておきます。
+
+@right
+(2021-11-14)
+
+@chapter
+無限数列による極限の定義
+
+　まず実数の無限数列を考えます。すなわち
+
+@real-numbers.tex
+x_1^{},x_2^{},\cdots,x_n^{},\cdots\in\mathbb{R}
+
+　として実数の無限数列を
+
+@infinite-sequence.tex
+x_1^{},x_2^{},\cdots,x_n^{},\cdots
+
+　と表し、この第 n 項を
+
+@nth-element.tex
+x_n^{}
+
+　と表します。ここで実数の無限数列の極限はつぎのように定義されます。
+
+@definition.tex
+\lim_{n\to\infty}^{}x_n^{}=x\Leftrightarrow\forall\epsilon\in\mathbb{R}\left(\exists{}n_0^{}\in\mathbb{N}\left(\forall{}n\in\mathbb{N}\left(n>n_0^{}\rightarrow\left|x_n^{}-x\right|<\epsilon\right)\right)\right)
+
+　このとき
+
+@limit-add.tex
+\lim_{n\to\infty}^{}\left(x_n^{}+y_n^{}\right)=\lim_{n\to\infty}^{}x_n^{}+\lim_{n\to\infty}^{}y_n^{}
+
+　が成り立ちます。この記事ではこの命題の証明を目指します。
+
+@chapter
+Coq による定義と証明
+
+　さきほど示した
+
+@limit-add.tex
+
+　のように = という記号でむすぶには、本来、さきに同値関係を定義せねばなりません。
+しかしそれはしんどいので、この記事ではひとまず
+
+@limit-add-weak.tex
+\lim_{n\to\infty}^{}x_n^{}=x\rightarrow\lim_{n\to\infty}^{}y_n^{}=y\rightarrow\lim_{n\to\infty}^{}\left(x_n^{}+y_n^{}\right)=x+y
+
+　という命題を示すことを目標とします。
+
+@formalization.v
