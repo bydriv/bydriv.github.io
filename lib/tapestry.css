@@ -136,7 +136,8 @@ div.tapestry nav.component {
     width: 100%;
     height: 100%;
 
-    /*transition: width 1s, height 1s, opacity 1s;*/
+    will-change: width, height, opacity;
+    transition: width 1s, height 1s, opacity 1s;
 }
 
 /******************************************************************************
