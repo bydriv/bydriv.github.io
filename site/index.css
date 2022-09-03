@@ -1,1 +1,406 @@
 @import url("../lib/tapestry.css");
+
+/* "RocknRoll" is lisenced under the SIL Open Font License 1.1
+ * by https://github.com/fontworks-fonts/RocknRoll */
+@font-face {
+    font-family: "RocknRoll";
+    src: url("./RocknRollOne-Regular.ttf") format("truetype");
+}
+
+/* "Klee" is lisenced under the SIL Open Font License 1.1
+ * by https://github.com/fontworks-fonts/Klee */
+@font-face {
+    font-family: "Klee";
+    src: url("./KleeOne-Regular.ttf") format("truetype");
+}
+
+/* "Spectral" is lisenced under the SIL Open Font License 1.1
+ * by https://github.com/productiontype/spectral */
+@font-face {
+    font-family: "Spectral";
+    src: url("./Spectral-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Spectral";
+    src: url("./Spectral-Bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Spectral";
+    src: url("./Spectral-Italic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Spectral";
+    src: url("./Spectral-BoldItalic.ttf") format("truetype");
+    font-weight: bold;
+    font-style: italic;
+}
+
+html, body, div.tapestry {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/******************************************************************************
+ * <div class="tapestry">..</div>
+ ******************************************************************************/
+@media (orientation: landscape) {
+    div.tapestry {
+        background-image: url("/site/landscape.png");
+    }
+}
+
+@media (orientation: portrait) {
+    div.tapestry {
+        background-image: url("/site/portrait.png");
+    }
+}
+
+div.tapestry {
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+
+    font-size: 16px;
+    font-family: "RocknRoll";
+}
+
+/******************************************************************************
+ * <article class="component">..</article>
+ ******************************************************************************/
+div.tapestry article.component {
+    color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+/******************************************************************************
+ * <article class="component" data-route="/">..</article>
+ ******************************************************************************/
+div.tapestry article.component[data-route="/"] {
+    display: none;
+}
+
+/******************************************************************************
+ * <article class="component">
+ *   <h1>..</h1>
+ * </article>
+ ******************************************************************************/
+div.tapestry article.component h1 {
+    margin: 32px;
+    padding: 0;
+
+    font-size: 32px;
+    font-weight: normal;
+
+    text-align: center;
+}
+
+/******************************************************************************
+ * <article class="component">
+ *   <h2>..</h2>
+ * </article>
+ ******************************************************************************/
+div.tapestry article.component h2 {
+    box-sizing: border-box;
+
+    margin: 24px 0;
+    padding: 0 16px;
+
+    font-size: 16px;
+    font-weight: normal;
+
+    line-height: 24px;
+
+    border-left: solid 16px rgba(0, 0, 0, 0.75);
+    border-bottom: dashed 1px rgba(0, 0, 0, 0.75);
+}
+
+/******************************************************************************
+ * <article class="component">
+ *   <h3>..</h3>
+ * </article>
+ ******************************************************************************/
+div.tapestry article.component h3 {
+    box-sizing: border-box;
+
+    margin: 24px 32px;
+    padding: 0;
+
+    font-size: 16px;
+    font-weight: normal;
+
+    line-height: 24px;
+
+    border-bottom: dashed 1px rgba(0, 0, 0, 0.75);
+}
+
+/******************************************************************************
+ * <article class="component">
+ *   <ul>..</ul>
+ * </article>
+ ******************************************************************************/
+div.tapestry article.component ul {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+/******************************************************************************
+ * <article class="component">
+ *   <ol>..</ol>
+ * </article>
+ ******************************************************************************/
+div.tapestry article.component ol {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+/******************************************************************************
+ * <article class="component">
+ *   <li>..</li>
+ * </article>
+ ******************************************************************************/
+div.tapestry article.component li {
+    box-sizing: border-box;
+
+    margin: 0;
+    padding: 4px 8px;
+    width: auto;
+    height: 32px;
+
+    border-bottom: dashed 1px rgba(0, 0, 0, 0.75);
+}
+
+/******************************************************************************
+ * <article class="component">
+ *   <a class="component">..</a>
+ * </article>
+ ******************************************************************************/
+div.tapestry article.component a {
+    color: rgba(0, 128, 255, 0.75);
+    text-decoration: none;
+}
+
+div.tapestry article.component a:hover {
+    text-decoration: underline;
+}
+
+/******************************************************************************
+ * <article class="component">
+ *   <img>
+ * </article>
+ ******************************************************************************/
+div.tapestry article.component img {
+    display: block;
+
+    margin: auto;
+    padding: 0;
+
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/******************************************************************************
+ * <article class="vertical component">
+ *   <p>..</p>
+ * </article>
+ ******************************************************************************/
+div.tapestry article.vertical.component p {
+    margin: 24px 32px;
+    padding: 0;
+
+    font-size: 16px;
+    line-height: 24px;
+}
+
+div.tapestry article.vertical.component p:not([align]) {
+    text-align: justify;
+}
+
+/******************************************************************************
+ * <article class="vertical component">
+ *   <math>..</math>
+ * </article>
+ ******************************************************************************/
+div.tapestry article.vertical.component math {
+    margin: 24px 32px;
+    padding: 0;
+}
+
+/******************************************************************************
+ * <article class="vertical component">
+ *   <pre>..</pre>
+ * </article>
+ ******************************************************************************/
+div.tapestry article.vertical.component pre {
+    margin: 16px 0;
+    padding: 8px 32px;
+
+    font-size: 16px;
+    line-height: 16px;
+
+    color: rgba(255, 255, 255, 0.75);
+    background-color: rgba(0, 0, 0, 0.75);
+
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.75) inset;
+
+    white-space: pre-wrap;
+}
+
+div.tapestry article.vertical.component pre code {
+    font-family: "Consolas", monospace;
+}
+
+div.tapestry article.vertical.component pre code span.k,
+div.tapestry article.vertical.component pre code span.kn,
+div.tapestry article.vertical.component pre code span.kr {
+    color: rgba(255, 0, 255, 0.75);
+}
+
+div.tapestry article.vertical.component pre code span.kt {
+    color: rgba(0, 255, 0, 0.75);
+}
+
+div.tapestry article.vertical.component pre code span.s {
+    /*color: rgba(255, 255, 0, 0.75);*/
+    color: rgba(0, 255, 255, 0.75);
+    font-style: italic;
+}
+
+div.tapestry article.vertical.component pre code span.nf {
+    color: rgba(255, 0, 0, 0.75);
+}
+
+/******************************************************************************
+ * <article class="vertical-writing component">
+ *   <p>..</p>
+ * </article>
+ ******************************************************************************/
+div.tapestry article.vertical-writing.component p:first-child {
+    margin-right: 48px;
+}
+
+div.tapestry article.vertical-writing.component p:last-child {
+    margin-left: 48px;
+}
+
+div.tapestry article.vertical-writing.component p {
+    margin: 64px 24px;
+    padding: 0;
+
+    font-size: 16px;
+    line-height: 24px;
+}
+
+div.tapestry article.vertical-writing.component p:not([align]) {
+    text-align: justify;
+}
+
+/******************************************************************************
+ * <article class="vertical-writing component">
+ *   <hr>
+ * </article>
+ ******************************************************************************/
+div.tapestry article.vertical-writing.component hr {
+    margin: 0 30px;
+    padding: 0;
+
+    min-width: 4px;
+    min-height: 4px;
+
+    background-color: rgba(0, 0, 0, 0.75);
+
+    border: none;
+    outline: dashed 1px rgba(255, 255, 255, 0.75);
+    outline-offset: -2px;
+}
+    
+/******************************************************************************
+ * <article class="vertical-writing component">
+ *   <span class="rensuji">..</span>
+ * </article>
+ ******************************************************************************/
+div.tapestry article.vertical-writing.component span.rensuji {
+    display: inline-block;
+
+    margin: -0.25em;
+    padding: 0;
+
+    width: 1.5em;
+    height: 1.5em;
+
+    white-space: nowrap;
+    overfow-wrap: normal;
+
+    text-align: center;
+
+    writing-mode: horizontal-tb;
+}
+
+/******************************************************************************
+ * <nav class="component">..</nav>
+ ******************************************************************************/
+div.tapestry nav.component {
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+/******************************************************************************
+ * <nav class="component">
+ *   <a class="component">..</a>
+ * </nav>
+ ******************************************************************************/
+div.tapestry nav.component a.component {
+    color: rgba(128, 128, 128, 0.75);
+    text-decoration: none;
+}
+
+/******************************************************************************
+ * <nav class="component">
+ *   <a class="component" data-focus="true">..</a>
+ * </nav>
+ ******************************************************************************/
+div.tapestry nav.component a.component[data-focus="true"] {
+    color: rgba(255, 0, 255, 0.75);
+}
+
+/******************************************************************************
+ * <nav class="component">
+ *   <a class="component" data-focus-within="true">..</a>
+ * </nav>
+ ******************************************************************************/
+div.tapestry nav.component a.component[data-focus-within="true"] {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+span.magenta {
+    color: rgba(255, 0, 255, 0.75);
+}
+
+span.japanese {
+    font-family: Klee;
+}
+
+span.english,
+span.german,
+span.russian {
+    font-family: Spectral;
+    font-style: italic;
+}
+
+span.chinese {
+    font-family: SimSun;
+}
