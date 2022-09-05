@@ -1,0 +1,1 @@
+mkdir %APPDATA%\Hijack
