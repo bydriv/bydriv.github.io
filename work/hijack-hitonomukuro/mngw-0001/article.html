@@ -1,0 +1,18 @@
+<h1>MNGW-0001</h1>
+<p>COMITIA141 で頒布した『ハイジャック ヒトノムクロ』の初版です。盤面に『MNGW-0001』と印字されている場合、このバージョンです。</p>
+<h2>イベント情報</h2>
+<p><ul><li><a href="https://www.comitia.co.jp/html/141.html">https://www.comitia.co.jp/html/141.html</a></li></ul></p>
+<h2>参考情報</h2>
+<p><ul><li><a href="/event/comitia141">COMITIA141 に参加します</a></li><li><a href="/event/comitia141-report">COMITIA141 参加レポート (追記あり: 頒布物のバグのお詫びと案内)</a></li></ul></p>
+<h2>既知のバグ</h2>
+<h3>現象</h3>
+<p>　起動時に『ERROR　指定されたパスが見つかりません』と表示され、ゲームが起動できない。</p>
+<h3>原因</h3>
+<p>　セーブデータを保存するフォルダが存在しないため。当該フォルダが存在しない場合に新規作成する処理が足りなかったことによる不具合。</p>
+<h3>対処法</h3>
+<p>　C:\Users\&lt;ユーザ名&gt;\AppData\Roaming\Hijack というフォルダを手動で作成する。</p>
+<p>　なお C:\Users\&lt;ユーザ名&gt;\AppData\Roaming という部分は環境依存。正確には、コマンドプロンプトで</p>
+<pre><code>> set
+APPDATA=C:\Users\&lt;ユーザ名&gt;\AppData\Roaming
+</code></pre>
+<p>のように調べることができます。</p>
