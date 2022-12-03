@@ -180,7 +180,7 @@ div.tapestry article.component li {
     margin: 0;
     padding: 4px 8px;
     width: auto;
-    height: 32px;
+    min-height: 32px;
 
     border-bottom: dashed 1px rgba(0, 0, 0, 0.75);
 }
