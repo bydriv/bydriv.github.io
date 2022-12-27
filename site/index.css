@@ -386,6 +386,10 @@ div.tapestry nav.component a.component[data-focus-within="true"] {
     color: rgba(255, 255, 255, 0.75);
 }
 
+article.japanese {
+    font-family: Klee;
+}
+
 span.magenta {
     color: rgba(255, 0, 255, 0.75);
 }
